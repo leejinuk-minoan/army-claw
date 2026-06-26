@@ -1,5 +1,28 @@
 # Army Claw 진행 로그
 
+## 2026-06-27 - Local LLM 번들 스크립트 구현
+
+### 구현 내용
+
+- 준비망에서 Ollama 모델 번들을 생성하는 `scripts/export-local-llm-bundle.ps1`와 `.bat` 래퍼를 추가했다.
+- 단독망에서 반입된 Ollama 모델 저장소를 설치하는 `scripts/install-local-llm-bundle.ps1`와 `.bat` 래퍼를 추가했다.
+- 단독망 설치 후 파일 무결성, Ollama API, `gemma3:12b` 모델 존재, 기본 생성 응답을 확인하는 `scripts/verify-local-llm-bundle.ps1`와 `.bat` 래퍼를 추가했다.
+- `docs/local-llm-bundle.md`를 실제 준비망 생성 절차, 단독망 설치 절차, 설치 후 검증 절차 중심으로 확장했다.
+- 실제 Ollama 설치 파일과 모델 저장소가 GitHub에 올라가지 않도록 `.gitignore`에 Local LLM 대용량 산출물 제외 규칙을 추가했다.
+
+### 이번 검증
+
+- PowerShell 스크립트 문법 검사: 통과.
+- 현재 PC에서 `ollama` 명령이 PATH에 없는 상태를 확인했다.
+- `scripts\verify-local-llm-bundle.bat -Model gemma3:12b -SkipGenerate` 실행 시 `Ollama command was not found` 오류가 명확히 출력됨을 확인했다.
+
+### 남은 사항
+
+- Ollama가 설치된 준비망 PC에서 `ollama pull gemma3:12b` 후 `scripts\export-local-llm-bundle.bat -Model gemma3:12b -IncludeModelStore`를 실행해 실제 모델 번들을 생성해야 한다.
+- Ollama 설치 파일 포함 여부와 보안 검수 절차를 확정해야 한다.
+- 단독망과 동일한 Windows 계정/권한 조건에서 `install-local-llm-bundle.bat`와 `verify-local-llm-bundle.bat`를 검증해야 한다.
+- 웹 UI에서 Local LLM Bundle 상태 표시와 재검증 버튼을 연결해야 한다.
+
 ## 2026-06-27 - 오프라인 빌드 venv 준비
 
 ### 구현 내용

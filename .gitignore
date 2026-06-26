@@ -26,6 +26,12 @@ backend/openclaw/web/
 # Offline dependency payloads
 vendor/python-wheels/
 vendor/python-wheels.sha256
+local-llm-bundle/
+vendor/ollama/
+*.gguf
+*.ggml
+*.safetensors
+*.bin
 
 # Local secrets/config
 config/openclaw.config.json
