@@ -1,0 +1,11 @@
+{
+  "provider": {
+    "mode": "local_llm_bundle",
+    "model": "gemma3:12b",
+    "ollama_base_url": "http://127.0.0.1:11434",
+    "api_base_url": "",
+    "api_key": "",
+    "timeout_seconds": 60.0,
+    "retries": 1
+  }
+}

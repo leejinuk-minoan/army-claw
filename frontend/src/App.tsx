@@ -1,0 +1,595 @@
+import { useState } from "react";
+import {
+  fetchHealth,
+  addHwpxParagraph,
+  addBulletSlide,
+  addTitleSlide,
+  createPresentation,
+  createHwpx,
+  hwpxCompatibility,
+  listWorkspace,
+  proposeCommand,
+  readWorkspaceFile,
+  previewXlsx,
+  showCompatibility,
+  summarizeHwpx,
+  summarizePresentation,
+  writeWorkspaceFile,
+  summarizeXlsx,
+  summarizeXlsxPivot,
+  suggestXlsxFormula,
+  writeXlsxCell,
+} from "./api";
+import type {
+  CommandResult,
+  FileEntry,
+  FormulaSuggestion,
+  HealthResult,
+  HwpxResult,
+  HwpxSummary,
+  PivotSummary,
+  PresentationResult,
+  PresentationSummary,
+  SheetPreview,
+  WorkbookSummary,
+  WriteResult,
+} from "./types";
+import "./styles.css";
+
+export function App() {
+  const [health, setHealth] = useState<HealthResult | null>(null);
+  const [entries, setEntries] = useState<FileEntry[]>([]);
+  const [workspaceRoot, setWorkspaceRoot] = useState("");
+  const [selectedPath, setSelectedPath] = useState("");
+  const [fileContent, setFileContent] = useState("");
+  const [writeResult, setWriteResult] = useState<WriteResult | null>(null);
+  const [command, setCommand] = useState("Get-ChildItem");
+  const [commandResult, setCommandResult] = useState<CommandResult | null>(null);
+  const [xlsxPath, setXlsxPath] = useState("");
+  const [xlsxSheet, setXlsxSheet] = useState("");
+  const [xlsxCell, setXlsxCell] = useState("A1");
+  const [xlsxValue, setXlsxValue] = useState("");
+  const [formulaFunction, setFormulaFunction] = useState("SUM");
+  const [formulaRange, setFormulaRange] = useState("B2:B10");
+  const [pivotGroup, setPivotGroup] = useState("");
+  const [pivotValue, setPivotValue] = useState("");
+  const [workbookSummary, setWorkbookSummary] = useState<WorkbookSummary | null>(null);
+  const [sheetPreview, setSheetPreview] = useState<SheetPreview | null>(null);
+  const [formulaSuggestion, setFormulaSuggestion] = useState<FormulaSuggestion | null>(null);
+  const [pivotSummary, setPivotSummary] = useState<PivotSummary | null>(null);
+  const [presentationPath, setPresentationPath] = useState("");
+  const [presentationTitle, setPresentationTitle] = useState("");
+  const [presentationSubtitle, setPresentationSubtitle] = useState("");
+  const [presentationBullets, setPresentationBullets] = useState("첫 번째 항목\n두 번째 항목");
+  const [presentationSummary, setPresentationSummary] = useState<PresentationSummary | null>(null);
+  const [presentationResult, setPresentationResult] = useState<PresentationResult | null>(null);
+  const [hwpxPath, setHwpxPath] = useState("");
+  const [hwpxTitle, setHwpxTitle] = useState("");
+  const [hwpxParagraphs, setHwpxParagraphs] = useState("첫 문단\n둘째 문단");
+  const [hwpxNewParagraph, setHwpxNewParagraph] = useState("");
+  const [hwpxSummary, setHwpxSummary] = useState<HwpxSummary | null>(null);
+  const [hwpxResult, setHwpxResult] = useState<HwpxResult | null>(null);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  async function runHealthCheck() {
+    setError("");
+    setLoading(true);
+    try {
+      setHealth(await fetchHealth());
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "알 수 없는 health check 오류");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  return (
+    <main className="app-shell">
+      <header className="top-bar">
+        <div>
+          <h1>Army Claw</h1>
+          <p>로컬 에이전트 연결 상태</p>
+        </div>
+        <span className="mode-badge">Slice 1</span>
+      </header>
+
+      <section className="panel">
+        <div className="panel-header">
+          <div>
+            <h2>모델 연결 진단</h2>
+            <p>현재 선택된 LLM Provider와 모델 응답 가능 여부를 확인합니다.</p>
+          </div>
+          <button type="button" onClick={runHealthCheck} disabled={loading}>
+            {loading ? "확인 중..." : "Health Check"}
+          </button>
+        </div>
+
+        {error ? <p className="alert" role="alert">{error}</p> : null}
+
+        <dl className="status-grid">
+          <div>
+            <dt>Provider</dt>
+            <dd>{health?.provider ?? "미확인"}</dd>
+          </div>
+          <div>
+            <dt>Model</dt>
+            <dd>{health?.model ?? "미확인"}</dd>
+          </div>
+          <div>
+            <dt>Available</dt>
+            <dd>{health ? (health.available ? "Yes" : "No") : "미확인"}</dd>
+          </div>
+          <div>
+            <dt>Latency</dt>
+            <dd>{health?.latency_ms == null ? "n/a" : `${Math.round(health.latency_ms)} ms`}</dd>
+          </div>
+          <div>
+            <dt>Tokens/sec</dt>
+            <dd>{health?.tokens_per_second == null ? "n/a" : health.tokens_per_second}</dd>
+          </div>
+          <div>
+            <dt>Message</dt>
+            <dd>{health?.message || "n/a"}</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section className="panel">
+        <div className="panel-header">
+          <div>
+            <h2>작업공간 도구</h2>
+            <p>Mode A 기준으로 지정한 작업공간 내부 파일만 다룹니다.</p>
+          </div>
+          <button type="button" onClick={loadWorkspace} disabled={!workspaceRoot || loading}>
+            파일 목록
+          </button>
+        </div>
+
+        <label className="field">
+          <span>작업공간 경로</span>
+          <input
+            value={workspaceRoot}
+            onChange={(event) => setWorkspaceRoot(event.target.value)}
+            placeholder="C:\\Users\\USER\\Desktop\\로컬 open claw 만들기"
+          />
+        </label>
+
+        <div className="workspace-grid">
+          <div className="file-list">
+            {entries.map((entry) => (
+              <button
+                className="file-button"
+                key={entry.path}
+                type="button"
+                onClick={() => selectFile(entry)}
+                disabled={entry.type !== "file"}
+              >
+                {entry.type === "directory" ? "[폴더]" : "[파일]"} {entry.path}
+              </button>
+            ))}
+          </div>
+
+          <div className="editor-pane">
+            <label className="field">
+              <span>파일 경로</span>
+              <input
+                value={selectedPath}
+                onChange={(event) => setSelectedPath(event.target.value)}
+                placeholder="예: README.md"
+              />
+            </label>
+            <textarea
+              value={fileContent}
+              onChange={(event) => setFileContent(event.target.value)}
+              placeholder="파일 내용이 여기에 표시됩니다."
+            />
+            <div className="button-row">
+              <button type="button" onClick={previewWrite} disabled={!workspaceRoot || !selectedPath}>
+                Diff Preview
+              </button>
+              <button type="button" onClick={approvedWrite} disabled={!workspaceRoot || !selectedPath}>
+                승인 후 쓰기
+              </button>
+            </div>
+            {writeResult ? (
+              <pre className="diff-box">{writeResult.diff || "변경 사항 없음"}</pre>
+            ) : null}
+          </div>
+        </div>
+      </section>
+
+      <section className="panel">
+        <div className="panel-header">
+          <div>
+            <h2>PowerShell 승인 요청</h2>
+            <p>기본 동작은 실행하지 않고 승인 필요 상태만 반환합니다.</p>
+          </div>
+          <button type="button" onClick={requestCommandApproval} disabled={!workspaceRoot || !command}>
+            승인 요청
+          </button>
+        </div>
+        <label className="field">
+          <span>명령</span>
+          <input value={command} onChange={(event) => setCommand(event.target.value)} />
+        </label>
+        {commandResult ? <pre className="diff-box">{JSON.stringify(commandResult, null, 2)}</pre> : null}
+      </section>
+
+      <section className="panel">
+        <div className="panel-header">
+          <div>
+            <h2>한셀/XLSX 도구</h2>
+            <p>XLSX 파일을 직접 읽고 요약합니다. Microsoft Excel 설치는 필요하지 않습니다.</p>
+          </div>
+          <button type="button" onClick={loadXlsxSummary} disabled={!workspaceRoot || !xlsxPath}>
+            Workbook 요약
+          </button>
+        </div>
+
+        <div className="two-column">
+          <label className="field">
+            <span>XLSX 경로</span>
+            <input value={xlsxPath} onChange={(event) => setXlsxPath(event.target.value)} placeholder="예: reports/sample.xlsx" />
+          </label>
+          <label className="field">
+            <span>Sheet</span>
+            <input value={xlsxSheet} onChange={(event) => setXlsxSheet(event.target.value)} placeholder="예: Data" />
+          </label>
+        </div>
+
+        <div className="button-row">
+          <button type="button" onClick={loadXlsxPreview} disabled={!workspaceRoot || !xlsxPath || !xlsxSheet}>
+            Sheet Preview
+          </button>
+          <button type="button" onClick={saveXlsxCell} disabled={!workspaceRoot || !xlsxPath || !xlsxSheet || !xlsxCell}>
+            셀 쓰기
+          </button>
+        </div>
+
+        <div className="two-column">
+          <label className="field">
+            <span>셀</span>
+            <input value={xlsxCell} onChange={(event) => setXlsxCell(event.target.value)} />
+          </label>
+          <label className="field">
+            <span>값</span>
+            <input value={xlsxValue} onChange={(event) => setXlsxValue(event.target.value)} />
+          </label>
+        </div>
+
+        <div className="two-column">
+          <label className="field">
+            <span>함수</span>
+            <input value={formulaFunction} onChange={(event) => setFormulaFunction(event.target.value)} />
+          </label>
+          <label className="field">
+            <span>범위</span>
+            <input value={formulaRange} onChange={(event) => setFormulaRange(event.target.value)} />
+          </label>
+        </div>
+        <button type="button" onClick={loadFormulaSuggestion}>
+          함수 제안
+        </button>
+
+        <div className="two-column">
+          <label className="field">
+            <span>그룹 열</span>
+            <input value={pivotGroup} onChange={(event) => setPivotGroup(event.target.value)} placeholder="예: 부서" />
+          </label>
+          <label className="field">
+            <span>값 열</span>
+            <input value={pivotValue} onChange={(event) => setPivotValue(event.target.value)} placeholder="예: 금액" />
+          </label>
+        </div>
+        <button type="button" onClick={loadPivotSummary} disabled={!workspaceRoot || !xlsxPath || !xlsxSheet || !pivotGroup || !pivotValue}>
+          피벗형 요약
+        </button>
+
+        <div className="result-stack">
+          {workbookSummary ? <pre className="diff-box">{JSON.stringify(workbookSummary, null, 2)}</pre> : null}
+          {sheetPreview ? <pre className="diff-box">{JSON.stringify(sheetPreview.rows, null, 2)}</pre> : null}
+          {formulaSuggestion ? <pre className="diff-box">{JSON.stringify(formulaSuggestion, null, 2)}</pre> : null}
+          {pivotSummary ? <pre className="diff-box">{JSON.stringify(pivotSummary, null, 2)}</pre> : null}
+        </div>
+      </section>
+
+      <section className="panel">
+        <div className="panel-header">
+          <div>
+            <h2>한쇼/PPTX 도구</h2>
+            <p>PPTX를 주 편집 포맷으로 다룹니다. .show는 현재 호환성 안내를 제공합니다.</p>
+          </div>
+          <button type="button" onClick={loadPresentationSummary} disabled={!workspaceRoot || !presentationPath}>
+            PPTX 요약
+          </button>
+        </div>
+
+        <label className="field">
+          <span>프레젠테이션 경로</span>
+          <input
+            value={presentationPath}
+            onChange={(event) => setPresentationPath(event.target.value)}
+            placeholder="예: slides/report.pptx 또는 slides/report.show"
+          />
+        </label>
+        <div className="two-column">
+          <label className="field">
+            <span>제목</span>
+            <input value={presentationTitle} onChange={(event) => setPresentationTitle(event.target.value)} />
+          </label>
+          <label className="field">
+            <span>부제</span>
+            <input value={presentationSubtitle} onChange={(event) => setPresentationSubtitle(event.target.value)} />
+          </label>
+        </div>
+        <label className="field">
+          <span>Bullet 항목</span>
+          <textarea
+            className="small-textarea"
+            value={presentationBullets}
+            onChange={(event) => setPresentationBullets(event.target.value)}
+          />
+        </label>
+        <div className="button-row">
+          <button type="button" onClick={createDeck} disabled={!workspaceRoot || !presentationPath || !presentationTitle}>
+            새 PPTX
+          </button>
+          <button type="button" onClick={appendTitleSlide} disabled={!workspaceRoot || !presentationPath || !presentationTitle}>
+            제목 슬라이드
+          </button>
+          <button type="button" onClick={appendBulletSlide} disabled={!workspaceRoot || !presentationPath || !presentationTitle}>
+            Bullet 슬라이드
+          </button>
+          <button type="button" onClick={loadShowCompatibility} disabled={!workspaceRoot || !presentationPath}>
+            .show 호환성
+          </button>
+        </div>
+        <div className="result-stack">
+          {presentationResult ? <pre className="diff-box">{JSON.stringify(presentationResult, null, 2)}</pre> : null}
+          {presentationSummary ? <pre className="diff-box">{JSON.stringify(presentationSummary, null, 2)}</pre> : null}
+        </div>
+      </section>
+
+      <section className="panel">
+        <div className="panel-header">
+          <div>
+            <h2>한글/HWPX 도구</h2>
+            <p>HWPX를 ZIP/XML 문서로 직접 생성하고 본문 단락을 읽고 추가합니다.</p>
+          </div>
+          <button type="button" onClick={loadHwpxSummary} disabled={!workspaceRoot || !hwpxPath}>
+            HWPX 요약
+          </button>
+        </div>
+
+        <label className="field">
+          <span>HWPX 경로</span>
+          <input
+            value={hwpxPath}
+            onChange={(event) => setHwpxPath(event.target.value)}
+            placeholder="예: docs/report.hwpx"
+          />
+        </label>
+        <label className="field">
+          <span>문서 제목</span>
+          <input value={hwpxTitle} onChange={(event) => setHwpxTitle(event.target.value)} />
+        </label>
+        <label className="field">
+          <span>본문 문단</span>
+          <textarea
+            className="small-textarea"
+            value={hwpxParagraphs}
+            onChange={(event) => setHwpxParagraphs(event.target.value)}
+          />
+        </label>
+        <label className="field">
+          <span>추가 문단</span>
+          <input value={hwpxNewParagraph} onChange={(event) => setHwpxNewParagraph(event.target.value)} />
+        </label>
+        <div className="button-row">
+          <button type="button" onClick={createHwpxDocument} disabled={!workspaceRoot || !hwpxPath || !hwpxTitle}>
+            HWPX 생성
+          </button>
+          <button type="button" onClick={appendHwpxParagraph} disabled={!workspaceRoot || !hwpxPath || !hwpxNewParagraph}>
+            문단 추가
+          </button>
+          <button type="button" onClick={loadHwpxCompatibility} disabled={!workspaceRoot || !hwpxPath}>
+            호환성
+          </button>
+        </div>
+        <div className="result-stack">
+          {hwpxResult ? <pre className="diff-box">{JSON.stringify(hwpxResult, null, 2)}</pre> : null}
+          {hwpxSummary ? <pre className="diff-box">{JSON.stringify(hwpxSummary, null, 2)}</pre> : null}
+        </div>
+      </section>
+    </main>
+  );
+
+  async function loadWorkspace() {
+    setError("");
+    setLoading(true);
+    try {
+      setEntries(await listWorkspace(workspaceRoot));
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "작업공간 목록 오류");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  async function selectFile(entry: FileEntry) {
+    setError("");
+    try {
+      const result = await readWorkspaceFile(workspaceRoot, entry.path);
+      setSelectedPath(result.path);
+      setFileContent(result.content);
+      setWriteResult(null);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "파일 읽기 오류");
+    }
+  }
+
+  async function previewWrite() {
+    setError("");
+    try {
+      setWriteResult(await writeWorkspaceFile(workspaceRoot, selectedPath, fileContent, false));
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "diff preview 오류");
+    }
+  }
+
+  async function approvedWrite() {
+    setError("");
+    try {
+      setWriteResult(await writeWorkspaceFile(workspaceRoot, selectedPath, fileContent, true));
+      await loadWorkspace();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "파일 쓰기 오류");
+    }
+  }
+
+  async function requestCommandApproval() {
+    setError("");
+    try {
+      setCommandResult(await proposeCommand(workspaceRoot, command));
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "명령 승인 요청 오류");
+    }
+  }
+
+  async function loadXlsxSummary() {
+    setError("");
+    try {
+      const summary = await summarizeXlsx(workspaceRoot, xlsxPath);
+      setWorkbookSummary(summary);
+      setXlsxSheet((current) => current || summary.sheets[0]?.name || "");
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "XLSX 요약 오류");
+    }
+  }
+
+  async function loadXlsxPreview() {
+    setError("");
+    try {
+      setSheetPreview(await previewXlsx(workspaceRoot, xlsxPath, xlsxSheet));
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "XLSX preview 오류");
+    }
+  }
+
+  async function saveXlsxCell() {
+    setError("");
+    try {
+      await writeXlsxCell(workspaceRoot, xlsxPath, xlsxSheet, xlsxCell, xlsxValue);
+      await loadXlsxPreview();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "XLSX 셀 쓰기 오류");
+    }
+  }
+
+  async function loadFormulaSuggestion() {
+    setError("");
+    try {
+      setFormulaSuggestion(await suggestXlsxFormula(formulaFunction, formulaRange));
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "함수 제안 오류");
+    }
+  }
+
+  async function loadPivotSummary() {
+    setError("");
+    try {
+      setPivotSummary(await summarizeXlsxPivot(workspaceRoot, xlsxPath, xlsxSheet, pivotGroup, pivotValue));
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "피벗형 요약 오류");
+    }
+  }
+
+  async function createDeck() {
+    setError("");
+    try {
+      setPresentationResult(await createPresentation(workspaceRoot, presentationPath, presentationTitle, presentationSubtitle));
+      await loadPresentationSummary();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "PPTX 생성 오류");
+    }
+  }
+
+  async function loadPresentationSummary() {
+    setError("");
+    try {
+      setPresentationSummary(await summarizePresentation(workspaceRoot, presentationPath));
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "PPTX 요약 오류");
+    }
+  }
+
+  async function appendTitleSlide() {
+    setError("");
+    try {
+      setPresentationResult(await addTitleSlide(workspaceRoot, presentationPath, presentationTitle, presentationSubtitle));
+      await loadPresentationSummary();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "제목 슬라이드 추가 오류");
+    }
+  }
+
+  async function appendBulletSlide() {
+    setError("");
+    try {
+      const bullets = presentationBullets.split(/\r?\n/).map((item) => item.trim()).filter(Boolean);
+      setPresentationResult(await addBulletSlide(workspaceRoot, presentationPath, presentationTitle, bullets));
+      await loadPresentationSummary();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Bullet 슬라이드 추가 오류");
+    }
+  }
+
+  async function loadShowCompatibility() {
+    setError("");
+    try {
+      setPresentationSummary(await showCompatibility(workspaceRoot, presentationPath));
+    } catch (err) {
+      setError(err instanceof Error ? err.message : ".show 호환성 확인 오류");
+    }
+  }
+
+  async function createHwpxDocument() {
+    setError("");
+    try {
+      const paragraphs = hwpxParagraphs.split(/\r?\n/).map((item) => item.trim()).filter(Boolean);
+      setHwpxResult(await createHwpx(workspaceRoot, hwpxPath, hwpxTitle, paragraphs));
+      await loadHwpxSummary();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "HWPX 생성 오류");
+    }
+  }
+
+  async function loadHwpxSummary() {
+    setError("");
+    try {
+      setHwpxSummary(await summarizeHwpx(workspaceRoot, hwpxPath));
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "HWPX 요약 오류");
+    }
+  }
+
+  async function appendHwpxParagraph() {
+    setError("");
+    try {
+      setHwpxResult(await addHwpxParagraph(workspaceRoot, hwpxPath, hwpxNewParagraph));
+      await loadHwpxSummary();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "HWPX 문단 추가 오류");
+    }
+  }
+
+  async function loadHwpxCompatibility() {
+    setError("");
+    try {
+      setHwpxSummary(await hwpxCompatibility(workspaceRoot, hwpxPath));
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "HWPX 호환성 확인 오류");
+    }
+  }
+}

@@ -1,0 +1,284 @@
+from pathlib import Path
+
+from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel
+
+from openclaw.config import AppConfig
+from openclaw.health import run_health_check
+from openclaw.hwpx_tools import HwpxService
+from openclaw.presentation_tools import PresentationService
+from openclaw.workspace import WorkspaceError, WorkspaceService
+from openclaw.xlsx_tools import XlsxService
+
+
+class WorkspaceRequest(BaseModel):
+    workspace_root: str
+    path: str = "."
+
+
+class FileWriteRequest(BaseModel):
+    workspace_root: str
+    path: str
+    content: str
+    approved: bool = False
+
+
+class CommandRequest(BaseModel):
+    workspace_root: str
+    command: str
+    approved: bool = False
+
+
+class XlsxRequest(BaseModel):
+    workspace_root: str
+    path: str
+    sheet: str = ""
+
+
+class XlsxCellWriteRequest(BaseModel):
+    workspace_root: str
+    path: str
+    sheet: str
+    cell: str
+    value: str | int | float | bool | None
+
+
+class FormulaRequest(BaseModel):
+    function_name: str
+    cell_range: str
+
+
+class PivotRequest(BaseModel):
+    workspace_root: str
+    path: str
+    sheet: str
+    group_by_column: str
+    value_column: str
+
+
+class ChartRequest(BaseModel):
+    workspace_root: str
+    path: str
+    sheet: str
+    data_range: str
+    chart_cell: str = "H2"
+    title: str = "Army Claw Chart"
+
+
+class PresentationRequest(BaseModel):
+    workspace_root: str
+    path: str
+
+
+class CreatePresentationRequest(BaseModel):
+    workspace_root: str
+    path: str
+    title: str
+    subtitle: str = ""
+
+
+class BulletSlideRequest(BaseModel):
+    workspace_root: str
+    path: str
+    title: str
+    bullets: list[str]
+
+
+class HwpxRequest(BaseModel):
+    workspace_root: str
+    path: str
+
+
+class CreateHwpxRequest(BaseModel):
+    workspace_root: str
+    path: str
+    title: str
+    paragraphs: list[str]
+
+
+class HwpxParagraphRequest(BaseModel):
+    workspace_root: str
+    path: str
+    paragraph: str
+
+
+def create_app() -> FastAPI:
+    app = FastAPI(title="Army Claw", version="0.1.0")
+    config = AppConfig()
+
+    @app.get("/api/status")
+    def status() -> dict[str, str]:
+        return {"status": "ok", "app": "Army Claw"}
+
+    @app.get("/api/health")
+    async def health() -> dict:
+        result = await run_health_check(config)
+        return result.model_dump()
+
+    @app.post("/api/workspace/list")
+    def list_workspace_files(request: WorkspaceRequest) -> dict:
+        try:
+            service = WorkspaceService(root=Path(request.workspace_root))
+            return {"entries": [entry.model_dump() for entry in service.list_files(request.path)]}
+        except WorkspaceError as exc:
+            raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+    @app.post("/api/workspace/read")
+    def read_workspace_file(request: WorkspaceRequest) -> dict:
+        try:
+            service = WorkspaceService(root=Path(request.workspace_root))
+            return service.read_file(request.path).model_dump()
+        except WorkspaceError as exc:
+            raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+    @app.post("/api/workspace/write")
+    def write_workspace_file(request: FileWriteRequest) -> dict:
+        try:
+            service = WorkspaceService(root=Path(request.workspace_root))
+            return service.write_file(request.path, request.content, request.approved).model_dump()
+        except WorkspaceError as exc:
+            raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+    @app.post("/api/workspace/command")
+    def run_workspace_command(request: CommandRequest) -> dict:
+        try:
+            service = WorkspaceService(root=Path(request.workspace_root))
+            return service.run_powershell(request.command, request.approved).model_dump()
+        except WorkspaceError as exc:
+            raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+    @app.post("/api/xlsx/summary")
+    def summarize_xlsx(request: XlsxRequest) -> dict:
+        try:
+            service = XlsxService(WorkspaceService(root=Path(request.workspace_root)))
+            return service.summarize_workbook(request.path).model_dump()
+        except (WorkspaceError, KeyError) as exc:
+            raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+    @app.post("/api/xlsx/preview")
+    def preview_xlsx(request: XlsxRequest) -> dict:
+        try:
+            service = XlsxService(WorkspaceService(root=Path(request.workspace_root)))
+            return service.preview_sheet(request.path, request.sheet).model_dump()
+        except (WorkspaceError, KeyError) as exc:
+            raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+    @app.post("/api/xlsx/write-cell")
+    def write_xlsx_cell(request: XlsxCellWriteRequest) -> dict:
+        try:
+            service = XlsxService(WorkspaceService(root=Path(request.workspace_root)))
+            return service.write_cell(request.path, request.sheet, request.cell, request.value).model_dump()
+        except (WorkspaceError, KeyError) as exc:
+            raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+    @app.post("/api/xlsx/formula")
+    def suggest_xlsx_formula(request: FormulaRequest) -> dict:
+        try:
+            service = XlsxService(WorkspaceService(root=Path.cwd()))
+            return service.suggest_formula(request.function_name, request.cell_range).model_dump()
+        except WorkspaceError as exc:
+            raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+    @app.post("/api/xlsx/pivot-summary")
+    def summarize_xlsx_pivot(request: PivotRequest) -> dict:
+        try:
+            service = XlsxService(WorkspaceService(root=Path(request.workspace_root)))
+            return service.pivot_summary(
+                request.path,
+                request.sheet,
+                request.group_by_column,
+                request.value_column,
+            ).model_dump()
+        except (WorkspaceError, KeyError) as exc:
+            raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+    @app.post("/api/xlsx/add-chart")
+    def add_xlsx_chart(request: ChartRequest) -> dict:
+        try:
+            service = XlsxService(WorkspaceService(root=Path(request.workspace_root)))
+            return service.add_bar_chart(
+                request.path,
+                request.sheet,
+                request.data_range,
+                request.chart_cell,
+                request.title,
+            ).model_dump()
+        except (WorkspaceError, KeyError) as exc:
+            raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+    @app.post("/api/presentation/create")
+    def create_presentation(request: CreatePresentationRequest) -> dict:
+        try:
+            service = PresentationService(WorkspaceService(root=Path(request.workspace_root)))
+            return service.create_presentation(request.path, request.title, request.subtitle).model_dump()
+        except WorkspaceError as exc:
+            raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+    @app.post("/api/presentation/summary")
+    def summarize_presentation(request: PresentationRequest) -> dict:
+        try:
+            service = PresentationService(WorkspaceService(root=Path(request.workspace_root)))
+            return service.summarize_presentation(request.path).model_dump()
+        except WorkspaceError as exc:
+            raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+    @app.post("/api/presentation/add-title-slide")
+    def add_title_slide(request: CreatePresentationRequest) -> dict:
+        try:
+            service = PresentationService(WorkspaceService(root=Path(request.workspace_root)))
+            return service.add_title_slide(request.path, request.title, request.subtitle).model_dump()
+        except WorkspaceError as exc:
+            raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+    @app.post("/api/presentation/add-bullet-slide")
+    def add_bullet_slide(request: BulletSlideRequest) -> dict:
+        try:
+            service = PresentationService(WorkspaceService(root=Path(request.workspace_root)))
+            return service.add_bullet_slide(request.path, request.title, request.bullets).model_dump()
+        except WorkspaceError as exc:
+            raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+    @app.post("/api/presentation/show-compatibility")
+    def show_compatibility(request: PresentationRequest) -> dict:
+        try:
+            service = PresentationService(WorkspaceService(root=Path(request.workspace_root)))
+            return service.show_compatibility_note(request.path).model_dump()
+        except WorkspaceError as exc:
+            raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+    @app.post("/api/hwpx/create")
+    def create_hwpx(request: CreateHwpxRequest) -> dict:
+        try:
+            service = HwpxService(WorkspaceService(root=Path(request.workspace_root)))
+            return service.create_document(request.path, request.title, request.paragraphs).model_dump()
+        except WorkspaceError as exc:
+            raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+    @app.post("/api/hwpx/summary")
+    def summarize_hwpx(request: HwpxRequest) -> dict:
+        try:
+            service = HwpxService(WorkspaceService(root=Path(request.workspace_root)))
+            return service.summarize_document(request.path).model_dump()
+        except WorkspaceError as exc:
+            raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+    @app.post("/api/hwpx/add-paragraph")
+    def add_hwpx_paragraph(request: HwpxParagraphRequest) -> dict:
+        try:
+            service = HwpxService(WorkspaceService(root=Path(request.workspace_root)))
+            return service.add_paragraph(request.path, request.paragraph).model_dump()
+        except WorkspaceError as exc:
+            raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+    @app.post("/api/hwpx/compatibility")
+    def hwpx_compatibility(request: HwpxRequest) -> dict:
+        try:
+            service = HwpxService(WorkspaceService(root=Path(request.workspace_root)))
+            return service.compatibility_note(request.path).model_dump()
+        except WorkspaceError as exc:
+            raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+    return app
+
+
+app = create_app()

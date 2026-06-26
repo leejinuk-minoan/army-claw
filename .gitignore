@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+.pytest_cache/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+*.egg-info/
+
+# Node
+node_modules/
+dist/
+
+# Local runtime
+.tmp/
+logs/
+
+# Packaging output
+build/
+release/
+*.spec
+
+# Local secrets/config
+config/openclaw.config.json
