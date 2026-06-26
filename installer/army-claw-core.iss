@@ -33,7 +33,7 @@ Name: "{group}\Army Claw"; Filename: "{app}\ArmyClawCore\{#MyAppExeName}"
 Name: "{autodesktop}\Army Claw"; Filename: "{app}\ArmyClawCore\{#MyAppExeName}"; Tasks: desktopicon
 
 [Tasks]
-Name: "desktopicon"; Description: "바탕화면 바로가기 만들기"; GroupDescription: "추가 바로가기:"
+Name: "desktopicon"; Description: "바탕화면 바로가기 만들기"; GroupDescription: "추가 바로가기:"; Flags: unchecked
 
 [Run]
 Filename: "{app}\ArmyClawCore\{#MyAppExeName}"; Description: "Army Claw 실행"; Flags: nowait postinstall skipifsilent

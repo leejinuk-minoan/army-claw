@@ -1,5 +1,28 @@
 # Army Claw 진행 로그
 
+## 2026-06-27 - Core 설치 파일 검증
+
+### 검증 내용
+
+- `release/ArmyClawCoreSetup-0.1.0.exe`를 실제 Inno Setup 설치 파일로 실행했다.
+- 한글 경로가 포함된 테스트 설치 경로 `C:\Users\USER\Desktop\로컬 open claw 만들기\.tmp\install-test\Army Claw`에 무인 설치했다.
+- 설치된 `ArmyClawCore.exe`를 실행해 `/api/status`와 `/` 응답을 확인했다.
+- 바탕화면 바로가기 task가 기본 선택되지 않도록 `installer/army-claw-core.iss`를 수정했다.
+- 테스트 설치 후 언인스톨러로 설치 폴더, 시작 메뉴 바로가기, 언인스톨 항목이 정리되는지 확인했다.
+
+### 검증 결과
+
+- 설치 파일 실행: 통과.
+- 한글 경로 설치: 통과.
+- 설치 경로 실행 파일 smoke test: `/api/status` 200, `/` 200.
+- 바탕화면 바로가기 기본 미생성: 통과.
+- 테스트 설치 제거: 통과.
+
+### 남은 사항
+
+- 정식 v0.1 빌드 전에는 PyInstaller와 앱 의존성을 같은 오프라인 빌드 venv에 모아 빌드 경고를 제거한다.
+- 설치 마법사 UI 문구와 아이콘은 별도 polish 단계에서 정리한다.
+
 ## 2026-06-26 - Slice 6 패키징 구현
 
 ### 구현 내용
