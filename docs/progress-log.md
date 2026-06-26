@@ -1,5 +1,33 @@
 # Army Claw 진행 로그
 
+## 2026-06-27 - 오프라인 빌드 venv 준비
+
+### 구현 내용
+
+- Core 빌드용 Python 의존성 목록 `requirements/build.txt`를 추가했다.
+- 준비망에서 Python wheelhouse를 만드는 `scripts/export-python-wheels.ps1`를 추가했다.
+- 단독망에서 wheelhouse만으로 `.build-venv`를 만드는 `scripts/bootstrap-build-env.ps1`를 추가했다.
+- Windows 실행 정책 우회를 위한 `scripts/export-python-wheels.bat`과 `scripts/bootstrap-build-env.bat`를 추가했다.
+- `scripts/package-core.ps1`가 `.build-venv\Scripts\python.exe`를 우선 사용하도록 수정했다.
+- 임시 Codex 런타임 site-packages fallback을 사용할 때 경고를 출력하도록 수정했다.
+- `.build-venv`와 `vendor/python-wheels/`가 GitHub에 올라가지 않도록 `.gitignore`에 추가했다.
+- 오프라인 빌드 venv 전략 문서 `docs/offline-build-env.md`를 추가했다.
+
+### 남은 사항
+
+- 준비망에서 `scripts/export-python-wheels.bat`를 실행해 실제 `vendor/python-wheels/`를 생성해야 한다.
+- 단독망 또는 테스트 환경에서 `scripts/bootstrap-build-env.bat`로 `.build-venv` 생성 검증이 필요하다.
+- `.build-venv` 기반으로 `scripts/package-core.bat`을 실행해 PyInstaller 경고가 사라지는지 확인해야 한다.
+
+### 이번 검증
+
+- PowerShell 스크립트 문법 검사: 통과.
+- `scripts/bootstrap-build-env.bat` 실행 정책 우회 확인: 통과.
+- wheelhouse 미존재 시 명확한 오류 안내: 통과.
+- 백엔드 테스트 32개 통과.
+- 현재 fallback 환경 기준 `scripts/package-core.bat` 빌드 통과.
+- 패키징된 `ArmyClawCore.exe` smoke test 통과: `/api/status` 200, `/` 200.
+
 ## 2026-06-27 - Core 설치 파일 검증
 
 ### 검증 내용

@@ -12,6 +12,16 @@ $innoScript = Join-Path $root "installer\army-claw-core.iss"
 $isccDefault = "C:\Program Files (x86)\Inno Setup 6\ISCC.exe"
 
 function Resolve-Python {
+  if ($env:ARMY_CLAW_BUILD_PYTHON) {
+    if (Test-Path -LiteralPath $env:ARMY_CLAW_BUILD_PYTHON) {
+      return $env:ARMY_CLAW_BUILD_PYTHON
+    }
+    throw "ARMY_CLAW_BUILD_PYTHON does not exist: $env:ARMY_CLAW_BUILD_PYTHON"
+  }
+
+  $buildVenvPython = Join-Path $root ".build-venv\Scripts\python.exe"
+  if (Test-Path -LiteralPath $buildVenvPython) { return $buildVenvPython }
+
   $python = Get-Command python -ErrorAction SilentlyContinue
   if ($python) { return $python.Source }
 
@@ -57,6 +67,7 @@ function Resolve-AppDependencyPath {
 
   $bundledSitePackages = Join-Path $env:USERPROFILE ".cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\site-packages"
   if (Test-Path -LiteralPath $bundledSitePackages) {
+    Write-Warning "Using Codex runtime site-packages as a temporary fallback. For release builds, run scripts\bootstrap-build-env.bat and build from .build-venv."
     return $bundledSitePackages
   }
 

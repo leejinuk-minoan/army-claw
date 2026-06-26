@@ -6,6 +6,7 @@ __pycache__/
 *.pyd
 .venv/
 venv/
+.build-venv/
 *.egg-info/
 
 # Node
@@ -21,6 +22,9 @@ build/
 release/
 backend/openclaw/web/
 *.spec
+
+# Offline dependency payloads
+vendor/python-wheels/
 
 # Local secrets/config
 config/openclaw.config.json
