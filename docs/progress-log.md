@@ -12,12 +12,12 @@
 - 임시 Codex 런타임 site-packages fallback을 사용할 때 경고를 출력하도록 수정했다.
 - `.build-venv`와 `vendor/python-wheels/`가 GitHub에 올라가지 않도록 `.gitignore`에 추가했다.
 - 오프라인 빌드 venv 전략 문서 `docs/offline-build-env.md`를 추가했다.
+- wheelhouse 무결성 확인용 `scripts/write-wheelhouse-manifest.ps1`와 `scripts/write-wheelhouse-manifest.bat`를 추가했다.
 
 ### 남은 사항
 
-- 준비망에서 `scripts/export-python-wheels.bat`를 실행해 실제 `vendor/python-wheels/`를 생성해야 한다.
-- 단독망 또는 테스트 환경에서 `scripts/bootstrap-build-env.bat`로 `.build-venv` 생성 검증이 필요하다.
-- `.build-venv` 기반으로 `scripts/package-core.bat`을 실행해 PyInstaller 경고가 사라지는지 확인해야 한다.
+- 단독망 반입 전 `vendor/python-wheels/`와 `vendor/python-wheels.sha256`를 함께 보안 검수해야 한다.
+- 실제 단독망 PC에서 `.build-venv` 생성과 설치 파일 빌드를 한 번 더 검증해야 한다.
 
 ### 이번 검증
 
@@ -27,6 +27,14 @@
 - 백엔드 테스트 32개 통과.
 - 현재 fallback 환경 기준 `scripts/package-core.bat` 빌드 통과.
 - 패키징된 `ArmyClawCore.exe` smoke test 통과: `/api/status` 200, `/` 200.
+- 준비망 역할로 `scripts/export-python-wheels.bat` 실행: 통과.
+- `scripts/write-wheelhouse-manifest.bat` 실행: 통과, wheel 40개 SHA256 기록.
+- `scripts/bootstrap-build-env.bat -Recreate`로 `.build-venv` 생성: 통과.
+- `.build-venv` 기반 백엔드 테스트 32개 통과.
+- `.build-venv` 기반 `scripts/package-core.bat` 빌드: 통과.
+- PyInstaller가 `.build-venv` 환경을 사용함을 확인했고, 이전의 다른 Python site-packages 혼용 경고가 사라졌다.
+- `.build-venv` 기반 설치 파일 설치 검증: 통과.
+- 설치된 실행 파일 smoke test 통과: `/api/status` 200, `/` 200.
 
 ## 2026-06-27 - Core 설치 파일 검증
 

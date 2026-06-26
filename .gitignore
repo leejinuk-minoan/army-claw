@@ -25,6 +25,7 @@ backend/openclaw/web/
 
 # Offline dependency payloads
 vendor/python-wheels/
+vendor/python-wheels.sha256
 
 # Local secrets/config
 config/openclaw.config.json
