@@ -1,6 +1,6 @@
 # Army Claw 핸드오프 노트
 
-최종 갱신일: 2026-06-26
+최종 갱신일: 2026-06-27
 
 ## 프로젝트 위치
 
@@ -62,20 +62,22 @@ React Web UI
 
 ## 다음 설계/구현 결정
 
-1. 첫 프로젝트 스캐폴드 정의.
-2. Windows 오프라인 Core 설치 파일용 Inno Setup 세부 패키징 경로 정의.
-3. Ollama + `gemma3:12b`용 Local LLM 번들 형식 정의.
-4. 단독망 OpenAI 호환 API 모드 설정 스키마 정의.
-5. v0.2 skill 반입 번들 형식과 보안 검수 절차 정의.
+1. 웹 UI에서 Local LLM Bundle 상태 표시와 재검증 버튼을 연결한다.
+2. Ollama가 설치된 준비망 PC에서 `gemma3:12b` 실제 번들 생성을 검증한다.
+3. 단독망과 동일한 Windows 권한 조건에서 Local LLM 번들 설치/검증 절차를 검증한다.
+4. Ollama 설치 파일 반입 정책과 보안 검수 절차를 확정한다.
+5. v0.2 skill 반입 번들 형식과 보안 검수 절차를 구체화한다.
 
 ## v0.1 구현 순서
 
-1. 코어 앱 골격과 모델 연결.
-2. 안전한 코딩 도구.
+1. 코어 앱 골격과 모델 연결. 구현 완료.
+2. 안전한 코딩 도구. 구현 완료.
 3. 한셀/XLSX 도구. 기본 XLSX 직접 처리 구현 완료.
 4. 한쇼/PPTX/.show 도구. 기본 PPTX 직접 처리와 `.show` 호환성 안내 구현 완료.
-5. 한글/HWPX 도구.
-6. 패키징.
+5. 한글/HWPX 도구. 기본 HWPX 직접 처리 구현 완료.
+6. Core 패키징. PyInstaller + Inno Setup 설치 파일 빌드/검증 완료.
+7. 오프라인 빌드 venv. wheelhouse 생성, `.build-venv` 생성, `.build-venv` 기반 빌드/검증 완료.
+8. Local LLM 번들. 생성/설치/검증 스크립트 구현 완료, 실제 Ollama 설치 PC 검증 필요.
 
 ## 패키징 결정
 
@@ -85,26 +87,18 @@ React Web UI
 
 ## 권장 다음 구현 단계
 
-최소 스캐폴드부터 시작한다.
+현재 권장 다음 단계는 Local LLM Bundle 상태를 Core 웹 UI와 연결하는 것이다.
 
-- `backend/` FastAPI 앱.
-- `frontend/` React(Vite) 앱.
-- `config/` 기본 로컬 설정.
-- `docs/` 설계와 진행 문서.
-- Health check API.
-- 앱 상태 확인.
-- Ollama 연결 확인.
-- `gemma3:12b` 존재 확인.
-- 설정된 경우 단독망 OpenAI 호환 API 연결 확인.
-- 간단한 생성 지연 시간 테스트.
-- 가능하면 대략적인 tokens/sec 측정.
+- `/api/health` 결과를 Local LLM Bundle 카드로 더 명확히 표시한다.
+- Ollama 미설치, Ollama 미실행, 모델 미존재, 생성 실패를 사용자가 구분할 수 있게 표시한다.
+- 재검증 버튼은 기존 health check API를 우선 사용한다.
+- 실제 로컬 PC 명령 실행이나 Ollama 설치 자동화는 별도 승인 흐름이 준비되기 전까지 UI에서 직접 수행하지 않는다.
+- 이 UI 변경은 화면 동작 설계가 포함되므로 별도 설계 승인 후 구현한다.
 
-초기 도구군:
+실제 모델 번들 검증 명령:
 
-- 코딩 도구.
-- 함수, 차트, 피벗을 지원하는 XLSX 도구.
-- 더 풍부한 레이아웃/디자인과 `.show` 호환성을 고려한 PPTX 도구.
-- HWPX 도구.
-- 한컴오피스 사용 가능 여부 감지.
-
-처음부터 무제한 PC 제어를 구현하지 않는다. 읽기 전용 또는 사용자 승인 기반 작업공간 도구부터 시작한다.
+```powershell
+ollama pull gemma3:12b
+scripts\export-local-llm-bundle.bat -Model gemma3:12b -IncludeModelStore
+scripts\verify-local-llm-bundle.bat -Model gemma3:12b
+```
