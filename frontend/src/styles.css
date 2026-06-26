@@ -209,6 +209,21 @@ button:disabled {
   margin-bottom: 12px;
 }
 
+.check-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin: 4px 0 12px;
+  color: #405069;
+  font-size: 14px;
+}
+
+.check-row label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .diff-box {
   max-height: 260px;
   overflow: auto;
@@ -252,6 +267,10 @@ button:disabled {
   }
 
   .button-row {
+    flex-direction: column;
+  }
+
+  .check-row {
     flex-direction: column;
   }
 

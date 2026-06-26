@@ -11,6 +11,7 @@ import {
   proposeCommand,
   readWorkspaceFile,
   previewXlsx,
+  runLocalLlmBundle,
   showCompatibility,
   summarizeHwpx,
   summarizePresentation,
@@ -27,6 +28,7 @@ import type {
   HealthResult,
   HwpxResult,
   HwpxSummary,
+  LocalLlmRunResult,
   PivotSummary,
   PresentationResult,
   PresentationSummary,
@@ -45,6 +47,11 @@ export function App() {
   const [writeResult, setWriteResult] = useState<WriteResult | null>(null);
   const [command, setCommand] = useState("Get-ChildItem");
   const [commandResult, setCommandResult] = useState<CommandResult | null>(null);
+  const [localLlmModel, setLocalLlmModel] = useState("gemma3:12b");
+  const [localLlmBundleRoot, setLocalLlmBundleRoot] = useState("");
+  const [localLlmApproved, setLocalLlmApproved] = useState(false);
+  const [localLlmInstallOllama, setLocalLlmInstallOllama] = useState(false);
+  const [localLlmResult, setLocalLlmResult] = useState<LocalLlmRunResult | null>(null);
   const [xlsxPath, setXlsxPath] = useState("");
   const [xlsxSheet, setXlsxSheet] = useState("");
   const [xlsxCell, setXlsxCell] = useState("A1");
@@ -133,6 +140,65 @@ export function App() {
             <dd>{health?.message || "n/a"}</dd>
           </div>
         </dl>
+      </section>
+
+      <section className="panel">
+        <div className="panel-header">
+          <div>
+            <h2>Local LLM Bundle 실행</h2>
+            <p>허용된 Ollama 번들 설치/검증 스크립트만 사용자 승인 후 실행합니다.</p>
+          </div>
+          <button type="button" onClick={() => executeLocalLlm("verify", false)} disabled={!localLlmApproved || loading}>
+            검증
+          </button>
+        </div>
+
+        <div className="two-column">
+          <label className="field">
+            <span>모델</span>
+            <input value={localLlmModel} onChange={(event) => setLocalLlmModel(event.target.value)} />
+          </label>
+          <label className="field">
+            <span>번들 경로</span>
+            <input
+              value={localLlmBundleRoot}
+              onChange={(event) => setLocalLlmBundleRoot(event.target.value)}
+              placeholder="예: D:\\local-llm-bundle"
+            />
+          </label>
+        </div>
+
+        <div className="check-row">
+          <label>
+            <input
+              type="checkbox"
+              checked={localLlmApproved}
+              onChange={(event) => setLocalLlmApproved(event.target.checked)}
+            />
+            실행 승인
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              checked={localLlmInstallOllama}
+              onChange={(event) => setLocalLlmInstallOllama(event.target.checked)}
+            />
+            설치 시 Ollama 설치 파일 실행
+          </label>
+        </div>
+
+        <div className="button-row">
+          <button type="button" onClick={() => executeLocalLlm("verify", true)} disabled={!localLlmApproved || loading}>
+            빠른 검증
+          </button>
+          <button type="button" onClick={() => executeLocalLlm("install", false)} disabled={!localLlmApproved || !localLlmBundleRoot || loading}>
+            번들 설치
+          </button>
+        </div>
+
+        {localLlmResult ? (
+          <pre className="diff-box">{JSON.stringify(localLlmResult, null, 2)}</pre>
+        ) : null}
       </section>
 
       <section className="panel">
@@ -454,6 +520,27 @@ export function App() {
       setCommandResult(await proposeCommand(workspaceRoot, command));
     } catch (err) {
       setError(err instanceof Error ? err.message : "명령 승인 요청 오류");
+    }
+  }
+
+  async function executeLocalLlm(action: "verify" | "install", skipGenerate: boolean) {
+    setError("");
+    setLoading(true);
+    try {
+      setLocalLlmResult(
+        await runLocalLlmBundle({
+          action,
+          approved: localLlmApproved,
+          model: localLlmModel,
+          bundle_root: localLlmBundleRoot,
+          install_ollama: localLlmInstallOllama,
+          skip_generate: skipGenerate,
+        }),
+      );
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Local LLM Bundle 실행 오류");
+    } finally {
+      setLoading(false);
     }
   }
 

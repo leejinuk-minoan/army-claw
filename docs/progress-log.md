@@ -1,5 +1,31 @@
 # Army Claw 진행 로그
 
+## 2026-06-27 - Local LLM 번들 웹 실행 연결
+
+### 구현 내용
+
+- 웹 UI에서 Local LLM 번들 검증/설치 스크립트를 실행할 수 있는 영역을 추가했다.
+- 실행 전 `실행 승인` 체크박스를 요구하도록 했다.
+- 백엔드에 `/api/local-llm/run` 엔드포인트를 추가했다.
+- 백엔드는 임의 PowerShell 명령이 아니라 `verify-local-llm-bundle.ps1`, `install-local-llm-bundle.ps1`만 실행하도록 제한했다.
+- 설치본에서도 동작하도록 Core 패키지와 Inno Setup 설치 파일에 Local LLM 스크립트를 포함했다.
+- 구현 계획 문서 `docs/superpowers/plans/2026-06-27-local-llm-web-execution.md`를 추가했다.
+
+### 이번 검증
+
+- 신규 Local LLM 서비스 테스트 4개 통과.
+- 백엔드 전체 테스트 37개 통과.
+- React/Vite production build 통과.
+- `scripts\package-core.bat` 실행 통과.
+- 패키지 산출물 `release\army-claw-core\scripts`에 Local LLM 스크립트 2개 포함 확인.
+- 패키징된 `ArmyClawCore.exe` smoke test 통과: `/api/status` 200, `/api/local-llm/run` 200.
+- 패키징된 `ArmyClawCore.exe`에서 승인된 `verify` 실행 요청이 sibling `scripts\verify-local-llm-bundle.ps1`까지 도달함을 확인했다. 현재 PC에는 Ollama가 없어 returncode 1을 반환했다.
+
+### 남은 사항
+
+- 현재 PC에는 Ollama가 없어 실제 `gemma3:12b` 모델 검증/설치 실행은 아직 수행하지 못했다.
+- Ollama와 모델 번들이 준비된 PC에서 UI 버튼으로 `빠른 검증`, `검증`, `번들 설치`를 실제 실행해 봐야 한다.
+
 ## 2026-06-27 - Local LLM 번들 스크립트 구현
 
 ### 구현 내용

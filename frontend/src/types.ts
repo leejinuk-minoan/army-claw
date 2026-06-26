@@ -35,6 +35,27 @@ export type CommandResult = {
   message: string;
 };
 
+export type LocalLlmAction = "verify" | "install";
+
+export type LocalLlmRunRequest = {
+  action: LocalLlmAction;
+  approved: boolean;
+  model: string;
+  bundle_root: string;
+  install_ollama: boolean;
+  skip_generate: boolean;
+};
+
+export type LocalLlmRunResult = {
+  action: string;
+  approved: boolean;
+  executed: boolean;
+  returncode: number | null;
+  stdout: string;
+  stderr: string;
+  message: string;
+};
+
 export type SheetSummary = {
   name: string;
   max_row: number;

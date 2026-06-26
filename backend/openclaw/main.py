@@ -9,6 +9,7 @@ from pydantic import BaseModel
 from openclaw.config import AppConfig
 from openclaw.health import run_health_check
 from openclaw.hwpx_tools import HwpxService
+from openclaw.local_llm_bundle import LocalLlmBundleError, LocalLlmBundleRequest, LocalLlmBundleService
 from openclaw.presentation_tools import PresentationService
 from openclaw.workspace import WorkspaceError, WorkspaceService
 from openclaw.xlsx_tools import XlsxService
@@ -167,6 +168,13 @@ def create_app() -> FastAPI:
             service = WorkspaceService(root=Path(request.workspace_root))
             return service.run_powershell(request.command, request.approved).model_dump()
         except WorkspaceError as exc:
+            raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+    @app.post("/api/local-llm/run")
+    def run_local_llm_bundle(request: LocalLlmBundleRequest) -> dict:
+        try:
+            return LocalLlmBundleService().run(request).model_dump()
+        except LocalLlmBundleError as exc:
             raise HTTPException(status_code=400, detail=str(exc)) from exc
 
     @app.post("/api/xlsx/summary")

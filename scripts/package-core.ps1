@@ -5,6 +5,7 @@ $backend = Join-Path $root "backend"
 $frontend = Join-Path $root "frontend"
 $releaseRoot = Join-Path $root "release"
 $packageRoot = Join-Path $releaseRoot "army-claw-core"
+$packageScripts = Join-Path $packageRoot "scripts"
 $distDir = Join-Path $backend "dist"
 $frontendDist = Join-Path $frontend "dist"
 $webTarget = Join-Path $backend "openclaw\web"
@@ -136,6 +137,9 @@ if (Test-Path -LiteralPath $packageRoot) {
 New-Item -ItemType Directory -Force -Path $packageRoot | Out-Null
 Copy-Item -LiteralPath (Join-Path $distDir "ArmyClawCore") -Destination $packageRoot -Recurse -Force
 Copy-Item -LiteralPath (Join-Path $root "config\openclaw.config.example.json") -Destination $packageRoot -Force
+New-Item -ItemType Directory -Force -Path $packageScripts | Out-Null
+Copy-Item -LiteralPath (Join-Path $root "scripts\install-local-llm-bundle.ps1") -Destination $packageScripts -Force
+Copy-Item -LiteralPath (Join-Path $root "scripts\verify-local-llm-bundle.ps1") -Destination $packageScripts -Force
 
 $isccExe = Resolve-InnoCompiler
 if ($isccExe) {

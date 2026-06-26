@@ -6,6 +6,8 @@ import type {
   HealthResult,
   HwpxResult,
   HwpxSummary,
+  LocalLlmRunRequest,
+  LocalLlmRunResult,
   PivotSummary,
   PresentationResult,
   PresentationSummary,
@@ -70,6 +72,10 @@ export async function proposeCommand(workspaceRoot: string, command: string): Pr
     command,
     approved: false,
   });
+}
+
+export async function runLocalLlmBundle(request: LocalLlmRunRequest): Promise<LocalLlmRunResult> {
+  return postJson<LocalLlmRunResult>("/api/local-llm/run", request);
 }
 
 export async function summarizeXlsx(workspaceRoot: string, path: string): Promise<WorkbookSummary> {

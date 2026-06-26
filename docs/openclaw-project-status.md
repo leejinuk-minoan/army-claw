@@ -544,7 +544,18 @@ v0.2 확장 대상:
   - PowerShell 스크립트 문법 검사는 통과했다.
   - 현재 PC에는 `ollama` 명령이 없어 실제 `gemma3:12b` 생성 검증은 아직 수행하지 못했다.
   - Ollama 미설치 상태에서 검증 스크립트가 명확한 오류를 출력함은 확인했다.
-- 다음 구현 목표: 웹 UI에서 Local LLM Bundle 상태 표시와 재검증 버튼을 연결하고, 실제 Ollama 설치 PC에서 `gemma3:12b` 번들 생성 절차를 검증한다.
+- 2026-06-27: 웹 UI에서 Local LLM 번들 검증/설치 스크립트를 승인 기반으로 실행할 수 있게 연결했다.
+- 추가된 항목:
+  - `/api/local-llm/run` 엔드포인트.
+  - 허용된 Local LLM 스크립트만 실행하는 `LocalLlmBundleService`.
+  - React 웹 UI의 Local LLM Bundle 실행 패널.
+  - Core 패키지와 Inno Setup 설치 파일의 Local LLM 스크립트 포함 규칙.
+- 검증 참고:
+  - 백엔드 전체 테스트 37개 통과.
+  - React/Vite production build 통과.
+  - Core 패키징 통과.
+  - 패키징된 실행 파일에서 `/api/local-llm/run` 승인 전 미실행 응답을 확인했다.
+- 다음 구현 목표: Ollama와 `gemma3:12b`가 준비된 PC에서 실제 Local LLM 번들 생성, 설치, UI 기반 검증을 수행한다.
 
 ## 현재 작업 위치
 

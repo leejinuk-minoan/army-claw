@@ -62,8 +62,8 @@ React Web UI
 
 ## 다음 설계/구현 결정
 
-1. 웹 UI에서 Local LLM Bundle 상태 표시와 재검증 버튼을 연결한다.
-2. Ollama가 설치된 준비망 PC에서 `gemma3:12b` 실제 번들 생성을 검증한다.
+1. Ollama가 설치된 준비망 PC에서 `gemma3:12b` 실제 번들 생성을 검증한다.
+2. 웹 UI의 `빠른 검증`, `검증`, `번들 설치` 버튼으로 실제 Local LLM 번들 설치/검증 절차를 검증한다.
 3. 단독망과 동일한 Windows 권한 조건에서 Local LLM 번들 설치/검증 절차를 검증한다.
 4. Ollama 설치 파일 반입 정책과 보안 검수 절차를 확정한다.
 5. v0.2 skill 반입 번들 형식과 보안 검수 절차를 구체화한다.
@@ -78,6 +78,7 @@ React Web UI
 6. Core 패키징. PyInstaller + Inno Setup 설치 파일 빌드/검증 완료.
 7. 오프라인 빌드 venv. wheelhouse 생성, `.build-venv` 생성, `.build-venv` 기반 빌드/검증 완료.
 8. Local LLM 번들. 생성/설치/검증 스크립트 구현 완료, 실제 Ollama 설치 PC 검증 필요.
+9. Local LLM 웹 실행. 승인 기반 UI/API 연결과 패키징 포함 완료, 실제 Ollama 설치 PC 검증 필요.
 
 ## 패키징 결정
 
@@ -87,13 +88,13 @@ React Web UI
 
 ## 권장 다음 구현 단계
 
-현재 권장 다음 단계는 Local LLM Bundle 상태를 Core 웹 UI와 연결하는 것이다.
+현재 권장 다음 단계는 실제 Ollama 설치 PC에서 Local LLM 번들 생성과 UI 기반 검증을 수행하는 것이다.
 
-- `/api/health` 결과를 Local LLM Bundle 카드로 더 명확히 표시한다.
-- Ollama 미설치, Ollama 미실행, 모델 미존재, 생성 실패를 사용자가 구분할 수 있게 표시한다.
-- 재검증 버튼은 기존 health check API를 우선 사용한다.
-- 실제 로컬 PC 명령 실행이나 Ollama 설치 자동화는 별도 승인 흐름이 준비되기 전까지 UI에서 직접 수행하지 않는다.
-- 이 UI 변경은 화면 동작 설계가 포함되므로 별도 설계 승인 후 구현한다.
+- `ollama pull gemma3:12b` 후 준비망 번들을 생성한다.
+- Army Claw Core 웹 UI에서 `실행 승인`을 체크하고 `빠른 검증`을 먼저 실행한다.
+- 모델 응답까지 확인해야 하면 `검증`을 실행한다.
+- 단독망 반입 테스트에서는 `번들 설치` 버튼으로 모델 저장소 복사를 확인한다.
+- Ollama 설치 파일 실행은 보안 검수 정책이 확정된 뒤 `설치 시 Ollama 설치 파일 실행` 체크박스를 사용한다.
 
 실제 모델 번들 검증 명령:
 

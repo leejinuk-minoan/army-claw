@@ -60,6 +60,20 @@ def test_workspace_command_endpoint_requires_approval(tmp_path):
     assert response.json()["executed"] is False
 
 
+def test_local_llm_run_endpoint_requires_approval():
+    client = TestClient(create_app())
+
+    response = client.post(
+        "/api/local-llm/run",
+        json={"action": "verify", "approved": False},
+    )
+
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["executed"] is False
+    assert payload["approved"] is False
+
+
 def test_packaged_app_serves_frontend_static_files(tmp_path, monkeypatch):
     web_dir = tmp_path / "web"
     web_dir.mkdir()

@@ -27,6 +27,7 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 [Files]
 Source: "..\release\army-claw-core\ArmyClawCore\*"; DestDir: "{app}\ArmyClawCore"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "..\release\army-claw-core\openclaw.config.example.json"; DestDir: "{app}\config"; Flags: ignoreversion
+Source: "..\release\army-claw-core\scripts\*"; DestDir: "{app}\scripts"; Flags: ignoreversion recursesubdirs createallsubdirs
 
 [Icons]
 Name: "{group}\Army Claw"; Filename: "{app}\ArmyClawCore\{#MyAppExeName}"
