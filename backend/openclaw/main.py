@@ -1,6 +1,9 @@
+import os
+import sys
 from pathlib import Path
 
 from fastapi import FastAPI, HTTPException
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
 from openclaw.config import AppConfig
@@ -100,6 +103,25 @@ class HwpxParagraphRequest(BaseModel):
     workspace_root: str
     path: str
     paragraph: str
+
+
+def _frontend_static_dir() -> Path | None:
+    configured = os.environ.get("ARMY_CLAW_WEB_DIR")
+    candidates: list[Path] = []
+    if configured:
+        candidates.append(Path(configured))
+    if hasattr(sys, "_MEIPASS"):
+        candidates.append(Path(sys._MEIPASS) / "openclaw" / "web")
+    candidates.extend(
+        [
+            Path(__file__).resolve().parent / "web",
+            Path(__file__).resolve().parents[2] / "frontend" / "dist",
+        ]
+    )
+    for candidate in candidates:
+        if (candidate / "index.html").is_file():
+            return candidate
+    return None
 
 
 def create_app() -> FastAPI:
@@ -277,6 +299,10 @@ def create_app() -> FastAPI:
             return service.compatibility_note(request.path).model_dump()
         except WorkspaceError as exc:
             raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+    static_dir = _frontend_static_dir()
+    if static_dir is not None:
+        app.mount("/", StaticFiles(directory=static_dir, html=True), name="frontend")
 
     return app
 

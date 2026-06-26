@@ -58,3 +58,16 @@ def test_workspace_command_endpoint_requires_approval(tmp_path):
 
     assert response.status_code == 200
     assert response.json()["executed"] is False
+
+
+def test_packaged_app_serves_frontend_static_files(tmp_path, monkeypatch):
+    web_dir = tmp_path / "web"
+    web_dir.mkdir()
+    (web_dir / "index.html").write_text("<h1>Army Claw UI</h1>", encoding="utf-8")
+    monkeypatch.setenv("ARMY_CLAW_WEB_DIR", str(web_dir))
+    client = TestClient(create_app())
+
+    response = client.get("/")
+
+    assert response.status_code == 200
+    assert "Army Claw UI" in response.text

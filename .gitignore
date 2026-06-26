@@ -19,6 +19,7 @@ logs/
 # Packaging output
 build/
 release/
+backend/openclaw/web/
 *.spec
 
 # Local secrets/config

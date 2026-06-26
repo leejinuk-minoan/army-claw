@@ -1,5 +1,29 @@
 # Army Claw 진행 로그
 
+## 2026-06-26 - Slice 6 패키징 구현
+
+### 구현 내용
+
+- FastAPI가 React 정적 빌드 결과를 `/`에서 제공하도록 연결했다.
+- 패키징 실행 진입점 `backend/openclaw/__main__.py`를 추가했다.
+- Core 패키징 스크립트 `scripts/package-core.ps1`과 Windows 실행 정책 우회용 `scripts/package-core.bat`을 추가했다.
+- Inno Setup 기반 설치 파일 스크립트 `installer/army-claw-core.iss`를 추가했다.
+- Local LLM 번들 분리 전략 문서 `docs/local-llm-bundle.md`를 추가했다.
+- Slice 6 구현 계획 문서 `docs/superpowers/plans/2026-06-26-slice-6-packaging.md`를 추가했다.
+
+### 검증
+
+- 백엔드 테스트 32개 통과.
+- React/Vite production build 통과.
+- PyInstaller 기반 `ArmyClawCore.exe` 생성 성공.
+- Inno Setup 기반 `ArmyClawCoreSetup-0.1.0.exe` 생성 성공.
+- 패키징된 `ArmyClawCore.exe` smoke test 통과: `/api/status` 200, `/` 200.
+
+### 다음 단계
+
+- 설치 파일 실행 후 실제 설치 경로에서 첫 실행 동작을 검증한다.
+- 현재 PC에서는 PyInstaller가 설치된 Python과 앱 의존성이 설치된 Python이 달라 임시로 의존성 경로를 지정해 빌드했다. 정식 v0.1 빌드 전에는 전용 오프라인 빌드 venv로 정리한다.
+
 ## 2026-06-26 - Slice 5 한글/HWPX 도구
 
 ### 구현 내용
