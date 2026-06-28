@@ -15,6 +15,7 @@
 - `/api/agent/plan`에서 사용자 작업 요청과 활성 skill 컨텍스트를 합친 프롬프트를 반환한다.
 - `execute=false`이면 LLM 호출 없이 프롬프트 미리보기만 반환한다.
 - `execute=true`이면 현재 LLM Provider에 프롬프트를 전달해 LLM이 작성한 계획을 반환한다.
+- LLM이 작성한 계획을 승인 가능한 단계 목록으로 구조화한다.
 - React UI에 `Skill 적용 작업 계획` 패널을 추가했다.
 
 ## API
@@ -36,8 +37,22 @@
 - `executed`: LLM Provider 호출 여부.
 - `prompt`: 활성 skill이 주입된 작업 계획용 프롬프트.
 - `plan`: LLM Provider가 생성한 작업 계획. `execute=false`이면 빈 문자열이다.
+- `steps`: LLM 계획을 파싱한 실행 후보 단계 목록.
 - `used_skills`: 프롬프트에 포함된 skill 목록.
 - `message`: 현재 단계 설명.
+
+## 구조화된 단계
+
+`steps`의 각 항목은 다음 필드를 가진다.
+
+- `step_id`: `step-1`, `step-2` 형식의 단계 ID.
+- `title`: 단계 제목.
+- `detail`: 단계 설명.
+- `action_type`: `manual`, `file`, `command`, `document` 중 하나.
+- `requires_approval`: 사용자 승인이 필요한 단계인지 여부.
+- `status`: 현재는 기본값 `pending`.
+
+현재 단계 구조화는 실행을 위한 최종 명령 스키마가 아니라, 사용자가 승인할 수 있는 작업 후보 목록을 만들기 위한 1차 파싱이다.
 
 ## Ollama 확인 결과
 
@@ -53,8 +68,8 @@
 
 ## 현재 한계
 
-- LLM이 계획을 생성하더라도 아직 파일 생성, 명령 실행, 한컴오피스 조작은 수행하지 않는다.
-- 현재 단계는 “Skill이 반영된 계획 생성”까지다.
+- LLM이 계획과 단계 목록을 생성하더라도 아직 파일 생성, 명령 실행, 한컴오피스 조작은 수행하지 않는다.
+- 현재 단계는 “Skill이 반영된 계획 생성”과 “승인 가능한 단계 후보 표시”까지다.
 - 실제 도구 실행은 사용자 승인 흐름과 작업 로그가 더 연결된 뒤 진행한다.
 
 ## 다음 단계

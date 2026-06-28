@@ -326,6 +326,21 @@ export function App() {
               </div>
             </dl>
             {agentPlan.plan ? <pre className="diff-box">{agentPlan.plan}</pre> : null}
+            {agentPlan.steps.length ? (
+              <div className="result-stack">
+                {agentPlan.steps.map((step) => (
+                  <div className="list-card" key={step.step_id}>
+                    <div>
+                      <strong>{step.title}</strong>
+                      <p>{step.detail}</p>
+                      <small>
+                        {step.action_type} · {step.status} · {step.requires_approval ? "승인 필요" : "승인 불필요"}
+                      </small>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : null}
             <pre className="diff-box">{agentPlan.prompt}</pre>
           </div>
         ) : null}

@@ -1,3 +1,6 @@
+import re
+from typing import Literal
+
 from pydantic import BaseModel
 
 from openclaw.config import AppConfig
@@ -7,9 +10,22 @@ from openclaw.providers.openai_compatible import OpenAICompatibleProvider
 from openclaw.skill_registry import SkillContextItem, SkillRegistryService
 
 
+ActionType = Literal["manual", "file", "command", "document"]
+StepStatus = Literal["pending", "approved", "executed", "blocked"]
+
+
 class AgentPlanRequest(BaseModel):
     task: str
     execute: bool = False
+
+
+class AgentPlanStep(BaseModel):
+    step_id: str
+    title: str
+    detail: str
+    action_type: ActionType = "manual"
+    requires_approval: bool = False
+    status: StepStatus = "pending"
 
 
 class AgentPlanResult(BaseModel):
@@ -17,6 +33,7 @@ class AgentPlanResult(BaseModel):
     executed: bool
     prompt: str
     plan: str = ""
+    steps: list[AgentPlanStep] = []
     used_skills: list[SkillContextItem]
     message: str
 
@@ -53,9 +70,47 @@ class AgentPlannerService:
             executed=True,
             prompt=preview.prompt,
             plan=plan,
+            steps=self.structure_steps(plan),
             used_skills=preview.used_skills,
             message="LLM Provider가 활성 skill 컨텍스트를 반영해 작업 계획을 생성했습니다.",
         )
+
+    def structure_steps(self, plan: str) -> list[AgentPlanStep]:
+        raw_steps = self._split_numbered_steps(plan)
+        return [
+            AgentPlanStep(
+                step_id=f"step-{index}",
+                title=step,
+                detail=step,
+                action_type=self._classify_action_type(step),
+                requires_approval=self._requires_approval(step),
+            )
+            for index, step in enumerate(raw_steps, start=1)
+        ]
+
+    def _split_numbered_steps(self, plan: str) -> list[str]:
+        steps: list[str] = []
+        for line in plan.splitlines():
+            stripped = line.strip()
+            match = re.match(r"^(?:\d+[\.\)]|[-*])\s*(.+)$", stripped)
+            if match:
+                steps.append(match.group(1).strip())
+            elif steps and stripped:
+                steps[-1] = f"{steps[-1]} {stripped}"
+        return steps
+
+    def _requires_approval(self, text: str) -> bool:
+        markers = ["승인", "허용", "파일 변경", "명령 실행", "삭제", "실행"]
+        return any(marker in text for marker in markers)
+
+    def _classify_action_type(self, text: str) -> ActionType:
+        if any(marker in text for marker in ["PowerShell", "명령", "실행"]):
+            return "command"
+        if any(marker in text for marker in ["HWPX", "문서", "보고서", "한글", "PPT", "XLSX"]):
+            return "document"
+        if any(marker in text for marker in ["파일", "저장", "쓰기", "수정"]):
+            return "file"
+        return "manual"
 
     def _build_prompt(self, task: str, skill_context: str) -> str:
         skill_block = skill_context or "활성화된 skill이 없습니다."

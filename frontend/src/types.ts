@@ -45,8 +45,18 @@ export type AgentPlanResult = {
   executed: boolean;
   prompt: string;
   plan: string;
+  steps: AgentPlanStep[];
   used_skills: SkillContextItem[];
   message: string;
+};
+
+export type AgentPlanStep = {
+  step_id: string;
+  title: string;
+  detail: string;
+  action_type: "manual" | "file" | "command" | "document";
+  requires_approval: boolean;
+  status: "pending" | "approved" | "executed" | "blocked";
 };
 
 export type FileEntry = {
