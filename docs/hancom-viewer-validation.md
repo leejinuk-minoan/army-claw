@@ -1,8 +1,18 @@
-# 한컴오피스 미설치/한글뷰어 환경 검증 범위
+# 한컴오피스/한글뷰어 환경 검증 범위
+
+## 현재 상태
+
+2026-06-28 기준 현재 로컬 PC에는 한컴오피스 2024가 설치되어 있다. Army Claw의 한컴 감지 결과는 `native_available`이며, 한글/한셀/한쇼 실행 파일이 모두 확인됐다.
+
+확인된 실행 파일:
+
+- 한글: `C:\Program Files (x86)\HNC\Office 2024\HOffice130\Bin\Hwp.exe`
+- 한셀: `C:\Program Files (x86)\HNC\Office 2024\HOffice130\Bin\HCell.exe`
+- 한쇼: `C:\Program Files (x86)\HNC\Office 2024\HOffice130\Bin\HShow.exe`
 
 ## 결론
 
-현재 로컬 PC에 한컴오피스 전체가 없고 한글뷰어만 있어도 Army Claw의 많은 검사는 가능하다. 다만 한컴오피스 앱이 직접 문서를 열고 편집하고 다시 저장하는 네이티브 호환성 검사는 제한된다.
+한컴오피스가 설치된 현재 환경에서는 Army Claw가 만든 HWPX/XLSX/PPTX 파일을 실제 한컴 앱으로 여는 네이티브 검증까지 진행할 수 있다. 한글뷰어만 있는 환경에서도 Army Claw의 많은 검사는 가능하지만, 한컴오피스 앱이 직접 문서를 열고 편집하고 다시 저장하는 네이티브 호환성 검사는 제한된다.
 
 ## 가능한 검사
 

@@ -1,5 +1,36 @@
 # Army Claw 진행 로그
 
+## 2026-06-28 - 한컴오피스 2024 설치 확인 및 감지 기능 추가
+
+### 확인 내용
+
+- 레지스트리 기준 `한컴오피스 2024` 설치를 확인했다.
+- 설치 위치: `C:\Program Files (x86)\HNC\Office 2024\`.
+- 한글 실행 파일: `C:\Program Files (x86)\HNC\Office 2024\HOffice130\Bin\Hwp.exe`.
+- 한셀 실행 파일: `C:\Program Files (x86)\HNC\Office 2024\HOffice130\Bin\HCell.exe`.
+- 한쇼 실행 파일: `C:\Program Files (x86)\HNC\Office 2024\HOffice130\Bin\HShow.exe`.
+
+### 구현 내용
+
+- 한컴오피스 실행 파일을 감지하는 `HancomEnvironmentService`를 추가했다.
+- `/api/hancom/status` 엔드포인트를 추가했다.
+- React 웹 UI에 `한컴오피스 환경` 패널과 `한컴 감지` 버튼을 추가했다.
+- 한컴오피스 전체 감지 시 검증 수준을 `native_available`로 표시한다.
+
+### 이번 검증
+
+- 한컴 환경 감지 서비스 테스트 추가 및 통과.
+- 백엔드 전체 테스트 43개 통과.
+- React/Vite production build 통과.
+- `scripts\package-core.bat` 실행 통과.
+- 실제 로컬 환경 감지 결과: `native_available`.
+- 패키징된 `ArmyClawCore.exe`에서 `/api/hancom/status` smoke test 통과: 200 응답.
+
+### 다음 단계
+
+- Army Claw가 생성한 HWPX/XLSX/PPTX 샘플을 한글/한셀/한쇼로 여는 네이티브 검증 스크립트를 추가한다.
+- 네이티브 앱에서 열기 성공, 프로세스 시작, 파일 경로 전달 여부를 로그로 남긴다.
+
 ## 2026-06-28 - Local LLM 사전진단 및 한컴뷰어 검증 범위 정리
 
 ### 구현 내용

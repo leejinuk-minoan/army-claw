@@ -89,6 +89,19 @@ def test_local_llm_diagnose_endpoint_returns_status():
     assert "next_step" in payload
 
 
+def test_hancom_status_endpoint_returns_environment_status():
+    client = TestClient(create_app())
+
+    response = client.get("/api/hancom/status")
+
+    assert response.status_code == 200
+    payload = response.json()
+    assert "validation_level" in payload
+    assert "hwp" in payload
+    assert "hcell" in payload
+    assert "hshow" in payload
+
+
 def test_packaged_app_serves_frontend_static_files(tmp_path, monkeypatch):
     web_dir = tmp_path / "web"
     web_dir.mkdir()

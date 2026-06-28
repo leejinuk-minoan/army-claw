@@ -7,6 +7,7 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
 from openclaw.config import AppConfig
+from openclaw.hancom_environment import HancomEnvironmentService
 from openclaw.health import run_health_check
 from openclaw.hwpx_tools import HwpxService
 from openclaw.local_llm_bundle import LocalLlmBundleError, LocalLlmBundleRequest, LocalLlmBundleService
@@ -185,6 +186,10 @@ def create_app() -> FastAPI:
     @app.post("/api/local-llm/diagnose")
     def diagnose_local_llm_bundle(request: LocalLlmDiagnoseRequest) -> dict:
         return LocalLlmBundleService().diagnose(request.model, request.ollama_base_url).model_dump()
+
+    @app.get("/api/hancom/status")
+    def hancom_status() -> dict:
+        return HancomEnvironmentService().detect().model_dump()
 
     @app.post("/api/xlsx/summary")
     def summarize_xlsx(request: XlsxRequest) -> dict:

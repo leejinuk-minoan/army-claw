@@ -7,6 +7,7 @@ import {
   createPresentation,
   createHwpx,
   diagnoseLocalLlmBundle,
+  fetchHancomStatus,
   hwpxCompatibility,
   listWorkspace,
   proposeCommand,
@@ -26,6 +27,8 @@ import type {
   CommandResult,
   FileEntry,
   FormulaSuggestion,
+  HancomAppStatus,
+  HancomEnvironmentStatus,
   HealthResult,
   HwpxResult,
   HwpxSummary,
@@ -42,6 +45,7 @@ import "./styles.css";
 
 export function App() {
   const [health, setHealth] = useState<HealthResult | null>(null);
+  const [hancomStatus, setHancomStatus] = useState<HancomEnvironmentStatus | null>(null);
   const [entries, setEntries] = useState<FileEntry[]>([]);
   const [workspaceRoot, setWorkspaceRoot] = useState("");
   const [selectedPath, setSelectedPath] = useState("");
@@ -94,6 +98,18 @@ export function App() {
     }
   }
 
+  async function loadHancomStatus() {
+    setError("");
+    setLoading(true);
+    try {
+      setHancomStatus(await fetchHancomStatus());
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "한컴오피스 감지 오류");
+    } finally {
+      setLoading(false);
+    }
+  }
+
   return (
     <main className="app-shell">
       <header className="top-bar">
@@ -141,6 +157,45 @@ export function App() {
           <div>
             <dt>Message</dt>
             <dd>{health?.message || "n/a"}</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section className="panel">
+        <div className="panel-header">
+          <div>
+            <h2>한컴오피스 환경</h2>
+            <p>한글, 한셀, 한쇼 실행 파일을 감지해 네이티브 검증 가능 범위를 확인합니다.</p>
+          </div>
+          <button type="button" onClick={loadHancomStatus} disabled={loading}>
+            한컴 감지
+          </button>
+        </div>
+
+        <dl className="status-grid">
+          <div>
+            <dt>검증 수준</dt>
+            <dd>{hancomStatus?.validation_level ?? "미확인"}</dd>
+          </div>
+          <div>
+            <dt>한글</dt>
+            <dd>{formatHancomApp(hancomStatus?.hwp)}</dd>
+          </div>
+          <div>
+            <dt>한셀</dt>
+            <dd>{formatHancomApp(hancomStatus?.hcell)}</dd>
+          </div>
+          <div>
+            <dt>한쇼</dt>
+            <dd>{formatHancomApp(hancomStatus?.hshow)}</dd>
+          </div>
+          <div>
+            <dt>상태</dt>
+            <dd>{hancomStatus ? (hancomStatus.installed ? "감지됨" : "미감지") : "미확인"}</dd>
+          </div>
+          <div>
+            <dt>메시지</dt>
+            <dd>{hancomStatus?.message ?? "n/a"}</dd>
           </div>
         </dl>
       </section>
@@ -516,6 +571,13 @@ export function App() {
     } finally {
       setLoading(false);
     }
+  }
+
+  function formatHancomApp(status: HancomAppStatus | undefined) {
+    if (!status) {
+      return "미확인";
+    }
+    return status.available ? `있음: ${status.path}` : "없음";
   }
 
   async function selectFile(entry: FileEntry) {

@@ -7,6 +7,22 @@ export type HealthResult = {
   tokens_per_second: number | null;
 };
 
+export type HancomAppStatus = {
+  name: string;
+  executable: string;
+  available: boolean;
+  path: string;
+};
+
+export type HancomEnvironmentStatus = {
+  installed: boolean;
+  validation_level: string;
+  hwp: HancomAppStatus;
+  hcell: HancomAppStatus;
+  hshow: HancomAppStatus;
+  message: string;
+};
+
 export type FileEntry = {
   path: string;
   name: string;

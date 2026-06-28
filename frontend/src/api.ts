@@ -3,6 +3,7 @@ import type {
   FileEntry,
   FileReadResult,
   FormulaSuggestion,
+  HancomEnvironmentStatus,
   HealthResult,
   HwpxResult,
   HwpxSummary,
@@ -21,6 +22,14 @@ export async function fetchHealth(): Promise<HealthResult> {
   const response = await fetch("/api/health");
   if (!response.ok) {
     throw new Error(`Health check failed: ${response.status}`);
+  }
+  return response.json();
+}
+
+export async function fetchHancomStatus(): Promise<HancomEnvironmentStatus> {
+  const response = await fetch("/api/hancom/status");
+  if (!response.ok) {
+    throw new Error(`Hancom status failed: ${response.status}`);
   }
   return response.json();
 }
