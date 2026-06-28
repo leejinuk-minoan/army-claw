@@ -34,6 +34,20 @@ export type SkillMetadata = {
   path: string;
 };
 
+export type SkillContextItem = {
+  skill_id: string;
+  name: string;
+  content: string;
+};
+
+export type AgentPlanResult = {
+  task: string;
+  executed: boolean;
+  prompt: string;
+  used_skills: SkillContextItem[];
+  message: string;
+};
+
 export type FileEntry = {
   path: string;
   name: string;

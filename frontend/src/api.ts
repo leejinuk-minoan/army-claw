@@ -1,4 +1,5 @@
 import type {
+  AgentPlanResult,
   CommandResult,
   FileEntry,
   FileReadResult,
@@ -81,6 +82,13 @@ export async function deleteSkill(skillId: string): Promise<{ skill_id: string; 
     throw new Error(`Skill delete failed: ${response.status} ${text}`);
   }
   return response.json();
+}
+
+export async function previewAgentPlan(task: string): Promise<AgentPlanResult> {
+  return postJson<AgentPlanResult>("/api/agent/plan", {
+    task,
+    execute: false,
+  });
 }
 
 export async function listWorkspace(workspaceRoot: string, path = "."): Promise<FileEntry[]> {

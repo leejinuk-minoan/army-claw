@@ -130,6 +130,30 @@ def test_skill_api_import_list_disable_and_delete(tmp_path, monkeypatch):
     assert deleted.json()["deleted"] is True
 
 
+def test_agent_plan_preview_injects_active_skill_context(tmp_path, monkeypatch):
+    from zipfile import ZIP_DEFLATED, ZipFile
+
+    monkeypatch.setenv("ARMY_CLAW_SKILL_STORE", str(tmp_path / "skills"))
+    zip_path = tmp_path / "report-skill.zip"
+    with ZipFile(zip_path, "w", ZIP_DEFLATED) as archive:
+        archive.writestr("report-skill/SKILL.md", "# 보고서 작성\n\n보고서는 결론부터 작성합니다.")
+    client = TestClient(create_app())
+    client.post(
+        "/api/skills/import",
+        params={"filename": "report-skill.zip"},
+        content=zip_path.read_bytes(),
+    )
+
+    response = client.post("/api/agent/plan", json={"task": "월간 보고서를 만들어줘", "execute": False})
+
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["executed"] is False
+    assert payload["used_skills"][0]["skill_id"] == "report-skill"
+    assert "보고서는 결론부터 작성합니다" in payload["prompt"]
+    assert "월간 보고서를 만들어줘" in payload["prompt"]
+
+
 def test_packaged_app_serves_frontend_static_files(tmp_path, monkeypatch):
     web_dir = tmp_path / "web"
     web_dir.mkdir()

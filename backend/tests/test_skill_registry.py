@@ -67,3 +67,23 @@ def test_import_rejects_zip_without_skill_md(tmp_path: Path):
 
     with pytest.raises(SkillRegistryError):
         service.import_zip(filename="bad.zip", payload=zip_path.read_bytes())
+
+
+def test_build_context_uses_only_enabled_skills(tmp_path: Path):
+    service = SkillRegistryService(store_root=tmp_path / "store")
+    service.import_zip(
+        filename="report-skill.zip",
+        payload=make_skill_zip(tmp_path / "report-skill.zip", "# 보고서 작성\n\n보고서는 결론부터 작성합니다."),
+    )
+    service.import_zip(
+        filename="disabled-skill.zip",
+        payload=make_skill_zip(tmp_path / "disabled-skill.zip", "# 비활성 스킬\n\n이 내용은 제외되어야 합니다."),
+    )
+    service.set_enabled("disabled-skill", enabled=False)
+
+    context = service.build_active_context()
+
+    assert context.skill_count == 1
+    assert context.skills[0].skill_id == "report-skill"
+    assert "보고서는 결론부터 작성합니다" in context.context
+    assert "이 내용은 제외되어야 합니다" not in context.context

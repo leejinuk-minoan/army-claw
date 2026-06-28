@@ -30,6 +30,18 @@ class SkillEnabledRequest(BaseModel):
     enabled: bool
 
 
+class SkillContextItem(BaseModel):
+    skill_id: str
+    name: str
+    content: str
+
+
+class SkillContextResult(BaseModel):
+    skill_count: int
+    context: str
+    skills: list[SkillContextItem]
+
+
 class SkillRegistryService:
     METADATA_FILENAME = "army-claw-skill.json"
 
@@ -100,6 +112,26 @@ class SkillRegistryService:
             raise SkillRegistryError(f"skill was not found: {skill_id}")
         shutil.rmtree(target)
         return {"skill_id": skill_id, "deleted": True}
+
+    def build_active_context(self, max_chars_per_skill: int = 4000, max_total_chars: int = 12000) -> SkillContextResult:
+        items: list[SkillContextItem] = []
+        used_chars = 0
+        for metadata in self.list_skills():
+            if not metadata.enabled:
+                continue
+            skill_md = self._skill_path(metadata.skill_id) / "SKILL.md"
+            if not skill_md.is_file():
+                continue
+            content = skill_md.read_text(encoding="utf-8").strip()[:max_chars_per_skill]
+            remaining = max_total_chars - used_chars
+            if remaining <= 0:
+                break
+            content = content[:remaining]
+            used_chars += len(content)
+            items.append(SkillContextItem(skill_id=metadata.skill_id, name=metadata.name, content=content))
+
+        blocks = [f"## {item.name} ({item.skill_id})\n{item.content}" for item in items]
+        return SkillContextResult(skill_count=len(items), context="\n\n".join(blocks), skills=items)
 
     def _write_metadata(self, metadata: SkillMetadata) -> None:
         path = self._skill_path(metadata.skill_id)

@@ -6,6 +6,7 @@ from fastapi import FastAPI, HTTPException, Request
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
+from openclaw.agent_planner import AgentPlannerService, AgentPlanRequest
 from openclaw.config import AppConfig
 from openclaw.hancom_environment import HancomEnvironmentService
 from openclaw.health import run_health_check
@@ -217,6 +218,10 @@ def create_app() -> FastAPI:
             return SkillRegistryService().delete_skill(skill_id)
         except SkillRegistryError as exc:
             raise HTTPException(status_code=404, detail=str(exc)) from exc
+
+    @app.post("/api/agent/plan")
+    def preview_agent_plan(request: AgentPlanRequest) -> dict:
+        return AgentPlannerService().preview_plan(request).model_dump()
 
     @app.post("/api/xlsx/summary")
     def summarize_xlsx(request: XlsxRequest) -> dict:

@@ -13,6 +13,7 @@ import {
   importSkill,
   listSkills,
   listWorkspace,
+  previewAgentPlan,
   proposeCommand,
   readWorkspaceFile,
   previewXlsx,
@@ -28,6 +29,7 @@ import {
   writeXlsxCell,
 } from "./api";
 import type {
+  AgentPlanResult,
   CommandResult,
   FileEntry,
   FormulaSuggestion,
@@ -54,6 +56,8 @@ export function App() {
   const [skillFile, setSkillFile] = useState<File | null>(null);
   const [skills, setSkills] = useState<SkillMetadata[]>([]);
   const [skillResult, setSkillResult] = useState<SkillMetadata | null>(null);
+  const [agentTask, setAgentTask] = useState("월간 보고서를 만들어줘");
+  const [agentPlan, setAgentPlan] = useState<AgentPlanResult | null>(null);
   const [entries, setEntries] = useState<FileEntry[]>([]);
   const [workspaceRoot, setWorkspaceRoot] = useState("");
   const [selectedPath, setSelectedPath] = useState("");
@@ -175,6 +179,18 @@ export function App() {
     }
   }
 
+  async function buildAgentPlanPreview() {
+    setError("");
+    setLoading(true);
+    try {
+      setAgentPlan(await previewAgentPlan(agentTask));
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "작업 계획 미리보기 오류");
+    } finally {
+      setLoading(false);
+    }
+  }
+
   return (
     <main className="app-shell">
       <header className="top-bar">
@@ -274,6 +290,39 @@ export function App() {
             </div>
           ))}
         </div>
+      </section>
+
+      <section className="panel">
+        <div className="panel-header">
+          <div>
+            <h2>Skill 적용 작업 계획</h2>
+            <p>활성화된 skill을 작업 프롬프트에 주입해 실제 실행 전 계획을 미리 확인합니다.</p>
+          </div>
+          <button type="button" onClick={buildAgentPlanPreview} disabled={!agentTask || loading}>
+            계획 미리보기
+          </button>
+        </div>
+
+        <label className="field">
+          <span>작업 요청</span>
+          <input value={agentTask} onChange={(event) => setAgentTask(event.target.value)} />
+        </label>
+
+        {agentPlan ? (
+          <div className="result-stack">
+            <dl className="status-grid compact-grid">
+              <div>
+                <dt>실행 여부</dt>
+                <dd>{agentPlan.executed ? "실행됨" : "미리보기"}</dd>
+              </div>
+              <div>
+                <dt>적용 Skill</dt>
+                <dd>{agentPlan.used_skills.map((skill) => skill.name).join(", ") || "없음"}</dd>
+              </div>
+            </dl>
+            <pre className="diff-box">{agentPlan.prompt}</pre>
+          </div>
+        ) : null}
       </section>
 
       <section className="panel">
