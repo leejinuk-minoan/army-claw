@@ -23,6 +23,17 @@ export type HancomEnvironmentStatus = {
   message: string;
 };
 
+export type SkillMetadata = {
+  skill_id: string;
+  name: string;
+  description: string;
+  enabled: boolean;
+  imported_at: string;
+  sha256: string;
+  source_filename: string;
+  path: string;
+};
+
 export type FileEntry = {
   path: string;
   name: string;

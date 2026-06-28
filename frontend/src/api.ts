@@ -14,6 +14,7 @@ import type {
   PresentationResult,
   PresentationSummary,
   SheetPreview,
+  SkillMetadata,
   WorkbookSummary,
   WriteResult,
 } from "./types";
@@ -34,6 +35,28 @@ export async function fetchHancomStatus(): Promise<HancomEnvironmentStatus> {
   return response.json();
 }
 
+export async function listSkills(): Promise<SkillMetadata[]> {
+  const response = await fetch("/api/skills");
+  if (!response.ok) {
+    throw new Error(`Skill list failed: ${response.status}`);
+  }
+  const result = await response.json();
+  return result.skills;
+}
+
+export async function importSkill(file: File): Promise<SkillMetadata> {
+  const response = await fetch(`/api/skills/import?filename=${encodeURIComponent(file.name)}`, {
+    method: "POST",
+    headers: { "Content-Type": "application/zip" },
+    body: await file.arrayBuffer(),
+  });
+  if (!response.ok) {
+    const text = await response.text();
+    throw new Error(`Skill import failed: ${response.status} ${text}`);
+  }
+  return response.json();
+}
+
 async function postJson<T>(url: string, body: unknown): Promise<T> {
   const response = await fetch(url, {
     method: "POST",
@@ -43,6 +66,19 @@ async function postJson<T>(url: string, body: unknown): Promise<T> {
   if (!response.ok) {
     const text = await response.text();
     throw new Error(`${url} failed: ${response.status} ${text}`);
+  }
+  return response.json();
+}
+
+export async function setSkillEnabled(skillId: string, enabled: boolean): Promise<SkillMetadata> {
+  return postJson<SkillMetadata>(`/api/skills/${encodeURIComponent(skillId)}/enabled`, { enabled });
+}
+
+export async function deleteSkill(skillId: string): Promise<{ skill_id: string; deleted: boolean }> {
+  const response = await fetch(`/api/skills/${encodeURIComponent(skillId)}`, { method: "DELETE" });
+  if (!response.ok) {
+    const text = await response.text();
+    throw new Error(`Skill delete failed: ${response.status} ${text}`);
   }
   return response.json();
 }

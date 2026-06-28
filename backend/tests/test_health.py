@@ -102,6 +102,34 @@ def test_hancom_status_endpoint_returns_environment_status():
     assert "hshow" in payload
 
 
+def test_skill_api_import_list_disable_and_delete(tmp_path, monkeypatch):
+    from zipfile import ZIP_DEFLATED, ZipFile
+
+    monkeypatch.setenv("ARMY_CLAW_SKILL_STORE", str(tmp_path / "skills"))
+    zip_path = tmp_path / "report-skill.zip"
+    with ZipFile(zip_path, "w", ZIP_DEFLATED) as archive:
+        archive.writestr("report-skill/SKILL.md", "# 보고서 작성\n\n보고서 작성 절차입니다.")
+    client = TestClient(create_app())
+
+    upload = client.post(
+        "/api/skills/import",
+        params={"filename": "report-skill.zip"},
+        content=zip_path.read_bytes(),
+    )
+    listed = client.get("/api/skills")
+    disabled = client.post("/api/skills/report-skill/enabled", json={"enabled": False})
+    deleted = client.delete("/api/skills/report-skill")
+
+    assert upload.status_code == 200
+    assert upload.json()["skill_id"] == "report-skill"
+    assert listed.status_code == 200
+    assert listed.json()["skills"][0]["name"] == "보고서 작성"
+    assert disabled.status_code == 200
+    assert disabled.json()["enabled"] is False
+    assert deleted.status_code == 200
+    assert deleted.json()["deleted"] is True
+
+
 def test_packaged_app_serves_frontend_static_files(tmp_path, monkeypatch):
     web_dir = tmp_path / "web"
     web_dir.mkdir()

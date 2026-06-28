@@ -256,6 +256,29 @@ button:disabled {
   margin-top: 12px;
 }
 
+.list-card {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  border: 1px solid #e2e7ee;
+  border-radius: 6px;
+  padding: 12px;
+  background: #fbfcfd;
+}
+
+.list-card p {
+  margin: 4px 0;
+}
+
+.list-card small {
+  color: #667184;
+}
+
+.compact-actions {
+  margin: 0;
+}
+
 @media (max-width: 760px) {
   .top-bar,
   .panel-header {
@@ -285,5 +308,9 @@ button:disabled {
 
   .two-column {
     grid-template-columns: 1fr;
+  }
+
+  .list-card {
+    flex-direction: column;
   }
 }

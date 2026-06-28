@@ -6,14 +6,18 @@ import {
   addTitleSlide,
   createPresentation,
   createHwpx,
+  deleteSkill,
   diagnoseLocalLlmBundle,
   fetchHancomStatus,
   hwpxCompatibility,
+  importSkill,
+  listSkills,
   listWorkspace,
   proposeCommand,
   readWorkspaceFile,
   previewXlsx,
   runLocalLlmBundle,
+  setSkillEnabled,
   showCompatibility,
   summarizeHwpx,
   summarizePresentation,
@@ -38,6 +42,7 @@ import type {
   PresentationResult,
   PresentationSummary,
   SheetPreview,
+  SkillMetadata,
   WorkbookSummary,
   WriteResult,
 } from "./types";
@@ -46,6 +51,9 @@ import "./styles.css";
 export function App() {
   const [health, setHealth] = useState<HealthResult | null>(null);
   const [hancomStatus, setHancomStatus] = useState<HancomEnvironmentStatus | null>(null);
+  const [skillFile, setSkillFile] = useState<File | null>(null);
+  const [skills, setSkills] = useState<SkillMetadata[]>([]);
+  const [skillResult, setSkillResult] = useState<SkillMetadata | null>(null);
   const [entries, setEntries] = useState<FileEntry[]>([]);
   const [workspaceRoot, setWorkspaceRoot] = useState("");
   const [selectedPath, setSelectedPath] = useState("");
@@ -110,6 +118,63 @@ export function App() {
     }
   }
 
+  async function loadSkills() {
+    setError("");
+    setLoading(true);
+    try {
+      setSkills(await listSkills());
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Skill 목록 오류");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  async function uploadSkill() {
+    if (!skillFile) {
+      return;
+    }
+    setError("");
+    setLoading(true);
+    try {
+      const result = await importSkill(skillFile);
+      setSkillResult(result);
+      setSkillFile(null);
+      setSkills(await listSkills());
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Skill 업로드 오류");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  async function toggleSkill(skill: SkillMetadata) {
+    setError("");
+    setLoading(true);
+    try {
+      setSkillResult(await setSkillEnabled(skill.skill_id, !skill.enabled));
+      setSkills(await listSkills());
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Skill 상태 변경 오류");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  async function removeSkill(skillId: string) {
+    setError("");
+    setLoading(true);
+    try {
+      await deleteSkill(skillId);
+      setSkillResult(null);
+      setSkills(await listSkills());
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Skill 삭제 오류");
+    } finally {
+      setLoading(false);
+    }
+  }
+
   return (
     <main className="app-shell">
       <header className="top-bar">
@@ -159,6 +224,56 @@ export function App() {
             <dd>{health?.message || "n/a"}</dd>
           </div>
         </dl>
+      </section>
+
+      <section className="panel">
+        <div className="panel-header">
+          <div>
+            <h2>Skill 관리</h2>
+            <p>외부에서 반입한 정적 skill zip을 로컬 저장소에 등록하고 활성 상태를 관리합니다.</p>
+          </div>
+          <button type="button" onClick={loadSkills} disabled={loading}>
+            목록 새로고침
+          </button>
+        </div>
+
+        <label className="field">
+          <span>Skill zip 파일</span>
+          <input
+            type="file"
+            accept=".zip,application/zip"
+            onChange={(event) => setSkillFile(event.target.files?.[0] ?? null)}
+          />
+        </label>
+        <div className="button-row">
+          <button type="button" onClick={uploadSkill} disabled={!skillFile || loading}>
+            Skill 업로드
+          </button>
+        </div>
+
+        {skillResult ? <pre className="diff-box">{JSON.stringify(skillResult, null, 2)}</pre> : null}
+
+        <div className="result-stack">
+          {skills.map((skill) => (
+            <div className="list-card" key={skill.skill_id}>
+              <div>
+                <strong>{skill.name}</strong>
+                <p>{skill.description || "설명 없음"}</p>
+                <small>
+                  {skill.skill_id} · {skill.enabled ? "활성" : "비활성"} · {skill.sha256.slice(0, 12)}
+                </small>
+              </div>
+              <div className="button-row compact-actions">
+                <button type="button" onClick={() => toggleSkill(skill)} disabled={loading}>
+                  {skill.enabled ? "비활성화" : "활성화"}
+                </button>
+                <button type="button" onClick={() => removeSkill(skill.skill_id)} disabled={loading}>
+                  삭제
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
       </section>
 
       <section className="panel">

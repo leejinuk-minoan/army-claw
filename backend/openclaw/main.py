@@ -2,7 +2,7 @@ import os
 import sys
 from pathlib import Path
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
@@ -12,6 +12,7 @@ from openclaw.health import run_health_check
 from openclaw.hwpx_tools import HwpxService
 from openclaw.local_llm_bundle import LocalLlmBundleError, LocalLlmBundleRequest, LocalLlmBundleService
 from openclaw.presentation_tools import PresentationService
+from openclaw.skill_registry import SkillEnabledRequest, SkillRegistryError, SkillRegistryService
 from openclaw.workspace import WorkspaceError, WorkspaceService
 from openclaw.xlsx_tools import XlsxService
 
@@ -190,6 +191,32 @@ def create_app() -> FastAPI:
     @app.get("/api/hancom/status")
     def hancom_status() -> dict:
         return HancomEnvironmentService().detect().model_dump()
+
+    @app.get("/api/skills")
+    def list_skills() -> dict:
+        return {"skills": [skill.model_dump() for skill in SkillRegistryService().list_skills()]}
+
+    @app.post("/api/skills/import")
+    async def import_skill(filename: str, request: Request) -> dict:
+        try:
+            payload = await request.body()
+            return SkillRegistryService().import_zip(filename, payload).model_dump()
+        except SkillRegistryError as exc:
+            raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+    @app.post("/api/skills/{skill_id}/enabled")
+    def set_skill_enabled(skill_id: str, request: SkillEnabledRequest) -> dict:
+        try:
+            return SkillRegistryService().set_enabled(skill_id, request.enabled).model_dump()
+        except SkillRegistryError as exc:
+            raise HTTPException(status_code=404, detail=str(exc)) from exc
+
+    @app.delete("/api/skills/{skill_id}")
+    def delete_skill(skill_id: str) -> dict:
+        try:
+            return SkillRegistryService().delete_skill(skill_id)
+        except SkillRegistryError as exc:
+            raise HTTPException(status_code=404, detail=str(exc)) from exc
 
     @app.post("/api/xlsx/summary")
     def summarize_xlsx(request: XlsxRequest) -> dict:

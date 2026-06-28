@@ -1,4 +1,25 @@
 # Army Claw 진행 로그
+## 2026-06-28 - Skill 업로드/관리 MVP 구현
+
+### 구현 내용
+
+- `.zip` + `SKILL.md` 형식의 skill 패키지를 로컬 저장소에 등록하는 `SkillRegistryService`를 추가했다.
+- 기본 skill 저장 위치는 `%LOCALAPPDATA%\ArmyClaw\skills`이며, 테스트/개발용으로 `ARMY_CLAW_SKILL_STORE` 환경 변수 override를 지원한다.
+- `/api/skills`, `/api/skills/import`, `/api/skills/{skill_id}/enabled`, `/api/skills/{skill_id}` 삭제 API를 추가했다.
+- React UI에 `Skill 관리` 패널을 추가했다.
+- UI에서 skill zip 업로드, 현재 skill 목록 표시, 활성/비활성 전환, 삭제가 가능하다.
+- skill 메타데이터에는 `skill_id`, 이름, 설명, 활성 상태, 등록일, SHA256 해시, 원본 파일명, 저장 경로를 기록한다.
+- 상세 설계 문서 `docs/skill-management.md`를 추가했다.
+
+### 이번 검증
+
+- 백엔드 전체 테스트 49개 통과.
+- React/Vite production build 통과.
+
+### 다음 단계
+
+- 활성화된 skill을 실제 작업 계획 또는 LLM 프롬프트 컨텍스트에 주입하는 기능을 구현한다.
+- v0.2에서는 외부 URL, 인증 정보, 실행 파일, 금지 명령 등 보안 검증을 강화한다.
 
 ## 2026-06-28 - 한컴오피스 2024 설치 확인 및 감지 기능 추가
 
