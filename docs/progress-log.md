@@ -1,4 +1,26 @@
 # Army Claw 진행 로그
+## 2026-06-29 - Skill 기반 LLM 작업 계획 생성
+
+### 구현 내용
+
+- `/api/agent/plan`이 `execute=true`일 때 현재 LLM Provider를 호출해 작업 계획을 생성하도록 확장했다.
+- `AgentPlanResult`에 LLM 응답을 담는 `plan` 필드를 추가했다.
+- React UI의 `Skill 적용 작업 계획` 패널에 `프롬프트 미리보기`와 `LLM 계획 생성` 버튼을 분리했다.
+- Ollama Provider와 OpenAI-compatible Provider를 Agent Planner에서 설정에 따라 선택하도록 연결했다.
+- `docs/agent-skill-context.md` 문서를 정상 한글로 정리했다.
+
+### 이번 검증
+
+- 백엔드 전체 테스트 53개 통과.
+- React/Vite production build 통과.
+- 로컬 Ollama 설치 확인: `C:\Users\USER\AppData\Local\Programs\Ollama\ollama.exe`.
+- Ollama API 200 응답 확인.
+- 현재 Ollama 모델 `gemma3:12b` 확인.
+
+### 다음 단계
+
+- 패키지된 `ArmyClawCore.exe`에서 `gemma3:12b` 실제 LLM 계획 생성 smoke test 통과.
+- 다음 단계는 LLM 계획을 승인 가능한 실행 단계로 구조화한다.
 ## 2026-06-28 - Skill 업로드/관리 MVP 구현
 
 ### 구현 내용

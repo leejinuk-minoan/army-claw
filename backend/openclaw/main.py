@@ -220,8 +220,8 @@ def create_app() -> FastAPI:
             raise HTTPException(status_code=404, detail=str(exc)) from exc
 
     @app.post("/api/agent/plan")
-    def preview_agent_plan(request: AgentPlanRequest) -> dict:
-        return AgentPlannerService().preview_plan(request).model_dump()
+    async def preview_agent_plan(request: AgentPlanRequest) -> dict:
+        return (await AgentPlannerService(config=config).create_plan(request)).model_dump()
 
     @app.post("/api/xlsx/summary")
     def summarize_xlsx(request: XlsxRequest) -> dict:

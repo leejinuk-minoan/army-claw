@@ -84,10 +84,10 @@ export async function deleteSkill(skillId: string): Promise<{ skill_id: string; 
   return response.json();
 }
 
-export async function previewAgentPlan(task: string): Promise<AgentPlanResult> {
+export async function previewAgentPlan(task: string, execute = false): Promise<AgentPlanResult> {
   return postJson<AgentPlanResult>("/api/agent/plan", {
     task,
-    execute: false,
+    execute,
   });
 }
 

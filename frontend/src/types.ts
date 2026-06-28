@@ -44,6 +44,7 @@ export type AgentPlanResult = {
   task: string;
   executed: boolean;
   prompt: string;
+  plan: string;
   used_skills: SkillContextItem[];
   message: string;
 };

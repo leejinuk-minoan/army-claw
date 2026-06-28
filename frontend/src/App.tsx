@@ -179,13 +179,13 @@ export function App() {
     }
   }
 
-  async function buildAgentPlanPreview() {
+  async function buildAgentPlanPreview(execute = false) {
     setError("");
     setLoading(true);
     try {
-      setAgentPlan(await previewAgentPlan(agentTask));
+      setAgentPlan(await previewAgentPlan(agentTask, execute));
     } catch (err) {
-      setError(err instanceof Error ? err.message : "작업 계획 미리보기 오류");
+      setError(err instanceof Error ? err.message : "작업 계획 생성 오류");
     } finally {
       setLoading(false);
     }
@@ -298,9 +298,14 @@ export function App() {
             <h2>Skill 적용 작업 계획</h2>
             <p>활성화된 skill을 작업 프롬프트에 주입해 실제 실행 전 계획을 미리 확인합니다.</p>
           </div>
-          <button type="button" onClick={buildAgentPlanPreview} disabled={!agentTask || loading}>
-            계획 미리보기
-          </button>
+          <div className="button-row compact-actions">
+            <button type="button" onClick={() => buildAgentPlanPreview(false)} disabled={!agentTask || loading}>
+              프롬프트 미리보기
+            </button>
+            <button type="button" onClick={() => buildAgentPlanPreview(true)} disabled={!agentTask || loading}>
+              LLM 계획 생성
+            </button>
+          </div>
         </div>
 
         <label className="field">
@@ -313,13 +318,14 @@ export function App() {
             <dl className="status-grid compact-grid">
               <div>
                 <dt>실행 여부</dt>
-                <dd>{agentPlan.executed ? "실행됨" : "미리보기"}</dd>
+                <dd>{agentPlan.executed ? "LLM 생성" : "프롬프트 미리보기"}</dd>
               </div>
               <div>
                 <dt>적용 Skill</dt>
                 <dd>{agentPlan.used_skills.map((skill) => skill.name).join(", ") || "없음"}</dd>
               </div>
             </dl>
+            {agentPlan.plan ? <pre className="diff-box">{agentPlan.plan}</pre> : null}
             <pre className="diff-box">{agentPlan.prompt}</pre>
           </div>
         ) : null}
