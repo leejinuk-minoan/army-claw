@@ -56,6 +56,17 @@ export type LocalLlmRunResult = {
   message: string;
 };
 
+export type LocalLlmDiagnosticResult = {
+  status: string;
+  model: string;
+  scripts_available: boolean;
+  ollama_command_available: boolean;
+  ollama_api_available: boolean;
+  model_available: boolean;
+  next_step: string;
+  message: string;
+};
+
 export type SheetSummary = {
   name: string;
   max_row: number;

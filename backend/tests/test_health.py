@@ -74,6 +74,21 @@ def test_local_llm_run_endpoint_requires_approval():
     assert payload["approved"] is False
 
 
+def test_local_llm_diagnose_endpoint_returns_status():
+    client = TestClient(create_app())
+
+    response = client.post(
+        "/api/local-llm/diagnose",
+        json={"model": "gemma3:12b"},
+    )
+
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["model"] == "gemma3:12b"
+    assert "status" in payload
+    assert "next_step" in payload
+
+
 def test_packaged_app_serves_frontend_static_files(tmp_path, monkeypatch):
     web_dir = tmp_path / "web"
     web_dir.mkdir()

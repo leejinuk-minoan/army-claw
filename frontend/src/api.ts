@@ -8,6 +8,7 @@ import type {
   HwpxSummary,
   LocalLlmRunRequest,
   LocalLlmRunResult,
+  LocalLlmDiagnosticResult,
   PivotSummary,
   PresentationResult,
   PresentationSummary,
@@ -76,6 +77,12 @@ export async function proposeCommand(workspaceRoot: string, command: string): Pr
 
 export async function runLocalLlmBundle(request: LocalLlmRunRequest): Promise<LocalLlmRunResult> {
   return postJson<LocalLlmRunResult>("/api/local-llm/run", request);
+}
+
+export async function diagnoseLocalLlmBundle(model: string): Promise<LocalLlmDiagnosticResult> {
+  return postJson<LocalLlmDiagnosticResult>("/api/local-llm/diagnose", {
+    model,
+  });
 }
 
 export async function summarizeXlsx(workspaceRoot: string, path: string): Promise<WorkbookSummary> {

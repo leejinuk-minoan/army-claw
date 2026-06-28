@@ -6,6 +6,7 @@ import {
   addTitleSlide,
   createPresentation,
   createHwpx,
+  diagnoseLocalLlmBundle,
   hwpxCompatibility,
   listWorkspace,
   proposeCommand,
@@ -28,6 +29,7 @@ import type {
   HealthResult,
   HwpxResult,
   HwpxSummary,
+  LocalLlmDiagnosticResult,
   LocalLlmRunResult,
   PivotSummary,
   PresentationResult,
@@ -52,6 +54,7 @@ export function App() {
   const [localLlmApproved, setLocalLlmApproved] = useState(false);
   const [localLlmInstallOllama, setLocalLlmInstallOllama] = useState(false);
   const [localLlmResult, setLocalLlmResult] = useState<LocalLlmRunResult | null>(null);
+  const [localLlmDiagnostic, setLocalLlmDiagnostic] = useState<LocalLlmDiagnosticResult | null>(null);
   const [xlsxPath, setXlsxPath] = useState("");
   const [xlsxSheet, setXlsxSheet] = useState("");
   const [xlsxCell, setXlsxCell] = useState("A1");
@@ -188,6 +191,9 @@ export function App() {
         </div>
 
         <div className="button-row">
+          <button type="button" onClick={diagnoseLocalLlm} disabled={loading}>
+            사전진단
+          </button>
           <button type="button" onClick={() => executeLocalLlm("verify", true)} disabled={!localLlmApproved || loading}>
             빠른 검증
           </button>
@@ -195,6 +201,35 @@ export function App() {
             번들 설치
           </button>
         </div>
+
+        {localLlmDiagnostic ? (
+          <dl className="status-grid compact-grid">
+            <div>
+              <dt>상태</dt>
+              <dd>{localLlmDiagnostic.status}</dd>
+            </div>
+            <div>
+              <dt>스크립트</dt>
+              <dd>{localLlmDiagnostic.scripts_available ? "있음" : "없음"}</dd>
+            </div>
+            <div>
+              <dt>Ollama 명령</dt>
+              <dd>{localLlmDiagnostic.ollama_command_available ? "있음" : "없음"}</dd>
+            </div>
+            <div>
+              <dt>Ollama API</dt>
+              <dd>{localLlmDiagnostic.ollama_api_available ? "응답" : "미응답"}</dd>
+            </div>
+            <div>
+              <dt>모델</dt>
+              <dd>{localLlmDiagnostic.model_available ? "있음" : "없음"}</dd>
+            </div>
+            <div>
+              <dt>다음 조치</dt>
+              <dd>{localLlmDiagnostic.next_step}</dd>
+            </div>
+          </dl>
+        ) : null}
 
         {localLlmResult ? (
           <pre className="diff-box">{JSON.stringify(localLlmResult, null, 2)}</pre>
@@ -539,6 +574,18 @@ export function App() {
       );
     } catch (err) {
       setError(err instanceof Error ? err.message : "Local LLM Bundle 실행 오류");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  async function diagnoseLocalLlm() {
+    setError("");
+    setLoading(true);
+    try {
+      setLocalLlmDiagnostic(await diagnoseLocalLlmBundle(localLlmModel));
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Local LLM 사전진단 오류");
     } finally {
       setLoading(false);
     }

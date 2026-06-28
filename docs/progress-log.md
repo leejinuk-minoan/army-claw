@@ -1,5 +1,23 @@
 # Army Claw 진행 로그
 
+## 2026-06-28 - Local LLM 사전진단 및 한컴뷰어 검증 범위 정리
+
+### 구현 내용
+
+- Local LLM 번들 사전진단 모델과 서비스를 추가했다.
+- 진단 항목은 Local LLM 스크립트 포함 여부, Ollama 명령 존재 여부, Ollama API 응답 여부, `gemma3:12b` 모델 존재 여부다.
+- `/api/local-llm/diagnose` 엔드포인트를 추가했다.
+- React 웹 UI의 Local LLM Bundle 실행 패널에 `사전진단` 버튼과 상태 요약을 추가했다.
+- 한컴오피스 미설치/한글뷰어 환경에서 가능한 검사와 제한되는 검사를 `docs/hancom-viewer-validation.md`에 정리했다.
+
+### 이번 검증
+
+- Local LLM 사전진단 서비스 테스트 포함 백엔드 전체 테스트 40개 통과.
+- React/Vite production build 통과.
+- `scripts\package-core.bat` 실행 통과.
+- 패키징된 `ArmyClawCore.exe`에서 `/api/local-llm/diagnose` smoke test 통과: 200 응답.
+- 현재 PC 상태는 `ollama_missing`으로 진단됐다.
+
 ## 2026-06-27 - Local LLM 번들 웹 실행 연결
 
 ### 구현 내용

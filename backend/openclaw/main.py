@@ -33,6 +33,11 @@ class CommandRequest(BaseModel):
     approved: bool = False
 
 
+class LocalLlmDiagnoseRequest(BaseModel):
+    model: str = "gemma3:12b"
+    ollama_base_url: str = "http://127.0.0.1:11434"
+
+
 class XlsxRequest(BaseModel):
     workspace_root: str
     path: str
@@ -176,6 +181,10 @@ def create_app() -> FastAPI:
             return LocalLlmBundleService().run(request).model_dump()
         except LocalLlmBundleError as exc:
             raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+    @app.post("/api/local-llm/diagnose")
+    def diagnose_local_llm_bundle(request: LocalLlmDiagnoseRequest) -> dict:
+        return LocalLlmBundleService().diagnose(request.model, request.ollama_base_url).model_dump()
 
     @app.post("/api/xlsx/summary")
     def summarize_xlsx(request: XlsxRequest) -> dict:

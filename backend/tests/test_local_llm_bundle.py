@@ -65,3 +65,32 @@ def test_local_llm_blocks_unknown_action(tmp_path: Path):
 
     with pytest.raises(LocalLlmBundleError):
         service.run(LocalLlmBundleRequest(action="other", approved=True))
+
+
+def test_local_llm_diagnose_reports_missing_ollama_command(tmp_path: Path):
+    (tmp_path / "verify-local-llm-bundle.ps1").write_text("", encoding="utf-8")
+    (tmp_path / "install-local-llm-bundle.ps1").write_text("", encoding="utf-8")
+    service = LocalLlmBundleService(scripts_dir=tmp_path, command_resolver=lambda name: None)
+
+    result = service.diagnose(model="gemma3:12b")
+
+    assert result.status == "ollama_missing"
+    assert result.scripts_available is True
+    assert result.ollama_command_available is False
+    assert result.next_step == "Ollama를 설치하거나 PATH에 추가하세요."
+
+
+def test_local_llm_diagnose_reports_model_ready(tmp_path: Path):
+    (tmp_path / "verify-local-llm-bundle.ps1").write_text("", encoding="utf-8")
+    (tmp_path / "install-local-llm-bundle.ps1").write_text("", encoding="utf-8")
+    service = LocalLlmBundleService(
+        scripts_dir=tmp_path,
+        command_resolver=lambda name: "C:\\Program Files\\Ollama\\ollama.exe",
+        model_lister=lambda base_url: ["gemma3:12b"],
+    )
+
+    result = service.diagnose(model="gemma3:12b")
+
+    assert result.status == "ready"
+    assert result.ollama_api_available is True
+    assert result.model_available is True
