@@ -62,6 +62,24 @@ export type AgentPlanStep = {
 
 export type AgentPlanStepStatus = AgentPlanStep["status"];
 
+export type AgentExecutionQueueItem = {
+  step_id: string;
+  title: string;
+  detail: string;
+  action_type: AgentPlanStep["action_type"];
+  status: "queued" | "running" | "succeeded" | "failed" | "skipped";
+  message: string;
+};
+
+export type AgentExecutionQueueResult = {
+  queue_id: string;
+  plan_id: string;
+  queued_count: number;
+  created_at: string;
+  items: AgentExecutionQueueItem[];
+  message: string;
+};
+
 export type FileEntry = {
   path: string;
   name: string;

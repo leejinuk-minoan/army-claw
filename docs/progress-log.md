@@ -1,4 +1,23 @@
 # Army Claw 진행 로그
+## 2026-06-29 - 승인 단계 실행 큐 생성
+
+### 구현 내용
+
+- `AgentExecutionQueueService`를 추가해 승인된 계획 단계만 실행 큐 JSON으로 저장하도록 했다.
+- 기본 큐 저장 위치는 `%LOCALAPPDATA%\ArmyClaw\execution-queues`이며, 테스트/패키지 검증용으로 `ARMY_CLAW_EXECUTION_QUEUE_STORE` 환경 변수 override를 지원한다.
+- `/api/agent/plans/{plan_id}/execution-queue` API를 추가했다.
+- 큐 항목은 `step_id`, `title`, `detail`, `action_type`, `status`, `message`를 포함하며 기본 상태는 `queued`다.
+- React UI에 `승인 단계 큐 생성` 버튼과 큐 결과 표시 영역을 추가했다.
+
+### 이번 검증
+
+- 실행 큐 서비스/API 신규 테스트 3개 통과.
+
+### 다음 단계
+
+- 큐에 들어간 단계 중 안전한 `manual`, `document`, `file`, `command` 유형을 실제 도구 실행기로 연결한다.
+- 실행 결과와 실패 사유를 큐 항목 및 계획 단계별 작업 로그에 기록한다.
+
 ## 2026-06-29 - 계획 단계 승인/보류 상태 저장
 
 ### 구현 내용

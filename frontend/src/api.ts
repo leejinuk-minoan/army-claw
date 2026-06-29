@@ -1,4 +1,5 @@
 import type {
+  AgentExecutionQueueResult,
   AgentPlanResult,
   AgentPlanStepStatus,
   CommandResult,
@@ -100,6 +101,13 @@ export async function updateAgentPlanStepStatus(
   return postJson<AgentPlanResult>(
     `/api/agent/plans/${encodeURIComponent(planId)}/steps/${encodeURIComponent(stepId)}/status`,
     { status },
+  );
+}
+
+export async function queueAgentPlanApprovedSteps(planId: string): Promise<AgentExecutionQueueResult> {
+  return postJson<AgentExecutionQueueResult>(
+    `/api/agent/plans/${encodeURIComponent(planId)}/execution-queue`,
+    {},
   );
 }
 

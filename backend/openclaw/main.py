@@ -6,6 +6,7 @@ from fastapi import FastAPI, HTTPException, Request
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
+from openclaw.agent_execution_queue import AgentExecutionQueueError, AgentExecutionQueueService
 from openclaw.agent_plan_store import AgentPlanStore, AgentPlanStoreError, StepStatusRequest
 from openclaw.agent_planner import AgentPlannerService, AgentPlanRequest
 from openclaw.config import AppConfig
@@ -232,6 +233,13 @@ def create_app() -> FastAPI:
         try:
             return AgentPlanStore().update_step_status(plan_id, step_id, request.status).model_dump()
         except AgentPlanStoreError as exc:
+            raise HTTPException(status_code=404, detail=str(exc)) from exc
+
+    @app.post("/api/agent/plans/{plan_id}/execution-queue")
+    def queue_agent_plan_approved_steps(plan_id: str) -> dict:
+        try:
+            return AgentExecutionQueueService().queue_approved_steps(plan_id).model_dump()
+        except (AgentPlanStoreError, AgentExecutionQueueError) as exc:
             raise HTTPException(status_code=404, detail=str(exc)) from exc
 
     @app.post("/api/xlsx/summary")

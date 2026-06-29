@@ -15,6 +15,7 @@ import {
   listWorkspace,
   previewAgentPlan,
   proposeCommand,
+  queueAgentPlanApprovedSteps,
   readWorkspaceFile,
   previewXlsx,
   runLocalLlmBundle,
@@ -30,6 +31,7 @@ import {
   writeXlsxCell,
 } from "./api";
 import type {
+  AgentExecutionQueueResult,
   AgentPlanResult,
   AgentPlanStepStatus,
   CommandResult,
@@ -60,6 +62,7 @@ export function App() {
   const [skillResult, setSkillResult] = useState<SkillMetadata | null>(null);
   const [agentTask, setAgentTask] = useState("월간 보고서를 만들어줘");
   const [agentPlan, setAgentPlan] = useState<AgentPlanResult | null>(null);
+  const [agentQueue, setAgentQueue] = useState<AgentExecutionQueueResult | null>(null);
   const [entries, setEntries] = useState<FileEntry[]>([]);
   const [workspaceRoot, setWorkspaceRoot] = useState("");
   const [selectedPath, setSelectedPath] = useState("");
@@ -186,6 +189,7 @@ export function App() {
     setLoading(true);
     try {
       setAgentPlan(await previewAgentPlan(agentTask, execute));
+      setAgentQueue(null);
     } catch (err) {
       setError(err instanceof Error ? err.message : "작업 계획 생성 오류");
     } finally {
@@ -202,8 +206,25 @@ export function App() {
     setLoading(true);
     try {
       setAgentPlan(await updateAgentPlanStepStatus(agentPlan.plan_id, stepId, status));
+      setAgentQueue(null);
     } catch (err) {
       setError(err instanceof Error ? err.message : "작업 단계 상태 변경 오류");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  async function queueApprovedAgentSteps() {
+    if (!agentPlan?.plan_id) {
+      setError("저장된 계획 ID가 없어 실행 큐를 만들 수 없습니다.");
+      return;
+    }
+    setError("");
+    setLoading(true);
+    try {
+      setAgentQueue(await queueAgentPlanApprovedSteps(agentPlan.plan_id));
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "실행 큐 생성 오류");
     } finally {
       setLoading(false);
     }
@@ -323,6 +344,13 @@ export function App() {
             <button type="button" onClick={() => buildAgentPlanPreview(true)} disabled={!agentTask || loading}>
               LLM 계획 생성
             </button>
+            <button
+              type="button"
+              onClick={queueApprovedAgentSteps}
+              disabled={!agentPlan?.plan_id || loading || !agentPlan.steps.some((step) => step.status === "approved")}
+            >
+              승인 단계 큐 생성
+            </button>
           </div>
         </div>
 
@@ -370,6 +398,31 @@ export function App() {
                       >
                         보류
                       </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : null}
+            {agentQueue ? (
+              <div className="result-stack">
+                <dl className="status-grid compact-grid">
+                  <div>
+                    <dt>Queue ID</dt>
+                    <dd>{agentQueue.queue_id}</dd>
+                  </div>
+                  <div>
+                    <dt>대기 단계</dt>
+                    <dd>{agentQueue.queued_count}</dd>
+                  </div>
+                </dl>
+                {agentQueue.items.map((item) => (
+                  <div className="list-card" key={item.step_id}>
+                    <div>
+                      <strong>{item.title}</strong>
+                      <p>{item.detail}</p>
+                      <small>
+                        {item.action_type} · {item.status}
+                      </small>
                     </div>
                   </div>
                 ))}
