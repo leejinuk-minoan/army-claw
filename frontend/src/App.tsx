@@ -32,6 +32,7 @@ import {
   writeXlsxCell,
 } from "./api";
 import type {
+  AgentExecutionQueueItem,
   AgentExecutionQueueResult,
   AgentPlanResult,
   AgentPlanStepStatus,
@@ -103,6 +104,9 @@ export function App() {
   const [hwpxResult, setHwpxResult] = useState<HwpxResult | null>(null);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const queueCounts = summarizeQueue(agentQueue);
+  const queueOutputs = getQueueOutputs(agentQueue);
+  const queueHasPendingItems = Boolean(agentQueue?.items.some((item) => item.status === "queued"));
 
   async function runHealthCheck() {
     setError("");
@@ -249,6 +253,21 @@ export function App() {
 
   return (
     <main className="app-shell">
+      <aside className="side-nav" aria-label="Army Claw navigation">
+        <div className="brand-block">
+          <strong>Army Claw</strong>
+          <span>로컬 PC 작업 에이전트</span>
+        </div>
+        <nav>
+          <a href="#agent-work">작업</a>
+          <a href="#queue-result">실행 큐</a>
+          <a href="#skills">Skill</a>
+          <a href="#hancom">한컴</a>
+          <a href="#workspace">파일</a>
+          <a href="#tools">도구</a>
+        </nav>
+      </aside>
+      <section className="work-feed">
       <header className="top-bar">
         <div>
           <h1>Army Claw</h1>
@@ -421,34 +440,67 @@ export function App() {
               </div>
             ) : null}
             {agentQueue ? (
-              <div className="result-stack">
-                <dl className="status-grid compact-grid">
+              <div className="result-stack queue-summary-panel" id="queue-result">
+                <div className="queue-summary-head">
+                  <div>
+                    <h3>실행 큐</h3>
+                    <p>{queueHasPendingItems ? "실행 대기 중인 항목이 있습니다." : "큐 처리가 끝났습니다."}</p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={runAgentQueue}
+                    disabled={loading || !queueHasPendingItems}
+                  >
+                    {loading ? "실행 중" : queueHasPendingItems ? "큐 실행" : "실행 완료"}
+                  </button>
+                </div>
+                <dl className="status-grid compact-grid queue-counts">
                   <div>
                     <dt>Queue ID</dt>
                     <dd>{agentQueue.queue_id}</dd>
                   </div>
                   <div>
-                    <dt>대기 단계</dt>
-                    <dd>{agentQueue.queued_count}</dd>
+                    <dt>전체</dt>
+                    <dd>{agentQueue.items.length}</dd>
+                  </div>
+                  <div>
+                    <dt>성공</dt>
+                    <dd>{queueCounts.succeeded}</dd>
+                  </div>
+                  <div>
+                    <dt>건너뜀</dt>
+                    <dd>{queueCounts.skipped}</dd>
+                  </div>
+                  <div>
+                    <dt>실패</dt>
+                    <dd>{queueCounts.failed}</dd>
+                  </div>
+                  <div>
+                    <dt>대기</dt>
+                    <dd>{queueCounts.queued}</dd>
                   </div>
                 </dl>
-                <div className="button-row compact-actions">
-                  <button
-                    type="button"
-                    onClick={runAgentQueue}
-                    disabled={loading || !agentQueue.items.some((item) => item.status === "queued")}
-                  >
-                    큐 실행
-                  </button>
-                </div>
+                {queueOutputs.length ? (
+                  <div className="output-list">
+                    <strong>생성 파일</strong>
+                    {queueOutputs.map((item) => (
+                      <div className="output-path" key={`${item.step_id}-${item.execution?.path}`}>
+                        <span>{item.execution?.kind}</span>
+                        <code>{item.execution?.workspace_root}\{item.execution?.path}</code>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <p className="queue-note">아직 생성 파일이 없습니다. HWP/HWPX/한글문서 요청은 HWPX 생성으로 연결됩니다.</p>
+                )}
                 {agentQueue.items.map((item) => (
-                  <div className="list-card" key={item.step_id}>
+                  <div className={`list-card queue-card status-${item.status}`} key={item.step_id}>
                     <div>
                       <strong>{item.title}</strong>
                       <p>{item.detail}</p>
                       <small>
-                        {item.action_type} · {item.status}
-                        {item.execution ? ` · ${item.execution.kind} · ${item.execution.path}` : ""}
+                        {item.action_type} · {formatQueueStatus(item.status)}
+                        {item.execution ? ` · ${item.execution.kind} · ${item.execution.path}` : " · 실행 스키마 없음"}
                       </small>
                       {item.message ? <p>{item.message}</p> : null}
                     </div>
@@ -858,6 +910,7 @@ export function App() {
           {hwpxSummary ? <pre className="diff-box">{JSON.stringify(hwpxSummary, null, 2)}</pre> : null}
         </div>
       </section>
+      </section>
     </main>
   );
 
@@ -1088,4 +1141,33 @@ export function App() {
       setError(err instanceof Error ? err.message : "HWPX 호환성 확인 오류");
     }
   }
+}
+
+function summarizeQueue(queue: AgentExecutionQueueResult | null) {
+  const initial = { queued: 0, running: 0, succeeded: 0, failed: 0, skipped: 0 };
+  if (!queue) {
+    return initial;
+  }
+  return queue.items.reduce((counts, item) => {
+    counts[item.status] += 1;
+    return counts;
+  }, initial);
+}
+
+function getQueueOutputs(queue: AgentExecutionQueueResult | null): AgentExecutionQueueItem[] {
+  if (!queue) {
+    return [];
+  }
+  return queue.items.filter((item) => item.execution && item.status === "succeeded");
+}
+
+function formatQueueStatus(status: AgentExecutionQueueItem["status"]) {
+  const labels: Record<AgentExecutionQueueItem["status"], string> = {
+    queued: "대기",
+    running: "실행 중",
+    succeeded: "성공",
+    failed: "실패",
+    skipped: "건너뜀",
+  };
+  return labels[status];
 }

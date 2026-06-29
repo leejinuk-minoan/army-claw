@@ -128,11 +128,20 @@ class AgentExecutionQueueService:
         workspace_root: str,
     ) -> AgentExecutionSpec | None:
         text = f"{title} {detail}".upper()
-        if action_type != "document":
+        original_text = f"{title} {detail}"
+        workspace_root = workspace_root or str(self._default_output_workspace())
+        is_hwp_request = (
+            "HWPX" in text
+            or ".HWP" in text
+            or " HWP" in text
+            or "한글" in original_text
+            or "한컴" in original_text
+        )
+        if action_type not in {"document", "file"}:
             return None
-        if not workspace_root:
+        if action_type == "file" and not is_hwp_request:
             return None
-        if "HWPX" in text:
+        if is_hwp_request:
             return AgentExecutionSpec(
                 kind="hwpx_create",
                 workspace_root=workspace_root,
@@ -164,16 +173,26 @@ class AgentExecutionQueueService:
             paragraphs=[detail],
         )
 
+
+    def _default_output_workspace(self) -> Path:
+        return Path(os.environ.get("LOCALAPPDATA", str(Path.home()))) / "ArmyClaw" / "workspace"
+
+
+    def _workspace_service(self, spec: AgentExecutionSpec) -> WorkspaceService:
+        root = Path(spec.workspace_root)
+        root.mkdir(parents=True, exist_ok=True)
+        return WorkspaceService(root)
+
     def _run_hwpx_create(self, spec: AgentExecutionSpec) -> None:
         try:
-            service = HwpxService(WorkspaceService(Path(spec.workspace_root)))
+            service = HwpxService(self._workspace_service(spec))
             service.create_document(spec.path, spec.title, spec.paragraphs)
         except WorkspaceError as exc:
             raise AgentExecutionQueueError(str(exc)) from exc
 
     def _run_pptx_create(self, spec: AgentExecutionSpec) -> None:
         try:
-            service = PresentationService(WorkspaceService(Path(spec.workspace_root)))
+            service = PresentationService(self._workspace_service(spec))
             subtitle = "\n".join(spec.paragraphs)
             service.create_presentation(spec.path, spec.title, subtitle)
         except WorkspaceError as exc:
@@ -181,7 +200,7 @@ class AgentExecutionQueueService:
 
     def _run_xlsx_create(self, spec: AgentExecutionSpec) -> None:
         try:
-            service = XlsxService(WorkspaceService(Path(spec.workspace_root)))
+            service = XlsxService(self._workspace_service(spec))
             rows = [["항목", "내용"], [spec.title, "\n".join(spec.paragraphs)]]
             service.create_workbook(spec.path, rows=rows)
         except WorkspaceError as exc:

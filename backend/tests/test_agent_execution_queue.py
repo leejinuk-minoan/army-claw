@@ -69,7 +69,8 @@ def test_queue_approved_steps_persists_queue_file(tmp_path):
     assert service.get_queue(result.queue_id).items[0].title == "HWPX 초안을 작성한다."
 
 
-def test_run_queue_marks_manual_steps_succeeded_and_unsupported_steps_skipped(tmp_path):
+def test_run_queue_marks_manual_and_default_hwpx_steps_succeeded(tmp_path, monkeypatch):
+    monkeypatch.setenv("LOCALAPPDATA", str(tmp_path / "localappdata"))
     plan_store = AgentPlanStore(store_root=tmp_path / "plans")
     saved = plan_store.save_plan(make_plan())
     plan_store.update_step_status(saved.plan_id, "step-1", "approved")
@@ -79,9 +80,10 @@ def test_run_queue_marks_manual_steps_succeeded_and_unsupported_steps_skipped(tm
 
     result = service.run_queue(queued.queue_id)
 
-    assert [item.status for item in result.items] == ["succeeded", "skipped"]
+    assert [item.status for item in result.items] == ["succeeded", "succeeded"]
     assert "수동 확인" in result.items[0].message
-    assert "아직 지원하지 않는 실행 유형" in result.items[1].message
+    assert result.items[1].execution is not None
+    assert result.items[1].execution.kind == "hwpx_create"
     assert service.get_queue(queued.queue_id).items[0].status == "succeeded"
 
 
@@ -187,3 +189,75 @@ def test_run_queue_creates_xlsx_for_spreadsheet_execution_schema(tmp_path):
     assert result.items[0].execution.kind == "xlsx_create"
     summary = XlsxService(WorkspaceService(workspace)).summarize_workbook("army-claw-output/step-1.xlsx")
     assert summary.sheets[0].name == "Sheet1"
+
+
+def test_run_queue_creates_hwpx_when_hwp_request_is_classified_as_file(tmp_path):
+    workspace = tmp_path / "workspace"
+    workspace.mkdir()
+    plan_store = AgentPlanStore(store_root=tmp_path / "plans")
+    saved = plan_store.save_plan(
+        AgentPlanResult(
+            task="create hwp report",
+            executed=True,
+            prompt="prompt",
+            plan="1. Create final .HWP report file.",
+            steps=[
+                AgentPlanStep(
+                    step_id="step-1",
+                    title="Create final .HWP report file",
+                    detail="Write the final report as a HWP document.",
+                    action_type="file",
+                    requires_approval=True,
+                )
+            ],
+            used_skills=[],
+            message="created",
+        )
+    )
+    plan_store.update_step_status(saved.plan_id, "step-1", "approved")
+    service = AgentExecutionQueueService(plan_store=plan_store, queue_root=tmp_path / "queues")
+    queued = service.queue_approved_steps(saved.plan_id, workspace_root=str(workspace))
+
+    result = service.run_queue(queued.queue_id)
+
+    assert result.items[0].status == "succeeded"
+    assert result.items[0].execution is not None
+    assert result.items[0].execution.kind == "hwpx_create"
+    assert result.items[0].execution.path == "army-claw-output/step-1.hwpx"
+    summary = HwpxService(WorkspaceService(workspace)).summarize_document("army-claw-output/step-1.hwpx")
+    assert summary.paragraphs == ["Write the final report as a HWP document."]
+
+
+def test_queue_uses_default_output_workspace_for_hwpx_requests_when_workspace_is_empty(tmp_path, monkeypatch):
+    appdata = tmp_path / "localappdata"
+    monkeypatch.setenv("LOCALAPPDATA", str(appdata))
+    plan_store = AgentPlanStore(store_root=tmp_path / "plans")
+    saved = plan_store.save_plan(
+        AgentPlanResult(
+            task="create hwp report",
+            executed=True,
+            prompt="prompt",
+            plan="1. Create final HWPX report.",
+            steps=[
+                AgentPlanStep(
+                    step_id="step-1",
+                    title="Create final HWPX report",
+                    detail="Write HWPX document.",
+                    action_type="document",
+                    requires_approval=True,
+                )
+            ],
+            used_skills=[],
+            message="created",
+        )
+    )
+    plan_store.update_step_status(saved.plan_id, "step-1", "approved")
+    service = AgentExecutionQueueService(plan_store=plan_store, queue_root=tmp_path / "queues")
+
+    queued = service.queue_approved_steps(saved.plan_id)
+    result = service.run_queue(queued.queue_id)
+
+    assert result.items[0].status == "succeeded"
+    assert result.items[0].execution is not None
+    assert result.items[0].execution.workspace_root == str(appdata / "ArmyClaw" / "workspace")
+    assert (appdata / "ArmyClaw" / "workspace" / "army-claw-output" / "step-1.hwpx").is_file()
