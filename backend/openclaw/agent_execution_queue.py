@@ -71,6 +71,20 @@ class AgentExecutionQueueService:
             raise AgentExecutionQueueError(f"execution queue was not found: {queue_id}")
         return AgentExecutionQueueResult.model_validate_json(path.read_text(encoding="utf-8"))
 
+    def run_queue(self, queue_id: str) -> AgentExecutionQueueResult:
+        queue = self.get_queue(queue_id)
+        for item in queue.items:
+            if item.status != "queued":
+                continue
+            if item.action_type == "manual":
+                item.status = "succeeded"
+                item.message = "수동 확인 단계로 기록했습니다. PC 조작은 수행하지 않았습니다."
+            else:
+                item.status = "skipped"
+                item.message = f"아직 지원하지 않는 실행 유형입니다: {item.action_type}"
+        self._write_queue(queue)
+        return queue
+
     def _write_queue(self, result: AgentExecutionQueueResult) -> None:
         self.queue_root.mkdir(parents=True, exist_ok=True)
         self._queue_path(result.queue_id).write_text(

@@ -111,6 +111,13 @@ export async function queueAgentPlanApprovedSteps(planId: string): Promise<Agent
   );
 }
 
+export async function runAgentExecutionQueue(queueId: string): Promise<AgentExecutionQueueResult> {
+  return postJson<AgentExecutionQueueResult>(
+    `/api/agent/execution-queues/${encodeURIComponent(queueId)}/run`,
+    {},
+  );
+}
+
 export async function listWorkspace(workspaceRoot: string, path = "."): Promise<FileEntry[]> {
   const result = await postJson<{ entries: FileEntry[] }>("/api/workspace/list", {
     workspace_root: workspaceRoot,

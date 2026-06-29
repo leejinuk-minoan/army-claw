@@ -19,6 +19,7 @@ import {
   readWorkspaceFile,
   previewXlsx,
   runLocalLlmBundle,
+  runAgentExecutionQueue,
   setSkillEnabled,
   showCompatibility,
   summarizeHwpx,
@@ -230,6 +231,22 @@ export function App() {
     }
   }
 
+  async function runAgentQueue() {
+    if (!agentQueue?.queue_id) {
+      setError("실행할 큐 ID가 없습니다.");
+      return;
+    }
+    setError("");
+    setLoading(true);
+    try {
+      setAgentQueue(await runAgentExecutionQueue(agentQueue.queue_id));
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "실행 큐 처리 오류");
+    } finally {
+      setLoading(false);
+    }
+  }
+
   return (
     <main className="app-shell">
       <header className="top-bar">
@@ -415,6 +432,15 @@ export function App() {
                     <dd>{agentQueue.queued_count}</dd>
                   </div>
                 </dl>
+                <div className="button-row compact-actions">
+                  <button
+                    type="button"
+                    onClick={runAgentQueue}
+                    disabled={loading || !agentQueue.items.some((item) => item.status === "queued")}
+                  >
+                    큐 실행
+                  </button>
+                </div>
                 {agentQueue.items.map((item) => (
                   <div className="list-card" key={item.step_id}>
                     <div>

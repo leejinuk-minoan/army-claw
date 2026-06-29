@@ -242,6 +242,13 @@ def create_app() -> FastAPI:
         except (AgentPlanStoreError, AgentExecutionQueueError) as exc:
             raise HTTPException(status_code=404, detail=str(exc)) from exc
 
+    @app.post("/api/agent/execution-queues/{queue_id}/run")
+    def run_agent_execution_queue(queue_id: str) -> dict:
+        try:
+            return AgentExecutionQueueService().run_queue(queue_id).model_dump()
+        except AgentExecutionQueueError as exc:
+            raise HTTPException(status_code=404, detail=str(exc)) from exc
+
     @app.post("/api/xlsx/summary")
     def summarize_xlsx(request: XlsxRequest) -> dict:
         try:

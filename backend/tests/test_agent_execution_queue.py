@@ -63,3 +63,19 @@ def test_queue_approved_steps_persists_queue_file(tmp_path):
 
     assert result.queue_id
     assert service.get_queue(result.queue_id).items[0].title == "HWPX 초안을 작성한다."
+
+
+def test_run_queue_marks_manual_steps_succeeded_and_unsupported_steps_skipped(tmp_path):
+    plan_store = AgentPlanStore(store_root=tmp_path / "plans")
+    saved = plan_store.save_plan(make_plan())
+    plan_store.update_step_status(saved.plan_id, "step-1", "approved")
+    plan_store.update_step_status(saved.plan_id, "step-2", "approved")
+    service = AgentExecutionQueueService(plan_store=plan_store, queue_root=tmp_path / "queues")
+    queued = service.queue_approved_steps(saved.plan_id)
+
+    result = service.run_queue(queued.queue_id)
+
+    assert [item.status for item in result.items] == ["succeeded", "skipped"]
+    assert "수동 확인" in result.items[0].message
+    assert "아직 지원하지 않는 실행 유형" in result.items[1].message
+    assert service.get_queue(queued.queue_id).items[0].status == "succeeded"
