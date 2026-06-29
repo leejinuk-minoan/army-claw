@@ -69,6 +69,15 @@ export type AgentExecutionQueueItem = {
   action_type: AgentPlanStep["action_type"];
   status: "queued" | "running" | "succeeded" | "failed" | "skipped";
   message: string;
+  execution: AgentExecutionSpec | null;
+};
+
+export type AgentExecutionSpec = {
+  kind: "hwpx_create";
+  workspace_root: string;
+  path: string;
+  title: string;
+  paragraphs: string[];
 };
 
 export type AgentExecutionQueueResult = {

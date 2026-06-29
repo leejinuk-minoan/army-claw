@@ -104,10 +104,13 @@ export async function updateAgentPlanStepStatus(
   );
 }
 
-export async function queueAgentPlanApprovedSteps(planId: string): Promise<AgentExecutionQueueResult> {
+export async function queueAgentPlanApprovedSteps(
+  planId: string,
+  workspaceRoot = "",
+): Promise<AgentExecutionQueueResult> {
   return postJson<AgentExecutionQueueResult>(
     `/api/agent/plans/${encodeURIComponent(planId)}/execution-queue`,
-    {},
+    { workspace_root: workspaceRoot },
   );
 }
 

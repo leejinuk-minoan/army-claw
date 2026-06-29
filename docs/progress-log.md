@@ -1,4 +1,23 @@
 # Army Claw 진행 로그
+## 2026-06-30 - HWPX 문서 생성 실행 스키마 연결
+
+### 구현 내용
+
+- 실행 큐 항목에 명시적 실행 스키마 `execution`을 추가했다.
+- 현재 지원 스키마는 `hwpx_create`이며, `workspace_root` 아래 `army-claw-output/{step_id}.hwpx`를 생성한다.
+- `/api/agent/plans/{plan_id}/execution-queue` 요청 본문에 `workspace_root`를 받을 수 있게 했다.
+- React UI가 현재 작업공간 경로를 실행 큐 생성 API에 전달하도록 연결했다.
+- 큐 결과에서 실행 스키마와 출력 경로, 실행 메시지를 표시하도록 했다.
+
+### 이번 검증
+
+- HWPX 실행 스키마 단위/API 테스트 7개 통과.
+
+### 다음 단계
+
+- HWPX 생성 결과를 계획 단계 상태와 작업 로그에도 반영한다.
+- PPTX/XLSX 생성 스키마를 같은 방식으로 추가한다.
+
 ## 2026-06-29 - 실행 큐 MVP 처리
 
 ### 구현 내용

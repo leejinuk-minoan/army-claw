@@ -1,6 +1,8 @@
 from openclaw.agent_execution_queue import AgentExecutionQueueService
 from openclaw.agent_plan_store import AgentPlanStore
 from openclaw.agent_planner import AgentPlanResult, AgentPlanStep
+from openclaw.hwpx_tools import HwpxService
+from openclaw.workspace import WorkspaceService
 
 
 def make_plan() -> AgentPlanResult:
@@ -79,3 +81,21 @@ def test_run_queue_marks_manual_steps_succeeded_and_unsupported_steps_skipped(tm
     assert "수동 확인" in result.items[0].message
     assert "아직 지원하지 않는 실행 유형" in result.items[1].message
     assert service.get_queue(queued.queue_id).items[0].status == "succeeded"
+
+
+def test_run_queue_creates_hwpx_document_for_document_execution_schema(tmp_path):
+    workspace = tmp_path / "workspace"
+    workspace.mkdir()
+    plan_store = AgentPlanStore(store_root=tmp_path / "plans")
+    saved = plan_store.save_plan(make_plan())
+    plan_store.update_step_status(saved.plan_id, "step-2", "approved")
+    service = AgentExecutionQueueService(plan_store=plan_store, queue_root=tmp_path / "queues")
+    queued = service.queue_approved_steps(saved.plan_id, workspace_root=str(workspace))
+
+    result = service.run_queue(queued.queue_id)
+
+    assert result.items[0].status == "succeeded"
+    assert result.items[0].execution is not None
+    assert result.items[0].execution.kind == "hwpx_create"
+    summary = HwpxService(WorkspaceService(workspace)).summarize_document("army-claw-output/step-2.hwpx")
+    assert summary.paragraphs == ["HWPX 초안을 작성한다."]

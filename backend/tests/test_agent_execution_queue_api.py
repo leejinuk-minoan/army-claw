@@ -2,7 +2,9 @@ from fastapi.testclient import TestClient
 
 from openclaw.agent_plan_store import AgentPlanStore
 from openclaw.agent_planner import AgentPlanResult, AgentPlanStep
+from openclaw.hwpx_tools import HwpxService
 from openclaw.main import create_app
+from openclaw.workspace import WorkspaceService
 
 
 def test_execution_queue_api_queues_only_approved_steps(tmp_path, monkeypatch):
@@ -83,3 +85,46 @@ def test_execution_queue_run_api_marks_manual_step_succeeded(tmp_path, monkeypat
     payload = response.json()
     assert payload["items"][0]["status"] == "succeeded"
     assert "수동 확인" in payload["items"][0]["message"]
+
+
+def test_execution_queue_run_api_creates_hwpx_when_workspace_root_is_provided(tmp_path, monkeypatch):
+    workspace = tmp_path / "workspace"
+    workspace.mkdir()
+    plan_root = tmp_path / "plans"
+    queue_root = tmp_path / "queues"
+    monkeypatch.setenv("ARMY_CLAW_PLAN_STORE", str(plan_root))
+    monkeypatch.setenv("ARMY_CLAW_EXECUTION_QUEUE_STORE", str(queue_root))
+    plan_store = AgentPlanStore(store_root=plan_root)
+    saved = plan_store.save_plan(
+        AgentPlanResult(
+            task="월간 보고서",
+            executed=True,
+            prompt="prompt",
+            plan="1. HWPX 초안 작성",
+            steps=[
+                AgentPlanStep(
+                    step_id="step-1",
+                    title="HWPX 초안 작성",
+                    detail="HWPX 초안 작성",
+                    action_type="document",
+                    requires_approval=True,
+                ),
+            ],
+            used_skills=[],
+            message="created",
+        )
+    )
+    plan_store.update_step_status(saved.plan_id, "step-1", "approved")
+    client = TestClient(create_app())
+    queued = client.post(
+        f"/api/agent/plans/{saved.plan_id}/execution-queue",
+        json={"workspace_root": str(workspace)},
+    ).json()
+
+    response = client.post(f"/api/agent/execution-queues/{queued['queue_id']}/run")
+
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["items"][0]["status"] == "succeeded"
+    summary = HwpxService(WorkspaceService(workspace)).summarize_document("army-claw-output/step-1.hwpx")
+    assert summary.paragraphs == ["HWPX 초안 작성"]

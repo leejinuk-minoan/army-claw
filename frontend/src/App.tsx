@@ -223,7 +223,7 @@ export function App() {
     setError("");
     setLoading(true);
     try {
-      setAgentQueue(await queueAgentPlanApprovedSteps(agentPlan.plan_id));
+      setAgentQueue(await queueAgentPlanApprovedSteps(agentPlan.plan_id, workspaceRoot));
     } catch (err) {
       setError(err instanceof Error ? err.message : "실행 큐 생성 오류");
     } finally {
@@ -448,7 +448,9 @@ export function App() {
                       <p>{item.detail}</p>
                       <small>
                         {item.action_type} · {item.status}
+                        {item.execution ? ` · ${item.execution.kind} · ${item.execution.path}` : ""}
                       </small>
+                      {item.message ? <p>{item.message}</p> : null}
                     </div>
                   </div>
                 ))}

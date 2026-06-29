@@ -38,6 +38,10 @@ class CommandRequest(BaseModel):
     approved: bool = False
 
 
+class AgentExecutionQueueRequest(BaseModel):
+    workspace_root: str = ""
+
+
 class LocalLlmDiagnoseRequest(BaseModel):
     model: str = "gemma3:12b"
     ollama_base_url: str = "http://127.0.0.1:11434"
@@ -236,9 +240,10 @@ def create_app() -> FastAPI:
             raise HTTPException(status_code=404, detail=str(exc)) from exc
 
     @app.post("/api/agent/plans/{plan_id}/execution-queue")
-    def queue_agent_plan_approved_steps(plan_id: str) -> dict:
+    def queue_agent_plan_approved_steps(plan_id: str, request: AgentExecutionQueueRequest | None = None) -> dict:
         try:
-            return AgentExecutionQueueService().queue_approved_steps(plan_id).model_dump()
+            workspace_root = request.workspace_root if request else ""
+            return AgentExecutionQueueService().queue_approved_steps(plan_id, workspace_root=workspace_root).model_dump()
         except (AgentPlanStoreError, AgentExecutionQueueError) as exc:
             raise HTTPException(status_code=404, detail=str(exc)) from exc
 
