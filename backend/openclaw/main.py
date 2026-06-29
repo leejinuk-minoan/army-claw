@@ -6,6 +6,7 @@ from fastapi import FastAPI, HTTPException, Request
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
+from openclaw.agent_plan_store import AgentPlanStore, AgentPlanStoreError, StepStatusRequest
 from openclaw.agent_planner import AgentPlannerService, AgentPlanRequest
 from openclaw.config import AppConfig
 from openclaw.hancom_environment import HancomEnvironmentService
@@ -221,7 +222,17 @@ def create_app() -> FastAPI:
 
     @app.post("/api/agent/plan")
     async def preview_agent_plan(request: AgentPlanRequest) -> dict:
-        return (await AgentPlannerService(config=config).create_plan(request)).model_dump()
+        result = await AgentPlannerService(config=config).create_plan(request)
+        if request.execute:
+            return AgentPlanStore().save_plan(result).model_dump()
+        return result.model_dump()
+
+    @app.post("/api/agent/plans/{plan_id}/steps/{step_id}/status")
+    def set_agent_plan_step_status(plan_id: str, step_id: str, request: StepStatusRequest) -> dict:
+        try:
+            return AgentPlanStore().update_step_status(plan_id, step_id, request.status).model_dump()
+        except AgentPlanStoreError as exc:
+            raise HTTPException(status_code=404, detail=str(exc)) from exc
 
     @app.post("/api/xlsx/summary")
     def summarize_xlsx(request: XlsxRequest) -> dict:

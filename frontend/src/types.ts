@@ -41,6 +41,7 @@ export type SkillContextItem = {
 };
 
 export type AgentPlanResult = {
+  plan_id?: string;
   task: string;
   executed: boolean;
   prompt: string;
@@ -58,6 +59,8 @@ export type AgentPlanStep = {
   requires_approval: boolean;
   status: "pending" | "approved" | "executed" | "blocked";
 };
+
+export type AgentPlanStepStatus = AgentPlanStep["status"];
 
 export type FileEntry = {
   path: string;

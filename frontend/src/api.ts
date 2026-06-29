@@ -1,5 +1,6 @@
 import type {
   AgentPlanResult,
+  AgentPlanStepStatus,
   CommandResult,
   FileEntry,
   FileReadResult,
@@ -89,6 +90,17 @@ export async function previewAgentPlan(task: string, execute = false): Promise<A
     task,
     execute,
   });
+}
+
+export async function updateAgentPlanStepStatus(
+  planId: string,
+  stepId: string,
+  status: AgentPlanStepStatus,
+): Promise<AgentPlanResult> {
+  return postJson<AgentPlanResult>(
+    `/api/agent/plans/${encodeURIComponent(planId)}/steps/${encodeURIComponent(stepId)}/status`,
+    { status },
+  );
 }
 
 export async function listWorkspace(workspaceRoot: string, path = "."): Promise<FileEntry[]> {

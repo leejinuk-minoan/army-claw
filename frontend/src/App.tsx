@@ -26,10 +26,12 @@ import {
   summarizeXlsx,
   summarizeXlsxPivot,
   suggestXlsxFormula,
+  updateAgentPlanStepStatus,
   writeXlsxCell,
 } from "./api";
 import type {
   AgentPlanResult,
+  AgentPlanStepStatus,
   CommandResult,
   FileEntry,
   FormulaSuggestion,
@@ -191,6 +193,22 @@ export function App() {
     }
   }
 
+  async function changeAgentStepStatus(stepId: string, status: AgentPlanStepStatus) {
+    if (!agentPlan?.plan_id) {
+      setError("저장된 계획 ID가 없어 단계 상태를 변경할 수 없습니다.");
+      return;
+    }
+    setError("");
+    setLoading(true);
+    try {
+      setAgentPlan(await updateAgentPlanStepStatus(agentPlan.plan_id, stepId, status));
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "작업 단계 상태 변경 오류");
+    } finally {
+      setLoading(false);
+    }
+  }
+
   return (
     <main className="app-shell">
       <header className="top-bar">
@@ -336,6 +354,22 @@ export function App() {
                       <small>
                         {step.action_type} · {step.status} · {step.requires_approval ? "승인 필요" : "승인 불필요"}
                       </small>
+                    </div>
+                    <div className="button-row compact-actions">
+                      <button
+                        type="button"
+                        onClick={() => changeAgentStepStatus(step.step_id, "approved")}
+                        disabled={!agentPlan.plan_id || loading || step.status === "approved"}
+                      >
+                        승인
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => changeAgentStepStatus(step.step_id, "blocked")}
+                        disabled={!agentPlan.plan_id || loading || step.status === "blocked"}
+                      >
+                        보류
+                      </button>
                     </div>
                   </div>
                 ))}

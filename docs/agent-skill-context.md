@@ -16,6 +16,8 @@
 - `execute=false`이면 LLM 호출 없이 프롬프트 미리보기만 반환한다.
 - `execute=true`이면 현재 LLM Provider에 프롬프트를 전달해 LLM이 작성한 계획을 반환한다.
 - LLM이 작성한 계획을 승인 가능한 단계 목록으로 구조화한다.
+- `execute=true`로 생성된 계획은 로컬 계획 저장소에 저장하고 `plan_id`를 반환한다.
+- 저장된 계획의 각 단계는 UI에서 승인 또는 보류 상태로 변경할 수 있다.
 - React UI에 `Skill 적용 작업 계획` 패널을 추가했다.
 
 ## API
@@ -34,12 +36,28 @@
 응답 주요 항목:
 
 - `task`: 사용자 작업 요청.
+- `plan_id`: 저장된 계획 ID. `execute=true`일 때 반환된다.
 - `executed`: LLM Provider 호출 여부.
 - `prompt`: 활성 skill이 주입된 작업 계획용 프롬프트.
 - `plan`: LLM Provider가 생성한 작업 계획. `execute=false`이면 빈 문자열이다.
 - `steps`: LLM 계획을 파싱한 실행 후보 단계 목록.
 - `used_skills`: 프롬프트에 포함된 skill 목록.
 - `message`: 현재 단계 설명.
+
+### `POST /api/agent/plans/{plan_id}/steps/{step_id}/status`
+
+요청 예시:
+
+```json
+{
+  "status": "approved"
+}
+```
+
+응답 주요 항목:
+
+- 저장된 계획 전체를 반환한다.
+- 변경된 단계의 `status`가 `approved` 또는 `blocked`로 갱신된다.
 
 ## 구조화된 단계
 
@@ -50,9 +68,10 @@
 - `detail`: 단계 설명.
 - `action_type`: `manual`, `file`, `command`, `document` 중 하나.
 - `requires_approval`: 사용자 승인이 필요한 단계인지 여부.
-- `status`: 현재는 기본값 `pending`.
+- `status`: `pending`, `approved`, `executed`, `blocked` 중 하나.
 
 현재 단계 구조화는 실행을 위한 최종 명령 스키마가 아니라, 사용자가 승인할 수 있는 작업 후보 목록을 만들기 위한 1차 파싱이다.
+승인 상태 저장 역시 실제 도구 실행 전의 안전 장치이며, 아직 승인된 단계를 자동 실행하지는 않는다.
 
 ## Ollama 확인 결과
 
@@ -69,12 +88,11 @@
 ## 현재 한계
 
 - LLM이 계획과 단계 목록을 생성하더라도 아직 파일 생성, 명령 실행, 한컴오피스 조작은 수행하지 않는다.
-- 현재 단계는 “Skill이 반영된 계획 생성”과 “승인 가능한 단계 후보 표시”까지다.
+- 현재 단계는 “Skill이 반영된 계획 생성”, “승인 가능한 단계 후보 표시”, “단계별 승인/보류 상태 저장”까지다.
 - 실제 도구 실행은 사용자 승인 흐름과 작업 로그가 더 연결된 뒤 진행한다.
 
 ## 다음 단계
 
 - `gemma3:12b` 모델 존재 여부를 UI에서 더 명확히 안내한다.
-- LLM이 생성한 계획을 구조화해 승인 가능한 작업 단계로 나눈다.
 - 승인된 단계만 파일/문서/명령 도구로 실행한다.
 - 작업 로그에 적용된 skill, 생성된 계획, 실행 결과를 기록한다.

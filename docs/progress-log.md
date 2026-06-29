@@ -1,4 +1,23 @@
 # Army Claw 진행 로그
+## 2026-06-29 - 계획 단계 승인/보류 상태 저장
+
+### 구현 내용
+
+- `AgentPlanStore`를 추가해 LLM이 생성한 계획을 로컬 JSON 파일로 저장하도록 했다.
+- 기본 저장 위치는 `%LOCALAPPDATA%\ArmyClaw\agent-plans`이며, 테스트/패키지 검증용으로 `ARMY_CLAW_PLAN_STORE` 환경 변수 override를 지원한다.
+- `execute=true`로 `/api/agent/plan`을 호출하면 저장된 계획의 `plan_id`를 함께 반환한다.
+- `/api/agent/plans/{plan_id}/steps/{step_id}/status` API를 추가해 단계 상태를 `approved` 또는 `blocked`로 갱신할 수 있게 했다.
+- React UI의 단계 카드에 `승인`과 `보류` 버튼을 추가했다.
+
+### 이번 검증
+
+- 신규 저장소/상태 변경 API 단위 테스트 4개 통과.
+
+### 다음 단계
+
+- 승인된 단계만 실제 파일/문서/명령 도구 실행 큐로 넘긴다.
+- 실행 결과와 실패 사유를 계획 단계별 작업 로그에 기록한다.
+
 ## 2026-06-29 - LLM 계획의 승인 단계 구조화
 
 ### 구현 내용
