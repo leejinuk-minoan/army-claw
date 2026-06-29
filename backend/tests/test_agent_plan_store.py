@@ -52,3 +52,15 @@ def test_update_step_status_rejects_unknown_step(tmp_path):
         assert "step-404" in str(exc)
     else:
         raise AssertionError("unknown step should fail")
+
+
+def test_get_plan_accepts_utf8_bom_json(tmp_path):
+    store = AgentPlanStore(store_root=tmp_path / "plans")
+    saved = store.save_plan(make_plan())
+    plan_path = store._plan_path(saved.plan_id)
+    plan_path.write_text(plan_path.read_text(encoding="utf-8"), encoding="utf-8-sig")
+
+    loaded = store.get_plan(saved.plan_id)
+
+    assert loaded.plan_id == saved.plan_id
+    assert loaded.steps[0].step_id == "step-1"

@@ -11,7 +11,9 @@ from pydantic import BaseModel
 from openclaw.agent_plan_store import AgentPlanStore
 from openclaw.agent_planner import ActionType
 from openclaw.hwpx_tools import HwpxService
+from openclaw.presentation_tools import PresentationService
 from openclaw.workspace import WorkspaceError, WorkspaceService
+from openclaw.xlsx_tools import XlsxService
 
 
 ExecutionItemStatus = Literal["queued", "running", "succeeded", "failed", "skipped"]
@@ -22,7 +24,7 @@ class AgentExecutionQueueError(Exception):
 
 
 class AgentExecutionSpec(BaseModel):
-    kind: Literal["hwpx_create"]
+    kind: Literal["hwpx_create", "pptx_create", "xlsx_create"]
     workspace_root: str
     path: str
     title: str
@@ -101,9 +103,19 @@ class AgentExecutionQueueService:
                 self._run_hwpx_create(item.execution)
                 item.status = "succeeded"
                 item.message = f"HWPX 문서를 생성했습니다: {item.execution.path}"
+            elif item.execution and item.execution.kind == "pptx_create":
+                self._run_pptx_create(item.execution)
+                item.status = "succeeded"
+                item.message = f"PPTX 문서를 생성했습니다: {item.execution.path}"
+            elif item.execution and item.execution.kind == "xlsx_create":
+                self._run_xlsx_create(item.execution)
+                item.status = "succeeded"
+                item.message = f"XLSX 문서를 생성했습니다: {item.execution.path}"
             else:
                 item.status = "skipped"
                 item.message = f"아직 지원하지 않는 실행 유형입니다: {item.action_type}"
+            if item.status == "succeeded":
+                self.plan_store.update_step_status(queue.plan_id, item.step_id, "executed")
         self._write_queue(queue)
         return queue
 
@@ -115,10 +127,35 @@ class AgentExecutionQueueService:
         action_type: ActionType,
         workspace_root: str,
     ) -> AgentExecutionSpec | None:
-        if action_type != "document" or "HWPX" not in f"{title} {detail}".upper():
+        text = f"{title} {detail}".upper()
+        if action_type != "document":
             return None
         if not workspace_root:
             return None
+        if "HWPX" in text:
+            return AgentExecutionSpec(
+                kind="hwpx_create",
+                workspace_root=workspace_root,
+                path=f"army-claw-output/{step_id}.hwpx",
+                title=title,
+                paragraphs=[detail],
+            )
+        if "PPTX" in text or "PPT" in text:
+            return AgentExecutionSpec(
+                kind="pptx_create",
+                workspace_root=workspace_root,
+                path=f"army-claw-output/{step_id}.pptx",
+                title=title,
+                paragraphs=[detail],
+            )
+        if "XLSX" in text or "한셀" in f"{title} {detail}" or "엑셀" in f"{title} {detail}":
+            return AgentExecutionSpec(
+                kind="xlsx_create",
+                workspace_root=workspace_root,
+                path=f"army-claw-output/{step_id}.xlsx",
+                title=title,
+                paragraphs=[detail],
+            )
         return AgentExecutionSpec(
             kind="hwpx_create",
             workspace_root=workspace_root,
@@ -131,6 +168,22 @@ class AgentExecutionQueueService:
         try:
             service = HwpxService(WorkspaceService(Path(spec.workspace_root)))
             service.create_document(spec.path, spec.title, spec.paragraphs)
+        except WorkspaceError as exc:
+            raise AgentExecutionQueueError(str(exc)) from exc
+
+    def _run_pptx_create(self, spec: AgentExecutionSpec) -> None:
+        try:
+            service = PresentationService(WorkspaceService(Path(spec.workspace_root)))
+            subtitle = "\n".join(spec.paragraphs)
+            service.create_presentation(spec.path, spec.title, subtitle)
+        except WorkspaceError as exc:
+            raise AgentExecutionQueueError(str(exc)) from exc
+
+    def _run_xlsx_create(self, spec: AgentExecutionSpec) -> None:
+        try:
+            service = XlsxService(WorkspaceService(Path(spec.workspace_root)))
+            rows = [["항목", "내용"], [spec.title, "\n".join(spec.paragraphs)]]
+            service.create_workbook(spec.path, rows=rows)
         except WorkspaceError as exc:
             raise AgentExecutionQueueError(str(exc)) from exc
 

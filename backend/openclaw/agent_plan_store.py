@@ -34,7 +34,7 @@ class AgentPlanStore:
         path = self._plan_path(plan_id)
         if not path.is_file():
             raise AgentPlanStoreError(f"agent plan was not found: {plan_id}")
-        return StoredAgentPlan.model_validate_json(path.read_text(encoding="utf-8"))
+        return StoredAgentPlan.model_validate_json(path.read_text(encoding="utf-8-sig"))
 
     def update_step_status(self, plan_id: str, step_id: str, status: StepStatus) -> StoredAgentPlan:
         stored = self.get_plan(plan_id)

@@ -73,7 +73,7 @@ export type AgentExecutionQueueItem = {
 };
 
 export type AgentExecutionSpec = {
-  kind: "hwpx_create";
+  kind: "hwpx_create" | "pptx_create" | "xlsx_create";
   workspace_root: string;
   path: string;
   title: string;

@@ -1,4 +1,22 @@
 # Army Claw 진행 로그
+## 2026-06-30 - v0.1 문서 생성 실행 범위 확장
+
+### 구현 내용
+
+- 실행 큐가 성공한 항목의 원본 계획 단계를 `executed`로 갱신하도록 연결했다.
+- PPTX 생성 스키마 `pptx_create`를 추가했다.
+- XLSX 생성 스키마 `xlsx_create`를 추가했다.
+- XLSX 새 통합문서를 만드는 `create_workbook` 기능을 추가했다.
+- React 타입과 설계 문서를 HWPX/PPTX/XLSX 생성 스키마에 맞게 갱신했다.
+
+### 이번 검증
+
+- 실행 큐 단위 테스트 7개 통과.
+- 전체 백엔드 테스트 69개 통과.
+- React 프로덕션 빌드 통과.
+- `scripts\package-core.bat` 패키징 통과.
+- 패키지 EXE 실행본에서 HWPX/PPTX/XLSX 생성 큐 스모크 테스트 통과.
+
 ## 2026-06-30 - HWPX 문서 생성 실행 스키마 연결
 
 ### 구현 내용

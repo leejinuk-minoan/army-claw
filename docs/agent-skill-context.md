@@ -20,7 +20,7 @@
 - 저장된 계획의 각 단계는 UI에서 승인 또는 보류 상태로 변경할 수 있다.
 - 승인된 단계만 별도 실행 큐 JSON으로 생성한다.
 - 실행 큐는 현재 `manual` 단계만 안전하게 완료 기록으로 처리한다.
-- `document` 단계 중 HWPX 생성 스키마로 변환 가능한 항목은 `.hwpx` 파일을 생성한다.
+- `document` 단계 중 HWPX/PPTX/XLSX 생성 스키마로 변환 가능한 항목은 해당 문서 파일을 생성한다.
 - `file`, `command` 단계는 아직 실제 PC 조작을 수행하지 않고 `skipped`로 기록한다.
 - React UI에 `Skill 적용 작업 계획` 패널을 추가했다.
 
@@ -82,7 +82,7 @@
 - `plan_id`: 원본 계획 ID.
 - `queued_count`: 큐에 들어간 단계 수.
 - `items`: 실행 대기 단계 목록. 각 항목의 상태는 `queued`로 시작한다.
-- `items[].execution`: 실행 가능한 문서 작업의 명시적 실행 스키마. 현재는 `hwpx_create`만 지원한다.
+- `items[].execution`: 실행 가능한 문서 작업의 명시적 실행 스키마. 현재 `hwpx_create`, `pptx_create`, `xlsx_create`를 지원한다.
 
 ### `POST /api/agent/execution-queues/{queue_id}/run`
 
@@ -92,6 +92,8 @@
 
 - `manual`: 실제 PC 조작 없이 수동 확인 단계로 기록하고 `succeeded` 처리한다.
 - `document` + `hwpx_create`: `workspace_root` 아래 `army-claw-output/{step_id}.hwpx` 파일을 생성하고 `succeeded` 처리한다.
+- `document` + `pptx_create`: `workspace_root` 아래 `army-claw-output/{step_id}.pptx` 파일을 생성하고 `succeeded` 처리한다.
+- `document` + `xlsx_create`: `workspace_root` 아래 `army-claw-output/{step_id}.xlsx` 파일을 생성하고 `succeeded` 처리한다.
 - `file`, `command`, 실행 스키마가 없는 `document`: 아직 명시적 실행 스키마가 없으므로 `skipped` 처리한다.
 
 응답 주요 항목:
@@ -113,7 +115,7 @@
 
 현재 단계 구조화는 실행을 위한 최종 명령 스키마가 아니라, 사용자가 승인할 수 있는 작업 후보 목록을 만들기 위한 1차 파싱이다.
 승인 상태 저장, 실행 큐 생성, 큐 실행 MVP는 실제 도구 실행 전의 안전 장치다.
-현재 큐 실행은 `manual` 기록과 HWPX 생성만 처리하며, 그 외 문서/파일/명령 실행은 아직 수행하지 않는다.
+현재 큐 실행은 `manual` 기록과 HWPX/PPTX/XLSX 생성만 처리하며, 그 외 문서/파일/명령 실행은 아직 수행하지 않는다.
 
 ## Ollama 확인 결과
 
@@ -130,7 +132,7 @@
 ## 현재 한계
 
 - LLM이 계획과 단계 목록을 생성하더라도 아직 임의 파일 생성, 명령 실행, 한컴오피스 조작은 수행하지 않는다.
-- 현재 단계는 “Skill이 반영된 계획 생성”, “승인 가능한 단계 후보 표시”, “단계별 승인/보류 상태 저장”, “승인 단계 실행 큐 생성”, “manual 큐 항목 완료 기록”, “HWPX 생성 실행”까지다.
+- 현재 단계는 “Skill이 반영된 계획 생성”, “승인 가능한 단계 후보 표시”, “단계별 승인/보류 상태 저장”, “승인 단계 실행 큐 생성”, “manual 큐 항목 완료 기록”, “HWPX/PPTX/XLSX 생성 실행”까지다.
 - 실제 도구 실행은 사용자 승인 흐름과 작업 로그가 더 연결된 뒤 진행한다.
 
 ## 다음 단계

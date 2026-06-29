@@ -2,7 +2,7 @@ from collections import defaultdict
 from pathlib import Path
 from typing import Any
 
-from openpyxl import load_workbook
+from openpyxl import Workbook, load_workbook
 from openpyxl.chart import BarChart, Reference
 from pydantic import BaseModel
 
@@ -52,6 +52,13 @@ class ChartResult(BaseModel):
     saved: bool
 
 
+class WorkbookCreateResult(BaseModel):
+    path: str
+    sheet: str
+    saved: bool
+    message: str = ""
+
+
 class XlsxService:
     def __init__(self, workspace: WorkspaceService) -> None:
         self.workspace = workspace
@@ -61,6 +68,25 @@ class XlsxService:
         if path.suffix.lower() != ".xlsx":
             raise WorkspaceError("only .xlsx files are supported")
         return path
+
+    def create_workbook(
+        self,
+        relative_path: str,
+        sheet_name: str = "Sheet1",
+        rows: list[list[Any]] | None = None,
+    ) -> WorkbookCreateResult:
+        path = self._resolve_xlsx(relative_path)
+        workbook = Workbook()
+        try:
+            sheet = workbook.active
+            sheet.title = sheet_name
+            for row in rows or [["항목", "내용"]]:
+                sheet.append(row)
+            path.parent.mkdir(parents=True, exist_ok=True)
+            workbook.save(path)
+            return WorkbookCreateResult(path=relative_path, sheet=sheet.title, saved=True, message="workbook created")
+        finally:
+            workbook.close()
 
     def summarize_workbook(self, relative_path: str) -> WorkbookSummary:
         path = self._resolve_xlsx(relative_path)
