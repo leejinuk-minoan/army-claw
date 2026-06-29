@@ -1,4 +1,16 @@
 # Army Claw 진행 로그
+## 2026-06-30 - OpenClaw 기준 향후 계획 재정의
+
+### 결정 내용
+
+- Army Claw의 최종 목표를 OpenClaw 기능에 한컴오피스 조작 기능과 로컬 LLM provider를 결합하는 방향으로 재정의했다.
+- OpenClaw 저장소를 즉시 전면 적용하기보다, 우선 reference로 검토하고 현재 Army Claw v0.1 코드는 유지하는 단계적 흡수 전략을 권장안으로 정했다.
+- 별도 문서 `docs/openclaw-reference-roadmap.md`에 OpenClaw 참고 결과, 전략 판단, v0.1.x~v0.5 로드맵을 정리했다.
+
+### 다음 검토
+
+- 프로젝트 내부 `reference` 폴더에 OpenClaw를 별도로 내려받아 구조를 조사한다.
+- Army Claw 현 기능과 OpenClaw 기능을 비교해 포크 전환, 부분 차용, 독립 유지 중 하나를 결정한다.
 ## 2026-06-30 - UI 실행 피드 및 HWPX 생성 연결 개선
 
 ### 구현 내용
