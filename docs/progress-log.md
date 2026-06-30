@@ -1,5 +1,23 @@
 ﻿# 진행 기록
 
+## 2026-06-30 - 프롬프트 기반 HWPX 생성 검증 및 보강
+
+### 구현 내용
+- `ArmyClawHancomPrompt.cmd` 런처를 추가해 사용자가 프롬프트를 입력하면 `prompt-create` 명령으로 HWPX 문서를 생성하도록 했다.
+- 긴 한국어 프롬프트가 `.cmd` 인자에서 깨지는 문제를 피하기 위해 `--prompt-file` 입력을 추가했다.
+- Ollama/gemma3:12b가 JSON 형식을 지키지 않는 경우에도 모델 응답 본문을 문단으로 복구해 HWPX를 생성하도록 보강했다.
+
+### 검증 결과
+- 한컴 도구 테스트 7개 통과.
+- 실제 로컬 Ollama `gemma3:12b` 호출로 프롬프트 기반 HWPX 생성 성공.
+- 최종 패키지 원본 `release/army-claw-openclaw-beta/bin/ArmyClawHancomPrompt.cmd`로 HWPX 생성 성공.
+- 최종 패키지 원본 `ArmyClawHancomTools.cmd hwpx-summary`로 생성 문서 요약 성공.
+- 테스트 산출 문서: `release/test-documents/army-claw-openclaw-build-architecture.hwpx`.
+- 최종 설치 파일 재생성 완료: `release/ArmyClawOpenClawBetaSetup-0.2.0-beta.1.exe`.
+
+### 확인된 한계
+- 현재는 CLI 기반 프롬프트 생성 흐름이며, OpenClaw planner가 자동 tool-call로 라우팅하는 UI/agent 통합은 다음 단계이다.
+- 모델이 작성한 문서의 사실성은 입력 프롬프트 품질에 의존하므로, UI 단계에서 근거 컨텍스트 주입과 검토 화면이 필요하다.
 ## 2026-06-30 - OpenClaw 베타 한컴오피스/HWPX 도구 포함 빌드
 
 ### 산출물

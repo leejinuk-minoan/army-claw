@@ -175,6 +175,83 @@ export async function openWithHancomHwp({ workspace, path }) {
   return { launched: true, executable: status.hwp.path, path: target };
 }
 
+
+function extractJsonObject(text) {
+  const raw = String(text ?? "").trim();
+  try {
+    return JSON.parse(raw);
+  } catch {
+    const start = raw.indexOf("{");
+    const end = raw.lastIndexOf("}");
+    if (start >= 0 && end > start) return JSON.parse(raw.slice(start, end + 1));
+    throw new Error("model did not return a JSON document plan");
+  }
+}
+
+export function normalizeModelResponse(raw, fallbackPrompt) {
+  try {
+    return normalizeDocumentPlan(extractJsonObject(raw), fallbackPrompt);
+  } catch {
+    const lines = String(raw ?? "").split(/\r?\n/).map((line) => line.trim()).filter(Boolean);
+    const titleLine = lines.find((line) => /^#{1,3}\s+/.test(line) || /^제목\s*[:：]/.test(line));
+    const title = titleLine ? titleLine.replace(/^#{1,3}\s+/, "").replace(/^제목\s*[:：]\s*/, "").trim() : "Army Claw 문서";
+    const body = lines.filter((line) => line !== titleLine).map((line) => line.replace(/^[-*]\s*/, "").trim()).filter(Boolean);
+    return normalizeDocumentPlan({ title, paragraphs: body.length ? body : [String(fallbackPrompt).trim()] }, fallbackPrompt);
+  }
+}
+
+function normalizeDocumentPlan(plan, fallbackPrompt) {
+  const title = String(plan?.title || "Army Claw 문서").trim();
+  const paragraphs = Array.isArray(plan?.paragraphs)
+    ? plan.paragraphs.map((item) => String(item).trim()).filter(Boolean)
+    : [];
+  if (!paragraphs.length) paragraphs.push(String(fallbackPrompt).trim() || "요청 내용을 바탕으로 생성한 문서입니다.");
+  return { title, paragraphs };
+}
+
+function buildDocumentPlanningPrompt(userPrompt) {
+  return `당신은 Army Claw의 한컴오피스 문서 작성 모델입니다. 사용자의 요청을 한글 HWPX 문서로 만들 수 있도록 JSON만 반환하세요.\n\n규칙:\n- 한국어로 작성합니다.\n- 반환 형식은 반드시 {"title":"문서 제목","paragraphs":["문단1","문단2"]} 입니다.\n- markdown 코드블록, 설명문, 주석을 붙이지 마세요.\n- paragraphs는 실제 문서에 들어갈 완성 문단입니다.\n- 알 수 없는 수치나 기관명을 XXX, OO, TBD 같은 자리표시자로 쓰지 말고 자연스럽게 생략하거나 확인 필요라고 적습니다.\n\n사용자 요청:\n${userPrompt}`;
+}
+
+export async function callOllamaDocumentModel({ prompt, model = "gemma3:12b", ollamaUrl = "http://127.0.0.1:11434" }) {
+  const planningPrompt = buildDocumentPlanningPrompt(prompt);
+  const response = await fetch(`${ollamaUrl.replace(/\/$/, "")}/api/generate`, {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ model, prompt: planningPrompt, stream: false, format: "json" }),
+  });
+  if (!response.ok) throw new Error(`Ollama request failed: HTTP ${response.status}`);
+  const payload = await response.json();
+  return normalizeModelResponse(payload.response, prompt);
+}
+
+function defaultPromptPath() {
+  const stamp = new Date().toISOString().replace(/[:.]/g, "-");
+  return `army-claw-output/${stamp}.hwpx`;
+}
+
+export async function createDocumentFromPrompt({
+  workspace,
+  prompt,
+  path = "",
+  model = "gemma3:12b",
+  ollamaUrl = "http://127.0.0.1:11434",
+  modelClient = callOllamaDocumentModel,
+  open = false,
+}) {
+  if (!prompt || !String(prompt).trim()) throw new Error("prompt is required");
+  const documentPath = path || defaultPromptPath();
+  const plan = normalizeDocumentPlan(await modelClient({ prompt, model, ollamaUrl }), prompt);
+  const created = await createHwpxDocument({ workspace, path: documentPath, title: plan.title, paragraphs: plan.paragraphs });
+  const result = {
+    ...created,
+    modelUsed: true,
+    model,
+    document: plan,
+  };
+  if (open) result.opened = await openWithHancomHwp({ workspace, path: documentPath });
+  return result;
+}
 function argValue(args, name, fallback = "") {
   const index = args.indexOf(name);
   return index >= 0 && index + 1 < args.length ? args[index + 1] : fallback;
@@ -186,11 +263,18 @@ function argValues(args, name) {
   return values;
 }
 
+
+export async function readPromptInput({ prompt = "", promptFile = "" }) {
+  if (promptFile) return (await readFile(promptFile, "utf8")).trim();
+  return String(prompt ?? "").trim();
+}
 async function main() {
   const [command, ...args] = process.argv.slice(2);
   let result;
   if (command === "status") {
     result = await detectHancomEnvironment();
+  } else if (command === "prompt-create") {
+    result = await createDocumentFromPrompt({ workspace: argValue(args, "--workspace"), path: argValue(args, "--path"), prompt: await readPromptInput({ prompt: argValue(args, "--prompt"), promptFile: argValue(args, "--prompt-file") }), model: argValue(args, "--model", "gemma3:12b"), ollamaUrl: argValue(args, "--ollama-url", "http://127.0.0.1:11434"), open: args.includes("--open") });
   } else if (command === "hwpx-create") {
     result = await createHwpxDocument({ workspace: argValue(args, "--workspace"), path: argValue(args, "--path"), title: argValue(args, "--title", "Army Claw 문서"), paragraphs: argValues(args, "--paragraph") });
     if (args.includes("--open")) result.opened = await openWithHancomHwp({ workspace: argValue(args, "--workspace"), path: argValue(args, "--path") });
@@ -201,7 +285,7 @@ async function main() {
   } else if (command === "open-hwp") {
     result = await openWithHancomHwp({ workspace: argValue(args, "--workspace"), path: argValue(args, "--path") });
   } else {
-    throw new Error("Usage: status | hwpx-create | hwpx-summary | hwpx-add-paragraph | open-hwp");
+    throw new Error("Usage: status | prompt-create | hwpx-create | hwpx-summary | hwpx-add-paragraph | open-hwp");
   }
   console.log(JSON.stringify(result, null, args.includes("--json") ? 2 : 0));
 }

@@ -9,6 +9,9 @@ import {
   detectHancomEnvironment,
   summarizeHwpxDocument,
   resolveWorkspacePath,
+  readPromptInput,
+  createDocumentFromPrompt,
+  normalizeModelResponse,
 } from "./army-claw-hancom-tools.mjs";
 
 test("creates and summarizes an HWPX document inside the workspace", async () => {
@@ -72,4 +75,48 @@ test("detects Hancom executables from ARMY_CLAW_HANCOM_BIN_DIR", async () => {
   } finally {
     await rm(workspace, { recursive: true, force: true });
   }
+});
+test("creates an HWPX document from a user prompt and model plan", async () => {
+  const workspace = await mkdtemp(join(tmpdir(), "army-claw-prompt-"));
+  try {
+    const result = await createDocumentFromPrompt({
+      workspace,
+      prompt: "회의 결과를 한글 보고서로 만들어줘",
+      path: "reports/meeting.hwpx",
+      modelClient: async ({ prompt }) => {
+        assert.match(prompt, /회의 결과/);
+        return {
+          title: "회의 결과 보고서",
+          paragraphs: ["회의 개요", "결정 사항", "후속 조치"],
+        };
+      },
+      open: false,
+    });
+
+    assert.equal(result.saved, true);
+    assert.equal(result.modelUsed, true);
+    assert.equal(result.document.title, "회의 결과 보고서");
+    assert.equal(result.path, "reports/meeting.hwpx");
+
+    const summary = await summarizeHwpxDocument({ workspace, path: "reports/meeting.hwpx" });
+    assert.deepEqual(summary.paragraphs, ["회의 개요", "결정 사항", "후속 조치"]);
+  } finally {
+    await rm(workspace, { recursive: true, force: true });
+  }
+});
+test("reads prompt text from a prompt file", async () => {
+  const workspace = await mkdtemp(join(tmpdir(), "army-claw-prompt-file-"));
+  try {
+    const promptPath = join(workspace, "prompt.txt");
+    await writeFile(promptPath, "OpenClaw 기반 Army Claw 보고서를 작성해줘", "utf8");
+    const prompt = await readPromptInput({ prompt: "", promptFile: promptPath });
+    assert.equal(prompt, "OpenClaw 기반 Army Claw 보고서를 작성해줘");
+  } finally {
+    await rm(workspace, { recursive: true, force: true });
+  }
+});
+test("recovers a document plan from non JSON model text", () => {
+  const plan = normalizeModelResponse("제목: Army Claw 보고서\n\n첫 문단입니다.\n\n둘째 문단입니다.", "fallback prompt");
+  assert.equal(plan.title, "Army Claw 보고서");
+  assert.deepEqual(plan.paragraphs, ["첫 문단입니다.", "둘째 문단입니다."]);
 });

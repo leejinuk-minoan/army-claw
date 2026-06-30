@@ -37,6 +37,7 @@ Name: "{group}\Army Claw OpenClaw Beta"; Filename: "{app}\bin\ArmyClawOpenClawBe
 Name: "{group}\Army Claw OpenClaw Status"; Filename: "{app}\bin\ArmyClawOpenClawStatus.cmd"; WorkingDir: "{app}\bin"
 Name: "{group}\Army Claw OpenClaw Gateway"; Filename: "{app}\bin\ArmyClawOpenClawGateway.cmd"; WorkingDir: "{app}\bin"
 Name: "{group}\Army Claw Hancom Tools"; Filename: "{app}\bin\ArmyClawHancomTools.cmd"; Parameters: "status --json"; WorkingDir: "{app}\bin"
+Name: "{group}\Army Claw Hancom Prompt"; Filename: "{app}\bin\ArmyClawHancomPrompt.cmd"; WorkingDir: "{app}\bin"
 Name: "{autodesktop}\Army Claw OpenClaw Beta"; Filename: "{app}\bin\ArmyClawOpenClawBeta.cmd"; WorkingDir: "{app}\bin"; Tasks: desktopicon
 
 [Tasks]

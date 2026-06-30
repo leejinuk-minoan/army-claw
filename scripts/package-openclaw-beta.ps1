@@ -157,6 +157,25 @@ set "PATH=%NODE_DIR%\bin;%NODE_DIR%;%PATH%"
 exit /b %ERRORLEVEL%
 "@
 [System.IO.File]::WriteAllText((Join-Path $binTarget "ArmyClawHancomTools.cmd"), $hancomCmd, [System.Text.Encoding]::ASCII)
+
+$hancomPromptCmd = @"
+@echo off
+setlocal
+set "ROOT=%~dp0.."
+set "NODE_DIR=%ROOT%\node"
+set "APP_ROOT=%ROOT%\app"
+set "TOOL=%APP_ROOT%\army-claw-tools\hancom\army-claw-hancom-tools.mjs"
+set "ARMY_CLAW_NODE_MODULES=%APP_ROOT%\node_modules"
+set "PATH=%NODE_DIR%\bin;%NODE_DIR%;%PATH%"
+if "%~1"=="" (
+  echo Usage:
+  echo   ArmyClawHancomPrompt.cmd --workspace C:\work --path docs\report.hwpx --prompt "한글 보고서를 작성해줘" --model gemma3:12b --open
+  exit /b 1
+)
+"%NODE_DIR%\bin\node.exe" "%TOOL%" prompt-create %*
+exit /b %ERRORLEVEL%
+"@
+[System.IO.File]::WriteAllText((Join-Path $binTarget "ArmyClawHancomPrompt.cmd"), $hancomPromptCmd, [System.Text.Encoding]::ASCII)
 $gatewayCmd = @"
 @echo off
 setlocal
@@ -183,6 +202,7 @@ Army Claw OpenClaw Beta
 - Node.js runtime for Windows
 - Army Claw launcher scripts
 - Army Claw Hancom/HWPX tool CLI
+- Prompt-to-HWPX local LLM document generator
 - OpenClaw MIT license and third-party notice files
 
 기본 실행:
@@ -193,7 +213,7 @@ Army Claw OpenClaw Beta
 Army Claw 정책:
 - 기본 로컬 LLM 방향은 Ollama + gemma3:12b입니다.
 - 중국계 모델/provider는 Army Claw 기본 추천 및 기본 allowlist 대상에서 제외합니다.
-- 한컴오피스 조작 도구는 이번 베타에서 HWPX 생성/요약/문단추가/한글 실행 CLI로 포함합니다.
+- 한컴오피스 조작 도구는 이번 베타에서 프롬프트 기반 HWPX 생성, HWPX 요약/문단추가/한글 실행 CLI로 포함합니다.
 
 주의:
 - 이 빌드는 OpenClaw 전면 교체 베타의 첫 설치 가능 산출물입니다.
