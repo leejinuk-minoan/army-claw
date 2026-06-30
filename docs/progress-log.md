@@ -1,5 +1,28 @@
 ﻿# 진행 기록
 
+## 2026-06-30 - HWPX 양식 기반 및 자동 디자인 생성 1차 구현
+
+### 구현 내용
+- 한컴 2024 호환 HWPX 생성 수정사항을 `fix/hwpx-hancom-2024-compat` 브랜치에 보존하고 GitHub에 push했다.
+- Node Hancom Worker에 `hwpx-validate`, `hwpx-analyze-template`, `hwpx-template-fill`, `hwpx-auto-generate` 명령을 추가했다.
+- 사용자 HWPX 양식의 명시적 `{{FIELD_NAME}}` 플레이스홀더를 분석하고, 필드 매핑으로 치환해 새 HWPX 파일을 생성할 수 있게 했다.
+- 원본 양식은 직접 수정하지 않고, 출력 파일을 분리 저장하도록 했다.
+- 자동 생성 모드는 구조화된 DocumentPlan을 검증한 뒤 한컴 2024 템플릿 기반 HWPX로 생성하도록 했다.
+- 생산 경로에서 검증된 템플릿 없이 최소 ZIP/XML만 조립하는 HWPX 생성 fallback을 금지했다.
+- 긴 JSON 인자 전달을 위해 `--field-mapping-file`, `--document-plan-file` 입력을 추가했다.
+
+### 검증 결과
+- Node Hancom Worker 테스트 12개 통과.
+- `release/test-documents/template-based-sample.hwpx` 생성 및 구조 검증 통과.
+- `release/test-documents/auto-designed-sample.hwpx` 생성 및 구조 검증 통과.
+- 자동 디자인 샘플은 제목, 부제, 작성 정보, 정적 목차, 5개 섹션, 글머리표, 번호 목록, 표 텍스트, 강조 영역, 꼬리말 문단을 포함한다.
+
+### 현재 제한 사항
+- 실제 HWPX 표 객체 생성은 아직 제한적이며, 현재 자동 생성 표는 텍스트형 표 표현이다.
+- 책갈피/필드/라벨 기반 입력 후보 탐지는 다음 구현 범위다.
+- 기존 backend 실행 큐와 OpenClaw Tool Plugin 등록은 문서 계약과 Worker 기반을 먼저 만든 상태이며, adapter 연결은 다음 체크포인트다.
+- 한글 2024에서 두 샘플 파일을 직접 여는 네이티브 검증은 사용자의 확인이 필요하다.
+
 ## 2026-06-30 - 프롬프트 기반 HWPX 생성 검증 및 보강
 
 ### 구현 내용

@@ -18,6 +18,10 @@ const JSZip = requireFromPackage("jszip");
 const HWPX_SECTION_PATH = "Contents/section0.xml";
 const HWPX_NS = "http://www.hancom.co.kr/hwpml/2011/paragraph";
 const HWPX_MIMETYPE = "application/hwp+zip";
+const REQUIRED_HWPX_ENTRIES = ["mimetype", "Contents/content.hpf", HWPX_SECTION_PATH];
+const DEFAULT_MAX_ENTRIES = 2000;
+const DEFAULT_MAX_UNCOMPRESSED_BYTES = 200 * 1024 * 1024;
+const PLACEHOLDER_RE = /\{\{([A-Z0-9_]+)\}\}/g;
 const DEFAULT_SECTION_ROOT =
   '<hs:sec xmlns:hp="http://www.hancom.co.kr/hwpml/2011/paragraph" xmlns:hs="http://www.hancom.co.kr/hwpml/2011/section">';
 const DEFAULT_SECTION_SETUP =
@@ -99,17 +103,7 @@ export async function createHwpxDocument({ workspace, path, title = "Army Claw �
   const templatePath = await findHancomHwpxTemplate();
   if (templatePath) return createTemplateBackedHwpxDocument({ workspace, path, title, paragraphs, templatePath });
 
-  requireHwpxPath(path);
-  const target = resolveWorkspacePath(workspace, path);
-  await mkdir(dirname(target), { recursive: true });
-  const zip = new JSZip();
-  zip.file("mimetype", HWPX_MIMETYPE);
-  zip.file("version.xml", '<?xml version="1.0" encoding="UTF-8"?><version app="Army Claw" />');
-  zip.file("Contents/content.hpf", contentHpf(title));
-  zip.file(HWPX_SECTION_PATH, sectionXml([title, ...paragraphs]));
-  const content = await zip.generateAsync({ type: "nodebuffer", compression: "DEFLATE" });
-  await writeFile(target, content);
-  return { path, absolutePath: target, saved: true, message: "HWPX document created", templateBacked: false };
+  throw new Error("한컴 2024 호환 HWPX 템플릿을 찾지 못했습니다. 사용자 양식을 지정하거나 한컴오피스 설치 상태를 확인하십시오.");
 }
 
 function defaultHancomTemplatePaths(env = process.env) {
@@ -167,6 +161,282 @@ export async function createTemplateBackedHwpxDocument({ workspace, path, title 
     message: "HWPX document created from Hancom template",
     templateBacked: true,
     templatePath,
+  };
+}
+
+function isUnsafeZipPath(name) {
+  return name.startsWith("/") || name.startsWith("\\") || /^[A-Za-z]:/.test(name) || name.split(/[\\/]+/).includes("..");
+}
+
+function isExecutableEntry(name) {
+  return /\.(exe|dll|cmd|bat|ps1|vbs|js|msi|scr)$/i.test(name);
+}
+
+function sectionEntryNames(zip) {
+  return Object.keys(zip.files).filter((name) => name.startsWith("Contents/section") && name.endsWith(".xml")).sort();
+}
+
+async function loadHwpxZipFromAbsolutePath(target) {
+  return JSZip.loadAsync(await readFile(target));
+}
+
+async function readZipText(zip, name) {
+  const entry = zip.file(name);
+  return entry ? entry.async("string") : "";
+}
+
+function collectPlaceholders(text) {
+  const placeholders = new Set();
+  let match;
+  while ((match = PLACEHOLDER_RE.exec(String(text ?? "")))) placeholders.add(match[1]);
+  return [...placeholders];
+}
+
+function replacePlaceholders(text, mapping) {
+  return String(text ?? "").replace(PLACEHOLDER_RE, (raw, key) => Object.hasOwn(mapping, key) ? escapeXml(mapping[key]) : raw);
+}
+
+function plainReplacePlaceholders(text, mapping) {
+  return String(text ?? "").replace(PLACEHOLDER_RE, (raw, key) => Object.hasOwn(mapping, key) ? String(mapping[key] ?? "") : raw);
+}
+
+async function hashBuffer(buffer) {
+  const { createHash } = await import("node:crypto");
+  return createHash("sha256").update(buffer).digest("hex");
+}
+
+async function entryHashes(zip, predicate) {
+  const hashes = {};
+  for (const name of Object.keys(zip.files)) {
+    if (zip.files[name].dir || !predicate(name)) continue;
+    hashes[name] = await hashBuffer(await zip.file(name).async("nodebuffer"));
+  }
+  return hashes;
+}
+
+export async function validateHwpxPackage({
+  workspace,
+  path,
+  maxEntries = DEFAULT_MAX_ENTRIES,
+  maxUncompressedBytes = DEFAULT_MAX_UNCOMPRESSED_BYTES,
+} = {}) {
+  requireHwpxPath(path);
+  const target = resolveWorkspacePath(workspace, path);
+  const errors = [];
+  const warnings = [];
+  let zip;
+  try {
+    zip = await loadHwpxZipFromAbsolutePath(target);
+  } catch {
+    return { path, valid: false, errors: ["invalid_or_unreadable_zip"], warnings, entries: [] };
+  }
+  const entries = Object.keys(zip.files);
+  if (entries.length > maxEntries) errors.push("too_many_entries");
+  let totalUncompressedBytes = 0;
+  for (const name of entries) {
+    if (isUnsafeZipPath(name)) errors.push(`unsafe_zip_path:${name}`);
+    if (isExecutableEntry(name)) errors.push(`executable_entry:${name}`);
+    totalUncompressedBytes += zip.files[name]?._data?.uncompressedSize || 0;
+  }
+  if (totalUncompressedBytes > maxUncompressedBytes) errors.push("uncompressed_size_limit_exceeded");
+  for (const required of REQUIRED_HWPX_ENTRIES) if (!zip.file(required)) errors.push(`missing_required_entry:${required}`);
+  const sections = sectionEntryNames(zip);
+  if (!sections.length) errors.push("missing_section_xml");
+  for (const section of sections) {
+    const xml = await readZipText(zip, section);
+    if (!/<(?:\w+:)?sec\b/u.test(xml)) errors.push(`invalid_section_xml:${section}`);
+    if (/(?:href|src|target)\s*=\s*["']https?:\/\//i.test(xml)) warnings.push(`external_url_in_section:${section}`);
+  }
+  return {
+    path,
+    valid: errors.length === 0,
+    errors: [...new Set(errors)],
+    warnings: [...new Set(warnings)],
+    entries,
+    sectionEntries: sections,
+    totalUncompressedBytes,
+  };
+}
+
+export async function analyzeHwpxTemplate({ workspace, path }) {
+  const target = resolveWorkspacePath(workspace, path);
+  const validation = await validateHwpxPackage({ workspace, path });
+  if (!validation.valid) {
+    return {
+      path,
+      absolutePath: target,
+      valid: false,
+      errors: validation.errors,
+      entries: validation.entries,
+      sectionXmlEntries: validation.sectionEntries || [],
+      paragraphCount: 0,
+      paragraphs: [],
+      placeholders: [],
+      inputCandidates: [],
+    };
+  }
+  const zip = await loadHwpxZipFromAbsolutePath(target);
+  const sectionXmlEntries = sectionEntryNames(zip);
+  const sectionTexts = await Promise.all(sectionXmlEntries.map((name) => readZipText(zip, name)));
+  const paragraphs = sectionTexts.flatMap(extractParagraphs);
+  const text = paragraphs.join("\n");
+  const placeholders = collectPlaceholders(text);
+  const inputCandidates = placeholders.map((placeholder) => ({
+    kind: "placeholder",
+    placeholder,
+    priority: 1,
+    requiresUserConfirmation: false,
+  }));
+  const imageEntries = Object.keys(zip.files).filter((name) => /^BinData\/.+\.(png|jpg|jpeg|gif|bmp)$/i.test(name));
+  const allSectionXml = sectionTexts.join("\n");
+  return {
+    path,
+    absolutePath: target,
+    valid: true,
+    errors: [],
+    warnings: validation.warnings,
+    entries: validation.entries,
+    sectionXmlEntries,
+    paragraphCount: paragraphs.length,
+    paragraphs,
+    text,
+    tableCount: sectionTexts.reduce((count, xml) => count + (xml.match(/<hp:tbl\b/g) || []).length, 0),
+    images: imageEntries,
+    hasHeader: /<hp:header\b|headerText/i.test(allSectionXml),
+    hasFooter: /<hp:footer\b|footerText/i.test(allSectionXml),
+    styleIds: [...new Set((allSectionXml.match(/styleIDRef="[^"]+"/g) || []).map((item) => item.slice(12, -1)))],
+    charShapeIds: [...new Set((allSectionXml.match(/charPrIDRef="[^"]+"/g) || []).map((item) => item.slice(13, -1)))],
+    paragraphShapeIds: [...new Set((allSectionXml.match(/paraPrIDRef="[^"]+"/g) || []).map((item) => item.slice(13, -1)))],
+    placeholders,
+    emptyTableCells: [],
+    inputCandidates,
+  };
+}
+
+export async function generateHwpxFromTemplate({ workspace, templatePath, outputPath, fieldMapping = {} }) {
+  requireHwpxPath(templatePath);
+  requireHwpxPath(outputPath);
+  const source = resolveWorkspacePath(workspace, templatePath);
+  const target = resolveWorkspacePath(workspace, outputPath);
+  if (source.toLowerCase() === target.toLowerCase()) throw new Error("output_path must be different from template_path");
+  const sourceBefore = await readFile(source);
+  const zip = await JSZip.loadAsync(sourceBefore);
+  const mediaBefore = await entryHashes(zip, (name) => /^BinData\//i.test(name));
+  for (const name of sectionEntryNames(zip)) zip.file(name, replacePlaceholders(await readZipText(zip, name), fieldMapping));
+  const preview = await readZipText(zip, "Preview/PrvText.txt");
+  if (preview) zip.file("Preview/PrvText.txt", plainReplacePlaceholders(preview, fieldMapping));
+  await mkdir(dirname(target), { recursive: true });
+  await writeFile(target, await zip.generateAsync({ type: "nodebuffer", compression: "DEFLATE" }));
+  const outputZip = await loadHwpxZipFromAbsolutePath(target);
+  const mediaAfter = await entryHashes(outputZip, (name) => /^BinData\//i.test(name));
+  const validation = await validateHwpxPackage({ workspace, path: outputPath });
+  return {
+    path: outputPath,
+    absolutePath: target,
+    saved: true,
+    mode: "template_fill",
+    originalPreserved: sourceBefore.equals(await readFile(source)),
+    mediaPreserved: JSON.stringify(mediaBefore) === JSON.stringify(mediaAfter),
+    validation,
+  };
+}
+
+const ALLOWED_STYLE_PROFILES = new Set(["official_report", "modern_report", "meeting_minutes", "project_plan"]);
+
+function normalizeBlock(block) {
+  const type = String(block?.type || "paragraph");
+  if (type === "paragraph") return { type, text: String(block?.text || "").trim() };
+  if (type === "bullet_list" || type === "numbered_list") {
+    return { type, items: Array.isArray(block?.items) ? block.items.map((item) => String(item).trim()).filter(Boolean) : [] };
+  }
+  if (type === "table") {
+    return {
+      type,
+      title: String(block?.title || "표").trim(),
+      headers: Array.isArray(block?.headers) ? block.headers.map((item) => String(item).trim()) : [],
+      rows: Array.isArray(block?.rows) ? block.rows.map((row) => Array.isArray(row) ? row.map((item) => String(item).trim()) : []) : [],
+    };
+  }
+  if (type === "callout") return { type, title: String(block?.title || "참고").trim(), text: String(block?.text || "").trim() };
+  throw new Error(`unsupported block type: ${type}`);
+}
+
+export function validateDocumentPlan(plan) {
+  if (!plan || typeof plan !== "object") throw new Error("document plan must be an object");
+  const title = String(plan.title || "").trim();
+  if (!title) throw new Error("title is required");
+  if (!Array.isArray(plan.sections) || plan.sections.length === 0) throw new Error("sections is required");
+  const styleProfile = String(plan.style_profile || "official_report");
+  if (!ALLOWED_STYLE_PROFILES.has(styleProfile)) throw new Error(`unsupported style_profile: ${styleProfile}`);
+  return {
+    mode: "auto_document",
+    document_type: String(plan.document_type || "자유 형식"),
+    title,
+    subtitle: String(plan.subtitle || "").trim(),
+    metadata: {
+      author: String(plan.metadata?.author || "").trim(),
+      department: String(plan.metadata?.department || "").trim(),
+      date: String(plan.metadata?.date || new Date().toISOString().slice(0, 10)).trim(),
+    },
+    style_profile: styleProfile,
+    include_cover: plan.include_cover !== false,
+    include_toc: plan.include_toc !== false,
+    sections: plan.sections.map((section, index) => ({
+      id: String(section?.id || `section-${index + 1}`),
+      heading: String(section?.heading || `${index + 1}. 섹션`).trim(),
+      level: Number(section?.level || 1),
+      blocks: Array.isArray(section?.blocks) ? section.blocks.map(normalizeBlock) : [],
+    })),
+  };
+}
+
+function documentPlanParagraphs(plan) {
+  const lines = [];
+  if (plan.include_cover) {
+    if (plan.subtitle) lines.push(plan.subtitle);
+    const metadataLine = [plan.metadata.department, plan.metadata.author, plan.metadata.date].filter(Boolean).join(" | ");
+    if (metadataLine) lines.push(metadataLine);
+  }
+  if (plan.include_toc) {
+    lines.push("정적 목차");
+    for (const section of plan.sections) lines.push(section.heading);
+  }
+  for (const section of plan.sections) {
+    lines.push(section.heading);
+    for (const block of section.blocks) {
+      if (block.type === "paragraph" && block.text) lines.push(block.text);
+      if (block.type === "bullet_list") for (const item of block.items) lines.push(`- ${item}`);
+      if (block.type === "numbered_list") block.items.forEach((item, index) => lines.push(`${index + 1}. ${item}`));
+      if (block.type === "table") {
+        lines.push(`[표] ${block.title}`);
+        if (block.headers.length) lines.push(block.headers.join(" | "));
+        for (const row of block.rows) lines.push(row.join(" | "));
+      }
+      if (block.type === "callout") lines.push(`[${block.title}] ${block.text}`);
+    }
+  }
+  lines.push(`꼬리말: ${plan.title}`);
+  return lines;
+}
+
+export async function generateAutoHwpxDocument({ workspace, outputPath, documentPlan }) {
+  const plan = validateDocumentPlan(documentPlan);
+  const templatePath = await findHancomHwpxTemplate();
+  if (!templatePath) throw new Error("한컴 2024 호환 HWPX 템플릿을 찾지 못했습니다. 사용자 양식을 지정하거나 한컴오피스 설치 상태를 확인하십시오.");
+  const result = await createTemplateBackedHwpxDocument({
+    workspace,
+    path: outputPath,
+    title: plan.title,
+    paragraphs: documentPlanParagraphs(plan),
+    templatePath,
+  });
+  const validation = await validateHwpxPackage({ workspace, path: outputPath });
+  return {
+    ...result,
+    mode: "auto_document",
+    styleProfile: plan.style_profile,
+    documentType: plan.document_type,
+    validation,
   };
 }
 
@@ -369,6 +639,17 @@ function argValues(args, name) {
   return values;
 }
 
+function jsonArgValue(args, name, fallback = {}) {
+  const value = argValue(args, name, "");
+  return value ? JSON.parse(value) : fallback;
+}
+
+async function jsonArgOrFileValue(args, name, fileName, fallback = {}) {
+  const file = argValue(args, fileName, "");
+  if (file) return JSON.parse(await readFile(file, "utf8"));
+  return jsonArgValue(args, name, fallback);
+}
+
 
 export async function readPromptInput({ prompt = "", promptFile = "" }) {
   if (promptFile) return (await readFile(promptFile, "utf8")).trim();
@@ -384,6 +665,23 @@ async function main() {
   } else if (command === "hwpx-create") {
     result = await createHwpxDocument({ workspace: argValue(args, "--workspace"), path: argValue(args, "--path"), title: argValue(args, "--title", "Army Claw 문서"), paragraphs: argValues(args, "--paragraph") });
     if (args.includes("--open")) result.opened = await openWithHancomHwp({ workspace: argValue(args, "--workspace"), path: argValue(args, "--path") });
+  } else if (command === "hwpx-validate") {
+    result = await validateHwpxPackage({ workspace: argValue(args, "--workspace"), path: argValue(args, "--path") });
+  } else if (command === "hwpx-analyze-template") {
+    result = await analyzeHwpxTemplate({ workspace: argValue(args, "--workspace"), path: argValue(args, "--path") });
+  } else if (command === "hwpx-template-fill") {
+    result = await generateHwpxFromTemplate({
+      workspace: argValue(args, "--workspace"),
+      templatePath: argValue(args, "--template-path"),
+      outputPath: argValue(args, "--output-path"),
+      fieldMapping: await jsonArgOrFileValue(args, "--field-mapping", "--field-mapping-file"),
+    });
+  } else if (command === "hwpx-auto-generate") {
+    result = await generateAutoHwpxDocument({
+      workspace: argValue(args, "--workspace"),
+      outputPath: argValue(args, "--output-path"),
+      documentPlan: await jsonArgOrFileValue(args, "--document-plan", "--document-plan-file"),
+    });
   } else if (command === "hwpx-summary") {
     result = await summarizeHwpxDocument({ workspace: argValue(args, "--workspace"), path: argValue(args, "--path") });
   } else if (command === "hwpx-add-paragraph") {
@@ -391,7 +689,7 @@ async function main() {
   } else if (command === "open-hwp") {
     result = await openWithHancomHwp({ workspace: argValue(args, "--workspace"), path: argValue(args, "--path") });
   } else {
-    throw new Error("Usage: status | prompt-create | hwpx-create | hwpx-summary | hwpx-add-paragraph | open-hwp");
+    throw new Error("Usage: status | prompt-create | hwpx-create | hwpx-validate | hwpx-analyze-template | hwpx-template-fill | hwpx-auto-generate | hwpx-summary | hwpx-add-paragraph | open-hwp");
   }
   console.log(JSON.stringify(result, null, args.includes("--json") ? 2 : 0));
 }

@@ -5,8 +5,13 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import {
   addHwpxParagraph,
+  analyzeHwpxTemplate,
   createHwpxDocument,
   detectHancomEnvironment,
+  generateAutoHwpxDocument,
+  generateHwpxFromTemplate,
+  validateDocumentPlan,
+  validateHwpxPackage,
   summarizeHwpxDocument,
   resolveWorkspacePath,
   readPromptInput,
@@ -142,6 +147,136 @@ test("creates a template backed HWPX package when a Hancom template is available
     assert.equal(result.templateBacked, true);
     assert.equal(summary.paragraphCount, 4);
     assert.equal(summary.paragraphs[0], "OpenClaw 기반 Army Claw 보고서");
+  } finally {
+    await rm(workspace, { recursive: true, force: true });
+  }
+});
+
+test("analyzes placeholders in a template backed HWPX package", async (t) => {
+  const template = await findHancomHwpxTemplate();
+  if (!template) {
+    t.skip("Hancom HWPX template is not installed on this machine");
+    return;
+  }
+  const workspace = await mkdtemp(join(tmpdir(), "army-claw-template-analysis-"));
+  try {
+    await createTemplateBackedHwpxDocument({
+      workspace,
+      path: "templates/report.hwpx",
+      title: "{{DOCUMENT_TITLE}}",
+      paragraphs: ["작성자: {{AUTHOR}}", "요약: {{SUMMARY}}"],
+      templatePath: template,
+    });
+
+    const analysis = await analyzeHwpxTemplate({ workspace, path: "templates/report.hwpx" });
+
+    assert.equal(analysis.valid, true);
+    assert.deepEqual(analysis.placeholders.sort(), ["AUTHOR", "DOCUMENT_TITLE", "SUMMARY"]);
+    assert.equal(analysis.paragraphCount, 3);
+    assert.ok(analysis.entries.includes("Contents/header.xml"));
+    assert.ok(analysis.inputCandidates.some((candidate) => candidate.placeholder === "SUMMARY"));
+  } finally {
+    await rm(workspace, { recursive: true, force: true });
+  }
+});
+
+test("fills placeholders from a template without changing the original", async (t) => {
+  const template = await findHancomHwpxTemplate();
+  if (!template) {
+    t.skip("Hancom HWPX template is not installed on this machine");
+    return;
+  }
+  const workspace = await mkdtemp(join(tmpdir(), "army-claw-template-fill-"));
+  try {
+    await createTemplateBackedHwpxDocument({
+      workspace,
+      path: "templates/source.hwpx",
+      title: "{{DOCUMENT_TITLE}}",
+      paragraphs: ["작성자: {{AUTHOR}}", "요약: {{SUMMARY}}"],
+      templatePath: template,
+    });
+    const before = await summarizeHwpxDocument({ workspace, path: "templates/source.hwpx" });
+
+    const result = await generateHwpxFromTemplate({
+      workspace,
+      templatePath: "templates/source.hwpx",
+      outputPath: "outputs/filled.hwpx",
+      fieldMapping: {
+        DOCUMENT_TITLE: "양식 기반 보고서",
+        AUTHOR: "Army Claw",
+        SUMMARY: "원본 양식은 유지하고 출력 파일만 새로 만든다.",
+      },
+    });
+
+    const afterOriginal = await summarizeHwpxDocument({ workspace, path: "templates/source.hwpx" });
+    const filled = await summarizeHwpxDocument({ workspace, path: "outputs/filled.hwpx" });
+
+    assert.equal(result.saved, true);
+    assert.equal(result.originalPreserved, true);
+    assert.deepEqual(afterOriginal.paragraphs, before.paragraphs);
+    assert.equal(filled.paragraphs[0], "양식 기반 보고서");
+    assert.match(filled.text, /Army Claw/);
+    assert.doesNotMatch(filled.text, /\{\{SUMMARY\}\}/);
+  } finally {
+    await rm(workspace, { recursive: true, force: true });
+  }
+});
+
+test("validates document plans and rejects malformed plans", () => {
+  assert.throws(() => validateDocumentPlan({ title: "제목", sections: [] }), /sections is required/);
+  const plan = validateDocumentPlan({
+    document_type: "결과보고서",
+    title: "자동 생성 보고서",
+    metadata: { author: "Army Claw", department: "개발", date: "2026-06-30" },
+    style_profile: "official_report",
+    include_cover: true,
+    include_toc: true,
+    sections: [
+      {
+        id: "overview",
+        heading: "1. 개요",
+        level: 1,
+        blocks: [{ type: "paragraph", text: "개요 본문" }],
+      },
+    ],
+  });
+
+  assert.equal(plan.title, "자동 생성 보고서");
+  assert.equal(plan.sections.length, 1);
+});
+
+test("generates an automatic styled HWPX document from a document plan", async () => {
+  const workspace = await mkdtemp(join(tmpdir(), "army-claw-auto-doc-"));
+  try {
+    const result = await generateAutoHwpxDocument({
+      workspace,
+      outputPath: "outputs/auto.hwpx",
+      documentPlan: {
+        document_type: "결과보고서",
+        title: "Army Claw 자동 생성 보고서",
+        subtitle: "HWPX 디자인 프로필 검증",
+        metadata: { author: "Army Claw", department: "개발", date: "2026-06-30" },
+        style_profile: "official_report",
+        include_cover: true,
+        include_toc: true,
+        sections: [
+          { id: "s1", heading: "1. 개요", level: 1, blocks: [{ type: "paragraph", text: "개요 본문" }] },
+          { id: "s2", heading: "2. 결과", level: 1, blocks: [{ type: "bullet_list", items: ["생성", "검증"] }] },
+          { id: "s3", heading: "3. 표", level: 1, blocks: [{ type: "table", title: "검증 표", headers: ["구분", "결과"], rows: [["HWPX", "통과"]] }] },
+          { id: "s4", heading: "4. 강조", level: 1, blocks: [{ type: "callout", title: "핵심", text: "템플릿 기반 생성" }] },
+          { id: "s5", heading: "5. 결론", level: 1, blocks: [{ type: "paragraph", text: "결론 본문" }] },
+        ],
+      },
+    });
+    const summary = await summarizeHwpxDocument({ workspace, path: "outputs/auto.hwpx" });
+    const validation = await validateHwpxPackage({ workspace, path: "outputs/auto.hwpx" });
+
+    assert.equal(result.saved, true);
+    assert.equal(result.styleProfile, "official_report");
+    assert.equal(validation.valid, true);
+    assert.match(summary.text, /정적 목차/);
+    assert.match(summary.text, /검증 표/);
+    assert.match(summary.text, /핵심/);
   } finally {
     await rm(workspace, { recursive: true, force: true });
   }
