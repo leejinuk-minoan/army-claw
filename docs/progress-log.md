@@ -1,3 +1,28 @@
+﻿# 진행 기록
+
+## 2026-06-30 - OpenClaw 전면교체 베타 설치 파일 산출
+
+### 산출물
+- `release/ArmyClawOpenClawBetaSetup-0.2.0-beta.1.exe` 생성 완료.
+- OpenClaw reference는 `reference/openclaw-upstream`에 분리 보관하고, 배포물에는 OpenClaw MIT 라이선스와 NOTICE를 포함했다.
+- 설치 페이로드에는 OpenClaw CLI/runtime/control-ui, Windows용 Node.js runtime, Army Claw 실행/상태/Gateway 런처를 포함했다.
+
+### 구현 내용
+- `scripts/package-openclaw-beta.ps1`를 추가해 OpenClaw production payload를 베타 설치 패키지로 구성하도록 했다.
+- OpenClaw production 의존성은 ZIP 설치 후 symlink가 깨지지 않도록 `node-linker=hoisted` 구조로 정리했다.
+- Inno Setup 스크립트 `installer/army-claw-openclaw-beta.iss`를 추가해 ZIP payload 기반 설치 EXE를 생성하도록 했다.
+- OpenClaw upstream commit은 `843ad143`, CLI smoke 결과는 `OpenClaw 2026.6.10`이다.
+
+### 검증 결과
+- 패키징 중 런처 smoke test 통과: `ArmyClawOpenClawBeta.cmd --version` -> `OpenClaw 2026.6.10`.
+- 실제 설치 검증 경로: `C:\Users\USER\AppData\Local\ArmyClawBetaTest`.
+- 설치 로그 기준 설치 성공 및 payload 해제 종료 코드 0 확인.
+- 설치 후 검증 통과: `openclaw.mjs --version` 종료 코드 0, `openclaw.mjs status --json` 종료 코드 0.
+- 설치 후 라이선스 파일, NOTICE, 한글 README 포함 확인.
+
+### 남은 제한 사항
+- 이번 베타는 OpenClaw 기반 전면교체 설치 산출물이며, 한컴오피스 조작 도구의 OpenClaw plugin/tool 계층 이식은 아직 포함하지 않았다.
+- 설치 후 payload 해제 시간이 길다. 다음 단계에서 설치 속도를 줄이기 위해 payload 분할, 7z/bsdtar 해제, 또는 Inno 직접 파일 배치 방식을 재검토한다.
 # Army Claw 진행 로그
 
 ## 2026-06-30 - OpenClaw 전면 교체 방향 확정
