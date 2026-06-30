@@ -1,4 +1,28 @@
 # Army Claw 진행 로그
+
+## 2026-06-30 - OpenClaw 전면 교체 방향 확정
+
+### 결정 내용
+
+- Army Claw의 최종 구조를 OpenClaw 코드베이스 기반으로 전면 재구성하기로 확정했다.
+- 기존 FastAPI/React UI는 최종 UI로 사용하지 않고, 요구사항 검증과 임시 산출물로만 보존한다.
+- 새 UI는 사용자가 제시한 ChatGPT형 화면을 기준으로 한다.
+  - 왼쪽: 기능과 상태를 펼쳐 보는 샌드박스
+  - 중앙: 선택한 상태/기능 패널
+  - 하단: 프롬프트 입력창
+  - 프롬프트 상단: LLM 처리 진행 과정 타임라인
+- OpenClaw reference를 `reference/openclaw-upstream`에 별도 clone해 구조를 분석했다.
+- reference commit은 `843ad143`이며, 원격 저장소는 `https://github.com/openclaw/openclaw.git`이다.
+- OpenClaw MIT 라이선스 준수를 위해 원 저작권 표시와 MIT 라이선스 문구를 유지하기로 했다.
+- OpenClaw에 `@openclaw/ollama-provider` 확장이 있음을 확인했고, Army Claw의 기본 로컬 LLM provider는 이 구조를 활용해 Ollama + `gemma3:12b`로 맞춘다.
+
+### 산출물
+
+- `docs/openclaw-full-replacement-plan.md` 작성
+- `reference/openclaw-upstream/` Git 추적 제외 규칙 추가
+
+---
+
 ## 2026-06-30 - OpenClaw 기준 향후 계획 재정의
 
 ### 결정 내용

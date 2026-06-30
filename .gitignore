@@ -35,3 +35,6 @@ vendor/ollama/
 
 # Local secrets/config
 config/openclaw.config.json
+
+# External source references
+reference/openclaw-upstream/
