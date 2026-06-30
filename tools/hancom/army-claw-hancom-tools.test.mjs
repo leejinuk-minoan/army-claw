@@ -10,6 +10,8 @@ import {
   summarizeHwpxDocument,
   resolveWorkspacePath,
   readPromptInput,
+  createTemplateBackedHwpxDocument,
+  findHancomHwpxTemplate,
   createDocumentFromPrompt,
   normalizeModelResponse,
 } from "./army-claw-hancom-tools.mjs";
@@ -26,9 +28,9 @@ test("creates and summarizes an HWPX document inside the workspace", async () =>
     const summary = await summarizeHwpxDocument({ workspace, path: "docs/report.hwpx" });
 
     assert.equal(created.saved, true);
-    assert.equal(summary.paragraphCount, 2);
-    assert.deepEqual(summary.paragraphs, ["첫 문단", "둘째 문단"]);
-    assert.equal(summary.text, "첫 문단\n둘째 문단");
+    assert.equal(summary.paragraphCount, 3);
+    assert.deepEqual(summary.paragraphs, ["보고서", "첫 문단", "둘째 문단"]);
+    assert.equal(summary.text, "보고서\n첫 문단\n둘째 문단");
   } finally {
     await rm(workspace, { recursive: true, force: true });
   }
@@ -41,7 +43,7 @@ test("adds a paragraph to an existing HWPX document", async () => {
     await addHwpxParagraph({ workspace, path: "report.hwpx", paragraph: "추가 문단" });
 
     const summary = await summarizeHwpxDocument({ workspace, path: "report.hwpx" });
-    assert.deepEqual(summary.paragraphs, ["기존 문단", "추가 문단"]);
+    assert.deepEqual(summary.paragraphs, ["초안", "기존 문단", "추가 문단"]);
   } finally {
     await rm(workspace, { recursive: true, force: true });
   }
@@ -99,7 +101,7 @@ test("creates an HWPX document from a user prompt and model plan", async () => {
     assert.equal(result.path, "reports/meeting.hwpx");
 
     const summary = await summarizeHwpxDocument({ workspace, path: "reports/meeting.hwpx" });
-    assert.deepEqual(summary.paragraphs, ["회의 개요", "결정 사항", "후속 조치"]);
+    assert.deepEqual(summary.paragraphs, ["회의 결과 보고서", "회의 개요", "결정 사항", "후속 조치"]);
   } finally {
     await rm(workspace, { recursive: true, force: true });
   }
@@ -119,4 +121,28 @@ test("recovers a document plan from non JSON model text", () => {
   const plan = normalizeModelResponse("제목: Army Claw 보고서\n\n첫 문단입니다.\n\n둘째 문단입니다.", "fallback prompt");
   assert.equal(plan.title, "Army Claw 보고서");
   assert.deepEqual(plan.paragraphs, ["첫 문단입니다.", "둘째 문단입니다."]);
+});
+test("creates a template backed HWPX package when a Hancom template is available", async (t) => {
+  const template = await findHancomHwpxTemplate();
+  if (!template) {
+    t.skip("Hancom HWPX template is not installed on this machine");
+    return;
+  }
+  const workspace = await mkdtemp(join(tmpdir(), "army-claw-template-hwpx-"));
+  try {
+    const result = await createTemplateBackedHwpxDocument({
+      workspace,
+      path: "reports/template-backed.hwpx",
+      title: "OpenClaw 기반 Army Claw 보고서",
+      paragraphs: ["빌드 과정", "핵심 기능", "아키텍처"],
+      templatePath: template,
+    });
+    const summary = await summarizeHwpxDocument({ workspace, path: "reports/template-backed.hwpx" });
+    assert.equal(result.saved, true);
+    assert.equal(result.templateBacked, true);
+    assert.equal(summary.paragraphCount, 4);
+    assert.equal(summary.paragraphs[0], "OpenClaw 기반 Army Claw 보고서");
+  } finally {
+    await rm(workspace, { recursive: true, force: true });
+  }
 });

@@ -17,6 +17,11 @@ const JSZip = requireFromPackage("jszip");
 
 const HWPX_SECTION_PATH = "Contents/section0.xml";
 const HWPX_NS = "http://www.hancom.co.kr/hwpml/2011/paragraph";
+const HWPX_MIMETYPE = "application/hwp+zip";
+const DEFAULT_SECTION_ROOT =
+  '<hs:sec xmlns:hp="http://www.hancom.co.kr/hwpml/2011/paragraph" xmlns:hs="http://www.hancom.co.kr/hwpml/2011/section">';
+const DEFAULT_SECTION_SETUP =
+  '<hp:secPr id="" textDirection="HORIZONTAL" spaceColumns="1134" tabStop="8000" tabStopVal="4000" tabStopUnit="HWPUNIT" outlineShapeIDRef="1" memoShapeIDRef="0" textVerticalWidthHead="0" masterPageCnt="0"><hp:grid lineGrid="0" charGrid="0" wonggojiFormat="0"/><hp:startNum pageStartsOn="BOTH" page="0" pic="0" tbl="0" equation="0"/><hp:visibility hideFirstHeader="0" hideFirstFooter="0" hideFirstMasterPage="0" border="SHOW_ALL" fill="SHOW_ALL" hideFirstPageNum="0" hideFirstEmptyLine="0" showLineNumber="0"/><hp:lineNumberShape restartType="0" countBy="0" distance="0" startNumber="0"/><hp:pagePr landscape="WIDELY" width="59528" height="84186" gutterType="LEFT_ONLY"><hp:margin header="4252" footer="4252" gutter="0" left="6000" right="6028" top="5668" bottom="4252"/></hp:pagePr><hp:footNotePr><hp:autoNumFormat type="DIGIT" userChar="" prefixChar="" suffixChar=")" supscript="0"/><hp:noteLine length="5683" type="SOLID" width="0.12 mm" color="#000000"/><hp:noteSpacing betweenNotes="0" belowLine="850" aboveNotes="567"/><hp:numbering type="CONTINUOUS"/><hp:placement place="EACH_COLUMN" beneathText="0"/></hp:footNotePr><hp:endNotePr><hp:autoNumFormat type="DIGIT" userChar="" prefixChar="" suffixChar=")" supscript="0"/><hp:noteLine length="5683" type="SOLID" width="0.12 mm" color="#000000"/><hp:noteSpacing betweenNotes="0" belowLine="850" aboveNotes="567"/><hp:numbering type="CONTINUOUS"/><hp:placement place="END_OF_DOCUMENT" beneathText="0"/></hp:endNotePr><hp:pageBorderFill type="BOTH" borderFillIDRef="1" textBorder="CONTENT" headerInside="0" footerInside="0" fillArea="PAPER"/></hp:secPr><hp:ctrl><hp:colPr id="" type="NEWSPAPER" layout="LEFT" colCount="1" sameSz="1" sameGap="0"/></hp:ctrl>';
 
 export function resolveWorkspacePath(workspace, relativePath) {
   if (!workspace) throw new Error("workspace is required");
@@ -51,22 +56,118 @@ function sectionXml(paragraphs) {
   return `<?xml version="1.0" encoding="UTF-8"?><hp:sec xmlns:hp="${HWPX_NS}">${paragraphs.map(paragraphXml).join("")}</hp:sec>`;
 }
 
+function hancomParagraphXml(text, id, { title = false, includeSectionSetup = "" } = {}) {
+  const charPr = title ? "26" : "0";
+  const paraPr = title ? "30" : "1";
+  return [
+    `<hp:p id="${id}" paraPrIDRef="${paraPr}" styleIDRef="0" pageBreak="0" columnBreak="0" merged="0">`,
+    `<hp:run charPrIDRef="${charPr}">`,
+    includeSectionSetup,
+    `<hp:t>${escapeXml(text)}</hp:t>`,
+    "</hp:run>",
+    '<hp:linesegarray><hp:lineseg textpos="0" vertpos="0" vertsize="1000" textheight="1000" baseline="850" spacing="600" horzpos="0" horzsize="42520" flags="393216"/></hp:linesegarray>',
+    "</hp:p>",
+  ].join("");
+}
+
+function templateSectionParts(templateSectionXml = "") {
+  const rootOpen = templateSectionXml.match(/<hs:sec\b[^>]*>/u)?.[0] || DEFAULT_SECTION_ROOT;
+  const sectionSetup =
+    templateSectionXml.match(/<hp:secPr\b[\s\S]*?<\/hp:secPr>\s*<hp:ctrl>\s*<hp:colPr\b[\s\S]*?<\/hp:ctrl>/u)?.[0] ||
+    DEFAULT_SECTION_SETUP;
+  const rootName = rootOpen.match(/^<([\w:]+)/u)?.[1] || "hs:sec";
+  return { rootOpen, rootName, sectionSetup };
+}
+
+function templateBackedSectionXml({ title, paragraphs, templateSectionXml }) {
+  const { rootOpen, rootName, sectionSetup } = templateSectionParts(templateSectionXml);
+  const documentParagraphs = [title, ...paragraphs].map((item) => String(item ?? "").trim()).filter(Boolean);
+  const body = documentParagraphs.map((text, index) =>
+    hancomParagraphXml(text, index + 1, {
+      title: index === 0,
+      includeSectionSetup: index === 0 ? sectionSetup : "",
+    }),
+  );
+  return `<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>${rootOpen}${body.join("")}</${rootName}>`;
+}
+
 function contentHpf(title) {
   return `<?xml version="1.0" encoding="UTF-8"?><package><metadata><title>${escapeXml(title)}</title></metadata><manifest><item href="${HWPX_SECTION_PATH}" media-type="application/xml" /></manifest></package>`;
 }
 
 export async function createHwpxDocument({ workspace, path, title = "Army Claw 문서", paragraphs = [] }) {
+  const templatePath = await findHancomHwpxTemplate();
+  if (templatePath) return createTemplateBackedHwpxDocument({ workspace, path, title, paragraphs, templatePath });
+
   requireHwpxPath(path);
   const target = resolveWorkspacePath(workspace, path);
   await mkdir(dirname(target), { recursive: true });
   const zip = new JSZip();
-  zip.file("mimetype", "application/hwp+zip");
+  zip.file("mimetype", HWPX_MIMETYPE);
   zip.file("version.xml", '<?xml version="1.0" encoding="UTF-8"?><version app="Army Claw" />');
   zip.file("Contents/content.hpf", contentHpf(title));
-  zip.file(HWPX_SECTION_PATH, sectionXml(paragraphs));
+  zip.file(HWPX_SECTION_PATH, sectionXml([title, ...paragraphs]));
   const content = await zip.generateAsync({ type: "nodebuffer", compression: "DEFLATE" });
   await writeFile(target, content);
-  return { path, absolutePath: target, saved: true, message: "HWPX document created" };
+  return { path, absolutePath: target, saved: true, message: "HWPX document created", templateBacked: false };
+}
+
+function defaultHancomTemplatePaths(env = process.env) {
+  const paths = [];
+  if (env.ARMY_CLAW_HWPX_TEMPLATE) paths.push(env.ARMY_CLAW_HWPX_TEMPLATE);
+  paths.push(
+    "C:\\Program Files (x86)\\HNC\\Office 2024\\HOffice130\\Shared\\HwpTemplate\\FrequentComponent\\공문서_양식_템플릿_일반.hwpx",
+    "C:\\Program Files (x86)\\HNC\\Office 2024\\HOffice130\\Shared\\HwpTemplate\\FrequentComponent\\공문서_양식_템플릿_내용.hwpx",
+    "C:\\Program Files\\HNC\\Office 2024\\HOffice130\\Shared\\HwpTemplate\\FrequentComponent\\공문서_양식_템플릿_일반.hwpx",
+    "C:\\Program Files (x86)\\HNC\\Office 2022\\HOffice120\\Shared\\HwpTemplate\\FrequentComponent\\공문서_양식_템플릿_일반.hwpx",
+    "C:\\Program Files\\HNC\\Office 2022\\HOffice120\\Shared\\HwpTemplate\\FrequentComponent\\공문서_양식_템플릿_일반.hwpx",
+  );
+  return paths;
+}
+
+export async function findHancomHwpxTemplate({ env = process.env, candidatePaths = defaultHancomTemplatePaths(env) } = {}) {
+  for (const candidate of candidatePaths) {
+    if (candidate && await fileExists(candidate)) return candidate;
+  }
+  return "";
+}
+
+async function updateContentHpfTitle(zip, title) {
+  const entry = zip.file("Contents/content.hpf");
+  if (!entry) {
+    zip.file("Contents/content.hpf", contentHpf(title));
+    return;
+  }
+  const hpf = await entry.async("string");
+  const nextHpf = hpf.includes("<dc:title>")
+    ? hpf.replace(/<dc:title>[\s\S]*?<\/dc:title>/u, `<dc:title>${escapeXml(title)}</dc:title>`)
+    : hpf;
+  zip.file("Contents/content.hpf", nextHpf);
+}
+
+export async function createTemplateBackedHwpxDocument({ workspace, path, title = "Army Claw 문서", paragraphs = [], templatePath }) {
+  requireHwpxPath(path);
+  if (!templatePath) throw new Error("templatePath is required");
+  const target = resolveWorkspacePath(workspace, path);
+  await mkdir(dirname(target), { recursive: true });
+
+  const zip = await JSZip.loadAsync(await readFile(templatePath));
+  const templateSection = zip.file(HWPX_SECTION_PATH) ? await zip.file(HWPX_SECTION_PATH).async("string") : "";
+  zip.file("mimetype", HWPX_MIMETYPE, { compression: "STORE" });
+  zip.file(HWPX_SECTION_PATH, templateBackedSectionXml({ title, paragraphs, templateSectionXml: templateSection }));
+  zip.file("Preview/PrvText.txt", [title, ...paragraphs].map((item) => String(item ?? "").trim()).filter(Boolean).join("\r\n"));
+  await updateContentHpfTitle(zip, title);
+
+  const content = await zip.generateAsync({ type: "nodebuffer", compression: "DEFLATE" });
+  await writeFile(target, content);
+  return {
+    path,
+    absolutePath: target,
+    saved: true,
+    message: "HWPX document created from Hancom template",
+    templateBacked: true,
+    templatePath,
+  };
 }
 
 async function loadHwpx(workspace, path) {
@@ -111,7 +212,12 @@ export async function summarizeHwpxDocument({ workspace, path }) {
 
 export async function addHwpxParagraph({ workspace, path, paragraph }) {
   const { target, zip, sectionName, xml } = await loadHwpx(workspace, path);
-  const nextXml = xml.replace(/<\/(?:\w+:)?sec>\s*$/u, `${paragraphXml(paragraph)}</hp:sec>`);
+  const closing = xml.match(/(<\/(?:\w+:)?sec>)\s*$/u);
+  if (!closing) throw new Error("HWPX section root closing tag was not found");
+  const insertion = sectionName === HWPX_SECTION_PATH && xml.includes("<hs:sec")
+    ? hancomParagraphXml(paragraph, extractParagraphs(xml).length + 1)
+    : paragraphXml(paragraph);
+  const nextXml = xml.replace(/(<\/(?:\w+:)?sec>)\s*$/u, `${insertion}$1`);
   zip.file(sectionName, nextXml);
   await writeFile(target, await zip.generateAsync({ type: "nodebuffer", compression: "DEFLATE" }));
   return { path, absolutePath: target, saved: true, message: "paragraph added" };
