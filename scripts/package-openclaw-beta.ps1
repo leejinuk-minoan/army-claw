@@ -7,6 +7,7 @@ $packageRoot = Join-Path $releaseRoot "army-claw-openclaw-beta"
 $appTarget = Join-Path $packageRoot "app"
 $nodeTarget = Join-Path $packageRoot "node"
 $binTarget = Join-Path $packageRoot "bin"
+$hancomToolsSource = Join-Path $root "tools\hancom"
 $installerScript = Join-Path $root "installer\army-claw-openclaw-beta.iss"
 $isccDefault = "C:\Program Files (x86)\Inno Setup 6\ISCC.exe"
 $nodeSource = "C:\Users\USER\.cache\codex-runtimes\codex-primary-runtime\dependencies\node"
@@ -101,6 +102,10 @@ Invoke-RobocopyChecked -From $source -To $appTarget -CopyArgs @(
   "/R:1", "/W:1", "/NFL", "/NDL", "/NP"
 )
 
+Write-Host "== Copy Army Claw Hancom tools =="
+$hancomToolsTarget = Join-Path $appTarget "army-claw-tools\hancom"
+New-Item -ItemType Directory -Force -Path $hancomToolsTarget | Out-Null
+Copy-Item -LiteralPath (Join-Path $hancomToolsSource "army-claw-hancom-tools.mjs") -Destination (Join-Path $hancomToolsTarget "army-claw-hancom-tools.mjs") -Force
 Write-Host "== Copy Node runtime =="
 Invoke-RobocopyChecked -From $nodeSource -To $nodeTarget -CopyArgs @(
   "/MIR",
@@ -139,6 +144,19 @@ exit /b %ERRORLEVEL%
 "@
 [System.IO.File]::WriteAllText((Join-Path $binTarget "ArmyClawOpenClawStatus.cmd"), $statusCmd, [System.Text.Encoding]::ASCII)
 
+$hancomCmd = @"
+@echo off
+setlocal
+set "ROOT=%~dp0.."
+set "NODE_DIR=%ROOT%\node"
+set "APP_ROOT=%ROOT%\app"
+set "TOOL=%APP_ROOT%\army-claw-tools\hancom\army-claw-hancom-tools.mjs"
+set "ARMY_CLAW_NODE_MODULES=%APP_ROOT%\node_modules"
+set "PATH=%NODE_DIR%\bin;%NODE_DIR%;%PATH%"
+"%NODE_DIR%\bin\node.exe" "%TOOL%" %*
+exit /b %ERRORLEVEL%
+"@
+[System.IO.File]::WriteAllText((Join-Path $binTarget "ArmyClawHancomTools.cmd"), $hancomCmd, [System.Text.Encoding]::ASCII)
 $gatewayCmd = @"
 @echo off
 setlocal
@@ -164,6 +182,7 @@ Army Claw OpenClaw Beta
 - OpenClaw control-ui build output
 - Node.js runtime for Windows
 - Army Claw launcher scripts
+- Army Claw Hancom/HWPX tool CLI
 - OpenClaw MIT license and third-party notice files
 
 기본 실행:
@@ -174,11 +193,11 @@ Army Claw OpenClaw Beta
 Army Claw 정책:
 - 기본 로컬 LLM 방향은 Ollama + gemma3:12b입니다.
 - 중국계 모델/provider는 Army Claw 기본 추천 및 기본 allowlist 대상에서 제외합니다.
-- 한컴오피스 조작 도구는 다음 베타에서 OpenClaw plugin/tool 계층으로 이식합니다.
+- 한컴오피스 조작 도구는 이번 베타에서 HWPX 생성/요약/문단추가/한글 실행 CLI로 포함합니다.
 
 주의:
 - 이 빌드는 OpenClaw 전면 교체 베타의 첫 설치 가능 산출물입니다.
-- 한컴오피스 조작 도구의 완전 이식은 아직 포함하지 않았습니다.
+- 복잡한 한컴 COM 자동화와 OpenClaw planner 내부 tool-call 완전 연결은 다음 베타에서 확장합니다.
 "@
 [System.IO.File]::WriteAllText((Join-Path $packageRoot "ARMY_CLAW_BETA_README.txt"), $readme, [System.Text.Encoding]::UTF8)
 
@@ -213,6 +232,10 @@ Write-Host "== Smoke test packaged launcher =="
 if ($LASTEXITCODE -ne 0) { throw "Packaged OpenClaw version smoke failed." }
 & $launcher --version
 if ($LASTEXITCODE -ne 0) { throw "Packaged Army Claw launcher smoke failed." }
+Write-Host "== Hancom tool smoke =="
+$hancomLauncher = Join-Path $binTarget "ArmyClawHancomTools.cmd"
+& $hancomLauncher status --json
+if ($LASTEXITCODE -ne 0) { throw "Packaged Hancom tool smoke failed." }
 
 $payloadZip = Join-Path $releaseRoot "ArmyClawOpenClawBetaPayload-0.2.0-beta.1.zip"
 if (Test-Path -LiteralPath $payloadZip) {

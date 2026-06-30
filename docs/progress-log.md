@@ -1,5 +1,35 @@
 ﻿# 진행 기록
 
+## 2026-06-30 - OpenClaw 베타 한컴오피스/HWPX 도구 포함 빌드
+
+### 산출물
+- `release/ArmyClawOpenClawBetaSetup-0.2.0-beta.1.exe`를 한컴오피스/HWPX 도구 포함 상태로 재생성했다.
+- 설치 페이로드에 `app/army-claw-tools/hancom/army-claw-hancom-tools.mjs`를 포함했다.
+- 설치 후 `bin/ArmyClawHancomTools.cmd`로 한컴 도구를 실행할 수 있게 했다.
+- 시작 메뉴에 `Army Claw Hancom Tools` 바로가기를 추가했다.
+
+### 포함 기능
+- 한글/한셀/한쇼 실행 파일 감지: `status --json`.
+- HWPX 문서 생성: `hwpx-create --workspace ... --path ... --title ... --paragraph ...`.
+- HWPX 문서 요약: `hwpx-summary --workspace ... --path ...`.
+- HWPX 문단 추가: `hwpx-add-paragraph --workspace ... --path ... --paragraph ...`.
+- 감지된 `Hwp.exe`로 HWPX 파일 열기: `open-hwp --workspace ... --path ...`.
+
+### 검증 결과
+- 도구 단위 테스트 통과: Node test 4개 통과.
+- 패키징 중 한컴 도구 smoke test 통과.
+- 실제 설치 검증 경로: `C:\Users\USER\AppData\Local\ArmyClawBetaHancomTest`.
+- 설치 로그 기준 설치 성공 및 payload 해제 종료 코드 0 확인.
+- 설치 후 `ArmyClawHancomTools.cmd status --json` 종료 코드 0.
+- 설치 후 `hwpx-create`로 `.tmp/hancom-tool-workspace/docs/beta.hwpx` 생성 성공.
+- 설치 후 `hwpx-summary`에서 문단 2개 읽기 성공.
+- 현재 PC에서 한글/한셀/한쇼가 모두 감지되어 `native_available` 상태를 확인했다.
+
+### 남은 제한 사항
+- 이번 단계는 OpenClaw 베타 설치물 안에 한컴/HWPX 도구 CLI를 포함한 것이다.
+- OpenClaw planner가 자연어 작업을 자동으로 이 CLI tool-call로 라우팅하는 완전 통합은 다음 단계에서 진행한다.
+- 한컴 COM 기반의 고급 서식 편집, 한셀 차트/피벗, 한쇼 복잡한 디자인 자동화는 별도 확장 단계로 남아 있다.
+
 ## 2026-06-30 - OpenClaw 전면교체 베타 설치 파일 산출
 
 ### 산출물

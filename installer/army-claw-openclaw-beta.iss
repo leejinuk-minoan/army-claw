@@ -36,6 +36,7 @@ Source: "..\release\army-claw-openclaw-beta\THIRD_PARTY_NOTICES-OPENCLAW.md"; De
 Name: "{group}\Army Claw OpenClaw Beta"; Filename: "{app}\bin\ArmyClawOpenClawBeta.cmd"; WorkingDir: "{app}\bin"
 Name: "{group}\Army Claw OpenClaw Status"; Filename: "{app}\bin\ArmyClawOpenClawStatus.cmd"; WorkingDir: "{app}\bin"
 Name: "{group}\Army Claw OpenClaw Gateway"; Filename: "{app}\bin\ArmyClawOpenClawGateway.cmd"; WorkingDir: "{app}\bin"
+Name: "{group}\Army Claw Hancom Tools"; Filename: "{app}\bin\ArmyClawHancomTools.cmd"; Parameters: "status --json"; WorkingDir: "{app}\bin"
 Name: "{autodesktop}\Army Claw OpenClaw Beta"; Filename: "{app}\bin\ArmyClawOpenClawBeta.cmd"; WorkingDir: "{app}\bin"; Tasks: desktopicon
 
 [Tasks]
