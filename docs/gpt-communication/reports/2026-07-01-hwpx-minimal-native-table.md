@@ -231,5 +231,5 @@ native_table_visual_status: user_confirmation_pending
 
 ## 18. 커밋 및 Push
 
-- 커밋 SHA: 작업 커밋 후 갱신 예정
-- GitHub push: 작업 push 후 갱신 예정
+- 커밋 SHA: `ae0a56b Generate minimal native HWPX table sample`
+- GitHub push: push 후 최종 보고에서 확인
