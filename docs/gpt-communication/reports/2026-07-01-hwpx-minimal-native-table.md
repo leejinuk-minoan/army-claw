@@ -232,4 +232,5 @@ native_table_visual_status: user_confirmation_pending
 ## 18. 커밋 및 Push
 
 - 커밋 SHA: `ae0a56b Generate minimal native HWPX table sample`
-- GitHub push: push 후 최종 보고에서 확인
+- 보고서 갱신 커밋: `fc4162e Report minimal native HWPX table validation`
+- GitHub push: `origin/feature/hwpx-minimal-native-table` push 완료
