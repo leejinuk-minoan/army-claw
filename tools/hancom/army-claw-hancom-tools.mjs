@@ -143,7 +143,7 @@ function tableCellXml(text, rowIndex, colIndex, colWidth, role, { borderFillIDRe
   ].join("");
 }
 
-function nativeTableXml(table, idSeed = 1, { kind = "table" } = {}) {
+function nativeTableObjectXml(table, idSeed = 1, { kind = "table" } = {}) {
   const rows = [table.headers, ...table.rows];
   const colCount = table.headers.length;
   const rowCount = rows.length;
@@ -170,6 +170,23 @@ function nativeTableXml(table, idSeed = 1, { kind = "table" } = {}) {
     '<hp:inMargin left="510" right="510" top="141" bottom="141"/>',
     rowsXml,
     "</hp:tbl>",
+  ].join("");
+}
+
+function nativeTableXml(table, idSeed = 1, options = {}) {
+  return nativeTableObjectXml(table, idSeed, options);
+}
+
+function nativeTableParagraphXml(table, paragraphId, idSeed = 1, { kind = "table" } = {}) {
+  const lineHeight = 1000;
+  return [
+    `<!--army-table-wrapper:native-paragraph-run-->`,
+    `<hp:p id="${paragraphId}" paraPrIDRef="1" styleIDRef="0" pageBreak="0" columnBreak="0" merged="0">`,
+    '<hp:run charPrIDRef="0">',
+    nativeTableObjectXml(table, idSeed, { kind }),
+    "</hp:run>",
+    `<hp:linesegarray><hp:lineseg textpos="0" vertpos="0" vertsize="${lineHeight}" textheight="${lineHeight}" baseline="850" spacing="600" horzpos="0" horzsize="${BODY_WIDTH}" flags="393216"/></hp:linesegarray>`,
+    "</hp:p>",
   ].join("");
 }
 
@@ -236,6 +253,25 @@ function templateBackedSectionXml({ title, paragraphs, templateSectionXml }) {
       includeSectionSetup: index === 0 ? sectionSetup : "",
     }),
   );
+  return `<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>${rootOpen}${body.join("")}</${rootName}>`;
+}
+
+function minimalNativeTableSectionXml({ templateSectionXml }) {
+  const { rootOpen, rootName, sectionSetup } = templateSectionParts(templateSectionXml);
+  const table = {
+    title: "검증 표",
+    headers: ["구분", "검증 내용", "결과"],
+    rows: [
+      ["표 구조", "테이블 부모 구조 적용", "확인"],
+      ["셀 편집", "한글 2024 셀 커서 진입", "확인"],
+    ],
+  };
+  const body = [
+    styledParagraphXml("HWPX 테이블 최소 검증", 1, { role: "cover_title", includeSectionSetup: sectionSetup }),
+    styledParagraphXml("위 본문 문단입니다.", 2, { role: "body" }),
+    nativeTableParagraphXml(table, 3, 1),
+    styledParagraphXml("표 아래 본문 문단입니다.", 4, { role: "body" }),
+  ];
   return `<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>${rootOpen}${body.join("")}</${rootName}>`;
 }
 
@@ -356,6 +392,43 @@ export async function createTemplateBackedHwpxDocument({ workspace, path, title 
   };
 }
 
+export async function generateMinimalNativeTableHwpxDocument({
+  workspace,
+  outputPath = "release/test-documents/army-claw-hwpx-native-table-minimal.hwpx",
+} = {}) {
+  requireHwpxPath(outputPath);
+  const templatePath = await findHancomHwpxTemplate();
+  if (!templatePath) throw new Error("한컴 2024 호환 HWPX 템플릿을 찾지 못했습니다. 사용자 양식을 지정하거나 한컴오피스 설치 상태를 확인하십시오.");
+  const target = resolveWorkspacePath(workspace, outputPath);
+  await mkdir(dirname(target), { recursive: true });
+
+  const templateZip = await JSZip.loadAsync(await readFile(templatePath));
+  const templateSectionXml = await readZipText(templateZip, HWPX_SECTION_PATH);
+  templateZip.file("mimetype", HWPX_MIMETYPE, { compression: "STORE" });
+  templateZip.file(HWPX_SECTION_PATH, minimalNativeTableSectionXml({ templateSectionXml }));
+  templateZip.file("Preview/PrvText.txt", [
+    "HWPX 테이블 최소 검증",
+    "위 본문 문단입니다.",
+    "구분\t검증 내용\t결과",
+    "표 구조\t테이블 부모 구조 적용\t확인",
+    "셀 편집\t한글 2024 셀 커서 진입\t확인",
+    "표 아래 본문 문단입니다.",
+  ].join("\r\n"));
+  await updateContentHpfTitle(templateZip, "HWPX 테이블 최소 검증");
+  await writeFile(target, await templateZip.generateAsync({ type: "nodebuffer", compression: "DEFLATE" }));
+  const validation = await validateHwpxPackage({ workspace, path: outputPath });
+  return {
+    path: outputPath,
+    absolutePath: target,
+    saved: true,
+    mode: "minimal_native_table",
+    message: `HWPX 최소 표 검증 문서를 생성했습니다: ${outputPath}`,
+    templateBacked: true,
+    templatePath,
+    validation,
+  };
+}
+
 function isUnsafeZipPath(name) {
   return name.startsWith("/") || name.startsWith("\\") || /^[A-Za-z]:/.test(name) || name.split(/[\\/]+/).includes("..");
 }
@@ -445,6 +518,7 @@ export async function validateHwpxPackage({
   const tables = sectionTexts.flatMap(extractNativeTables);
   const footer = extractFooterInfo(allSectionXml);
   const nativeStructureValidation = validateNativeStructures({ tables, footer, sectionXml: allSectionXml });
+  const nativeTableWrapperValidation = validateNativeTableWrappers({ tables });
   return {
     path,
     valid: errors.length === 0,
@@ -455,6 +529,9 @@ export async function validateHwpxPackage({
     totalUncompressedBytes,
     native_structure_validation: nativeStructureValidation.passed ? "passed" : "failed",
     native_structure_errors: nativeStructureValidation.errors,
+    native_table_wrapper_validation: nativeTableWrapperValidation.passed ? "passed" : "failed",
+    native_table_wrapper_errors: nativeTableWrapperValidation.errors,
+    native_table_visual_status: "user_confirmation_pending",
     native_visual_check_status: "user_confirmation_pending",
   };
 }
@@ -485,6 +562,7 @@ export async function analyzeHwpxTemplate({ workspace, path }) {
   const tables = sectionTexts.flatMap(extractNativeTables);
   const footer = extractFooterInfo(allSectionXml);
   const nativeStructureValidation = validateNativeStructures({ tables, footer, sectionXml: allSectionXml });
+  const nativeTableWrapperValidation = validateNativeTableWrappers({ tables });
   const placeholders = collectPlaceholders(text);
   const inputCandidates = placeholders.map((placeholder) => ({
     kind: "placeholder",
@@ -511,7 +589,9 @@ export async function analyzeHwpxTemplate({ workspace, path }) {
     footerText: footer.cleanText || unescapeXml(allSectionXml.match(/<!--army-footer:([\s\S]*?)-->/u)?.[1] || ""),
     footer,
     nativeStructureValidation,
+    nativeTableWrapperValidation,
     nativeVisualCheckStatus: "user_confirmation_pending",
+    nativeTableVisualStatus: "user_confirmation_pending",
     images: imageEntries,
     hasHeader: /<hp:header\b|headerText/i.test(allSectionXml),
     hasFooter: /<hp:footer\b|footerText/i.test(allSectionXml),
@@ -701,6 +781,54 @@ function extractParagraphs(xml) {
   return paragraphs;
 }
 
+function tagName(rawTag) {
+  return String(rawTag || "").match(/^<\/?\s*([A-Za-z0-9_:.-]+)/u)?.[1] || "";
+}
+
+function localTagName(name) {
+  return String(name || "").split(":").pop();
+}
+
+function openElementStackBefore(xml, offset) {
+  const stack = [];
+  const tagRegex = /<[^>]+>/g;
+  let match;
+  while ((match = tagRegex.exec(xml)) && match.index < offset) {
+    const token = match[0];
+    if (/^<\?/.test(token) || /^<!--/.test(token) || /^<!/.test(token)) continue;
+    const name = tagName(token);
+    if (!name) continue;
+    if (/^<\//.test(token)) {
+      const local = localTagName(name);
+      for (let index = stack.length - 1; index >= 0; index -= 1) {
+        if (localTagName(stack[index]) === local) {
+          stack.splice(index);
+          break;
+        }
+      }
+      continue;
+    }
+    if (/\/>\s*$/u.test(token)) continue;
+    stack.push(name);
+  }
+  return stack;
+}
+
+function tableWrapperInfo(xml, tableOffset) {
+  const stack = openElementStackBefore(xml, tableOffset);
+  const localStack = stack.map(localTagName);
+  const parent = stack.at(-1) || "";
+  const pathParts = [...stack, "hp:tbl"];
+  return {
+    path: pathParts.join(">"),
+    parent,
+    directSectionChild: localTagName(parent) === "sec",
+    insideParagraph: localStack.includes("p"),
+    insideRun: localStack.includes("run"),
+    insideControl: localStack.includes("ctrl"),
+  };
+}
+
 function extractNativeTables(xml) {
   const tables = [];
   const tableRegex = /<hp:tbl\b([^>]*)>([\s\S]*?)<\/hp:tbl>/g;
@@ -735,6 +863,7 @@ function extractNativeTables(xml) {
     }
     tables.push({
       title: unescapeXml(title),
+      id: attrValue(attrs, "id"),
       rowCount: Number(attrs.match(/rowCnt="(\d+)"/u)?.[1] || rows.length),
       columnCount: Number(attrs.match(/colCnt="(\d+)"/u)?.[1] || rows[0]?.length || 0),
       position: {
@@ -744,6 +873,7 @@ function extractNativeTables(xml) {
         vertRelTo: attrValue(positionAttrs, "vertRelTo"),
         vertAlign: attrValue(positionAttrs, "vertAlign"),
       },
+      wrapper: tableWrapperInfo(xml, tableMatch.index),
       cells,
       rows,
     });
@@ -777,9 +907,33 @@ function validateNativeStructures({ tables, footer, sectionXml }) {
     if (table.rows.length !== table.rowCount) errors.push(`table_${index + 1}_row_count_mismatch`);
     if (table.rows.some((row) => row.length !== table.columnCount)) errors.push(`table_${index + 1}_column_count_mismatch`);
   }
-  if (!footer.actualFooter) errors.push("footer_missing");
-  if (!footer.pageNumberField) errors.push("page_number_field_missing");
-  if (!/<hp:pageHiding\b/u.test(sectionXml)) errors.push("first_page_hiding_missing");
+  const expectsPageStructure = /<hp:(?:footer|header|pageHiding)\b/u.test(sectionXml);
+  if (expectsPageStructure && !footer.actualFooter) errors.push("footer_missing");
+  if (expectsPageStructure && !footer.pageNumberField) errors.push("page_number_field_missing");
+  if (expectsPageStructure && !/<hp:pageHiding\b/u.test(sectionXml)) errors.push("first_page_hiding_missing");
+  return {
+    passed: errors.length === 0,
+    errors,
+  };
+}
+
+function validateNativeTableWrappers({ tables }) {
+  const errors = [];
+  const ids = new Set();
+  for (const [index, table] of tables.entries()) {
+    const ordinal = index + 1;
+    if (table.wrapper.directSectionChild) errors.push(`table_${ordinal}_direct_section_child`);
+    if (!table.wrapper.insideParagraph) errors.push(`table_${ordinal}_paragraph_wrapper_missing`);
+    if (!table.wrapper.insideRun) errors.push(`table_${ordinal}_run_wrapper_missing`);
+    if (table.rows.length !== table.rowCount) errors.push(`table_${ordinal}_row_count_mismatch`);
+    if (table.rows.some((row) => row.length !== table.columnCount)) errors.push(`table_${ordinal}_column_count_mismatch`);
+    if (table.rows.some((row) => row.some((cell) => !String(cell || "").trim()))) errors.push(`table_${ordinal}_empty_cell_text`);
+    const id = table.id;
+    if (id) {
+      if (ids.has(id)) errors.push(`table_${ordinal}_duplicate_id:${id}`);
+      ids.add(id);
+    }
+  }
   return {
     passed: errors.length === 0,
     errors,
@@ -1000,6 +1154,11 @@ async function main() {
       outputPath: argValue(args, "--output-path"),
       documentPlan: await jsonArgOrFileValue(args, "--document-plan", "--document-plan-file"),
     });
+  } else if (command === "hwpx-generate-minimal-table") {
+    result = await generateMinimalNativeTableHwpxDocument({
+      workspace: argValue(args, "--workspace"),
+      outputPath: argValue(args, "--output-path", "release/test-documents/army-claw-hwpx-native-table-minimal.hwpx"),
+    });
   } else if (command === "hwpx-summary") {
     result = await summarizeHwpxDocument({ workspace: argValue(args, "--workspace"), path: argValue(args, "--path") });
   } else if (command === "hwpx-add-paragraph") {
@@ -1007,7 +1166,7 @@ async function main() {
   } else if (command === "open-hwp") {
     result = await openWithHancomHwp({ workspace: argValue(args, "--workspace"), path: argValue(args, "--path") });
   } else {
-    throw new Error("Usage: status | prompt-create | hwpx-create | hwpx-validate | hwpx-analyze-template | hwpx-template-fill | hwpx-auto-generate | hwpx-summary | hwpx-add-paragraph | open-hwp");
+    throw new Error("Usage: status | prompt-create | hwpx-create | hwpx-validate | hwpx-analyze-template | hwpx-template-fill | hwpx-auto-generate | hwpx-generate-minimal-table | hwpx-summary | hwpx-add-paragraph | open-hwp");
   }
   console.log(JSON.stringify(result, null, args.includes("--json") ? 2 : 0));
 }
