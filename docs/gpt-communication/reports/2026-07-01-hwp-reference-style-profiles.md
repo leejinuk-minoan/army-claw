@@ -235,5 +235,5 @@ fail 0
 
 ## 18. 커밋 및 Push
 
-- 커밋 SHA: 커밋 후 갱신
+- 커밋 SHA: `23924cb Add HWP reference style profile samples`
 - GitHub push: push 후 갱신
