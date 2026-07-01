@@ -1,0 +1,61 @@
+{
+  "profile_id": "official_action_plan",
+  "source_file": "reference/hwp-style-samples/official-action-plan-sample.hwp",
+  "converted_hwpx": ".tmp/hwp-reference-conversion/official-action-plan-sample.hwpx",
+  "conversion_status": "pending_runtime_verification",
+  "page": {
+    "width": 0,
+    "height": 0,
+    "margins": {},
+    "expected_minimum_pages": 2
+  },
+  "layout_model": {
+    "mode": "style_profile",
+    "document_control_table": true,
+    "approval_table": true,
+    "native_table_wrapper": "hs:sec>hp:p>hp:run>hp:tbl"
+  },
+  "repeated_regions": [
+    {
+      "role": "header_footer",
+      "fields": ["header", "footer", "page_number"]
+    },
+    {
+      "role": "annex_marker",
+      "fields": ["annex_title", "annex_number"]
+    }
+  ],
+  "table_patterns": [
+    {
+      "role": "approval",
+      "table_style": "approval",
+      "supports_merged_cells": true
+    },
+    {
+      "role": "schedule",
+      "table_style": "schedule",
+      "supports_multi_level_header": true,
+      "supports_merged_cells": true
+    },
+    {
+      "role": "personnel",
+      "table_style": "official_form",
+      "supports_merged_cells": true
+    }
+  ],
+  "paragraph_roles": {
+    "cover_title": true,
+    "heading_1": true,
+    "heading_2": true,
+    "body": true,
+    "bullet_list": true,
+    "numbered_list": true
+  },
+  "header_footer": {
+    "has_header": true,
+    "has_footer": true,
+    "page_number_field": true
+  },
+  "images": [],
+  "visual_status": "user_confirmation_pending"
+}

@@ -27,6 +27,16 @@ const DEFAULT_SECTION_ROOT =
   '<hs:sec xmlns:hp="http://www.hancom.co.kr/hwpml/2011/paragraph" xmlns:hs="http://www.hancom.co.kr/hwpml/2011/section">';
 const DEFAULT_SECTION_SETUP =
   '<hp:secPr id="" textDirection="HORIZONTAL" spaceColumns="1134" tabStop="8000" tabStopVal="4000" tabStopUnit="HWPUNIT" outlineShapeIDRef="1" memoShapeIDRef="0" textVerticalWidthHead="0" masterPageCnt="0"><hp:grid lineGrid="0" charGrid="0" wonggojiFormat="0"/><hp:startNum pageStartsOn="BOTH" page="0" pic="0" tbl="0" equation="0"/><hp:visibility hideFirstHeader="0" hideFirstFooter="0" hideFirstMasterPage="0" border="SHOW_ALL" fill="SHOW_ALL" hideFirstPageNum="0" hideFirstEmptyLine="0" showLineNumber="0"/><hp:lineNumberShape restartType="0" countBy="0" distance="0" startNumber="0"/><hp:pagePr landscape="WIDELY" width="59528" height="84186" gutterType="LEFT_ONLY"><hp:margin header="4252" footer="4252" gutter="0" left="6000" right="6028" top="5668" bottom="4252"/></hp:pagePr><hp:footNotePr><hp:autoNumFormat type="DIGIT" userChar="" prefixChar="" suffixChar=")" supscript="0"/><hp:noteLine length="5683" type="SOLID" width="0.12 mm" color="#000000"/><hp:noteSpacing betweenNotes="0" belowLine="850" aboveNotes="567"/><hp:numbering type="CONTINUOUS"/><hp:placement place="EACH_COLUMN" beneathText="0"/></hp:footNotePr><hp:endNotePr><hp:autoNumFormat type="DIGIT" userChar="" prefixChar="" suffixChar=")" supscript="0"/><hp:noteLine length="5683" type="SOLID" width="0.12 mm" color="#000000"/><hp:noteSpacing betweenNotes="0" belowLine="850" aboveNotes="567"/><hp:numbering type="CONTINUOUS"/><hp:placement place="END_OF_DOCUMENT" beneathText="0"/></hp:endNotePr><hp:pageBorderFill type="BOTH" borderFillIDRef="1" textBorder="CONTENT" headerInside="0" footerInside="0" fillArea="PAPER"/></hp:secPr><hp:ctrl><hp:colPr id="" type="NEWSPAPER" layout="LEFT" colCount="1" sameSz="1" sameGap="0"/></hp:ctrl>';
+const TABLE_STYLE_PROFILES = {
+  grid: { headerBorder: 9, bodyBorder: 10, alternateBorder: 11, tableBorder: 4 },
+  report: { headerBorder: 9, bodyBorder: 10, alternateBorder: 11, tableBorder: 4 },
+  minimal: { headerBorder: 9, bodyBorder: 8, alternateBorder: 8, tableBorder: 4 },
+  official_form: { headerBorder: 9, bodyBorder: 10, alternateBorder: 8, tableBorder: 4 },
+  approval: { headerBorder: 9, bodyBorder: 10, alternateBorder: 10, tableBorder: 4 },
+  schedule: { headerBorder: 9, bodyBorder: 10, alternateBorder: 11, tableBorder: 4 },
+  metadata: { headerBorder: 8, bodyBorder: 8, alternateBorder: 8, tableBorder: 4 },
+  callout: { headerBorder: 7, bodyBorder: 8, alternateBorder: 8, tableBorder: 4 },
+};
 
 export function resolveWorkspacePath(workspace, relativePath) {
   if (!workspace) throw new Error("workspace is required");
@@ -122,48 +132,114 @@ function styledParagraphXml(text, id, { role = "body", includeSectionSetup = "",
   ].join("");
 }
 
-function tableCellXml(text, rowIndex, colIndex, colWidth, role, { borderFillIDRef, height, vertAlign = "CENTER" } = {}) {
+export function validateMergedTableCells({ rows, cols, cells }) {
+  const rowCount = Number(rows || 0);
+  const colCount = Number(cols || 0);
+  if (rowCount <= 0 || colCount <= 0) throw new Error("merged table rows and cols are required");
+  const occupied = new Map();
+  for (const cell of cells || []) {
+    const row = Number(cell.row ?? 0);
+    const col = Number(cell.col ?? 0);
+    const rowSpan = Number(cell.row_span || cell.rowSpan || 1);
+    const colSpan = Number(cell.col_span || cell.colSpan || 1);
+    if (row < 0 || col < 0 || rowSpan <= 0 || colSpan <= 0 || row + rowSpan > rowCount || col + colSpan > colCount) {
+      throw new Error(`merged cell outside table bounds: row=${row}, col=${col}, rowSpan=${rowSpan}, colSpan=${colSpan}`);
+    }
+    for (let rowOffset = 0; rowOffset < rowSpan; rowOffset += 1) {
+      for (let colOffset = 0; colOffset < colSpan; colOffset += 1) {
+        const key = `${row + rowOffset}:${col + colOffset}`;
+        if (occupied.has(key)) throw new Error(`merged cell collision at ${key}`);
+        occupied.set(key, cell);
+      }
+    }
+  }
+  return true;
+}
+
+function normalizedTableRows(table) {
+  if (Array.isArray(table.cells)) {
+    const rowCount = Number(table.rows || 0);
+    const colCount = Number(table.cols || table.columns || 0);
+    validateMergedTableCells({ rows: rowCount, cols: colCount, cells: table.cells });
+    const rows = Array.from({ length: rowCount }, () => []);
+    const byOrigin = new Map();
+    for (const cell of table.cells) byOrigin.set(`${Number(cell.row || 0)}:${Number(cell.col || 0)}`, cell);
+    for (let row = 0; row < rowCount; row += 1) {
+      for (let col = 0; col < colCount; col += 1) {
+        const cell = byOrigin.get(`${row}:${col}`);
+        if (!cell) continue;
+        rows[row].push({
+          text: String(cell.text ?? ""),
+          rowSpan: Number(cell.row_span || cell.rowSpan || 1),
+          colSpan: Number(cell.col_span || cell.colSpan || 1),
+          role: cell.role || (row === 0 ? "header" : "body"),
+          row,
+          col,
+        });
+      }
+    }
+    return { rows, rowCount, colCount };
+  }
+  const rows = [table.headers, ...table.rows].map((row, rowIndex) => row.map((text, colIndex) => ({
+    text,
+    rowSpan: 1,
+    colSpan: 1,
+    role: rowIndex === 0 ? "header" : "body",
+    row: rowIndex,
+    col: colIndex,
+  })));
+  return { rows, rowCount: rows.length, colCount: table.headers.length };
+}
+
+function tableCellXml(text, rowIndex, colIndex, colWidth, role, { borderFillIDRef, height, vertAlign = "CENTER", rowSpan = 1, colSpan = 1 } = {}) {
   const shape = roleShape(role);
   const safeLines = String(text ?? "").split(/\r?\n/);
   const textXml = safeLines.map((line, index) => `${index ? '<hp:lineBreak/>' : ""}<hp:t>${escapeXml(line)}</hp:t>`).join("");
+  const width = colWidth * colSpan;
   return [
     `<hp:tc name="" header="${rowIndex === 0 ? 1 : 0}" hasMargin="1" protect="0" editable="0" dirty="0" borderFillIDRef="${borderFillIDRef || (rowIndex === 0 ? 9 : 10)}">`,
     `<hp:subList id="" textDirection="HORIZONTAL" lineWrap="BREAK" vertAlign="${vertAlign}" linkListIDRef="0" linkListNextIDRef="0" textWidth="0" textHeight="0" hasTextRef="0" hasNumRef="0">`,
     `<hp:p id="0" paraPrIDRef="${shape.paraPr}" styleIDRef="0" pageBreak="0" columnBreak="0" merged="0">`,
     `<!--army-style:${role}-->`,
     `<hp:run charPrIDRef="${shape.charPr}">${textXml}</hp:run>`,
-    `<hp:linesegarray><hp:lineseg textpos="0" vertpos="0" vertsize="1000" textheight="1000" baseline="850" spacing="600" horzpos="0" horzsize="${Math.max(1000, colWidth - 1020)}" flags="393216"/></hp:linesegarray>`,
+    `<hp:linesegarray><hp:lineseg textpos="0" vertpos="0" vertsize="1000" textheight="1000" baseline="850" spacing="600" horzpos="0" horzsize="${Math.max(1000, width - 1020)}" flags="393216"/></hp:linesegarray>`,
     "</hp:p>",
     "</hp:subList>",
     `<hp:cellAddr colAddr="${colIndex}" rowAddr="${rowIndex}"/>`,
-    '<hp:cellSpan colSpan="1" rowSpan="1"/>',
-    `<hp:cellSz width="${colWidth}" height="${height || 282}"/>`,
+    `<hp:cellSpan colSpan="${colSpan}" rowSpan="${rowSpan}"/>`,
+    `<hp:cellSz width="${width}" height="${height || 282 * rowSpan}"/>`,
     `<hp:cellMargin left="510" right="510" top="${rowIndex === 0 ? 600 : 500}" bottom="${rowIndex === 0 ? 600 : 500}"/>`,
     "</hp:tc>",
   ].join("");
 }
 
 function nativeTableObjectXml(table, idSeed = 1, { kind = "table" } = {}) {
-  const rows = [table.headers, ...table.rows];
-  const colCount = table.headers.length;
-  const rowCount = rows.length;
+  const tableStyle = table.table_style || table.tableStyle || (kind === "callout" ? "callout" : "report");
+  const style = TABLE_STYLE_PROFILES[tableStyle] || TABLE_STYLE_PROFILES.report;
+  const { rows, rowCount, colCount } = normalizedTableRows(table);
   const tableWidth = kind === "callout" ? 45355 : 45915;
   const colWidth = Math.floor(tableWidth / Math.max(1, colCount));
   const rowsXml = rows.map((row, rowIndex) => {
-    const role = kind === "callout"
-      ? rowIndex === 0 ? "callout_title" : "callout_body"
-      : rowIndex === 0 ? "table_header" : "table_body";
-    const borderFillIDRef = kind === "callout" ? (rowIndex === 0 ? 7 : 8) : (rowIndex === 0 ? 9 : rowIndex % 2 ? 10 : 11);
-    const cells = row.map((cell, colIndex) => tableCellXml(cell, rowIndex, colIndex, colWidth, role, {
+    const cells = row.map((cell) => {
+      const header = cell.role === "header" || rowIndex === 0;
+      const role = kind === "callout"
+        ? header ? "callout_title" : "callout_body"
+        : header ? "table_header" : "table_body";
+      const borderFillIDRef = header ? style.headerBorder : rowIndex % 2 ? style.bodyBorder : style.alternateBorder;
+      return tableCellXml(cell.text, cell.row ?? rowIndex, cell.col ?? 0, colWidth, role, {
       borderFillIDRef,
       vertAlign: kind === "callout" ? "TOP" : "CENTER",
-    })).join("");
+      rowSpan: cell.rowSpan,
+      colSpan: cell.colSpan,
+    });
+    }).join("");
     return `<hp:tr>${cells}</hp:tr>`;
   }).join("");
   return [
     `<!--army-table-title:${escapeXml(table.title)}-->`,
+    `<!--army-table-style:${escapeXml(tableStyle)}-->`,
     `<!--army-style:table_body-->`,
-    `<hp:tbl id="${1443000000 + idSeed}" zOrder="${idSeed}" numberingType="TABLE" textWrap="TOP_AND_BOTTOM" textFlow="BOTH_SIDES" lock="0" dropcapstyle="None" pageBreak="CELL" repeatHeader="1" rowCnt="${rowCount}" colCnt="${colCount}" cellSpacing="0" borderFillIDRef="4" noAdjust="0">`,
+    `<hp:tbl id="${1443000000 + idSeed}" zOrder="${idSeed}" numberingType="TABLE" textWrap="TOP_AND_BOTTOM" textFlow="BOTH_SIDES" lock="0" dropcapstyle="None" pageBreak="CELL" repeatHeader="1" rowCnt="${rowCount}" colCnt="${colCount}" cellSpacing="0" borderFillIDRef="${style.tableBorder}" noAdjust="0">`,
     `<hp:sz width="${tableWidth}" widthRelTo="ABSOLUTE" height="${kind === "callout" ? 9545 : rowCount * 3760}" heightRelTo="ABSOLUTE" protect="0"/>`,
     '<hp:pos treatAsChar="0" affectLSpacing="0" flowWithText="1" allowOverlap="0" holdAnchorAndSO="0" vertRelTo="PARA" horzRelTo="COLUMN" vertAlign="TOP" horzAlign="CENTER" vertOffset="0" horzOffset="0"/>',
     '<hp:outMargin left="141" right="141" top="141" bottom="141"/>',
@@ -273,6 +349,132 @@ function minimalNativeTableSectionXml({ templateSectionXml }) {
     styledParagraphXml("표 아래 본문 문단입니다.", 4, { role: "body" }),
   ];
   return `<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>${rootOpen}${body.join("")}</${rootName}>`;
+}
+
+function mergedTable({ title, table_style, rows, cols, cells }) {
+  return { title, table_style, rows, cols, cells };
+}
+
+function qualificationReviewSampleSectionXml({ templateSectionXml }) {
+  const { rootOpen, rootName, sectionSetup } = templateSectionParts(templateSectionXml);
+  const parts = [`<!--army-reference-profile:qualification_review_booklet-->`];
+  let paraId = 1;
+  let tableId = 1;
+  const addParagraph = (text, options = {}) => {
+    parts.push(styledParagraphXml(text, paraId, options));
+    paraId += 1;
+  };
+  const addTable = (table) => {
+    parts.push(nativeTableParagraphXml(table, paraId, tableId));
+    paraId += 1;
+    tableId += 1;
+  };
+
+  addParagraph("Army Claw 표준문서 자동화 개발", { role: "cover_title", includeSectionSetup: sectionSetup });
+  addParagraph("Army Claw 개발팀", { role: "cover_subtitle" });
+  addParagraph("주 2-1", { role: "heading_2", pageBreakBefore: true });
+  addParagraph("문서 자동화 기반 구축 현황 (1/2)", { role: "heading_1" });
+  addTable(mergedTable({
+    title: "반복 요약 블록",
+    table_style: "report",
+    rows: 4,
+    cols: 2,
+    cells: [
+      { row: 0, col: 0, col_span: 2, text: "공통 요약", role: "header" },
+      { row: 1, col: 0, text: "개요", role: "header" },
+      { row: 1, col: 1, text: "로컬 LLM 기반 한글 문서 자동화 기능을 구축한다." },
+      { row: 2, col: 0, text: "현 실태", role: "header" },
+      { row: 2, col: 1, text: "일반 표와 업무용 양식 표현력이 제한적이다." },
+      { row: 3, col: 0, text: "개선", role: "header" },
+      { row: 3, col: 1, text: "HWPX wrapper, 표 스타일, 병합 셀을 단계적으로 확장한다." },
+    ],
+  }));
+  addParagraph("보조 2-1", { role: "footer" });
+  addParagraph("주 2-2", { role: "heading_2", pageBreakBefore: true });
+  addParagraph("양식 프로필 구현 결과 (2/2)", { role: "heading_1" });
+  addParagraph("프로필 기반 렌더러는 공통 데이터와 페이지별 데이터를 분리해 반복 레이아웃을 구성한다.", { role: "body" });
+  addTable(mergedTable({
+    title: "기능 검증 표",
+    table_style: "report",
+    rows: 3,
+    cols: 3,
+    cells: [
+      { row: 0, col: 0, row_span: 2, text: "구분", role: "header" },
+      { row: 0, col: 1, col_span: 2, text: "검증 내용", role: "header" },
+      { row: 1, col: 1, text: "구조", role: "header" },
+      { row: 1, col: 2, text: "결과", role: "header" },
+      { row: 2, col: 0, text: "표현 엔진" },
+      { row: 2, col: 1, text: "병합 셀과 표 wrapper" },
+      { row: 2, col: 2, text: "구현" },
+    ],
+  }));
+  addParagraph("보조 2-2", { role: "footer" });
+  return `<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>${rootOpen}${parts.join("")}</${rootName}>`;
+}
+
+function officialActionPlanSampleSectionXml({ templateSectionXml }) {
+  const { rootOpen, rootName, sectionSetup } = templateSectionParts(templateSectionXml);
+  const parts = [`<!--army-reference-profile:official_action_plan-->`];
+  let paraId = 1;
+  let tableId = 1;
+  const addParagraph = (text, options = {}) => {
+    parts.push(styledParagraphXml(text, paraId, options));
+    paraId += 1;
+  };
+  const addTable = (table) => {
+    parts.push(nativeTableParagraphXml(table, paraId, tableId));
+    paraId += 1;
+    tableId += 1;
+  };
+
+  addTable(mergedTable({
+    title: "문서관리 및 결재 정보",
+    table_style: "approval",
+    rows: 3,
+    cols: 4,
+    cells: [
+      { row: 0, col: 0, text: "등록번호", role: "header" },
+      { row: 0, col: 1, text: "ARMY-CLAW-2026-01" },
+      { row: 0, col: 2, text: "결재", role: "header" },
+      { row: 0, col: 3, text: "검토" },
+      { row: 1, col: 0, text: "보존기간", role: "header" },
+      { row: 1, col: 1, text: "영구" },
+      { row: 1, col: 2, text: "공개구분", role: "header" },
+      { row: 1, col: 3, text: "공개" },
+      { row: 2, col: 0, text: "협조", role: "header" },
+      { row: 2, col: 1, col_span: 3, text: "개발, 검증, 문서화" },
+    ],
+  }));
+  addParagraph("Army Claw 표준문서 자동화 기능 검증 계획", { role: "cover_title", includeSectionSetup: sectionSetup });
+  addParagraph("HWP 기준 양식 분석 및 HWPX 자동 생성 기능 검증을 위한 계획임.", { role: "body" });
+  addParagraph("1. 목적", { role: "heading_1" });
+  addParagraph("한글 2024에서 열리는 업무문서형 HWPX 생성 기반을 확보한다.", { role: "body" });
+  addParagraph("2. 방침", { role: "heading_1" });
+  addParagraph("원본 HWP는 보존하고 변환 HWPX 분석 결과를 프로필로 축약한다.", { role: "body" });
+  addParagraph("3. 세부계획", { role: "heading_1", pageBreakBefore: true });
+  addTable(mergedTable({
+    title: "일정별 진행 계획",
+    table_style: "schedule",
+    rows: 4,
+    cols: 4,
+    cells: [
+      { row: 0, col: 0, row_span: 2, text: "구분", role: "header" },
+      { row: 0, col: 1, col_span: 2, text: "주요 내용", role: "header" },
+      { row: 0, col: 3, row_span: 2, text: "비고", role: "header" },
+      { row: 1, col: 1, text: "작업", role: "header" },
+      { row: 1, col: 2, text: "검증", role: "header" },
+      { row: 2, col: 0, text: "1단계" },
+      { row: 2, col: 1, text: "HWPX 변환" },
+      { row: 2, col: 2, text: "구조 분석" },
+      { row: 2, col: 3, text: "완료" },
+      { row: 3, col: 0, text: "2단계" },
+      { row: 3, col: 1, text: "샘플 생성" },
+      { row: 3, col: 2, text: "한글 시각 확인" },
+      { row: 3, col: 3, text: "대기" },
+    ],
+  }));
+  addParagraph("붙임: HWP reference manifest 2부.", { role: "body" });
+  return `<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>${rootOpen}${parts.join("")}</${rootName}>`;
 }
 
 function documentPlanSectionXml({ plan, templateSectionXml }) {
@@ -429,6 +631,46 @@ export async function generateMinimalNativeTableHwpxDocument({
   };
 }
 
+export async function generateReferenceProfileSample({
+  workspace,
+  outputPath,
+  profileId,
+} = {}) {
+  requireHwpxPath(outputPath);
+  if (!["qualification_review_booklet", "official_action_plan"].includes(profileId)) {
+    throw new Error(`unsupported reference profile: ${profileId}`);
+  }
+  const templatePath = await findHancomHwpxTemplate();
+  if (!templatePath) throw new Error("한컴 2024 호환 HWPX 템플릿을 찾지 못했습니다. 사용자 양식을 지정하거나 한컴오피스 설치 상태를 확인하십시오.");
+  const target = resolveWorkspacePath(workspace, outputPath);
+  await mkdir(dirname(target), { recursive: true });
+
+  const templateZip = await JSZip.loadAsync(await readFile(templatePath));
+  const templateSectionXml = await readZipText(templateZip, HWPX_SECTION_PATH);
+  const title = profileId === "qualification_review_booklet"
+    ? "Army Claw 표준문서 자동화 개발"
+    : "Army Claw 표준문서 자동화 기능 검증 계획";
+  const sectionXml = profileId === "qualification_review_booklet"
+    ? qualificationReviewSampleSectionXml({ templateSectionXml })
+    : officialActionPlanSampleSectionXml({ templateSectionXml });
+  templateZip.file("mimetype", HWPX_MIMETYPE, { compression: "STORE" });
+  templateZip.file(HWPX_SECTION_PATH, sectionXml);
+  templateZip.file("Preview/PrvText.txt", extractParagraphs(sectionXml).join("\r\n"));
+  await updateContentHpfTitle(templateZip, title);
+  await writeFile(target, await templateZip.generateAsync({ type: "nodebuffer", compression: "DEFLATE" }));
+  const validation = await validateHwpxPackage({ workspace, path: outputPath });
+  return {
+    path: outputPath,
+    absolutePath: target,
+    saved: true,
+    mode: "reference_profile_sample",
+    profileId,
+    templateBacked: true,
+    templatePath,
+    validation,
+  };
+}
+
 function isUnsafeZipPath(name) {
   return name.startsWith("/") || name.startsWith("\\") || /^[A-Za-z]:/.test(name) || name.split(/[\\/]+/).includes("..");
 }
@@ -563,6 +805,7 @@ export async function analyzeHwpxTemplate({ workspace, path }) {
   const footer = extractFooterInfo(allSectionXml);
   const nativeStructureValidation = validateNativeStructures({ tables, footer, sectionXml: allSectionXml });
   const nativeTableWrapperValidation = validateNativeTableWrappers({ tables });
+  const referenceProfile = unescapeXml(allSectionXml.match(/<!--army-reference-profile:([\s\S]*?)-->/u)?.[1] || "");
   const placeholders = collectPlaceholders(text);
   const inputCandidates = placeholders.map((placeholder) => ({
     kind: "placeholder",
@@ -584,6 +827,7 @@ export async function analyzeHwpxTemplate({ workspace, path }) {
     text,
     tableCount: tables.length,
     tables,
+    referenceProfile,
     pageBreakCount: (allSectionXml.match(/pageBreak="1"/g) || []).length,
     styleRoles: [...new Set([...allSectionXml.matchAll(/<!--army-style:([a-z0-9_]+)-->/gi)].map((item) => item[1]))],
     footerText: footer.cleanText || unescapeXml(allSectionXml.match(/<!--army-footer:([\s\S]*?)-->/u)?.[1] || ""),
@@ -838,6 +1082,9 @@ function extractNativeTables(xml) {
     const titleStart = prefix.lastIndexOf("<!--army-table-title:");
     const titleEnd = titleStart >= 0 ? prefix.indexOf("-->", titleStart) : -1;
     const title = titleStart >= 0 && titleEnd >= 0 ? prefix.slice(titleStart + "<!--army-table-title:".length, titleEnd) : "";
+    const styleStart = prefix.lastIndexOf("<!--army-table-style:");
+    const styleEnd = styleStart >= 0 ? prefix.indexOf("-->", styleStart) : -1;
+    const tableStyle = styleStart >= 0 && styleEnd >= 0 ? prefix.slice(styleStart + "<!--army-table-style:".length, styleEnd) : "";
     const attrs = tableMatch[1] || "";
     const body = tableMatch[2] || "";
     const positionAttrs = body.match(/<hp:pos\b([^>]*)\/>/u)?.[1] || "";
@@ -851,11 +1098,17 @@ function extractNativeTables(xml) {
       let cellMatch;
       while ((cellMatch = cellRegex.exec(rowMatch[1]))) {
         const cellAttrs = cellMatch[0].match(/<hp:tc\b([^>]*)>/u)?.[1] || "";
+        const cellAddrAttrs = cellMatch[1].match(/<hp:cellAddr\b([^>]*)\/>/u)?.[1] || "";
+        const cellSpanAttrs = cellMatch[1].match(/<hp:cellSpan\b([^>]*)\/>/u)?.[1] || "";
         const text = extractParagraphs(cellMatch[1]).join("\n");
         cells.push({
           text,
           hasMargin: attrValue(cellAttrs, "hasMargin"),
           borderFillIDRef: attrValue(cellAttrs, "borderFillIDRef"),
+          rowAddr: Number(attrValue(cellAddrAttrs, "rowAddr") || cells.length),
+          colAddr: Number(attrValue(cellAddrAttrs, "colAddr") || rowCells.length),
+          rowSpan: Number(attrValue(cellSpanAttrs, "rowSpan") || 1),
+          colSpan: Number(attrValue(cellSpanAttrs, "colSpan") || 1),
         });
         rowCells.push(text);
       }
@@ -863,6 +1116,7 @@ function extractNativeTables(xml) {
     }
     tables.push({
       title: unescapeXml(title),
+      style: unescapeXml(tableStyle),
       id: attrValue(attrs, "id"),
       rowCount: Number(attrs.match(/rowCnt="(\d+)"/u)?.[1] || rows.length),
       columnCount: Number(attrs.match(/colCnt="(\d+)"/u)?.[1] || rows[0]?.length || 0),
@@ -876,6 +1130,7 @@ function extractNativeTables(xml) {
       wrapper: tableWrapperInfo(xml, tableMatch.index),
       cells,
       rows,
+      hasMergedCells: cells.some((cell) => cell.rowSpan > 1 || cell.colSpan > 1),
     });
   }
   return tables;
@@ -905,7 +1160,8 @@ function validateNativeStructures({ tables, footer, sectionXml }) {
     if (table.position.horzAlign !== "CENTER") errors.push(`table_${index + 1}_horzAlign_not_center`);
     if (!table.cells.every((cell) => cell.hasMargin === "1")) errors.push(`table_${index + 1}_cell_margin_missing`);
     if (table.rows.length !== table.rowCount) errors.push(`table_${index + 1}_row_count_mismatch`);
-    if (table.rows.some((row) => row.length !== table.columnCount)) errors.push(`table_${index + 1}_column_count_mismatch`);
+    if (!table.hasMergedCells && table.rows.some((row) => row.length !== table.columnCount)) errors.push(`table_${index + 1}_column_count_mismatch`);
+    errors.push(...validateExtractedCellSpans(table, index + 1));
   }
   const expectsPageStructure = /<hp:(?:footer|header|pageHiding)\b/u.test(sectionXml);
   if (expectsPageStructure && !footer.actualFooter) errors.push("footer_missing");
@@ -917,6 +1173,29 @@ function validateNativeStructures({ tables, footer, sectionXml }) {
   };
 }
 
+function validateExtractedCellSpans(table, ordinal) {
+  const errors = [];
+  const occupied = new Set();
+  for (const cell of table.cells) {
+    const row = Number(cell.rowAddr || 0);
+    const col = Number(cell.colAddr || 0);
+    const rowSpan = Number(cell.rowSpan || 1);
+    const colSpan = Number(cell.colSpan || 1);
+    if (row < 0 || col < 0 || row + rowSpan > table.rowCount || col + colSpan > table.columnCount) {
+      errors.push(`table_${ordinal}_cell_span_out_of_bounds`);
+      continue;
+    }
+    for (let rowOffset = 0; rowOffset < rowSpan; rowOffset += 1) {
+      for (let colOffset = 0; colOffset < colSpan; colOffset += 1) {
+        const key = `${row + rowOffset}:${col + colOffset}`;
+        if (occupied.has(key)) errors.push(`table_${ordinal}_cell_span_collision`);
+        occupied.add(key);
+      }
+    }
+  }
+  return [...new Set(errors)];
+}
+
 function validateNativeTableWrappers({ tables }) {
   const errors = [];
   const ids = new Set();
@@ -926,7 +1205,8 @@ function validateNativeTableWrappers({ tables }) {
     if (!table.wrapper.insideParagraph) errors.push(`table_${ordinal}_paragraph_wrapper_missing`);
     if (!table.wrapper.insideRun) errors.push(`table_${ordinal}_run_wrapper_missing`);
     if (table.rows.length !== table.rowCount) errors.push(`table_${ordinal}_row_count_mismatch`);
-    if (table.rows.some((row) => row.length !== table.columnCount)) errors.push(`table_${ordinal}_column_count_mismatch`);
+    if (!table.hasMergedCells && table.rows.some((row) => row.length !== table.columnCount)) errors.push(`table_${ordinal}_column_count_mismatch`);
+    errors.push(...validateExtractedCellSpans(table, ordinal));
     if (table.rows.some((row) => row.some((cell) => !String(cell || "").trim()))) errors.push(`table_${ordinal}_empty_cell_text`);
     const id = table.id;
     if (id) {
@@ -1159,6 +1439,12 @@ async function main() {
       workspace: argValue(args, "--workspace"),
       outputPath: argValue(args, "--output-path", "release/test-documents/army-claw-hwpx-native-table-minimal.hwpx"),
     });
+  } else if (command === "hwpx-generate-reference-profile") {
+    result = await generateReferenceProfileSample({
+      workspace: argValue(args, "--workspace"),
+      outputPath: argValue(args, "--output-path"),
+      profileId: argValue(args, "--profile-id"),
+    });
   } else if (command === "hwpx-summary") {
     result = await summarizeHwpxDocument({ workspace: argValue(args, "--workspace"), path: argValue(args, "--path") });
   } else if (command === "hwpx-add-paragraph") {
@@ -1166,7 +1452,7 @@ async function main() {
   } else if (command === "open-hwp") {
     result = await openWithHancomHwp({ workspace: argValue(args, "--workspace"), path: argValue(args, "--path") });
   } else {
-    throw new Error("Usage: status | prompt-create | hwpx-create | hwpx-validate | hwpx-analyze-template | hwpx-template-fill | hwpx-auto-generate | hwpx-generate-minimal-table | hwpx-summary | hwpx-add-paragraph | open-hwp");
+    throw new Error("Usage: status | prompt-create | hwpx-create | hwpx-validate | hwpx-analyze-template | hwpx-template-fill | hwpx-auto-generate | hwpx-generate-minimal-table | hwpx-generate-reference-profile | hwpx-summary | hwpx-add-paragraph | open-hwp");
   }
   console.log(JSON.stringify(result, null, args.includes("--json") ? 2 : 0));
 }

@@ -1,0 +1,62 @@
+{
+  "profile_id": "qualification_review_booklet",
+  "source_file": "reference/hwp-style-samples/pk-table-qualification-review.hwp",
+  "converted_hwpx": ".tmp/hwp-reference-conversion/pk-table-qualification-review.hwpx",
+  "conversion_status": "pending_runtime_verification",
+  "page": {
+    "width": 0,
+    "height": 0,
+    "margins": {},
+    "expected_minimum_pages": 2
+  },
+  "layout_model": {
+    "mode": "style_profile",
+    "repeat_summary_block": true,
+    "page_code_pattern": "주 {total}-{page}",
+    "footer_code_pattern": "보조 {total}-{page}",
+    "native_table_wrapper": "hs:sec>hp:p>hp:run>hp:tbl"
+  },
+  "repeated_regions": [
+    {
+      "role": "summary_block",
+      "fields": ["overview", "current_problem", "improvement", "expected_effects"]
+    },
+    {
+      "role": "page_identifier",
+      "fields": ["page_code", "footer_code", "current_page", "total_pages"]
+    }
+  ],
+  "table_patterns": [
+    {
+      "role": "summary",
+      "table_style": "report",
+      "supports_merged_cells": true
+    },
+    {
+      "role": "result_metrics",
+      "table_style": "report",
+      "supports_multi_level_header": true,
+      "supports_merged_cells": true
+    }
+  ],
+  "paragraph_roles": {
+    "cover_title": true,
+    "cover_subtitle": true,
+    "heading_1": true,
+    "heading_2": true,
+    "body": true,
+    "footer": true
+  },
+  "header_footer": {
+    "page_code": true,
+    "footer_code": true,
+    "page_number_text": true
+  },
+  "images": [
+    {
+      "role": "diagram_placeholder",
+      "required": false
+    }
+  ],
+  "visual_status": "user_confirmation_pending"
+}
