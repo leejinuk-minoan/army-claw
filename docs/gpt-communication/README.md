@@ -39,31 +39,35 @@ docs/gpt-communication/opinions/
 ### 최신 필수 의견
 
 ```text
-docs/gpt-communication/opinions/2026-07-01-hwpx-v2-native-reference-review.md
+docs/gpt-communication/opinions/2026-07-01-hwpx-v3-minimal-table-next-step.md
 ```
 
 이 문서는 다음 내용을 포함한다.
 
-- v2 HWPX의 한글 2024 시각 검증 실패 결과
-- XML에는 존재하지만 렌더링되지 않은 표와 callout 판정
-- 사용자가 정상 확인한 네이티브 기준 HWPX 경로
-- native reference와 v2를 비교해 v3 렌더러를 구현하는 순서
-- backend 연결을 보류해야 하는 이유
+- v3의 한글 2024 시각 검증 결과
+- 성공한 page structure, header, footer, PAGE 구조
+- 여전히 화면에 나타나지 않는 일반 표와 callout 판정
+- 표 내부 속성보다 부모 문단·run·control 구조가 원인일 가능성
+- 전체 v4보다 최소 표 문서를 먼저 성공시켜야 하는 이유
+- 최소 표 완료 조건과 사용자 확인 기준
 
-Codex는 HWPX v3 작업을 시작하기 전에 반드시 이 문서를 읽고, 반영 계획을 먼저 출력한다.
+Codex는 HWPX 최소 표 렌더링 작업을 시작하기 전에 반드시 이 문서를 읽고 반영 계획을 먼저 출력한다.
 
-### 이전 의견
+### 관련 이전 의견
 
 ```text
+docs/gpt-communication/opinions/2026-07-01-hwpx-v2-native-reference-review.md
+
 docs/gpt-communication/opinions/2026-06-30-hwpx-document-rendering-engine-review.md
 ```
 
-이 문서는 baseline HWPX의 시각적 문제와 최초 문서 표현 엔진 구현 우선순위를 정리한다.
+이전 문서는 v2와 baseline 시각 문제, native reference 확보와 v3 구현 방향을 정리한다.
 
 ## 현재 기준
 
 - 저장소: `leejinuk-minoan/army-claw`
-- 주 작업 브랜치: `feature/hwpx-worker-integration-and-native-table`
+- 주 작업 브랜치: `feature/hwpx-native-reference-v3`
+- 이전 작업 브랜치: `feature/hwpx-worker-integration-and-native-table`
 - 이전 기능 브랜치: `feature/hwpx-template-and-auto-documents`
 - 한컴 2024 호환성 보존 브랜치: `fix/hwpx-hancom-2024-compat`
 - 기본 문서 언어: 한글
