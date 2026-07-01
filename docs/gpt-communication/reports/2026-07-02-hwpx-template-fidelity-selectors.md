@@ -269,5 +269,8 @@ C:\Users\USER\Desktop\로컬 open claw 만들기\release\test-documents\army-cla
 
 ## 15. 커밋 및 push
 
-- 커밋 SHA: 작업 종료 후 갱신 예정
-- push 결과: 작업 종료 후 갱신 예정
+- 구현 커밋 SHA: `199bd4e`
+- 커밋 메시지: `Add strict HWPX template fidelity selectors`
+- push 대상: `origin/feature/hwpx-template-fidelity-selectors`
+- push 결과: 완료
+- PR 생성 URL: `https://github.com/leejinuk-minoan/army-claw/pull/new/feature/hwpx-template-fidelity-selectors`
