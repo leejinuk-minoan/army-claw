@@ -192,8 +192,8 @@
     {
       "role": "table_3",
       "title": "",
-      "rows": 1,
-      "cols": 1,
+      "rows": 7,
+      "cols": 2,
       "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
       "border_style": "unknown",
       "merged_cells": []
@@ -210,8 +210,8 @@
     {
       "role": "table_5",
       "title": "",
-      "rows": 4,
-      "cols": 4,
+      "rows": 2,
+      "cols": 2,
       "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
       "border_style": "unknown",
       "merged_cells": []
@@ -227,6 +227,33 @@
     },
     {
       "role": "table_7",
+      "title": "",
+      "rows": 1,
+      "cols": 1,
+      "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
+      "border_style": "unknown",
+      "merged_cells": []
+    },
+    {
+      "role": "table_8",
+      "title": "",
+      "rows": 4,
+      "cols": 4,
+      "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
+      "border_style": "unknown",
+      "merged_cells": []
+    },
+    {
+      "role": "table_9",
+      "title": "",
+      "rows": 1,
+      "cols": 1,
+      "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
+      "border_style": "unknown",
+      "merged_cells": []
+    },
+    {
+      "role": "table_10",
       "title": "",
       "rows": 15,
       "cols": 4,
@@ -264,7 +291,7 @@
       ]
     },
     {
-      "role": "table_8",
+      "role": "table_11",
       "title": "",
       "rows": 1,
       "cols": 1,
@@ -273,7 +300,7 @@
       "merged_cells": []
     },
     {
-      "role": "table_9",
+      "role": "table_12",
       "title": "",
       "rows": 6,
       "cols": 16,
@@ -437,37 +464,10 @@
       ]
     },
     {
-      "role": "table_10",
-      "title": "",
-      "rows": 1,
-      "cols": 1,
-      "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
-      "border_style": "unknown",
-      "merged_cells": []
-    },
-    {
-      "role": "table_11",
-      "title": "",
-      "rows": 7,
-      "cols": 2,
-      "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
-      "border_style": "unknown",
-      "merged_cells": []
-    },
-    {
-      "role": "table_12",
-      "title": "",
-      "rows": 1,
-      "cols": 1,
-      "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
-      "border_style": "unknown",
-      "merged_cells": []
-    },
-    {
       "role": "table_13",
       "title": "",
-      "rows": 2,
-      "cols": 2,
+      "rows": 1,
+      "cols": 1,
       "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
       "border_style": "unknown",
       "merged_cells": []

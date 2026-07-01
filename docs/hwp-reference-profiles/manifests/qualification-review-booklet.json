@@ -85,7 +85,7 @@
       "page_break_count": 0,
       "section_count": 1
     },
-    "table_count": 41,
+    "table_count": 43,
     "repeated_region_count": 20,
     "header_footer": {
       "has_header": false,
@@ -140,7 +140,7 @@
         "role": "table_3",
         "title": "",
         "rows": 1,
-        "cols": 2,
+        "cols": 1,
         "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
         "border_style": "unknown",
         "merged_cells": []
@@ -149,7 +149,7 @@
         "role": "table_4",
         "title": "",
         "rows": 1,
-        "cols": 1,
+        "cols": 2,
         "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
         "border_style": "unknown",
         "merged_cells": []
@@ -166,17 +166,32 @@
       {
         "role": "table_6",
         "title": "",
-        "rows": 1,
-        "cols": 2,
+        "rows": 4,
+        "cols": 3,
         "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
         "border_style": "unknown",
-        "merged_cells": []
+        "merged_cells": [
+          {
+            "row": 0,
+            "col": 0,
+            "row_span": 4,
+            "col_span": 1,
+            "text": ""
+          },
+          {
+            "row": 0,
+            "col": 2,
+            "row_span": 4,
+            "col_span": 1,
+            "text": ""
+          }
+        ]
       },
       {
         "role": "table_7",
         "title": "",
         "rows": 1,
-        "cols": 1,
+        "cols": 2,
         "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
         "border_style": "unknown",
         "merged_cells": []
@@ -185,7 +200,7 @@
         "role": "table_8",
         "title": "",
         "rows": 1,
-        "cols": 1,
+        "cols": 2,
         "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
         "border_style": "unknown",
         "merged_cells": []
@@ -208,7 +223,7 @@
     {
       "field": "table_patterns",
       "expected": 2,
-      "observed": 41,
+      "observed": 43,
       "verification": "observed_summary_only"
     }
   ],

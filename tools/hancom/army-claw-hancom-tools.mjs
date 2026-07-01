@@ -648,6 +648,81 @@ function textFromXmlFragment(xml) {
   return texts.join("");
 }
 
+function tagElements(xml, localName, baseOffset = 0) {
+  const elements = [];
+  const regex = new RegExp(`<\\/?(?:\\w+:)?${localName}\\b[^>]*>`, "g");
+  const stack = [];
+  let root = null;
+  let match;
+  while ((match = regex.exec(xml))) {
+    const tag = match[0];
+    const selfClosing = /\/>\s*$/u.test(tag);
+    const closing = /^<\//u.test(tag);
+    if (!closing) {
+      const item = {
+        start: baseOffset + match.index,
+        openEnd: baseOffset + regex.lastIndex,
+        attrs: tag.match(/^<[^>\s]+\s*([^>]*)\/?>$/u)?.[1]?.replace(/\/$/u, "").trim() || "",
+      };
+      if (!stack.length) root = item;
+      if (!selfClosing) stack.push(item);
+      else if (!stack.length) {
+        elements.push({ ...item, bodyStart: item.openEnd, bodyEnd: item.openEnd, end: item.openEnd, body: "", full: tag });
+        root = null;
+      }
+    } else if (stack.length) {
+      stack.pop();
+      if (!stack.length && root) {
+        const end = baseOffset + regex.lastIndex;
+        elements.push({
+          ...root,
+          bodyStart: root.openEnd,
+          bodyEnd: baseOffset + match.index,
+          end,
+          body: xml.slice(root.openEnd - baseOffset, match.index),
+          full: xml.slice(root.start - baseOffset, end - baseOffset),
+        });
+        root = null;
+      }
+    }
+  }
+  return elements;
+}
+
+function removeNestedTables(xml) {
+  let result = xml;
+  for (const table of tagElements(xml, "tbl").sort((a, b) => b.start - a.start)) {
+    result = `${result.slice(0, table.start)}${result.slice(table.end)}`;
+  }
+  return result;
+}
+
+function collectParagraphElements(xml, sectionIndex = 0, baseOffset = 0) {
+  const collected = [];
+  function visit(fragment, offset) {
+    for (const paragraph of tagElements(fragment, "p", offset)) {
+      const nestedParagraphs = tagElements(paragraph.body, "p", paragraph.bodyStart);
+      if (nestedParagraphs.length) {
+        visit(paragraph.body, paragraph.bodyStart);
+      } else {
+        collected.push({
+          type: "paragraph",
+          section: sectionIndex,
+          paragraph_index: collected.length,
+          paragraph_id: attrValue(paragraph.attrs, "id") || String(collected.length),
+          start: paragraph.start,
+          end: paragraph.end,
+          text: textFromXmlFragment(paragraph.full),
+          xml: paragraph.full,
+          char_pr_ids: [...new Set((paragraph.full.match(/charPrIDRef="[^"]+"/g) || []).map((item) => item.slice(13, -1)))],
+        });
+      }
+    }
+  }
+  visit(xml, baseOffset);
+  return collected;
+}
+
 function replaceFirstTextRun(fragment, replacementText) {
   let replaced = false;
   return fragment.replace(/(<(?:\w+:)?(?:t|text)\b[^>]*>)([\s\S]*?)(<\/(?:\w+:)?(?:t|text)>)/g, (full, open, text, close) => {
@@ -659,18 +734,172 @@ function replaceFirstTextRun(fragment, replacementText) {
   });
 }
 
-function replaceParagraphTextInSectionXml(xml, replacement) {
-  const selector = replacement.selector || {};
-  if (selector.type !== "paragraph_text") throw new Error(`unsupported template fidelity selector: ${selector.type}`);
-  const sourceText = String(selector.source_text || "");
-  const replacementText = String(replacement.replacement_text ?? "");
-  let applied = 0;
-  const nextXml = xml.replace(/<hp:p\b[^>]*>[\s\S]*?<\/hp:p>/g, (paragraphXml) => {
-    if (textFromXmlFragment(paragraphXml) !== sourceText) return paragraphXml;
-    applied += 1;
-    return replaceFirstTextRun(paragraphXml, replacementText);
+function selectedByOccurrence(matches, selector) {
+  const occurrence = Number(selector.occurrence || 0);
+  if (!occurrence) return matches;
+  if (occurrence < 1 || occurrence > matches.length) return [];
+  return [matches[occurrence - 1]];
+}
+
+function lengthWarning(sourceText, replacementText, overflowPolicy = "warn") {
+  const sourceLength = Math.max(1, String(sourceText || "").length);
+  const replacementLength = String(replacementText || "").length;
+  const ratio = replacementLength / sourceLength;
+  const overflowRisk = ratio <= 1.2 ? "low" : ratio <= 1.5 ? "medium" : "high";
+  return {
+    source_character_count: String(sourceText || "").length,
+    replacement_character_count: replacementLength,
+    length_ratio: Number(ratio.toFixed(2)),
+    overflow_risk: overflowRisk,
+    overflow_policy: overflowPolicy,
+  };
+}
+
+function assertMatchCount(selector, matches, selected, errors, selectorIndex) {
+  const count = matches.length;
+  if (selector.expected_matches !== undefined && count !== Number(selector.expected_matches)) {
+    errors.push(`selector_${selectorIndex}_expected_matches ${selector.expected_matches} actual ${count}`);
+  }
+  if (selector.expected_matches_min !== undefined && count < Number(selector.expected_matches_min)) {
+    errors.push(`selector_${selectorIndex}_expected_matches_min ${selector.expected_matches_min} actual ${count}`);
+  }
+  if (selector.expected_matches_max !== undefined && count > Number(selector.expected_matches_max)) {
+    errors.push(`selector_${selectorIndex}_expected_matches_max ${selector.expected_matches_max} actual ${count}`);
+  }
+  if (selector.occurrence !== undefined && !selected.length) {
+    errors.push(`selector_${selectorIndex}_occurrence_out_of_range ${selector.occurrence}`);
+  }
+}
+
+function selectorMode(selector) {
+  if (selector.replace_mode) return selector.replace_mode;
+  if (selector.occurrence !== undefined) return "selected_occurrence";
+  if (selector.expected_matches === 1 || selector.type === "table_cell") return "exactly_one";
+  return "all";
+}
+
+function buildTemplateFidelityPlan({ sectionXmls, replacements }) {
+  const errors = [];
+  const warnings = [];
+  const selectorPlans = replacements.map((replacement, selectorIndex) => {
+    const selector = replacement.selector || {};
+    const replacementText = String(replacement.replacement_text ?? "");
+    let matches = [];
+    if (selector.type === "paragraph_text" || selector.type === "paragraph_contains") {
+      for (const [sectionIndex, xml] of sectionXmls.entries()) {
+        const paragraphs = collectParagraphElements(xml, sectionIndex);
+        const selected = selector.type === "paragraph_text"
+          ? paragraphs.filter((item) => item.text === String(selector.source_text || ""))
+          : paragraphs.filter((item) => item.text.includes(String(selector.contains_text || "")));
+        matches.push(...selected);
+      }
+    } else if (selector.type === "table_cell" || selector.type === "table_cell_text") {
+      for (const [sectionIndex, xml] of sectionXmls.entries()) {
+        const tables = extractNativeTables(xml, { sectionIndex });
+        for (const table of tables) {
+          for (const cell of table.cells) {
+            const pathMatches = selector.type === "table_cell"
+              ? table.path === selector.table_path && cell.rowAddr === Number(selector.row) && cell.colAddr === Number(selector.col)
+              : cell.text === String(selector.source_text || "");
+            if (!pathMatches) continue;
+            if (selector.expected_text !== undefined && cell.text !== String(selector.expected_text)) {
+              errors.push(`selector_${selectorIndex}_expected_text mismatch: expected "${selector.expected_text}" actual "${cell.text}"`);
+            }
+            matches.push({
+              type: "table_cell",
+              section: sectionIndex,
+              table_path: table.path,
+              parent_table_path: table.parentPath || "",
+              cell: { row: cell.rowAddr, col: cell.colAddr },
+              start: cell.start,
+              end: cell.end,
+              text: cell.text,
+              xml: cell.xml,
+              char_pr_ids: [...new Set((cell.xml.match(/charPrIDRef="[^"]+"/g) || []).map((item) => item.slice(13, -1)))],
+            });
+          }
+        }
+      }
+    } else {
+      errors.push(`selector_${selectorIndex}_unsupported_type ${selector.type}`);
+    }
+
+    const mode = selectorMode(selector);
+    let selectedMatches = selectedByOccurrence(matches, selector);
+    if (mode === "exactly_one" && matches.length === 1) selectedMatches = matches;
+    if (mode === "exactly_one" && matches.length !== 1) errors.push(`selector_${selectorIndex}_exactly_one_required actual ${matches.length}`);
+    if (mode === "all" && selector.occurrence === undefined) selectedMatches = matches;
+    assertMatchCount(selector, matches, selectedMatches, errors, selectorIndex);
+    const sourceText = selectedMatches[0]?.text || matches[0]?.text || selector.source_text || selector.contains_text || selector.expected_text || "";
+    const overflow = lengthWarning(sourceText, replacementText, replacement.overflow_policy || selector.overflow_policy || "warn");
+    if (overflow.overflow_risk === "high") {
+      const message = `selector_${selectorIndex}_overflow_high ratio ${overflow.length_ratio}`;
+      if (overflow.overflow_policy === "error") errors.push(message);
+      else if (overflow.overflow_policy === "warn") warnings.push(message);
+    }
+    return {
+      selector_index: selectorIndex,
+      selector,
+      replacement_text: replacementText,
+      match_count: matches.length,
+      selected_matches: selectedMatches.map((match) => ({
+        type: match.type,
+        section: match.section,
+        paragraph_id: match.paragraph_id,
+        paragraph_index: match.paragraph_index,
+        table_path: match.table_path,
+        cell: match.cell,
+        logical_text: match.text,
+        char_pr_ids: match.char_pr_ids || [],
+      })),
+      _matches: selectedMatches,
+      overflow,
+    };
   });
-  return { xml: nextXml, applied };
+  return {
+    selectors: selectorPlans,
+    can_apply: errors.length === 0,
+    errors,
+    warnings,
+  };
+}
+
+function applyPlanToSectionXml(xml, selectorPlans, sectionIndex) {
+  const edits = [];
+  for (const plan of selectorPlans) {
+    for (const match of plan._matches || []) {
+      if (match.section !== sectionIndex) continue;
+      edits.push({
+        start: match.start,
+        end: match.end,
+        xml: replaceFirstTextRun(match.xml, plan.replacement_text),
+      });
+    }
+  }
+  edits.sort((a, b) => b.start - a.start);
+  let nextXml = xml;
+  for (const edit of edits) nextXml = `${nextXml.slice(0, edit.start)}${edit.xml}${nextXml.slice(edit.end)}`;
+  return { xml: nextXml, applied: edits.length };
+}
+
+export async function planHwpxTemplateFidelityFill({ workspace, templatePath, outputPath = "", replacements = [] } = {}) {
+  requireHwpxPath(templatePath);
+  if (outputPath) requireHwpxPath(outputPath);
+  if (!Array.isArray(replacements)) throw new Error("replacements must be an array");
+  const source = resolveWorkspacePath(workspace, templatePath);
+  const zip = await JSZip.loadAsync(await readFile(source));
+  const sectionEntries = sectionEntryNames(zip);
+  const sectionXmls = await Promise.all(sectionEntries.map((section) => readZipText(zip, section)));
+  const plan = buildTemplateFidelityPlan({ sectionXmls, replacements });
+  return {
+    template_path: templatePath,
+    output_path: outputPath,
+    section_entries: sectionEntries,
+    selectors: plan.selectors.map(({ _matches, ...item }) => item),
+    can_apply: plan.can_apply,
+    errors: plan.errors,
+    warnings: plan.warnings,
+  };
 }
 
 export async function applyHwpxTemplateFidelityFill({ workspace, templatePath, outputPath, replacements = [] } = {}) {
@@ -681,22 +910,23 @@ export async function applyHwpxTemplateFidelityFill({ workspace, templatePath, o
   const target = resolveWorkspacePath(workspace, outputPath);
   if (source.toLowerCase() === target.toLowerCase()) throw new Error("output_path must be different from template_path");
   const zip = await JSZip.loadAsync(await readFile(source));
+  const sectionEntries = sectionEntryNames(zip);
+  const originalSectionXmls = await Promise.all(sectionEntries.map((section) => readZipText(zip, section)));
+  const plan = buildTemplateFidelityPlan({ sectionXmls: originalSectionXmls, replacements });
+  if (!plan.can_apply) throw new Error(`template fidelity selector plan failed: ${plan.errors.join("; ")}`);
   let replacementsApplied = 0;
-  for (const section of sectionEntryNames(zip)) {
-    let sectionXml = await readZipText(zip, section);
-    for (const replacement of replacements) {
-      const result = replaceParagraphTextInSectionXml(sectionXml, replacement);
-      sectionXml = result.xml;
-      replacementsApplied += result.applied;
-    }
-    zip.file(section, sectionXml);
+  for (const [sectionIndex, section] of sectionEntries.entries()) {
+    const result = applyPlanToSectionXml(originalSectionXmls[sectionIndex], plan.selectors, sectionIndex);
+    replacementsApplied += result.applied;
+    zip.file(section, result.xml);
   }
   const previewText = await readZipText(zip, "Preview/PrvText.txt");
   if (previewText) {
     let nextPreview = previewText;
-    for (const replacement of replacements) {
-      const sourceText = String(replacement.selector?.source_text || "");
-      if (sourceText) nextPreview = nextPreview.replaceAll(sourceText, String(replacement.replacement_text ?? ""));
+    for (const selectorPlan of plan.selectors) {
+      for (const match of selectorPlan._matches || []) {
+        if (match.text) nextPreview = nextPreview.replace(match.text, selectorPlan.replacement_text);
+      }
     }
     zip.file("Preview/PrvText.txt", nextPreview);
   }
@@ -709,6 +939,10 @@ export async function applyHwpxTemplateFidelityFill({ workspace, templatePath, o
     saved: true,
     mode: "template_fidelity_fill",
     replacementsApplied,
+    plan: {
+      ...plan,
+      selectors: plan.selectors.map(({ _matches, ...item }) => item),
+    },
     validation,
   };
 }
@@ -876,7 +1110,7 @@ export async function validateHwpxPackage({
     if (/(?:href|src|target)\s*=\s*["']https?:\/\//i.test(xml)) warnings.push(`external_url_in_section:${section}`);
   }
   const allSectionXml = sectionTexts.join("\n");
-  const tables = sectionTexts.flatMap(extractNativeTables);
+  const tables = sectionTexts.flatMap((sectionXml, sectionIndex) => extractNativeTables(sectionXml, { sectionIndex }));
   const footer = extractFooterInfo(allSectionXml);
   const nativeStructureValidation = validateNativeStructures({ tables, footer, sectionXml: allSectionXml });
   const nativeTableWrapperValidation = validateNativeTableWrappers({ tables });
@@ -920,7 +1154,7 @@ export async function analyzeHwpxTemplate({ workspace, path }) {
   const paragraphs = sectionTexts.flatMap(extractParagraphs);
   const text = paragraphs.join("\n");
   const allSectionXml = sectionTexts.join("\n");
-  const tables = sectionTexts.flatMap(extractNativeTables);
+  const tables = sectionTexts.flatMap((sectionXml, sectionIndex) => extractNativeTables(sectionXml, { sectionIndex }));
   const footer = extractFooterInfo(allSectionXml);
   const nativeStructureValidation = validateNativeStructures({ tables, footer, sectionXml: allSectionXml });
   const nativeTableWrapperValidation = validateNativeTableWrappers({ tables });
@@ -1192,48 +1426,60 @@ function tableWrapperInfo(xml, tableOffset) {
   };
 }
 
-function extractNativeTables(xml) {
+function extractNativeTables(xml, { sectionIndex = 0, basePath = `section[${sectionIndex}]`, parentPath = "" } = {}) {
   const tables = [];
-  const tableRegex = /<hp:tbl\b([^>]*)>([\s\S]*?)<\/hp:tbl>/g;
-  let tableMatch;
-  while ((tableMatch = tableRegex.exec(xml))) {
-    const prefix = xml.slice(0, tableMatch.index);
+  const tableElements = tagElements(xml, "tbl");
+  tableElements.forEach((tableElement, tableIndex) => {
+    const prefix = xml.slice(0, tableElement.start);
     const titleStart = prefix.lastIndexOf("<!--army-table-title:");
     const titleEnd = titleStart >= 0 ? prefix.indexOf("-->", titleStart) : -1;
     const title = titleStart >= 0 && titleEnd >= 0 ? prefix.slice(titleStart + "<!--army-table-title:".length, titleEnd) : "";
     const styleStart = prefix.lastIndexOf("<!--army-table-style:");
     const styleEnd = styleStart >= 0 ? prefix.indexOf("-->", styleStart) : -1;
     const tableStyle = styleStart >= 0 && styleEnd >= 0 ? prefix.slice(styleStart + "<!--army-table-style:".length, styleEnd) : "";
-    const attrs = tableMatch[1] || "";
-    const body = tableMatch[2] || "";
+    const attrs = tableElement.attrs || "";
+    const body = tableElement.body || "";
     const positionAttrs = body.match(/<hp:pos\b([^>]*)\/>/u)?.[1] || "";
     const rows = [];
     const cells = [];
-    const rowRegex = /<hp:tr\b[^>]*>([\s\S]*?)<\/hp:tr>/g;
-    let rowMatch;
-    while ((rowMatch = rowRegex.exec(body))) {
+    const tablePath = `${basePath}/table[${tableIndex}]`;
+    const rowElements = tagElements(body, "tr", tableElement.bodyStart);
+    rowElements.forEach((rowElement) => {
       const rowCells = [];
-      const cellRegex = /<hp:tc\b[^>]*>([\s\S]*?)<\/hp:tc>/g;
-      let cellMatch;
-      while ((cellMatch = cellRegex.exec(rowMatch[1]))) {
-        const cellAttrs = cellMatch[0].match(/<hp:tc\b([^>]*)>/u)?.[1] || "";
-        const cellAddrAttrs = cellMatch[1].match(/<hp:cellAddr\b([^>]*)\/>/u)?.[1] || "";
-        const cellSpanAttrs = cellMatch[1].match(/<hp:cellSpan\b([^>]*)\/>/u)?.[1] || "";
-        const text = extractParagraphs(cellMatch[1]).join("\n");
+      const cellElements = tagElements(rowElement.body, "tc", rowElement.bodyStart);
+      cellElements.forEach((cellElement) => {
+        const cellAttrs = cellElement.attrs || "";
+        const cellBodyWithoutNestedTables = removeNestedTables(cellElement.body);
+        const cellAddrAttrs = cellBodyWithoutNestedTables.match(/<hp:cellAddr\b([^>]*)\/>/u)?.[1] || "";
+        const cellSpanAttrs = cellBodyWithoutNestedTables.match(/<hp:cellSpan\b([^>]*)\/>/u)?.[1] || "";
+        const text = extractParagraphs(cellBodyWithoutNestedTables).join("\n");
+        const rowAddr = Number(attrValue(cellAddrAttrs, "rowAddr") || rows.length);
+        const colAddr = Number(attrValue(cellAddrAttrs, "colAddr") || rowCells.length);
         cells.push({
           text,
+          path: `${tablePath}/cell[${rowAddr},${colAddr}]`,
+          start: cellElement.start,
+          end: cellElement.end,
+          xml: cellElement.full,
           hasMargin: attrValue(cellAttrs, "hasMargin"),
           borderFillIDRef: attrValue(cellAttrs, "borderFillIDRef"),
-          rowAddr: Number(attrValue(cellAddrAttrs, "rowAddr") || cells.length),
-          colAddr: Number(attrValue(cellAddrAttrs, "colAddr") || rowCells.length),
+          rowAddr,
+          colAddr,
           rowSpan: Number(attrValue(cellSpanAttrs, "rowSpan") || 1),
           colSpan: Number(attrValue(cellSpanAttrs, "colSpan") || 1),
         });
         rowCells.push(text);
-      }
+        tables.push(...extractNativeTables(cellElement.body, {
+          sectionIndex,
+          basePath: `${tablePath}/cell[${rowAddr},${colAddr}]`,
+          parentPath: tablePath,
+        }));
+      });
       rows.push(rowCells);
-    }
+    });
     tables.push({
+      path: tablePath,
+      parentPath,
       title: unescapeXml(title),
       style: unescapeXml(tableStyle),
       id: attrValue(attrs, "id"),
@@ -1246,12 +1492,17 @@ function extractNativeTables(xml) {
         vertRelTo: attrValue(positionAttrs, "vertRelTo"),
         vertAlign: attrValue(positionAttrs, "vertAlign"),
       },
-      wrapper: tableWrapperInfo(xml, tableMatch.index),
+      wrapper: tableWrapperInfo(xml, tableElement.start),
       cells,
       rows,
       hasMergedCells: cells.some((cell) => cell.rowSpan > 1 || cell.colSpan > 1),
     });
-  }
+  });
+  tables.sort((a, b) => {
+    const depth = (a.path.match(/\/table\[/g) || []).length - (b.path.match(/\/table\[/g) || []).length;
+    if (depth !== 0) return depth;
+    return a.path.localeCompare(b.path);
+  });
   return tables;
 }
 
@@ -1554,6 +1805,13 @@ async function main() {
       outputPath: argValue(args, "--output-path"),
       replacements: await jsonArgOrFileValue(args, "--replacements", "--replacements-file", []),
     });
+  } else if (command === "hwpx-template-fidelity-plan") {
+    result = await planHwpxTemplateFidelityFill({
+      workspace: argValue(args, "--workspace"),
+      templatePath: argValue(args, "--template-path"),
+      outputPath: argValue(args, "--output-path"),
+      replacements: await jsonArgOrFileValue(args, "--replacements", "--replacements-file", []),
+    });
   } else if (command === "hwpx-auto-generate") {
     result = await generateAutoHwpxDocument({
       workspace: argValue(args, "--workspace"),
@@ -1578,7 +1836,7 @@ async function main() {
   } else if (command === "open-hwp") {
     result = await openWithHancomHwp({ workspace: argValue(args, "--workspace"), path: argValue(args, "--path") });
   } else {
-    throw new Error("Usage: status | prompt-create | hwpx-create | hwpx-validate | hwpx-analyze-template | hwpx-template-fill | hwpx-template-fidelity-fill | hwpx-auto-generate | hwpx-generate-minimal-table | hwpx-generate-reference-profile | hwpx-summary | hwpx-add-paragraph | open-hwp");
+    throw new Error("Usage: status | prompt-create | hwpx-create | hwpx-validate | hwpx-analyze-template | hwpx-template-fill | hwpx-template-fidelity-fill | hwpx-template-fidelity-plan | hwpx-auto-generate | hwpx-generate-minimal-table | hwpx-generate-reference-profile | hwpx-summary | hwpx-add-paragraph | open-hwp");
   }
   console.log(JSON.stringify(result, null, args.includes("--json") ? 2 : 0));
 }

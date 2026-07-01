@@ -253,8 +253,8 @@
       {
         "role": "table_3",
         "title": "",
-        "rows": 1,
-        "cols": 1,
+        "rows": 7,
+        "cols": 2,
         "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
         "border_style": "unknown",
         "merged_cells": []
@@ -271,8 +271,8 @@
       {
         "role": "table_5",
         "title": "",
-        "rows": 4,
-        "cols": 4,
+        "rows": 2,
+        "cols": 2,
         "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
         "border_style": "unknown",
         "merged_cells": []
@@ -289,46 +289,17 @@
       {
         "role": "table_7",
         "title": "",
-        "rows": 15,
-        "cols": 4,
+        "rows": 1,
+        "cols": 1,
         "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
         "border_style": "unknown",
-        "merged_cells": [
-          {
-            "row": 0,
-            "col": 0,
-            "row_span": 1,
-            "col_span": 2,
-            "text": "구 분"
-          },
-          {
-            "row": 1,
-            "col": 0,
-            "row_span": 14,
-            "col_span": 1,
-            "text": "4. 19 (일)"
-          },
-          {
-            "row": 3,
-            "col": 3,
-            "row_span": 3,
-            "col_span": 1,
-            "text": "등산 (오르막길)"
-          },
-          {
-            "row": 10,
-            "col": 1,
-            "row_span": 2,
-            "col_span": 1,
-            "text": "20:00〜21:00"
-          }
-        ]
+        "merged_cells": []
       },
       {
         "role": "table_8",
         "title": "",
-        "rows": 1,
-        "cols": 1,
+        "rows": 4,
+        "cols": 4,
         "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
         "border_style": "unknown",
         "merged_cells": []
