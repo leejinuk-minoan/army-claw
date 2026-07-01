@@ -274,3 +274,15 @@ C:\Users\USER\Desktop\로컬 open claw 만들기\release\test-documents\army-cla
 - push 대상: `origin/feature/hwpx-template-fidelity-selectors`
 - push 결과: 완료
 - PR 생성 URL: `https://github.com/leejinuk-minoan/army-claw/pull/new/feature/hwpx-template-fidelity-selectors`
+
+## 13. 사용자 시각 확인 및 다음 단계 판정
+
+2026-07-02 추가 확인 결과를 반영한다.
+
+- `template_fidelity_multi_selector_visual_status`: `user_confirmed_success`
+- `template_fidelity_style_preservation_status`: `user_confirmed_success`
+- `template_fidelity_table_cell_visual_status`: `user_confirmation_pending`
+- `representative_page_content_completeness`: `partially_passed`
+- `semantic_consistency_status`: `requires_block_selectors`
+
+판정: v2는 한글 2024에서 열리고 네이티브 양식과 스타일 보존은 성공했지만, 단일 문단 및 셀 치환 방식만으로는 대표 페이지 일부에서 기존 주제 문장이 남았다. 다음 작업은 selector 개수를 늘리는 방식이 아니라 `anchor_range`와 `paragraph_block`으로 페이지 범위 및 의미 블록 단위 치환을 구현하는 것이다.

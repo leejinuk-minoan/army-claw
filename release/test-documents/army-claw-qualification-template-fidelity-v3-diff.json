@@ -1,0 +1,33 @@
+{
+  "validation_valid": true,
+  "template_path": "release/test-documents/army-claw-qualification-review-template-fidelity-v2.hwpx",
+  "output_path": "release/test-documents/army-claw-qualification-review-template-fidelity-v3.hwpx",
+  "scopes_requested": 2,
+  "scopes_resolved": 2,
+  "blocks_requested": 5,
+  "blocks_applied": 5,
+  "blocks_failed": 0,
+  "paragraphs_replaced": 23,
+  "paragraphs_blanked": 2,
+  "paragraphs_inserted": 0,
+  "paragraphs_deleted": 0,
+  "control_paragraphs_untouched": true,
+  "binData_preserved": true,
+  "missing_entries": [],
+  "added_entries": [],
+  "changed_entries": [
+    "Contents/section0.xml",
+    "Preview/PrvText.txt"
+  ],
+  "unexpected_changed_entries": [],
+  "table_count_before": 43,
+  "table_count_after": 43,
+  "image_count_before": 12,
+  "image_count_after": 12,
+  "paragraph_count_before": 476,
+  "paragraph_count_after": 476,
+  "non_target_scope_hashes_preserved": true,
+  "non_target_changed_paragraph_indexes": [],
+  "representative_page_content_completeness": "improved_semantic_consistency_pending_visual_confirmation",
+  "visual_confirmation_status": "pending_user_confirmation"
+}
