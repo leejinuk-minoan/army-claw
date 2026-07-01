@@ -22,6 +22,7 @@ const REQUIRED_HWPX_ENTRIES = ["mimetype", "Contents/content.hpf", HWPX_SECTION_
 const DEFAULT_MAX_ENTRIES = 2000;
 const DEFAULT_MAX_UNCOMPRESSED_BYTES = 200 * 1024 * 1024;
 const PLACEHOLDER_RE = /\{\{([A-Z0-9_]+)\}\}/g;
+const BODY_WIDTH = 42520;
 const DEFAULT_SECTION_ROOT =
   '<hs:sec xmlns:hp="http://www.hancom.co.kr/hwpml/2011/paragraph" xmlns:hs="http://www.hancom.co.kr/hwpml/2011/section">';
 const DEFAULT_SECTION_SETUP =
@@ -52,6 +53,14 @@ function escapeXml(value) {
     .replaceAll('"', "&quot;");
 }
 
+function unescapeXml(value) {
+  return String(value ?? "")
+    .replaceAll("&lt;", "<")
+    .replaceAll("&gt;", ">")
+    .replaceAll("&quot;", '"')
+    .replaceAll("&amp;", "&");
+}
+
 function paragraphXml(text) {
   return `<hp:p><hp:run><hp:t>${escapeXml(text)}</hp:t></hp:run></hp:p>`;
 }
@@ -74,6 +83,125 @@ function hancomParagraphXml(text, id, { title = false, includeSectionSetup = "" 
   ].join("");
 }
 
+function roleShape(role) {
+  const shapes = {
+    cover_title: { charPr: "26", paraPr: "30" },
+    cover_subtitle: { charPr: "36", paraPr: "38" },
+    cover_metadata: { charPr: "7", paraPr: "20" },
+    toc_title: { charPr: "26", paraPr: "30" },
+    toc_item: { charPr: "0", paraPr: "20" },
+    heading_1: { charPr: "36", paraPr: "38" },
+    heading_2: { charPr: "12", paraPr: "20" },
+    heading_3: { charPr: "12", paraPr: "20" },
+    body: { charPr: "0", paraPr: "1" },
+    bullet_list: { charPr: "0", paraPr: "20" },
+    numbered_list: { charPr: "0", paraPr: "20" },
+    table_title: { charPr: "12", paraPr: "20" },
+    table_header: { charPr: "12", paraPr: "20" },
+    table_body: { charPr: "0", paraPr: "1" },
+    callout_title: { charPr: "12", paraPr: "20" },
+    callout_body: { charPr: "0", paraPr: "1" },
+    footer: { charPr: "0", paraPr: "1" },
+  };
+  return shapes[role] || shapes.body;
+}
+
+function styledParagraphXml(text, id, { role = "body", includeSectionSetup = "", pageBreakBefore = false } = {}) {
+  const shape = roleShape(role);
+  const pageBreak = pageBreakBefore ? "1" : "0";
+  const lineHeight = role.startsWith("cover_") ? 1300 : role.startsWith("heading_") ? 1200 : 1000;
+  return [
+    `<!--army-style:${role}-->`,
+    `<hp:p id="${id}" paraPrIDRef="${shape.paraPr}" styleIDRef="0" pageBreak="${pageBreak}" columnBreak="0" merged="0">`,
+    `<hp:run charPrIDRef="${shape.charPr}">`,
+    includeSectionSetup,
+    `<hp:t>${escapeXml(text)}</hp:t>`,
+    "</hp:run>",
+    `<hp:linesegarray><hp:lineseg textpos="0" vertpos="0" vertsize="${lineHeight}" textheight="${lineHeight}" baseline="${Math.round(lineHeight * 0.85)}" spacing="${Math.round(lineHeight * 0.6)}" horzpos="0" horzsize="${BODY_WIDTH}" flags="393216"/></hp:linesegarray>`,
+    "</hp:p>",
+  ].join("");
+}
+
+function tableCellXml(text, rowIndex, colIndex, colWidth, role) {
+  const shape = roleShape(role);
+  const safeLines = String(text ?? "").split(/\r?\n/);
+  const textXml = safeLines.map((line, index) => `${index ? '<hp:lineBreak/>' : ""}<hp:t>${escapeXml(line)}</hp:t>`).join("");
+  return [
+    `<hp:tc name="" header="${rowIndex === 0 ? 1 : 0}" hasMargin="0" protect="0" editable="0" dirty="0" borderFillIDRef="${rowIndex === 0 ? 5 : 11}">`,
+    '<hp:subList id="" textDirection="HORIZONTAL" lineWrap="BREAK" vertAlign="CENTER" linkListIDRef="0" linkListNextIDRef="0" textWidth="0" textHeight="0" hasTextRef="0" hasNumRef="0">',
+    `<hp:p id="2147483648" paraPrIDRef="${shape.paraPr}" styleIDRef="0" pageBreak="0" columnBreak="0" merged="0">`,
+    `<!--army-style:${role}-->`,
+    `<hp:run charPrIDRef="${shape.charPr}">${textXml}</hp:run>`,
+    `<hp:linesegarray><hp:lineseg textpos="0" vertpos="0" vertsize="1000" textheight="1000" baseline="850" spacing="600" horzpos="0" horzsize="${Math.max(1000, colWidth - 1020)}" flags="393216"/></hp:linesegarray>`,
+    "</hp:p>",
+    "</hp:subList>",
+    `<hp:cellAddr colAddr="${colIndex}" rowAddr="${rowIndex}"/>`,
+    '<hp:cellSpan colSpan="1" rowSpan="1"/>',
+    `<hp:cellSz width="${colWidth}" height="${rowIndex === 0 ? 1800 : 2200}"/>`,
+    '<hp:cellMargin left="510" right="510" top="141" bottom="141"/>',
+    "</hp:tc>",
+  ].join("");
+}
+
+function nativeTableXml(table, idSeed = 1) {
+  const rows = [table.headers, ...table.rows];
+  const colCount = table.headers.length;
+  const rowCount = rows.length;
+  const colWidth = Math.floor(BODY_WIDTH / Math.max(1, colCount));
+  const tableWidth = colWidth * colCount;
+  const rowsXml = rows.map((row, rowIndex) => {
+    const cells = row.map((cell, colIndex) => tableCellXml(cell, rowIndex, colIndex, colWidth, rowIndex === 0 ? "table_header" : "table_body")).join("");
+    return `<hp:tr>${cells}</hp:tr>`;
+  }).join("");
+  return [
+    `<!--army-table-title:${escapeXml(table.title)}-->`,
+    `<!--army-style:table_body-->`,
+    `<hp:tbl id="${1443000000 + idSeed}" zOrder="${idSeed}" numberingType="TABLE" textWrap="TOP_AND_BOTTOM" textFlow="BOTH_SIDES" lock="0" dropcapstyle="None" pageBreak="CELL" repeatHeader="1" rowCnt="${rowCount}" colCnt="${colCount}" cellSpacing="0" borderFillIDRef="4" noAdjust="0">`,
+    `<hp:sz width="${tableWidth}" widthRelTo="ABSOLUTE" height="${rowCount * 2200}" heightRelTo="ABSOLUTE" protect="0"/>`,
+    '<hp:pos treatAsChar="1" affectLSpacing="0" flowWithText="1" allowOverlap="0" holdAnchorAndSO="0" vertRelTo="PARA" horzRelTo="PARA" vertAlign="TOP" horzAlign="LEFT" vertOffset="0" horzOffset="0"/>',
+    '<hp:outMargin left="0" right="141" top="141" bottom="141"/>',
+    '<hp:inMargin left="0" right="0" top="0" bottom="0"/>',
+    rowsXml,
+    "</hp:tbl>",
+  ].join("");
+}
+
+function calloutTableXml(block, idSeed) {
+  return nativeTableXml({
+    title: block.title,
+    headers: [block.title],
+    rows: [[block.text]],
+  }, idSeed).replaceAll("table_header", "callout_title").replaceAll("table_body", "callout_body");
+}
+
+function documentPlanPreviewText(plan) {
+  const lines = [plan.title];
+  if (plan.include_cover) {
+    if (plan.subtitle) lines.push(plan.subtitle);
+    const metadataLine = [plan.metadata.department, plan.metadata.author, plan.metadata.date].filter(Boolean).join(" | ");
+    if (metadataLine) lines.push(metadataLine);
+  }
+  if (plan.include_toc) {
+    lines.push("정적 목차");
+    for (const section of plan.sections) lines.push(section.heading);
+  }
+  for (const section of plan.sections) {
+    lines.push(section.heading);
+    for (const block of section.blocks) {
+      if (block.type === "paragraph" && block.text) lines.push(block.text);
+      if (block.type === "bullet_list") for (const item of block.items) lines.push(`• ${item}`);
+      if (block.type === "numbered_list") block.items.forEach((item, index) => lines.push(`${index + 1}. ${item}`));
+      if (block.type === "table") {
+        lines.push(block.title);
+        lines.push(block.headers.join("\t"));
+        for (const row of block.rows) lines.push(row.join("\t"));
+      }
+      if (block.type === "callout") lines.push(`${block.title}: ${block.text}`);
+    }
+  }
+  return lines.filter(Boolean).join("\r\n");
+}
+
 function templateSectionParts(templateSectionXml = "") {
   const rootOpen = templateSectionXml.match(/<hs:sec\b[^>]*>/u)?.[0] || DEFAULT_SECTION_ROOT;
   const sectionSetup =
@@ -93,6 +221,54 @@ function templateBackedSectionXml({ title, paragraphs, templateSectionXml }) {
     }),
   );
   return `<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>${rootOpen}${body.join("")}</${rootName}>`;
+}
+
+function documentPlanSectionXml({ plan, templateSectionXml }) {
+  const { rootOpen, rootName, sectionSetup } = templateSectionParts(templateSectionXml);
+  const parts = [];
+  let paraId = 1;
+  let tableId = 1;
+  const addParagraph = (text, options = {}) => {
+    parts.push(styledParagraphXml(text, paraId, options));
+    paraId += 1;
+  };
+
+  addParagraph(plan.title, { role: "cover_title", includeSectionSetup: sectionSetup });
+  if (plan.include_cover) {
+    if (plan.subtitle) addParagraph(plan.subtitle, { role: "cover_subtitle" });
+    for (const item of [plan.metadata.department, plan.metadata.author, plan.metadata.date].filter(Boolean)) {
+      addParagraph(item, { role: "cover_metadata" });
+    }
+  }
+  if (plan.include_toc) {
+    addParagraph("정적 목차", { role: "toc_title", pageBreakBefore: plan.include_cover });
+    for (const section of plan.sections) addParagraph(section.heading, { role: "toc_item" });
+  }
+
+  plan.sections.forEach((section, sectionIndex) => {
+    const headingRole = section.level <= 1 ? "heading_1" : section.level === 2 ? "heading_2" : "heading_3";
+    addParagraph(section.heading, {
+      role: headingRole,
+      pageBreakBefore: sectionIndex === 0 && (plan.include_cover || plan.include_toc),
+    });
+    for (const block of section.blocks) {
+      if (block.type === "paragraph" && block.text) addParagraph(block.text, { role: "body" });
+      if (block.type === "bullet_list") for (const item of block.items) addParagraph(`• ${item}`, { role: "bullet_list" });
+      if (block.type === "numbered_list") block.items.forEach((item, index) => addParagraph(`${index + 1}. ${item}`, { role: "numbered_list" }));
+      if (block.type === "table") {
+        addParagraph(block.title, { role: "table_title" });
+        parts.push(nativeTableXml(block, tableId));
+        tableId += 1;
+      }
+      if (block.type === "callout") {
+        parts.push(calloutTableXml(block, tableId));
+        tableId += 1;
+      }
+    }
+  });
+
+  if (plan.footer_text) parts.push(`<!--army-footer:${escapeXml(plan.footer_text)}-->`);
+  return `<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>${rootOpen}${parts.join("")}</${rootName}>`;
 }
 
 function contentHpf(title) {
@@ -280,6 +456,8 @@ export async function analyzeHwpxTemplate({ workspace, path }) {
   const sectionTexts = await Promise.all(sectionXmlEntries.map((name) => readZipText(zip, name)));
   const paragraphs = sectionTexts.flatMap(extractParagraphs);
   const text = paragraphs.join("\n");
+  const allSectionXml = sectionTexts.join("\n");
+  const tables = sectionTexts.flatMap(extractNativeTables);
   const placeholders = collectPlaceholders(text);
   const inputCandidates = placeholders.map((placeholder) => ({
     kind: "placeholder",
@@ -288,7 +466,6 @@ export async function analyzeHwpxTemplate({ workspace, path }) {
     requiresUserConfirmation: false,
   }));
   const imageEntries = Object.keys(zip.files).filter((name) => /^BinData\/.+\.(png|jpg|jpeg|gif|bmp)$/i.test(name));
-  const allSectionXml = sectionTexts.join("\n");
   return {
     path,
     absolutePath: target,
@@ -300,7 +477,11 @@ export async function analyzeHwpxTemplate({ workspace, path }) {
     paragraphCount: paragraphs.length,
     paragraphs,
     text,
-    tableCount: sectionTexts.reduce((count, xml) => count + (xml.match(/<hp:tbl\b/g) || []).length, 0),
+    tableCount: tables.length,
+    tables,
+    pageBreakCount: (allSectionXml.match(/pageBreak="1"/g) || []).length,
+    styleRoles: [...new Set([...allSectionXml.matchAll(/<!--army-style:([a-z0-9_]+)-->/gi)].map((item) => item[1]))],
+    footerText: unescapeXml(allSectionXml.match(/<!--army-footer:([\s\S]*?)-->/u)?.[1] || ""),
     images: imageEntries,
     hasHeader: /<hp:header\b|headerText/i.test(allSectionXml),
     hasFooter: /<hp:footer\b|footerText/i.test(allSectionXml),
@@ -350,14 +531,27 @@ function normalizeBlock(block) {
     return { type, items: Array.isArray(block?.items) ? block.items.map((item) => String(item).trim()).filter(Boolean) : [] };
   }
   if (type === "table") {
+    const headers = Array.isArray(block?.headers) ? block.headers.map((item) => String(item).trim()) : [];
+    const rows = Array.isArray(block?.rows) ? block.rows.map((row) => Array.isArray(row) ? row.map((item) => String(item).trim()) : []) : [];
+    if (!headers.length) throw new Error("table headers are required");
+    rows.forEach((row, index) => {
+      if (row.length !== headers.length) throw new Error(`table row ${index + 1} has ${row.length} cells but expected ${headers.length}`);
+    });
     return {
       type,
       title: String(block?.title || "표").trim(),
-      headers: Array.isArray(block?.headers) ? block.headers.map((item) => String(item).trim()) : [],
-      rows: Array.isArray(block?.rows) ? block.rows.map((row) => Array.isArray(row) ? row.map((item) => String(item).trim()) : []) : [],
+      headers,
+      rows,
     };
   }
-  if (type === "callout") return { type, title: String(block?.title || "참고").trim(), text: String(block?.text || "").trim() };
+  if (type === "callout") {
+    return {
+      type,
+      callout_type: String(block?.callout_type || "note").trim(),
+      title: String(block?.title || "참고").trim(),
+      text: String(block?.text || "").trim(),
+    };
+  }
   throw new Error(`unsupported block type: ${type}`);
 }
 
@@ -381,6 +575,7 @@ export function validateDocumentPlan(plan) {
     style_profile: styleProfile,
     include_cover: plan.include_cover !== false,
     include_toc: plan.include_toc !== false,
+    footer_text: String(plan.footer_text || "").trim(),
     sections: plan.sections.map((section, index) => ({
       id: String(section?.id || `section-${index + 1}`),
       heading: String(section?.heading || `${index + 1}. 섹션`).trim(),
@@ -423,19 +618,27 @@ export async function generateAutoHwpxDocument({ workspace, outputPath, document
   const plan = validateDocumentPlan(documentPlan);
   const templatePath = await findHancomHwpxTemplate();
   if (!templatePath) throw new Error("한컴 2024 호환 HWPX 템플릿을 찾지 못했습니다. 사용자 양식을 지정하거나 한컴오피스 설치 상태를 확인하십시오.");
-  const result = await createTemplateBackedHwpxDocument({
-    workspace,
-    path: outputPath,
-    title: plan.title,
-    paragraphs: documentPlanParagraphs(plan),
-    templatePath,
-  });
+  const target = resolveWorkspacePath(workspace, outputPath);
+  await mkdir(dirname(target), { recursive: true });
+  const templateZip = await JSZip.loadAsync(await readFile(templatePath));
+  const templateSectionXml = await readZipText(templateZip, HWPX_SECTION_PATH);
+  templateZip.file("mimetype", HWPX_MIMETYPE, { compression: "STORE" });
+  templateZip.file(HWPX_SECTION_PATH, documentPlanSectionXml({ plan, templateSectionXml }));
+  templateZip.file("Preview/PrvText.txt", documentPlanPreviewText(plan));
+  await updateContentHpfTitle(templateZip, plan.title);
+  await writeFile(target, await templateZip.generateAsync({ type: "nodebuffer", compression: "DEFLATE" }));
   const validation = await validateHwpxPackage({ workspace, path: outputPath });
   return {
-    ...result,
+    path: outputPath,
+    absolutePath: target,
+    saved: true,
+    message: `HWPX 자동 문서를 생성했습니다: ${outputPath}`,
+    templateBacked: true,
+    templatePath,
     mode: "auto_document",
     styleProfile: plan.style_profile,
     documentType: plan.document_type,
+    pageNumberStatus: "unsupported_pending_native_structure",
     validation,
   };
 }
@@ -466,6 +669,39 @@ function extractParagraphs(xml) {
     if (texts.length) paragraphs.push(texts.join(""));
   }
   return paragraphs;
+}
+
+function extractNativeTables(xml) {
+  const tables = [];
+  const tableRegex = /<hp:tbl\b([^>]*)>([\s\S]*?)<\/hp:tbl>/g;
+  let tableMatch;
+  while ((tableMatch = tableRegex.exec(xml))) {
+    const prefix = xml.slice(0, tableMatch.index);
+    const titleStart = prefix.lastIndexOf("<!--army-table-title:");
+    const titleEnd = titleStart >= 0 ? prefix.indexOf("-->", titleStart) : -1;
+    const title = titleStart >= 0 && titleEnd >= 0 ? prefix.slice(titleStart + "<!--army-table-title:".length, titleEnd) : "";
+    const attrs = tableMatch[1] || "";
+    const body = tableMatch[2] || "";
+    const rows = [];
+    const rowRegex = /<hp:tr\b[^>]*>([\s\S]*?)<\/hp:tr>/g;
+    let rowMatch;
+    while ((rowMatch = rowRegex.exec(body))) {
+      const cells = [];
+      const cellRegex = /<hp:tc\b[^>]*>([\s\S]*?)<\/hp:tc>/g;
+      let cellMatch;
+      while ((cellMatch = cellRegex.exec(rowMatch[1]))) {
+        cells.push(extractParagraphs(cellMatch[1]).join("\n"));
+      }
+      rows.push(cells);
+    }
+    tables.push({
+      title: unescapeXml(title),
+      rowCount: Number(attrs.match(/rowCnt="(\d+)"/u)?.[1] || rows.length),
+      columnCount: Number(attrs.match(/colCnt="(\d+)"/u)?.[1] || rows[0]?.length || 0),
+      rows,
+    });
+  }
+  return tables;
 }
 
 export async function summarizeHwpxDocument({ workspace, path }) {

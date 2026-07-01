@@ -281,3 +281,92 @@ test("generates an automatic styled HWPX document from a document plan", async (
     await rm(workspace, { recursive: true, force: true });
   }
 });
+
+test("renders automatic documents with native tables, page breaks, callouts, and footer separation", async () => {
+  const workspace = await mkdtemp(join(tmpdir(), "army-claw-rendering-engine-"));
+  try {
+    await generateAutoHwpxDocument({
+      workspace,
+      outputPath: "outputs/rendered.hwpx",
+      documentPlan: {
+        document_type: "결과보고서",
+        title: "Army Claw HWPX 문서 생성 기능 검증 보고서",
+        subtitle: "양식 기반 및 자동 디자인 문서 생성 기능 1차 검증",
+        metadata: { author: "Army Claw", department: "로컬 AI 에이전트 개발", date: "2026-06-30" },
+        style_profile: "official_report",
+        include_cover: true,
+        include_toc: true,
+        footer_text: "Army Claw HWPX 기능 검증 보고서",
+        sections: [
+          {
+            id: "purpose",
+            heading: "1. 검증 목적",
+            level: 1,
+            blocks: [
+              { type: "paragraph", text: "본문 문단입니다." },
+              { type: "callout", callout_type: "key_result", title: "핵심 검증 사항", text: "한글 2024에서 정상적으로 열리는지 확인한다." },
+            ],
+          },
+          {
+            id: "results",
+            heading: "2. 구현 및 시험 결과",
+            level: 1,
+            blocks: [
+              {
+                type: "table",
+                title: "기능별 검증 결과",
+                headers: ["구분", "검증 내용", "결과"],
+                rows: [
+                  ["한컴 호환성", "한컴 2024 템플릿 기반 HWPX 생성", "구조 검증 통과"],
+                  ["양식 분석", "명시적 플레이스홀더 검색", "구현 완료"],
+                ],
+              },
+            ],
+          },
+        ],
+      },
+    });
+
+    const analysis = await analyzeHwpxTemplate({ workspace, path: "outputs/rendered.hwpx" });
+    const summary = await summarizeHwpxDocument({ workspace, path: "outputs/rendered.hwpx" });
+    const validation = await validateHwpxPackage({ workspace, path: "outputs/rendered.hwpx" });
+
+    assert.equal(validation.valid, true);
+    assert.equal(analysis.tableCount, 2);
+    assert.equal(analysis.tables[0].title, "핵심 검증 사항");
+    assert.equal(analysis.tables[0].rowCount, 2);
+    assert.equal(analysis.tables[0].columnCount, 1);
+    assert.equal(analysis.tables[1].title, "기능별 검증 결과");
+    assert.equal(analysis.tables[1].rowCount, 3);
+    assert.equal(analysis.tables[1].columnCount, 3);
+    assert.deepEqual(analysis.tables[1].rows[0], ["구분", "검증 내용", "결과"]);
+    assert.deepEqual(analysis.tables[1].rows[2], ["양식 분석", "명시적 플레이스홀더 검색", "구현 완료"]);
+    assert.equal(analysis.pageBreakCount, 2);
+    assert.ok(analysis.styleRoles.includes("cover_title"));
+    assert.ok(analysis.styleRoles.includes("heading_1"));
+    assert.ok(analysis.styleRoles.includes("table_header"));
+    assert.ok(analysis.styleRoles.includes("table_body"));
+    assert.equal(analysis.footerText, "Army Claw HWPX 기능 검증 보고서");
+    assert.doesNotMatch(summary.text, /꼬리말:/);
+    assert.doesNotMatch(summary.text, /구분 \| 검증 내용 \| 결과/);
+    assert.match(summary.text, /기능별 검증 결과/);
+  } finally {
+    await rm(workspace, { recursive: true, force: true });
+  }
+});
+
+test("rejects table rows with inconsistent column counts", () => {
+  assert.throws(
+    () => validateDocumentPlan({
+      title: "잘못된 표",
+      style_profile: "official_report",
+      sections: [
+        {
+          heading: "1. 표",
+          blocks: [{ type: "table", title: "검증 표", headers: ["구분", "결과"], rows: [["한 칸"]] }],
+        },
+      ],
+    }),
+    /table row 1 has 1 cells but expected 2/,
+  );
+});
