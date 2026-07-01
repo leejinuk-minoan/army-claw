@@ -86,11 +86,11 @@ function hancomParagraphXml(text, id, { title = false, includeSectionSetup = "" 
 function roleShape(role) {
   const shapes = {
     cover_title: { charPr: "26", paraPr: "30" },
-    cover_subtitle: { charPr: "36", paraPr: "38" },
+    cover_subtitle: { charPr: "12", paraPr: "20" },
     cover_metadata: { charPr: "7", paraPr: "20" },
     toc_title: { charPr: "26", paraPr: "30" },
     toc_item: { charPr: "0", paraPr: "20" },
-    heading_1: { charPr: "36", paraPr: "38" },
+    heading_1: { charPr: "12", paraPr: "20" },
     heading_2: { charPr: "12", paraPr: "20" },
     heading_3: { charPr: "12", paraPr: "20" },
     body: { charPr: "0", paraPr: "1" },
@@ -122,14 +122,14 @@ function styledParagraphXml(text, id, { role = "body", includeSectionSetup = "",
   ].join("");
 }
 
-function tableCellXml(text, rowIndex, colIndex, colWidth, role) {
+function tableCellXml(text, rowIndex, colIndex, colWidth, role, { borderFillIDRef, height, vertAlign = "CENTER" } = {}) {
   const shape = roleShape(role);
   const safeLines = String(text ?? "").split(/\r?\n/);
   const textXml = safeLines.map((line, index) => `${index ? '<hp:lineBreak/>' : ""}<hp:t>${escapeXml(line)}</hp:t>`).join("");
   return [
-    `<hp:tc name="" header="${rowIndex === 0 ? 1 : 0}" hasMargin="0" protect="0" editable="0" dirty="0" borderFillIDRef="${rowIndex === 0 ? 5 : 11}">`,
-    '<hp:subList id="" textDirection="HORIZONTAL" lineWrap="BREAK" vertAlign="CENTER" linkListIDRef="0" linkListNextIDRef="0" textWidth="0" textHeight="0" hasTextRef="0" hasNumRef="0">',
-    `<hp:p id="2147483648" paraPrIDRef="${shape.paraPr}" styleIDRef="0" pageBreak="0" columnBreak="0" merged="0">`,
+    `<hp:tc name="" header="${rowIndex === 0 ? 1 : 0}" hasMargin="1" protect="0" editable="0" dirty="0" borderFillIDRef="${borderFillIDRef || (rowIndex === 0 ? 9 : 10)}">`,
+    `<hp:subList id="" textDirection="HORIZONTAL" lineWrap="BREAK" vertAlign="${vertAlign}" linkListIDRef="0" linkListNextIDRef="0" textWidth="0" textHeight="0" hasTextRef="0" hasNumRef="0">`,
+    `<hp:p id="0" paraPrIDRef="${shape.paraPr}" styleIDRef="0" pageBreak="0" columnBreak="0" merged="0">`,
     `<!--army-style:${role}-->`,
     `<hp:run charPrIDRef="${shape.charPr}">${textXml}</hp:run>`,
     `<hp:linesegarray><hp:lineseg textpos="0" vertpos="0" vertsize="1000" textheight="1000" baseline="850" spacing="600" horzpos="0" horzsize="${Math.max(1000, colWidth - 1020)}" flags="393216"/></hp:linesegarray>`,
@@ -137,30 +137,37 @@ function tableCellXml(text, rowIndex, colIndex, colWidth, role) {
     "</hp:subList>",
     `<hp:cellAddr colAddr="${colIndex}" rowAddr="${rowIndex}"/>`,
     '<hp:cellSpan colSpan="1" rowSpan="1"/>',
-    `<hp:cellSz width="${colWidth}" height="${rowIndex === 0 ? 1800 : 2200}"/>`,
-    '<hp:cellMargin left="510" right="510" top="141" bottom="141"/>',
+    `<hp:cellSz width="${colWidth}" height="${height || 282}"/>`,
+    `<hp:cellMargin left="510" right="510" top="${rowIndex === 0 ? 600 : 500}" bottom="${rowIndex === 0 ? 600 : 500}"/>`,
     "</hp:tc>",
   ].join("");
 }
 
-function nativeTableXml(table, idSeed = 1) {
+function nativeTableXml(table, idSeed = 1, { kind = "table" } = {}) {
   const rows = [table.headers, ...table.rows];
   const colCount = table.headers.length;
   const rowCount = rows.length;
-  const colWidth = Math.floor(BODY_WIDTH / Math.max(1, colCount));
-  const tableWidth = colWidth * colCount;
+  const tableWidth = kind === "callout" ? 45355 : 45915;
+  const colWidth = Math.floor(tableWidth / Math.max(1, colCount));
   const rowsXml = rows.map((row, rowIndex) => {
-    const cells = row.map((cell, colIndex) => tableCellXml(cell, rowIndex, colIndex, colWidth, rowIndex === 0 ? "table_header" : "table_body")).join("");
+    const role = kind === "callout"
+      ? rowIndex === 0 ? "callout_title" : "callout_body"
+      : rowIndex === 0 ? "table_header" : "table_body";
+    const borderFillIDRef = kind === "callout" ? (rowIndex === 0 ? 7 : 8) : (rowIndex === 0 ? 9 : rowIndex % 2 ? 10 : 11);
+    const cells = row.map((cell, colIndex) => tableCellXml(cell, rowIndex, colIndex, colWidth, role, {
+      borderFillIDRef,
+      vertAlign: kind === "callout" ? "TOP" : "CENTER",
+    })).join("");
     return `<hp:tr>${cells}</hp:tr>`;
   }).join("");
   return [
     `<!--army-table-title:${escapeXml(table.title)}-->`,
     `<!--army-style:table_body-->`,
     `<hp:tbl id="${1443000000 + idSeed}" zOrder="${idSeed}" numberingType="TABLE" textWrap="TOP_AND_BOTTOM" textFlow="BOTH_SIDES" lock="0" dropcapstyle="None" pageBreak="CELL" repeatHeader="1" rowCnt="${rowCount}" colCnt="${colCount}" cellSpacing="0" borderFillIDRef="4" noAdjust="0">`,
-    `<hp:sz width="${tableWidth}" widthRelTo="ABSOLUTE" height="${rowCount * 2200}" heightRelTo="ABSOLUTE" protect="0"/>`,
-    '<hp:pos treatAsChar="1" affectLSpacing="0" flowWithText="1" allowOverlap="0" holdAnchorAndSO="0" vertRelTo="PARA" horzRelTo="PARA" vertAlign="TOP" horzAlign="LEFT" vertOffset="0" horzOffset="0"/>',
-    '<hp:outMargin left="0" right="141" top="141" bottom="141"/>',
-    '<hp:inMargin left="0" right="0" top="0" bottom="0"/>',
+    `<hp:sz width="${tableWidth}" widthRelTo="ABSOLUTE" height="${kind === "callout" ? 9545 : rowCount * 3760}" heightRelTo="ABSOLUTE" protect="0"/>`,
+    '<hp:pos treatAsChar="0" affectLSpacing="0" flowWithText="1" allowOverlap="0" holdAnchorAndSO="0" vertRelTo="PARA" horzRelTo="COLUMN" vertAlign="TOP" horzAlign="CENTER" vertOffset="0" horzOffset="0"/>',
+    '<hp:outMargin left="141" right="141" top="141" bottom="141"/>',
+    '<hp:inMargin left="510" right="510" top="141" bottom="141"/>',
     rowsXml,
     "</hp:tbl>",
   ].join("");
@@ -171,7 +178,16 @@ function calloutTableXml(block, idSeed) {
     title: block.title,
     headers: [block.title],
     rows: [[block.text]],
-  }, idSeed).replaceAll("table_header", "callout_title").replaceAll("table_body", "callout_body");
+  }, idSeed, { kind: "callout" });
+}
+
+function headerFooterControlsXml({ title, footerText }) {
+  const footer = footerText || title;
+  return [
+    '<hp:ctrl><hp:pageHiding hideHeader="1" hideFooter="1" hideMasterPage="0" hideBorder="0" hideFill="0" hidePageNum="0"/></hp:ctrl>',
+    `<hp:ctrl><hp:footer id="2" applyPageType="BOTH"><hp:subList id="" textDirection="HORIZONTAL" lineWrap="BREAK" vertAlign="BOTTOM" linkListIDRef="0" linkListNextIDRef="0" textWidth="45920" textHeight="2835" hasTextRef="0" hasNumRef="0"><hp:p id="0" paraPrIDRef="1" styleIDRef="0" pageBreak="0" columnBreak="0" merged="0"><hp:run charPrIDRef="0"><hp:t>${escapeXml(footer)}  |  </hp:t></hp:run><hp:run charPrIDRef="0"><hp:ctrl><hp:autoNum num="1" numType="PAGE"><hp:autoNumFormat type="DIGIT" userChar="" prefixChar="" suffixChar="" supscript="0"/></hp:autoNum></hp:ctrl></hp:run></hp:p></hp:subList></hp:footer></hp:ctrl>`,
+    `<hp:ctrl><hp:header id="1" applyPageType="BOTH"><hp:subList id="" textDirection="HORIZONTAL" lineWrap="BREAK" vertAlign="TOP" linkListIDRef="0" linkListNextIDRef="0" textWidth="45920" textHeight="3400" hasTextRef="0" hasNumRef="0"><hp:p id="0" paraPrIDRef="1" styleIDRef="0" pageBreak="0" columnBreak="0" merged="0"><hp:run charPrIDRef="0"><hp:t>${escapeXml(title)}</hp:t></hp:run></hp:p></hp:subList></hp:header></hp:ctrl>`,
+  ].join("");
 }
 
 function documentPlanPreviewText(plan) {
@@ -233,7 +249,7 @@ function documentPlanSectionXml({ plan, templateSectionXml }) {
     paraId += 1;
   };
 
-  addParagraph(plan.title, { role: "cover_title", includeSectionSetup: sectionSetup });
+  addParagraph(plan.title, { role: "cover_title", includeSectionSetup: `${sectionSetup}${headerFooterControlsXml({ title: plan.title, footerText: plan.footer_text })}` });
   if (plan.include_cover) {
     if (plan.subtitle) addParagraph(plan.subtitle, { role: "cover_subtitle" });
     for (const item of [plan.metadata.department, plan.metadata.author, plan.metadata.date].filter(Boolean)) {
@@ -417,12 +433,18 @@ export async function validateHwpxPackage({
   if (totalUncompressedBytes > maxUncompressedBytes) errors.push("uncompressed_size_limit_exceeded");
   for (const required of REQUIRED_HWPX_ENTRIES) if (!zip.file(required)) errors.push(`missing_required_entry:${required}`);
   const sections = sectionEntryNames(zip);
+  const sectionTexts = [];
   if (!sections.length) errors.push("missing_section_xml");
   for (const section of sections) {
     const xml = await readZipText(zip, section);
+    sectionTexts.push(xml);
     if (!/<(?:\w+:)?sec\b/u.test(xml)) errors.push(`invalid_section_xml:${section}`);
     if (/(?:href|src|target)\s*=\s*["']https?:\/\//i.test(xml)) warnings.push(`external_url_in_section:${section}`);
   }
+  const allSectionXml = sectionTexts.join("\n");
+  const tables = sectionTexts.flatMap(extractNativeTables);
+  const footer = extractFooterInfo(allSectionXml);
+  const nativeStructureValidation = validateNativeStructures({ tables, footer, sectionXml: allSectionXml });
   return {
     path,
     valid: errors.length === 0,
@@ -431,6 +453,9 @@ export async function validateHwpxPackage({
     entries,
     sectionEntries: sections,
     totalUncompressedBytes,
+    native_structure_validation: nativeStructureValidation.passed ? "passed" : "failed",
+    native_structure_errors: nativeStructureValidation.errors,
+    native_visual_check_status: "user_confirmation_pending",
   };
 }
 
@@ -458,6 +483,8 @@ export async function analyzeHwpxTemplate({ workspace, path }) {
   const text = paragraphs.join("\n");
   const allSectionXml = sectionTexts.join("\n");
   const tables = sectionTexts.flatMap(extractNativeTables);
+  const footer = extractFooterInfo(allSectionXml);
+  const nativeStructureValidation = validateNativeStructures({ tables, footer, sectionXml: allSectionXml });
   const placeholders = collectPlaceholders(text);
   const inputCandidates = placeholders.map((placeholder) => ({
     kind: "placeholder",
@@ -481,7 +508,10 @@ export async function analyzeHwpxTemplate({ workspace, path }) {
     tables,
     pageBreakCount: (allSectionXml.match(/pageBreak="1"/g) || []).length,
     styleRoles: [...new Set([...allSectionXml.matchAll(/<!--army-style:([a-z0-9_]+)-->/gi)].map((item) => item[1]))],
-    footerText: unescapeXml(allSectionXml.match(/<!--army-footer:([\s\S]*?)-->/u)?.[1] || ""),
+    footerText: footer.cleanText || unescapeXml(allSectionXml.match(/<!--army-footer:([\s\S]*?)-->/u)?.[1] || ""),
+    footer,
+    nativeStructureValidation,
+    nativeVisualCheckStatus: "user_confirmation_pending",
     images: imageEntries,
     hasHeader: /<hp:header\b|headerText/i.test(allSectionXml),
     hasFooter: /<hp:footer\b|footerText/i.test(allSectionXml),
@@ -638,7 +668,7 @@ export async function generateAutoHwpxDocument({ workspace, outputPath, document
     mode: "auto_document",
     styleProfile: plan.style_profile,
     documentType: plan.document_type,
-    pageNumberStatus: "unsupported_pending_native_structure",
+    pageNumberStatus: "native_page_field",
     validation,
   };
 }
@@ -682,26 +712,78 @@ function extractNativeTables(xml) {
     const title = titleStart >= 0 && titleEnd >= 0 ? prefix.slice(titleStart + "<!--army-table-title:".length, titleEnd) : "";
     const attrs = tableMatch[1] || "";
     const body = tableMatch[2] || "";
+    const positionAttrs = body.match(/<hp:pos\b([^>]*)\/>/u)?.[1] || "";
     const rows = [];
+    const cells = [];
     const rowRegex = /<hp:tr\b[^>]*>([\s\S]*?)<\/hp:tr>/g;
     let rowMatch;
     while ((rowMatch = rowRegex.exec(body))) {
-      const cells = [];
+      const rowCells = [];
       const cellRegex = /<hp:tc\b[^>]*>([\s\S]*?)<\/hp:tc>/g;
       let cellMatch;
       while ((cellMatch = cellRegex.exec(rowMatch[1]))) {
-        cells.push(extractParagraphs(cellMatch[1]).join("\n"));
+        const cellAttrs = cellMatch[0].match(/<hp:tc\b([^>]*)>/u)?.[1] || "";
+        const text = extractParagraphs(cellMatch[1]).join("\n");
+        cells.push({
+          text,
+          hasMargin: attrValue(cellAttrs, "hasMargin"),
+          borderFillIDRef: attrValue(cellAttrs, "borderFillIDRef"),
+        });
+        rowCells.push(text);
       }
-      rows.push(cells);
+      rows.push(rowCells);
     }
     tables.push({
       title: unescapeXml(title),
       rowCount: Number(attrs.match(/rowCnt="(\d+)"/u)?.[1] || rows.length),
       columnCount: Number(attrs.match(/colCnt="(\d+)"/u)?.[1] || rows[0]?.length || 0),
+      position: {
+        treatAsChar: attrValue(positionAttrs, "treatAsChar"),
+        horzRelTo: attrValue(positionAttrs, "horzRelTo"),
+        horzAlign: attrValue(positionAttrs, "horzAlign"),
+        vertRelTo: attrValue(positionAttrs, "vertRelTo"),
+        vertAlign: attrValue(positionAttrs, "vertAlign"),
+      },
+      cells,
       rows,
     });
   }
   return tables;
+}
+
+function attrValue(attrs, name) {
+  return String(attrs || "").match(new RegExp(`${name}="([^"]*)"`, "u"))?.[1] || "";
+}
+
+function extractFooterInfo(xml) {
+  const footerMatch = xml.match(/<hp:footer\b[\s\S]*?<\/hp:footer>/u);
+  const footerXml = footerMatch?.[0] || "";
+  const text = extractParagraphs(footerXml).join("\n");
+  return {
+    actualFooter: Boolean(footerXml),
+    pageNumberField: /<hp:autoNum\b[^>]*numType="PAGE"/u.test(footerXml),
+    text,
+    cleanText: text.replace(/\s*\|\s*$/u, "").trim(),
+  };
+}
+
+function validateNativeStructures({ tables, footer, sectionXml }) {
+  const errors = [];
+  for (const [index, table] of tables.entries()) {
+    if (table.position.treatAsChar !== "0") errors.push(`table_${index + 1}_treatAsChar_not_native`);
+    if (table.position.horzRelTo !== "COLUMN") errors.push(`table_${index + 1}_horzRelTo_not_column`);
+    if (table.position.horzAlign !== "CENTER") errors.push(`table_${index + 1}_horzAlign_not_center`);
+    if (!table.cells.every((cell) => cell.hasMargin === "1")) errors.push(`table_${index + 1}_cell_margin_missing`);
+    if (table.rows.length !== table.rowCount) errors.push(`table_${index + 1}_row_count_mismatch`);
+    if (table.rows.some((row) => row.length !== table.columnCount)) errors.push(`table_${index + 1}_column_count_mismatch`);
+  }
+  if (!footer.actualFooter) errors.push("footer_missing");
+  if (!footer.pageNumberField) errors.push("page_number_field_missing");
+  if (!/<hp:pageHiding\b/u.test(sectionXml)) errors.push("first_page_hiding_missing");
+  return {
+    passed: errors.length === 0,
+    errors,
+  };
 }
 
 export async function summarizeHwpxDocument({ workspace, path }) {

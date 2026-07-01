@@ -370,3 +370,68 @@ test("rejects table rows with inconsistent column counts", () => {
     /table row 1 has 1 cells but expected 2/,
   );
 });
+
+test("renders v3 automatic documents with native reference table anchors and page footer fields", async () => {
+  const workspace = await mkdtemp(join(tmpdir(), "army-claw-rendering-v3-"));
+  try {
+    await generateAutoHwpxDocument({
+      workspace,
+      outputPath: "outputs/rendered-v3.hwpx",
+      documentPlan: {
+        document_type: "결과보고서",
+        title: "Army Claw HWPX 문서 생성 기능 검증 보고서",
+        subtitle: "네이티브 구조 기반 자동 디자인 문서 생성 기능 검증",
+        metadata: { author: "Army Claw", department: "로컬 AI 에이전트 개발", date: "2026-07-01" },
+        style_profile: "official_report",
+        include_cover: true,
+        include_toc: true,
+        footer_text: "Army Claw HWPX 기능 검증 보고서",
+        sections: [
+          {
+            id: "purpose",
+            heading: "1. 검증 목적",
+            level: 1,
+            blocks: [
+              { type: "paragraph", text: "본문 문단입니다." },
+              { type: "callout", callout_type: "key_result", title: "핵심 검증 사항", text: "한글 2024 네이티브 구조를 따른다." },
+            ],
+          },
+          {
+            id: "results",
+            heading: "2. 구현 및 시험 결과",
+            level: 1,
+            blocks: [
+              {
+                type: "table",
+                title: "기능별 검증 결과",
+                headers: ["구분", "검증 내용", "결과"],
+                rows: [
+                  ["표 객체", "네이티브 anchor 구조 적용", "검증"],
+                  ["footer", "자동 페이지 번호 필드 적용", "검증"],
+                ],
+              },
+            ],
+          },
+        ],
+      },
+    });
+
+    const analysis = await analyzeHwpxTemplate({ workspace, path: "outputs/rendered-v3.hwpx" });
+    const validation = await validateHwpxPackage({ workspace, path: "outputs/rendered-v3.hwpx" });
+
+    assert.equal(validation.valid, true);
+    assert.equal(analysis.nativeStructureValidation.passed, true);
+    assert.equal(analysis.tableCount, 2);
+    assert.equal(analysis.tables[0].position.treatAsChar, "0");
+    assert.equal(analysis.tables[0].position.horzRelTo, "COLUMN");
+    assert.equal(analysis.tables[0].position.horzAlign, "CENTER");
+    assert.equal(analysis.tables[0].cells.every((cell) => cell.hasMargin === "1"), true);
+    assert.equal(analysis.tables[1].position.treatAsChar, "0");
+    assert.equal(analysis.footer.actualFooter, true);
+    assert.equal(analysis.footer.pageNumberField, true);
+    assert.match(analysis.footer.text, /Army Claw HWPX 기능 검증 보고서/);
+    assert.equal(analysis.nativeVisualCheckStatus, "user_confirmation_pending");
+  } finally {
+    await rm(workspace, { recursive: true, force: true });
+  }
+});
