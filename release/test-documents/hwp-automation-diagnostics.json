@@ -1,0 +1,182 @@
+﻿{
+    "mode":  "com-create",
+    "conversion_status":  "passed",
+    "last_successful_step":  "security_module_result",
+    "source_path":  "",
+    "source_sha256_before":  "",
+    "source_sha256_after":  "",
+    "source_unchanged":  null,
+    "output":  null,
+    "started_process_ids":  [
+                                9304
+                            ],
+    "warnings":  [
+
+                 ],
+    "errors":  [
+
+               ],
+    "events":  [
+                   {
+                       "timestamp":  "2026-07-01T23:14:06.5508735+09:00",
+                       "step":  "process_start",
+                       "status":  "ok",
+                       "data":  {
+                                    "visible":  false,
+                                    "mode":  "com-create"
+                                }
+                   },
+                   {
+                       "timestamp":  "2026-07-01T23:14:06.5553805+09:00",
+                       "step":  "host_bitness_detected",
+                       "status":  "ok",
+                       "data":  {
+                                    "ps_home":  "C:\\Windows\\System32\\WindowsPowerShell\\v1.0",
+                                    "operating_system":  "64-bit",
+                                    "powershell_process":  "64-bit"
+                                }
+                   },
+                   {
+                       "timestamp":  "2026-07-01T23:14:06.5588834+09:00",
+                       "step":  "com_registration_probe",
+                       "status":  "ok",
+                       "data":  {
+                                    "HWPFrame_HwpObject":  [
+                                                               {
+                                                                   "path":  "Registry::HKEY_CLASSES_ROOT\\HWPFrame.HwpObject",
+                                                                   "exists":  true
+                                                               },
+                                                               {
+                                                                   "path":  "Registry::HKEY_CLASSES_ROOT\\WOW6432Node\\CLSID",
+                                                                   "exists":  true
+                                                               }
+                                                           ]
+                                }
+                   },
+                   {
+                       "timestamp":  "2026-07-01T23:14:06.5608876+09:00",
+                       "step":  "com_object_create_start",
+                       "status":  "ok",
+                       "data":  {
+
+                                }
+                   },
+                   {
+                       "timestamp":  "2026-07-01T23:14:07.7329357+09:00",
+                       "step":  "com_object_create_success",
+                       "status":  "ok",
+                       "data":  {
+
+                                }
+                   },
+                   {
+                       "timestamp":  "2026-07-01T23:14:07.7509748+09:00",
+                       "step":  "created_process_snapshot",
+                       "status":  "ok",
+                       "data":  {
+                                    "started_process_ids":  [
+                                                                9304
+                                                            ],
+                                    "processes":  [
+                                                      {
+                                                          "Id":  9304,
+                                                          "ProcessName":  "Hwp",
+                                                          "MainWindowTitle":  "",
+                                                          "Path":  "C:\\Program Files (x86)\\HNC\\Office 2024\\HOffice130\\Bin\\Hwp.exe"
+                                                      },
+                                                      {
+                                                          "Id":  12380,
+                                                          "ProcessName":  "Hwp",
+                                                          "MainWindowTitle":  "",
+                                                          "Path":  "C:\\Program Files (x86)\\HNC\\Office 2024\\HOffice130\\Bin\\Hwp.exe"
+                                                      },
+                                                      {
+                                                          "Id":  26000,
+                                                          "ProcessName":  "Hwp",
+                                                          "MainWindowTitle":  "",
+                                                          "Path":  "C:\\Program Files (x86)\\HNC\\Office 2024\\HOffice130\\Bin\\Hwp.exe"
+                                                      },
+                                                      {
+                                                          "Id":  36424,
+                                                          "ProcessName":  "Hwp",
+                                                          "MainWindowTitle":  "",
+                                                          "Path":  "C:\\Program Files (x86)\\HNC\\Office 2024\\HOffice130\\Bin\\Hwp.exe"
+                                                      }
+                                                  ]
+                                }
+                   },
+                   {
+                       "timestamp":  "2026-07-01T23:14:07.7519747+09:00",
+                       "step":  "window_access_start",
+                       "status":  "ok",
+                       "data":  {
+
+                                }
+                   },
+                   {
+                       "timestamp":  "2026-07-01T23:14:07.8529767+09:00",
+                       "step":  "window_access_success",
+                       "status":  "ok",
+                       "data":  {
+                                    "visible":  false
+                                }
+                   },
+                   {
+                       "timestamp":  "2026-07-01T23:14:07.8529767+09:00",
+                       "step":  "security_module_start",
+                       "status":  "ok",
+                       "data":  {
+
+                                }
+                   },
+                   {
+                       "timestamp":  "2026-07-01T23:14:07.8574848+09:00",
+                       "step":  "security_module_result",
+                       "status":  "ok",
+                       "data":  {
+                                    "result":  false
+                                }
+                   },
+                   {
+                       "timestamp":  "2026-07-01T23:14:07.8614899+09:00",
+                       "step":  "close_start",
+                       "status":  "ok",
+                       "data":  {
+
+                                }
+                   },
+                   {
+                       "timestamp":  "2026-07-01T23:14:07.8716783+09:00",
+                       "step":  "close_success",
+                       "status":  "ok",
+                       "data":  {
+
+                                }
+                   },
+                   {
+                       "timestamp":  "2026-07-01T23:14:07.8716783+09:00",
+                       "step":  "quit_start",
+                       "status":  "ok",
+                       "data":  {
+
+                                }
+                   },
+                   {
+                       "timestamp":  "2026-07-01T23:14:07.8789035+09:00",
+                       "step":  "quit_success",
+                       "status":  "ok",
+                       "data":  {
+
+                                }
+                   },
+                   {
+                       "timestamp":  "2026-07-01T23:14:08.3929764+09:00",
+                       "step":  "process_end",
+                       "status":  "ok",
+                       "data":  {
+                                    "conversion_status":  "passed",
+                                    "last_successful_step":  "security_module_result"
+                                }
+                   }
+               ]
+}

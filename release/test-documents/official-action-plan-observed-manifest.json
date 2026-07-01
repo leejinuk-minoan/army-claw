@@ -1,0 +1,520 @@
+{
+  "profile_id": "official_action_plan",
+  "source_file": "reference/hwp-style-samples/official-action-plan-sample.hwp",
+  "converted_hwpx": ".tmp/hwp-reference-conversion/official-action-plan-sample.hwpx",
+  "conversion_valid": true,
+  "validation": {
+    "native_structure_validation": "failed",
+    "native_table_wrapper_validation": "failed",
+    "errors": [],
+    "warnings": []
+  },
+  "page": {
+    "page_break_count": 4,
+    "section_count": 1
+  },
+  "repeated_regions": [
+    {
+      "text": "구 분",
+      "count": 3
+    },
+    {
+      "text": "계",
+      "count": 2
+    },
+    {
+      "text": "5 (2)명",
+      "count": 2
+    },
+    {
+      "text": "1 (1)명",
+      "count": 4
+    },
+    {
+      "text": "20대",
+      "count": 2
+    },
+    {
+      "text": "희망자",
+      "count": 2
+    },
+    {
+      "text": "∙등반대장에 대한 잔소리 금지",
+      "count": 2
+    }
+  ],
+  "table_patterns": [
+    {
+      "role": "table_1",
+      "title": "",
+      "rows": 8,
+      "cols": 7,
+      "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
+      "border_style": "unknown",
+      "merged_cells": [
+        {
+          "row": 0,
+          "col": 2,
+          "row_span": 2,
+          "col_span": 1,
+          "text": ""
+        },
+        {
+          "row": 0,
+          "col": 3,
+          "row_span": 2,
+          "col_span": 1,
+          "text": "★ 기 안"
+        },
+        {
+          "row": 0,
+          "col": 4,
+          "row_span": 2,
+          "col_span": 1,
+          "text": "◎"
+        },
+        {
+          "row": 0,
+          "col": 5,
+          "row_span": 2,
+          "col_span": 1,
+          "text": ""
+        },
+        {
+          "row": 0,
+          "col": 6,
+          "row_span": 2,
+          "col_span": 1,
+          "text": ""
+        },
+        {
+          "row": 1,
+          "col": 0,
+          "row_span": 2,
+          "col_span": 1,
+          "text": "보존기간"
+        },
+        {
+          "row": 1,
+          "col": 1,
+          "row_span": 2,
+          "col_span": 1,
+          "text": "영 구"
+        },
+        {
+          "row": 2,
+          "col": 2,
+          "row_span": 2,
+          "col_span": 1,
+          "text": ""
+        },
+        {
+          "row": 2,
+          "col": 3,
+          "row_span": 5,
+          "col_span": 1,
+          "text": "미 남"
+        },
+        {
+          "row": 2,
+          "col": 4,
+          "row_span": 5,
+          "col_span": 1,
+          "text": ""
+        },
+        {
+          "row": 2,
+          "col": 5,
+          "row_span": 5,
+          "col_span": 1,
+          "text": ""
+        },
+        {
+          "row": 2,
+          "col": 6,
+          "row_span": 5,
+          "col_span": 1,
+          "text": ""
+        },
+        {
+          "row": 3,
+          "col": 0,
+          "row_span": 2,
+          "col_span": 1,
+          "text": "결재일자"
+        },
+        {
+          "row": 3,
+          "col": 1,
+          "row_span": 2,
+          "col_span": 1,
+          "text": "‘20. 4. 26."
+        },
+        {
+          "row": 4,
+          "col": 2,
+          "row_span": 3,
+          "col_span": 1,
+          "text": ""
+        },
+        {
+          "row": 6,
+          "col": 0,
+          "row_span": 2,
+          "col_span": 1,
+          "text": "언론홍보"
+        },
+        {
+          "row": 6,
+          "col": 1,
+          "row_span": 2,
+          "col_span": 1,
+          "text": "×"
+        },
+        {
+          "row": 7,
+          "col": 4,
+          "row_span": 1,
+          "col_span": 3,
+          "text": "․ :"
+        }
+      ]
+    },
+    {
+      "role": "table_2",
+      "title": "",
+      "rows": 1,
+      "cols": 1,
+      "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
+      "border_style": "unknown",
+      "merged_cells": []
+    },
+    {
+      "role": "table_3",
+      "title": "",
+      "rows": 1,
+      "cols": 1,
+      "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
+      "border_style": "unknown",
+      "merged_cells": []
+    },
+    {
+      "role": "table_4",
+      "title": "",
+      "rows": 1,
+      "cols": 1,
+      "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
+      "border_style": "unknown",
+      "merged_cells": []
+    },
+    {
+      "role": "table_5",
+      "title": "",
+      "rows": 4,
+      "cols": 4,
+      "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
+      "border_style": "unknown",
+      "merged_cells": []
+    },
+    {
+      "role": "table_6",
+      "title": "",
+      "rows": 1,
+      "cols": 1,
+      "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
+      "border_style": "unknown",
+      "merged_cells": []
+    },
+    {
+      "role": "table_7",
+      "title": "",
+      "rows": 15,
+      "cols": 4,
+      "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
+      "border_style": "unknown",
+      "merged_cells": [
+        {
+          "row": 0,
+          "col": 0,
+          "row_span": 1,
+          "col_span": 2,
+          "text": "구 분"
+        },
+        {
+          "row": 1,
+          "col": 0,
+          "row_span": 14,
+          "col_span": 1,
+          "text": "4. 19 (일)"
+        },
+        {
+          "row": 3,
+          "col": 3,
+          "row_span": 3,
+          "col_span": 1,
+          "text": "등산 (오르막길)"
+        },
+        {
+          "row": 10,
+          "col": 1,
+          "row_span": 2,
+          "col_span": 1,
+          "text": "20:00〜21:00"
+        }
+      ]
+    },
+    {
+      "role": "table_8",
+      "title": "",
+      "rows": 1,
+      "cols": 1,
+      "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
+      "border_style": "unknown",
+      "merged_cells": []
+    },
+    {
+      "role": "table_9",
+      "title": "",
+      "rows": 6,
+      "cols": 16,
+      "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
+      "border_style": "unknown",
+      "merged_cells": [
+        {
+          "row": 0,
+          "col": 0,
+          "row_span": 2,
+          "col_span": 1,
+          "text": ""
+        },
+        {
+          "row": 0,
+          "col": 1,
+          "row_span": 1,
+          "col_span": 6,
+          "text": ""
+        },
+        {
+          "row": 0,
+          "col": 7,
+          "row_span": 1,
+          "col_span": 2,
+          "text": "산행대장"
+        },
+        {
+          "row": 0,
+          "col": 9,
+          "row_span": 1,
+          "col_span": 5,
+          "text": ""
+        },
+        {
+          "row": 0,
+          "col": 14,
+          "row_span": 2,
+          "col_span": 2,
+          "text": ""
+        },
+        {
+          "row": 1,
+          "col": 1,
+          "row_span": 1,
+          "col_span": 6,
+          "text": ""
+        },
+        {
+          "row": 1,
+          "col": 7,
+          "row_span": 1,
+          "col_span": 2,
+          "text": ""
+        },
+        {
+          "row": 1,
+          "col": 9,
+          "row_span": 1,
+          "col_span": 5,
+          "text": ""
+        },
+        {
+          "row": 2,
+          "col": 0,
+          "row_span": 1,
+          "col_span": 8,
+          "text": ""
+        },
+        {
+          "row": 2,
+          "col": 8,
+          "row_span": 1,
+          "col_span": 8,
+          "text": ""
+        },
+        {
+          "row": 3,
+          "col": 1,
+          "row_span": 1,
+          "col_span": 3,
+          "text": ""
+        },
+        {
+          "row": 3,
+          "col": 4,
+          "row_span": 1,
+          "col_span": 4,
+          "text": ""
+        },
+        {
+          "row": 3,
+          "col": 8,
+          "row_span": 1,
+          "col_span": 4,
+          "text": ""
+        },
+        {
+          "row": 3,
+          "col": 12,
+          "row_span": 1,
+          "col_span": 2,
+          "text": ""
+        },
+        {
+          "row": 4,
+          "col": 0,
+          "row_span": 1,
+          "col_span": 2,
+          "text": "20대"
+        },
+        {
+          "row": 4,
+          "col": 3,
+          "row_span": 2,
+          "col_span": 2,
+          "text": ""
+        },
+        {
+          "row": 4,
+          "col": 6,
+          "row_span": 1,
+          "col_span": 4,
+          "text": ""
+        },
+        {
+          "row": 4,
+          "col": 11,
+          "row_span": 2,
+          "col_span": 1,
+          "text": ""
+        },
+        {
+          "row": 4,
+          "col": 13,
+          "row_span": 1,
+          "col_span": 2,
+          "text": "30대"
+        },
+        {
+          "row": 5,
+          "col": 0,
+          "row_span": 1,
+          "col_span": 2,
+          "text": "1명 (혹은 추가 편성)"
+        },
+        {
+          "row": 5,
+          "col": 6,
+          "row_span": 1,
+          "col_span": 4,
+          "text": ""
+        },
+        {
+          "row": 5,
+          "col": 13,
+          "row_span": 1,
+          "col_span": 2,
+          "text": "4명"
+        }
+      ]
+    },
+    {
+      "role": "table_10",
+      "title": "",
+      "rows": 1,
+      "cols": 1,
+      "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
+      "border_style": "unknown",
+      "merged_cells": []
+    },
+    {
+      "role": "table_11",
+      "title": "",
+      "rows": 7,
+      "cols": 2,
+      "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
+      "border_style": "unknown",
+      "merged_cells": []
+    },
+    {
+      "role": "table_12",
+      "title": "",
+      "rows": 1,
+      "cols": 1,
+      "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
+      "border_style": "unknown",
+      "merged_cells": []
+    },
+    {
+      "role": "table_13",
+      "title": "",
+      "rows": 2,
+      "cols": 2,
+      "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
+      "border_style": "unknown",
+      "merged_cells": []
+    }
+  ],
+  "paragraph_roles": {},
+  "header_footer": {
+    "has_header": true,
+    "has_footer": true,
+    "footer_text": "5 -",
+    "page_number_field": true
+  },
+  "images": [
+    "BinData/image1.jpg",
+    "BinData/image2.bmp",
+    "BinData/image3.bmp"
+  ],
+  "text_sample": [
+    "등록번호",
+    "BPRC -",
+    "★",
+    "기 안",
+    "◎",
+    "보존기간",
+    "영 구",
+    "미 남",
+    "결재일자",
+    "‘20. 4. 26.",
+    "공개구분",
+    "대외비",
+    "언론홍보",
+    "×",
+    "협 조",
+    "․ :",
+    "청계산(매봉)등반계획",
+    "∘BPRC 소모임 무의도 해안 일주 희망자 대상 계획 보고임.",
+    "․기간 : 5. 2(토) / 1일",
+    "․대상 : ---- 참여자",
+    "※ 승인해 주시면 내실있게 추진 하겠습니다.",
+    "산행대장 미남",
+    "개요",
+    "5 -",
+    "사회적 거리 두기 장기화에 따른 '코로나 블루' 극복을 위해",
+    "장차 000로서 자부심과 성취감을 느낄 수 있도록 하기 위한 등산 계획임. 방 침",
+    " --- 산행대장 책임하 청계산 매봉 등산 실시 (1일)",
+    "* 등산 코스 편성, 일정 계획 수립 및 등산 물자 준비 등",
+    " 안전하고 즐거운 산행을 위한 단장에 의한 등산 코스 통제",
+    "* 대중교통 이동간 전 인원 마스크 단속 및 손 소독제 수시 사용 등"
+  ]
+}

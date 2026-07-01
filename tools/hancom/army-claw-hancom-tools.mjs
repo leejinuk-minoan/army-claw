@@ -156,29 +156,73 @@ export function validateMergedTableCells({ rows, cols, cells }) {
   return true;
 }
 
+export function buildMergedTableGrid({ rows, cols, column_widths = [], row_heights = [], cells = [] }) {
+  const rowCount = Number(rows || 0);
+  const colCount = Number(cols || 0);
+  validateMergedTableCells({ rows: rowCount, cols: colCount, cells });
+  const columnWidths = Array.from({ length: colCount }, (_, index) => Number(column_widths[index] || 45915 / Math.max(1, colCount)));
+  const rowHeights = Array.from({ length: rowCount }, (_, index) => Number(row_heights[index] || 3760));
+  const occupied = new Set();
+  const renderedCells = [];
+  for (const cell of cells) {
+    const row = Number(cell.row ?? 0);
+    const col = Number(cell.col ?? 0);
+    const rowSpan = Number(cell.row_span || cell.rowSpan || 1);
+    const colSpan = Number(cell.col_span || cell.colSpan || 1);
+    for (let rowOffset = 0; rowOffset < rowSpan; rowOffset += 1) {
+      for (let colOffset = 0; colOffset < colSpan; colOffset += 1) occupied.add(`${row + rowOffset}:${col + colOffset}`);
+    }
+    renderedCells.push({
+      row,
+      col,
+      row_span: rowSpan,
+      col_span: colSpan,
+      rowSpan,
+      colSpan,
+      text: String(cell.text ?? ""),
+      role: cell.role || (row === 0 ? "header" : "body"),
+      width: columnWidths.slice(col, col + colSpan).reduce((sum, value) => sum + value, 0),
+      height: rowHeights.slice(row, row + rowSpan).reduce((sum, value) => sum + value, 0),
+    });
+  }
+  renderedCells.sort((a, b) => a.row - b.row || a.col - b.col);
+  return {
+    row_count: rowCount,
+    col_count: colCount,
+    column_widths: columnWidths,
+    row_heights: rowHeights,
+    table_width: columnWidths.reduce((sum, value) => sum + value, 0),
+    anchor_cells: renderedCells.map((cell) => ({ row: cell.row, col: cell.col })),
+    occupied_coordinates: [...occupied],
+    rendered_cells: renderedCells,
+  };
+}
+
 function normalizedTableRows(table) {
   if (Array.isArray(table.cells)) {
     const rowCount = Number(table.rows || 0);
     const colCount = Number(table.cols || table.columns || 0);
-    validateMergedTableCells({ rows: rowCount, cols: colCount, cells: table.cells });
+    const grid = buildMergedTableGrid({
+      rows: rowCount,
+      cols: colCount,
+      column_widths: table.column_widths,
+      row_heights: table.row_heights,
+      cells: table.cells,
+    });
     const rows = Array.from({ length: rowCount }, () => []);
-    const byOrigin = new Map();
-    for (const cell of table.cells) byOrigin.set(`${Number(cell.row || 0)}:${Number(cell.col || 0)}`, cell);
-    for (let row = 0; row < rowCount; row += 1) {
-      for (let col = 0; col < colCount; col += 1) {
-        const cell = byOrigin.get(`${row}:${col}`);
-        if (!cell) continue;
-        rows[row].push({
-          text: String(cell.text ?? ""),
-          rowSpan: Number(cell.row_span || cell.rowSpan || 1),
-          colSpan: Number(cell.col_span || cell.colSpan || 1),
-          role: cell.role || (row === 0 ? "header" : "body"),
-          row,
-          col,
-        });
-      }
+    for (const cell of grid.rendered_cells) {
+      rows[cell.row].push({
+        text: cell.text,
+        rowSpan: cell.row_span,
+        colSpan: cell.col_span,
+        role: cell.role,
+        row: cell.row,
+        col: cell.col,
+        width: cell.width,
+        height: cell.height,
+      });
     }
-    return { rows, rowCount, colCount };
+    return { rows, rowCount, colCount, grid };
   }
   const rows = [table.headers, ...table.rows].map((row, rowIndex) => row.map((text, colIndex) => ({
     text,
@@ -191,11 +235,11 @@ function normalizedTableRows(table) {
   return { rows, rowCount: rows.length, colCount: table.headers.length };
 }
 
-function tableCellXml(text, rowIndex, colIndex, colWidth, role, { borderFillIDRef, height, vertAlign = "CENTER", rowSpan = 1, colSpan = 1 } = {}) {
+function tableCellXml(text, rowIndex, colIndex, colWidth, role, { borderFillIDRef, height, width: explicitWidth, vertAlign = "CENTER", rowSpan = 1, colSpan = 1 } = {}) {
   const shape = roleShape(role);
   const safeLines = String(text ?? "").split(/\r?\n/);
   const textXml = safeLines.map((line, index) => `${index ? '<hp:lineBreak/>' : ""}<hp:t>${escapeXml(line)}</hp:t>`).join("");
-  const width = colWidth * colSpan;
+  const width = explicitWidth || colWidth * colSpan;
   return [
     `<hp:tc name="" header="${rowIndex === 0 ? 1 : 0}" hasMargin="1" protect="0" editable="0" dirty="0" borderFillIDRef="${borderFillIDRef || (rowIndex === 0 ? 9 : 10)}">`,
     `<hp:subList id="" textDirection="HORIZONTAL" lineWrap="BREAK" vertAlign="${vertAlign}" linkListIDRef="0" linkListNextIDRef="0" textWidth="0" textHeight="0" hasTextRef="0" hasNumRef="0">`,
@@ -231,6 +275,8 @@ function nativeTableObjectXml(table, idSeed = 1, { kind = "table" } = {}) {
       vertAlign: kind === "callout" ? "TOP" : "CENTER",
       rowSpan: cell.rowSpan,
       colSpan: cell.colSpan,
+      width: cell.width,
+      height: cell.height,
     });
     }).join("");
     return `<hp:tr>${cells}</hp:tr>`;
@@ -591,6 +637,79 @@ export async function createTemplateBackedHwpxDocument({ workspace, path, title 
     message: "HWPX document created from Hancom template",
     templateBacked: true,
     templatePath,
+  };
+}
+
+function textFromXmlFragment(xml) {
+  const texts = [];
+  const tRegex = /<(?:\w+:)?(?:t|text)\b[^>]*>([\s\S]*?)<\/(?:\w+:)?(?:t|text)>/g;
+  let match;
+  while ((match = tRegex.exec(xml))) texts.push(unescapeXml(match[1]));
+  return texts.join("");
+}
+
+function replaceFirstTextRun(fragment, replacementText) {
+  let replaced = false;
+  return fragment.replace(/(<(?:\w+:)?(?:t|text)\b[^>]*>)([\s\S]*?)(<\/(?:\w+:)?(?:t|text)>)/g, (full, open, text, close) => {
+    if (!replaced) {
+      replaced = true;
+      return `${open}${escapeXml(replacementText)}${close}`;
+    }
+    return `${open}${close}`;
+  });
+}
+
+function replaceParagraphTextInSectionXml(xml, replacement) {
+  const selector = replacement.selector || {};
+  if (selector.type !== "paragraph_text") throw new Error(`unsupported template fidelity selector: ${selector.type}`);
+  const sourceText = String(selector.source_text || "");
+  const replacementText = String(replacement.replacement_text ?? "");
+  let applied = 0;
+  const nextXml = xml.replace(/<hp:p\b[^>]*>[\s\S]*?<\/hp:p>/g, (paragraphXml) => {
+    if (textFromXmlFragment(paragraphXml) !== sourceText) return paragraphXml;
+    applied += 1;
+    return replaceFirstTextRun(paragraphXml, replacementText);
+  });
+  return { xml: nextXml, applied };
+}
+
+export async function applyHwpxTemplateFidelityFill({ workspace, templatePath, outputPath, replacements = [] } = {}) {
+  requireHwpxPath(templatePath);
+  requireHwpxPath(outputPath);
+  if (!Array.isArray(replacements)) throw new Error("replacements must be an array");
+  const source = resolveWorkspacePath(workspace, templatePath);
+  const target = resolveWorkspacePath(workspace, outputPath);
+  if (source.toLowerCase() === target.toLowerCase()) throw new Error("output_path must be different from template_path");
+  const zip = await JSZip.loadAsync(await readFile(source));
+  let replacementsApplied = 0;
+  for (const section of sectionEntryNames(zip)) {
+    let sectionXml = await readZipText(zip, section);
+    for (const replacement of replacements) {
+      const result = replaceParagraphTextInSectionXml(sectionXml, replacement);
+      sectionXml = result.xml;
+      replacementsApplied += result.applied;
+    }
+    zip.file(section, sectionXml);
+  }
+  const previewText = await readZipText(zip, "Preview/PrvText.txt");
+  if (previewText) {
+    let nextPreview = previewText;
+    for (const replacement of replacements) {
+      const sourceText = String(replacement.selector?.source_text || "");
+      if (sourceText) nextPreview = nextPreview.replaceAll(sourceText, String(replacement.replacement_text ?? ""));
+    }
+    zip.file("Preview/PrvText.txt", nextPreview);
+  }
+  await mkdir(dirname(target), { recursive: true });
+  await writeFile(target, await zip.generateAsync({ type: "nodebuffer", compression: "DEFLATE" }));
+  const validation = await validateHwpxPackage({ workspace, path: outputPath });
+  return {
+    path: outputPath,
+    absolutePath: target,
+    saved: true,
+    mode: "template_fidelity_fill",
+    replacementsApplied,
+    validation,
   };
 }
 
@@ -1428,6 +1547,13 @@ async function main() {
       outputPath: argValue(args, "--output-path"),
       fieldMapping: await jsonArgOrFileValue(args, "--field-mapping", "--field-mapping-file"),
     });
+  } else if (command === "hwpx-template-fidelity-fill") {
+    result = await applyHwpxTemplateFidelityFill({
+      workspace: argValue(args, "--workspace"),
+      templatePath: argValue(args, "--template-path"),
+      outputPath: argValue(args, "--output-path"),
+      replacements: await jsonArgOrFileValue(args, "--replacements", "--replacements-file", []),
+    });
   } else if (command === "hwpx-auto-generate") {
     result = await generateAutoHwpxDocument({
       workspace: argValue(args, "--workspace"),
@@ -1452,7 +1578,7 @@ async function main() {
   } else if (command === "open-hwp") {
     result = await openWithHancomHwp({ workspace: argValue(args, "--workspace"), path: argValue(args, "--path") });
   } else {
-    throw new Error("Usage: status | prompt-create | hwpx-create | hwpx-validate | hwpx-analyze-template | hwpx-template-fill | hwpx-auto-generate | hwpx-generate-minimal-table | hwpx-generate-reference-profile | hwpx-summary | hwpx-add-paragraph | open-hwp");
+    throw new Error("Usage: status | prompt-create | hwpx-create | hwpx-validate | hwpx-analyze-template | hwpx-template-fill | hwpx-template-fidelity-fill | hwpx-auto-generate | hwpx-generate-minimal-table | hwpx-generate-reference-profile | hwpx-summary | hwpx-add-paragraph | open-hwp");
   }
   console.log(JSON.stringify(result, null, args.includes("--json") ? 2 : 0));
 }

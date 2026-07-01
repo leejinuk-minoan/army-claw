@@ -13,12 +13,20 @@ function argValue(args, name, fallback = "") {
 
 function paragraphFrequencies(paragraphs) {
   const counts = new Map();
-  for (const text of paragraphs.map((item) => String(item || "").trim()).filter(Boolean)) {
+  for (const text of paragraphs.map(safeManifestText).filter(Boolean)) {
     counts.set(text, (counts.get(text) || 0) + 1);
   }
   return [...counts.entries()]
     .filter(([, count]) => count > 1)
     .map(([text, count]) => ({ text, count }));
+}
+
+function safeManifestText(value) {
+  return String(value ?? "")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/[\u0000-\u001f\u007f-\u009f]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
 }
 
 function tablePattern(table, index) {
@@ -36,7 +44,7 @@ function tablePattern(table, index) {
         col: cell.colAddr,
         row_span: cell.rowSpan,
         col_span: cell.colSpan,
-        text: cell.text,
+        text: safeManifestText(cell.text),
       })),
   };
 }
@@ -71,11 +79,11 @@ export async function createHwpReferenceManifest({
     header_footer: {
       has_header: analysis.hasHeader,
       has_footer: analysis.hasFooter,
-      footer_text: analysis.footerText,
+      footer_text: safeManifestText(analysis.footerText),
       page_number_field: analysis.footer?.pageNumberField || false,
     },
     images: analysis.images || [],
-    text_sample: analysis.paragraphs.slice(0, 30),
+    text_sample: analysis.paragraphs.map(safeManifestText).filter(Boolean).slice(0, 30),
   };
 }
 

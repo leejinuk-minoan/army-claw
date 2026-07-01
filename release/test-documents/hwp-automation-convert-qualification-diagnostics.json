@@ -1,0 +1,220 @@
+{
+    "mode":  "convert",
+    "conversion_status":  "passed",
+    "last_successful_step":  "save_as_success",
+    "source_path":  "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\reference\\hwp-style-samples\\pk-table-qualification-review.hwp",
+    "source_sha256_before":  "631B015F9BA2F53390D756353C76597252C55852407F477ED4E283DB914C979D",
+    "source_sha256_after":  "631B015F9BA2F53390D756353C76597252C55852407F477ED4E283DB914C979D",
+    "source_unchanged":  true,
+    "output":  {
+                   "path":  "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\hwp-reference-conversion\\pk-table-qualification-review.hwpx",
+                   "exists":  true,
+                   "length":  2019227
+               },
+    "started_process_ids":  [
+                                32168
+                            ],
+    "warnings":  [
+
+                 ],
+    "errors":  [
+
+               ],
+    "events":  [
+                   {
+                       "timestamp":  "2026-07-01T23:19:50.7398250+09:00",
+                       "step":  "process_start",
+                       "status":  "ok",
+                       "data":  {
+                                    "visible":  false,
+                                    "mode":  "convert"
+                                }
+                   },
+                   {
+                       "timestamp":  "2026-07-01T23:19:50.7444321+09:00",
+                       "step":  "host_bitness_detected",
+                       "status":  "ok",
+                       "data":  {
+                                    "ps_home":  "C:\\Windows\\System32\\WindowsPowerShell\\v1.0",
+                                    "operating_system":  "64-bit",
+                                    "powershell_process":  "64-bit"
+                                }
+                   },
+                   {
+                       "timestamp":  "2026-07-01T23:19:50.7474321+09:00",
+                       "step":  "com_registration_probe",
+                       "status":  "ok",
+                       "data":  {
+                                    "HWPFrame_HwpObject":  [
+                                                               {
+                                                                   "path":  "Registry::HKEY_CLASSES_ROOT\\HWPFrame.HwpObject",
+                                                                   "exists":  true
+                                                               },
+                                                               {
+                                                                   "path":  "Registry::HKEY_CLASSES_ROOT\\WOW6432Node\\CLSID",
+                                                                   "exists":  true
+                                                               }
+                                                           ]
+                                }
+                   },
+                   {
+                       "timestamp":  "2026-07-01T23:19:50.7895075+09:00",
+                       "step":  "com_object_create_start",
+                       "status":  "ok",
+                       "data":  {
+
+                                }
+                   },
+                   {
+                       "timestamp":  "2026-07-01T23:19:51.8357253+09:00",
+                       "step":  "com_object_create_success",
+                       "status":  "ok",
+                       "data":  {
+
+                                }
+                   },
+                   {
+                       "timestamp":  "2026-07-01T23:19:51.8484832+09:00",
+                       "step":  "created_process_snapshot",
+                       "status":  "ok",
+                       "data":  {
+                                    "started_process_ids":  [
+                                                                32168
+                                                            ],
+                                    "processes":  [
+                                                      {
+                                                          "Id":  12380,
+                                                          "ProcessName":  "Hwp",
+                                                          "MainWindowTitle":  "",
+                                                          "Path":  "C:\\Program Files (x86)\\HNC\\Office 2024\\HOffice130\\Bin\\Hwp.exe"
+                                                      },
+                                                      {
+                                                          "Id":  26000,
+                                                          "ProcessName":  "Hwp",
+                                                          "MainWindowTitle":  "",
+                                                          "Path":  "C:\\Program Files (x86)\\HNC\\Office 2024\\HOffice130\\Bin\\Hwp.exe"
+                                                      },
+                                                      {
+                                                          "Id":  32168,
+                                                          "ProcessName":  "Hwp",
+                                                          "MainWindowTitle":  "",
+                                                          "Path":  "C:\\Program Files (x86)\\HNC\\Office 2024\\HOffice130\\Bin\\Hwp.exe"
+                                                      },
+                                                      {
+                                                          "Id":  36424,
+                                                          "ProcessName":  "Hwp",
+                                                          "MainWindowTitle":  "",
+                                                          "Path":  "C:\\Program Files (x86)\\HNC\\Office 2024\\HOffice130\\Bin\\Hwp.exe"
+                                                      }
+                                                  ]
+                                }
+                   },
+                   {
+                       "timestamp":  "2026-07-01T23:19:51.8484832+09:00",
+                       "step":  "window_access_start",
+                       "status":  "ok",
+                       "data":  {
+
+                                }
+                   },
+                   {
+                       "timestamp":  "2026-07-01T23:19:51.9336976+09:00",
+                       "step":  "window_access_success",
+                       "status":  "ok",
+                       "data":  {
+                                    "visible":  false
+                                }
+                   },
+                   {
+                       "timestamp":  "2026-07-01T23:19:51.9347024+09:00",
+                       "step":  "security_module_start",
+                       "status":  "ok",
+                       "data":  {
+
+                                }
+                   },
+                   {
+                       "timestamp":  "2026-07-01T23:19:51.9387020+09:00",
+                       "step":  "security_module_result",
+                       "status":  "ok",
+                       "data":  {
+                                    "result":  false
+                                }
+                   },
+                   {
+                       "timestamp":  "2026-07-01T23:19:51.9402038+09:00",
+                       "step":  "open_start",
+                       "status":  "ok",
+                       "data":  {
+                                    "source_path":  "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\reference\\hwp-style-samples\\pk-table-qualification-review.hwp"
+                                }
+                   },
+                   {
+                       "timestamp":  "2026-07-01T23:19:55.2787004+09:00",
+                       "step":  "open_success",
+                       "status":  "ok",
+                       "data":  {
+                                    "result":  true
+                                }
+                   },
+                   {
+                       "timestamp":  "2026-07-01T23:19:55.2797001+09:00",
+                       "step":  "save_as_start",
+                       "status":  "ok",
+                       "data":  {
+                                    "output_path":  "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\hwp-reference-conversion\\pk-table-qualification-review.hwpx",
+                                    "format":  "HWPX"
+                                }
+                   },
+                   {
+                       "timestamp":  "2026-07-01T23:19:55.5138341+09:00",
+                       "step":  "save_as_success",
+                       "status":  "ok",
+                       "data":  {
+                                    "exists":  true,
+                                    "result":  true
+                                }
+                   },
+                   {
+                       "timestamp":  "2026-07-01T23:19:55.5168334+09:00",
+                       "step":  "close_start",
+                       "status":  "ok",
+                       "data":  {
+
+                                }
+                   },
+                   {
+                       "timestamp":  "2026-07-01T23:19:55.6146639+09:00",
+                       "step":  "close_success",
+                       "status":  "ok",
+                       "data":  {
+
+                                }
+                   },
+                   {
+                       "timestamp":  "2026-07-01T23:19:55.6146639+09:00",
+                       "step":  "quit_start",
+                       "status":  "ok",
+                       "data":  {
+
+                                }
+                   },
+                   {
+                       "timestamp":  "2026-07-01T23:19:55.6296738+09:00",
+                       "step":  "quit_success",
+                       "status":  "ok",
+                       "data":  {
+
+                                }
+                   },
+                   {
+                       "timestamp":  "2026-07-01T23:19:56.1545613+09:00",
+                       "step":  "process_end",
+                       "status":  "ok",
+                       "data":  {
+                                    "conversion_status":  "passed",
+                                    "last_successful_step":  "save_as_success"
+                                }
+                   }
+               ]
+}

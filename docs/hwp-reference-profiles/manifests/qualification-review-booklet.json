@@ -2,60 +2,214 @@
   "profile_id": "qualification_review_booklet",
   "source_file": "reference/hwp-style-samples/pk-table-qualification-review.hwp",
   "converted_hwpx": ".tmp/hwp-reference-conversion/pk-table-qualification-review.hwpx",
-  "conversion_status": "pending_runtime_verification",
-  "page": {
-    "width": 0,
-    "height": 0,
-    "margins": {},
-    "expected_minimum_pages": 2
+  "conversion_status": "passed",
+  "definition_source": {
+    "expected": "manual_visual_analysis",
+    "observed": "native_converted_hwpx"
   },
-  "layout_model": {
-    "mode": "style_profile",
-    "repeat_summary_block": true,
-    "page_code_pattern": "주 {total}-{page}",
-    "footer_code_pattern": "보조 {total}-{page}",
-    "native_table_wrapper": "hs:sec>hp:p>hp:run>hp:tbl"
+  "expected": {
+    "profile_id": "qualification_review_booklet",
+    "source_file": "reference/hwp-style-samples/pk-table-qualification-review.hwp",
+    "converted_hwpx": ".tmp/hwp-reference-conversion/pk-table-qualification-review.hwpx",
+    "conversion_status": "pending_runtime_verification",
+    "page": {
+      "width": 0,
+      "height": 0,
+      "margins": {},
+      "expected_minimum_pages": 2
+    },
+    "layout_model": {
+      "mode": "style_profile",
+      "repeat_summary_block": true,
+      "page_code_pattern": "주 {total}-{page}",
+      "footer_code_pattern": "보조 {total}-{page}",
+      "native_table_wrapper": "hs:sec>hp:p>hp:run>hp:tbl"
+    },
+    "repeated_regions": [
+      {
+        "role": "summary_block",
+        "fields": [
+          "overview",
+          "current_problem",
+          "improvement",
+          "expected_effects"
+        ]
+      },
+      {
+        "role": "page_identifier",
+        "fields": [
+          "page_code",
+          "footer_code",
+          "current_page",
+          "total_pages"
+        ]
+      }
+    ],
+    "table_patterns": [
+      {
+        "role": "summary",
+        "table_style": "report",
+        "supports_merged_cells": true
+      },
+      {
+        "role": "result_metrics",
+        "table_style": "report",
+        "supports_multi_level_header": true,
+        "supports_merged_cells": true
+      }
+    ],
+    "paragraph_roles": {
+      "cover_title": true,
+      "cover_subtitle": true,
+      "heading_1": true,
+      "heading_2": true,
+      "body": true,
+      "footer": true
+    },
+    "header_footer": {
+      "page_code": true,
+      "footer_code": true,
+      "page_number_text": true
+    },
+    "images": [
+      {
+        "role": "diagram_placeholder",
+        "required": false
+      }
+    ],
+    "visual_status": "user_confirmation_pending"
   },
-  "repeated_regions": [
+  "observed": {
+    "conversion_valid": true,
+    "page": {
+      "page_break_count": 0,
+      "section_count": 1
+    },
+    "table_count": 41,
+    "repeated_region_count": 20,
+    "header_footer": {
+      "has_header": false,
+      "has_footer": false,
+      "footer_text": "",
+      "page_number_field": false
+    },
+    "images": [
+      "BinData/image1.jpg",
+      "BinData/image2.jpg",
+      "BinData/image3.jpg",
+      "BinData/image4.jpg",
+      "BinData/image5.jpg",
+      "BinData/image6.jpg",
+      "BinData/image7.jpg",
+      "BinData/image8.jpg",
+      "BinData/image9.jpg",
+      "BinData/image10.jpg",
+      "BinData/image12.png",
+      "BinData/image13.png"
+    ],
+    "text_sample": [
+      "PK-Table 기반 타격자산-탄종-신관",
+      "결정 보조 알고리즘 제작",
+      "대항군처 대대관찰통제7과",
+      "타격자산-탄종-신관 결심보조 알고리즘 (1/11)",
+      "주 11 - 1",
+      "󰊱 개요",
+      "KCTC 체계의 PK-Table을 기반으로 표적의 좌표와 성질에 따라 최적의 타격자산-탄종-신관 조합을 추천하는 결심보조 알고리즘을 제작하여 전시 곡사화기의 효율을 극대화",
+      "󰊲 현 실태 / 문제점 : 타격자산-탄종-신관 결심을 위한 정량적 근거가 부재하여"
+    ],
+    "table_patterns_sample": [
+      {
+        "role": "table_1",
+        "title": "",
+        "rows": 1,
+        "cols": 1,
+        "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
+        "border_style": "unknown",
+        "merged_cells": []
+      },
+      {
+        "role": "table_2",
+        "title": "",
+        "rows": 1,
+        "cols": 1,
+        "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
+        "border_style": "unknown",
+        "merged_cells": []
+      },
+      {
+        "role": "table_3",
+        "title": "",
+        "rows": 1,
+        "cols": 2,
+        "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
+        "border_style": "unknown",
+        "merged_cells": []
+      },
+      {
+        "role": "table_4",
+        "title": "",
+        "rows": 1,
+        "cols": 1,
+        "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
+        "border_style": "unknown",
+        "merged_cells": []
+      },
+      {
+        "role": "table_5",
+        "title": "",
+        "rows": 1,
+        "cols": 2,
+        "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
+        "border_style": "unknown",
+        "merged_cells": []
+      },
+      {
+        "role": "table_6",
+        "title": "",
+        "rows": 1,
+        "cols": 2,
+        "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
+        "border_style": "unknown",
+        "merged_cells": []
+      },
+      {
+        "role": "table_7",
+        "title": "",
+        "rows": 1,
+        "cols": 1,
+        "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
+        "border_style": "unknown",
+        "merged_cells": []
+      },
+      {
+        "role": "table_8",
+        "title": "",
+        "rows": 1,
+        "cols": 1,
+        "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
+        "border_style": "unknown",
+        "merged_cells": []
+      }
+    ]
+  },
+  "differences": [
     {
-      "role": "summary_block",
-      "fields": ["overview", "current_problem", "improvement", "expected_effects"]
+      "field": "page.width",
+      "expected": 0,
+      "observed": null,
+      "verification": "not_observed"
     },
     {
-      "role": "page_identifier",
-      "fields": ["page_code", "footer_code", "current_page", "total_pages"]
-    }
-  ],
-  "table_patterns": [
-    {
-      "role": "summary",
-      "table_style": "report",
-      "supports_merged_cells": true
+      "field": "page.height",
+      "expected": 0,
+      "observed": null,
+      "verification": "not_observed"
     },
     {
-      "role": "result_metrics",
-      "table_style": "report",
-      "supports_multi_level_header": true,
-      "supports_merged_cells": true
-    }
-  ],
-  "paragraph_roles": {
-    "cover_title": true,
-    "cover_subtitle": true,
-    "heading_1": true,
-    "heading_2": true,
-    "body": true,
-    "footer": true
-  },
-  "header_footer": {
-    "page_code": true,
-    "footer_code": true,
-    "page_number_text": true
-  },
-  "images": [
-    {
-      "role": "diagram_placeholder",
-      "required": false
+      "field": "table_patterns",
+      "expected": 2,
+      "observed": 41,
+      "verification": "observed_summary_only"
     }
   ],
   "visual_status": "user_confirmation_pending"

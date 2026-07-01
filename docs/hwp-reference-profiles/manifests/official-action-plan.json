@@ -2,60 +2,358 @@
   "profile_id": "official_action_plan",
   "source_file": "reference/hwp-style-samples/official-action-plan-sample.hwp",
   "converted_hwpx": ".tmp/hwp-reference-conversion/official-action-plan-sample.hwpx",
-  "conversion_status": "pending_runtime_verification",
-  "page": {
-    "width": 0,
-    "height": 0,
-    "margins": {},
-    "expected_minimum_pages": 2
+  "conversion_status": "passed",
+  "definition_source": {
+    "expected": "manual_visual_analysis",
+    "observed": "native_converted_hwpx"
   },
-  "layout_model": {
-    "mode": "style_profile",
-    "document_control_table": true,
-    "approval_table": true,
-    "native_table_wrapper": "hs:sec>hp:p>hp:run>hp:tbl"
+  "expected": {
+    "profile_id": "official_action_plan",
+    "source_file": "reference/hwp-style-samples/official-action-plan-sample.hwp",
+    "converted_hwpx": ".tmp/hwp-reference-conversion/official-action-plan-sample.hwpx",
+    "conversion_status": "pending_runtime_verification",
+    "page": {
+      "width": 0,
+      "height": 0,
+      "margins": {},
+      "expected_minimum_pages": 2
+    },
+    "layout_model": {
+      "mode": "style_profile",
+      "document_control_table": true,
+      "approval_table": true,
+      "native_table_wrapper": "hs:sec>hp:p>hp:run>hp:tbl"
+    },
+    "repeated_regions": [
+      {
+        "role": "header_footer",
+        "fields": [
+          "header",
+          "footer",
+          "page_number"
+        ]
+      },
+      {
+        "role": "annex_marker",
+        "fields": [
+          "annex_title",
+          "annex_number"
+        ]
+      }
+    ],
+    "table_patterns": [
+      {
+        "role": "approval",
+        "table_style": "approval",
+        "supports_merged_cells": true
+      },
+      {
+        "role": "schedule",
+        "table_style": "schedule",
+        "supports_multi_level_header": true,
+        "supports_merged_cells": true
+      },
+      {
+        "role": "personnel",
+        "table_style": "official_form",
+        "supports_merged_cells": true
+      }
+    ],
+    "paragraph_roles": {
+      "cover_title": true,
+      "heading_1": true,
+      "heading_2": true,
+      "body": true,
+      "bullet_list": true,
+      "numbered_list": true
+    },
+    "header_footer": {
+      "has_header": true,
+      "has_footer": true,
+      "page_number_field": true
+    },
+    "images": [],
+    "visual_status": "user_confirmation_pending"
   },
-  "repeated_regions": [
+  "observed": {
+    "conversion_valid": true,
+    "page": {
+      "page_break_count": 4,
+      "section_count": 1
+    },
+    "table_count": 13,
+    "repeated_region_count": 7,
+    "header_footer": {
+      "has_header": true,
+      "has_footer": true,
+      "footer_text": "5 -",
+      "page_number_field": true
+    },
+    "images": [
+      "BinData/image1.jpg",
+      "BinData/image2.bmp",
+      "BinData/image3.bmp"
+    ],
+    "text_sample": [
+      "등록번호",
+      "BPRC -",
+      "★",
+      "기 안",
+      "◎",
+      "보존기간",
+      "영 구",
+      "미 남"
+    ],
+    "table_patterns_sample": [
+      {
+        "role": "table_1",
+        "title": "",
+        "rows": 8,
+        "cols": 7,
+        "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
+        "border_style": "unknown",
+        "merged_cells": [
+          {
+            "row": 0,
+            "col": 2,
+            "row_span": 2,
+            "col_span": 1,
+            "text": ""
+          },
+          {
+            "row": 0,
+            "col": 3,
+            "row_span": 2,
+            "col_span": 1,
+            "text": "★ 기 안"
+          },
+          {
+            "row": 0,
+            "col": 4,
+            "row_span": 2,
+            "col_span": 1,
+            "text": "◎"
+          },
+          {
+            "row": 0,
+            "col": 5,
+            "row_span": 2,
+            "col_span": 1,
+            "text": ""
+          },
+          {
+            "row": 0,
+            "col": 6,
+            "row_span": 2,
+            "col_span": 1,
+            "text": ""
+          },
+          {
+            "row": 1,
+            "col": 0,
+            "row_span": 2,
+            "col_span": 1,
+            "text": "보존기간"
+          },
+          {
+            "row": 1,
+            "col": 1,
+            "row_span": 2,
+            "col_span": 1,
+            "text": "영 구"
+          },
+          {
+            "row": 2,
+            "col": 2,
+            "row_span": 2,
+            "col_span": 1,
+            "text": ""
+          },
+          {
+            "row": 2,
+            "col": 3,
+            "row_span": 5,
+            "col_span": 1,
+            "text": "미 남"
+          },
+          {
+            "row": 2,
+            "col": 4,
+            "row_span": 5,
+            "col_span": 1,
+            "text": ""
+          },
+          {
+            "row": 2,
+            "col": 5,
+            "row_span": 5,
+            "col_span": 1,
+            "text": ""
+          },
+          {
+            "row": 2,
+            "col": 6,
+            "row_span": 5,
+            "col_span": 1,
+            "text": ""
+          },
+          {
+            "row": 3,
+            "col": 0,
+            "row_span": 2,
+            "col_span": 1,
+            "text": "결재일자"
+          },
+          {
+            "row": 3,
+            "col": 1,
+            "row_span": 2,
+            "col_span": 1,
+            "text": "‘20. 4. 26."
+          },
+          {
+            "row": 4,
+            "col": 2,
+            "row_span": 3,
+            "col_span": 1,
+            "text": ""
+          },
+          {
+            "row": 6,
+            "col": 0,
+            "row_span": 2,
+            "col_span": 1,
+            "text": "언론홍보"
+          },
+          {
+            "row": 6,
+            "col": 1,
+            "row_span": 2,
+            "col_span": 1,
+            "text": "×"
+          },
+          {
+            "row": 7,
+            "col": 4,
+            "row_span": 1,
+            "col_span": 3,
+            "text": "․ :"
+          }
+        ]
+      },
+      {
+        "role": "table_2",
+        "title": "",
+        "rows": 1,
+        "cols": 1,
+        "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
+        "border_style": "unknown",
+        "merged_cells": []
+      },
+      {
+        "role": "table_3",
+        "title": "",
+        "rows": 1,
+        "cols": 1,
+        "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
+        "border_style": "unknown",
+        "merged_cells": []
+      },
+      {
+        "role": "table_4",
+        "title": "",
+        "rows": 1,
+        "cols": 1,
+        "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
+        "border_style": "unknown",
+        "merged_cells": []
+      },
+      {
+        "role": "table_5",
+        "title": "",
+        "rows": 4,
+        "cols": 4,
+        "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
+        "border_style": "unknown",
+        "merged_cells": []
+      },
+      {
+        "role": "table_6",
+        "title": "",
+        "rows": 1,
+        "cols": 1,
+        "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
+        "border_style": "unknown",
+        "merged_cells": []
+      },
+      {
+        "role": "table_7",
+        "title": "",
+        "rows": 15,
+        "cols": 4,
+        "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
+        "border_style": "unknown",
+        "merged_cells": [
+          {
+            "row": 0,
+            "col": 0,
+            "row_span": 1,
+            "col_span": 2,
+            "text": "구 분"
+          },
+          {
+            "row": 1,
+            "col": 0,
+            "row_span": 14,
+            "col_span": 1,
+            "text": "4. 19 (일)"
+          },
+          {
+            "row": 3,
+            "col": 3,
+            "row_span": 3,
+            "col_span": 1,
+            "text": "등산 (오르막길)"
+          },
+          {
+            "row": 10,
+            "col": 1,
+            "row_span": 2,
+            "col_span": 1,
+            "text": "20:00〜21:00"
+          }
+        ]
+      },
+      {
+        "role": "table_8",
+        "title": "",
+        "rows": 1,
+        "cols": 1,
+        "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
+        "border_style": "unknown",
+        "merged_cells": []
+      }
+    ]
+  },
+  "differences": [
     {
-      "role": "header_footer",
-      "fields": ["header", "footer", "page_number"]
+      "field": "page.width",
+      "expected": 0,
+      "observed": null,
+      "verification": "not_observed"
     },
     {
-      "role": "annex_marker",
-      "fields": ["annex_title", "annex_number"]
+      "field": "page.height",
+      "expected": 0,
+      "observed": null,
+      "verification": "not_observed"
+    },
+    {
+      "field": "table_patterns",
+      "expected": 3,
+      "observed": 13,
+      "verification": "observed_summary_only"
     }
   ],
-  "table_patterns": [
-    {
-      "role": "approval",
-      "table_style": "approval",
-      "supports_merged_cells": true
-    },
-    {
-      "role": "schedule",
-      "table_style": "schedule",
-      "supports_multi_level_header": true,
-      "supports_merged_cells": true
-    },
-    {
-      "role": "personnel",
-      "table_style": "official_form",
-      "supports_merged_cells": true
-    }
-  ],
-  "paragraph_roles": {
-    "cover_title": true,
-    "heading_1": true,
-    "heading_2": true,
-    "body": true,
-    "bullet_list": true,
-    "numbered_list": true
-  },
-  "header_footer": {
-    "has_header": true,
-    "has_footer": true,
-    "page_number_field": true
-  },
-  "images": [],
   "visual_status": "user_confirmation_pending"
 }
