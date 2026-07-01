@@ -1,22 +1,32 @@
 # 현재 Codex 필수 확인 문서
 
-현재 HWP 양식 프로필 작업을 시작하기 전에 다음 문서를 반드시 읽는다.
+현재 HWP 작성 엔진 개선 작업을 시작하기 전에 다음 문서를 반드시 읽는다.
+
+```text
+docs/gpt-communication/opinions/2026-07-01-hwp-engine-not-llm-improvement-plan.md
+```
+
+이 문서는 다음을 확정한다.
+
+- 현재 자격심사형 샘플 실패의 핵심 원인은 로컬 LLM이 아니라 HWP 작성 엔진임
+- LLM을 분리하고 고정 JSON으로 엔진을 검증할 것
+- HWPFrame.HwpObject COM timeout을 단계별로 진단할 것
+- 실제 원본 HWP를 HWPX로 변환하고 관측 manifest를 만들 것
+- 전체 문서보다 자격심사형 대표 한 페이지를 Template Fidelity Mode로 먼저 재현할 것
+- 병합 셀을 논리 그리드 기반으로 다시 계산할 것
+
+관련 기존 의견과 보고서도 함께 확인한다.
 
 ```text
 docs/gpt-communication/opinions/2026-07-01-hwp-reference-templates-and-document-style-goal.md
+
+docs/gpt-communication/reports/2026-07-01-hwp-reference-style-profiles.md
+
+docs/gpt-communication/reports/2026-07-01-hwpx-minimal-native-table.md
 ```
 
-이 문서는 사용자가 제공한 두 개의 공개·비민감 HWP 파일을 기준으로 다음을 정의한다.
-
-- 자격심사형 프로젝트 설명 문서 프로필
-- 공식 계획·검토 문서 프로필
-- HWP → HWPX 변환 전략
-- 의미 기반 표 테두리 스타일
-- 병합 셀과 반복 페이지 구조
-- 프로필별 최소 샘플 완료 기준
-
-이전 최소 표 wrapper 성공 결과도 함께 확인한다.
+현재 작업 기준 브랜치:
 
 ```text
-docs/gpt-communication/reports/2026-07-01-hwpx-minimal-native-table.md
+feature/hwp-reference-style-profiles
 ```
