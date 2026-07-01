@@ -236,4 +236,5 @@ fail 0
 ## 18. 커밋 및 Push
 
 - 커밋 SHA: `23924cb Add HWP reference style profile samples`
-- GitHub push: push 후 갱신
+- 보고서 커밋 SHA: `72963e4 Report HWP reference style profile progress`
+- GitHub push: `origin/feature/hwp-reference-style-profiles` push 완료
