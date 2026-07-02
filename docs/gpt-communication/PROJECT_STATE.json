@@ -9,12 +9,23 @@
   "governance": {
     "master_agent_chat": "current_chat",
     "codex_prompt_author_chat": "separate_project_chat",
+    "user_result_flow": "user shares Codex results and Hancom visual evidence with the Codex prompt-author agent",
+    "master_monitoring": {
+      "enabled": true,
+      "cadence": "hourly",
+      "mode": "condition_watch",
+      "notify_only_on_meaningful_change_or_risk": true,
+      "policy": "docs/gpt-communication/MASTER_MONITORING_POLICY.md"
+    },
     "source_of_truth": [
       "docs/gpt-communication/PROJECT_STATE.json",
       "docs/gpt-communication/CURRENT.md",
       "docs/gpt-communication/opinions/2026-07-02-army-claw-master-roadmap.md",
       "docs/gpt-communication/opinions/2026-07-02-hwpx-core-architecture-decision.md",
-      "docs/gpt-communication/AGENT_OPERATING_MODEL.md"
+      "docs/gpt-communication/MASTER_MONITORING_POLICY.md",
+      "docs/gpt-communication/AGENT_OPERATING_MODEL.md",
+      "docs/gpt-communication/tasks/<task-id>/TASK_CONTRACT.md",
+      "docs/gpt-communication/handoffs/CODEX_LATEST.json"
     ]
   },
   "current_stage": {
@@ -54,8 +65,22 @@
     "f851a007fc3b520d389b56ba0a6bad2fcb11dcab",
     "8db61d2849579b8352f754253507d2f7e6ed717a",
     "e78a28225d5a525b1b853c96f49f1b927f0500a5",
-    "6668ff9fe7170428392af691cf0c7ca93be14b72"
+    "6668ff9fe7170428392af691cf0c7ca93be14b72",
+    "b3287e74fa260d2cf9c481b3b8d52fb3420644ac",
+    "5298104db3c8483da4610dc7ad105e871eefe254",
+    "30fa136370c2e8096725831a3f1525d25f94f92e",
+    "a4283894e7d2bfd7a2897bf889bc34acb373c54e",
+    "be65f1ae9f2084d2fc85e8467597729faf60d59d",
+    "dde822a5a1958d6d933c8f0ff53a0a6929907348",
+    "190b934de350da6db66f95037fb6dddb5e32d3e3"
   ],
+  "handoff": {
+    "latest": "docs/gpt-communication/handoffs/CODEX_LATEST.json",
+    "task_contract_template": "docs/gpt-communication/tasks/TASK_CONTRACT_TEMPLATE.md",
+    "prompt_agent_bootstrap": "docs/gpt-communication/CODEX_PROMPT_AGENT_BOOTSTRAP.md",
+    "prompt_agent_updates_latest_handoff": true,
+    "master_updates_official_stage": true
+  },
   "next_work": {
     "recommended_branch": "feature/hwpx-core-benchmark",
     "tasks": [
