@@ -1,0 +1,97 @@
+{
+  "updated_at": "2026-07-02",
+  "project": {
+    "name": "Army Claw",
+    "repository": "leejinuk-minoan/army-claw",
+    "local_root": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기",
+    "total_stages": 8
+  },
+  "governance": {
+    "master_agent_chat": "current_chat",
+    "codex_prompt_author_chat": "separate_project_chat",
+    "source_of_truth": [
+      "docs/gpt-communication/PROJECT_STATE.json",
+      "docs/gpt-communication/CURRENT.md",
+      "docs/gpt-communication/opinions/2026-07-02-army-claw-master-roadmap.md",
+      "docs/gpt-communication/opinions/2026-07-02-hwpx-core-architecture-decision.md",
+      "docs/gpt-communication/AGENT_OPERATING_MODEL.md"
+    ]
+  },
+  "current_stage": {
+    "stage": 1,
+    "name": "HwpAdapter 및 HWP/HWPX 엔진 안정화",
+    "substage": "1-3",
+    "substage_name": "선행 HWPX 엔진 비교·코어 선정",
+    "status": "in_progress",
+    "current_task": "하이브리드 HWPX 코어 benchmark와 HwpCoreAdapter spike 준비"
+  },
+  "completed_substages": [
+    {
+      "id": "1-1",
+      "name": "요구사항 및 실제 문서 Fixture 고정",
+      "status": "completed"
+    },
+    {
+      "id": "1-2",
+      "name": "v1~v5 회귀시험 자산화",
+      "status": "mostly_completed"
+    }
+  ],
+  "architecture": {
+    "orchestrator": "OpenClaw / Army Claw Node.js·TypeScript",
+    "hwp_adapter": {
+      "primary_editing_candidate": "python-hwpx",
+      "surgical_patcher": "ArmyClawSurgicalHwpxPatcher",
+      "layout_authority": "Hancom 2024 COM",
+      "independent_validator": "hwpxlib",
+      "future_benchmark_candidate": "HwpForge"
+    },
+    "decision_status": "accepted_for_benchmark_implementation"
+  },
+  "current_branch": "feature/hwpx-adaptive-board-fit-v5",
+  "latest_implementation_commit": "6dc812db0b87094ad4aac8932e206ac7835bcc25",
+  "latest_governance_commits": [
+    "f851a007fc3b520d389b56ba0a6bad2fcb11dcab",
+    "8db61d2849579b8352f754253507d2f7e6ed717a",
+    "e78a28225d5a525b1b853c96f49f1b927f0500a5",
+    "6668ff9fe7170428392af691cf0c7ca93be14b72"
+  ],
+  "next_work": {
+    "recommended_branch": "feature/hwpx-core-benchmark",
+    "tasks": [
+      "v1~v5 fixture와 사용자 시각검증 사례를 benchmark corpus로 정리",
+      "Current Army Claw Node/XML core 기준 결과 생성",
+      "python-hwpx 최소 HwpCoreAdapter spike 구현",
+      "hwpxlib 독립 검증 spike 구현",
+      "HwpForge 읽기·검증 benchmark 가능성 확인",
+      "동일 시나리오 benchmark 실행",
+      "1×1 표 shrink-to-content 지원 여부 평가",
+      "점수표와 추천 코어 보고서 작성"
+    ]
+  },
+  "current_visual_findings": {
+    "v5_main_2_adaptive_fit": "user_confirmed_success",
+    "v5_support_2_start_anchor": "user_confirmed_success",
+    "v5_support_2_table_container": "failed_visual_review",
+    "root_cause": "보조 11-2 내부 두 번째 1×1 표의 과도한 고정 높이",
+    "main_3_position": "displaced_by_support_2_spill",
+    "required_future_fix": "ContainerAwareTableFit shrink_to_content"
+  },
+  "stage_1_gate": [
+    "선행 HWPX 코어 benchmark와 선택 근거 완료",
+    "HwpCoreAdapter 교체 가능 구조",
+    "1×1 표·글상자 Container-Aware Fit 통과",
+    "실제 Hancom COM page measurement 통과",
+    "기준 양식 치환 통과",
+    "양식 외 appendix 생성 최소 기능 통과",
+    "원본 보호와 rollback 통과",
+    "사용자 한글 2024 시각 검증 통과"
+  ],
+  "restrictions": [
+    "사용자 승인 없이 main merge 금지",
+    "원본 HWP/HWPX 덮어쓰기 금지",
+    "여러 HWPX 코어의 연속 재저장 금지",
+    "아키텍처·단계 변경은 마스터 에이전트 승인 필요",
+    "사용자 시각 확인 전 엔진 완료 선언 금지"
+  ]
+}
