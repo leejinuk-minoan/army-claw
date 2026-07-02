@@ -642,10 +642,31 @@ export async function createTemplateBackedHwpxDocument({ workspace, path, title 
 
 function textFromXmlFragment(xml) {
   const texts = [];
-  const tRegex = /<(?:\w+:)?(?:t|text)\b[^>]*>([\s\S]*?)<\/(?:\w+:)?(?:t|text)>/g;
+  const tokenRegex = /<(?:\w+:)?(?:t|text)\b[^>]*>[\s\S]*?<\/(?:\w+:)?(?:t|text)>|<(?:\w+:)?fwSpace\b[^>]*\/>/g;
   let match;
-  while ((match = tRegex.exec(xml))) texts.push(unescapeXml(match[1]));
+  while ((match = tokenRegex.exec(xml))) {
+    const token = match[0];
+    const textMatch = token.match(/^<(?:\w+:)?(?:t|text)\b[^>]*>([\s\S]*?)<\/(?:\w+:)?(?:t|text)>$/u);
+    texts.push(textMatch ? unescapeXml(textMatch[1]) : " ");
+  }
   return texts.join("");
+}
+
+function sanitizeReplacementText(value) {
+  return String(value ?? "").replace(/<hp:fwSpace\s*\/>/g, " ").replace(/<[^>]+>/g, "");
+}
+
+function sanitizeInlineMarkersInXml(xml) {
+  return String(xml ?? "")
+    .replace(/&lt;hp:fwSpace\s*\/&gt;/g, " ")
+    .replace(/<hp:t\b([^>]*)>([\s\S]*?)<\/hp:t>/gu, (full, attrs, body) => {
+      const cleaned = body.replace(/<hp:fwSpace\s*\/>/g, " ").replace(/&lt;hp:fwSpace\s*\/&gt;/g, " ");
+      return `<hp:t${attrs}>${cleaned}</hp:t>`;
+    });
+}
+
+function stripLineSegArray(fragment) {
+  return fragment.replace(/<hp:linesegarray\b[\s\S]*?<\/hp:linesegarray>/gu, "");
 }
 
 function tagElements(xml, localName, baseOffset = 0) {
@@ -699,14 +720,58 @@ function removeNestedTables(xml) {
 
 function collectParagraphElements(xml, sectionIndex = 0, baseOffset = 0) {
   const collected = [];
-  function visit(fragment, offset) {
+  function visit(fragment, offset, context = {}) {
     for (const paragraph of tagElements(fragment, "p", offset)) {
       const nestedParagraphs = tagElements(paragraph.body, "p", paragraph.bodyStart);
+      const containsTable = /<hp:tbl\b/u.test(paragraph.full);
+      const containsDrawText = /<hp:drawText\b/u.test(paragraph.full);
+      const containsShape = /<hp:(?:pic|rect|ellipse|line)\b/u.test(paragraph.full);
+      const containsControl = /<hp:(?:tbl|pic|rect|ellipse|line|ctrl|header|footer|autoNum|drawText)\b/u.test(paragraph.full);
       if (nestedParagraphs.length) {
-        visit(paragraph.body, paragraph.bodyStart);
-      } else {
         collected.push({
-          type: "paragraph",
+          type: "paragraph_structural_container",
+          section: sectionIndex,
+          paragraph_index: collected.length,
+          paragraph_id: attrValue(paragraph.attrs, "id") || String(collected.length),
+          start: paragraph.start,
+          end: paragraph.end,
+          text: "",
+          xml: paragraph.full,
+          node_path: context.node_path ? `${context.node_path}/container[${collected.length}]` : `section[${sectionIndex}]/container[${collected.length}]`,
+          parent_path: context.node_path || `section[${sectionIndex}]`,
+          ancestor_paths: context.ancestor_paths || [],
+          contains_table: containsTable,
+          contains_shape: containsShape,
+          contains_picture: /<hp:pic\b/u.test(paragraph.full),
+          contains_control: containsControl,
+          is_selector_candidate: false,
+          char_pr_ids: [],
+        });
+        let childContext = context;
+        if (containsTable) {
+          childContext = {
+            node_type: "table_cell_paragraph",
+            node_path: `section[${sectionIndex}]/table[0]/cell[0,0]`,
+            parent_path: `section[${sectionIndex}]/table[0]/cell[0,0]`,
+            ancestor_paths: [`section[${sectionIndex}]`, `section[${sectionIndex}]/table[0]`],
+            table_path: `section[${sectionIndex}]/table[0]`,
+            cell_address: { row: 0, col: 0 },
+          };
+        } else if (containsDrawText || containsShape) {
+          childContext = {
+            node_type: "draw_text_paragraph",
+            node_path: `section[${sectionIndex}]/shape[0]/drawText`,
+            parent_path: `section[${sectionIndex}]/shape[0]/drawText`,
+            ancestor_paths: [`section[${sectionIndex}]`, `section[${sectionIndex}]/shape[0]`],
+          };
+        }
+        visit(paragraph.body, paragraph.bodyStart, childContext);
+      } else {
+        const leafIndex = collected.filter((item) => item.parent_path === context.parent_path && item.type !== "paragraph_structural_container").length;
+        const nodeType = context.node_type || "paragraph_leaf";
+        const parentPath = context.parent_path || `section[${sectionIndex}]`;
+        collected.push({
+          type: nodeType,
           section: sectionIndex,
           paragraph_index: collected.length,
           paragraph_id: attrValue(paragraph.attrs, "id") || String(collected.length),
@@ -714,6 +779,16 @@ function collectParagraphElements(xml, sectionIndex = 0, baseOffset = 0) {
           end: paragraph.end,
           text: textFromXmlFragment(paragraph.full),
           xml: paragraph.full,
+          node_path: `${parentPath}/paragraph[${leafIndex}]`,
+          parent_path: parentPath,
+          ancestor_paths: context.ancestor_paths || [`section[${sectionIndex}]`],
+          table_path: context.table_path || "",
+          cell_address: context.cell_address || null,
+          contains_table: containsTable,
+          contains_shape: containsShape,
+          contains_picture: /<hp:pic\b/u.test(paragraph.full),
+          contains_control: containsControl,
+          is_selector_candidate: true,
           char_pr_ids: [...new Set((paragraph.full.match(/charPrIDRef="[^"]+"/g) || []).map((item) => item.slice(13, -1)))],
         });
       }
@@ -725,6 +800,7 @@ function collectParagraphElements(xml, sectionIndex = 0, baseOffset = 0) {
 
 function normalizeSearchText(value) {
   return String(value ?? "")
+    .replace(/<hp:fwSpace\s*\/>/g, " ")
     .replace(/&nbsp;/g, " ")
     .replace(/\u00a0/g, " ")
     .replace(/\s+/g, " ")
@@ -737,7 +813,11 @@ function buildDocumentOrderIndex(sectionXmls) {
     const paragraphs = collectParagraphElements(xml, sectionIndex);
     for (const paragraph of paragraphs) {
       const node = {
-        type: paragraph.table_path ? "table_cell_paragraph" : "paragraph",
+        type: paragraph.type || "paragraph_leaf",
+        node_type: paragraph.type || "paragraph_leaf",
+        node_path: paragraph.node_path || `section[${sectionIndex}]/paragraph[${paragraph.paragraph_index}]`,
+        parent_path: paragraph.parent_path || `section[${sectionIndex}]`,
+        ancestor_paths: paragraph.ancestor_paths || [],
         section_index: sectionIndex,
         node_order: nodes.length,
         paragraph_index: paragraph.paragraph_index,
@@ -749,9 +829,11 @@ function buildDocumentOrderIndex(sectionXmls) {
         char_pr_ids: paragraph.char_pr_ids || [],
         para_pr_id: attrValue(paragraph.xml.match(/<hp:p\b([^>]*)>/u)?.[1] || "", "paraPrIDRef"),
         style_id: attrValue(paragraph.xml.match(/<hp:p\b([^>]*)>/u)?.[1] || "", "styleIDRef"),
-        contains_control: /<hp:(?:tbl|pic|rect|ellipse|line|ctrl|header|footer|autoNum)\b/u.test(paragraph.xml),
-        contains_table: /<hp:tbl\b/u.test(paragraph.xml),
-        contains_shape: /<hp:(?:pic|rect|ellipse|line)\b/u.test(paragraph.xml),
+        contains_control: paragraph.contains_control ?? /<hp:(?:tbl|pic|rect|ellipse|line|ctrl|header|footer|autoNum)\b/u.test(paragraph.xml),
+        contains_table: paragraph.contains_table ?? /<hp:tbl\b/u.test(paragraph.xml),
+        contains_shape: paragraph.contains_shape ?? /<hp:(?:pic|rect|ellipse|line)\b/u.test(paragraph.xml),
+        contains_picture: paragraph.contains_picture ?? /<hp:pic\b/u.test(paragraph.xml),
+        is_selector_candidate: paragraph.is_selector_candidate !== false,
         xml_start: paragraph.start,
         xml_end: paragraph.end,
         _paragraph: paragraph,
@@ -862,6 +944,10 @@ function nodeToMatch(node) {
   const paragraph = node._paragraph;
   return {
     type: "paragraph",
+    node_type: node.node_type,
+    node_path: node.node_path,
+    parent_path: node.parent_path,
+    ancestor_paths: node.ancestor_paths,
     section: node.section_index,
     node_order: node.node_order,
     paragraph_index: node.paragraph_index,
@@ -879,10 +965,11 @@ function nodeToMatch(node) {
 
 function replaceFirstTextRun(fragment, replacementText) {
   let replaced = false;
+  const safeText = sanitizeReplacementText(replacementText);
   return fragment.replace(/(<(?:\w+:)?(?:t|text)\b[^>]*>)([\s\S]*?)(<\/(?:\w+:)?(?:t|text)>)/g, (full, open, text, close) => {
     if (!replaced) {
       replaced = true;
-      return `${open}${escapeXml(replacementText)}${close}`;
+      return `${open}${escapeXml(safeText)}${close}`;
     }
     return `${open}${close}`;
   });
@@ -893,6 +980,10 @@ function selectedByOccurrence(matches, selector) {
   if (!occurrence) return matches;
   if (occurrence < 1 || occurrence > matches.length) return [];
   return [matches[occurrence - 1]];
+}
+
+function layoutPolicyFor(replacement, selector) {
+  return replacement.layout_policy || selector.layout_policy || "allow_line_growth";
 }
 
 function lengthWarning(sourceText, replacementText, overflowPolicy = "warn") {
@@ -907,6 +998,45 @@ function lengthWarning(sourceText, replacementText, overflowPolicy = "warn") {
     overflow_risk: overflowRisk,
     overflow_policy: overflowPolicy,
   };
+}
+
+function detectBoards(nodes) {
+  const boards = [];
+  for (const node of nodes) {
+    const text = normalizeSearchText(node.logical_text);
+    const match = text.match(/^(주|보조)\s+(\d+)\s*-\s*(\d+)$/u);
+    if (!match) continue;
+    const role = match[1] === "주" ? "main" : "support";
+    const total = Number(match[2]);
+    const number = Number(match[3]);
+    boards.push({
+      board_id: `${role}-${number}`,
+      board_role: role,
+      board_number: number,
+      board_total: total,
+      ...(role === "main" ? { support_board_id: `support-${number}` } : { main_board_id: `main-${number}` }),
+    });
+  }
+  return boards;
+}
+
+function layoutPolicyCounts(selectorPlans) {
+  const counts = { preserve_exact: 0, allow_line_growth: 0, fit_or_fail: 0 };
+  for (const plan of selectorPlans) counts[plan.layout_policy] = (counts[plan.layout_policy] || 0) + 1;
+  return counts;
+}
+
+function collectSelectionConflicts(selectorPlans) {
+  const errors = [];
+  const seen = new Map();
+  for (const plan of selectorPlans) {
+    for (const match of plan._matches || []) {
+      const key = `${match.section}:${match.start}:${match.end}`;
+      if (seen.has(key)) errors.push(`duplicate_leaf_replacement selector_${seen.get(key)} selector_${plan.selector_index}`);
+      else seen.set(key, plan.selector_index);
+    }
+  }
+  return errors;
 }
 
 function assertMatchCount(selector, matches, selected, errors, selectorIndex) {
@@ -986,13 +1116,15 @@ function buildTemplateFidelityPlan({ sectionXmls, replacements, scopes = [] }) {
   const scopeResolution = resolveScopes({ sectionXmls, scopes });
   const errors = [...scopeResolution.errors];
   const warnings = [...scopeResolution.warnings];
+  const structuralContainersSkipped = scopeResolution.nodes.filter((node) => node.node_type === "paragraph_structural_container").length;
   const selectorPlans = replacements.map((replacement, selectorIndex) => {
     const selector = replacement.selector || {};
-    const replacementText = String(replacement.replacement_text ?? "");
+    const replacementText = sanitizeReplacementText(replacement.replacement_text ?? "");
+    const layoutPolicy = layoutPolicyFor(replacement, selector);
     const scopeId = replacement.scope_id || selector.scope_id || "__all__";
     const scope = scopeResolution.scopes.get(scopeId);
     if (!scope) errors.push(`selector_${selectorIndex}_unknown_scope ${scopeId}`);
-    const scopeNodes = scope?.nodes || [];
+    const scopeNodes = (scope?.nodes || []).filter((node) => node.is_selector_candidate !== false);
     let matches = [];
     if (selector.type === "paragraph_text" || selector.type === "paragraph_contains") {
       const sourceText = normalizeSearchText(selector.source_text || "");
@@ -1043,7 +1175,7 @@ function buildTemplateFidelityPlan({ sectionXmls, replacements, scopes = [] }) {
         }
         matches = block.selected.map((node, index) => ({
           ...nodeToMatch(node),
-          replacement_text: replacementParagraphs[index] ?? "",
+          replacement_text: sanitizeReplacementText(replacementParagraphs[index] ?? ""),
           block_index: 0,
         }));
       }
@@ -1059,6 +1191,9 @@ function buildTemplateFidelityPlan({ sectionXmls, replacements, scopes = [] }) {
     assertMatchCount(selector, matches, selectedMatches, errors, selectorIndex);
     const sourceText = selectedMatches[0]?.text || matches[0]?.text || selector.source_text || selector.contains_text || selector.expected_text || "";
     const overflow = lengthWarning(sourceText, replacementText, replacement.overflow_policy || selector.overflow_policy || "warn");
+    if ((layoutPolicy === "preserve_exact" || layoutPolicy === "fit_or_fail") && overflow.overflow_risk === "high") {
+      errors.push(`selector_${selectorIndex}_layout_policy_overflow ${layoutPolicy} ratio ${overflow.length_ratio}`);
+    }
     if (overflow.overflow_risk === "high") {
       const message = `selector_${selectorIndex}_overflow_high ratio ${overflow.length_ratio}`;
       if (overflow.overflow_policy === "error") errors.push(message);
@@ -1080,10 +1215,14 @@ function buildTemplateFidelityPlan({ sectionXmls, replacements, scopes = [] }) {
       selector_index: selectorIndex,
       scope_id: scopeId,
       selector,
+      layout_policy: layoutPolicy,
       replacement_text: replacementText,
       match_count: matches.length,
       selected_matches: selectedMatches.map((match) => ({
         type: match.type,
+        node_type: match.node_type,
+        node_path: match.node_path,
+        parent_path: match.parent_path,
         section: match.section,
         paragraph_id: match.paragraph_id,
         paragraph_index: match.paragraph_index,
@@ -1097,9 +1236,18 @@ function buildTemplateFidelityPlan({ sectionXmls, replacements, scopes = [] }) {
       overflow,
     };
   });
+  errors.push(...collectSelectionConflicts(selectorPlans));
   return {
     scopes: [...scopeResolution.scopes.values()].filter((scope) => scope.id !== "__all__").map(publicScope),
     document_order_count: scopeResolution.nodes.length,
+    boards: detectBoards(scopeResolution.nodes),
+    structural_containers_skipped: structuralContainersSkipped,
+    leaf_paragraphs_selected: selectorPlans.reduce((count, plan) => count + (plan._matches?.length || 0), 0),
+    ancestor_descendant_conflicts: [],
+    overlapping_selector_conflicts: collectSelectionConflicts(selectorPlans),
+    layout_policies: layoutPolicyCounts(selectorPlans),
+    target_linesegarrays_invalidated: selectorPlans.reduce((count, plan) => count + (plan.layout_policy === "allow_line_growth" ? (plan._matches?.filter((match) => /<hp:linesegarray\b/u.test(match.xml)).length || 0) : 0), 0),
+    non_target_linesegarrays_preserved: Math.max(0, sectionXmls.join("").match(/<hp:linesegarray\b/gu)?.length || 0) - selectorPlans.reduce((count, plan) => count + (plan.layout_policy === "allow_line_growth" ? (plan._matches?.filter((match) => /<hp:linesegarray\b/u.test(match.xml)).length || 0) : 0), 0),
     selectors: selectorPlans,
     can_apply: errors.length === 0,
     errors,
@@ -1115,7 +1263,9 @@ function applyPlanToSectionXml(xml, selectorPlans, sectionIndex) {
       edits.push({
         start: match.start,
         end: match.end,
-        xml: replaceFirstTextRun(match.xml, match.replacement_text ?? plan.replacement_text),
+        xml: plan.layout_policy === "allow_line_growth"
+          ? stripLineSegArray(replaceFirstTextRun(match.xml, match.replacement_text ?? plan.replacement_text))
+          : replaceFirstTextRun(match.xml, match.replacement_text ?? plan.replacement_text),
       });
     }
   }
@@ -1140,6 +1290,14 @@ export async function planHwpxTemplateFidelityFill({ workspace, templatePath, ou
     section_entries: sectionEntries,
     scopes: plan.scopes,
     document_order_count: plan.document_order_count,
+    boards: plan.boards,
+    structural_containers_skipped: plan.structural_containers_skipped,
+    leaf_paragraphs_selected: plan.leaf_paragraphs_selected,
+    ancestor_descendant_conflicts: plan.ancestor_descendant_conflicts,
+    overlapping_selector_conflicts: plan.overlapping_selector_conflicts,
+    layout_policies: plan.layout_policies,
+    target_linesegarrays_invalidated: plan.target_linesegarrays_invalidated,
+    non_target_linesegarrays_preserved: plan.non_target_linesegarrays_preserved,
     selectors: plan.selectors.map(({ _matches, ...item }) => item),
     can_apply: plan.can_apply,
     errors: plan.errors,
@@ -1163,16 +1321,17 @@ export async function applyHwpxTemplateFidelityFill({ workspace, templatePath, o
   for (const [sectionIndex, section] of sectionEntries.entries()) {
     const result = applyPlanToSectionXml(originalSectionXmls[sectionIndex], plan.selectors, sectionIndex);
     replacementsApplied += result.applied;
-    zip.file(section, result.xml);
+    zip.file(section, sanitizeInlineMarkersInXml(result.xml));
   }
   const previewText = await readZipText(zip, "Preview/PrvText.txt");
   if (previewText) {
     let nextPreview = previewText;
     for (const selectorPlan of plan.selectors) {
       for (const match of selectorPlan._matches || []) {
-        if (match.text) nextPreview = nextPreview.replace(match.text, match.replacement_text ?? selectorPlan.replacement_text);
+        if (match.text) nextPreview = nextPreview.replace(match.text, sanitizeReplacementText(match.replacement_text ?? selectorPlan.replacement_text));
       }
     }
+    nextPreview = sanitizeReplacementText(nextPreview);
     zip.file("Preview/PrvText.txt", nextPreview);
   }
   await mkdir(dirname(target), { recursive: true });

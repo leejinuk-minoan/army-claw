@@ -119,6 +119,20 @@ try {
     Add-Event "save_as_success" "ok" @{ result = $saved; exists = [bool](Test-Path -LiteralPath $OutputPath) }
     $lastSuccessfulStep = "save_as_success"
     $conversionStatus = if ($saved -and (Test-Path -LiteralPath $OutputPath)) { "passed" } else { "failed" }
+  } elseif ($Mode -eq "native-layout-normalize") {
+    if (-not $SourcePath) { throw "SourcePath is required for native-layout-normalize" }
+    if (-not $OutputPath) { throw "OutputPath is required for native-layout-normalize" }
+    Add-Event "open_start" "ok" @{ source_path = $SourcePath; format = "HWPX" }
+    $opened = [bool]$hwp.Open($SourcePath, "HWPX", "forceopen:true")
+    Add-Event "open_success" "ok" @{ result = $opened }
+    $lastSuccessfulStep = "open_success"
+    if (-not $opened) { throw "HWPX Open returned false" }
+    Start-Sleep -Milliseconds 500
+    Add-Event "save_as_start" "ok" @{ output_path = $OutputPath; format = "HWPX" }
+    $saved = [bool]$hwp.SaveAs($OutputPath, "HWPX", "")
+    Add-Event "save_as_success" "ok" @{ result = $saved; exists = [bool](Test-Path -LiteralPath $OutputPath) }
+    $lastSuccessfulStep = "save_as_success"
+    $conversionStatus = if ($saved -and (Test-Path -LiteralPath $OutputPath)) { "passed" } else { "failed" }
   } elseif ($Mode -eq "open-only" -or $Mode -eq "convert") {
     if (-not $SourcePath) { throw "SourcePath is required for $Mode" }
     Add-Event "open_start" "ok" @{ source_path = $SourcePath }

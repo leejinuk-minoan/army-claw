@@ -1,62 +1,31 @@
-# 현재 Codex 필수 확인 문서
+﻿# 현재 Codex 필수 확인 문서
 
-현재 기준 브랜치:
+현재 작업 브랜치:
 
 ```text
-feature/hwpx-template-fidelity-semantic-blocks
+feature/hwpx-native-layout-reflow
 ```
 
-다음 작업을 시작하기 전에 반드시 읽을 문서:
+현재 기준 보고서:
 
 ```text
-docs/gpt-communication/opinions/2026-07-02-hwpx-v4-native-reflow-plan.md
-
-docs/gpt-communication/opinions/2026-07-02-hwpx-v3-visual-review-and-reflow.md
-```
-
-관련 구현 보고서:
-
-```text
-docs/gpt-communication/reports/2026-07-02-hwpx-template-fidelity-semantic-blocks.md
+docs/gpt-communication/reports/2026-07-02-hwpx-native-layout-reflow-v4.md
 ```
 
 현재 상태:
 
-- HWPX Template Fidelity v3는 `anchor_range` scope와 `paragraph_block` selector를 구현했다.
-- 표지와 `주 11-1` 비대상 페이지 보존은 한글 2024 시각 확인에서 성공했다.
-- `주 11-2`의 긴 본문은 기존 line layout이 재계산되지 않아 겹쳐 읽기 어렵다.
-- `보조 11-2`는 구조 컨테이너와 내부 leaf 문단의 중복 선택 흔적으로 내용이 겹친다.
-- `<hp:fwSpace/>` inline marker가 일반 텍스트로 노출된다.
-- 다음 작업은 `preserve_exact`, `allow_line_growth`, `fit_or_fail`, native layout normalize, inline element 직렬화 수정, structural container와 leaf paragraph 분리이다.
-- 이번 단계에서는 LLM, Ollama, 내용 품질 튜닝, Template Registry, UI, 백엔드와 설치 파일을 변경하지 않는다.
+- HWPX Template Fidelity v4는 `layout_policy`, 변경 문단 linesegarray 무효화, structural container/leaf paragraph 분리, inline marker 직렬화 수정, board metadata를 포함한다.
+- 최종 v4 HWPX는 한글 2024 COM `native-layout-normalize`를 통과했다.
+- v4 파일은 사용자 시각 확인 대기 상태이다.
+- LLM, Ollama, UI, 백엔드, 설치 파일은 이번 작업 범위에서 변경하지 않았다.
 
-v3 시각 판정:
+주요 산출물:
 
 ```text
-v3_cover_visual_status: user_confirmed_success
-v3_non_target_main_board_status: preserved_as_designed
-v3_semantic_replacement_status: applied
-v3_line_reflow_status: failed_visual_review
-v3_detail_page_container_selection_status: failed_visual_review
-v3_inline_element_serialization_status: failed_visual_review
-v3_overall_visual_status: requires_engine_fix
-```
-
-v4 목표 상태:
-
-```text
-v4_native_reflow_status: planned
-v4_native_layout_normalize_status: planned
-v4_container_leaf_selection_status: planned
-v4_inline_serialization_status: planned
-hwpx_engine_completion_status: blocked_by_v4_visual_confirmation
-```
-
-현재 주요 산출물:
-
-```text
-release/test-documents/army-claw-qualification-semantic-block-plan.json
-release/test-documents/army-claw-qualification-semantic-block-dry-run.json
-release/test-documents/army-claw-qualification-review-template-fidelity-v3.hwpx
-release/test-documents/army-claw-qualification-template-fidelity-v3-diff.json
+release/test-documents/army-claw-qualification-native-reflow-plan.json
+release/test-documents/army-claw-qualification-native-reflow-dry-run.json
+release/test-documents/army-claw-qualification-review-template-fidelity-v4-pre-normalize.hwpx
+release/test-documents/army-claw-qualification-review-template-fidelity-v4.hwpx
+release/test-documents/hwp-native-layout-normalize-v4-diagnostics.json
+release/test-documents/army-claw-qualification-template-fidelity-v4-diff.json
 ```
