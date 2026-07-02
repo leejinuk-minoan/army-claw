@@ -1,0 +1,27 @@
+{
+  "updated_at": "2026-07-02",
+  "status": "awaiting_first_prompt_agent_task",
+  "task_id": null,
+  "stage": "1-3",
+  "branch": "feature/hwpx-adaptive-board-fit-v5",
+  "commit_sha": "6dc812db0b87094ad4aac8932e206ac7835bcc25",
+  "prompt_agent_assessment": "not_started",
+  "codex_execution_status": "not_started",
+  "tests": {
+    "passed": null,
+    "failed": null,
+    "skipped": null
+  },
+  "artifacts": [],
+  "user_visual_findings": [
+    "주 11-2 Adaptive Fit은 사용자 확인상 성공",
+    "보조 11-2 내부 두 번째 1×1 표의 과도한 고정 높이로 페이지 spill 발생",
+    "사용자가 표 높이를 수동 축소하면 보조 11-2가 한 페이지에 수용됨"
+  ],
+  "scope_deviations": [],
+  "architecture_questions": [],
+  "risks": [],
+  "next_prompt_intent": "feature/hwpx-core-benchmark 브랜치에서 HWPX 코어 benchmark와 HwpCoreAdapter spike를 수행할 Codex 프롬프트 작성",
+  "master_review_required": false,
+  "notes": "작업 시작 전 tasks/<task-id>/TASK_CONTRACT.md를 작성하고, Codex push 후 이 파일을 실제 결과로 갱신한다."
+}
