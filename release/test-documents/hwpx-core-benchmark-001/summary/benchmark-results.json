@@ -1,0 +1,493 @@
+{
+  "schema_version": "1.0.0",
+  "task_id": "hwpx-core-benchmark-001",
+  "run_id": "hwpx-core-benchmark-2026-07-02T12-30-40-023Z",
+  "generated_at": "2026-07-02T12:30:40.914Z",
+  "candidate_matrix": [
+    {
+      "candidate_id": "current_node_xml",
+      "role": "editor",
+      "runtime": "node",
+      "capabilities": {
+        "openPackage": "passed",
+        "savePackage": "passed",
+        "analyzeDocument": "passed",
+        "findParagraphs": "passed",
+        "findTables": "passed",
+        "findShapes": "partial",
+        "replaceText": "passed",
+        "setTableHeight": "unsupported",
+        "clonePageOrBoard": "unsupported",
+        "validatePackage": "passed",
+        "extractSemanticSnapshot": "passed"
+      },
+      "scenario_counts": {
+        "passed": 8,
+        "failed": 0,
+        "unsupported": 1,
+        "blocked": 5,
+        "not_applicable": 0
+      }
+    },
+    {
+      "candidate_id": "python_hwpx",
+      "role": "editor",
+      "runtime": "python",
+      "capabilities": {
+        "openPackage": "blocked",
+        "savePackage": "blocked",
+        "analyzeDocument": "blocked",
+        "findParagraphs": "blocked",
+        "findTables": "blocked",
+        "findShapes": "blocked",
+        "replaceText": "blocked",
+        "setTableHeight": "unsupported",
+        "clonePageOrBoard": "unsupported",
+        "validatePackage": "blocked",
+        "extractSemanticSnapshot": "blocked"
+      },
+      "scenario_counts": {
+        "passed": 0,
+        "failed": 0,
+        "unsupported": 1,
+        "blocked": 13,
+        "not_applicable": 0
+      }
+    },
+    {
+      "candidate_id": "hwpxlib",
+      "role": "validator",
+      "runtime": "java",
+      "capabilities": {
+        "openPackage": "blocked",
+        "savePackage": "not_applicable",
+        "analyzeDocument": "blocked",
+        "findParagraphs": "blocked",
+        "findTables": "blocked",
+        "findShapes": "blocked",
+        "replaceText": "not_applicable",
+        "setTableHeight": "not_applicable",
+        "clonePageOrBoard": "not_applicable",
+        "validatePackage": "blocked",
+        "extractSemanticSnapshot": "blocked"
+      },
+      "scenario_counts": {
+        "passed": 0,
+        "failed": 0,
+        "unsupported": 0,
+        "blocked": 6,
+        "not_applicable": 8
+      }
+    },
+    {
+      "candidate_id": "hwpforge",
+      "role": "validator",
+      "runtime": "unknown",
+      "capabilities": {
+        "openPackage": "blocked",
+        "savePackage": "blocked",
+        "analyzeDocument": "blocked",
+        "findParagraphs": "blocked",
+        "findTables": "blocked",
+        "findShapes": "blocked",
+        "replaceText": "not_applicable",
+        "setTableHeight": "not_applicable",
+        "clonePageOrBoard": "not_applicable",
+        "validatePackage": "blocked",
+        "extractSemanticSnapshot": "blocked"
+      },
+      "scenario_counts": {
+        "passed": 0,
+        "failed": 0,
+        "unsupported": 0,
+        "blocked": 14,
+        "not_applicable": 0
+      }
+    }
+  ],
+  "scenario_results": [
+    {
+      "candidate": "current_node_xml",
+      "scenario": "S01",
+      "status": "passed",
+      "reason": null
+    },
+    {
+      "candidate": "current_node_xml",
+      "scenario": "S02",
+      "status": "passed",
+      "reason": null
+    },
+    {
+      "candidate": "current_node_xml",
+      "scenario": "S03",
+      "status": "passed",
+      "reason": null
+    },
+    {
+      "candidate": "current_node_xml",
+      "scenario": "S04",
+      "status": "passed",
+      "reason": null
+    },
+    {
+      "candidate": "current_node_xml",
+      "scenario": "S05",
+      "status": "unsupported",
+      "reason": "current Node/XML core has no proven support-2 table height mutation evidence"
+    },
+    {
+      "candidate": "current_node_xml",
+      "scenario": "S06",
+      "status": "passed",
+      "reason": null
+    },
+    {
+      "candidate": "current_node_xml",
+      "scenario": "S07",
+      "status": "passed",
+      "reason": null
+    },
+    {
+      "candidate": "current_node_xml",
+      "scenario": "S08",
+      "status": "passed",
+      "reason": null
+    },
+    {
+      "candidate": "current_node_xml",
+      "scenario": "S09",
+      "status": "blocked",
+      "reason": "scenario not applicable or requires Hancom COM/user visual evidence"
+    },
+    {
+      "candidate": "current_node_xml",
+      "scenario": "S10",
+      "status": "blocked",
+      "reason": "scenario not applicable or requires Hancom COM/user visual evidence"
+    },
+    {
+      "candidate": "current_node_xml",
+      "scenario": "S11",
+      "status": "blocked",
+      "reason": "scenario not applicable or requires Hancom COM/user visual evidence"
+    },
+    {
+      "candidate": "current_node_xml",
+      "scenario": "S12",
+      "status": "passed",
+      "reason": null
+    },
+    {
+      "candidate": "current_node_xml",
+      "scenario": "S13",
+      "status": "blocked",
+      "reason": "scenario not applicable or requires Hancom COM/user visual evidence"
+    },
+    {
+      "candidate": "current_node_xml",
+      "scenario": "S14",
+      "status": "blocked",
+      "reason": "repository-level LICENSE/COPYING/NOTICE file was not present in this checkout"
+    },
+    {
+      "candidate": "python_hwpx",
+      "scenario": "S01",
+      "status": "blocked",
+      "reason": "python-hwpx package and LICENSE evidence are not installed in the offline workspace"
+    },
+    {
+      "candidate": "python_hwpx",
+      "scenario": "S02",
+      "status": "blocked",
+      "reason": "python-hwpx package and LICENSE evidence are not installed in the offline workspace"
+    },
+    {
+      "candidate": "python_hwpx",
+      "scenario": "S03",
+      "status": "blocked",
+      "reason": "python-hwpx package and LICENSE evidence are not installed in the offline workspace"
+    },
+    {
+      "candidate": "python_hwpx",
+      "scenario": "S04",
+      "status": "blocked",
+      "reason": "python-hwpx package and LICENSE evidence are not installed in the offline workspace"
+    },
+    {
+      "candidate": "python_hwpx",
+      "scenario": "S05",
+      "status": "unsupported",
+      "reason": "python-hwpx package and LICENSE evidence are not installed in the offline workspace"
+    },
+    {
+      "candidate": "python_hwpx",
+      "scenario": "S06",
+      "status": "blocked",
+      "reason": "python-hwpx package and LICENSE evidence are not installed in the offline workspace"
+    },
+    {
+      "candidate": "python_hwpx",
+      "scenario": "S07",
+      "status": "blocked",
+      "reason": "python-hwpx package and LICENSE evidence are not installed in the offline workspace"
+    },
+    {
+      "candidate": "python_hwpx",
+      "scenario": "S08",
+      "status": "blocked",
+      "reason": "python-hwpx package and LICENSE evidence are not installed in the offline workspace"
+    },
+    {
+      "candidate": "python_hwpx",
+      "scenario": "S09",
+      "status": "blocked",
+      "reason": "python-hwpx package and LICENSE evidence are not installed in the offline workspace"
+    },
+    {
+      "candidate": "python_hwpx",
+      "scenario": "S10",
+      "status": "blocked",
+      "reason": "python-hwpx package and LICENSE evidence are not installed in the offline workspace"
+    },
+    {
+      "candidate": "python_hwpx",
+      "scenario": "S11",
+      "status": "blocked",
+      "reason": "python-hwpx package and LICENSE evidence are not installed in the offline workspace"
+    },
+    {
+      "candidate": "python_hwpx",
+      "scenario": "S12",
+      "status": "blocked",
+      "reason": "python-hwpx package and LICENSE evidence are not installed in the offline workspace"
+    },
+    {
+      "candidate": "python_hwpx",
+      "scenario": "S13",
+      "status": "blocked",
+      "reason": "python-hwpx package and LICENSE evidence are not installed in the offline workspace"
+    },
+    {
+      "candidate": "python_hwpx",
+      "scenario": "S14",
+      "status": "blocked",
+      "reason": "python-hwpx package and LICENSE evidence are not installed in the offline workspace"
+    },
+    {
+      "candidate": "hwpxlib",
+      "scenario": "S01",
+      "status": "not_applicable",
+      "reason": "hwpxlib runtime artifact and LICENSE evidence are not installed in the offline workspace"
+    },
+    {
+      "candidate": "hwpxlib",
+      "scenario": "S02",
+      "status": "not_applicable",
+      "reason": "hwpxlib runtime artifact and LICENSE evidence are not installed in the offline workspace"
+    },
+    {
+      "candidate": "hwpxlib",
+      "scenario": "S03",
+      "status": "blocked",
+      "reason": "hwpxlib runtime artifact and LICENSE evidence are not installed in the offline workspace"
+    },
+    {
+      "candidate": "hwpxlib",
+      "scenario": "S04",
+      "status": "not_applicable",
+      "reason": "hwpxlib runtime artifact and LICENSE evidence are not installed in the offline workspace"
+    },
+    {
+      "candidate": "hwpxlib",
+      "scenario": "S05",
+      "status": "not_applicable",
+      "reason": "hwpxlib runtime artifact and LICENSE evidence are not installed in the offline workspace"
+    },
+    {
+      "candidate": "hwpxlib",
+      "scenario": "S06",
+      "status": "blocked",
+      "reason": "hwpxlib runtime artifact and LICENSE evidence are not installed in the offline workspace"
+    },
+    {
+      "candidate": "hwpxlib",
+      "scenario": "S07",
+      "status": "blocked",
+      "reason": "hwpxlib runtime artifact and LICENSE evidence are not installed in the offline workspace"
+    },
+    {
+      "candidate": "hwpxlib",
+      "scenario": "S08",
+      "status": "blocked",
+      "reason": "hwpxlib runtime artifact and LICENSE evidence are not installed in the offline workspace"
+    },
+    {
+      "candidate": "hwpxlib",
+      "scenario": "S09",
+      "status": "not_applicable",
+      "reason": "hwpxlib runtime artifact and LICENSE evidence are not installed in the offline workspace"
+    },
+    {
+      "candidate": "hwpxlib",
+      "scenario": "S10",
+      "status": "not_applicable",
+      "reason": "hwpxlib runtime artifact and LICENSE evidence are not installed in the offline workspace"
+    },
+    {
+      "candidate": "hwpxlib",
+      "scenario": "S11",
+      "status": "not_applicable",
+      "reason": "hwpxlib runtime artifact and LICENSE evidence are not installed in the offline workspace"
+    },
+    {
+      "candidate": "hwpxlib",
+      "scenario": "S12",
+      "status": "not_applicable",
+      "reason": "hwpxlib runtime artifact and LICENSE evidence are not installed in the offline workspace"
+    },
+    {
+      "candidate": "hwpxlib",
+      "scenario": "S13",
+      "status": "blocked",
+      "reason": "hwpxlib runtime artifact and LICENSE evidence are not installed in the offline workspace"
+    },
+    {
+      "candidate": "hwpxlib",
+      "scenario": "S14",
+      "status": "blocked",
+      "reason": "hwpxlib runtime artifact and LICENSE evidence are not installed in the offline workspace"
+    },
+    {
+      "candidate": "hwpforge",
+      "scenario": "S01",
+      "status": "blocked",
+      "reason": "HwpForge exact source, immutable commit, runtime, and LICENSE evidence are not available in the offline workspace"
+    },
+    {
+      "candidate": "hwpforge",
+      "scenario": "S02",
+      "status": "blocked",
+      "reason": "HwpForge exact source, immutable commit, runtime, and LICENSE evidence are not available in the offline workspace"
+    },
+    {
+      "candidate": "hwpforge",
+      "scenario": "S03",
+      "status": "blocked",
+      "reason": "HwpForge exact source, immutable commit, runtime, and LICENSE evidence are not available in the offline workspace"
+    },
+    {
+      "candidate": "hwpforge",
+      "scenario": "S04",
+      "status": "blocked",
+      "reason": "HwpForge exact source, immutable commit, runtime, and LICENSE evidence are not available in the offline workspace"
+    },
+    {
+      "candidate": "hwpforge",
+      "scenario": "S05",
+      "status": "blocked",
+      "reason": "HwpForge exact source, immutable commit, runtime, and LICENSE evidence are not available in the offline workspace"
+    },
+    {
+      "candidate": "hwpforge",
+      "scenario": "S06",
+      "status": "blocked",
+      "reason": "HwpForge exact source, immutable commit, runtime, and LICENSE evidence are not available in the offline workspace"
+    },
+    {
+      "candidate": "hwpforge",
+      "scenario": "S07",
+      "status": "blocked",
+      "reason": "HwpForge exact source, immutable commit, runtime, and LICENSE evidence are not available in the offline workspace"
+    },
+    {
+      "candidate": "hwpforge",
+      "scenario": "S08",
+      "status": "blocked",
+      "reason": "HwpForge exact source, immutable commit, runtime, and LICENSE evidence are not available in the offline workspace"
+    },
+    {
+      "candidate": "hwpforge",
+      "scenario": "S09",
+      "status": "blocked",
+      "reason": "HwpForge exact source, immutable commit, runtime, and LICENSE evidence are not available in the offline workspace"
+    },
+    {
+      "candidate": "hwpforge",
+      "scenario": "S10",
+      "status": "blocked",
+      "reason": "HwpForge exact source, immutable commit, runtime, and LICENSE evidence are not available in the offline workspace"
+    },
+    {
+      "candidate": "hwpforge",
+      "scenario": "S11",
+      "status": "blocked",
+      "reason": "HwpForge exact source, immutable commit, runtime, and LICENSE evidence are not available in the offline workspace"
+    },
+    {
+      "candidate": "hwpforge",
+      "scenario": "S12",
+      "status": "blocked",
+      "reason": "HwpForge exact source, immutable commit, runtime, and LICENSE evidence are not available in the offline workspace"
+    },
+    {
+      "candidate": "hwpforge",
+      "scenario": "S13",
+      "status": "blocked",
+      "reason": "HwpForge exact source, immutable commit, runtime, and LICENSE evidence are not available in the offline workspace"
+    },
+    {
+      "candidate": "hwpforge",
+      "scenario": "S14",
+      "status": "blocked",
+      "reason": "HwpForge exact source, immutable commit, runtime, and LICENSE evidence are not available in the offline workspace"
+    }
+  ],
+  "scorecard": {
+    "scoring_weights": {
+      "functional_fit": 30,
+      "visual_fidelity": 25,
+      "api_extensibility": 15,
+      "offline_distribution": 10,
+      "performance": 10,
+      "license_maintenance": 10
+    },
+    "candidate_scores": [
+      {
+        "candidate_id": "current_node_xml",
+        "measured_score": 40,
+        "pending_user_visual_points": 25,
+        "provisional_total": 40,
+        "final_total": null,
+        "evidence": "baseline passes structural scenarios but support-2 shrink and COM page measurement remain unresolved"
+      },
+      {
+        "candidate_id": "python_hwpx",
+        "measured_score": 0,
+        "pending_user_visual_points": 25,
+        "provisional_total": 0,
+        "final_total": null,
+        "evidence": "blocked by missing offline package and LICENSE evidence"
+      }
+    ]
+  },
+  "recommendation": {
+    "editing_core": "current_node_xml_remains_baseline_until_python_hwpx_license_and_api_evidence_exists",
+    "validator_core": "no_external_validator_selected; hwpxlib_and_hwpforge_blocked_by_missing_offline_artifacts",
+    "production_core_switch": "prohibited",
+    "hwp_adapter_completion": "not_declared"
+  },
+  "deferred_features": [
+    "production adapter switch",
+    "support-2 table shrink-to-content",
+    "COM physical page measurement"
+  ],
+  "pending_user_visual_points": [
+    "support 11-2 table height",
+    "main 11-3 physical start page"
+  ],
+  "master_review_required": true,
+  "master_review_reasons": [
+    "external candidate artifacts and LICENSE evidence are missing; no architecture switch should be made"
+  ]
+}

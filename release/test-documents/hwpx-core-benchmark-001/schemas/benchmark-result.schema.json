@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Army Claw HWPX Core Benchmark Result",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "task_id",
+    "run_id",
+    "environment",
+    "candidate",
+    "fixture",
+    "scenario",
+    "execution",
+    "preservation",
+    "layout",
+    "deployment",
+    "license",
+    "artifacts",
+    "errors"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "task_id": {
+      "const": "hwpx-core-benchmark-001"
+    }
+  }
+}
