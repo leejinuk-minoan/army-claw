@@ -1,4 +1,4 @@
-﻿# 현재 Codex 필수 확인 문서
+# 현재 Codex 필수 확인 문서
 
 현재 작업 브랜치:
 
@@ -6,7 +6,13 @@
 feature/hwpx-template-fidelity-semantic-blocks
 ```
 
-이번 단계의 기준 문서:
+다음 작업을 시작하기 전에 반드시 읽을 문서:
+
+```text
+docs/gpt-communication/opinions/2026-07-02-hwpx-v3-visual-review-and-reflow.md
+```
+
+관련 구현 보고서:
 
 ```text
 docs/gpt-communication/reports/2026-07-02-hwpx-template-fidelity-semantic-blocks.md
@@ -14,10 +20,25 @@ docs/gpt-communication/reports/2026-07-02-hwpx-template-fidelity-semantic-blocks
 
 현재 상태:
 
-- HWPX Template Fidelity 기능은 v3에서 `anchor_range` scope와 `paragraph_block` selector를 지원한다.
-- v3 산출물은 한글 2024 시각 확인 대기 상태이다.
-- LLM, Ollama, UI, 백엔드, 설치 파일은 이번 작업 범위에서 변경하지 않았다.
-- 다음 작업은 사용자의 v3 HWPX 시각 확인 결과를 반영해 문장 품질 또는 block replacement 문구를 조정하는 것이다.
+- HWPX Template Fidelity v3는 `anchor_range` scope와 `paragraph_block` selector를 구현했다.
+- 표지와 비대상 페이지 보존은 한글 2024 시각 확인에서 성공했다.
+- `주 11-2`의 긴 본문은 기존 line layout이 재계산되지 않아 겹쳐 읽기 어렵다.
+- `보조 11-2`는 구조 컨테이너와 내부 leaf 문단의 중복 선택 흔적으로 내용이 겹친다.
+- `<hp:fwSpace/>` inline marker가 일반 텍스트로 노출된다.
+- 다음 작업은 문구 단축이 아니라 `allow_line_growth`, native layout normalize, inline element 직렬화 수정, structural container와 leaf paragraph 분리이다.
+- LLM, Ollama, UI, 백엔드와 설치 파일은 계속 변경하지 않는다.
+
+v3 시각 판정:
+
+```text
+v3_cover_visual_status: user_confirmed_success
+v3_non_target_main_board_status: preserved_as_designed
+v3_semantic_replacement_status: applied
+v3_line_reflow_status: failed_visual_review
+v3_detail_page_container_selection_status: failed_visual_review
+v3_inline_element_serialization_status: failed_visual_review
+v3_overall_visual_status: requires_engine_fix
+```
 
 주요 산출물:
 
