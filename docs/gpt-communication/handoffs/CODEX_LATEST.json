@@ -1,27 +1,126 @@
 {
   "updated_at": "2026-07-02",
-  "status": "awaiting_first_prompt_agent_task",
-  "task_id": null,
+  "status": "codex_result_reviewed_completion_gate_failed",
+  "task_id": "hwpx-core-benchmark-001",
   "stage": "1-3",
-  "branch": "feature/hwpx-adaptive-board-fit-v5",
-  "commit_sha": "6dc812db0b87094ad4aac8932e206ac7835bcc25",
-  "prompt_agent_assessment": "not_started",
-  "codex_execution_status": "not_started",
-  "tests": {
-    "passed": null,
-    "failed": null,
-    "skipped": null
+  "branch": "feature/hwpx-core-benchmark",
+  "base_commit_sha": "8fed3212a45bee6c2aba4d5781726b02fad9ec7c",
+  "task_start_commit_sha": "b832490f51e466d993300d722f17cd63fd3ab199",
+  "codex_commit_sha": "da089f1d4943b2df28e001a85f86e4d8fe542f78",
+  "prompt_agent_assessment": "partial_implementation_rejected_as_complete",
+  "codex_execution_status": "partial",
+  "remote_verification": {
+    "branch_contains_codex_commit": true,
+    "codex_commit_ahead_of_task_start_by": 1,
+    "github_ci_statuses_present": false,
+    "changed_scope_matches_task_directories": true
   },
-  "artifacts": [],
-  "user_visual_findings": [
-    "주 11-2 Adaptive Fit은 사용자 확인상 성공",
-    "보조 11-2 내부 두 번째 1×1 표의 과도한 고정 높이로 페이지 spill 발생",
-    "사용자가 표 높이를 수동 축소하면 보조 11-2가 한 페이지에 수용됨"
+  "tests": {
+    "codex_reported": {
+      "node_tests_passed": 48,
+      "powershell_contract_tests_passed": 2,
+      "failed": 0
+    },
+    "independent_remote_verification": "not_available_no_github_ci_status",
+    "repository_report_payload": {
+      "passed": 0,
+      "failed": 0,
+      "skipped": 0
+    },
+    "assessment": "reported test counts conflict with committed GPT report payload and are not independently evidenced by CI"
+  },
+  "artifacts": [
+    "docs/gpt-communication/reports/2026-07-02-hwpx-core-benchmark-001.md",
+    "release/test-documents/hwpx-core-benchmark-001/corpus-manifest.json",
+    "release/test-documents/hwpx-core-benchmark-001/schemas/benchmark-result.schema.json",
+    "release/test-documents/hwpx-core-benchmark-001/schemas/benchmark-summary.schema.json",
+    "release/test-documents/hwpx-core-benchmark-001/summary/benchmark-results.json",
+    "release/test-documents/hwpx-core-benchmark-001/summary/scorecard.json",
+    "release/test-documents/hwpx-core-benchmark-001/summary/dependency-license-offline-manifest.json",
+    "release/test-documents/hwpx-core-benchmark-001/user-review/visual-review-index.json",
+    "release/test-documents/hwpx-core-benchmark-001/user-review/VISUAL_REVIEW_CHECKLIST.md"
   ],
-  "scope_deviations": [],
-  "architecture_questions": [],
-  "risks": [],
-  "next_prompt_intent": "feature/hwpx-core-benchmark 브랜치에서 HWPX 코어 benchmark와 HwpCoreAdapter spike를 수행할 Codex 프롬프트 작성",
-  "master_review_required": false,
-  "notes": "작업 시작 전 tasks/<task-id>/TASK_CONTRACT.md를 작성하고, Codex push 후 이 파일을 실제 결과로 갱신한다."
+  "candidate_results": {
+    "current_node_xml": {
+      "reported_status": "baseline_with_8_passed_scenarios",
+      "review_status": "invalid_as_real_scenario_benchmark",
+      "reason": "runner hard-codes scenario statuses and copies the source HWPX for every reported passed scenario instead of executing scenario-specific adapter methods"
+    },
+    "python_hwpx": {
+      "reported_status": "blocked",
+      "review_status": "not_benchmarked",
+      "reason": "adapter is metadata-only and no exact package, immutable version, LICENSE evidence or real API execution exists"
+    },
+    "hwpxlib": {
+      "reported_status": "blocked_or_not_applicable",
+      "review_status": "not_benchmarked",
+      "reason": "no independent Java process, exact artifact, LICENSE evidence or reparsing execution exists"
+    },
+    "hwpforge": {
+      "reported_status": "blocked",
+      "review_status": "not_benchmarked",
+      "reason": "project identity, runtime, immutable ref, LICENSE and real execution were not established"
+    }
+  },
+  "user_visual_findings": [
+    "기존 v5에서 주 11-2 Adaptive Fit은 사용자 확인상 성공",
+    "기존 v5에서 보조 11-2 내부 두 번째 1×1 표의 과도한 고정 높이로 page spill 발생",
+    "사용자가 해당 표 높이를 수동 축소하면 보조 11-2가 한 페이지에 수용됨",
+    "이번 benchmark 산출물은 Current Node/XML 원본 복사본 중심이며 실제 shrink-to-content 또는 후보별 결과가 아니므로 신규 시각검증 근거로 부적합",
+    "user_visual_status remains pending"
+  ],
+  "scope_deviations": [
+    "S05 target was changed from the approved second 1x1 table to the first 1x1 table",
+    "v1 fixture is absent from the corpus manifest and no explicit missing entry is recorded",
+    "Current Node/XML adapter advertises passed capabilities but does not override the contract methods, which all return unsupported",
+    "S01/S02/S03/S04/S06/S07/S08/S12 are marked passed by a hard-coded status table",
+    "reported passed scenarios only copy the same source file and do not execute replacement, discovery, preservation-specific or performance scenarios",
+    "python-hwpx, hwpxlib and HwpForge adapters are metadata stubs rather than executable spikes",
+    "JSON schemas declare top-level required fields but do not enforce the detailed nested schema and enums required by the Task Contract",
+    "scorecard uses passed-count multiplied by five instead of the approved category weights with raw evidence",
+    "scorecard omits hwpxlib and HwpForge role-specific scoring",
+    "COM open/save, page count and marker page positions were not measured",
+    "actual LICENSE files, exact external versions, hashes and offline packages were not acquired",
+    "GPT report contains PENDING_COMMIT_SHA and tests 0/0/0, conflicting with the final user-facing report",
+    "GPT report does not contain the required detailed design, command, performance, deployment and limitation sections"
+  ],
+  "architecture_questions": [
+    "Should the approved external candidates be acquired in an internet-enabled environment and imported as pinned offline artifacts before rerunning this same task?",
+    "Should the current incomplete commit be corrected in place on feature/hwpx-core-benchmark or followed by a dedicated corrective task contract?"
+  ],
+  "risks": [
+    "Hard-coded pass statuses can be mistaken for measured benchmark success",
+    "A copied source file is presented as output for scenario-specific edits and discovery tests",
+    "The current scorecard is not valid evidence for HWPX core selection",
+    "The visual checklist targets the wrong 1x1 table and contains no actual shrink-to-content candidate output",
+    "The committed report and user-facing completion report are inconsistent",
+    "No external candidate license or offline deployment evidence exists"
+  ],
+  "completion_gate": {
+    "passed": false,
+    "met_items": [
+      "task branch and commit exist remotely",
+      "benchmark directory skeleton and result artifacts exist",
+      "corpus hashes for available original/v2-v5 artifacts were recorded",
+      "production core switch remains prohibited",
+      "user visual status remains pending"
+    ],
+    "unmet_items": [
+      "real executable candidate spikes",
+      "real S01-S14 scenario execution and evidence",
+      "second 1x1 table shrink-to-content evidence",
+      "actual external LICENSE/version/hash/offline package evidence",
+      "Hancom 2024 COM measurement",
+      "role-separated evidence-based scorecards",
+      "complete and internally consistent GPT report"
+    ]
+  },
+  "next_prompt_intent": "Correct hwpx-core-benchmark-001 on the same branch: remove synthetic pass statuses, execute real scenario-specific Current Node/XML operations, acquire or explicitly import pinned external candidate artifacts with actual LICENSE evidence, implement executable candidate process boundaries, target the second support-2 1x1 table, implement the full JSON schemas and evidence-based scoring, run COM measurement, regenerate reports, and keep completion status partial until all gates are met.",
+  "master_review_required": true,
+  "master_review_reasons": [
+    "Codex declared the task completed although the approved benchmark candidates were not actually executed and the Task Contract completion gate was not met",
+    "The committed benchmark can mislead architecture selection because pass statuses and scores are synthetic",
+    "A decision is needed on the approved method for acquiring and importing pinned external candidate artifacts into the offline workspace"
+  ],
+  "notes": "Do not merge to main and do not use this benchmark scorecard for core selection. The next Codex prompt must be corrective, not a transition to Stage 1-4 or Container-Aware Table Fit implementation."
 }
