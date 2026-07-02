@@ -1,6 +1,6 @@
 # 현재 Codex 필수 확인 문서
 
-현재 작업 브랜치:
+현재 기준 브랜치:
 
 ```text
 feature/hwpx-template-fidelity-semantic-blocks
@@ -9,6 +9,8 @@ feature/hwpx-template-fidelity-semantic-blocks
 다음 작업을 시작하기 전에 반드시 읽을 문서:
 
 ```text
+docs/gpt-communication/opinions/2026-07-02-hwpx-v4-native-reflow-plan.md
+
 docs/gpt-communication/opinions/2026-07-02-hwpx-v3-visual-review-and-reflow.md
 ```
 
@@ -21,12 +23,12 @@ docs/gpt-communication/reports/2026-07-02-hwpx-template-fidelity-semantic-blocks
 현재 상태:
 
 - HWPX Template Fidelity v3는 `anchor_range` scope와 `paragraph_block` selector를 구현했다.
-- 표지와 비대상 페이지 보존은 한글 2024 시각 확인에서 성공했다.
+- 표지와 `주 11-1` 비대상 페이지 보존은 한글 2024 시각 확인에서 성공했다.
 - `주 11-2`의 긴 본문은 기존 line layout이 재계산되지 않아 겹쳐 읽기 어렵다.
 - `보조 11-2`는 구조 컨테이너와 내부 leaf 문단의 중복 선택 흔적으로 내용이 겹친다.
 - `<hp:fwSpace/>` inline marker가 일반 텍스트로 노출된다.
-- 다음 작업은 문구 단축이 아니라 `allow_line_growth`, native layout normalize, inline element 직렬화 수정, structural container와 leaf paragraph 분리이다.
-- LLM, Ollama, UI, 백엔드와 설치 파일은 계속 변경하지 않는다.
+- 다음 작업은 `preserve_exact`, `allow_line_growth`, `fit_or_fail`, native layout normalize, inline element 직렬화 수정, structural container와 leaf paragraph 분리이다.
+- 이번 단계에서는 LLM, Ollama, 내용 품질 튜닝, Template Registry, UI, 백엔드와 설치 파일을 변경하지 않는다.
 
 v3 시각 판정:
 
@@ -40,7 +42,17 @@ v3_inline_element_serialization_status: failed_visual_review
 v3_overall_visual_status: requires_engine_fix
 ```
 
-주요 산출물:
+v4 목표 상태:
+
+```text
+v4_native_reflow_status: planned
+v4_native_layout_normalize_status: planned
+v4_container_leaf_selection_status: planned
+v4_inline_serialization_status: planned
+hwpx_engine_completion_status: blocked_by_v4_visual_confirmation
+```
+
+현재 주요 산출물:
 
 ```text
 release/test-documents/army-claw-qualification-semantic-block-plan.json
