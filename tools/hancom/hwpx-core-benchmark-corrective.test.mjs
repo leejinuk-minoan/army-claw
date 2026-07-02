@@ -146,6 +146,22 @@ test("blocked external candidate execution requires attempted commands and check
   );
 });
 
+test("corrective invariants reject COM scenarios passed without COM evidence", () => {
+  assert.throws(
+    () => benchmark.enforceCorrectiveBenchmarkInvariants([
+      {
+        candidate_id: "current_node_xml",
+        scenario_id: "S09",
+        status: "passed",
+        adapter_execution: { method: "openPackage", trace: [{ type: "in_process_call" }] },
+        assertions: [{ id: "package-open", passed: true }],
+        evidence: { package_valid: true },
+      },
+    ]),
+    /com_execution_evidence_required/u,
+  );
+});
+
 test("corrective scorecard is category evidence based, not passed-count multiplied by five", () => {
   assert.equal(typeof benchmark.buildEvidenceScorecard, "function");
   const scorecard = benchmark.buildEvidenceScorecard({

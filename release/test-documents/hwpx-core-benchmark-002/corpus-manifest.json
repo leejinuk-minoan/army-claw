@@ -1,0 +1,127 @@
+{
+  "schema_version": "1.0.0",
+  "task_id": "hwpx-core-benchmark-002",
+  "generated_at": "2026-07-02T21:04:41.085Z",
+  "fixtures": [
+    {
+      "fixture_id": "army-claw-qualification-review-template-fidelity.hwpx",
+      "repository_relative_path": "release/test-documents/army-claw-qualification-review-template-fidelity.hwpx",
+      "artifact_role": "original",
+      "version_or_generation": "original",
+      "sha256": "3491583caa6a888ef8f70917761c1a4f64d4742aa8eb9d677ba1afe28c618fa6",
+      "byte_size": 1843178,
+      "read_only_source": true,
+      "expected_structural_features": [
+        "hwpx_package",
+        "section_xml",
+        "bindata_preservation_candidate"
+      ],
+      "expected_visual_findings": [],
+      "availability_status": "available"
+    },
+    {
+      "fixture_id": "army-claw-qualification-review-template-fidelity-v2.hwpx",
+      "repository_relative_path": "release/test-documents/army-claw-qualification-review-template-fidelity-v2.hwpx",
+      "artifact_role": "v2",
+      "version_or_generation": "v2",
+      "sha256": "f0cfa57b394cd6b9589f547ae065be7fee15fc806e8a19cc51d6675d5667b1c6",
+      "byte_size": 1843793,
+      "read_only_source": true,
+      "expected_structural_features": [
+        "hwpx_package",
+        "section_xml",
+        "bindata_preservation_candidate"
+      ],
+      "expected_visual_findings": [],
+      "availability_status": "available"
+    },
+    {
+      "fixture_id": "army-claw-qualification-review-template-fidelity-v3.hwpx",
+      "repository_relative_path": "release/test-documents/army-claw-qualification-review-template-fidelity-v3.hwpx",
+      "artifact_role": "v3",
+      "version_or_generation": "v3",
+      "sha256": "e18acf1babff11bd1cd1d63051138fb85402c64042f7f29515db3838da7454ee",
+      "byte_size": 1844484,
+      "read_only_source": true,
+      "expected_structural_features": [
+        "hwpx_package",
+        "section_xml",
+        "bindata_preservation_candidate"
+      ],
+      "expected_visual_findings": [],
+      "availability_status": "available"
+    },
+    {
+      "fixture_id": "army-claw-qualification-review-template-fidelity-v4.hwpx",
+      "repository_relative_path": "release/test-documents/army-claw-qualification-review-template-fidelity-v4.hwpx",
+      "artifact_role": "v4",
+      "version_or_generation": "v4",
+      "sha256": "e58478fb349ae1d7457d5b91d9b7da281e3a8f45b1cf336729b71a48671f5fad",
+      "byte_size": 2018082,
+      "read_only_source": true,
+      "expected_structural_features": [
+        "hwpx_package",
+        "section_xml",
+        "bindata_preservation_candidate"
+      ],
+      "expected_visual_findings": [],
+      "availability_status": "available"
+    },
+    {
+      "fixture_id": "army-claw-qualification-review-template-fidelity-v5.hwpx",
+      "repository_relative_path": "release/test-documents/army-claw-qualification-review-template-fidelity-v5.hwpx",
+      "artifact_role": "v5",
+      "version_or_generation": "v5",
+      "sha256": "33f5ec297ce6b6ab60c342a368800ff42ab0dc86a7ba79ec100ff2c7896bbe41",
+      "byte_size": 1842578,
+      "read_only_source": true,
+      "expected_structural_features": [
+        "hwpx_package",
+        "section_xml",
+        "bindata_preservation_candidate"
+      ],
+      "expected_visual_findings": [
+        "main_11_2_adaptive_fit",
+        "support_11_2_anchor_check",
+        "main_11_3_anchor_check"
+      ],
+      "availability_status": "available"
+    },
+    {
+      "fixture_id": "army-claw-qualification-template-fidelity-v5-diff.json",
+      "repository_relative_path": "release/test-documents/army-claw-qualification-template-fidelity-v5-diff.json",
+      "artifact_role": "diff",
+      "version_or_generation": "v5",
+      "sha256": "1e867fc9645e48135e2802555c45eeba9b26ad0ee14273cb640afbdd43c456a8",
+      "byte_size": 6403,
+      "read_only_source": true,
+      "expected_structural_features": [
+        "json_evidence"
+      ],
+      "expected_visual_findings": [
+        "main_11_2_adaptive_fit",
+        "support_11_2_anchor_check",
+        "main_11_3_anchor_check"
+      ],
+      "availability_status": "available"
+    },
+    {
+      "fixture_id": "hwp-adaptive-board-fit-v5-diagnostics.json",
+      "repository_relative_path": "release/test-documents/hwp-adaptive-board-fit-v5-diagnostics.json",
+      "artifact_role": "diagnostics",
+      "version_or_generation": "v5",
+      "sha256": "2154896414b41ceca0239693d15ad08f165433ee8a31ca063ee7e146501a68f7",
+      "byte_size": 9456,
+      "read_only_source": true,
+      "expected_structural_features": [
+        "json_evidence"
+      ],
+      "expected_visual_findings": [
+        "main_11_2_adaptive_fit",
+        "support_11_2_anchor_check",
+        "main_11_3_anchor_check"
+      ],
+      "availability_status": "available"
+    }
+  ]
+}

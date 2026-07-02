@@ -1,0 +1,39 @@
+{
+  "candidate_id": "current_node_xml",
+  "method": "openPackage",
+  "status": "passed",
+  "started_at": "2026-07-02T21:04:42.418Z",
+  "ended_at": "2026-07-02T21:04:42.463Z",
+  "duration_ms": 45,
+  "input": {
+    "path": "release/test-documents/army-claw-qualification-review-template-fidelity-v5.hwpx",
+    "sha256": "33f5ec297ce6b6ab60c342a368800ff42ab0dc86a7ba79ec100ff2c7896bbe41"
+  },
+  "output": {
+    "package_valid": true,
+    "entry_count": 25,
+    "discovery_json_path": "release/test-documents/hwpx-core-benchmark-002/results/current-node-xml/army-claw-qualification-review-template-fidelity-v5.hwpx/S14/discovery.json",
+    "sha256": "22b407d238773ebb3f2caf52f3a2d5b2361b56582d43c858cd4c1ee72bc7f87a"
+  },
+  "assertions": [
+    {
+      "id": "hwpx-package-valid",
+      "expected": true,
+      "actual": true,
+      "passed": true
+    }
+  ],
+  "artifacts": [
+    "release/test-documents/hwpx-core-benchmark-002/results/current-node-xml/army-claw-qualification-review-template-fidelity-v5.hwpx/S14/discovery.json"
+  ],
+  "stdout_path": null,
+  "stderr_path": null,
+  "trace": [
+    {
+      "type": "in_process_call",
+      "module": "tools/hancom/army-claw-hancom-tools.mjs",
+      "method": "openPackage"
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,56 @@
+{
+  "candidate_id": "python_hwpx",
+  "method": "hancomComPageMeasurement",
+  "status": "blocked",
+  "started_at": "2026-07-02T21:04:42.482Z",
+  "ended_at": "2026-07-02T21:04:42.482Z",
+  "duration_ms": 0,
+  "input": {
+    "path": "release/test-documents/army-claw-qualification-review-template-fidelity-v5.hwpx",
+    "sha256": "33f5ec297ce6b6ab60c342a368800ff42ab0dc86a7ba79ec100ff2c7896bbe41"
+  },
+  "output": {
+    "reason": "Hancom COM automation wrapper was not executed in this corrective checkpoint",
+    "attempted_commands": [
+      "detect Hancom COM ProgID",
+      "open candidate copy with Hancom 2024 COM",
+      "save-as .com-resaved.hwpx",
+      "measure page count and marker pages"
+    ],
+    "checked_paths": [
+      "candidate output copy for COM validation"
+    ],
+    "missing_prerequisite": "COM measurement wrapper execution evidence",
+    "runtime_check": "Hancom 2024 COM not executed by this runner path",
+    "artifact_check": "no .com-resaved.hwpx artifact",
+    "license_check": "not applicable to local Hancom installation check",
+    "evidence_log_path": "candidate result adapter-execution.json",
+    "com_execution": false,
+    "attempted_api": [
+      "HwpObject.Open",
+      "HwpObject.SaveAs",
+      "page/caret position query"
+    ]
+  },
+  "assertions": [
+    {
+      "id": "S10-com-execution-required",
+      "expected": "COM open/save/page evidence",
+      "actual": "not executed",
+      "passed": false
+    }
+  ],
+  "artifacts": [],
+  "stdout_path": null,
+  "stderr_path": null,
+  "trace": [
+    {
+      "type": "blocked_com_prerequisite",
+      "scenario_id": "S10",
+      "method": "hancomComPageMeasurement"
+    }
+  ],
+  "errors": [
+    "Hancom COM evidence is required; package parse is not accepted as S09-S11 success."
+  ]
+}

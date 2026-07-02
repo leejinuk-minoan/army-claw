@@ -1,0 +1,60 @@
+{
+  "candidate_id": "hwpforge",
+  "method": "savePackage",
+  "status": "blocked",
+  "started_at": "2026-07-02T21:04:42.512Z",
+  "ended_at": "2026-07-02T21:04:42.512Z",
+  "duration_ms": 0,
+  "input": {},
+  "output": {
+    "reason": "HwpForge project identity, immutable source/release, runtime, actual LICENSE, and offline build evidence are not established",
+    "attempted_commands": [
+      "search local artifact inventory for HwpForge",
+      "hwpforge --version",
+      "cargo build --locked"
+    ],
+    "checked_paths": [
+      "vendor/hwpforge/",
+      "release/test-documents/hwpx-core-benchmark-002/external/hwpforge/"
+    ],
+    "runtime_check": "unknown until project identity is established",
+    "artifact_check": "missing immutable HwpForge source/release artifact",
+    "license_check": "missing actual LICENSE/COPYING/NOTICE file",
+    "missing_prerequisite": "upstream project identity and pinned artifact",
+    "searched_project_names": [
+      "HwpForge"
+    ],
+    "identity_ambiguity": true,
+    "evidence_log_path": "candidate result adapter-execution.json"
+  },
+  "assertions": [
+    {
+      "id": "savePackage-blocked-prerequisite",
+      "expected": "runtime/artifact/license available",
+      "actual": "HwpForge project identity, immutable source/release, runtime, actual LICENSE, and offline build evidence are not established",
+      "passed": false
+    }
+  ],
+  "artifacts": [],
+  "stdout_path": null,
+  "stderr_path": null,
+  "trace": [
+    {
+      "type": "blocked_prerequisite",
+      "method": "savePackage",
+      "reason": "HwpForge project identity, immutable source/release, runtime, actual LICENSE, and offline build evidence are not established",
+      "attempted_commands": [
+        "search local artifact inventory for HwpForge",
+        "hwpforge --version",
+        "cargo build --locked"
+      ],
+      "checked_paths": [
+        "vendor/hwpforge/",
+        "release/test-documents/hwpx-core-benchmark-002/external/hwpforge/"
+      ]
+    }
+  ],
+  "errors": [
+    "HwpForge project identity, immutable source/release, runtime, actual LICENSE, and offline build evidence are not established"
+  ]
+}

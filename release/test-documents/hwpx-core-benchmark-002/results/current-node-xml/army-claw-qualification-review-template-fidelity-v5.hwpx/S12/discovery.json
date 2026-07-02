@@ -1,0 +1,70 @@
+{
+  "scenario_id": "S12",
+  "method": "analyzeDocument",
+  "output": {
+    "warmup_runs": 1,
+    "warmup_duration_ms": 110,
+    "measured_runs": 5,
+    "duration_samples_ms": [
+      90,
+      91,
+      93,
+      91,
+      89
+    ],
+    "median_duration_ms": 91,
+    "p95_duration_ms": 93,
+    "peak_rss_measurement_method": "process.memoryUsage().rss after each measured run",
+    "peak_rss_samples": [
+      140165120,
+      135700480,
+      141103104,
+      146911232,
+      152723456
+    ]
+  },
+  "assertions": [
+    {
+      "id": "s12-warmup-runs",
+      "expected": ">=1",
+      "actual": 1,
+      "passed": true
+    },
+    {
+      "id": "s12-measured-runs",
+      "expected": ">=5",
+      "actual": 5,
+      "passed": true
+    },
+    {
+      "id": "s12-run-1-status",
+      "expected": "passed",
+      "actual": "passed",
+      "passed": true
+    },
+    {
+      "id": "s12-run-2-status",
+      "expected": "passed",
+      "actual": "passed",
+      "passed": true
+    },
+    {
+      "id": "s12-run-3-status",
+      "expected": "passed",
+      "actual": "passed",
+      "passed": true
+    },
+    {
+      "id": "s12-run-4-status",
+      "expected": "passed",
+      "actual": "passed",
+      "passed": true
+    },
+    {
+      "id": "s12-run-5-status",
+      "expected": "passed",
+      "actual": "passed",
+      "passed": true
+    }
+  ]
+}

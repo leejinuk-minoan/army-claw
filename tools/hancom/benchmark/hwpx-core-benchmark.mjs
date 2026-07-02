@@ -9,6 +9,7 @@ import { CurrentNodeXmlAdapter } from "../adapters/current-node-xml-adapter.mjs"
 import { PythonHwpxAdapter } from "../adapters/python-hwpx-adapter.mjs";
 import { HwpxlibValidatorAdapter } from "../adapters/hwpxlib-validator-adapter.mjs";
 import { HwpForgeAdapter } from "../adapters/hwpforge-adapter.mjs";
+import { makeAdapterExecution } from "../adapters/hwp-core-adapter-contract.mjs";
 
 export const TASK_ID = "hwpx-core-benchmark-002";
 export const BENCHMARK_ROOT = "release/test-documents/hwpx-core-benchmark-002";
@@ -254,6 +255,9 @@ export function enforceCorrectiveBenchmarkInvariants(results) {
     if (result.scenario_id === "S12" && (!Array.isArray(result.evidence?.duration_samples_ms) || result.evidence.duration_samples_ms.length < 5)) {
       throw new Error("s12_raw_samples_required");
     }
+    if (["S09", "S10", "S11"].includes(result.scenario_id) && !result.evidence?.com_execution) {
+      throw new Error("com_execution_evidence_required");
+    }
   }
   return true;
 }
@@ -337,6 +341,75 @@ function statusReason(candidateId, scenarioId, status) {
   return "scenario not applicable or requires Hancom COM/user visual evidence";
 }
 
+function blockedComExecution({ candidate, scenarioId, fixturePath, sourceSha256 }) {
+  const method = scenarioId === "S09" ? "hancomComOpenSave" : "hancomComPageMeasurement";
+  return makeAdapterExecution({
+    candidate_id: candidate.id,
+    method,
+    status: "blocked",
+    input: { path: fixturePath, sha256: sourceSha256 },
+    output: {
+      reason: "Hancom COM automation wrapper was not executed in this corrective checkpoint",
+      attempted_commands: ["detect Hancom COM ProgID", "open candidate copy with Hancom 2024 COM", "save-as .com-resaved.hwpx", "measure page count and marker pages"],
+      checked_paths: ["candidate output copy for COM validation"],
+      missing_prerequisite: "COM measurement wrapper execution evidence",
+      runtime_check: "Hancom 2024 COM not executed by this runner path",
+      artifact_check: "no .com-resaved.hwpx artifact",
+      license_check: "not applicable to local Hancom installation check",
+      evidence_log_path: "candidate result adapter-execution.json",
+      com_execution: false,
+      attempted_api: ["HwpObject.Open", "HwpObject.SaveAs", "page/caret position query"],
+    },
+    assertions: [{ id: `${scenarioId}-com-execution-required`, expected: "COM open/save/page evidence", actual: "not executed", passed: false }],
+    artifacts: [],
+    trace: [{ type: "blocked_com_prerequisite", scenario_id: scenarioId, method }],
+    errors: ["Hancom COM evidence is required; package parse is not accepted as S09-S11 success."],
+  });
+}
+
+async function runPerformanceExecution({ candidate, adapter, workspace, fixturePath, sourceSha256 }) {
+  const warmupStarted = Date.now();
+  await adapter.analyzeDocument({ workspace, path: fixturePath, sha256: sourceSha256 });
+  const warmupDurationMs = Date.now() - warmupStarted;
+  const durationSamplesMs = [];
+  const peakRssSamples = [];
+  const assertions = [];
+  for (let index = 0; index < 5; index += 1) {
+    const started = Date.now();
+    const execution = await adapter.analyzeDocument({ workspace, path: fixturePath, sha256: sourceSha256 });
+    durationSamplesMs.push(Date.now() - started);
+    peakRssSamples.push(process.memoryUsage().rss);
+    assertions.push({ id: `s12-run-${index + 1}-status`, expected: "passed", actual: execution.status, passed: execution.status === "passed" });
+  }
+  const sorted = [...durationSamplesMs].sort((a, b) => a - b);
+  const median = sorted[Math.floor(sorted.length / 2)];
+  const p95 = sorted[Math.min(sorted.length - 1, Math.ceil(sorted.length * 0.95) - 1)];
+  return makeAdapterExecution({
+    candidate_id: candidate.id,
+    method: "measurePerformance",
+    status: assertions.every((assertion) => assertion.passed) ? "passed" : "failed",
+    input: { path: fixturePath, sha256: sourceSha256 },
+    output: {
+      warmup_runs: 1,
+      warmup_duration_ms: warmupDurationMs,
+      measured_runs: durationSamplesMs.length,
+      duration_samples_ms: durationSamplesMs,
+      median_duration_ms: median,
+      p95_duration_ms: p95,
+      peak_rss_measurement_method: "process.memoryUsage().rss after each measured run",
+      peak_rss_samples: peakRssSamples,
+    },
+    assertions: [
+      { id: "s12-warmup-runs", expected: ">=1", actual: 1, passed: true },
+      { id: "s12-measured-runs", expected: ">=5", actual: durationSamplesMs.length, passed: durationSamplesMs.length >= 5 },
+      ...assertions,
+    ],
+    artifacts: [],
+    trace: [{ type: "in_process_call", module: "tools/hancom/army-claw-hancom-tools.mjs", method: "analyzeDocument", warmup_runs: 1, measured_runs: durationSamplesMs.length }],
+    errors: assertions.every((assertion) => assertion.passed) ? [] : ["One or more measured analyzeDocument runs failed."],
+  });
+}
+
 export async function runBenchmark({ workspace, fixturePath = "release/test-documents/army-claw-qualification-review-template-fidelity-v5.hwpx" }) {
   const runId = `hwpx-core-benchmark-${new Date().toISOString().replace(/[:.]/gu, "-")}`;
   const environment = collectEnvironment();
@@ -368,18 +441,22 @@ export async function runBenchmark({ workspace, fixturePath = "release/test-docu
       const outputPath = `${outputDir}/candidate-output.hwpx`;
       const startedAt = nowIso();
       const method = adapterMethodForScenario(scenarioId);
-      const adapterExecution = typeof candidate[method] === "function"
-        ? await candidate[method]({
-          workspace,
-          path: fixturePath,
-          sha256: fixture.source_sha256,
-          outputPath,
-          targetText: "주 11-2",
-          replacementText: `주 11-2 BENCHMARK-002 ${runId}`,
-          selector: { board: "support-2", structure: "second 1x1 table" },
-          mode: "shrink_to_content",
-        })
-        : {
+      const adapterExecution = ["S09", "S10", "S11"].includes(scenarioId)
+        ? blockedComExecution({ candidate, scenarioId, fixturePath, sourceSha256: fixture.source_sha256 })
+        : scenarioId === "S12" && candidate.id === "current_node_xml"
+          ? await runPerformanceExecution({ candidate, adapter: candidate, workspace, fixturePath, sourceSha256: fixture.source_sha256 })
+          : typeof candidate[method] === "function"
+            ? await candidate[method]({
+              workspace,
+              path: fixturePath,
+              sha256: fixture.source_sha256,
+              outputPath,
+              targetText: "주 11-2",
+              replacementText: `주 11-2 BENCHMARK-002 ${runId}`,
+              selector: { board: "support-2", structure: "second 1x1 table" },
+              mode: "shrink_to_content",
+            })
+          : {
           candidate_id: candidate.id,
           method,
           status: "blocked",
@@ -392,7 +469,7 @@ export async function runBenchmark({ workspace, fixturePath = "release/test-docu
           artifacts: [],
           trace: [{ type: "adapter_method_missing", method }],
           errors: [`adapter method unavailable: ${method}`],
-        };
+          };
       const status = adapterExecution.status;
       const artifacts = [...(adapterExecution.artifacts ?? [])];
       if (status === "passed" && artifacts.length === 0) {
@@ -441,6 +518,15 @@ export async function runBenchmark({ workspace, fixturePath = "release/test-docu
       });
       result.adapter_execution = adapterExecution;
       result.artifact_hashes = artifactHashes;
+      result.evidence = {
+        ...(adapterExecution.output ?? {}),
+        replacement_diff: adapterExecution.output?.replacement_diff,
+        selector: adapterExecution.output?.selector,
+        before_height: adapterExecution.output?.before_height,
+        after_height: adapterExecution.output?.after_height,
+        duration_samples_ms: adapterExecution.output?.duration_samples_ms,
+        com_execution: adapterExecution.output?.com_execution,
+      };
       validateBenchmarkResult(result);
       results.push(result);
       await writeJson(workspace, `${outputDir}/adapter-execution.json`, adapterExecution);

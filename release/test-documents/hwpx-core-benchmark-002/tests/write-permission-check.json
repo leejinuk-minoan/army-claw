@@ -1,0 +1,10 @@
+﻿{
+    "command":  "New-Item/Set-Content/Get-FileHash/Remove-Item write probe",
+    "working_directory":  "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기",
+    "target_path":  "release\\test-documents\\hwpx-core-benchmark-002\\.write-probe",
+    "started_at":  "2026-07-02T21:02:10.8679243Z",
+    "ended_at":  "2026-07-02T21:02:10.9304363Z",
+    "exit_code":  0,
+    "success":  true,
+    "error":  null
+}

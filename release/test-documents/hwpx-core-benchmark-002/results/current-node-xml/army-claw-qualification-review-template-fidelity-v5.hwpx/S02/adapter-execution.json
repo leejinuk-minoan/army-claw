@@ -1,0 +1,34 @@
+{
+  "candidate_id": "current_node_xml",
+  "method": "replaceText",
+  "status": "failed",
+  "started_at": "2026-07-02T21:04:41.255Z",
+  "ended_at": "2026-07-02T21:04:41.360Z",
+  "duration_ms": 105,
+  "input": {
+    "path": "release/test-documents/army-claw-qualification-review-template-fidelity-v5.hwpx",
+    "sha256": "33f5ec297ce6b6ab60c342a368800ff42ab0dc86a7ba79ec100ff2c7896bbe41"
+  },
+  "output": {},
+  "assertions": [
+    {
+      "id": "replaceText-throws",
+      "expected": "no exception",
+      "actual": "template fidelity selector plan failed: selector_0_unknown_scope main-11-2; selector_0_unsupported_type undefined; selector_0_occurrence_out_of_range 1",
+      "passed": false
+    }
+  ],
+  "artifacts": [],
+  "stdout_path": null,
+  "stderr_path": null,
+  "trace": [
+    {
+      "type": "in_process_call",
+      "module": "tools/hancom/army-claw-hancom-tools.mjs",
+      "method": "replaceText"
+    }
+  ],
+  "errors": [
+    "Error: template fidelity selector plan failed: selector_0_unknown_scope main-11-2; selector_0_unsupported_type undefined; selector_0_occurrence_out_of_range 1\n    at applyHwpxTemplateFidelityFill (file:///C:/Users/USER/Desktop/%EB%A1%9C%EC%BB%AC%20open%20claw%20%EB%A7%8C%EB%93%A4%EA%B8%B0/tools/hancom/army-claw-hancom-tools.mjs:1319:30)\n    at async file:///C:/Users/USER/Desktop/%EB%A1%9C%EC%BB%AC%20open%20claw%20%EB%A7%8C%EB%93%A4%EA%B8%B0/tools/hancom/adapters/current-node-xml-adapter.mjs:143:22\n    at async executeCurrentNodeXml (file:///C:/Users/USER/Desktop/%EB%A1%9C%EC%BB%AC%20open%20claw%20%EB%A7%8C%EB%93%A4%EA%B8%B0/tools/hancom/adapters/current-node-xml-adapter.mjs:225:20)\n    at async runBenchmark (file:///C:/Users/USER/Desktop/%EB%A1%9C%EC%BB%AC%20open%20claw%20%EB%A7%8C%EB%93%A4%EA%B8%B0/tools/hancom/benchmark/hwpx-core-benchmark.mjs:449:15)\n    at async main (file:///C:/Users/USER/Desktop/%EB%A1%9C%EC%BB%AC%20open%20claw%20%EB%A7%8C%EB%93%A4%EA%B8%B0/tools/hancom/benchmark/hwpx-core-benchmark.mjs:734:18)"
+  ]
+}
