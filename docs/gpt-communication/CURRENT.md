@@ -8,68 +8,105 @@
 전체 8단계 중 1단계
 현재 단계: HwpAdapter 및 HWP/HWPX 엔진 안정화
 현재 세부 단계: 1-3 선행 HWPX 엔진 비교·코어 선정
+현재 작업: hwpx-core-benchmark-002 corrective benchmark
 ```
 
 Army Claw 관련 작업 보고와 GPT 답변은 전체 프로젝트 단계표를 먼저 사용한다.
 
-## 에이전트 운영 구조
+## 현재 작업 브랜치
 
 ```text
-마스터 에이전트 채팅
-→ 전체 로드맵·아키텍처·현재 단계·완료 Gate 관리
-
-Codex 프롬프트 작성 에이전트 채팅
-→ 승인된 다음 작업을 상세 Codex 실행 프롬프트로 변환
-
-Codex
-→ 구현·테스트·보고·브랜치 push
-
-사용자
-→ 우선순위 승인과 실제 한컴오피스 시각 검증
+feature/hwpx-core-benchmark
 ```
 
-운영 기준 문서:
-
-```text
-docs/gpt-communication/PROJECT_STATE.json
-docs/gpt-communication/AGENT_OPERATING_MODEL.md
-docs/gpt-communication/CODEX_PROMPT_AGENT_BOOTSTRAP.md
-```
-
-마스터 에이전트만 전체 단계, 아키텍처와 완료 Gate를 확정한다. 프롬프트 작성 에이전트는 이를 독자적으로 변경하지 않는다.
-
-## 현재 기준 브랜치
+기준 구현 브랜치:
 
 ```text
 feature/hwpx-adaptive-board-fit-v5
 ```
 
-## 다음 작업 전에 읽을 문서
+## 마스터 판정
+
+`hwpx-core-benchmark-001`의 Codex 결과는 benchmark harness 초안으로만 인정한다.
 
 ```text
-docs/gpt-communication/PROJECT_STATE.json
-docs/gpt-communication/CURRENT.md
-docs/gpt-communication/AGENT_OPERATING_MODEL.md
-docs/gpt-communication/opinions/2026-07-02-army-claw-master-roadmap.md
-docs/gpt-communication/opinions/2026-07-02-hwpx-core-architecture-decision.md
-docs/gpt-communication/opinions/2026-07-02-hwpx-v5-adaptive-board-fit.md
-docs/gpt-communication/reports/2026-07-02-hwpx-adaptive-board-fit-v5.md
+benchmark_001_status: partial_rejected_as_complete
+completion_gate_passed: false
+current_scorecard_valid_for_selection: false
+stage_transition: prohibited
+user_visual_review_of_current_benchmark_outputs: not_required
 ```
 
-## 최종 제품 방향
+마스터 검토 문서:
 
-Army Claw는 단순 HWPX 작성기가 아니다.
+```text
+docs/gpt-communication/opinions/2026-07-02-hwpx-core-benchmark-001-master-review.md
+```
 
-- OpenClaw 기반 PC·파일·프로그램 조작
-- 독립망 OpenAI 호환 LLM API 또는 로컬 LLM 사용
-- 인터넷망에서 제작한 Skill의 검증된 오프라인 반입
-- 한글·한쇼·한셀 문서 작성과 편집
-- 사용자 기준 양식 기반 작성
-- 양식에 없는 요구를 새 페이지·슬라이드·시트로 확장
+## 판정 근거
 
-현재 HWPX 엔진은 최종 플랫폼 전체가 아니라 `HwpAdapter`로 위치시킨다.
+- Current Node/XML S01/S02/S03/S04/S06/S07/S08/S12는 실제 adapter 실행이 아니라 코드에 고정된 `passed` 상태다.
+- passed 시나리오의 output은 실제 수정 결과가 아니라 동일 원본 HWPX 복사본이다.
+- CurrentNodeXmlAdapter는 capability metadata만 선언하고 실제 계약 메서드를 override하지 않았다.
+- python-hwpx, hwpxlib, HwpForge는 실제 실행 spike가 아닌 metadata stub이다.
+- S05가 승인된 `보조 11-2 두 번째 1×1 표`가 아니라 첫 번째 표로 변경됐다.
+- 실제 LICENSE, exact version/commit, hash, offline package가 없다.
+- Hancom 2024 COM open/save, page count, marker page 측정이 없다.
+- scorecard가 승인 가중치별 raw evidence가 아니라 passed count × 5 방식이다.
+- committed report의 `PENDING_COMMIT_SHA`, tests 0/0/0이 사용자 대상 보고의 48+2 tests와 충돌한다.
 
-## 현재 HWPX 코어 결정
+## 다음 작업
+
+새 corrective task:
+
+```text
+task_id: hwpx-core-benchmark-002
+branch: feature/hwpx-core-benchmark
+```
+
+기존 `da089f1` commit은 보존한다.
+
+금지:
+
+```text
+commit amend
+force push
+기존 benchmark scorecard를 코어 선정에 사용
+Stage 1-4 또는 production Container-Aware Fit으로 이동
+```
+
+## 외부 후보 획득 승인
+
+인터넷 연결 환경에서 승인된 후보를 정확한 버전 또는 immutable commit으로 획득한 뒤 독립망 반입 패키지로 고정하는 방식을 승인한다.
+
+필수 증거:
+
+```text
+exact version 또는 immutable commit SHA
+원본 URL·파일명
+SHA256
+실제 LICENSE/COPYING/NOTICE와 SHA256
+직접·전이 의존성
+wheel/jar/source archive/binary offline artifact
+clean environment offline install 명령
+runtime network requirement
+재배포 조건
+```
+
+## corrective benchmark 우선순위
+
+1. synthetic scenario status 제거
+2. 실제 adapter 메서드와 scenario execution 구현
+3. Current Node/XML 실제 기준선 실행
+4. S05를 보조 11-2 두 번째 1×1 표로 수정
+5. python-hwpx 실제 process adapter
+6. hwpxlib 독립 Java 재파싱
+7. HwpForge 실제 실행 또는 근거 있는 blocked 판정
+8. Hancom COM open/save와 가능한 실제 page measurement
+9. 역할별 evidence-based scorecard
+10. report·handoff·tests·commit SHA 일치
+
+## 현재 HWPX 아키텍처
 
 ```text
 OpenClaw / Army Claw Node Orchestrator
@@ -81,77 +118,26 @@ HwpAdapter
         └─ hwpxlib: 독립 구조 검증기
 ```
 
-`HwpForge`는 benchmark 및 향후 대체 후보로 유지한다. 실제 benchmark 통과 전 전면 전환하지 않는다.
+`HwpForge`는 benchmark 및 향후 대체 후보로 유지한다. corrective benchmark 전 코어를 확정하지 않는다.
 
-## 현재 상태
-
-- HWPX Template Fidelity v5 Adaptive Board Fit 구조를 구현했다.
-- `주 11-2`의 문단 overflow는 deterministic semantic compression으로 해결됐다.
-- 사용자 시각 검증에서 `보조 11-2` 내부 두 번째 1×1 표의 과도한 고정 높이 때문에 표가 다음 페이지로 이동하고 `주 11-3`가 밀리는 현상이 확인됐다.
-- 사용자가 해당 1×1 표 높이를 직접 줄였을 때 한 페이지 안에 정상 수용됨을 확인했다.
-- 따라서 직접 원인은 내용 길이가 아니라 oversized fixed-height table container다.
-- 다음 기능은 `ContainerAwareTableFit`의 `shrink_to_content`다.
-- 그러나 기능을 계속 독자 구현하기 전에 선행 HWPX 코어를 benchmark하여 재사용 범위를 결정한다.
-
-## 현재 세부 단계 1-3 작업
-
-새 benchmark 브랜치 권장:
-
-```text
-feature/hwpx-core-benchmark
-```
-
-비교 대상:
-
-```text
-Current Army Claw Node/XML core
-python-hwpx
-hwpxlib
-HwpForge
-```
-
-동일 시험 항목:
-
-```text
-- 무수정 round trip
-- 문단 치환
-- nested table / draw text 탐색
-- 1×1 표 shrink-to-content
-- 병합 표·이미지·BinData 보존
-- inline element와 namespace 보존
-- 한글 COM open/save
-- 실제 페이지와 주/보조 위치
-- 독립망 설치·성능·라이선스
-```
-
-선정 후 범용 파싱·직렬화는 선택된 코어에 위임하고, Army Claw 고유 selector, board, template, adaptive fit은 상위 adapter 계층으로 유지한다.
-
-## v5 상태
+## 기존 사용자 시각 판정
 
 ```text
 v5_main_2_adaptive_fit_status: user_confirmed_success
 v5_support_2_start_anchor_status: user_confirmed_success
 v5_support_2_table_container_status: failed_visual_review
-v5_support_2_spill_root_cause: one_by_one_table_excess_height
+v5_support_2_spill_root_cause: second_one_by_one_table_excess_height
 v5_main_3_physical_position_status: displaced_by_support_2_spill
-v5_visual_status: requires_container_aware_table_fit
-hwpx_engine_completion_status: blocked_by_stage_1_completion
 ```
 
-## 현재 주요 산출물
-
-```text
-release/test-documents/army-claw-qualification-review-template-fidelity-v5.hwpx
-release/test-documents/army-claw-qualification-template-fidelity-v5-diff.json
-release/test-documents/hwp-adaptive-board-fit-v5-diagnostics.json
-```
+실제 후보별 shrink-to-content 및 COM-resaved 파일이 생성되기 전까지 추가 사용자 화면 확인을 요청하지 않는다.
 
 ## 다음 의사결정 Gate
 
 ```text
-선행 코어 benchmark 완료
-→ HwpCoreAdapter 선정
+corrective benchmark 완료
+→ 근거 기반 HwpCoreAdapter 역할 선정
 → Container-Aware Table Fit 구현
-→ 실제 COM page measurement
+→ 실제 COM page measurement 강화
 → HwpAdapter v1 시각 검증
 ```
