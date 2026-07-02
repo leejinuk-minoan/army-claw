@@ -10,7 +10,33 @@
 현재 세부 단계: 1-3 선행 HWPX 엔진 비교·코어 선정
 ```
 
-Army Claw 관련 작업 보고와 GPT 답변은 앞으로 위 단계 표기를 먼저 사용한다.
+Army Claw 관련 작업 보고와 GPT 답변은 전체 프로젝트 단계표를 먼저 사용한다.
+
+## 에이전트 운영 구조
+
+```text
+마스터 에이전트 채팅
+→ 전체 로드맵·아키텍처·현재 단계·완료 Gate 관리
+
+Codex 프롬프트 작성 에이전트 채팅
+→ 승인된 다음 작업을 상세 Codex 실행 프롬프트로 변환
+
+Codex
+→ 구현·테스트·보고·브랜치 push
+
+사용자
+→ 우선순위 승인과 실제 한컴오피스 시각 검증
+```
+
+운영 기준 문서:
+
+```text
+docs/gpt-communication/PROJECT_STATE.json
+docs/gpt-communication/AGENT_OPERATING_MODEL.md
+docs/gpt-communication/CODEX_PROMPT_AGENT_BOOTSTRAP.md
+```
+
+마스터 에이전트만 전체 단계, 아키텍처와 완료 Gate를 확정한다. 프롬프트 작성 에이전트는 이를 독자적으로 변경하지 않는다.
 
 ## 현재 기준 브랜치
 
@@ -21,7 +47,11 @@ feature/hwpx-adaptive-board-fit-v5
 ## 다음 작업 전에 읽을 문서
 
 ```text
+docs/gpt-communication/PROJECT_STATE.json
+docs/gpt-communication/CURRENT.md
+docs/gpt-communication/AGENT_OPERATING_MODEL.md
 docs/gpt-communication/opinions/2026-07-02-army-claw-master-roadmap.md
+docs/gpt-communication/opinions/2026-07-02-hwpx-core-architecture-decision.md
 docs/gpt-communication/opinions/2026-07-02-hwpx-v5-adaptive-board-fit.md
 docs/gpt-communication/reports/2026-07-02-hwpx-adaptive-board-fit-v5.md
 ```
@@ -38,6 +68,20 @@ Army Claw는 단순 HWPX 작성기가 아니다.
 - 양식에 없는 요구를 새 페이지·슬라이드·시트로 확장
 
 현재 HWPX 엔진은 최종 플랫폼 전체가 아니라 `HwpAdapter`로 위치시킨다.
+
+## 현재 HWPX 코어 결정
+
+```text
+OpenClaw / Army Claw Node Orchestrator
+        ↓
+HwpAdapter
+        ├─ python-hwpx: 기본 편집 코어 후보
+        ├─ ArmyClawSurgicalHwpxPatcher: 정밀 XML 보존 수정
+        ├─ Hancom 2024 COM: 최종 레이아웃 권위자
+        └─ hwpxlib: 독립 구조 검증기
+```
+
+`HwpForge`는 benchmark 및 향후 대체 후보로 유지한다. 실제 benchmark 통과 전 전면 전환하지 않는다.
 
 ## 현재 상태
 
