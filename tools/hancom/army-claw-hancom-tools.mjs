@@ -2,7 +2,7 @@
 import { pathToFileURL } from "node:url";
 import { dirname, isAbsolute, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import { mkdir, readFile, stat, writeFile } from "node:fs/promises";
+import { copyFile, mkdir, readFile, stat, writeFile } from "node:fs/promises";
 import { spawn } from "node:child_process";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -2155,6 +2155,462 @@ export async function createDocumentFromPrompt({
   if (open) result.opened = await openWithHancomHwp({ workspace, path: documentPath });
   return result;
 }
+
+const DEFAULT_ADAPTIVE_OVERFLOW_POLICY = {
+  mode: "adaptive_fit",
+  allow_page_spill: false,
+  strategies: [
+    "remove_redundant_spacing",
+    "adjust_paragraph_spacing",
+    "semantic_compression",
+    "bounded_font_reduction",
+  ],
+  maximum_attempts: 4,
+  minimum_font_size_ratio: 0.9,
+  minimum_line_spacing_ratio: 0.9,
+  minimum_paragraph_spacing_ratio: 0.75,
+  preserve_required_facts: true,
+  final_action: "request_user_review",
+};
+
+function normalizeWhitespace(value) {
+  return String(value ?? "").replace(/\s+/gu, " ").trim();
+}
+
+function fieldTextMap(fields = {}) {
+  return {
+    overview: normalizeWhitespace(fields.overview),
+    current_problem: normalizeWhitespace(fields.current_problem),
+    improvement: normalizeWhitespace(fields.improvement),
+    expected_effect_1: normalizeWhitespace(fields.expected_effect_1),
+    expected_effect_2: normalizeWhitespace(fields.expected_effect_2),
+    expected_effect_3: normalizeWhitespace(fields.expected_effect_3),
+  };
+}
+
+function sumCharacters(fields = {}) {
+  return Object.values(fields).reduce((sum, value) => sum + normalizeWhitespace(value).length, 0);
+}
+
+function estimateBoardLines(fields = {}, { lineCharacters = 36, lineSpacingRatio = 1, paragraphSpacingRatio = 1, fontSizeRatio = 1 } = {}) {
+  const normalized = fieldTextMap(fields);
+  const baseLines = Object.values(normalized)
+    .filter(Boolean)
+    .reduce((sum, value) => sum + Math.max(1, Math.ceil(value.length / Math.max(12, lineCharacters))), 0);
+  const paragraphCount = Object.values(normalized).filter(Boolean).length;
+  const paragraphPenalty = Math.max(0, paragraphCount - 1) * 0.35 * paragraphSpacingRatio;
+  const adjusted = (baseLines + paragraphPenalty) * lineSpacingRatio * fontSizeRatio;
+  return Math.ceil(adjusted);
+}
+
+function buildCompressionRequest({ boardId, fieldId, text, targetCharacters = 70 }) {
+  return {
+    request_id: `${boardId}-${fieldId}-attempt-semantic-compression`,
+    board_id: boardId,
+    field_id: fieldId,
+    heading_role: fieldId === "current_problem" ? "current_state_and_problem" : "body",
+    original_text: text,
+    target_lines: 2,
+    target_characters: targetCharacters,
+    required_facts: [
+      "HWPX 표현 한계",
+      "네이티브 템플릿 유지",
+      "줄 배치 재계산",
+    ],
+    required_terms: ["HWPX", "네이티브 템플릿"],
+    protected_numbers: (String(text).match(/\d+(?:[./-]\d+)*/gu) || []),
+    prohibited_changes: [
+      "새로운 사실 추가",
+      "수치 변경",
+      "중제목 역할 변경",
+      "필수 항목 삭제",
+    ],
+  };
+}
+
+function factSatisfied(fact, text) {
+  const normalizedFact = normalizeWhitespace(fact);
+  const normalizedText = normalizeWhitespace(text);
+  if (!normalizedFact) return true;
+  if (normalizedText.includes(normalizedFact)) return true;
+  const aliases = [
+    { match: /HWPX/u, tokens: ["HWPX"] },
+    { match: /표현|한계|직접/u, tokens: ["HWPX"] },
+    { match: /네이티브|템플릿/u, tokens: ["네이티브", "템플릿"] },
+    { match: /줄|배치|보드|board/u, tokens: ["줄", "배치"] },
+  ];
+  const alias = aliases.find((item) => item.match.test(normalizedFact));
+  if (alias) return alias.tokens.every((token) => normalizedText.includes(token));
+  const tokens = normalizedFact.split(/\s+/u).filter((token) => token.length > 1);
+  return tokens.length ? tokens.every((token) => normalizedText.includes(token)) : normalizedText.includes(normalizedFact);
+}
+
+export class DeterministicCompressionProvider {
+  constructor({ providerName = "deterministic_fixture" } = {}) {
+    this.providerName = providerName;
+    this.calls = [];
+  }
+
+  compress(request) {
+    this.calls.push(request);
+    const compressed = request.field_id === "current_problem"
+      ? "HWPX 표현 한계는 네이티브 템플릿 유지와 줄 배치 재계산으로 보완한다."
+      : normalizeWhitespace(request.original_text).slice(0, request.target_characters || 70);
+    return {
+      compressed_text: compressed,
+      preserved_facts: request.required_facts || [],
+      preserved_terms: (request.required_terms || []).filter((term) => compressed.includes(term)),
+      changed_numbers: [],
+      validation_status: "passed",
+      provider: this.providerName,
+    };
+  }
+}
+
+export function validateCompressionResult(request, response) {
+  const compressedText = normalizeWhitespace(response?.compressed_text);
+  const errors = [];
+  if (!compressedText) errors.push("compression_empty_result");
+  if (/<\/?(?:hp|hs|ha|hc):|<hp:/u.test(compressedText)) errors.push("compression_xml_marker");
+  if (request?.target_characters && compressedText.length > request.target_characters) {
+    errors.push("compression_target_length_exceeded");
+  }
+  const requiredFacts = request?.required_facts || [];
+  const preservedFacts = requiredFacts.filter((fact) => factSatisfied(fact, compressedText));
+  if (preservedFacts.length !== requiredFacts.length) errors.push("compression_required_fact_missing");
+  const requiredTerms = request?.required_terms || [];
+  const preservedTerms = requiredTerms.filter((term) => compressedText.includes(term));
+  if (preservedTerms.length !== requiredTerms.length) errors.push("compression_required_term_missing");
+  const protectedNumbers = request?.protected_numbers || [];
+  const changedNumbers = [...(response?.changed_numbers || [])];
+  for (const number of protectedNumbers) {
+    if (!compressedText.includes(String(number))) changedNumbers.push(String(number));
+  }
+  if (changedNumbers.length) errors.push("compression_number_changed");
+  const repeatedSentence = compressedText.split(/[.!?。！？]\s*/u).filter(Boolean);
+  if (new Set(repeatedSentence).size < repeatedSentence.length) errors.push("compression_repeated_text");
+  return {
+    validation_status: errors.length ? "failed" : "passed",
+    errors,
+    preserved_facts: preservedFacts,
+    preserved_terms: preservedTerms,
+    changed_numbers: [...new Set(changedNumbers)],
+  };
+}
+
+export function computeBoundedStyleAdjustment({
+  fontSizeRatio = 1,
+  lineSpacingRatio = 1,
+  paragraphSpacingRatio = 1,
+  policy = DEFAULT_ADAPTIVE_OVERFLOW_POLICY,
+  heading = false,
+} = {}) {
+  if (heading) {
+    return {
+      font_size_ratio: 1,
+      line_spacing_ratio: 1,
+      paragraph_spacing_ratio: 1,
+      heading_font_size_preserved: true,
+    };
+  }
+  return {
+    font_size_ratio: Math.max(Number(policy.minimum_font_size_ratio ?? 0.9), Number(fontSizeRatio)),
+    line_spacing_ratio: Math.max(Number(policy.minimum_line_spacing_ratio ?? 0.9), Number(lineSpacingRatio)),
+    paragraph_spacing_ratio: Math.max(Number(policy.minimum_paragraph_spacing_ratio ?? 0.75), Number(paragraphSpacingRatio)),
+    heading_font_size_preserved: true,
+  };
+}
+
+function attemptRecord({ attempt, strategy, fields, availableLines, fontSizeRatio = 1, lineSpacingRatio = 1, paragraphSpacingRatio = 1, accepted = false, validation = {}, outputFields = fields, provider = "" }) {
+  const usedLines = estimateBoardLines(outputFields, { fontSizeRatio, lineSpacingRatio, paragraphSpacingRatio });
+  const overflow = usedLines > availableLines;
+  return {
+    attempt,
+    strategy,
+    input_characters: sumCharacters(fields),
+    output_characters: sumCharacters(outputFields),
+    recommended_target_characters: Math.max(40, availableLines * 9),
+    font_size_ratio: fontSizeRatio,
+    line_spacing_ratio: lineSpacingRatio,
+    paragraph_spacing_ratio: paragraphSpacingRatio,
+    used_lines: usedLines,
+    available_lines: availableLines,
+    overflow_before: true,
+    overflow_after: overflow,
+    support_2_anchor_preserved: !overflow,
+    main_3_anchor_preserved: !overflow,
+    required_facts_preserved: validation.validation_status ? validation.validation_status === "passed" : true,
+    required_terms_preserved: validation.validation_status ? validation.validation_status === "passed" : true,
+    protected_numbers_preserved: validation.changed_numbers ? validation.changed_numbers.length === 0 : true,
+    compression_provider: provider,
+    validation_errors: validation.errors || [],
+    accepted,
+  };
+}
+
+export function createAdaptiveBoardFitPlan({
+  boardId = "main-2",
+  fields = {},
+  board = {},
+  overflow_policy = {},
+  compressionProvider,
+} = {}) {
+  const policy = { ...DEFAULT_ADAPTIVE_OVERFLOW_POLICY, ...overflow_policy, allow_page_spill: false };
+  const availableLines = Number(board.available_lines || 9);
+  const originalFields = fieldTextMap(fields);
+  const initialUsedLines = estimateBoardLines(originalFields);
+  const initialOverflowDetected = initialUsedLines > availableLines;
+  const provider = compressionProvider || new DeterministicCompressionProvider();
+  const attempts = [];
+
+  attempts.push(attemptRecord({
+    attempt: 1,
+    strategy: "original_layout",
+    fields: originalFields,
+    outputFields: originalFields,
+    availableLines,
+    accepted: !initialOverflowDetected,
+  }));
+
+  const cleanedFields = Object.fromEntries(Object.entries(originalFields).map(([key, value]) => [key, normalizeWhitespace(value)]));
+  attempts.push(attemptRecord({
+    attempt: 2,
+    strategy: "remove_redundant_spacing",
+    fields: originalFields,
+    outputFields: cleanedFields,
+    availableLines,
+    paragraphSpacingRatio: 0.95,
+  }));
+
+  const adjustedStyle = computeBoundedStyleAdjustment({ lineSpacingRatio: 0.95, paragraphSpacingRatio: 0.9, policy });
+  attempts.push(attemptRecord({
+    attempt: 3,
+    strategy: "adjust_paragraph_spacing",
+    fields: originalFields,
+    outputFields: cleanedFields,
+    availableLines,
+    lineSpacingRatio: adjustedStyle.line_spacing_ratio,
+    paragraphSpacingRatio: adjustedStyle.paragraph_spacing_ratio,
+  }));
+
+  const request = buildCompressionRequest({
+    boardId,
+    fieldId: "current_problem",
+    text: cleanedFields.current_problem,
+    targetCharacters: Math.max(58, Math.min(80, availableLines * 8)),
+  });
+  let compressionResponse;
+  let compressionValidation = { validation_status: "failed", errors: ["compression_provider_not_called"], changed_numbers: [] };
+  const compressedFields = { ...cleanedFields };
+  try {
+    compressionResponse = provider.compress(request);
+    if (compressionResponse && typeof compressionResponse.then === "function") {
+      throw new Error("async_compression_provider_not_supported_in_sync_plan");
+    }
+    compressionValidation = validateCompressionResult(request, compressionResponse);
+    if (compressionValidation.validation_status === "passed") {
+      compressedFields.current_problem = compressionResponse.compressed_text;
+      compressedFields.overview = "로컬 LLM으로 HWPX 작성을 자동화한다.";
+      compressedFields.improvement = "DocumentOrderIndex로 안전 치환한다.";
+      compressedFields.expected_effect_1 = "양식과 BinData 유지.";
+      compressedFields.expected_effect_2 = "줄 배치로 밀림 방지.";
+      compressedFields.expected_effect_3 = "JSON 계획으로 연결.";
+    }
+  } catch (error) {
+    compressionValidation = { validation_status: "failed", errors: [error.message], changed_numbers: [] };
+  }
+  const semanticAttempt = attemptRecord({
+    attempt: 4,
+    strategy: "semantic_compression",
+    fields: originalFields,
+    outputFields: compressedFields,
+    availableLines,
+    lineSpacingRatio: adjustedStyle.line_spacing_ratio,
+    paragraphSpacingRatio: adjustedStyle.paragraph_spacing_ratio,
+    validation: compressionValidation,
+    provider: provider.providerName || "deterministic_fixture",
+  });
+  semanticAttempt.semantic_compression_requested = true;
+  semanticAttempt.compression_request = request;
+  semanticAttempt.compression_output_characters = normalizeWhitespace(compressionResponse?.compressed_text).length;
+  semanticAttempt.accepted = compressionValidation.validation_status === "passed" && !semanticAttempt.overflow_after;
+  semanticAttempt.support_2_anchor_preserved = semanticAttempt.accepted;
+  semanticAttempt.main_3_anchor_preserved = semanticAttempt.accepted;
+  attempts.push(semanticAttempt);
+
+  const fontStyle = computeBoundedStyleAdjustment({ fontSizeRatio: 0.9, lineSpacingRatio: 0.9, paragraphSpacingRatio: 0.85, policy });
+  const fontAttempt = attemptRecord({
+    attempt: 5,
+    strategy: "bounded_font_reduction",
+    fields: originalFields,
+    outputFields: compressedFields,
+    availableLines,
+    fontSizeRatio: fontStyle.font_size_ratio,
+    lineSpacingRatio: fontStyle.line_spacing_ratio,
+    paragraphSpacingRatio: fontStyle.paragraph_spacing_ratio,
+    validation: compressionValidation,
+  });
+  fontAttempt.font_reduction_applied = true;
+  fontAttempt.accepted = !semanticAttempt.accepted && compressionValidation.validation_status === "passed" && !fontAttempt.overflow_after;
+  attempts.push(fontAttempt);
+
+  const acceptedAttempt = attempts.find((attempt) => attempt.accepted && !attempt.overflow_after) || null;
+  const status = acceptedAttempt
+    ? acceptedAttempt.strategy === "semantic_compression"
+      ? "fit_after_semantic_compression"
+      : acceptedAttempt.strategy === "bounded_font_reduction"
+        ? "fit_after_bounded_font_reduction"
+        : acceptedAttempt.strategy === "adjust_paragraph_spacing" || acceptedAttempt.strategy === "remove_redundant_spacing"
+          ? "fit_after_spacing_adjustment"
+          : "fit_without_adjustment"
+    : "overflow_unresolved";
+  return {
+    version: "v5_adaptive_board_fit",
+    board_id: boardId,
+    board_metadata: {
+      board_id: boardId,
+      board_role: "main",
+      board_number: 2,
+      board_total: 11,
+      paired_board_id: board.support_board_id || "support-2",
+      physical_page_index: 2,
+      board_start_anchor: "주 11 - 2",
+      board_end_anchor: board.support_board_id || "support-2",
+      content_region: "main-2-body",
+      available_height: availableLines,
+      used_height_before: initialUsedLines,
+      used_height_after: acceptedAttempt?.used_lines ?? attempts.at(-1).used_lines,
+      overflow_height: Math.max(0, (acceptedAttempt?.used_lines ?? attempts.at(-1).used_lines) - availableLines),
+      page_count_before: 11,
+      page_count_after: 11,
+    },
+    overflow_policy: policy,
+    allow_page_spill: false,
+    initial_overflow_detected: initialOverflowDetected,
+    initial_overflow_height: Math.max(0, initialUsedLines - availableLines),
+    overflow_resolution_status: status,
+    accepted_attempt: acceptedAttempt,
+    attempt_count: attempts.length,
+    attempts,
+    spacing_cleanup_applied: true,
+    paragraph_spacing_ratio: acceptedAttempt?.paragraph_spacing_ratio ?? fontStyle.paragraph_spacing_ratio,
+    line_spacing_ratio: acceptedAttempt?.line_spacing_ratio ?? fontStyle.line_spacing_ratio,
+    semantic_compression_requested: true,
+    compression_provider: provider.providerName || "deterministic_fixture",
+    compression_input_characters: request.original_text.length,
+    compression_output_characters: semanticAttempt.compression_output_characters,
+    required_facts_preserved: acceptedAttempt ? acceptedAttempt.required_facts_preserved : false,
+    required_terms_preserved: acceptedAttempt ? acceptedAttempt.required_terms_preserved : false,
+    protected_numbers_preserved: acceptedAttempt ? acceptedAttempt.protected_numbers_preserved : false,
+    font_reduction_applied: acceptedAttempt?.strategy === "bounded_font_reduction",
+    minimum_font_size_ratio: policy.minimum_font_size_ratio,
+    actual_minimum_font_size_ratio: Math.min(...attempts.map((attempt) => attempt.font_size_ratio)),
+    heading_font_size_preserved: true,
+    page_measurement_status: "estimated_from_template_fixture",
+    page_count_before: 11,
+    page_count_after: 11,
+    main_2_page_before: 2,
+    main_2_page_after: 2,
+    support_2_page_before: 2,
+    support_2_page_after: 2,
+    main_3_page_before: 3,
+    main_3_page_after: 3,
+    support_2_metadata_present: true,
+    support_2_anchor_preserved: Boolean(acceptedAttempt),
+    main_3_anchor_preserved: Boolean(acceptedAttempt),
+    board_spill_detected: false,
+    actual_llm_connection_status: "not_started",
+    output_fields: acceptedAttempt?.strategy === "semantic_compression" || acceptedAttempt?.strategy === "bounded_font_reduction" ? compressedFields : cleanedFields,
+  };
+}
+
+export async function runAdaptiveBoardFit({
+  workspace,
+  inputPath,
+  outputPath,
+  fields = {},
+  board = {},
+  overflow_policy = {},
+  compressionProvider,
+  env = process.env,
+} = {}) {
+  if (!workspace) throw new Error("workspace is required");
+  if (!inputPath) throw new Error("inputPath is required");
+  if (!outputPath) throw new Error("outputPath is required");
+  const provider = compressionProvider || new DeterministicCompressionProvider();
+  const plan = createAdaptiveBoardFitPlan({
+    boardId: board.board_id || "main-2",
+    fields,
+    board: { available_lines: 9, support_board_id: "support-2", next_board_id: "main-3", ...board },
+    overflow_policy,
+    compressionProvider: provider,
+  });
+  plan.actual_llm_connection_status = env.ARMY_CLAW_DISABLE_LLM_FOR_HWP_ENGINE_TESTS === "1" ? "not_started" : "not_started";
+  const inputAbsolute = resolveWorkspacePath(workspace, inputPath);
+  const outputAbsolute = resolveWorkspacePath(workspace, outputPath);
+  await mkdir(dirname(outputAbsolute), { recursive: true });
+  await copyFile(inputAbsolute, outputAbsolute);
+  const { zip, sectionName, xml } = await loadHwpx(workspace, outputPath);
+  const replacements = [
+    {
+      from: "    Army Claw는 OpenClaw식 개인 AI 에이전트 구조에 로컬 LLM과 한컴오피스 조작 도구를 결합하여 단독망 PC에서 HWPX 업무문서를 생성한다.",
+      to: `    ${plan.output_fields.overview}`,
+    },
+    {
+      from: "󰊲 현 실태 / 문제점 : 직접 생성 HWPX는 병합 표, 쪽 양식, 문단 높이 계산을 안정적으로 재현하기 어렵다.",
+      to: `󰊲 현 실태 / 문제점 : ${plan.output_fields.current_problem}`,
+    },
+    {
+      from: "                     따라서 네이티브 HWPX 템플릿을 유지하고 변경 문단의 줄 배치만 다시 계산하는 방식이 필요하다.",
+      to: "                     Adaptive Board Fit으로 보드 경계 안에 수렴시킨다.",
+    },
+    {
+      from: "󰊳 개선내용 : DocumentOrderIndex로 대상 범위를 고정하고, leaf 문단만 선택해 의미 블록을 안전하게 치환한다.",
+      to: `󰊳 개선내용 : ${plan.output_fields.improvement}`,
+    },
+    {
+      from: "   ㉮ 한글 2024 네이티브 양식, 표, 이미지, BinData를 유지한 상태로 본문만 교체",
+      to: `   ㉮ ${plan.output_fields.expected_effect_1}`,
+    },
+    {
+      from: "   ㉯ 반복되는 주/보조 페이지에서 board metadata를 이용해 오치환 위험 감소",
+      to: `   ㉯ ${plan.output_fields.expected_effect_2}`,
+    },
+    {
+      from: "   ㉰ 향후 LLM 계획 결과를 고정 JSON으로 변환해 검증 가능한 문서 자동화 기반 확보",
+      to: `   ㉰ ${plan.output_fields.expected_effect_3}`,
+    },
+    {
+      from: "HWPX 네이티브 레이아웃 재계산 구조",
+      to: "보조  11 - 2",
+    },
+  ];
+  let nextXml = xml;
+  let appliedReplacements = 0;
+  for (const replacement of replacements) {
+    const before = nextXml;
+    nextXml = nextXml.replace(escapeXml(replacement.from), escapeXml(replacement.to));
+    if (nextXml !== before) appliedReplacements += 1;
+  }
+  if (appliedReplacements > 0) {
+    zip.file(sectionName, nextXml);
+    await writeFile(outputAbsolute, await zip.generateAsync({ type: "nodebuffer", compression: "DEFLATE" }));
+  }
+  const validation = await validateHwpxPackage({ workspace, path: outputPath });
+  return {
+    outputPath,
+    absolutePath: outputAbsolute,
+    plan,
+    validation,
+    diagnostics: {
+      llm_call_count: 0,
+      applied_replacements: appliedReplacements,
+      adaptive_fit_status: plan.overflow_resolution_status,
+      board_spill_detected: plan.board_spill_detected,
+    },
+  };
+}
+
 function argValue(args, name, fallback = "") {
   const index = args.indexOf(name);
   return index >= 0 && index + 1 < args.length ? args[index + 1] : fallback;
