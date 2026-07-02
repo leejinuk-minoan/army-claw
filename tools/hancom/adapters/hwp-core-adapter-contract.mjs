@@ -13,12 +13,70 @@ export const HWP_CORE_METHODS = [
 ];
 
 export function unsupported(method, reason) {
-  return {
+  return makeAdapterExecution({
+    candidate_id: "unknown",
     method,
     status: "unsupported",
-    reason,
+    output: { reason },
     artifacts: [],
     errors: [reason],
+    assertions: [{ id: `${method}-unsupported`, expected: "supported", actual: "unsupported", passed: false }],
+    trace: [{ type: "contract_default", method }],
+  });
+}
+
+export function blocked(candidateId, method, reason, output = {}) {
+  const evidence = {
+    attempted_commands: output.attempted_commands ?? [`${candidateId}:${method}:blocked-prerequisite-check`],
+    checked_paths: output.checked_paths ?? [],
+    missing_prerequisite: output.missing_prerequisite ?? reason,
+    runtime_check: output.runtime_check ?? "not_available",
+    artifact_check: output.artifact_check ?? "not_available",
+    license_check: output.license_check ?? "not_available",
+    evidence_log_path: output.evidence_log_path ?? "candidate result adapter-execution.json",
+  };
+  return makeAdapterExecution({
+    candidate_id: candidateId,
+    method,
+    status: "blocked",
+    output: { reason, ...output, ...evidence },
+    artifacts: [],
+    errors: [reason],
+    assertions: [{ id: `${method}-blocked-prerequisite`, expected: "runtime/artifact/license available", actual: reason, passed: false }],
+    trace: [{ type: "blocked_prerequisite", method, reason, attempted_commands: evidence.attempted_commands, checked_paths: evidence.checked_paths }],
+  });
+}
+
+export function makeAdapterExecution({
+  candidate_id,
+  method,
+  status,
+  started_at = new Date().toISOString(),
+  ended_at = new Date().toISOString(),
+  input = {},
+  output = {},
+  assertions = [],
+  artifacts = [],
+  stdout_path = null,
+  stderr_path = null,
+  trace = [],
+  errors = [],
+}) {
+  return {
+    candidate_id,
+    method,
+    status,
+    started_at,
+    ended_at,
+    duration_ms: Math.max(0, Date.parse(ended_at) - Date.parse(started_at)),
+    input,
+    output,
+    assertions,
+    artifacts,
+    stdout_path,
+    stderr_path,
+    trace,
+    errors,
   };
 }
 

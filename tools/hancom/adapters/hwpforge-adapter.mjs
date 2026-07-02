@@ -1,4 +1,4 @@
-import { HwpCoreAdapter } from "./hwp-core-adapter-contract.mjs";
+import { blocked, HWP_CORE_METHODS, HwpCoreAdapter } from "./hwp-core-adapter-contract.mjs";
 
 export class HwpForgeAdapter extends HwpCoreAdapter {
   constructor() {
@@ -47,4 +47,19 @@ export class HwpForgeAdapter extends HwpCoreAdapter {
       },
     });
   }
+}
+
+for (const method of HWP_CORE_METHODS) {
+  HwpForgeAdapter.prototype[method] = function hwpforgeBlockedMethod() {
+    return blocked(this.id, method, "HwpForge project identity, immutable source/release, runtime, actual LICENSE, and offline build evidence are not established", {
+      attempted_commands: ["search local artifact inventory for HwpForge", "hwpforge --version", "cargo build --locked"],
+      checked_paths: ["vendor/hwpforge/", "release/test-documents/hwpx-core-benchmark-002/external/hwpforge/"],
+      runtime_check: "unknown until project identity is established",
+      artifact_check: "missing immutable HwpForge source/release artifact",
+      license_check: "missing actual LICENSE/COPYING/NOTICE file",
+      missing_prerequisite: "upstream project identity and pinned artifact",
+      searched_project_names: ["HwpForge"],
+      identity_ambiguity: true,
+    });
+  };
 }

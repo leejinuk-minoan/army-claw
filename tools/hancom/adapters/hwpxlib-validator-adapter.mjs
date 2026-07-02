@@ -1,4 +1,4 @@
-import { HwpCoreAdapter } from "./hwp-core-adapter-contract.mjs";
+import { blocked, HWP_CORE_METHODS, HwpCoreAdapter } from "./hwp-core-adapter-contract.mjs";
 
 export class HwpxlibValidatorAdapter extends HwpCoreAdapter {
   constructor() {
@@ -47,4 +47,18 @@ export class HwpxlibValidatorAdapter extends HwpCoreAdapter {
       },
     });
   }
+}
+
+for (const method of HWP_CORE_METHODS) {
+  HwpxlibValidatorAdapter.prototype[method] = function hwpxlibBlockedMethod() {
+    return blocked(this.id, method, "hwpxlib pinned jar/source artifact, actual LICENSE, and offline Java validation command are not available in this workspace", {
+      attempted_commands: ["java -version", "java -jar <pinned-hwpxlib-jar> --validate <candidate.hwpx>"],
+      checked_paths: ["vendor/hwpxlib/", "release/test-documents/hwpx-core-benchmark-002/external/hwpxlib/"],
+      runtime_check: "Java runtime command must be recorded by benchmark execution",
+      artifact_check: "missing pinned hwpxlib jar/source artifact",
+      license_check: "missing actual LICENSE/COPYING/NOTICE file",
+      missing_prerequisite: "pinned hwpxlib artifact and license evidence",
+      required_boundary: "separate Java process",
+    });
+  };
 }

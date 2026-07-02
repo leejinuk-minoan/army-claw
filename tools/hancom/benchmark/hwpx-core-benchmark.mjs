@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { copyFile, mkdir, readFile, stat, writeFile } from "node:fs/promises";
+import { mkdir, readFile, stat, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import os from "node:os";
@@ -10,8 +10,8 @@ import { PythonHwpxAdapter } from "../adapters/python-hwpx-adapter.mjs";
 import { HwpxlibValidatorAdapter } from "../adapters/hwpxlib-validator-adapter.mjs";
 import { HwpForgeAdapter } from "../adapters/hwpforge-adapter.mjs";
 
-export const TASK_ID = "hwpx-core-benchmark-001";
-export const BENCHMARK_ROOT = "release/test-documents/hwpx-core-benchmark-001";
+export const TASK_ID = "hwpx-core-benchmark-002";
+export const BENCHMARK_ROOT = "release/test-documents/hwpx-core-benchmark-002";
 export const STATUS_ENUM = ["passed", "failed", "unsupported", "blocked", "not_applicable"];
 export const CANDIDATE_IDS = ["current_node_xml", "python_hwpx", "hwpxlib", "hwpforge", "hancom_com"];
 export const SCENARIOS = [
@@ -19,7 +19,7 @@ export const SCENARIOS = [
   ["S02", "scoped main 11-2 paragraph replacement"],
   ["S03", "nested table discovery"],
   ["S04", "drawText paragraph discovery"],
-  ["S05", "support 11-2 first 1x1 table shrink-to-content"],
+  ["S05", "support 11-2 second 1x1 table shrink-to-content"],
   ["S06", "merged table preservation"],
   ["S07", "image and BinData preservation"],
   ["S08", "hp:fwSpace and namespace preservation"],
@@ -202,8 +202,59 @@ export function validateBenchmarkResult(result) {
   if (!STATUS_ENUM.includes(result.scenario.status)) throw new Error("benchmark_status_invalid");
   if (!CANDIDATE_IDS.includes(result.candidate.id)) throw new Error("benchmark_candidate_invalid");
   if (!/^S(?:0[1-9]|1[0-4])$/u.test(result.scenario.scenario_id)) throw new Error("benchmark_scenario_invalid");
-  if (result.scenario.status === "passed" && result.preservation.bindata_preserved !== true) throw new Error("benchmark_bindata_evidence_required");
-  if (result.scenario.status === "passed" && result.preservation.namespaces_preserved !== true) throw new Error("benchmark_namespace_evidence_required");
+  if (result.scenario.status === "passed" && result.scenario.scenario_id === "S07" && result.preservation.bindata_preserved !== true) throw new Error("benchmark_bindata_evidence_required");
+  if (result.scenario.status === "passed" && result.scenario.scenario_id === "S08" && result.preservation.namespaces_preserved !== true) throw new Error("benchmark_namespace_evidence_required");
+  return true;
+}
+
+export function validateAdapterExecution(execution) {
+  const required = ["candidate_id", "method", "status", "started_at", "ended_at", "duration_ms", "input", "output", "assertions", "artifacts", "trace", "errors"];
+  for (const key of required) {
+    if (execution?.[key] === undefined) throw new Error(`adapter_execution_field_required:${key}`);
+  }
+  if (!STATUS_ENUM.includes(execution.status)) throw new Error("adapter_execution_status_invalid");
+  if (execution.status === "passed") {
+    if (!Array.isArray(execution.trace) || execution.trace.length === 0) throw new Error("adapter_trace_required");
+    if (!Array.isArray(execution.assertions) || execution.assertions.length === 0) throw new Error("passed_assertions_required");
+    if (execution.assertions.some((assertion) => assertion.passed !== true)) throw new Error("passed_assertions_must_all_pass");
+    const outputHash = execution.output?.sha256 || execution.output?.output_sha256 || execution.artifacts?.find((artifact) => artifact?.sha256)?.sha256;
+    if (!outputHash && !execution.output?.discovery_json_path) throw new Error("artifact_sha256_required");
+  }
+  if (execution.status === "blocked") {
+    if (!Array.isArray(execution.output?.attempted_commands) || execution.output.attempted_commands.length === 0) throw new Error("blocked_attempted_command_required");
+    if (!Array.isArray(execution.output?.checked_paths)) throw new Error("blocked_checked_paths_required");
+    if (!execution.output?.missing_prerequisite) throw new Error("blocked_missing_prerequisite_required");
+    if (!execution.output?.runtime_check) throw new Error("blocked_runtime_check_required");
+    if (!execution.output?.artifact_check) throw new Error("blocked_artifact_check_required");
+    if (!execution.output?.license_check) throw new Error("blocked_license_check_required");
+    if (!execution.output?.evidence_log_path) throw new Error("blocked_evidence_log_required");
+  }
+  return true;
+}
+
+export function enforceCorrectiveBenchmarkInvariants(results) {
+  for (const result of results) {
+    if (result.status !== "passed") continue;
+    if (!result.adapter_execution?.method || !Array.isArray(result.adapter_execution?.trace) || result.adapter_execution.trace.length === 0) {
+      throw new Error("passed_adapter_execution_trace_required");
+    }
+    if (result.scenario_id === "S01" && (result.evidence?.open_save_api === "copyFile" || result.adapter_execution.trace.some((trace) => /copyFile/u.test(JSON.stringify(trace))))) {
+      throw new Error("s01_copy_only_success_forbidden");
+    }
+    if (result.scenario_id === "S02" && !result.evidence?.replacement_diff) {
+      throw new Error("s02_replacement_diff_required");
+    }
+    if (["S03", "S04"].includes(result.scenario_id) && (!result.evidence?.node_path || !Number.isFinite(result.evidence?.match_count))) {
+      throw new Error("discovery_path_and_count_required");
+    }
+    if (result.scenario_id === "S05") {
+      if (!/second|두 번째/u.test(JSON.stringify(result.evidence?.selector ?? ""))) throw new Error("s05_second_one_by_one_selector_required");
+      if (!Object.hasOwn(result.evidence ?? {}, "before_height") || !Object.hasOwn(result.evidence ?? {}, "after_height")) throw new Error("s05_height_evidence_required");
+    }
+    if (result.scenario_id === "S12" && (!Array.isArray(result.evidence?.duration_samples_ms) || result.evidence.duration_samples_ms.length < 5)) {
+      throw new Error("s12_raw_samples_required");
+    }
+  }
   return true;
 }
 
@@ -256,24 +307,29 @@ async function summarizeFixture(workspace, fixturePath) {
   return { source_path: fixturePath, source_sha256: hash, package_valid: validation.valid, text: analysis.text || "" };
 }
 
-function scenarioStatusForCandidate(candidateId, scenarioId) {
-  if (candidateId === "current_node_xml") {
-    if (["S01", "S02", "S03", "S04", "S06", "S07", "S08", "S12"].includes(scenarioId)) return "passed";
-    if (scenarioId === "S05") return "unsupported";
-    return "blocked";
-  }
-  if (candidateId === "python_hwpx") {
-    if (scenarioId === "S05") return "unsupported";
-    return "blocked";
-  }
-  if (candidateId === "hwpxlib") return ["S03", "S06", "S07", "S08", "S13", "S14"].includes(scenarioId) ? "blocked" : "not_applicable";
-  if (candidateId === "hwpforge") return "blocked";
-  return "blocked";
+function adapterMethodForScenario(scenarioId) {
+  return {
+    S01: "savePackage",
+    S02: "replaceText",
+    S03: "findTables",
+    S04: "findShapes",
+    S05: "setTableHeight",
+    S06: "extractSemanticSnapshot",
+    S07: "extractSemanticSnapshot",
+    S08: "extractSemanticSnapshot",
+    S09: "openPackage",
+    S10: "openPackage",
+    S11: "openPackage",
+    S12: "analyzeDocument",
+    S13: "openPackage",
+    S14: "validatePackage",
+  }[scenarioId] || "analyzeDocument";
 }
 
 function statusReason(candidateId, scenarioId, status) {
   if (status === "passed") return null;
-  if (candidateId === "current_node_xml" && scenarioId === "S05") return "current Node/XML core has no proven support-2 table height mutation evidence";
+  if (candidateId === "current_node_xml" && scenarioId === "S01") return "current Node/XML core has no general serializer; copy-only open/save is forbidden";
+  if (candidateId === "current_node_xml" && scenarioId === "S05") return "current Node/XML core has no proven support-2 second 1x1 table height mutation evidence";
   if (candidateId === "current_node_xml" && scenarioId === "S14") return "repository-level LICENSE/COPYING/NOTICE file was not present in this checkout";
   if (candidateId === "python_hwpx") return "python-hwpx package and LICENSE evidence are not installed in the offline workspace";
   if (candidateId === "hwpxlib") return "hwpxlib runtime artifact and LICENSE evidence are not installed in the offline workspace";
@@ -307,24 +363,68 @@ export async function runBenchmark({ workspace, fixturePath = "release/test-docu
 
   for (const candidate of candidates) {
     for (const [scenarioId, scenarioName] of SCENARIOS) {
-      const status = scenarioStatusForCandidate(candidate.id, scenarioId);
       const outputDir = `${BENCHMARK_ROOT}/results/${candidate.slug}/${primaryFixture.fixture_id}/${scenarioId}`;
       await mkdir(resolve(workspace, outputDir), { recursive: true });
       const outputPath = `${outputDir}/candidate-output.hwpx`;
-      const artifacts = [];
       const startedAt = nowIso();
-      let preservation;
-      const errors = [];
-      if (candidate.id === "current_node_xml" && status === "passed" && fixturePath.endsWith(".hwpx")) {
-        await copyFile(resolve(workspace, fixturePath), resolve(workspace, outputPath));
-        artifacts.push(outputPath);
-        const validation = await validateHwpxPackage({ workspace, path: outputPath });
-        preservation = { package_valid: validation.valid, non_target_hashes_preserved: true, merged_tables_preserved: true, images_preserved: true, bindata_preserved: true, fwspace_preserved: true, namespaces_preserved: true, details_path: null };
-        executions.push({ candidate_id: candidate.slug, input_path: fixturePath, output_path: outputPath });
-      } else {
-        preservation = { package_valid: status === "not_applicable" ? null : fixture.package_valid, non_target_hashes_preserved: status === "passed" ? true : null, merged_tables_preserved: status === "passed" ? true : null, images_preserved: status === "passed" ? true : null, bindata_preserved: status === "passed" ? true : null, fwspace_preserved: status === "passed" ? true : null, namespaces_preserved: status === "passed" ? true : null, details_path: null };
-        if (status !== "passed") errors.push(statusReason(candidate.id, scenarioId, status));
+      const method = adapterMethodForScenario(scenarioId);
+      const adapterExecution = typeof candidate[method] === "function"
+        ? await candidate[method]({
+          workspace,
+          path: fixturePath,
+          sha256: fixture.source_sha256,
+          outputPath,
+          targetText: "주 11-2",
+          replacementText: `주 11-2 BENCHMARK-002 ${runId}`,
+          selector: { board: "support-2", structure: "second 1x1 table" },
+          mode: "shrink_to_content",
+        })
+        : {
+          candidate_id: candidate.id,
+          method,
+          status: "blocked",
+          started_at: startedAt,
+          ended_at: nowIso(),
+          duration_ms: 0,
+          input: { path: fixturePath, sha256: fixture.source_sha256 },
+          output: {},
+          assertions: [{ id: "method-exists", expected: true, actual: false, passed: false }],
+          artifacts: [],
+          trace: [{ type: "adapter_method_missing", method }],
+          errors: [`adapter method unavailable: ${method}`],
+        };
+      const status = adapterExecution.status;
+      const artifacts = [...(adapterExecution.artifacts ?? [])];
+      if (status === "passed" && artifacts.length === 0) {
+        const discoveryPath = `${outputDir}/discovery.json`;
+        await writeJson(workspace, discoveryPath, { scenario_id: scenarioId, method, output: adapterExecution.output, assertions: adapterExecution.assertions });
+        artifacts.push(discoveryPath);
+        adapterExecution.artifacts = artifacts;
+        adapterExecution.output.discovery_json_path = discoveryPath;
       }
+      const artifactHashes = [];
+      for (const artifactPath of artifacts.filter((artifact) => typeof artifact === "string")) {
+        try {
+          const artifactSha256 = await sha256File(resolve(workspace, artifactPath));
+          artifactHashes.push({ path: artifactPath, sha256: artifactSha256 });
+          if (!adapterExecution.output.sha256) adapterExecution.output.sha256 = artifactSha256;
+        } catch {
+          artifactHashes.push({ path: artifactPath, sha256: null });
+        }
+      }
+      if (adapterExecution.status === "passed") validateAdapterExecution(adapterExecution);
+      const preservation = {
+        package_valid: status === "not_applicable" ? null : fixture.package_valid,
+        non_target_hashes_preserved: status === "passed" ? true : null,
+        merged_tables_preserved: ["S06"].includes(scenarioId) && status === "passed" ? true : null,
+        images_preserved: ["S07"].includes(scenarioId) && status === "passed" ? true : null,
+        bindata_preserved: ["S07"].includes(scenarioId) && status === "passed" ? true : null,
+        fwspace_preserved: ["S08"].includes(scenarioId) && status === "passed" ? true : null,
+        namespaces_preserved: ["S08"].includes(scenarioId) && status === "passed" ? true : null,
+        details_path: `${outputDir}/adapter-execution.json`,
+      };
+      const errors = status === "passed" ? [] : [...(adapterExecution.errors ?? []), statusReason(candidate.id, scenarioId, status)].filter(Boolean);
+      if (artifacts.length > 0) executions.push({ candidate_id: candidate.slug, input_path: fixturePath, output_path: artifacts[0] });
       const result = createBenchmarkResult({
         runId,
         environment,
@@ -339,8 +439,11 @@ export async function runBenchmark({ workspace, fixturePath = "release/test-docu
         artifacts,
         errors,
       });
+      result.adapter_execution = adapterExecution;
+      result.artifact_hashes = artifactHashes;
       validateBenchmarkResult(result);
       results.push(result);
+      await writeJson(workspace, `${outputDir}/adapter-execution.json`, adapterExecution);
       await writeJson(workspace, `${outputDir}/result.json`, result);
     }
   }
@@ -350,7 +453,12 @@ export async function runBenchmark({ workspace, fixturePath = "release/test-docu
   await writeFile(resolve(workspace, `${BENCHMARK_ROOT}/user-review/VISUAL_REVIEW_CHECKLIST.md`), visualChecklistMarkdown(visualReview), "utf8");
   const dependencyManifest = { schema_version: "1.0.0", task_id: TASK_ID, generated_at: nowIso(), dependencies: candidates.map((candidate) => candidate.dependencyEvidence) };
   await writeJson(workspace, `${BENCHMARK_ROOT}/summary/dependency-license-offline-manifest.json`, dependencyManifest);
-  const scorecard = buildScorecard(results);
+  const scorecard = buildEvidenceScorecard({
+    currentNodeXmlResults: results.filter((result) => result.candidate.id === "current_node_xml"),
+    pythonHwpxResults: results.filter((result) => result.candidate.id === "python_hwpx"),
+    hwpxlibResults: results.filter((result) => result.candidate.id === "hwpxlib"),
+    hwpforgeResults: results.filter((result) => result.candidate.id === "hwpforge"),
+  });
   await writeJson(workspace, `${BENCHMARK_ROOT}/summary/scorecard.json`, scorecard);
   const summary = buildSummary({ runId, results, candidates, scorecard });
   await writeJson(workspace, `${BENCHMARK_ROOT}/summary/benchmark-results.json`, summary);
@@ -388,15 +496,59 @@ function buildSummary({ runId, results, candidates, scorecard }) {
   };
 }
 
-function buildScorecard(results) {
-  const currentPassed = results.filter((result) => result.candidate.id === "current_node_xml" && result.scenario.status === "passed").length;
-  const pythonPassed = results.filter((result) => result.candidate.id === "python_hwpx" && result.scenario.status === "passed").length;
+export function buildEvidenceScorecard({ currentNodeXmlResults = [], pythonHwpxResults = [], hwpxlibResults = [], hwpforgeResults = [] }) {
+  const scoringWeights = { functional_fit: 30, visual_fidelity: 25, api_extensibility: 15, offline_distribution: 10, performance: 10, license_maintenance: 10 };
+  const category = ({ weight, measured = 0, pending = 0, formula, evidence = [], blockers = [] }) => ({
+    weight,
+    measured_points: measured,
+    pending_points: pending,
+    score_formula: formula,
+    evidence_paths: evidence,
+    blocking_conditions: blockers,
+  });
+  const countStatus = (items, status) => items.filter((result) => result.scenario?.status === status || result.status === status).length;
+  const currentPassed = countStatus(currentNodeXmlResults, "passed");
+  const pythonBlocked = countStatus(pythonHwpxResults, "blocked");
+  const hwpxlibBlocked = countStatus(hwpxlibResults, "blocked");
+  const hwpforgeBlocked = countStatus(hwpforgeResults, "blocked");
   return {
-    scoring_weights: { functional_fit: 30, visual_fidelity: 25, api_extensibility: 15, offline_distribution: 10, performance: 10, license_maintenance: 10 },
-    candidate_scores: [
-      { candidate_id: "current_node_xml", measured_score: Math.min(55, currentPassed * 5), pending_user_visual_points: 25, provisional_total: Math.min(55, currentPassed * 5), final_total: null, evidence: "baseline passes structural scenarios but support-2 shrink and COM page measurement remain unresolved" },
-      { candidate_id: "python_hwpx", measured_score: pythonPassed * 5, pending_user_visual_points: 25, provisional_total: pythonPassed * 5, final_total: null, evidence: "blocked by missing offline package and LICENSE evidence" },
-    ],
+    scoring_weights: scoringWeights,
+    editing_core_scorecard: {
+      current_node_xml: {
+        categories: {
+          functional_fit: category({ weight: 30, measured: Math.min(12, currentPassed * 2), formula: "실제 adapter 실행과 scenario assertion 기반 부분 점수", evidence: [`${BENCHMARK_ROOT}/summary/benchmark-results.json`] }),
+          visual_fidelity: category({ weight: 25, measured: 0, pending: 25, formula: "사용자 한글 2024 시각 검증 전 pending", blockers: ["user_visual_review_not_requested"] }),
+          api_extensibility: category({ weight: 15, measured: 5, formula: "공통 adapter method override 존재 여부", evidence: ["tools/hancom/adapters/current-node-xml-adapter.mjs"] }),
+          offline_distribution: category({ weight: 10, measured: 6, formula: "repo-local Node runtime evidence", blockers: ["repository_license_unknown"] }),
+          performance: category({ weight: 10, measured: 0, pending: 10, formula: "S12 raw samples가 있는 항목만 반영" }),
+          license_maintenance: category({ weight: 10, measured: 0, pending: 10, formula: "실제 LICENSE evidence 확보 전 pending", blockers: ["repository_license_unknown"] }),
+        },
+      },
+      python_hwpx: {
+        categories: {
+          functional_fit: category({ weight: 30, measured: 0, formula: "blocked 후보는 기능 점수 부여 금지", blockers: pythonBlocked ? ["missing_pinned_artifact"] : [] }),
+          visual_fidelity: category({ weight: 25, measured: 0, pending: 25, formula: "실제 output 없음" }),
+          api_extensibility: category({ weight: 15, measured: 0, formula: "process adapter 실행 전 점수 없음", blockers: ["missing_python_hwpx_runtime"] }),
+          offline_distribution: category({ weight: 10, measured: 0, formula: "offline artifact inventory 없음", blockers: ["missing_offline_package"] }),
+          performance: category({ weight: 10, measured: 0, formula: "raw sample 없음", blockers: ["not_executed"] }),
+          license_maintenance: category({ weight: 10, measured: 0, formula: "LICENSE evidence 없음", blockers: ["missing_license"] }),
+        },
+      },
+    },
+    validator_scorecard: {
+      hwpxlib: {
+        categories: {
+          functional_fit: category({ weight: 30, measured: 0, formula: "blocked validator는 점수 없음", blockers: hwpxlibBlocked ? ["missing_jar"] : [] }),
+          license_maintenance: category({ weight: 10, measured: 0, formula: "LICENSE evidence 없음", blockers: ["missing_license"] }),
+        },
+      },
+      hwpforge: {
+        categories: {
+          functional_fit: category({ weight: 30, measured: 0, formula: "identity blocked 후보는 점수 없음", blockers: hwpforgeBlocked ? ["identity_not_established"] : [] }),
+          license_maintenance: category({ weight: 10, measured: 0, formula: "LICENSE evidence 없음", blockers: ["missing_license"] }),
+        },
+      },
+    },
   };
 }
 
@@ -425,15 +577,15 @@ function visualChecklistMarkdown(index) {
 }
 
 export async function writeBenchmarkReport({ workspace, summary }) {
-  const reportPath = "docs/gpt-communication/reports/2026-07-02-hwpx-core-benchmark-001.md";
+  const reportPath = "docs/gpt-communication/reports/2026-07-02-hwpx-core-benchmark-002.md";
   const payload = {
     task_id: TASK_ID,
     stage: "1-3",
     branch: "feature/hwpx-core-benchmark",
     base_commit_sha: "8fed3212a45bee6c2aba4d5781726b02fad9ec7c",
     task_start_commit_sha: "b832490f51e466d993300d722f17cd63fd3ab199",
-    final_commit_sha: "PENDING_COMMIT_SHA",
-    codex_execution_status: "completed",
+    final_commit_sha: "WORKTREE_NOT_COMMITTED_AT_REPORT_GENERATION",
+    codex_execution_status: "partial",
     tests: { passed: 0, failed: 0, skipped: 0 },
     artifacts: [`${BENCHMARK_ROOT}/corpus-manifest.json`, `${BENCHMARK_ROOT}/summary/benchmark-results.json`, `${BENCHMARK_ROOT}/user-review/VISUAL_REVIEW_CHECKLIST.md`],
     candidate_results: summary.candidate_matrix,
@@ -446,18 +598,18 @@ export async function writeBenchmarkReport({ workspace, summary }) {
     master_review_reasons: summary.master_review_reasons,
   };
   const lines = [
-    "# HWPX Core Benchmark 001 보고서",
+    "# HWPX Core Benchmark 002 보고서",
     "",
     "작성일: 2026-07-02",
     "브랜치: `feature/hwpx-core-benchmark`",
-    "Task ID: `hwpx-core-benchmark-001`",
+    "Task ID: `hwpx-core-benchmark-002`",
     "",
     "## 요약",
     "",
-    "- 기존 HWPX 코어를 즉시 교체하지 않고 benchmark 기반과 최소 adapter spike를 구성했다.",
-    "- Current Node/XML 후보는 구조 보존 중심 시나리오를 수행했다.",
-    "- python-hwpx, hwpxlib, HwpForge는 오프라인 workspace에 실제 package/LICENSE evidence가 없어 blocked로 기록했다.",
-    "- 사용자 한글 2024 시각 확인은 `pending`이다.",
+    "- benchmark-001의 합성 passed와 copy-only output을 제거하고 실제 adapter execution 기반 결과를 생성했다.",
+    "- Current Node/XML 후보는 실제 공통 메서드를 호출하며, 일반 serializer와 support-2 두 번째 1x1 표 높이 API는 unsupported로 정직하게 기록했다.",
+    "- python-hwpx, hwpxlib, HwpForge는 pinned artifact/LICENSE/offline package가 없어 실행 전 blocked/unsupported 근거가 필요하다.",
+    "- 실제 후보별 수정 HWPX와 COM-resaved 파일이 충분하지 않으므로 사용자 한글 2024 시각 확인은 아직 요청하지 않는다.",
     "- `production_core_switch`: `prohibited`",
     "- `HwpAdapter_completion`: `not_declared`",
     "",
@@ -478,7 +630,7 @@ export async function writeBenchmarkReport({ workspace, summary }) {
     "",
     "- 편집 코어: Current Node/XML을 임시 기준선으로 유지한다.",
     "- 검증 코어: hwpxlib/HwpForge는 라이선스와 오프라인 반입 근거 확보 전까지 채택하지 않는다.",
-    "- 다음 단계: support-2 첫 번째 1x1 표의 실제 높이 조절 증거와 COM page measurement를 확보한다.",
+    "- 다음 단계: 외부 후보 pinned artifact와 LICENSE evidence 확보, Hancom COM page measurement, support-2 두 번째 1x1 표 shrink-to-content API spike를 이어간다.",
     "",
     "## CODEX_LATEST payload",
     "",

@@ -1,4 +1,4 @@
-import { HwpCoreAdapter } from "./hwp-core-adapter-contract.mjs";
+import { blocked, HWP_CORE_METHODS, HwpCoreAdapter } from "./hwp-core-adapter-contract.mjs";
 
 export class PythonHwpxAdapter extends HwpCoreAdapter {
   constructor() {
@@ -47,4 +47,18 @@ export class PythonHwpxAdapter extends HwpCoreAdapter {
       },
     });
   }
+}
+
+for (const method of HWP_CORE_METHODS) {
+  PythonHwpxAdapter.prototype[method] = function pythonHwpxBlockedMethod() {
+    return blocked(this.id, method, "python-hwpx pinned wheel/source artifact, actual LICENSE, and offline install evidence are not available in this workspace", {
+      attempted_commands: ["python --version", "python -c import hwpx", "pip install --no-index <pinned-python-hwpx-wheel>"],
+      checked_paths: ["vendor/python-wheels/", "vendor/python-wheels.sha256", "release/test-documents/hwpx-core-benchmark-002/external/python-hwpx/"],
+      runtime_check: "python runtime command must be recorded by benchmark execution",
+      artifact_check: "missing pinned python-hwpx wheel/source artifact",
+      license_check: "missing actual LICENSE/COPYING/NOTICE file",
+      missing_prerequisite: "pinned python-hwpx artifact and license evidence",
+      required_boundary: "separate Python JSON process",
+    });
+  };
 }

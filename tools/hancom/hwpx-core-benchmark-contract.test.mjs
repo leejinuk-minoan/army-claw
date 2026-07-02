@@ -5,6 +5,7 @@ import {
   assertBenchmarkIsolation,
   buildCorpusManifest,
   createBenchmarkResult,
+  TASK_ID,
   validateBenchmarkResult,
   validateCorpusManifest,
 } from "./benchmark/hwpx-core-benchmark.mjs";
@@ -13,7 +14,7 @@ const workspace = process.cwd();
 
 test("corpus manifest rejects entries without sha256 and read_only_source", async () => {
   const manifest = {
-    task_id: "hwpx-core-benchmark-001",
+    task_id: TASK_ID,
     generated_at: new Date().toISOString(),
     fixtures: [
       {
