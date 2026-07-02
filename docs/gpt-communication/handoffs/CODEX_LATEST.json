@@ -1,103 +1,184 @@
 {
-  "updated_at": "2026-07-02",
-  "status": "corrective_task_partial_local_uncommitted",
+  "updated_at": "2026-07-03",
+  "status": "codex_result_reviewed_partial_with_invalid_passes",
   "task_id": "hwpx-core-benchmark-002",
   "stage": "1-3",
   "branch": "feature/hwpx-core-benchmark",
   "task_contract_commit_sha": "814039a2035481144a73bfe66c03481d497f82a0",
-  "remote_head_before_handoff_update": "814039a2035481144a73bfe66c03481d497f82a0",
-  "codex_commit_sha": null,
-  "prompt_agent_assessment": "directionally_correct_but_not_remotely_verifiable",
+  "local_checkpoint_commit_sha": "70708db54bff04365b647d7b3cd4d265e4379394",
+  "resume_merge_commit_sha": "e1e6504043e562c11c4cf224ccdd3747f42df9fb",
+  "tested_implementation_commit_sha": "22d51620c19ea9c0ba84c2fb670d5ee1740013ba",
+  "codex_report_commit_sha": "d666bb6d9ecfdad6707e2924dde7316a02c739be",
+  "codex_final_pushed_head_sha": "d666bb6d9ecfdad6707e2924dde7316a02c739be",
+  "prompt_agent_assessment": "meaningful_corrective_progress_but_benchmark_results_still_contain_synthetic_or_under_evidenced_passes",
   "codex_execution_status": "partial",
   "completion_gate_passed": false,
   "remote_verification": {
-    "corrective_code_pushed": false,
-    "corrective_report_pushed": false,
-    "benchmark_002_artifacts_pushed": false,
-    "remote_code_review_possible": false,
-    "reason": "Codex reported that the worktree remains uncommitted and no push was performed"
+    "branch_contains_all_reported_commits": true,
+    "commits_ahead_of_previous_handoff": 4,
+    "corrective_code_pushed": true,
+    "benchmark_002_artifacts_pushed": true,
+    "corrective_report_pushed": true,
+    "github_ci_statuses_present": false,
+    "changed_scope_matches_task_directories": true
   },
-  "codex_reported_changes": [
-    "remove static scenarioStatusForCandidate-based passed generation",
-    "implement actual common-method overrides in CurrentNodeXmlAdapter",
-    "add tests rejecting copyFile-only S01 success",
-    "require adapter trace, assertions, artifacts and hash evidence for passed results",
-    "return blocked executions for external candidates when artifact, license or runtime is unavailable",
-    "replace passed-count multiplied by five with role-separated evidence scorecard structure",
-    "restore accidental benchmark-001 report edits so no intended diff remains"
-  ],
-  "codex_reported_modified_files": [
-    "tools/hancom/benchmark/hwpx-core-benchmark.mjs",
-    "tools/hancom/adapters/current-node-xml-adapter.mjs",
-    "tools/hancom/adapters/hwp-core-adapter-contract.mjs",
-    "tools/hancom/adapters/python-hwpx-adapter.mjs",
-    "tools/hancom/adapters/hwpxlib-validator-adapter.mjs",
-    "tools/hancom/adapters/hwpforge-adapter.mjs",
-    "tools/hancom/hwpx-core-benchmark-contract.test.mjs",
-    "tools/hancom/hwpx-core-benchmark-corrective.test.mjs"
-  ],
   "tests": {
-    "codex_reported_commands": [
-      "node --test tools\\hancom\\hwpx-core-benchmark-corrective.test.mjs tools\\hancom\\hwpx-core-benchmark-contract.test.mjs",
-      "git diff --check"
-    ],
+    "codex_reported_command": "node --test tools\\hancom\\*.test.mjs",
     "codex_reported": {
-      "passed": 9,
+      "passed": 56,
       "failed": 0,
-      "git_diff_check_exit_code": 0
+      "skipped": 0,
+      "exit_code": 0
     },
-    "independent_remote_verification": "unavailable_uncommitted_local_changes",
-    "full_regression_suite_run": false,
-    "benchmark_002_execution_run": false,
-    "test_logs_committed": false
+    "committed_test_summary_matches_report": true,
+    "committed_logs_present": true,
+    "independent_remote_verification": "unavailable_no_github_ci_status",
+    "assessment": "The regression suite passed locally, but the corrective tests do not assert scenario-specific evidence for S06-S08, S13-S14, complete S12 evidence, or complete Draft 2020-12 schemas. Passing tests therefore do not validate the benchmark conclusions."
   },
   "positive_findings": [
-    "Codex did not falsely declare completion",
-    "The reported implementation direction addresses the master review's main anti-synthetic requirements",
-    "The reported tests target two critical benchmark-001 defects: copy-only success and evidence-free passed status",
-    "No commit amend, force push, stage transition or core selection was reported"
+    "Codex preserved the prior local work in a checkpoint commit before merging the remote handoff",
+    "No amend, force push, main merge, stage transition or production core switch was performed",
+    "Static scenarioStatusForCandidate logic and copy-only S01 success were removed",
+    "CurrentNodeXmlAdapter now overrides the common contract methods",
+    "S01 is honestly unsupported, S02 failed, S03-S05 unsupported and S09-S11 blocked rather than falsely passed",
+    "S05 is named and selected as the support-2 second one-by-one table",
+    "Benchmark-002 artifacts, test logs and report are committed and pushed",
+    "The report correctly declares completion_gate_passed false, codex_execution_status partial, core_selection prohibited and stage_transition prohibited"
   ],
-  "unverified_claims": [
-    "static status generation was actually removed from the local diff",
-    "CurrentNodeXmlAdapter methods call real Army Claw functions rather than returning synthetic execution objects",
-    "passed-result validation covers every required evidence field and every scenario",
-    "external blocked executions contain attempted commands, checked paths, prerequisites and evidence logs as required by the Task Contract",
-    "role-separated scorecards use approved category weights and raw evidence rather than a renamed heuristic",
-    "benchmark-001 report has no remaining semantic or line-ending-only diff",
-    "the 9 reported tests passed against exactly the current uncommitted worktree"
+  "critical_findings": [
+    {
+      "id": "synthetic_preservation_passes_remain",
+      "severity": "critical",
+      "scenarios": ["S06", "S07", "S08"],
+      "finding": "Each scenario only runs extractSemanticSnapshot on the unchanged source document and asserts package validity. The runner then sets non-target, merged-table, image, BinData, fwSpace and namespace preservation flags to true solely because the adapter status is passed. There is no candidate mutation output and no before/after scenario-specific snapshot comparison.",
+      "required_correction": "Remove automatic preservation=true assignment. Create real before/after snapshots around an actual candidate output or mark these scenarios unsupported/blocked/failed until scenario-specific preservation comparisons exist."
+    },
+    {
+      "id": "invalid_offline_and_license_passes",
+      "severity": "critical",
+      "scenarios": ["S13", "S14"],
+      "finding": "S13 and S14 call openPackage/validatePackage and pass because the HWPX package is valid. S13 has no clean offline installation evidence. S14 has null license path/hash/SPDX and redistribution_assessment unknown, yet is reported passed.",
+      "required_correction": "S13 must require a clean-environment offline installation command, exit code, artifact inventory and runtime network test. S14 must require actual LICENSE/COPYING/NOTICE files, hashes and redistribution assessment; otherwise mark blocked or failed."
+    },
+    {
+      "id": "s12_incomplete_pass",
+      "severity": "high",
+      "scenarios": ["S12"],
+      "finding": "S12 contains real repeated analyzeDocument duration and RSS samples, but the scenario also requires candidate artifact size and runtime/dependency installation size. Those measurements are absent or represented as zero, so a full passed status overstates the evidence.",
+      "required_correction": "Add artifact/runtime/install size evidence and a defensible process peak-memory method, or mark S12 failed/blocked with the timing samples retained as partial evidence."
+    },
+    {
+      "id": "scorecard_still_pass_count_based",
+      "severity": "critical",
+      "finding": "The functional-fit score is still calculated from currentPassed multiplied by two. Renaming the formula and changing the multiplier does not make it evidence based. Invalid S06-S08 and S13-S14 passes directly inflate the score to 12 points.",
+      "required_correction": "Define explicit scenario-to-category rubrics with maximum points and evidence gates. A scenario contributes points only when its scenario-specific evidence validator passes."
+    },
+    {
+      "id": "schemas_incomplete",
+      "severity": "high",
+      "finding": "Only benchmark-result and benchmark-summary schemas were committed, and both validate only top-level required fields plus schema/task constants. Required adapter-execution, dependency-license-offline-manifest and test-summary schemas are absent, and nested types/enums/patterns are not enforced.",
+      "required_correction": "Implement all five Task Contract schemas with nested Draft 2020-12 constraints and run a real schema validator against every committed JSON artifact."
+    },
+    {
+      "id": "blocked_evidence_is_template_not_execution",
+      "severity": "high",
+      "finding": "External candidate and COM blocked records contain planned or placeholder command strings, but stdout/stderr are null and no command execution log proves the commands were attempted. COM records explicitly say the wrapper was not executed while listing attempted commands.",
+      "required_correction": "Separate planned_commands from attempted_commands. Only populate attempted_commands after process execution and attach exit code/stdout/stderr. Otherwise record prerequisite_not_checked or blocked_without_execution and do not present it as evidence-backed attempted execution."
+    },
+    {
+      "id": "v1_fixture_still_missing_without_record",
+      "severity": "medium",
+      "finding": "The corpus manifest contains original and v2-v5 but no v1 fixture and no explicit v1 missing record, despite the Task Contract requirement.",
+      "required_correction": "Add v1 as available or as an explicit missing entry with searched paths and reason."
+    },
+    {
+      "id": "write_permission_failure_not_preserved",
+      "severity": "medium",
+      "finding": "The committed write-permission evidence records only the successful elevated probe. The claimed initial Access Denied command, exit code and error text are not preserved.",
+      "required_correction": "Record both the failed normal-permission attempt and the successful elevated attempt, or state that the original error text is unavailable."
+    }
   ],
-  "remaining_blockers": [
-    "local corrective changes are uncommitted and not pushed",
-    "benchmark-002 has not been executed against the latest code",
-    "benchmark-002 result, execution, schema, scorecard, test-summary and log artifacts do not exist remotely",
-    "the corrective GPT report has not been generated",
-    "the full existing tools/hancom regression suite has not been rerun",
-    "external candidates have not been acquired as pinned artifacts with actual LICENSE evidence and clean offline installation",
-    "python-hwpx real process execution is not evidenced",
-    "hwpxlib independent Java reparsing is not evidenced",
-    "HwpForge identity and execution or evidence-backed blocker are not evidenced",
-    "Hancom 2024 COM open/save and page measurement have not been executed",
-    "S05 second one-by-one table result is not evidenced",
-    "no tested implementation commit SHA, report commit SHA or final pushed HEAD exists"
-  ],
-  "reported_environment_blocker": {
-    "type": "workspace_write_permission_or_approval_quota",
-    "description": "Codex reported that regenerating benchmark-002 artifacts under the Desktop repository required elevated write approval and the approval system rejected the request because of a usage limit",
-    "evidence_status": "not_provided",
-    "required_on_resume": [
-      "record the exact failed command",
-      "record the exact target path",
-      "record the full error or approval rejection message",
-      "confirm whether normal repository source files remained writable while only generated artifact paths were blocked",
-      "do not classify this as an implementation failure without the command and error evidence"
-    ]
+  "candidate_results": {
+    "current_node_xml": {
+      "reported_counts": {
+        "passed": 6,
+        "failed": 1,
+        "unsupported": 4,
+        "blocked": 3,
+        "not_applicable": 0
+      },
+      "review_status": "benchmark_partially_executed_but_reported_pass_count_invalid",
+      "valid_findings": [
+        "S01 copy-only save is no longer treated as success",
+        "S02 attempted replacement and failed",
+        "S03-S05 are not falsely passed",
+        "S09-S11 are not falsely passed",
+        "S12 includes real repeated timing samples"
+      ],
+      "invalid_or_incomplete_passes": ["S06", "S07", "S08", "S12", "S13", "S14"]
+    },
+    "python_hwpx": {
+      "reported_status": "14 blocked",
+      "review_status": "not_benchmarked",
+      "reason": "No pinned artifact, actual LICENSE, clean offline install or real Python process execution. Blocked records contain placeholder commands without execution logs."
+    },
+    "hwpxlib": {
+      "reported_status": "14 blocked",
+      "review_status": "not_benchmarked",
+      "reason": "No pinned jar/source, actual LICENSE, clean offline install or independent Java process execution."
+    },
+    "hwpforge": {
+      "reported_status": "14 blocked",
+      "review_status": "not_benchmarked",
+      "reason": "Project identity, immutable source, actual LICENSE, runtime/build and process execution remain unestablished."
+    }
   },
-  "user_visual_status": "not_requested_no_real_candidate_outputs",
+  "artifacts": [
+    "docs/gpt-communication/reports/2026-07-02-hwpx-core-benchmark-002.md",
+    "release/test-documents/hwpx-core-benchmark-002/corpus-manifest.json",
+    "release/test-documents/hwpx-core-benchmark-002/summary/benchmark-results.json",
+    "release/test-documents/hwpx-core-benchmark-002/summary/scorecard.json",
+    "release/test-documents/hwpx-core-benchmark-002/summary/dependency-license-offline-manifest.json",
+    "release/test-documents/hwpx-core-benchmark-002/tests/test-summary.json",
+    "release/test-documents/hwpx-core-benchmark-002/tests/logs/node-tools-hancom-tests.stdout.log",
+    "release/test-documents/hwpx-core-benchmark-002/tests/logs/node-tools-hancom-tests.stderr.log"
+  ],
+  "user_visual_status": "not_requested_no_real_candidate_mutation_or_com_resaved_outputs",
   "core_selection": "prohibited",
   "stage_transition": "prohibited",
   "hwp_adapter_completion": "not_declared",
-  "master_review_required": false,
-  "master_review_reasons": [],
-  "next_prompt_intent": "Resume hwpx-core-benchmark-002 from the existing local worktree without discarding changes. First capture git status and exact diff, verify benchmark-001 report has no semantic diff, record the prior permission failure evidence, then run benchmark-002 into repository-scoped output paths, generate required evidence and report, run the full regression suite, create tested implementation and report commits without amend, push, and report partial unless every completion gate is actually met.",
-  "notes": "The current local work should be preserved. Do not reset, clean, amend or restart from the remote commit. Remote review of the corrective implementation must wait until a normal commit and push are produced."
+  "completion_gate": {
+    "passed": false,
+    "met_items": [
+      "corrective commits and push exist remotely",
+      "prior local work was preserved before remote merge",
+      "static status lookup and copy-only S01 success were removed",
+      "full local Node test suite was run and logs committed",
+      "benchmark-002 output and report directories exist",
+      "production core switch, stage transition and user visual review remain prohibited"
+    ],
+    "unmet_items": [
+      "valid scenario-specific S06-S08 preservation evidence",
+      "complete S12 performance and installation-size evidence",
+      "valid S13 clean offline installation evidence",
+      "valid S14 actual license and redistribution evidence",
+      "pinned python-hwpx artifact and actual process execution",
+      "pinned hwpxlib artifact and independent Java execution",
+      "HwpForge identity and actual process or truly evidence-backed blocker",
+      "actual Hancom COM execution and page measurements",
+      "S05 second one-by-one table before/after height evidence",
+      "all five detailed Draft 2020-12 schemas and actual schema validation",
+      "non-count-based evidence rubric scorecards",
+      "v1 fixture or explicit missing record",
+      "internally accurate report scenario counts and scorecard"
+    ]
+  },
+  "master_review_required": true,
+  "master_review_reasons": [
+    "The corrective benchmark still contains synthetic or under-evidenced passed scenarios that could mislead the HWPX core selection decision",
+    "The current scorecard is inflated by invalid passes and must not be used for architecture selection",
+    "A further corrective iteration is required before deciding whether task 002 remains open or is followed by a task 003 contract"
+  ],
+  "next_prompt_intent": "Do not transition stage or select a core. Preserve commits 70708db, e1e6504, 22d5162 and d666bb6 as evidence. In a new corrective iteration, first add failing tests for S06-S08 auto-preservation, S13/S14 package-valid substitution, incomplete S12, missing schemas, count-based scoring and placeholder attempted commands. Then regenerate benchmark-002 results with invalid passes downgraded, implement scenario-specific evidence validators, acquire and execute pinned external candidates as already master-approved, run actual Hancom COM, and regenerate an internally consistent report and scorecard.",
+  "notes": "The reported task execution is legitimately partial, not completed. Do not ask the user for visual review because no valid candidate mutation plus COM-resaved output exists."
 }
