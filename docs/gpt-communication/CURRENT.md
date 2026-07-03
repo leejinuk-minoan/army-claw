@@ -11,177 +11,159 @@
 현재 작업: hwpx-core-benchmark-003-evidence-integrity corrective continuation
 ```
 
-Army Claw 관련 작업 보고와 GPT 답변은 전체 프로젝트 단계표를 먼저 사용한다.
-
-## 현재 작업 브랜치
+## 현재 브랜치와 판정
 
 ```text
-feature/hwpx-core-benchmark
-```
-
-기준 구현 브랜치:
-
-```text
-feature/hwpx-adaptive-board-fit-v5
-```
-
-## Benchmark 003 마스터 판정
-
-```text
+work_branch: feature/hwpx-core-benchmark
+base_implementation_branch: feature/hwpx-adaptive-board-fit-v5
 benchmark_003_status: partial_meaningful_progress
 completion_gate_passed: false
-task_003_completion: rejected
 proceed_to_task_004: false
 core_selection: prohibited
 stage_transition: prohibited
 user_visual_review_required_now: false
 ```
 
-마스터 검토 문서:
+마스터 검토:
 
 ```text
 docs/gpt-communication/opinions/2026-07-03-hwpx-core-benchmark-003-master-review.md
 ```
 
-프롬프트 작성 에이전트 검토 문서:
+## 새 실행 운영 방식
+
+로컬 Codex 토큰 절감을 위해 클라우드–로컬 라우팅을 활성화했다.
 
 ```text
-docs/gpt-communication/opinions/2026-07-03-hwpx-core-benchmark-003-prompt-agent-review.md
+마스터 에이전트
+→ 계획·단계·Gate
+
+프롬프트 작성 에이전트
+→ 작업 분류·Task Contract·결과 검토
+
+Codex 대행 엔진
+→ 클라우드 분석·설계·정적 변경·delegation package push
+
+로컬 Codex
+→ 로컬 전용 설치·실행·테스트·측정·산출물·push
 ```
 
-## 인정하는 진전
-
-- benchmark-002의 S06~S08, S12~S14 invalid pass를 blocked로 하향
-- Editor, Validator, Layout Authority 역할 분리
-- 역할과 무관한 시나리오를 not_applicable로 분리
-- planned_commands와 attempted_commands 분리
-- v1 fixture explicit missing record 생성
-- 5개 schema 파일 생성
-- benchmark-001/002 불변 유지
-- Task 003 단위 테스트 7 passed / 0 failed
-- partial, completion gate false, core selection 금지를 정직하게 보고
-
-## 완료로 인정하지 않는 이유
-
-- status 일부가 actual evidence가 아니라 candidate/scenario 고정 분기에서 생성됨
-- S06~S08 gate가 field presence만 확인하고 before/after 의미 비교를 하지 않음
-- S12~S14 gate가 Task Contract의 전체 증거를 강제하지 않음
-- schema가 conditional/nested 구조를 충분히 강제하지 않음
-- 내부 profile validator는 표준 Draft 2020-12 validator가 아님
-- schema 파일을 meta-schema로 검증하지 않음
-- filesystem의 모든 생성 JSON을 올바른 schema로 검증하지 않음
-- `invalid_pass_count`가 계산값이 아니라 상수 0
-- API extensibility 5점이 validator 없이 부여됨
-- benchmark-002 S12 partial evidence lineage가 소실됨
-- source immutability가 실제 task-start/task-end 비교가 아님
-- full tools/hancom regression이 jszip 부재로 7 passed / 18 failed
-
-## 현재 Task 003 교정 계속
+기준 문서:
 
 ```text
-task_id: hwpx-core-benchmark-003-evidence-integrity
-mode: corrective continuation
-branch: feature/hwpx-core-benchmark
+docs/gpt-communication/CLOUD_LOCAL_EXECUTION_ROUTING.md
+docs/gpt-communication/CODEX_DELEGATION_AGENT_BOOTSTRAP.md
+docs/gpt-communication/delegation/DELEGATION_PACKAGE_TEMPLATE.md
 ```
 
-우선순위:
+Task Contract는 다음을 포함한다.
 
-1. repository-approved pinned jszip 환경 복구
-2. task-start baseline과 current에서 동일 환경 전체 회귀 재실행
-3. standards-compliant Draft 2020-12 validator 고정 반입
-4. validator exact version·LICENSE·SHA256·offline replay 기록
-5. 5개 schema conditional/nested 구조 보강
-6. schema 파일 자체 meta-schema validation
-7. filesystem-derived 전체 JSON inventory 생성
-8. 모든 최종 JSON을 마지막 write 이후 올바른 schema로 재검증
-9. candidate/scenario 고정 status 분기 제거
-10. S06~S08 semantic before/after validator 구현
-11. S12~S14 complete evidence gate 구현
-12. invalid_pass_count 실제 계산과 injection test
-13. 모든 score point에 validator result 연결
-14. benchmark-002 검증된 partial evidence lineage import
-15. task-start/task-end immutability manifest 비교
-16. RED/positive tests 보강
-17. report·logs·artifacts·handoff·commit SHA 재정합
+```text
+routing_class: cloud_delegable | local_codex_required | hybrid
+cloud_scope
+local_scope
+local_validation_required
+delegation_package_path
+delegation_commit_sha
+local_execution_base_sha
+```
+
+대행 결과는 GitHub push로 전달한다. 로컬 Codex는 `CODEX_EXECUTION_BRIEF.md`를 먼저 읽고 지정된 로컬 작업만 수행한다.
+
+동일 Task에서 대행 엔진과 로컬 Codex가 동시에 쓰지 않는다.
+
+```text
+cloud_preparation
+→ delegation push
+→ prompt-agent verification
+→ local_execution
+→ local Codex push
+→ result_review
+```
+
+## 현재 Task 003 클라우드 범위
+
+Codex 대행 엔진이 먼저 수행한다.
+
+- candidate/scenario 고정 status 분기 제거
+- evidence/probe 기반 상태 결정 구조
+- S06~S08 semantic before/after validator
+- S12~S14 complete evidence gate
+- 상세 Draft 2020-12 Schema
+- filesystem-derived JSON inventory
+- invalid-pass injection test
+- score rubric validator
+- task-start/task-end manifest 구조
+- delegation package와 로컬 실행 브리프
+
+대행 엔진은 클라우드 미실행 결과를 테스트 통과로 보고하지 않는다.
+
+## 현재 Task 003 로컬 범위
+
+로컬 Codex만 수행한다.
+
+- repository-approved pinned jszip 환경 복구
+- standards-compliant Draft 2020-12 validator artifact 반입·설치
+- 실제 LICENSE·SHA256·offline replay 수집
+- task-start baseline과 current 전체 Hancom 테스트
+- 실제 filesystem inventory와 최종 Schema 검증
+- stdout/stderr/exit code와 산출물 생성
+- 최종 보고서·commit·push
+
+## Task 003 완료를 막는 문제
+
+- 일부 status가 actual evidence가 아니라 고정 분기에서 생성
+- S06~S08 gate가 field presence만 검사
+- S12~S14 gate가 계약 전체 증거를 강제하지 않음
+- Schema conditional/nested 구조 미흡
+- 표준 Draft 2020-12 validator 부재
+- 모든 생성 JSON의 최종 전량 검증 부재
+- invalid_pass_count 상수 0
+- validator 없는 점수 부여
+- 실제 task-start/task-end 불변성 비교 부재
+- full Hancom regression 18 failed due to missing jszip environment
 
 ## Task 003 완료 Gate
 
 ```text
-- 근거 없는 passed 0건
 - status가 role + actual evidence/probe에서만 산출
 - S06~S08 corruption/mismatch fixture 탐지
 - S12~S14 complete gate 정확성
-- standards-compliant Draft 2020-12 validator pinned
+- 표준 Draft 2020-12 validator pinned
 - validator LICENSE·SHA256·offline replay 확보
-- schema 5개 meta-schema validation 통과
-- filesystem inventory의 모든 Task 003 JSON schema validation 통과
-- invalid_pass_count 계산 및 injection test 통과
-- 모든 score point에 evidence validator 연결
+- 5개 Schema meta-schema validation 통과
+- 모든 Task 003 JSON 최종 Schema validation 통과
+- invalid_pass_count 계산·injection test 통과
+- 모든 점수에 evidence validator 연결
 - full tools/hancom regression 0 failed
 - report·logs·artifacts·handoff·commit SHA 일치
 ```
 
 ## 후속 Task
 
-### Task 004
-
 ```text
-task_id: hwpx-core-benchmark-004-external-candidates
-status: blocked_by_task_003
+Task 004 external candidates: blocked_by_task_003
+Task 005 Hancom layout and S05: blocked_by_task_003_and_004
 ```
-
-### Task 005
-
-```text
-task_id: hwpx-core-benchmark-005-hancom-layout
-status: blocked_by_task_003_and_004
-```
-
-## 코어 선정 방식
-
-```text
-Editor Gate:
-Current Node/XML vs python-hwpx
-
-Validator Gate:
-hwpxlib vs HwpForge
-
-Layout Gate:
-Hancom 2024 COM
-```
-
-아직 어느 후보도 최종 선정되지 않았다.
-
-## 기존 사용자 시각 판정
-
-```text
-v5_main_2_adaptive_fit_status: user_confirmed_success
-v5_support_2_start_anchor_status: user_confirmed_success
-v5_support_2_table_container_status: failed_visual_review
-v5_support_2_spill_root_cause: second_one_by_one_table_excess_height
-v5_main_3_physical_position_status: displaced_by_support_2_spill
-```
-
-Task 005에서 실제 후보별 수정 HWPX와 COM-resaved 파일이 생성되기 전까지 사용자 화면 확인을 요청하지 않는다.
 
 ## 금지
 
 ```text
-- Task 004 시작
-- benchmark-001/002/003 scorecard로 코어 선정
-- Stage 1-4 진입
-- production Container-Aware Table Fit 구현
-- commit amend 또는 force push
-- actual evidence 없는 passed/completed
+- Task 003 완료 전 Task 004 시작
+- 코어 선정 또는 Stage 1-4 진입
+- 대행 엔진과 로컬 Codex의 동일 파일 동시 수정
+- 실제 실행 없는 passed/completed
+- main merge, amend, force push
 - 실제 COM output 전 사용자 시각검증 요청
 ```
 
 ## 다음 의사결정 Gate
 
 ```text
-Task 003 evidence integrity completion
-→ Task 004 external candidates
-→ Task 005 Hancom layout and S05
+Task 003 cloud preparation
+→ local execution
+→ Task 003 completion review
+→ Task 004
+→ Task 005
 → 역할별 HwpCoreAdapter 선정
-→ Container-Aware Table Fit production 구현
 ```
