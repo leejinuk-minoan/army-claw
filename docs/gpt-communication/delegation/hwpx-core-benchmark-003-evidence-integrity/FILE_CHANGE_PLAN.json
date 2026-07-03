@@ -1,0 +1,57 @@
+{
+  "task_id": "hwpx-core-benchmark-003-evidence-integrity",
+  "branch": "agent/task003-cloud-restart",
+  "clean_base_sha": "c222429d6f9698022e3f2d326ca914f245cebc65",
+  "cloud_start_sha": "c222429d6f9698022e3f2d326ca914f245cebc65",
+  "cloud_implementation_files": [
+    "tools/hancom/benchmark/hwpx-core-benchmark-003-evidence-integrity.mjs",
+    "tools/hancom/benchmark/task003-cloud-common.mjs",
+    "tools/hancom/benchmark/task003-cloud-preparation.mjs",
+    "tools/hancom/benchmark/task003-common.mjs",
+    "tools/hancom/benchmark/task003-complete-evidence-gates.mjs",
+    "tools/hancom/benchmark/task003-complete-gates.mjs",
+    "tools/hancom/benchmark/task003-json-inventory.mjs",
+    "tools/hancom/benchmark/task003-license-gate.mjs",
+    "tools/hancom/benchmark/task003-manifest-integrity.mjs",
+    "tools/hancom/benchmark/task003-offline-gate.mjs",
+    "tools/hancom/benchmark/task003-performance-gate.mjs",
+    "tools/hancom/benchmark/task003-preservation-validators.mjs",
+    "tools/hancom/benchmark/task003-schema-runtime.mjs",
+    "tools/hancom/benchmark/task003-score-integrity.mjs",
+    "tools/hancom/benchmark/task003-scoring.mjs",
+    "tools/hancom/benchmark/task003-status-decision.mjs",
+    "tools/hancom/benchmark/task003-status-engine.mjs",
+    "tools/hancom/hwpx-core-benchmark-task003-cloud-positive.test.mjs",
+    "tools/hancom/hwpx-core-benchmark-task003-cloud-red.test.mjs",
+    "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/schemas-v2/adapter-execution.schema.json",
+    "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/schemas-v2/benchmark-result.schema.json",
+    "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/schemas-v2/benchmark-summary.schema.json",
+    "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/schemas-v2/dependency-license-offline-manifest.schema.json",
+    "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/schemas-v2/test-summary.schema.json"
+  ],
+  "delegation_package_files": [
+    "docs/gpt-communication/delegation/hwpx-core-benchmark-003-evidence-integrity/ROUTING_DECISION.json",
+    "docs/gpt-communication/delegation/hwpx-core-benchmark-003-evidence-integrity/DELEGATION_PLAN.md",
+    "docs/gpt-communication/delegation/hwpx-core-benchmark-003-evidence-integrity/FILE_CHANGE_PLAN.json",
+    "docs/gpt-communication/delegation/hwpx-core-benchmark-003-evidence-integrity/TEST_PLAN.json",
+    "docs/gpt-communication/delegation/hwpx-core-benchmark-003-evidence-integrity/CODEX_EXECUTION_BRIEF.md",
+    "docs/gpt-communication/delegation/hwpx-core-benchmark-003-evidence-integrity/DELEGATION_RESULT.md"
+  ],
+  "local_codex_modify_allowlist": [
+    "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/external-artifacts/**",
+    "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/executions/**",
+    "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/**",
+    "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/summary/**",
+    "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/tests/**",
+    "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/corpus-manifest.json",
+    "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/role-matrix.json"
+  ],
+  "local_codex_source_modify_allowlist": [],
+  "forbidden_paths": [
+    "feature/hwpx-core-benchmark",
+    "Task 004 files",
+    "core selection records",
+    "Stage 1-4 transition records"
+  ],
+  "write_lock": "cloud worker read-only after final push; local Codex starts only after master approval"
+}
