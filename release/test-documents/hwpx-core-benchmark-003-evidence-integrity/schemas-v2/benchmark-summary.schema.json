@@ -1,36 +1,49 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "Task 003 benchmark summary v2",
+  "title": "Task 003 canonical benchmark summary",
   "type": "object",
   "required": ["schema_version", "document_type", "task_id"],
   "properties": {
-    "schema_version": { "const": "2.0.0" },
-    "document_type": { "enum": ["benchmark_results", "corpus_manifest", "role_matrix", "scorecard", "layout_gate", "capability_evidence_matrix", "task_manifest", "immutability_comparison", "schema_validation_summary"] },
-    "task_id": { "const": "hwpx-core-benchmark-003-evidence-integrity" },
-    "generated_at": { "type": "string", "format": "date-time" },
-    "completion_gate_passed": { "type": "boolean" },
-    "invalid_pass_count": { "type": "integer", "minimum": 0 },
-    "core_selection": { "const": "prohibited" },
-    "stage_transition": { "const": "prohibited" },
-    "records": { "type": "array" },
-    "results": { "type": "array" },
-    "candidates": { "type": "object" },
-    "diffs": { "type": "array" },
-    "unexpected_diffs": { "type": "array" },
-    "missing_json": { "type": "array", "items": { "type": "string" } },
-    "duplicate_json": { "type": "array", "items": { "type": "string" } },
-    "unclassified_json": { "type": "array", "items": { "type": "string" } },
-    "validation_order_valid": { "type": "boolean" },
-    "valid": { "type": "boolean" },
-    "editor_gate": { "type": "object" },
-    "validator_gate": { "type": "object" },
-    "layout_gate": { "type": "object" }
+    "schema_version": {"const": "2.1.0"},
+    "document_type": {"enum": ["benchmark_results", "corpus_manifest", "role_matrix", "scorecard", "layout_gate", "capability_evidence_matrix", "task_manifest", "immutability_comparison", "schema_validation_summary"]},
+    "task_id": {"const": "hwpx-core-benchmark-003-evidence-integrity"},
+    "generated_at": {"type": "string", "format": "date-time"},
+    "canonical_schema_root": {"const": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/schemas-v2"},
+    "candidates": {"type": "array", "items": {"$ref": "#/$defs/candidate"}, "uniqueItems": true},
+    "results": {"type": "array", "items": {"$ref": "#/$defs/resultLink"}},
+    "records": {"type": "array", "items": {"$ref": "#/$defs/fileRecord"}},
+    "score_rubric": {"type": "array", "items": {"$ref": "#/$defs/rubricItem"}},
+    "invalid_pass_count": {"type": "integer", "minimum": 0},
+    "completion_gate": {"$ref": "#/$defs/completionGate"},
+    "evidence_linkage": {"type": "array", "items": {"$ref": "#/$defs/evidenceLink"}},
+    "core_selection": {"const": "prohibited"},
+    "stage_transition": {"const": "prohibited"},
+    "diffs": {"type": "array", "items": {"$ref": "#/$defs/diff"}},
+    "unexpected_diffs": {"type": "array", "items": {"$ref": "#/$defs/diff"}},
+    "validation_failures": {"type": "integer", "minimum": 0},
+    "valid": {"type": "boolean"},
+    "limitations": {"type": "array", "items": {"type": "string", "minLength": 1}}
   },
-  "allOf": [
-    { "if": { "properties": { "document_type": { "const": "schema_validation_summary" } } }, "then": { "required": ["records", "missing_json", "duplicate_json", "unclassified_json", "validation_order_valid", "valid"] } },
-    { "if": { "properties": { "document_type": { "const": "task_manifest" } } }, "then": { "required": ["records"] } },
-    { "if": { "properties": { "document_type": { "const": "scorecard" } } }, "then": { "required": ["invalid_pass_count", "core_selection", "stage_transition"] } },
-    { "if": { "properties": { "document_type": { "const": "benchmark_results" } } }, "then": { "required": ["completion_gate_passed", "core_selection", "stage_transition"] } }
+  "oneOf": [
+    {"properties": {"document_type": {"const": "benchmark_results"}}, "required": ["candidates", "results", "score_rubric", "invalid_pass_count", "completion_gate", "evidence_linkage", "core_selection", "stage_transition"]},
+    {"properties": {"document_type": {"const": "scorecard"}}, "required": ["score_rubric", "invalid_pass_count", "evidence_linkage", "core_selection", "stage_transition"]},
+    {"properties": {"document_type": {"const": "role_matrix"}}, "required": ["candidates", "evidence_linkage"]},
+    {"properties": {"document_type": {"const": "task_manifest"}}, "required": ["records", "evidence_linkage"]},
+    {"properties": {"document_type": {"const": "immutability_comparison"}}, "required": ["diffs", "unexpected_diffs", "valid", "evidence_linkage"]},
+    {"properties": {"document_type": {"const": "schema_validation_summary"}}, "required": ["canonical_schema_root", "records", "validation_failures", "valid", "evidence_linkage"]},
+    {"properties": {"document_type": {"enum": ["corpus_manifest", "layout_gate", "capability_evidence_matrix"]}}, "required": ["records", "evidence_linkage"]}
   ],
-  "additionalProperties": true
+  "allOf": [
+    {"if": {"required": ["completion_gate"], "properties": {"completion_gate": {"properties": {"passed": {"const": true}}}}}, "then": {"properties": {"invalid_pass_count": {"const": 0}, "validation_failures": {"const": 0}}}}
+  ],
+  "$defs": {
+    "candidate": {"type": "object", "required": ["candidate_id", "role", "runtime"], "properties": {"candidate_id": {"type": "string", "minLength": 1}, "role": {"enum": ["editor", "validator", "layout_authority"]}, "runtime": {"type": "string", "minLength": 1}, "role_matrix_reference": {"type": "string", "minLength": 1}}, "additionalProperties": false},
+    "resultLink": {"type": "object", "required": ["candidate_id", "scenario_id", "status", "result_path", "result_sha256"], "properties": {"candidate_id": {"type": "string"}, "scenario_id": {"type": "string", "pattern": "^S(0[1-9]|1[0-4])$"}, "status": {"enum": ["passed", "failed", "unsupported", "blocked", "not_applicable"]}, "result_path": {"type": "string"}, "result_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}}, "additionalProperties": false},
+    "fileRecord": {"type": "object", "required": ["path", "classification", "sha256", "size"], "properties": {"path": {"type": "string", "minLength": 1}, "classification": {"type": "string", "minLength": 1}, "schema_path": {"type": ["string", "null"]}, "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}, "size": {"type": "integer", "minimum": 0}}, "additionalProperties": false},
+    "rubricItem": {"type": "object", "required": ["rubric_id", "points", "awarded", "state", "validator_id", "evidence_paths"], "properties": {"rubric_id": {"type": "string"}, "points": {"type": "number", "minimum": 0}, "awarded": {"type": "number", "minimum": 0}, "state": {"enum": ["awarded", "pending"]}, "validator_id": {"type": "string"}, "evidence_paths": {"type": "array", "items": {"type": "string"}}}, "additionalProperties": false},
+    "completionGate": {"type": "object", "required": ["passed", "required_run_failures", "invalid_pass_count", "schema_validation_failures"], "properties": {"passed": {"type": "boolean"}, "required_run_failures": {"type": "integer", "minimum": 0}, "invalid_pass_count": {"type": "integer", "minimum": 0}, "schema_validation_failures": {"type": "integer", "minimum": 0}}, "additionalProperties": false},
+    "evidenceLink": {"type": "object", "required": ["artifact_role", "path", "sha256"], "properties": {"artifact_role": {"type": "string", "minLength": 1}, "path": {"type": "string", "minLength": 1}, "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}}, "additionalProperties": false},
+    "diff": {"type": "object", "required": ["path", "allowed"], "properties": {"path": {"type": "string"}, "allowed": {"type": "boolean"}, "before_sha256": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"}, "after_sha256": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"}}, "additionalProperties": false}
+  },
+  "additionalProperties": false
 }
