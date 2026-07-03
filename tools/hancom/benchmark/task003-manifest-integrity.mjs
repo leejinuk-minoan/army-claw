@@ -2,7 +2,7 @@ import { createHash } from "node:crypto";
 import { existsSync } from "node:fs";
 import { readFile, readdir, stat } from "node:fs/promises";
 import { relative, resolve } from "node:path";
-import { deepEqual, isSha256, nowIso, TASK_003_ID } from "./task003-common.mjs";
+import { deepEqual, isGitCommitSha, isSha256, nowIso, TASK_003_ID } from "./task003-common.mjs";
 
 async function files(root) {
   const output = [];
@@ -19,6 +19,7 @@ async function files(root) {
 async function sha256File(path) { return createHash("sha256").update(await readFile(path)).digest("hex"); }
 
 export async function captureTaskManifest({ workspace, targets, phase, commitSha }) {
+  if (!isGitCommitSha(commitSha)) throw new Error("manifest_commit_sha_invalid");
   const records = [];
   for (const target of targets) {
     const absolute = resolve(workspace, target);
@@ -41,13 +42,19 @@ export function compareTaskManifests(start, end, allowedChanges = []) {
 }
 
 export function validateCrossArtifactConsistency({ report, testSummary, handoff }) {
+  const reportCommit = report?.tested_implementation_commit_sha;
+  const testCommit = testSummary?.tested_implementation_commit_sha;
+  const handoffCommit = handoff?.tested_implementation_commit_sha;
   const assertions = [
     { assertion_id: "test_counts_consistent", expected: report?.tests, actual: testSummary?.totals, passed: report?.tests?.passed === testSummary?.totals?.passed && report?.tests?.failed === testSummary?.totals?.failed },
-    { assertion_id: "tested_commit_report_handoff_consistent", expected: report?.tested_implementation_commit_sha, actual: handoff?.tested_implementation_commit_sha, passed: isSha256(report?.tested_implementation_commit_sha) && report.tested_implementation_commit_sha === handoff?.tested_implementation_commit_sha },
-    { assertion_id: "tested_commit_report_test_summary_consistent", expected: report?.tested_implementation_commit_sha, actual: testSummary?.tested_implementation_commit_sha, passed: isSha256(report?.tested_implementation_commit_sha) && report.tested_implementation_commit_sha === testSummary?.tested_implementation_commit_sha },
-    { assertion_id: "report_test_summary_sha_link", expected: testSummary?.self_sha256, actual: report?.test_summary_sha256, passed: isSha256(testSummary?.self_sha256) && report?.test_summary_sha256 === testSummary.self_sha256 },
-    { assertion_id: "report_handoff_sha_link", expected: handoff?.self_sha256, actual: report?.handoff_sha256, passed: isSha256(handoff?.self_sha256) && report?.handoff_sha256 === handoff.self_sha256 },
-    { assertion_id: "handoff_report_sha_link", expected: report?.self_sha256, actual: handoff?.report_sha256, passed: isSha256(report?.self_sha256) && handoff?.report_sha256 === report.self_sha256 },
+    { assertion_id: "tested_commit_report_valid_git_sha", expected: "40 lowercase hexadecimal characters", actual: reportCommit, passed: isGitCommitSha(reportCommit) },
+    { assertion_id: "tested_commit_test_summary_valid_git_sha", expected: "40 lowercase hexadecimal characters", actual: testCommit, passed: isGitCommitSha(testCommit) },
+    { assertion_id: "tested_commit_handoff_valid_git_sha", expected: "40 lowercase hexadecimal characters", actual: handoffCommit, passed: isGitCommitSha(handoffCommit) },
+    { assertion_id: "tested_commit_report_handoff_consistent", expected: reportCommit, actual: handoffCommit, passed: isGitCommitSha(reportCommit) && isGitCommitSha(handoffCommit) && reportCommit === handoffCommit },
+    { assertion_id: "tested_commit_report_test_summary_consistent", expected: reportCommit, actual: testCommit, passed: isGitCommitSha(reportCommit) && isGitCommitSha(testCommit) && reportCommit === testCommit },
+    { assertion_id: "report_test_summary_sha_link", expected: testSummary?.self_sha256, actual: report?.test_summary_sha256, passed: isSha256(testSummary?.self_sha256) && isSha256(report?.test_summary_sha256) && report.test_summary_sha256 === testSummary.self_sha256 },
+    { assertion_id: "report_handoff_sha_link", expected: handoff?.self_sha256, actual: report?.handoff_sha256, passed: isSha256(handoff?.self_sha256) && isSha256(report?.handoff_sha256) && report.handoff_sha256 === handoff.self_sha256 },
+    { assertion_id: "handoff_report_sha_link", expected: report?.self_sha256, actual: handoff?.report_sha256, passed: isSha256(report?.self_sha256) && isSha256(handoff?.report_sha256) && handoff.report_sha256 === report.self_sha256 },
     { assertion_id: "completion_gate_consistent", expected: report?.completion_gate_passed, actual: handoff?.completion_gate_passed, passed: report?.completion_gate_passed === handoff?.completion_gate_passed },
   ];
   return { valid: assertions.every((assertion) => assertion.passed), assertions };
