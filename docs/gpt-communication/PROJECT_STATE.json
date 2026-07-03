@@ -3,18 +3,27 @@
   "project": {
     "name": "Army Claw",
     "repository": "leejinuk-minoan/army-claw",
-    "local_root": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기",
     "total_stages": 8
   },
   "governance": {
     "master_agent_chat": "current_chat",
     "codex_prompt_author_chat": "separate_project_chat",
-    "user_result_flow": "user shares Codex results and Hancom visual evidence with the Codex prompt-author agent",
+    "codex_delegation_agent_chat": "separate_project_chat",
+    "local_codex_role": "local_execution_only",
+    "execution_routing": {
+      "enabled": true,
+      "classes": ["cloud_delegable", "local_codex_required", "hybrid"],
+      "policy": "docs/gpt-communication/CLOUD_LOCAL_EXECUTION_ROUTING.md",
+      "delegation_bootstrap": "docs/gpt-communication/CODEX_DELEGATION_AGENT_BOOTSTRAP.md",
+      "package_template": "docs/gpt-communication/delegation/DELEGATION_PACKAGE_TEMPLATE.md",
+      "delegation_results_delivered_by_git_push": true,
+      "local_codex_reads_execution_brief_first": true,
+      "same_task_concurrent_writes": false
+    },
     "master_monitoring": {
       "enabled": true,
       "cadence": "hourly",
       "mode": "condition_watch",
-      "notify_only_on_meaningful_change_or_risk": true,
       "policy": "docs/gpt-communication/MASTER_MONITORING_POLICY.md"
     },
     "source_of_truth": [
@@ -22,12 +31,11 @@
       "docs/gpt-communication/CURRENT.md",
       "docs/gpt-communication/opinions/2026-07-02-army-claw-master-roadmap.md",
       "docs/gpt-communication/opinions/2026-07-02-hwpx-core-architecture-decision.md",
-      "docs/gpt-communication/opinions/2026-07-02-hwpx-core-benchmark-001-master-review.md",
-      "docs/gpt-communication/opinions/2026-07-03-hwpx-core-benchmark-002-master-review.md",
       "docs/gpt-communication/opinions/2026-07-03-hwpx-core-benchmark-003-master-review.md",
-      "docs/gpt-communication/MASTER_MONITORING_POLICY.md",
+      "docs/gpt-communication/CLOUD_LOCAL_EXECUTION_ROUTING.md",
       "docs/gpt-communication/AGENT_OPERATING_MODEL.md",
       "docs/gpt-communication/tasks/<task-id>/TASK_CONTRACT.md",
+      "docs/gpt-communication/delegation/<task-id>/CODEX_EXECUTION_BRIEF.md",
       "docs/gpt-communication/handoffs/CODEX_LATEST.json"
     ]
   },
@@ -39,18 +47,6 @@
     "status": "in_progress",
     "current_task": "hwpx-core-benchmark-003-evidence-integrity corrective continuation"
   },
-  "completed_substages": [
-    {
-      "id": "1-1",
-      "name": "요구사항 및 실제 문서 Fixture 고정",
-      "status": "completed"
-    },
-    {
-      "id": "1-2",
-      "name": "v1~v5 회귀시험 자산화",
-      "status": "mostly_completed"
-    }
-  ],
   "architecture": {
     "orchestrator": "OpenClaw / Army Claw Node.js·TypeScript",
     "hwp_adapter": {
@@ -66,101 +62,54 @@
   "latest_implementation_commit": "534df85b74c7c3cb6fc749e24ae1633927d72a3e",
   "latest_prompt_agent_review_commit": "14d151f6898e64eb0ba0b397b566209b49956d82",
   "latest_master_review_commit": "e3b6ccd327da0a6c4d1bb878a00d6601501cfb8c",
-  "benchmark_reviews": {
-    "benchmark_001": {
-      "status": "partial_rejected_as_complete",
-      "completion_gate_passed": false
-    },
-    "benchmark_002": {
-      "status": "partial_meaningful_progress",
-      "completion_gate_passed": false,
-      "scorecard_valid_for_selection": false
-    },
-    "benchmark_003": {
-      "status": "partial_meaningful_progress",
-      "completion_gate_passed": false,
-      "task_completion": "rejected",
-      "proceed_to_task_004": false,
-      "invalid_pass_cleanup": "achieved",
-      "standards_compliant_schema_validation": "not_achieved",
-      "full_hancom_regression": "failed_18_missing_jszip_environment",
-      "scorecard_valid_for_selection": false,
-      "user_visual_review_required_now": false
-    }
-  },
-  "benchmark_followup_plan": [
-    {
-      "task_id": "hwpx-core-benchmark-003-evidence-integrity",
-      "status": "corrective_continuation_required",
-      "purpose": "evidence-only status, semantic gates, standard schema validation, full regression closure"
-    },
-    {
-      "task_id": "hwpx-core-benchmark-004-external-candidates",
-      "status": "blocked_by_task_003",
-      "purpose": "pinned python-hwpx, hwpxlib, HwpForge artifact·license·offline install·실제 process 실행"
-    },
-    {
-      "task_id": "hwpx-core-benchmark-005-hancom-layout",
-      "status": "blocked_by_task_003_and_004",
-      "purpose": "Hancom COM open/save, page measurement, S05 두 번째 1×1 표 before/after, 사용자 검토 산출물"
-    }
+  "latest_operating_model_commits": [
+    "ff777bd7a4878e713236805f8e3f62e5bae0a9de",
+    "9907c1c754221f0803d598738f731ce4d9e95f60",
+    "5aaef0ef8db817569059a2fc2a4304995b573f41",
+    "70fdc0a73f0b0a33b725315478cf0cc5ecbdd286",
+    "8f6234305fd169b6561ffff4c2e01cda961d25c4"
   ],
-  "handoff": {
-    "latest": "docs/gpt-communication/handoffs/CODEX_LATEST.json",
-    "task_contract_template": "docs/gpt-communication/tasks/TASK_CONTRACT_TEMPLATE.md",
-    "prompt_agent_bootstrap": "docs/gpt-communication/CODEX_PROMPT_AGENT_BOOTSTRAP.md",
-    "prompt_agent_updates_latest_handoff": true,
-    "master_updates_official_stage": true
+  "benchmark_003": {
+    "status": "partial_meaningful_progress",
+    "completion_gate_passed": false,
+    "proceed_to_task_004": false,
+    "scorecard_valid_for_selection": false,
+    "full_hancom_regression": "failed_18_missing_jszip_environment",
+    "user_visual_review_required_now": false
   },
   "next_work": {
-    "recommended_branch": "feature/hwpx-core-benchmark",
-    "recommended_task_id": "hwpx-core-benchmark-003-evidence-integrity",
-    "mode": "corrective_continuation",
-    "tasks": [
-      "repository-approved pinned jszip 환경 복구와 baseline/current 전체 회귀 0-failure 확인",
-      "standards-compliant Draft 2020-12 validator exact version·LICENSE·SHA256·offline replay 확보",
-      "5개 schema conditional/nested 구조 보강과 schema meta-validation",
-      "filesystem-derived 전체 Task 003 JSON inventory와 final-write 이후 전량 검증",
-      "candidate/scenario 고정 status 분기 제거",
-      "S06-S08 artifact·hash·semantic before/after·allowed diff 검증",
-      "S12-S14 complete evidence gate 구현",
-      "invalid_pass_count 실제 계산과 injection test",
-      "모든 score point에 validator result 연결",
-      "benchmark-002 검증된 부분 evidence lineage import",
-      "task-start/task-end immutability manifest 비교",
-      "RED/positive tests 보강",
-      "report·logs·artifacts·handoff·commit SHA 재정합"
+    "task_id": "hwpx-core-benchmark-003-evidence-integrity",
+    "routing_class": "hybrid",
+    "phase": "cloud_preparation",
+    "branch": "feature/hwpx-core-benchmark",
+    "cloud_scope": [
+      "evidence/probe 기반 status 구조",
+      "S06-S08 semantic validator",
+      "S12-S14 complete evidence gate와 schema",
+      "filesystem JSON inventory",
+      "invalid-pass와 score validator tests",
+      "delegation package와 local execution brief"
+    ],
+    "local_scope": [
+      "pinned jszip 환경 복구",
+      "표준 Draft 2020-12 validator 반입과 설치",
+      "LICENSE·SHA256·offline replay 수집",
+      "baseline/current 전체 Hancom tests",
+      "실제 산출물·로그·보고서와 commit·push"
     ]
   },
-  "current_visual_findings": {
-    "v5_main_2_adaptive_fit": "user_confirmed_success",
-    "v5_support_2_start_anchor": "user_confirmed_success",
-    "v5_support_2_table_container": "failed_visual_review",
-    "root_cause": "보조 11-2 내부 두 번째 1×1 표의 과도한 고정 높이",
-    "main_3_position": "displaced_by_support_2_spill",
-    "required_future_fix": "ContainerAwareTableFit shrink_to_content",
-    "benchmark_001_outputs": "not_valid_for_new_visual_review",
-    "benchmark_002_outputs": "not_valid_for_new_visual_review",
-    "benchmark_003_outputs": "not_visual_outputs"
+  "handoff": {
+    "latest": "docs/gpt-communication/handoffs/CODEX_LATEST.json",
+    "prompt_agent_bootstrap": "docs/gpt-communication/CODEX_PROMPT_AGENT_BOOTSTRAP.md",
+    "delegation_agent_bootstrap": "docs/gpt-communication/CODEX_DELEGATION_AGENT_BOOTSTRAP.md",
+    "delegation_package_template": "docs/gpt-communication/delegation/DELEGATION_PACKAGE_TEMPLATE.md"
   },
-  "stage_1_gate": [
-    "선행 HWPX 코어 benchmark와 선택 근거 완료",
-    "HwpCoreAdapter 교체 가능 구조",
-    "1×1 표·글상자 Container-Aware Fit 통과",
-    "실제 Hancom COM page measurement 통과",
-    "기준 양식 치환 통과",
-    "양식 외 appendix 생성 최소 기능 통과",
-    "원본 보호와 rollback 통과",
-    "사용자 한글 2024 시각 검증 통과"
-  ],
   "restrictions": [
     "사용자 승인 없이 main merge 금지",
     "원본 HWP/HWPX 덮어쓰기 금지",
-    "여러 HWPX 코어의 연속 재저장 금지",
-    "아키텍처·단계 변경은 마스터 에이전트 승인 필요",
-    "사용자 시각 확인 전 엔진 완료 선언 금지",
-    "benchmark-001/002/003 scorecard를 코어 선정에 사용 금지",
+    "아키텍처·단계 변경은 마스터 승인 필요",
     "Task 003 완료 전 Task 004와 Stage 1-4 진입 금지",
-    "실제 COM output 전 사용자 시각검증 요청 금지"
+    "실제 실행 없는 passed/completed 금지",
+    "동일 Task에서 대행 엔진과 로컬 Codex 동시 수정 금지"
   ]
 }
