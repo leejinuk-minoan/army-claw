@@ -4,7 +4,12 @@ import { buildRoleMatrix } from "./benchmark/task003-common.mjs";
 import { validateS06, validateS07, validateS08 } from "./benchmark/task003-preservation-validators.mjs";
 import { validateS12Evidence, validateS13Evidence, validateS14Evidence } from "./benchmark/task003-complete-gates.mjs";
 import { deriveStatusFromEvidence } from "./benchmark/task003-status-decision.mjs";
-import { createCommand, createFilesystemFixture, createPreservationFixture, TEST_HASHES, validRelationship } from "./benchmark/task003-test-fixtures.mjs";
+import { validateCrossArtifactConsistency } from "./benchmark/task003-manifest-integrity.mjs";
+import { calculateEvidenceRubricScorecard, calculateInvalidPassCount, validatePassedResultEligibility } from "./benchmark/task003-score-integrity.mjs";
+import { createCommand, createEligiblePassedResult, createFilesystemFixture, createPreservationFixture, TEST_HASHES, validRelationship } from "./benchmark/task003-test-fixtures.mjs";
+
+const GIT_SHA = "a".repeat(40);
+const FILE_SHA = "b".repeat(64);
 
 function s06(base) {
   return {
@@ -105,11 +110,7 @@ test("S14 verifies actual LICENSE COPYING NOTICE and upstream lineage", async ()
     project_identity: "candidate@1.0.0",
     component_scope: "runtime",
     upstream_artifact: upstream,
-    license_files: [
-      { kind: "LICENSE", ...license, ...lineage },
-      { kind: "COPYING", ...copying, ...lineage },
-      { kind: "NOTICE", ...notice, ...lineage },
-    ],
+    license_files: [{ kind: "LICENSE", ...license, ...lineage }, { kind: "COPYING", ...copying, ...lineage }, { kind: "NOTICE", ...notice, ...lineage }],
     spdx_expression: "MIT",
     redistribution: { source_impact: "retain license text", binary_impact: "include notice", obligations: ["include LICENSE", "include COPYING", "include NOTICE"] },
     reviewer: "local-reviewer",
@@ -132,4 +133,26 @@ test("passed status requires valid execution logs and imported filesystem lineag
     scenario_validator_result: { valid: true, missing_evidence: [] },
   });
   assert.equal(result.status, "passed");
+});
+
+test("matching normal 40-character Git SHAs pass cross-artifact consistency", () => {
+  const consistency = validateCrossArtifactConsistency({
+    report: { tests: { passed: 5, failed: 0 }, tested_implementation_commit_sha: GIT_SHA, self_sha256: FILE_SHA, test_summary_sha256: FILE_SHA, handoff_sha256: FILE_SHA, completion_gate_passed: false },
+    testSummary: { totals: { passed: 5, failed: 0 }, tested_implementation_commit_sha: GIT_SHA, self_sha256: FILE_SHA },
+    handoff: { tested_implementation_commit_sha: GIT_SHA, self_sha256: FILE_SHA, report_sha256: FILE_SHA, completion_gate_passed: false },
+  });
+  assert.equal(consistency.valid, true);
+});
+
+test("only a complete filesystem-backed passed result is eligible and receives score", async () => {
+  const { result, context } = await createEligiblePassedResult();
+  const eligibility = validatePassedResultEligibility(result, context);
+  assert.equal(eligibility.eligible, true);
+  const contexts = { "current_node_xml:S06": context };
+  assert.equal(calculateInvalidPassCount([result], contexts), 0);
+  const score = calculateEvidenceRubricScorecard([result], {}, contexts);
+  const rubric = score.editor_gate.current_node_xml.categories.functional_fit.rubric_items.find((entry) => entry.rubric_id === "current_node_xml-S06");
+  assert.equal(rubric.awarded, 3);
+  assert.equal(rubric.state, "awarded");
+  assert.deepEqual(rubric.failure_reasons, []);
 });
