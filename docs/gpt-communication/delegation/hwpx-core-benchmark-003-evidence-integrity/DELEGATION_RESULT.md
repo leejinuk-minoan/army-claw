@@ -3,7 +3,8 @@
 - task_id: `hwpx-core-benchmark-003-evidence-integrity`
 - branch: `agent/task003-cloud-restart`
 - correction_start_sha: `b4fa034da72a76ef694afbcb2c7808bcd512395c`
-- delegation_payload_sha: pending metadata attestation
+- delegation_payload_sha: `8b257a4acd93261cdb81f66f65df507ab1c85140`
+- final_remote_head_recording: external verifier/master attestation
 - local_execution_base_sha: `null`
 - phase: `cloud_runtime_failure_correction_complete_awaiting_read_only_verification`
 - local_codex_prompt_allowed: `false`
