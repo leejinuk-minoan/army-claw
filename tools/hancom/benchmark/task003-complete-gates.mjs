@@ -76,9 +76,8 @@ export function validateS14Evidence(e = {}) {
   mergeValidation(state, fileReferenceValidation(e.upstream_artifact, probes[e.upstream_artifact?.path], "S14_upstream_artifact"));
   const files = e.license_files ?? [];
   const kinds = new Set(files.map((file) => file.kind));
-  if (!kinds.has("LICENSE")) state.missing.push("S14_LICENSE_missing");
   for (const kind of ["LICENSE", "COPYING", "NOTICE"]) {
-    if (!kinds.has(kind) && !e.absent_legal_files?.some((item) => item.kind === kind && item.rationale)) state.missing.push(`S14_${kind}_status_missing`);
+    if (!kinds.has(kind)) state.missing.push(`S14_${kind}_missing`);
   }
   for (const [index, file] of files.entries()) {
     if (!["LICENSE", "COPYING", "NOTICE"].includes(file.kind)) state.missing.push(`S14_legal_kind_invalid:${index}`);
@@ -96,7 +95,7 @@ export function validateS14Evidence(e = {}) {
   if (!Array.isArray(e.redistribution?.obligations) || !e.redistribution.obligations.length) state.missing.push("redistribution_obligations_missing");
   if (!e.reviewer || !isValidDateTime(e.reviewed_at)) state.missing.push("reviewer_or_valid_reviewed_at_missing");
   state.assertions.push(
-    { assertion_id: "S14_license_files_filesystem_verified", expected: true, actual: files.length, passed: files.length > 0 && files.every((file) => fileReferenceValidation(file, probes[file.path], file.kind).valid) },
+    { assertion_id: "S14_all_required_legal_files_filesystem_verified", expected: ["LICENSE", "COPYING", "NOTICE"], actual: [...kinds].sort(), passed: ["LICENSE", "COPYING", "NOTICE"].every((kind) => kinds.has(kind)) && files.every((file) => fileReferenceValidation(file, probes[file.path], file.kind).valid) },
     { assertion_id: "S14_redistribution_assessment_complete", expected: true, actual: e.redistribution, passed: Boolean(e.redistribution?.source_impact && e.redistribution?.binary_impact && e.redistribution.source_impact !== "unknown" && e.redistribution.binary_impact !== "unknown" && e.redistribution.obligations?.length) },
     validateScenarioAssertions(e.scenario_assertions),
   );
