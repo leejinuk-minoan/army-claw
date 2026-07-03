@@ -1,1 +1,36 @@
-{"type":"object","additionalProperties":false}
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Task 003 benchmark summary v2",
+  "type": "object",
+  "required": ["schema_version", "document_type", "task_id"],
+  "properties": {
+    "schema_version": { "const": "2.0.0" },
+    "document_type": { "enum": ["benchmark_results", "corpus_manifest", "role_matrix", "scorecard", "layout_gate", "capability_evidence_matrix", "task_manifest", "immutability_comparison", "schema_validation_summary"] },
+    "task_id": { "const": "hwpx-core-benchmark-003-evidence-integrity" },
+    "generated_at": { "type": "string", "format": "date-time" },
+    "completion_gate_passed": { "type": "boolean" },
+    "invalid_pass_count": { "type": "integer", "minimum": 0 },
+    "core_selection": { "const": "prohibited" },
+    "stage_transition": { "const": "prohibited" },
+    "records": { "type": "array" },
+    "results": { "type": "array" },
+    "candidates": { "type": "object" },
+    "diffs": { "type": "array" },
+    "unexpected_diffs": { "type": "array" },
+    "missing_json": { "type": "array", "items": { "type": "string" } },
+    "duplicate_json": { "type": "array", "items": { "type": "string" } },
+    "unclassified_json": { "type": "array", "items": { "type": "string" } },
+    "validation_order_valid": { "type": "boolean" },
+    "valid": { "type": "boolean" },
+    "editor_gate": { "type": "object" },
+    "validator_gate": { "type": "object" },
+    "layout_gate": { "type": "object" }
+  },
+  "allOf": [
+    { "if": { "properties": { "document_type": { "const": "schema_validation_summary" } } }, "then": { "required": ["records", "missing_json", "duplicate_json", "unclassified_json", "validation_order_valid", "valid"] } },
+    { "if": { "properties": { "document_type": { "const": "task_manifest" } } }, "then": { "required": ["records"] } },
+    { "if": { "properties": { "document_type": { "const": "scorecard" } } }, "then": { "required": ["invalid_pass_count", "core_selection", "stage_transition"] } },
+    { "if": { "properties": { "document_type": { "const": "benchmark_results" } } }, "then": { "required": ["completion_gate_passed", "core_selection", "stage_transition"] } }
+  ],
+  "additionalProperties": true
+}
