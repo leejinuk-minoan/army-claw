@@ -2,6 +2,8 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { validateAdapterExecutionContract, validateBenchmarkResultContract, validateSchemaDocumentShape } from "./benchmark/task003-schema-preflight.mjs";
 import { validateTestSummaryCompletionContract } from "./benchmark/task003-completion-preflight.mjs";
+import { buildSchemas } from "./benchmark/task003-schema-runtime.mjs";
+import { CANONICAL_SCHEMA_FILES } from "./benchmark/task003-json-inventory.mjs";
 
 const HASH = "a".repeat(64);
 const fileProbe = (path) => ({ path, exists: true, size: 1, sha256: HASH, hash_algorithm: "sha256", source: "filesystem" });
@@ -35,6 +37,23 @@ const adapter = (status) => ({
   validator_results: [validator()],
   missing_evidence: [],
   evidence_completeness: status === "not_applicable" ? "not_applicable" : "complete",
+});
+
+test("all canonical Schema files parse from filesystem and retain strict root shape", () => {
+  const schemas = buildSchemas();
+
+  assert.deepEqual(
+    Object.keys(schemas).sort(),
+    [...CANONICAL_SCHEMA_FILES].sort(),
+  );
+
+  for (const schema of Object.values(schemas)) {
+    const result = validateSchemaDocumentShape(schema);
+    assert.equal(result.valid, true);
+    assert.equal(schema.$schema, "https://json-schema.org/draft/2020-12/schema");
+    assert.equal(schema.type, "object");
+    assert.equal(schema.additionalProperties, false);
+  }
 });
 
 test("passed benchmark-result condition violation is RED", () => {
