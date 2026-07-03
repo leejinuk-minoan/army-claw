@@ -1,1 +1,39 @@
-{"type":"object","additionalProperties":false}
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Task 003 adapter execution v2",
+  "type": "object",
+  "required": ["task_id", "candidate_id", "candidate_role", "scenario_id", "status", "planned_commands", "attempted_commands"],
+  "properties": {
+    "task_id": { "const": "hwpx-core-benchmark-003-evidence-integrity" },
+    "candidate_id": { "type": "string", "minLength": 1 },
+    "candidate_role": { "enum": ["editor", "validator", "layout_authority"] },
+    "scenario_id": { "type": "string", "pattern": "^S(0[1-9]|1[0-4])$" },
+    "status": { "enum": ["passed", "failed", "unsupported", "blocked", "not_applicable"] },
+    "planned_commands": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
+    "attempted_commands": { "type": "array", "items": { "$ref": "#/$defs/command" } },
+    "source_api_inspection": { "type": ["object", "null"] },
+    "prerequisite_probe": { "type": ["object", "null"] }
+  },
+  "allOf": [
+    { "if": { "properties": { "status": { "enum": ["passed", "failed"] } } }, "then": { "properties": { "attempted_commands": { "minItems": 1 } } } },
+    { "if": { "properties": { "status": { "const": "blocked" } } }, "then": { "required": ["prerequisite_probe"] } },
+    { "if": { "properties": { "status": { "const": "unsupported" } } }, "then": { "required": ["source_api_inspection"] } }
+  ],
+  "$defs": {
+    "command": {
+      "type": "object",
+      "required": ["command", "executed", "started_at", "ended_at", "exit_code", "stdout_path", "stderr_path"],
+      "properties": {
+        "command": { "type": "string", "minLength": 1 },
+        "executed": { "const": true },
+        "started_at": { "type": "string", "format": "date-time" },
+        "ended_at": { "type": "string", "format": "date-time" },
+        "exit_code": { "type": "integer" },
+        "stdout_path": { "type": "string", "minLength": 1 },
+        "stderr_path": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
