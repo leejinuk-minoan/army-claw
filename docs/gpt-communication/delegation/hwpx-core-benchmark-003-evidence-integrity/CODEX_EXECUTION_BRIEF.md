@@ -1,51 +1,67 @@
-# Local Codex Execution Brief — Task 003
+# Local Codex Execution Brief — Task 003 Corrective Cloud Handoff
 
 ## Entry condition
 
-Do not begin until the master explicitly approves local execution and supplies the final delegation SHA. Confirm that `agent/task003-cloud-restart` points to that SHA before any write.
+Do not create a local execution branch or write any file until the master completes read-only verification, records the final remote HEAD externally and assigns that exact SHA as `local_execution_base_sha`.
 
-## Immutable cloud source
+Before writing, verify:
 
-Do not modify files under `tools/hancom/benchmark/`, `tools/hancom/*task003-cloud*.test.mjs`, `release/test-documents/hwpx-core-benchmark-003-evidence-integrity/schemas-v2/`, or this delegation package. Treat them as the approved cloud-preparation implementation.
+- branch: `agent/task003-cloud-restart`
+- HEAD equals the master-assigned `local_execution_base_sha`
+- working tree is clean
+- no concurrent cloud or prompt-agent writer exists
 
-Local output writes are restricted to the allowlist in `FILE_CHANGE_PLAN.json`.
+Abort on any mismatch.
+
+## Immutable cloud payload
+
+Do not modify:
+
+- `tools/hancom/benchmark/**`
+- `tools/hancom/hwpx-core-benchmark-task003-*.test.mjs`
+- `release/test-documents/hwpx-core-benchmark-003-evidence-integrity/schemas-v2/**`
+- `release/test-documents/hwpx-core-benchmark-003-evidence-integrity/schemas/**`
+- this delegation package
+
+The only active Schema root is `release/test-documents/hwpx-core-benchmark-003-evidence-integrity/schemas-v2/`. The sibling `schemas/` directory is legacy inactive and must not be used for validation.
+
+## Local write allowlist
+
+Use only the output paths in `FILE_CHANGE_PLAN.json`, including:
+
+`docs/gpt-communication/reports/2026-07-03-hwpx-core-benchmark-003-*.md`
+
+Source, Schema, test and delegation-package changes require a new master-approved cloud correction.
 
 ## Required execution sequence
 
-1. Record `git status`, branch and HEAD; abort on mismatch or unrelated changes.
-2. Capture `summary/task-start-manifest.json` before environment, dependency or result writes.
-3. Restore the repository-approved pinned jszip environment without changing lock or source files.
-4. Install a pinned standards-compliant Draft 2020-12 validator from a local/offline artifact. Record exact version, artifact path, artifact SHA256, LICENSE/COPYING/NOTICE paths and SHA256.
-5. Run the positive and RED Node tests. Capture command, start/end time, stdout, stderr and exit code.
-6. Run the full baseline Hancom regression at the Task 003 baseline and the full current regression at the approved branch HEAD in the same environment.
-7. Execute only Task 003 probes and scenario validation. Do not perform Task 004, core selection or Stage 1-4 transition.
-8. For every scenario, derive status from role applicability, actual execution, source/API inspection, prerequisite probes, imported evidence lineage and scenario validator results. Never inherit a candidate/scenario status.
-9. For S06-S08, collect before/after snapshot paths and SHA256, mutation output path and SHA256, allowed target diff, non-target entry hashes and scenario-specific structures.
-10. For S12, retain raw samples, process boundary, RSS method and limitations, artifact/dependency inventories, logs and recomputed median/p95/totals.
-11. For S13, use a clean isolated environment and record attempted install/runtime commands, installed inventory, network test and cleanup.
-12. For S14, record exact identity/version, actual legal files and SHA256, SPDX or manual assessment, source/binary redistribution impact and obligations.
-13. After all JSON writes finish, run the filesystem-derived inventory. Reject missing, duplicate or unclassified JSON and reject validation that began before the final write completed.
-14. Meta-validate all `schemas-v2` documents and validate every mapped Task 003 JSON document using the installed standard validator.
-15. Calculate `invalid_pass_count`; it must be zero. Scores may be awarded only from true validator results.
-16. Capture `summary/task-end-manifest.json`, compare to task-start and reject unexpected changes.
-17. Run report/test/handoff SHA and completion-gate consistency checks.
-18. Write final local artifacts and report. Do not claim `passed`, Task completion, core selection or transition unless all corresponding executions and gates actually succeeded.
+1. Capture branch, HEAD, working state and `summary/task-start-manifest.json`.
+2. Restore the repository-approved pinned jszip environment without changing source or lock files.
+3. Install a pinned standards-compliant Draft 2020-12 validator from an offline artifact. Record exact version, artifact path, SHA256 and legal-file evidence.
+4. Run all five prepared test files:
+   - `hwpx-core-benchmark-task003-cloud-positive.test.mjs`
+   - `hwpx-core-benchmark-task003-cloud-red.test.mjs`
+   - `hwpx-core-benchmark-task003-semantic-red.test.mjs`
+   - `hwpx-core-benchmark-task003-filesystem-red.test.mjs`
+   - `hwpx-core-benchmark-task003-schema-red.test.mjs`
+5. Every attempted command must contain command, executed=true, method, valid start/end date-time, exit code, stdout/stderr paths and actual filesystem probes for both logs.
+6. Run baseline and current full Hancom regression in the same pinned environment.
+7. Execute only Task 003 probes and scenarios. Do not start Task 004, select a core or transition stages.
+8. Derive status only from actual execution, verified source/API inspection or an actual blocking prerequisite probe. A blocked result requires reason code, missing prerequisites, checked paths and probe evidence.
+9. For S06-S08, probe original input HWPX, output HWPX and before/after snapshots; verify identity distinction and snapshot lineage.
+10. For S07, retain relationship source path, ID, type, target and reference source path.
+11. For S08, retain root and per-section namespace declarations plus fwSpace count, paths and document order.
+12. For S12-S14, probe every artifact, dependency, log, installed file, network/cleanup evidence, upstream artifact and legal file; compare actual size and recalculated SHA256.
+13. After every JSON write is finished, run the filesystem inventory. Require the exact five `schemas-v2` Schema files, zero duplicates, zero unclassified active JSON, zero mapping errors and valid write order.
+14. Meta-validate the five canonical Schema files and validate every mapped active JSON with the installed standard Validator. Legacy inactive schemas are not active validation inputs.
+15. Calculate `invalid_pass_count`; require zero before any completion claim or score award.
+16. Capture `summary/task-end-manifest.json`, reject unexpected changes and validate report/test/handoff SHA linkage.
+17. Write the final report only under the approved report pattern.
 
-## Required commands to record
+## Independent CI
 
-Record the exact repository commands selected locally rather than substituting prose. At minimum retain:
-
-- environment restoration/install command
-- Node positive/RED test command
-- baseline full Hancom regression command
-- current full Hancom regression command
-- candidate probe/scenario commands
-- inventory command
-- schema meta-validation and document-validation command
-- final consistency/manifests command
-
-Each attempted command record must include `executed=true`, timestamps, exit code, stdout path and stderr path.
+Independent CI is not required for completion unless the master explicitly marks it required. `not_performed` must include a limitation, but does not by itself force completion false when `required_for_completion=false`.
 
 ## Stop conditions
 
-Stop and request master review when the branch SHA differs, a source file outside the allowlist requires modification, the standard validator cannot be installed offline, baseline/current environments differ, inventory is incomplete, an invalid pass is detected, a schema fails, a manifest has unexpected changes, or Task 004 scope would be required.
+Stop for master review if the base SHA differs, a cloud source change appears necessary, offline dependencies or the standard Validator cannot be established, any required run is not executed or exits nonzero, inventory is incomplete, a Schema fails, an invalid pass occurs, a manifest or SHA link is inconsistent, or Task 004 scope would be required.
