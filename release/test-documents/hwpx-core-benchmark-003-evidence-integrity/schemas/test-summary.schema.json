@@ -2,52 +2,15 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Task 003 test summary",
   "type": "object",
-  "required": [
-    "task_id",
-    "independent_ci_verification",
-    "runs"
-  ],
+  "required": ["document_type", "task_id", "tested_implementation_commit_sha", "totals", "invalid_pass_count", "tests"],
   "properties": {
-    "task_id": {
-      "const": "hwpx-core-benchmark-003-evidence-integrity"
-    },
-    "independent_ci_verification": {
-      "type": "string"
-    },
-    "runs": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "required": [
-          "command",
-          "exit_code",
-          "passed",
-          "failed",
-          "skipped"
-        ],
-        "properties": {
-          "command": {
-            "type": "string"
-          },
-          "exit_code": {
-            "type": "number"
-          },
-          "passed": {
-            "type": "number",
-            "minimum": 0
-          },
-          "failed": {
-            "type": "number",
-            "minimum": 0
-          },
-          "skipped": {
-            "type": "number",
-            "minimum": 0
-          }
-        },
-        "additionalProperties": true
-      }
-    }
+    "document_type": {"const": "test_summary"},
+    "task_id": {"const": "hwpx-core-benchmark-003-evidence-integrity"},
+    "tested_implementation_commit_sha": {"type": "string", "pattern": "^[a-f0-9]{40}$"},
+    "totals": {"type": "object", "required": ["passed", "failed", "skipped"], "properties": {"passed": {"type": "integer", "minimum": 0}, "failed": {"type": "integer", "minimum": 0}, "skipped": {"type": "integer", "minimum": 0}}, "additionalProperties": false},
+    "invalid_pass_count": {"type": "integer", "minimum": 0},
+    "tests": {"type": "array", "items": {"type": "object", "required": ["test_id", "fixture_type", "status", "validator_ids"], "properties": {"test_id": {"type": "string", "minLength": 1}, "fixture_type": {"enum": ["positive", "red", "injection"]}, "status": {"enum": ["passed", "failed", "skipped"]}, "validator_ids": {"type": "array", "items": {"type": "string"}}, "stdout_path": {"type": ["string", "null"]}, "stderr_path": {"type": ["string", "null"]}, "exit_code": {"type": ["integer", "null"]}}, "additionalProperties": false}}
   },
-  "additionalProperties": true
+  "allOf": [{"if": {"properties": {"totals": {"properties": {"failed": {"const": 0}}}}}, "then": {"properties": {"invalid_pass_count": {"const": 0}}}}],
+  "additionalProperties": false
 }
