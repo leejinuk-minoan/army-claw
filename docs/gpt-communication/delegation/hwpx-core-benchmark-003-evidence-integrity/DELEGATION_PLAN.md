@@ -1,16 +1,13 @@
-# Task 003 Current Regression Alignment
+# Task 003 Canonical Schema Syntax Correction
 
 - branch: `agent/task003-cloud-restart`
-- correction start: `05fefa0e248a087cc32246c43b432afadb667f44`
-- phase: `cloud_current_regression_alignment_complete_awaiting_read_only_verification`
+- correction start: `e1f704367b5bff45afea1731b7ba911ac28eb9e3`
+- phase: `cloud_schema_syntax_correction_complete_awaiting_read_only_verification`
 
-Local results at the tested base:
+Local rerun v3 reached the Schema stage after Gate A 74/74, Gate B 138/138 and an HWPX text probe of 8975 characters. Ajv 8.20.0 under MIT validated adapter-execution, then benchmark-result JSON parsing stopped at line 45 column 1.
 
-- Task 003 six-test Gate: 74 passed, 0 failed, exit 0
-- current full Hancom regression: 132 passed, 5 failed, exit 1
+The canonical benchmark-result `$defs.validator` boundary is repaired without changing status conditions, required fields or strictness. The schema-red test now calls `buildSchemas()` so all five canonical Schema files are read and parsed from the repository filesystem and checked for Draft 2020-12, object root and `additionalProperties:false`.
 
-The five failures came from the legacy regression test using older contracts for role applicability, blocked status, S12-S14 evidence, attempted commands and Schema validation.
+Only the canonical benchmark-result Schema, schema-red test and six delegation files are changed. Clean-base changed paths remain 44. Cloud work did not rerun Node, Ajv, mapped JSON, inventory, scenarios or completion.
 
-Only `tools/hancom/hwpx-core-benchmark-evidence-integrity.test.mjs` is aligned to current APIs. Canonical source, Schema and the six designated Task 003 tests are unchanged. The clean-base changed-path count is 44.
-
-Cloud review is static only. A new local rerun is required after master verification. Task 004, core selection, Stage transition and main merge remain prohibited.
+Task 004, core selection, Stage transition and main merge remain prohibited.
