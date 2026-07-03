@@ -1,67 +1,79 @@
 {
   "task_id": "hwpx-core-benchmark-003-evidence-integrity",
   "branch": "agent/task003-cloud-restart",
+  "correction_start_sha": "89e465f7e1c79b11cb6acbe321279eb3daa53eff",
+  "canonical_schema_root": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/schemas-v2/",
   "cloud_validation_performed": [
-    {
-      "name": "branch_base_verification",
-      "method": "GitHub compare",
-      "result": "branch began at clean base c222429d6f9698022e3f2d326ca914f245cebc65 with zero pre-existing commits"
-    },
-    {
-      "name": "scope_diff_review",
-      "method": "GitHub compare and per-file review",
-      "result": "Task 003 implementation, tests, strict schemas and delegation paths only; no Task 004 path added"
-    },
-    {
-      "name": "static_source_review",
-      "method": "manual review of committed JavaScript and JSON",
-      "result": "evidence/probe status flow, S06-S08 semantic assertions, S12-S14 gates, invalid-pass calculation, score gating, inventory and manifest structures are present"
-    },
-    {
-      "name": "draft_marker_review",
-      "method": "manual JSON review",
-      "result": "all five schemas-v2 declare Draft 2020-12 and contain nested constraints or conditionals"
-    }
+    "remote HEAD equality check before writes",
+    "static canonical and wrapper review",
+    "static schemas-v2 JSON and Draft marker review",
+    "RED fixture source review",
+    "clean-base Task 003 path diff review",
+    "package file inventory reconciliation"
   ],
   "cloud_validation_not_performed": [
-    "Node test execution against the final remote branch",
-    "standards-compliant Draft 2020-12 schema compilation or meta-schema validation",
-    "actual filesystem-derived JSON inventory execution",
-    "actual HWPX mutation or preservation execution",
-    "pinned jszip restoration",
-    "dependency installation",
-    "actual LICENSE and SHA256 collection",
+    "Node tests",
+    "standard Draft 2020-12 validator or meta-schema execution",
+    "actual filesystem inventory",
+    "HWPX execution",
+    "pinned dependency restoration",
+    "actual legal file hashes",
     "offline replay",
-    "baseline/current full Hancom regression",
-    "COM execution, page count or layout measurement",
-    "performance and memory measurement",
-    "final report artifact generation"
+    "full baseline and current regression",
+    "COM layout checks",
+    "performance measurement",
+    "final report generation"
   ],
+  "node_test_sources": [
+    "tools/hancom/hwpx-core-benchmark-task003-cloud-positive.test.mjs",
+    "tools/hancom/hwpx-core-benchmark-task003-cloud-red.test.mjs",
+    "tools/hancom/hwpx-core-benchmark-task003-semantic-red.test.mjs",
+    "tools/hancom/hwpx-core-benchmark-task003-filesystem-red.test.mjs",
+    "tools/hancom/hwpx-core-benchmark-task003-schema-red.test.mjs"
+  ],
+  "red_fixture_groups": {
+    "S06": ["merged map", "row span", "col span", "identical input output"],
+    "S07": ["image path", "image size", "image SHA", "BinData", "relationship source ID type target reference"],
+    "S08": ["fwSpace count", "fwSpace path", "document order", "root namespace", "section namespace"],
+    "filesystem": ["artifact SHA", "stdout missing", "stderr missing", "installed inventory missing"],
+    "S13": ["attempted command field omission", "installed file omission"],
+    "S14": ["LICENSE absent", "LICENSE hash mismatch"],
+    "schema": ["passed", "blocked", "unsupported", "not_applicable", "malformed meta-schema marker"],
+    "inventory": ["canonical Schema missing", "unclassified Schema", "duplicate JSON", "early validation", "wrong mapping"],
+    "integrity": ["invalid pass", "score inflation", "report test handoff SHA mismatch"]
+  },
   "local_test_sequence": [
-    "confirm branch HEAD equals the approved final delegation SHA",
-    "capture task-start manifest before dependency or output writes",
-    "restore the repository-approved pinned jszip environment",
-    "install a pinned standards-compliant Draft 2020-12 validator from an offline artifact",
-    "run node --test tools/hancom/hwpx-core-benchmark-task003-cloud-positive.test.mjs tools/hancom/hwpx-core-benchmark-task003-cloud-red.test.mjs",
-    "run baseline and current full tools/hancom regression in the same environment",
-    "execute candidate probes and permitted scenario runs",
-    "collect stdout, stderr, exit codes, artifact SHA256 and exact license files",
-    "run filesystem-derived inventory after all JSON writes complete",
-    "meta-validate all schemas-v2 and validate every mapped JSON document",
-    "calculate invalid_pass_count and assert it is zero before any completion claim",
-    "capture task-end manifest and compare against the allowed change list",
-    "run cross-artifact consistency checks",
-    "write final reports without changing cloud source modules"
+    "master assigns verified final remote HEAD as local_execution_base_sha",
+    "verify HEAD and clean working tree",
+    "capture task-start manifest",
+    "restore pinned jszip and install offline standard Validator",
+    "run all five Node test sources with probed logs",
+    "run baseline and current full Hancom regression",
+    "execute Task 003 probes and scenarios",
+    "collect actual files sizes SHA256 stdout stderr and exit codes",
+    "run final schemas-v2 inventory after writes",
+    "meta-validate five Schema documents and validate mapped JSON",
+    "require invalid_pass_count zero",
+    "capture task-end manifest and SHA consistency",
+    "write only the approved Task 003 report"
   ],
   "completion_conditions": {
-    "node_tests_failed": 0,
+    "required_runs_executed": true,
+    "required_run_exit_code": 0,
+    "required_runs_passed": true,
+    "failed": 0,
     "invalid_pass_count": 0,
-    "unclassified_json": 0,
     "missing_json": 0,
     "duplicate_json": 0,
-    "unexpected_manifest_diffs": 0,
+    "unclassified_json": 0,
+    "schema_mapping_errors": 0,
     "schema_validation_failures": 0,
-    "actual_execution_evidence_required_for_passed": true
+    "unexpected_manifest_diffs": 0
+  },
+  "independent_ci": {
+    "required_for_completion": false,
+    "not_performed_requires_limitation": true,
+    "not_performed_alone_does_not_fail_completion": true
   },
   "current_completion_gate_passed": false
 }
