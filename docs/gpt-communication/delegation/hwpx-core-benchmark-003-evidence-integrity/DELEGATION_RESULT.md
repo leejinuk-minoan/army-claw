@@ -11,7 +11,7 @@ Cloud preparation is complete as a source, schema, test and execution-brief hand
 - clean_base_sha: `c222429d6f9698022e3f2d326ca914f245cebc65`
 - cloud_start_sha: `c222429d6f9698022e3f2d326ca914f245cebc65`
 - cloud_implementation_head_before_package: `d1bfaafbe234fe7e213690707e308a740183a404`
-- final_delegation_sha: the final Git commit containing the completed six-file package; recorded in the master-facing completion report because a commit cannot embed its own SHA
+- final_delegation_sha: the SHA returned by the final push of this file and recorded in the master-facing completion report; a Git commit cannot embed its own SHA
 
 ## Implemented
 
@@ -27,15 +27,26 @@ Cloud preparation is complete as a source, schema, test and execution-brief hand
 - filesystem-derived JSON inventory with missing/duplicate/unclassified and write-order checks
 - task-start/task-end manifests and cross-artifact consistency checks
 - positive and RED/injection Node test sources
-- five strict Draft 2020-12 schemas under `schemas-v2`
+- five strict Draft 2020-12 schemas
 - local Codex execution brief and write allowlist
+
+## Delegation package
+
+The required package contains:
+
+1. `ROUTING_DECISION.json`
+2. `DELEGATION_PLAN.md`
+3. `FILE_CHANGE_PLAN.json`
+4. `TEST_PLAN.json`
+5. `CODEX_EXECUTION_BRIEF.md`
+6. `DELEGATION_RESULT.md`
 
 ## Cloud validation performed
 
 - verified the restart branch initially matched the clean base with no additional commits
 - reviewed the final branch diff for Task 003-only paths
-- reviewed committed source and schema structure
-- verified the six required package paths are being materialized in this handoff
+- reviewed committed source, tests and schema structure
+- verified the six required delegation package paths
 
 ## Cloud validation not performed
 
@@ -47,21 +58,21 @@ Follow `CODEX_EXECUTION_BRIEF.md` and `TEST_PLAN.json`. Actual execution evidenc
 
 ## Local files to modify
 
-Only the output allowlist in `FILE_CHANGE_PLAN.json` may be modified by local Codex after master approval. Cloud source, tests, schemas-v2 and delegation package are immutable during local execution.
+Only the output allowlist in `FILE_CHANGE_PLAN.json` may be modified by local Codex after master approval. Cloud source, tests, schemas and delegation package are immutable during local execution.
 
 ## Risks
 
 - final Node execution has not yet been performed against the remote branch
-- schemas-v2 have not yet been compiled or meta-validated by a standard validator
-- duplicated compatibility helper modules remain in the implementation diff and must not be treated as execution evidence
+- schemas have not yet been compiled or meta-validated by a standards-compliant validator
+- compatibility helper modules remain in the implementation diff and must not be treated as execution evidence
 - actual dependency, LICENSE, offline and HWPX evidence may expose missing fields or require master-approved source changes
-- one-file-per-commit GitHub connector writes produced a long implementation history; no amend, force push or history rewrite is permitted
+- connector writes produced a long implementation history; no amend, force push or history rewrite is permitted
 
 ## Decision
 
 - master_review_required: `true`
 - local_execution_recommended: `true`, only after master approval and SHA verification
-- local_execution_base: final delegation SHA
+- local_execution_base: final delegation SHA reported externally
 - completion_gate_passed: `false`
 - core_selection: `prohibited`
 - stage_transition: `prohibited`
