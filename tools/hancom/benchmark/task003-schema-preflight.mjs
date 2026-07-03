@@ -31,7 +31,9 @@ export function validateBenchmarkResultContract(document) {
   if (document?.status === "passed") {
     if (!importedEvidenceValid(document.imported_evidence)) errors.push("passed_imported_evidence_invalid");
     if (!document.attempted_commands?.length || document.attempted_commands.some((record) => !executionRecordValidation(record).valid || record.exit_code !== 0)) errors.push("passed_execution_invalid");
-    if (!document.validator_results?.length || document.validator_results.some((result) => result.valid !== true)) errors.push("passed_validator_invalid");
+    if (!document.validator_results?.length || document.validator_results.some((result) => result.valid !== true || result.missing_evidence?.length)) errors.push("passed_validator_invalid");
+    if (!Array.isArray(document.missing_evidence) || document.missing_evidence.length !== 0) errors.push("passed_missing_evidence_not_empty");
+    if (document.evidence_completeness !== "complete") errors.push("passed_evidence_not_complete");
   }
   if (document?.status === "blocked") {
     if (!prerequisiteProbeValidation(document.prerequisite_probe).valid) errors.push("blocked_probe_invalid");
@@ -39,6 +41,6 @@ export function validateBenchmarkResultContract(document) {
     if (!document.missing_prerequisites?.length) errors.push("blocked_prerequisites_required");
   }
   if (document?.status === "unsupported" && !sourceInspectionValid(document.source_api_inspection)) errors.push("unsupported_inspection_invalid");
-  if (document?.status === "not_applicable" && (!document.candidate_role || !document.rationale || !document.governing_role_matrix_reference || document.attempted_commands?.length)) errors.push("not_applicable_context_invalid");
+  if (document?.status === "not_applicable" && (!document.candidate_role || !document.rationale || !document.governing_role_matrix_reference || document.attempted_commands?.length || document.missing_evidence?.length || document.evidence_completeness !== "not_applicable")) errors.push("not_applicable_context_invalid");
   return { valid: errors.length === 0, errors };
 }
