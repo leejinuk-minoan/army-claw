@@ -57,6 +57,8 @@ export function evaluateInventoryRecords({ records = [], expectedPaths = CANONIC
   const canonical_schema_records = records.filter((record) => record.classification === "canonical_schema");
   const canonical_schema_set_complete = CANONICAL_SCHEMA_PATHS.every((path) => canonical_schema_records.some((record) => record.path === path && record.schema_path === "draft2020-12-meta-schema"));
   const validation_order_valid = Number.isFinite(validationStartedAtMs) && Number.isFinite(lastWriteCompletedAtMs) && validationStartedAtMs >= lastWriteCompletedAtMs;
+  const validation_failures = missing_json.length + duplicate_json.length + unclassified_json.length + schema_mapping_errors.length + (canonical_schema_set_complete ? 0 : 1) + (validation_order_valid ? 0 : 1);
+  const evidence_linkage = records.filter((record) => typeof record.sha256 === "string").map((record) => ({ artifact_role: record.classification, path: record.path, sha256: record.sha256 }));
   return {
     schema_version: "2.1.0",
     document_type: "schema_validation_summary",
@@ -71,7 +73,9 @@ export function evaluateInventoryRecords({ records = [], expectedPaths = CANONIC
     schema_mapping_errors,
     canonical_schema_set_complete,
     validation_order_valid,
-    valid: missing_json.length === 0 && duplicate_json.length === 0 && unclassified_json.length === 0 && schema_mapping_errors.length === 0 && canonical_schema_set_complete && validation_order_valid,
+    validation_failures,
+    evidence_linkage,
+    valid: validation_failures === 0,
   };
 }
 
