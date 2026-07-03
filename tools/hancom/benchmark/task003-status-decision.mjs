@@ -41,8 +41,17 @@ function importedValid(x) {
     && x.source_probe.path === x.source_path && x.source_probe.sha256 === x.source_sha256;
 }
 
+function resultEnvelope({ plannedCommands = [], attemptedCommands = [], validatorResults = [], ...fields }) {
+  return {
+    planned_commands: plannedCommands,
+    attempted_commands: attemptedCommands,
+    validator_results: validatorResults,
+    ...fields,
+  };
+}
+
 export function deriveStatusFromEvidence({ role, scenarioId, execution_record = null, source_api_inspection = null, prerequisite_probe = null, imported_evidence = null, scenario_validator_result = null }) {
-  if (!scenarioApplicable(role, scenarioId)) return {
+  if (!scenarioApplicable(role, scenarioId)) return resultEnvelope({
     status: "not_applicable",
     candidate_role: role,
     rationale: `${role} role does not own ${scenarioId}`,
@@ -50,45 +59,61 @@ export function deriveStatusFromEvidence({ role, scenarioId, execution_record = 
     evidence_completeness: "not_applicable",
     missing_evidence: [],
     status_reason: `${role} role does not own ${scenarioId}`,
-  };
+  });
 
   if (execution_record !== null) {
     const execution = executionRecordValidation(execution_record);
     if (!execution.valid) throw new Error(`execution_record_invalid:${execution.missing_evidence.join(",")}`);
-    if (execution_record.exit_code !== 0 || execution_record.exception_result) return {
+    const plannedCommands = [execution_record.command];
+    const attemptedCommands = [execution_record];
+    const validatorResults = scenario_validator_result ? [scenario_validator_result] : [];
+    if (execution_record.exit_code !== 0 || execution_record.exception_result) return resultEnvelope({
+      plannedCommands,
+      attemptedCommands,
+      validatorResults,
       status: "failed",
       evidence_completeness: "complete",
       missing_evidence: scenario_validator_result?.missing_evidence ?? [],
       status_reason: "actual execution failed",
       execution_record,
-    };
-    if (importedValid(imported_evidence) && scenario_validator_result?.valid === true) return {
+      scenario_gate_result: scenario_validator_result,
+    });
+    if (importedValid(imported_evidence) && scenario_validator_result?.valid === true) return resultEnvelope({
+      plannedCommands,
+      attemptedCommands,
+      validatorResults,
       status: "passed",
       evidence_completeness: "complete",
       missing_evidence: [],
       status_reason: "actual execution, imported evidence filesystem lineage and semantic validator passed",
       execution_record,
       imported_evidence,
-    };
-    return {
+      scenario_gate_result: scenario_validator_result,
+      required_filesystem_evidence_complete: true,
+    });
+    return resultEnvelope({
+      plannedCommands,
+      attemptedCommands,
+      validatorResults,
       status: "failed",
       evidence_completeness: "partial",
       missing_evidence: unique([...(scenario_validator_result?.missing_evidence ?? []), importedValid(imported_evidence) ? null : "imported_evidence_filesystem_lineage_missing"]),
       status_reason: "execution succeeded but complete scenario evidence did not",
       execution_record,
-    };
+      scenario_gate_result: scenario_validator_result,
+    });
   }
 
-  if (sourceInspectionValid(source_api_inspection) && source_api_inspection.supported === false) return {
+  if (sourceInspectionValid(source_api_inspection) && source_api_inspection.supported === false) return resultEnvelope({
     status: "unsupported",
     evidence_completeness: "complete",
     missing_evidence: [],
     status_reason: source_api_inspection.rationale ?? "source/API inspection shows unsupported",
     source_api_inspection,
-  };
+  });
 
   const probe = prerequisiteProbeValidation(prerequisite_probe);
-  if (probe.valid && prerequisite_probe.available === false) return {
+  if (probe.valid && prerequisite_probe.available === false) return resultEnvelope({
     status: "blocked",
     blocked_reason_code: prerequisite_probe.blocked_reason_code,
     missing_prerequisites: prerequisite_probe.missing_prerequisites,
@@ -97,7 +122,7 @@ export function deriveStatusFromEvidence({ role, scenarioId, execution_record = 
     evidence_completeness: "complete",
     missing_evidence: prerequisite_probe.missing_prerequisites,
     status_reason: "verified prerequisite filesystem/runtime probe found unavailable prerequisites",
-  };
+  });
 
   throw new Error("status_evidence_insufficient:actual execution, verified unsupported inspection, or verified blocking prerequisite probe required");
 }
