@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "Task 003 adapter execution v2",
+  "title": "Task 003 canonical adapter execution",
   "type": "object",
   "required": ["task_id", "candidate_id", "candidate_role", "scenario_id", "status", "planned_commands", "attempted_commands"],
   "properties": {
@@ -10,27 +10,40 @@
     "scenario_id": { "type": "string", "pattern": "^S(0[1-9]|1[0-4])$" },
     "status": { "enum": ["passed", "failed", "unsupported", "blocked", "not_applicable"] },
     "planned_commands": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
-    "attempted_commands": { "type": "array", "items": { "$ref": "#/$defs/command" } },
-    "source_api_inspection": { "type": ["object", "null"] },
-    "prerequisite_probe": { "type": ["object", "null"] }
+    "attempted_commands": { "type": "array", "items": { "$ref": "#/$defs/command" } }
   },
   "allOf": [
-    { "if": { "properties": { "status": { "enum": ["passed", "failed"] } } }, "then": { "properties": { "attempted_commands": { "minItems": 1 } } } },
-    { "if": { "properties": { "status": { "const": "blocked" } } }, "then": { "required": ["prerequisite_probe"] } },
-    { "if": { "properties": { "status": { "const": "unsupported" } } }, "then": { "required": ["source_api_inspection"] } }
+    { "if": { "properties": { "status": { "const": "passed" } }, "required": ["status"] }, "then": { "properties": { "attempted_commands": { "minItems": 1 } } } },
+    { "if": { "properties": { "status": { "const": "not_applicable" } }, "required": ["status"] }, "then": { "properties": { "attempted_commands": { "maxItems": 0 } } } }
   ],
   "$defs": {
+    "fileProbe": {
+      "type": "object",
+      "required": ["path", "exists", "size", "sha256", "hash_algorithm", "source"],
+      "properties": {
+        "path": { "type": "string", "minLength": 1 },
+        "exists": { "const": true },
+        "size": { "type": "integer", "minimum": 0 },
+        "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "hash_algorithm": { "const": "sha256" },
+        "source": { "const": "filesystem" }
+      },
+      "additionalProperties": false
+    },
     "command": {
       "type": "object",
-      "required": ["command", "executed", "started_at", "ended_at", "exit_code", "stdout_path", "stderr_path"],
+      "required": ["command", "executed", "method", "started_at", "ended_at", "exit_code", "stdout_path", "stderr_path", "stdout_probe", "stderr_probe"],
       "properties": {
         "command": { "type": "string", "minLength": 1 },
         "executed": { "const": true },
+        "method": { "type": "string", "minLength": 1 },
         "started_at": { "type": "string", "format": "date-time" },
         "ended_at": { "type": "string", "format": "date-time" },
         "exit_code": { "type": "integer" },
         "stdout_path": { "type": "string", "minLength": 1 },
-        "stderr_path": { "type": "string", "minLength": 1 }
+        "stderr_path": { "type": "string", "minLength": 1 },
+        "stdout_probe": { "$ref": "#/$defs/fileProbe" },
+        "stderr_probe": { "$ref": "#/$defs/fileProbe" }
       },
       "additionalProperties": false
     }
