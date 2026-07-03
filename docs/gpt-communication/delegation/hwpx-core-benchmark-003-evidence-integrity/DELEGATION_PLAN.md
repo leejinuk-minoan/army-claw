@@ -1,13 +1,13 @@
-# Task 003 Canonical Schema Syntax Correction
+# Task 003 Benchmark Summary Schema Syntax Correction
 
 - branch: `agent/task003-cloud-restart`
-- correction start: `e1f704367b5bff45afea1731b7ba911ac28eb9e3`
-- phase: `cloud_schema_syntax_correction_complete_awaiting_read_only_verification`
+- correction start: `83c1f791aeaffae39feee032756a7c148aef0167`
+- phase: `cloud_benchmark_summary_schema_syntax_correction_complete_awaiting_read_only_verification`
 
-Local rerun v3 reached the Schema stage after Gate A 74/74, Gate B 138/138 and an HWPX text probe of 8975 characters. Ajv 8.20.0 under MIT validated adapter-execution, then benchmark-result JSON parsing stopped at line 45 column 1.
+Local rerun v4 stopped in Gate A. The new canonical filesystem parse guard reported 75 total, 74 passed, 1 failed and exit 1. `benchmark-summary.schema.json` failed JSON parsing at line 64 column 1. Gate B, Ajv Meta-Schema, mapped JSON, inventory and report generation were not executed.
 
-The canonical benchmark-result `$defs.validator` boundary is repaired without changing status conditions, required fields or strictness. The schema-red test now calls `buildSchemas()` so all five canonical Schema files are read and parsed from the repository filesystem and checked for Draft 2020-12, object root and `additionalProperties:false`.
+The correction is limited to the canonical benchmark-summary Schema. Its `$defs.candidateMap` boundary is rewritten as readable multi-line JSON while preserving document type rules, required fields, candidate role enum, scenario key pattern, applicable/rationale contract and strict `additionalProperties:false` boundaries.
 
-Only the canonical benchmark-result Schema, schema-red test and six delegation files are changed. Clean-base changed paths remain 44. Cloud work did not rerun Node, Ajv, mapped JSON, inventory, scenarios or completion.
+The schema-red parse guard already exists and is unchanged. Clean-base changed paths remain 44. Cloud work did not rerun Gate A, Gate B, Ajv or mapped validation.
 
 Task 004, core selection, Stage transition and main merge remain prohibited.
