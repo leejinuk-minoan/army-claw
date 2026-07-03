@@ -2,10 +2,10 @@
   "task_id": "hwpx-core-benchmark-003-evidence-integrity",
   "branch": "agent/task003-cloud-restart",
   "clean_base_sha": "c222429d6f9698022e3f2d326ca914f245cebc65",
-  "correction_start_sha": "89e465f7e1c79b11cb6acbe321279eb3daa53eff",
+  "final_correction_start_sha": "14ae5262204db3386eacf451f3d1c17938018d0d",
   "canonical_schema_root": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/schemas-v2/",
   "legacy_inactive_schema_root": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/schemas/",
-  "actual_changed_file_count": 42,
+  "actual_changed_file_count": 43,
   "actual_changed_files": [
     "docs/gpt-communication/delegation/hwpx-core-benchmark-003-evidence-integrity/CODEX_EXECUTION_BRIEF.md",
     "docs/gpt-communication/delegation/hwpx-core-benchmark-003-evidence-integrity/DELEGATION_PLAN.md",
@@ -47,17 +47,18 @@
     "tools/hancom/hwpx-core-benchmark-task003-cloud-positive.test.mjs",
     "tools/hancom/hwpx-core-benchmark-task003-cloud-red.test.mjs",
     "tools/hancom/hwpx-core-benchmark-task003-filesystem-red.test.mjs",
+    "tools/hancom/hwpx-core-benchmark-task003-s06-identity-red.test.mjs",
     "tools/hancom/hwpx-core-benchmark-task003-schema-red.test.mjs",
     "tools/hancom/hwpx-core-benchmark-task003-semantic-red.test.mjs"
   ],
   "unrecorded_changed_files": [],
   "canonical_modules": {
     "common": "tools/hancom/benchmark/task003-common.mjs",
-    "inventory": "tools/hancom/benchmark/task003-json-inventory.mjs",
-    "manifest": "tools/hancom/benchmark/task003-manifest-integrity.mjs",
-    "complete_gates": "tools/hancom/benchmark/task003-complete-gates.mjs",
+    "manifest_integrity": "tools/hancom/benchmark/task003-manifest-integrity.mjs",
+    "passed_eligibility_and_scoring": "tools/hancom/benchmark/task003-score-integrity.mjs",
     "status": "tools/hancom/benchmark/task003-status-decision.mjs",
-    "scoring": "tools/hancom/benchmark/task003-score-integrity.mjs"
+    "schema_preflight": "tools/hancom/benchmark/task003-schema-preflight.mjs",
+    "semantic_validation": "tools/hancom/benchmark/task003-preservation-validators.mjs"
   },
   "compatibility_wrappers": {
     "tools/hancom/benchmark/task003-cloud-common.mjs": "task003-common.mjs",
