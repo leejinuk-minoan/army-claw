@@ -1,13 +1,17 @@
-# Task 003 Benchmark Summary Schema Syntax Correction
+# Task 003 Mapped JSON Output Alignment
 
 - branch: `agent/task003-cloud-restart`
-- correction start: `83c1f791aeaffae39feee032756a7c148aef0167`
-- phase: `cloud_benchmark_summary_schema_syntax_correction_complete_awaiting_read_only_verification`
+- correction start: `f8c050677e0e3b34ad04f1f6c02b1aa754381eb6`
+- phase: `cloud_mapped_json_output_alignment_complete_awaiting_read_only_verification`
 
-Local rerun v4 stopped in Gate A. The new canonical filesystem parse guard reported 75 total, 74 passed, 1 failed and exit 1. `benchmark-summary.schema.json` failed JSON parsing at line 64 column 1. Gate B, Ajv Meta-Schema, mapped JSON, inventory and report generation were not executed.
+Local rerun v5 passed Gate A 75/75, Gate B 139/139 and Gate C Ajv with zero Schema parse, Meta-Schema and compile failures. Gate D stopped with inventory missing 0, duplicate 0, unclassified 0, schema mapping error 0, but 151 mapped JSON validation failures and exit 1.
 
-The correction is limited to the canonical benchmark-summary Schema. Its `$defs.candidateMap` boundary is rewritten as readable multi-line JSON while preserving document type rules, required fields, candidate role enum, scenario key pattern, applicable/rationale contract and strict `additionalProperties:false` boundaries.
+Root cause: final mapped JSON validation was being applied to active committed outputs before the current Task 003 execution had generated canonical v2 artifacts. The active paths remain strict validation targets; this correction does not relax schemas-v2 or skip active results/executions.
 
-The schema-red parse guard already exists and is unchanged. Clean-base changed paths remain 44. Cloud work did not rerun Gate A, Gate B, Ajv or mapped validation.
+Chosen strategy: split pre-output schema/inventory sanity from final mapped JSON validation. Source now provides pre-output schema-only inventory and explicit final mapped-validation gate-order checks. `validateGeneratedJsonAgainstSchemas()` refuses final mapped validation when output generation has not completed.
+
+Regression tests now cover pre-output non-completion behavior, old active artifact mapping, and canonical adapter/result status fixtures.
+
+Clean-base changed paths remain 44. Schema files changed in this correction: none. Cloud work was static only and did not rerun Node, Ajv, mapped validation, inventory, scenarios or report generation.
 
 Task 004, core selection, Stage transition and main merge remain prohibited.
