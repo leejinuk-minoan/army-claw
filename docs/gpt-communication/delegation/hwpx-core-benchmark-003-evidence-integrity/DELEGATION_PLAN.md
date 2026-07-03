@@ -1,16 +1,16 @@
-# Task 003 Runtime-Failure Fixture Correction
+# Task 003 Current Regression Alignment
 
-- task_id: `hwpx-core-benchmark-003-evidence-integrity`
 - branch: `agent/task003-cloud-restart`
-- correction start SHA: `b4fa034da72a76ef694afbcb2c7808bcd512395c`
-- target phase: `cloud_runtime_failure_correction_complete_awaiting_read_only_verification`
+- correction start: `05fefa0e248a087cc32246c43b432afadb667f44`
+- phase: `cloud_current_regression_alignment_complete_awaiting_read_only_verification`
 
-Local validation at the correction-start SHA reported 74 tests: 66 passed and 8 failed. The failures were limited to the semantic RED fixture file.
+Local results at the tested base:
 
-The root cause was shared nested references between `before` and `after` in the S07 and S08 fixture builders. The correction builds `before`, creates `after` with `structuredClone()`, and preserves independent image, BinData, namespace, section, fwSpace-path and document-order structures.
+- Task 003 six-test Gate: 74 passed, 0 failed, exit 0
+- current full Hancom regression: 132 passed, 5 failed, exit 1
 
-Validator logic, assertion IDs, relationship RED cases and S06 RED cases are unchanged. The clean-base changed-path count remains 43.
+The five failures came from the legacy regression test using older contracts for role applicability, blocked status, S12-S14 evidence, attempted commands and Schema validation.
 
-Cloud review is static only. Node tests were not rerun in the cloud. Local rerun requires a master-assigned verified final remote HEAD.
+Only `tools/hancom/hwpx-core-benchmark-evidence-integrity.test.mjs` is aligned to current APIs. Canonical source, Schema and the six designated Task 003 tests are unchanged. The clean-base changed-path count is 44.
 
-Task 004, core selection, Stage transition, main merge, amend, force push and history rewrite remain prohibited.
+Cloud review is static only. A new local rerun is required after master verification. Task 004, core selection, Stage transition and main merge remain prohibited.
