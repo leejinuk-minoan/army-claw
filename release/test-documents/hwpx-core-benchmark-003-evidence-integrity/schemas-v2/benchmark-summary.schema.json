@@ -50,7 +50,34 @@
   ],
   "$defs": {
     "candidate": {"type": "object", "required": ["candidate_id", "role", "runtime"], "properties": {"candidate_id": {"type": "string", "minLength": 1}, "role": {"enum": ["editor", "validator", "layout_authority"]}, "runtime": {"type": "string", "minLength": 1}, "role_matrix_reference": {"type": "string", "minLength": 1}}, "additionalProperties": false},
-    "candidateMap": {"type": "object", "minProperties": 1, "additionalProperties": {"type": "object", "required": ["role", "runtime", "scenarios"], "properties": {"role": {"enum": ["editor", "validator", "layout_authority"]}, "runtime": {"type": "string", "minLength": 1}, "scenarios": {"type": "object", "patternProperties": {"^S(0[1-9]|1[0-4])$": {"type": "object", "required": ["applicable", "rationale"], "properties": {"applicable": {"type": "boolean"}, "rationale": {"type": "string", "minLength": 1}}, "additionalProperties": false}}, "additionalProperties": false}, "additionalProperties": false}},
+    "candidateMap": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "required": ["role", "runtime", "scenarios"],
+        "properties": {
+          "role": {"enum": ["editor", "validator", "layout_authority"]},
+          "runtime": {"type": "string", "minLength": 1},
+          "scenarios": {
+            "type": "object",
+            "patternProperties": {
+              "^S(0[1-9]|1[0-4])$": {
+                "type": "object",
+                "required": ["applicable", "rationale"],
+                "properties": {
+                  "applicable": {"type": "boolean"},
+                  "rationale": {"type": "string", "minLength": 1}
+                },
+                "additionalProperties": false
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": false
+      }
+    },
     "resultLink": {"type": "object", "required": ["candidate_id", "scenario_id", "status", "result_path", "result_sha256"], "properties": {"candidate_id": {"type": "string", "minLength": 1}, "scenario_id": {"type": "string", "pattern": "^S(0[1-9]|1[0-4])$"}, "status": {"enum": ["passed", "failed", "unsupported", "blocked", "not_applicable"]}, "result_path": {"type": "string", "minLength": 1}, "result_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}}, "additionalProperties": false},
     "inventoryRecord": {"type": "object", "required": ["path", "classification", "schema_path", "document_type", "sha256", "size"], "properties": {"path": {"type": "string", "minLength": 1}, "classification": {"type": "string", "minLength": 1}, "schema_path": {"type": ["string", "null"]}, "document_type": {"type": ["string", "null"]}, "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}, "size": {"type": "integer", "minimum": 0}}, "additionalProperties": false},
     "manifestRecord": {"type": "object", "required": ["path", "exists", "sha256", "size"], "properties": {"path": {"type": "string", "minLength": 1}, "exists": {"type": "boolean"}, "sha256": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"}, "size": {"type": ["integer", "null"], "minimum": 0}}, "additionalProperties": false},
