@@ -1,12 +1,11 @@
-# Task 003 Final Correction
+# Task 003 Runtime Correction
 
 - task_id: `hwpx-core-benchmark-003-evidence-integrity`
 - branch: `agent/task003-cloud-restart`
-- final_correction_start_sha: `14ae5262204db3386eacf451f3d1c17938018d0d`
-- delegation_payload_sha: `ff5b9287eaea533c67ac46162bcdf6b725bf9127`
-- final_remote_head_recording: external verifier/master attestation
+- correction_start_sha: `b4fa034da72a76ef694afbcb2c7808bcd512395c`
+- delegation_payload_sha: pending metadata attestation
 - local_execution_base_sha: `null`
-- phase: `cloud_final_correction_complete_awaiting_read_only_verification`
+- phase: `cloud_runtime_failure_correction_complete_awaiting_read_only_verification`
 - local_codex_prompt_allowed: `false`
 - completion_gate_passed: `false`
 - core_selection: `prohibited`
@@ -14,6 +13,8 @@
 - proceed_to_task_004: `false`
 - working_state_after_final_push: `read_only`
 
-Final cloud changes separate 40-character Git identities from 64-character file hashes, share one passed-eligibility decision between invalid-pass and scoring, strengthen adapter status evidence, and require distinct S06 input/output paths and hashes.
+Root cause: S07 and S08 RED fixtures shared nested `before` and `after` references.
 
-The clean-base inventory contains 43 files with no unrecorded entries. Cloud review was static only; runtime validation remains unperformed.
+Fix: `after` is created with `structuredClone()`, fwSpace arrays are independent, and before-side values are asserted unchanged after each relevant after-side edit.
+
+Validator logic and assertion IDs were not changed. The clean-base inventory remains 43 files. Cloud review was static; local Node rerun is required.
