@@ -29,6 +29,15 @@ export function selectSchemaForJson(path, document = {}) {
   return null;
 }
 
+export function evaluateInventoryRecords({ records = [], expectedPaths = [], root = TASK_003_ROOT }) {
+  const paths = records.map((r) => r.path), counts = new Map();
+  for (const path of paths) counts.set(path.toLowerCase(), (counts.get(path.toLowerCase()) ?? 0) + 1);
+  const missing_json = expectedPaths.filter((path) => !paths.includes(path));
+  const duplicate_json = paths.filter((path) => counts.get(path.toLowerCase()) > 1);
+  const unclassified_json = records.filter((record) => !record.schema_path).map((record) => record.path);
+  return { schema_version: "2.0.0", document_type: "schema_validation_summary", task_id: TASK_003_ID, root, generated_at: nowIso(), records, missing_json, duplicate_json, unclassified_json, valid: !missing_json.length && !duplicate_json.length && !unclassified_json.length };
+}
+
 export async function buildFilesystemJsonInventory({ workspace, root = TASK_003_ROOT, expectedPaths = [] }) {
   const absolute = resolve(workspace, root), all = (await files(absolute)).filter((p) => p.endsWith(".json"));
   const records = await Promise.all(all.map(async (path) => {
@@ -37,10 +46,5 @@ export async function buildFilesystemJsonInventory({ workspace, root = TASK_003_
     try { document = JSON.parse(await readFile(path, "utf8")); } catch {}
     return { path: relativePath, schema_path: selectSchemaForJson(relativePath, document), sha256: await sha256File(path), size: (await stat(path)).size };
   }));
-  const paths = records.map((r) => r.path), counts = new Map();
-  for (const p of paths) counts.set(p.toLowerCase(), (counts.get(p.toLowerCase()) ?? 0) + 1);
-  const missing_json = expectedPaths.filter((p) => !paths.includes(p));
-  const duplicate_json = paths.filter((p) => counts.get(p.toLowerCase()) > 1);
-  const unclassified_json = records.filter((r) => !r.schema_path).map((r) => r.path);
-  return { schema_version: "2.0.0", document_type: "schema_validation_summary", task_id: TASK_003_ID, root, generated_at: nowIso(), records, missing_json, duplicate_json, unclassified_json, valid: !missing_json.length && !duplicate_json.length && !unclassified_json.length };
+  return evaluateInventoryRecords({ records, expectedPaths, root });
 }
