@@ -1,4 +1,35 @@
 {
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Task 003 test summary v2",
   "type": "object",
+  "required": ["schema_version", "document_type", "task_id", "tested_implementation_commit_sha", "independent_ci_verification", "totals", "runs", "invalid_pass_count"],
+  "properties": {
+    "schema_version": { "const": "2.0.0" },
+    "document_type": { "const": "test_summary" },
+    "task_id": { "const": "hwpx-core-benchmark-003-evidence-integrity" },
+    "tested_implementation_commit_sha": { "type": "string", "pattern": "^[a-f0-9]{40}$" },
+    "independent_ci_verification": { "enum": ["performed", "not_performed"] },
+    "totals": {
+      "type": "object",
+      "required": ["tests", "passed", "failed", "skipped"],
+      "properties": { "tests": { "type": "integer", "minimum": 0 }, "passed": { "type": "integer", "minimum": 0 }, "failed": { "type": "integer", "minimum": 0 }, "skipped": { "type": "integer", "minimum": 0 } },
+      "additionalProperties": false
+    },
+    "runs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "command", "executed", "exit_code", "stdout_path", "stderr_path"],
+        "properties": { "name": { "type": "string", "minLength": 1 }, "command": { "type": "string", "minLength": 1 }, "executed": { "type": "boolean" }, "exit_code": { "type": ["integer", "null"] }, "stdout_path": { "type": ["string", "null"] }, "stderr_path": { "type": ["string", "null"] }, "passed": { "type": "boolean" } },
+        "additionalProperties": false
+      }
+    },
+    "invalid_pass_count": { "type": "integer", "minimum": 0 },
+    "completion_gate_passed": { "type": "boolean" }
+  },
+  "allOf": [
+    { "if": { "properties": { "independent_ci_verification": { "const": "not_performed" } } }, "then": { "properties": { "completion_gate_passed": { "const": false } } } },
+    { "if": { "properties": { "completion_gate_passed": { "const": true } } }, "then": { "properties": { "invalid_pass_count": { "const": 0 }, "totals": { "properties": { "failed": { "const": 0 } } } } } }
+  ],
   "additionalProperties": false
 }
