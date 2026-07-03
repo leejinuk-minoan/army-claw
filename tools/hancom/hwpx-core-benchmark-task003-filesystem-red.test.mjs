@@ -27,9 +27,10 @@ async function validS14() {
   const fs = await createFilesystemFixture();
   const upstream = await fs.file("upstream.pkg", "upstream");
   const license = await fs.file("LICENSE", "license");
+  const copying = await fs.file("COPYING", "copying");
   const notice = await fs.file("NOTICE", "notice");
   const lineage = { upstream_artifact_path: upstream.path, upstream_artifact_sha256: upstream.sha256 };
-  return { fs, evidence: { project_identity: "candidate@1", component_scope: "runtime", upstream_artifact: upstream, license_files: [{ kind: "LICENSE", ...license, ...lineage }, { kind: "NOTICE", ...notice, ...lineage }], absent_legal_files: [{ kind: "COPYING", rationale: "not published" }], spdx_expression: "MIT", redistribution: { source_impact: "retain text", binary_impact: "include notice", obligations: ["include LICENSE"] }, reviewer: "reviewer", reviewed_at: "2026-07-03T00:00:00Z", file_probes: fs.probes, scenario_assertions: [assertion] } };
+  return { fs, evidence: { project_identity: "candidate@1", component_scope: "runtime", upstream_artifact: upstream, license_files: [{ kind: "LICENSE", ...license, ...lineage }, { kind: "COPYING", ...copying, ...lineage }, { kind: "NOTICE", ...notice, ...lineage }], spdx_expression: "MIT", redistribution: { source_impact: "retain text", binary_impact: "include notice", obligations: ["include LICENSE", "include COPYING", "include NOTICE"] }, reviewer: "reviewer", reviewed_at: "2026-07-03T00:00:00Z", file_probes: fs.probes, scenario_assertions: [assertion] } };
 }
 
 test("S12 artifact filesystem SHA mismatch is RED", async () => { const { evidence } = await validS12(); evidence.artifact_inventory[0].sha256 = "0".repeat(64); expectInvalid(validateS12Evidence(evidence), /sha256_matches_probe/u); });
