@@ -94,20 +94,24 @@ test("S13 verifies actual offline, installed, network and cleanup files", async 
   assert.equal(validateS13Evidence(evidence).valid, true);
 });
 
-test("S14 verifies actual legal files and upstream lineage", async () => {
+test("S14 verifies actual LICENSE COPYING NOTICE and upstream lineage", async () => {
   const fs = await createFilesystemFixture();
   const upstream = await fs.file("upstream.pkg", "upstream-artifact");
   const license = await fs.file("LICENSE", "license-text");
+  const copying = await fs.file("COPYING", "copying-text");
   const notice = await fs.file("NOTICE", "notice-text");
   const lineage = { upstream_artifact_path: upstream.path, upstream_artifact_sha256: upstream.sha256 };
   const evidence = {
     project_identity: "candidate@1.0.0",
     component_scope: "runtime",
     upstream_artifact: upstream,
-    license_files: [{ kind: "LICENSE", ...license, ...lineage }, { kind: "NOTICE", ...notice, ...lineage }],
-    absent_legal_files: [{ kind: "COPYING", rationale: "upstream artifact does not publish a separate COPYING file" }],
+    license_files: [
+      { kind: "LICENSE", ...license, ...lineage },
+      { kind: "COPYING", ...copying, ...lineage },
+      { kind: "NOTICE", ...notice, ...lineage },
+    ],
     spdx_expression: "MIT",
-    redistribution: { source_impact: "retain license text", binary_impact: "include notice", obligations: ["include LICENSE", "include NOTICE"] },
+    redistribution: { source_impact: "retain license text", binary_impact: "include notice", obligations: ["include LICENSE", "include COPYING", "include NOTICE"] },
     reviewer: "local-reviewer",
     reviewed_at: "2026-07-03T00:00:00Z",
     file_probes: fs.probes,
