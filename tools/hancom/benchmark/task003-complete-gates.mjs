@@ -3,15 +3,16 @@ import { validateS06Evidence, validateS07Evidence, validateS08Evidence } from ".
 
 export function validateS12Evidence(e = {}) {
   const m = [];
+  const artifactInventory = e.artifact_inventory ?? e.artifact_inventory_list;
   if (!Number.isInteger(e.warmup_runs) || e.warmup_runs < 1) m.push("warmup_runs_missing_or_invalid");
   if (!Number.isInteger(e.measured_runs) || e.measured_runs < 5) m.push("measured_runs_missing_or_invalid");
   if (!numericArray(e.duration_samples_ms, 5) || e.duration_samples_ms.length !== e.measured_runs) m.push("duration_raw_samples_missing_or_count_mismatch");
   if (!isObject(e.measurement_boundary) || (e.measurement_boundary.separate_process !== true && !e.measurement_boundary.limitation)) m.push("process_boundary_or_limitation_missing");
   if (!e.peak_rss_method || !numericArray(e.peak_rss_samples_bytes, 5)) m.push("peak_rss_method_or_samples_missing");
-  if (!Array.isArray(e.artifact_inventory) || !e.artifact_inventory.length || e.artifact_inventory.some((x) => !isSha256(x.sha256) || !Number.isFinite(x.size))) m.push("artifact_inventory_missing_or_invalid");
+  if (!Array.isArray(artifactInventory) || !artifactInventory.length || artifactInventory.some((x) => !isSha256(x.sha256) || !Number.isFinite(x.size))) m.push("artifact_inventory_missing_or_invalid");
   if (!Array.isArray(e.runtime_dependency_inventory) || !e.runtime_dependency_inventory.length || e.runtime_dependency_inventory.some((x) => !isSha256(x.sha256) || !Number.isFinite(x.size))) m.push("runtime_dependency_inventory_missing_or_invalid");
   if (!e.measurement_command || !e.raw_logs?.stdout_path || !e.raw_logs?.stderr_path) m.push("measurement_command_or_raw_logs_missing");
-  const art = e.artifact_inventory?.reduce((s, x) => s + x.size, 0), runtime = e.runtime_dependency_inventory?.reduce((s, x) => s + x.size, 0);
+  const art = artifactInventory?.reduce((s, x) => s + x.size, 0), runtime = e.runtime_dependency_inventory?.reduce((s, x) => s + x.size, 0);
   return completeGate([
     { assertion_id: "duration_median_recomputed", expected: median(e.duration_samples_ms), actual: e.reported_median_ms, passed: median(e.duration_samples_ms) === e.reported_median_ms },
     { assertion_id: "duration_p95_recomputed", expected: p95(e.duration_samples_ms), actual: e.reported_p95_ms, passed: p95(e.duration_samples_ms) === e.reported_p95_ms },
