@@ -51,7 +51,7 @@ export function evaluateInventoryRecords({ records = [], expectedPaths = CANONIC
   const duplicate_json = [...new Set(paths.filter((path) => counts.get(path.toLowerCase()) > 1))];
   const unclassified_json = records.filter((record) => !record.schema_path && record.classification !== "legacy_schema_inactive").map((record) => record.path);
   const schema_mapping_errors = records.filter((record) => {
-    const expected = classifyJson(record.path, record.document ?? {});
+    const expected = classifyJson(record.path, { document_type: record.document_type ?? record.document?.document_type ?? null });
     return expected.classification !== record.classification || expected.schema_path !== record.schema_path;
   }).map((record) => record.path);
   const canonical_schema_records = records.filter((record) => record.classification === "canonical_schema");
@@ -84,7 +84,7 @@ export async function buildFilesystemJsonInventory({ workspace, root = TASK_003_
     let document = {};
     try { document = JSON.parse((await readFile(path, "utf8")).replace(/^\uFEFF/u, "")); } catch {}
     const classification = classifyJson(relativePath, document);
-    return { path: relativePath, ...classification, document, sha256: await sha256File(path), size: (await stat(path)).size };
+    return { path: relativePath, ...classification, document_type: document?.document_type ?? null, sha256: await sha256File(path), size: (await stat(path)).size };
   }));
   return evaluateInventoryRecords({ records: records.sort((a, b) => a.path.localeCompare(b.path)), expectedPaths, root, validationStartedAtMs, lastWriteCompletedAtMs });
 }
