@@ -2,13 +2,15 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { validateAdapterExecutionContract, validateBenchmarkResultContract, validateSchemaDocumentShape } from "./benchmark/task003-schema-preflight.mjs";
 import { validateTestSummaryCompletionContract } from "./benchmark/task003-completion-preflight.mjs";
-import { buildSchemas } from "./benchmark/task003-schema-runtime.mjs";
-import { CANONICAL_SCHEMA_FILES } from "./benchmark/task003-json-inventory.mjs";
+import { buildSchemas, validateGeneratedJsonAgainstSchemas } from "./benchmark/task003-schema-runtime.mjs";
+import { buildPreOutputSchemaInventory, CANONICAL_SCHEMA_FILES, classifyJson, evaluateMappedValidationGateOrder } from "./benchmark/task003-json-inventory.mjs";
+import { CANONICAL_SCHEMA_ROOT, TASK_003_ID, TASK_003_ROOT } from "./benchmark/task003-common.mjs";
 
 const HASH = "a".repeat(64);
 const fileProbe = (path) => ({ path, exists: true, size: 1, sha256: HASH, hash_algorithm: "sha256", source: "filesystem" });
 const command = () => ({ command: "node fixture", executed: true, method: "node", started_at: "2026-07-03T00:00:00Z", ended_at: "2026-07-03T00:00:01Z", exit_code: 0, stdout_path: "stdout.log", stderr_path: "stderr.log", stdout_probe: fileProbe("stdout.log"), stderr_probe: fileProbe("stderr.log") });
 const validator = () => ({ validator_id: "fixture-validator", valid: true, missing_evidence: [], assertions: [] });
+const blockingProbe = () => ({ performed: true, available: false, method: "filesystem-stat", probe_evidence_path: "probe.json", probe_evidence_sha256: HASH, checked_path_results: [{ path: "runtime", exists: false, size: null, sha256: null }], blocked_reason_code: "runtime_missing", missing_prerequisites: ["runtime"] });
 
 const baseResult = (status) => ({
   task_id: "hwpx-core-benchmark-003-evidence-integrity",
@@ -54,6 +56,90 @@ test("all canonical Schema files parse from filesystem and retain strict root sh
     assert.equal(schema.type, "object");
     assert.equal(schema.additionalProperties, false);
   }
+});
+
+test("pre-output mapped validation cannot claim final completion over stale artifacts", async () => {
+  const schemaRecords = CANONICAL_SCHEMA_FILES.map((name) => ({ path: `schemas-v2/${name}`, classification: "canonical_schema", schema_path: "draft2020-12-meta-schema", document_type: null, sha256: HASH, size: 1 }));
+  const corpus = { path: "corpus-manifest.json", ...classifyJson("corpus-manifest.json", { schema_version: "1.0.0", fixtures: [] }), document_type: null, sha256: HASH, size: 1 };
+  const inventory = {
+    valid: true,
+    root: TASK_003_ROOT,
+    canonical_schema_root: CANONICAL_SCHEMA_ROOT,
+    records: [...schemaRecords, corpus],
+    missing_json: [],
+    duplicate_json: [],
+    unclassified_json: [],
+    schema_mapping_errors: [],
+    canonical_schema_set_complete: true,
+    validation_order_valid: true,
+    validation_failures: 0,
+  };
+
+  const preOutput = buildPreOutputSchemaInventory(inventory);
+  assert.equal(preOutput.valid, true);
+  assert.equal(preOutput.records.some((record) => record.path === "corpus-manifest.json"), false);
+  assert.match(preOutput.limitations.join("\n"), /pre_output_schema_only_inventory_not_completion_candidate/u);
+
+  const order = evaluateMappedValidationGateOrder({ inventory, outputGenerationCompleted: false });
+  assert.equal(order.valid, false);
+  assert.match(order.errors.join("\n"), /output_generation_required_before_final_mapped_validation/u);
+
+  const validatorApi = {
+    name: "stub-validator",
+    version: "1.0.0",
+    async validateMetaSchema() { return { valid: true, errors: [] }; },
+    async validate() { return { valid: true, errors: [] }; },
+  };
+  const summary = await validateGeneratedJsonAgainstSchemas({ inventory, validator: validatorApi, outputGenerationCompleted: false });
+  assert.equal(summary.valid, false);
+  assert.match(summary.errors.join("\n"), /output_generation_required_before_final_mapped_validation/u);
+});
+
+test("old active output artifacts remain mapped and cannot be silently inactive", () => {
+  assert.deepEqual(classifyJson("corpus-manifest.json", { schema_version: "1.0.0", fixtures: [] }), { classification: "benchmark_summary", schema_path: "benchmark-summary.schema.json" });
+  assert.deepEqual(classifyJson("executions/current_node_xml/S01/adapter-execution.json", {}), { classification: "adapter_execution", schema_path: "adapter-execution.schema.json" });
+  assert.deepEqual(classifyJson("results/current_node_xml/S01/result.json", {}), { classification: "benchmark_result", schema_path: "benchmark-result.schema.json" });
+});
+
+test("canonical adapter and benchmark-result status fixtures satisfy source contracts", () => {
+  const passedAdapter = adapter("passed");
+  assert.equal(validateAdapterExecutionContract(passedAdapter).valid, true);
+
+  const failedAdapter = adapter("failed");
+  failedAdapter.attempted_commands[0].exit_code = 2;
+  failedAdapter.validator_results[0].valid = false;
+  assert.equal(validateAdapterExecutionContract(failedAdapter).valid, true);
+
+  const blockedAdapter = { ...adapter("blocked"), attempted_commands: [], execution_outcome: "not_executed", prerequisite_probe: blockingProbe(), blocked_reason_code: "runtime_missing", missing_prerequisites: ["runtime"], missing_evidence: ["runtime"], validator_results: [] };
+  assert.equal(validateAdapterExecutionContract(blockedAdapter).valid, true);
+
+  const unsupportedAdapter = { ...adapter("unsupported"), attempted_commands: [], execution_outcome: "not_executed", source_api_inspection: { inspection_target: "candidate api", method: "static-analysis", result: "unsupported", evidence_path: "inspection.json", evidence_sha256: HASH, rationale: "API unavailable" }, validator_results: [] };
+  assert.equal(validateAdapterExecutionContract(unsupportedAdapter).valid, true);
+
+  const naAdapter = { ...adapter("not_applicable"), attempted_commands: [], execution_outcome: "not_executed", not_applicable_rationale: "editor role does not own S09", role_matrix_reference: "role-matrix.json", validator_results: [] };
+  assert.equal(validateAdapterExecutionContract(naAdapter).valid, true);
+
+  const passedResult = {
+    ...baseResult("passed"),
+    evidence_completeness: "complete",
+    planned_commands: ["node fixture"],
+    attempted_commands: [command()],
+    validator_results: [validator()],
+    imported_evidence: { source_path: "evidence.json", source_sha256: HASH, hash_verified: true, source_probe: fileProbe("evidence.json") },
+  };
+  assert.equal(validateBenchmarkResultContract(passedResult).valid, true);
+
+  const failedResult = { ...baseResult("failed"), attempted_commands: [command()], validator_results: [{ ...validator(), valid: false, missing_evidence: ["semantic_mismatch"] }] };
+  assert.equal(validateBenchmarkResultContract(failedResult).valid, true);
+
+  const blockedResult = { ...baseResult("blocked"), evidence_completeness: "complete", prerequisite_probe: blockingProbe(), blocked_reason_code: "runtime_missing", missing_prerequisites: ["runtime"], missing_evidence: ["runtime"] };
+  assert.equal(validateBenchmarkResultContract(blockedResult).valid, true);
+
+  const unsupportedResult = { ...baseResult("unsupported"), source_api_inspection: { performed: true, supported: false, method: "static-analysis", evidence_path: "inspection.json", evidence_sha256: HASH, rationale: "API unavailable" } };
+  assert.equal(validateBenchmarkResultContract(unsupportedResult).valid, true);
+
+  const naResult = { ...baseResult("not_applicable"), candidate_role: "editor", rationale: "editor role does not own S09", governing_role_matrix_reference: "role-matrix.json", evidence_completeness: "not_applicable" };
+  assert.equal(validateBenchmarkResultContract(naResult).valid, true);
 });
 
 test("passed benchmark-result condition violation is RED", () => {
