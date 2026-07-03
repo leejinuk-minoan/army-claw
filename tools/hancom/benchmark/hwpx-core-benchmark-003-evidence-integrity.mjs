@@ -5,7 +5,9 @@ export * from "./task003-common.mjs";
 export * from "./task003-preservation-validators.mjs";
 export * from "./task003-complete-gates.mjs";
 export * from "./task003-status-decision.mjs";
-export * from "./task003-artifact-integrity.mjs";
+export * from "./task003-score-integrity.mjs";
+export * from "./task003-json-inventory.mjs";
+export * from "./task003-manifest-integrity.mjs";
 export * from "./task003-schema-runtime.mjs";
 
 function object(value) { return value !== null && typeof value === "object" && !Array.isArray(value); }
