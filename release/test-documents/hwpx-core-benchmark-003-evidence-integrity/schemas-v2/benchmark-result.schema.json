@@ -1,1 +1,27 @@
-{"type":"object","additionalProperties":false}
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Task 003 benchmark result v2",
+  "type": "object",
+  "required": ["task_id", "candidate_id", "candidate_role", "scenario_id", "status", "status_reason", "evidence_completeness", "missing_evidence", "attempted_commands", "validator_results"],
+  "properties": {
+    "task_id": { "const": "hwpx-core-benchmark-003-evidence-integrity" },
+    "candidate_id": { "type": "string", "minLength": 1 },
+    "candidate_role": { "enum": ["editor", "validator", "layout_authority"] },
+    "scenario_id": { "type": "string", "pattern": "^S(0[1-9]|1[0-4])$" },
+    "status": { "enum": ["passed", "failed", "unsupported", "blocked", "not_applicable"] },
+    "status_reason": { "type": "string", "minLength": 1 },
+    "evidence_completeness": { "enum": ["complete", "partial", "missing", "not_applicable"] },
+    "missing_evidence": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+    "attempted_commands": { "type": "array", "items": { "type": "object", "required": ["command", "executed", "exit_code", "stdout_path", "stderr_path"], "properties": { "command": { "type": "string", "minLength": 1 }, "executed": { "const": true }, "exit_code": { "type": "integer" }, "stdout_path": { "type": "string", "minLength": 1 }, "stderr_path": { "type": "string", "minLength": 1 } }, "additionalProperties": true } },
+    "validator_results": { "type": "array", "items": { "type": "object", "required": ["validator_id", "valid"], "properties": { "validator_id": { "type": "string", "minLength": 1 }, "valid": { "type": "boolean" }, "missing_evidence": { "type": "array", "items": { "type": "string" } }, "assertions": { "type": "array" } }, "additionalProperties": true } },
+    "source_api_inspection": { "type": ["object", "null"] },
+    "prerequisite_probe": { "type": ["object", "null"] },
+    "imported_evidence": { "type": ["object", "null"] }
+  },
+  "allOf": [
+    { "if": { "properties": { "status": { "const": "passed" } } }, "then": { "properties": { "attempted_commands": { "minItems": 1 }, "validator_results": { "minItems": 1 }, "missing_evidence": { "maxItems": 0 }, "evidence_completeness": { "const": "complete" } }, "required": ["imported_evidence"] } },
+    { "if": { "properties": { "status": { "const": "blocked" } } }, "then": { "required": ["prerequisite_probe"] } },
+    { "if": { "properties": { "status": { "const": "unsupported" } } }, "then": { "required": ["source_api_inspection"] } }
+  ],
+  "additionalProperties": false
+}
