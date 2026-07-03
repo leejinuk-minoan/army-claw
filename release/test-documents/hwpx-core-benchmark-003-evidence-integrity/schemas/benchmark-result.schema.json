@@ -1,29 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "Task 003 benchmark result",
+  "title": "Legacy inactive Task 003 benchmark result schema",
+  "$comment": "Inactive compatibility artifact. Canonical schema: ../schemas-v2/benchmark-result.schema.json",
+  "x-task003-schema-status": "legacy_inactive",
   "type": "object",
-  "required": ["task_id", "candidate_id", "candidate_role", "scenario_id", "status", "status_reason", "evidence_completeness", "missing_evidence", "validator_results"],
-  "properties": {
-    "task_id": {"const": "hwpx-core-benchmark-003-evidence-integrity"},
-    "candidate_id": {"type": "string", "minLength": 1},
-    "candidate_role": {"enum": ["editor", "validator", "layout_authority"]},
-    "scenario_id": {"type": "string", "pattern": "^S(0[1-9]|1[0-4])$"},
-    "status": {"enum": ["passed", "failed", "unsupported", "blocked", "not_applicable"]},
-    "status_reason": {"type": "string", "minLength": 1},
-    "evidence_completeness": {"enum": ["complete", "partial", "missing", "not_applicable"]},
-    "missing_evidence": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
-    "validator_results": {"type": "array", "items": {"$ref": "#/$defs/validator"}},
-    "execution_record": {"type": ["object", "null"]},
-    "source_api_inspection": {"type": ["object", "null"]},
-    "prerequisite_probe": {"type": ["object", "null"]},
-    "imported_evidence": {"type": ["object", "null"]}
-  },
-  "allOf": [
-    {"if": {"properties": {"status": {"const": "passed"}}}, "then": {"properties": {"evidence_completeness": {"const": "complete"}, "missing_evidence": {"maxItems": 0}, "validator_results": {"minItems": 1, "items": {"properties": {"valid": {"const": true}}}}}}},
-    {"if": {"properties": {"status": {"const": "not_applicable"}}}, "then": {"properties": {"evidence_completeness": {"const": "not_applicable"}, "missing_evidence": {"maxItems": 0}}}}
-  ],
-  "$defs": {
-    "validator": {"type": "object", "required": ["validator_id", "valid", "missing_evidence", "assertions"], "properties": {"validator_id": {"type": "string", "minLength": 1}, "valid": {"type": "boolean"}, "missing_evidence": {"type": "array", "items": {"type": "string"}}, "assertions": {"type": "array", "items": {"type": "object", "required": ["assertion_id", "passed"], "properties": {"assertion_id": {"type": "string"}, "expected": {}, "actual": {}, "passed": {"type": "boolean"}}, "additionalProperties": false}}, "additionalProperties": false}
-  },
-  "additionalProperties": false
+  "additionalProperties": true
 }
