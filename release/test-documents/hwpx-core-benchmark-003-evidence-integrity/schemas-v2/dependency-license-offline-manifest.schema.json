@@ -1,1 +1,33 @@
-{"type":"object","additionalProperties":false}
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Task 003 dependency license offline manifest v2",
+  "type": "object",
+  "required": ["schema_version", "document_type", "task_id", "dependencies"],
+  "properties": {
+    "schema_version": { "const": "2.0.0" },
+    "document_type": { "const": "dependency_license_offline_manifest" },
+    "task_id": { "const": "hwpx-core-benchmark-003-evidence-integrity" },
+    "dependencies": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["candidate_id", "exact_version", "artifact_inventory", "license_files", "offline_install", "redistribution"],
+        "properties": {
+          "candidate_id": { "type": "string", "minLength": 1 },
+          "exact_version": { "type": "string", "minLength": 1 },
+          "artifact_inventory": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/file" } },
+          "license_files": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/legal" } },
+          "offline_install": { "type": "object", "required": ["attempted", "exit_code", "stdout_path", "stderr_path", "network_required"], "properties": { "attempted": { "const": true }, "exit_code": { "type": "integer" }, "stdout_path": { "type": "string", "minLength": 1 }, "stderr_path": { "type": "string", "minLength": 1 }, "network_required": { "type": "boolean" } }, "additionalProperties": false },
+          "redistribution": { "type": "object", "required": ["source_impact", "binary_impact", "obligations"], "properties": { "source_impact": { "type": "string", "not": { "const": "unknown" } }, "binary_impact": { "type": "string", "not": { "const": "unknown" } }, "obligations": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } } }, "additionalProperties": false }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "$defs": {
+    "file": { "type": "object", "required": ["path", "sha256", "size"], "properties": { "path": { "type": "string", "minLength": 1 }, "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" }, "size": { "type": "integer", "minimum": 0 } }, "additionalProperties": false },
+    "legal": { "type": "object", "required": ["kind", "path", "sha256"], "properties": { "kind": { "enum": ["LICENSE", "COPYING", "NOTICE"] }, "path": { "type": "string", "minLength": 1 }, "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" } }, "additionalProperties": false }
+  },
+  "additionalProperties": false
+}
