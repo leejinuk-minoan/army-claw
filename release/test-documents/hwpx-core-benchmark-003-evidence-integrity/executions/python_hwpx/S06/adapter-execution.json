@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0.0",
+  "task_id": "hwpx-core-benchmark-003-evidence-integrity",
+  "candidate_id": "python_hwpx",
+  "method": "S06-evidence-integrity-gate",
+  "status": "blocked",
+  "planned_commands": [
+    "Acquire pinned offline artifact for python_hwpx",
+    "Install python_hwpx in a clean offline environment",
+    "Run python_hwpx process for S06"
+  ],
+  "attempted_commands": [],
+  "checked_paths": [
+    "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/external-artifacts/python_hwpx"
+  ],
+  "checked_path_results": [
+    {
+      "path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/external-artifacts/python_hwpx",
+      "exists": false
+    }
+  ],
+  "generated_at": "2026-07-03T02:04:14.419Z"
+}

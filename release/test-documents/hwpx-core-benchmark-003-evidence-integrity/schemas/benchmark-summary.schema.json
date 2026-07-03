@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Task 003 benchmark summary",
+  "type": "object",
+  "required": [
+    "task_id",
+    "candidate_matrix",
+    "scenario_results",
+    "completion_gate_passed",
+    "core_selection",
+    "stage_transition"
+  ],
+  "properties": {
+    "task_id": {
+      "const": "hwpx-core-benchmark-003-evidence-integrity"
+    },
+    "candidate_matrix": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "scenario_results": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "completion_gate_passed": {
+      "type": "boolean"
+    },
+    "core_selection": {
+      "const": "prohibited"
+    },
+    "stage_transition": {
+      "const": "prohibited"
+    }
+  },
+  "additionalProperties": true
+}

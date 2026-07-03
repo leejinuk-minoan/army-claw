@@ -1,0 +1,579 @@
+{
+  "current_node_xml": {
+    "categories": {
+      "functional_fit": {
+        "weight": 30,
+        "rubric_items": [
+          {
+            "scenario_id": "S01",
+            "points": 5,
+            "awarded": 0,
+            "status": "unsupported"
+          },
+          {
+            "scenario_id": "S02",
+            "points": 5,
+            "awarded": 0,
+            "status": "failed"
+          },
+          {
+            "scenario_id": "S03",
+            "points": 4,
+            "awarded": 0,
+            "status": "unsupported"
+          },
+          {
+            "scenario_id": "S04",
+            "points": 4,
+            "awarded": 0,
+            "status": "unsupported"
+          },
+          {
+            "scenario_id": "S05",
+            "points": 4,
+            "awarded": 0,
+            "status": "unsupported"
+          },
+          {
+            "scenario_id": "S06",
+            "points": 3,
+            "awarded": 0,
+            "status": "blocked"
+          },
+          {
+            "scenario_id": "S07",
+            "points": 3,
+            "awarded": 0,
+            "status": "blocked"
+          },
+          {
+            "scenario_id": "S08",
+            "points": 2,
+            "awarded": 0,
+            "status": "blocked"
+          }
+        ],
+        "measured_points": 0,
+        "pending_points": 30,
+        "score_formula": "sum of explicit rubric items whose scenario-specific evidence validators passed",
+        "evidence_paths": [
+          "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/current_node_xml/S01/result.json",
+          "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/current_node_xml/S02/result.json",
+          "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/current_node_xml/S03/result.json",
+          "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/current_node_xml/S04/result.json",
+          "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/current_node_xml/S05/result.json",
+          "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/current_node_xml/S06/result.json",
+          "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/current_node_xml/S07/result.json",
+          "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/current_node_xml/S08/result.json",
+          "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/current_node_xml/S09/result.json",
+          "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/current_node_xml/S10/result.json",
+          "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/current_node_xml/S11/result.json",
+          "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/current_node_xml/S12/result.json",
+          "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/current_node_xml/S13/result.json",
+          "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/current_node_xml/S14/result.json"
+        ],
+        "validator_results": [
+          {
+            "validator_id": "s01-role-status-gate",
+            "valid": false,
+            "missing_evidence": [
+              "complete_scenario_evidence_not_available"
+            ]
+          },
+          {
+            "validator_id": "s02-role-status-gate",
+            "valid": false,
+            "missing_evidence": [
+              "complete_scenario_evidence_not_available"
+            ]
+          },
+          {
+            "validator_id": "s03-role-status-gate",
+            "valid": false,
+            "missing_evidence": [
+              "complete_scenario_evidence_not_available"
+            ]
+          },
+          {
+            "validator_id": "s04-role-status-gate",
+            "valid": false,
+            "missing_evidence": [
+              "complete_scenario_evidence_not_available"
+            ]
+          },
+          {
+            "validator_id": "s05-role-status-gate",
+            "valid": false,
+            "missing_evidence": [
+              "complete_scenario_evidence_not_available"
+            ]
+          },
+          {
+            "validator_id": "s06-complete-evidence-gate",
+            "valid": false,
+            "missing_evidence": [
+              "before_after_merged_table_snapshots",
+              "mutation_output_path",
+              "merged_cell_row_col_span_maps",
+              "non_target_entry_hashes_before_after"
+            ]
+          },
+          {
+            "validator_id": "s07-complete-evidence-gate",
+            "valid": false,
+            "missing_evidence": [
+              "image_entry_hash_comparison",
+              "bindata_entry_hash_comparison",
+              "relationship_reference_comparison",
+              "mutation_output_path"
+            ]
+          },
+          {
+            "validator_id": "s08-complete-evidence-gate",
+            "valid": false,
+            "missing_evidence": [
+              "fwspace_before_after_comparison",
+              "namespace_prefix_uri_map_before_after",
+              "mutation_output_path"
+            ]
+          },
+          {
+            "validator_id": "s09-role-status-gate",
+            "valid": false,
+            "missing_evidence": [
+              "complete_scenario_evidence_not_available"
+            ]
+          },
+          {
+            "validator_id": "s10-role-status-gate",
+            "valid": false,
+            "missing_evidence": [
+              "complete_scenario_evidence_not_available"
+            ]
+          },
+          {
+            "validator_id": "s11-role-status-gate",
+            "valid": false,
+            "missing_evidence": [
+              "complete_scenario_evidence_not_available"
+            ]
+          },
+          {
+            "validator_id": "s12-complete-evidence-gate",
+            "valid": false,
+            "missing_evidence": [
+              "raw_duration_samples",
+              "peak_rss_raw_samples",
+              "candidate_artifact_total_size",
+              "runtime_dependency_install_size",
+              "raw_stdout_or_structured_log"
+            ]
+          },
+          {
+            "validator_id": "s13-complete-evidence-gate",
+            "valid": false,
+            "missing_evidence": [
+              "clean_environment_offline_install",
+              "attempted_command_execution_record",
+              "runtime_network_test_result"
+            ]
+          },
+          {
+            "validator_id": "s14-complete-evidence-gate",
+            "valid": false,
+            "missing_evidence": [
+              "license_file_path",
+              "license_sha256",
+              "redistribution_assessment",
+              "redistribution_obligations"
+            ]
+          }
+        ],
+        "blocking_conditions": [
+          "general_serializer",
+          "complete_replacement_diff",
+          "stable_node_path_or_mutation_api",
+          "stable_node_path_or_mutation_api",
+          "stable_node_path_or_mutation_api",
+          "before_after_merged_table_snapshots",
+          "mutation_output_path",
+          "merged_cell_row_col_span_maps",
+          "non_target_entry_hashes_before_after",
+          "image_entry_hash_comparison",
+          "bindata_entry_hash_comparison",
+          "relationship_reference_comparison",
+          "mutation_output_path",
+          "fwspace_before_after_comparison",
+          "namespace_prefix_uri_map_before_after",
+          "mutation_output_path",
+          "raw_duration_samples",
+          "peak_rss_raw_samples",
+          "candidate_artifact_total_size",
+          "runtime_dependency_install_size",
+          "raw_stdout_or_structured_log",
+          "clean_environment_offline_install",
+          "attempted_command_execution_record",
+          "runtime_network_test_result",
+          "license_file_path",
+          "license_sha256",
+          "redistribution_assessment",
+          "redistribution_obligations"
+        ]
+      },
+      "visual_fidelity": {
+        "weight": 25,
+        "rubric_items": [],
+        "measured_points": 0,
+        "pending_points": 25,
+        "score_formula": "sum of explicit rubric items whose scenario-specific evidence validators passed",
+        "evidence_paths": [],
+        "validator_results": [],
+        "blocking_conditions": [
+          "Task 005 visual/COM evidence pending"
+        ]
+      },
+      "api_extensibility": {
+        "weight": 15,
+        "rubric_items": [
+          {
+            "item": "common adapter contract exists",
+            "points": 5,
+            "awarded": 5
+          }
+        ],
+        "measured_points": 5,
+        "pending_points": 10,
+        "score_formula": "sum of explicit rubric items whose scenario-specific evidence validators passed",
+        "evidence_paths": [
+          "tools/hancom/adapters/hwp-core-adapter-contract.mjs"
+        ],
+        "validator_results": [],
+        "blocking_conditions": []
+      },
+      "offline_distribution": {
+        "weight": 10,
+        "rubric_items": [],
+        "measured_points": 0,
+        "pending_points": 10,
+        "score_formula": "sum of explicit rubric items whose scenario-specific evidence validators passed",
+        "evidence_paths": [],
+        "validator_results": [],
+        "blocking_conditions": [
+          "S13 clean offline install evidence missing"
+        ]
+      },
+      "performance": {
+        "weight": 10,
+        "rubric_items": [],
+        "measured_points": 0,
+        "pending_points": 10,
+        "score_formula": "sum of explicit rubric items whose scenario-specific evidence validators passed",
+        "evidence_paths": [],
+        "validator_results": [],
+        "blocking_conditions": [
+          "S12 complete performance/install-size gate missing"
+        ]
+      },
+      "license_maintenance": {
+        "weight": 10,
+        "rubric_items": [],
+        "measured_points": 0,
+        "pending_points": 10,
+        "score_formula": "sum of explicit rubric items whose scenario-specific evidence validators passed",
+        "evidence_paths": [],
+        "validator_results": [],
+        "blocking_conditions": [
+          "S14 license evidence missing"
+        ]
+      }
+    }
+  },
+  "python_hwpx": {
+    "categories": {
+      "functional_fit": {
+        "weight": 30,
+        "rubric_items": [
+          {
+            "scenario_id": "S01",
+            "points": 5,
+            "awarded": 0,
+            "status": "blocked"
+          },
+          {
+            "scenario_id": "S02",
+            "points": 5,
+            "awarded": 0,
+            "status": "blocked"
+          },
+          {
+            "scenario_id": "S03",
+            "points": 4,
+            "awarded": 0,
+            "status": "blocked"
+          },
+          {
+            "scenario_id": "S04",
+            "points": 4,
+            "awarded": 0,
+            "status": "blocked"
+          },
+          {
+            "scenario_id": "S05",
+            "points": 4,
+            "awarded": 0,
+            "status": "blocked"
+          },
+          {
+            "scenario_id": "S06",
+            "points": 3,
+            "awarded": 0,
+            "status": "blocked"
+          },
+          {
+            "scenario_id": "S07",
+            "points": 3,
+            "awarded": 0,
+            "status": "blocked"
+          },
+          {
+            "scenario_id": "S08",
+            "points": 2,
+            "awarded": 0,
+            "status": "blocked"
+          }
+        ],
+        "measured_points": 0,
+        "pending_points": 30,
+        "score_formula": "sum of explicit rubric items whose scenario-specific evidence validators passed",
+        "evidence_paths": [
+          "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/python_hwpx/S01/result.json",
+          "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/python_hwpx/S02/result.json",
+          "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/python_hwpx/S03/result.json",
+          "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/python_hwpx/S04/result.json",
+          "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/python_hwpx/S05/result.json",
+          "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/python_hwpx/S06/result.json",
+          "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/python_hwpx/S07/result.json",
+          "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/python_hwpx/S08/result.json",
+          "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/python_hwpx/S09/result.json",
+          "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/python_hwpx/S10/result.json",
+          "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/python_hwpx/S11/result.json",
+          "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/python_hwpx/S12/result.json",
+          "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/python_hwpx/S13/result.json",
+          "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/python_hwpx/S14/result.json"
+        ],
+        "validator_results": [
+          {
+            "validator_id": "s01-role-status-gate",
+            "valid": false,
+            "missing_evidence": [
+              "complete_scenario_evidence_not_available"
+            ]
+          },
+          {
+            "validator_id": "s02-role-status-gate",
+            "valid": false,
+            "missing_evidence": [
+              "complete_scenario_evidence_not_available"
+            ]
+          },
+          {
+            "validator_id": "s03-role-status-gate",
+            "valid": false,
+            "missing_evidence": [
+              "complete_scenario_evidence_not_available"
+            ]
+          },
+          {
+            "validator_id": "s04-role-status-gate",
+            "valid": false,
+            "missing_evidence": [
+              "complete_scenario_evidence_not_available"
+            ]
+          },
+          {
+            "validator_id": "s05-role-status-gate",
+            "valid": false,
+            "missing_evidence": [
+              "complete_scenario_evidence_not_available"
+            ]
+          },
+          {
+            "validator_id": "s06-complete-evidence-gate",
+            "valid": false,
+            "missing_evidence": [
+              "before_after_merged_table_snapshots",
+              "mutation_output_path",
+              "merged_cell_row_col_span_maps",
+              "non_target_entry_hashes_before_after"
+            ]
+          },
+          {
+            "validator_id": "s07-complete-evidence-gate",
+            "valid": false,
+            "missing_evidence": [
+              "image_entry_hash_comparison",
+              "bindata_entry_hash_comparison",
+              "relationship_reference_comparison",
+              "mutation_output_path"
+            ]
+          },
+          {
+            "validator_id": "s08-complete-evidence-gate",
+            "valid": false,
+            "missing_evidence": [
+              "fwspace_before_after_comparison",
+              "namespace_prefix_uri_map_before_after",
+              "mutation_output_path"
+            ]
+          },
+          {
+            "validator_id": "s09-role-status-gate",
+            "valid": false,
+            "missing_evidence": [
+              "complete_scenario_evidence_not_available"
+            ]
+          },
+          {
+            "validator_id": "s10-role-status-gate",
+            "valid": false,
+            "missing_evidence": [
+              "complete_scenario_evidence_not_available"
+            ]
+          },
+          {
+            "validator_id": "s11-role-status-gate",
+            "valid": false,
+            "missing_evidence": [
+              "complete_scenario_evidence_not_available"
+            ]
+          },
+          {
+            "validator_id": "s12-complete-evidence-gate",
+            "valid": false,
+            "missing_evidence": [
+              "raw_duration_samples",
+              "peak_rss_raw_samples",
+              "candidate_artifact_total_size",
+              "runtime_dependency_install_size",
+              "raw_stdout_or_structured_log"
+            ]
+          },
+          {
+            "validator_id": "s13-complete-evidence-gate",
+            "valid": false,
+            "missing_evidence": [
+              "clean_environment_offline_install",
+              "attempted_command_execution_record",
+              "runtime_network_test_result"
+            ]
+          },
+          {
+            "validator_id": "s14-complete-evidence-gate",
+            "valid": false,
+            "missing_evidence": [
+              "license_file_path",
+              "license_sha256",
+              "redistribution_assessment",
+              "redistribution_obligations"
+            ]
+          }
+        ],
+        "blocking_conditions": [
+          "pinned_offline_artifact",
+          "runtime_install",
+          "license_evidence",
+          "pinned_offline_artifact",
+          "runtime_install",
+          "license_evidence",
+          "pinned_offline_artifact",
+          "runtime_install",
+          "license_evidence",
+          "pinned_offline_artifact",
+          "runtime_install",
+          "license_evidence",
+          "pinned_offline_artifact",
+          "runtime_install",
+          "license_evidence",
+          "pinned_offline_artifact",
+          "runtime_install",
+          "license_evidence",
+          "pinned_offline_artifact",
+          "runtime_install",
+          "license_evidence",
+          "pinned_offline_artifact",
+          "runtime_install",
+          "license_evidence",
+          "pinned_offline_artifact",
+          "runtime_install",
+          "license_evidence",
+          "pinned_offline_artifact",
+          "runtime_install",
+          "license_evidence",
+          "pinned_offline_artifact",
+          "runtime_install",
+          "license_evidence"
+        ]
+      },
+      "visual_fidelity": {
+        "weight": 25,
+        "rubric_items": [],
+        "measured_points": 0,
+        "pending_points": 25,
+        "score_formula": "sum of explicit rubric items whose scenario-specific evidence validators passed",
+        "evidence_paths": [],
+        "validator_results": [],
+        "blocking_conditions": [
+          "no candidate output"
+        ]
+      },
+      "api_extensibility": {
+        "weight": 15,
+        "rubric_items": [],
+        "measured_points": 0,
+        "pending_points": 15,
+        "score_formula": "sum of explicit rubric items whose scenario-specific evidence validators passed",
+        "evidence_paths": [],
+        "validator_results": [],
+        "blocking_conditions": [
+          "process adapter not executed"
+        ]
+      },
+      "offline_distribution": {
+        "weight": 10,
+        "rubric_items": [],
+        "measured_points": 0,
+        "pending_points": 10,
+        "score_formula": "sum of explicit rubric items whose scenario-specific evidence validators passed",
+        "evidence_paths": [],
+        "validator_results": [],
+        "blocking_conditions": [
+          "pinned artifact missing"
+        ]
+      },
+      "performance": {
+        "weight": 10,
+        "rubric_items": [],
+        "measured_points": 0,
+        "pending_points": 10,
+        "score_formula": "sum of explicit rubric items whose scenario-specific evidence validators passed",
+        "evidence_paths": [],
+        "validator_results": [],
+        "blocking_conditions": [
+          "raw performance evidence missing"
+        ]
+      },
+      "license_maintenance": {
+        "weight": 10,
+        "rubric_items": [],
+        "measured_points": 0,
+        "pending_points": 10,
+        "score_formula": "sum of explicit rubric items whose scenario-specific evidence validators passed",
+        "evidence_paths": [],
+        "validator_results": [],
+        "blocking_conditions": [
+          "license evidence missing"
+        ]
+      }
+    }
+  }
+}

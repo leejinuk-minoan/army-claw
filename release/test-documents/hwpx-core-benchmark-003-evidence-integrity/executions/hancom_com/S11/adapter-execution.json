@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0.0",
+  "task_id": "hwpx-core-benchmark-003-evidence-integrity",
+  "candidate_id": "hancom_com",
+  "method": "S11-evidence-integrity-gate",
+  "status": "blocked",
+  "planned_commands": [
+    "Detect Hancom COM ProgID",
+    "Open candidate copy",
+    "Save as .com-resaved.hwpx",
+    "Measure page markers"
+  ],
+  "attempted_commands": [],
+  "checked_paths": [
+    "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/external-artifacts/hancom_com"
+  ],
+  "checked_path_results": [
+    {
+      "path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/external-artifacts/hancom_com",
+      "exists": false
+    }
+  ],
+  "generated_at": "2026-07-03T02:04:14.478Z"
+}

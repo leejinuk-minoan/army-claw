@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0.0",
+  "task_id": "hwpx-core-benchmark-003-evidence-integrity",
+  "candidate_id": "python_hwpx",
+  "candidate_role": "editor",
+  "scenario_id": "S04",
+  "scenario_name": "drawText paragraph discovery",
+  "previous_status": "blocked",
+  "status": "blocked",
+  "status_reason": "python_hwpx artifact/runtime/license evidence is not acquired in Task 003",
+  "evidence_completeness": "missing",
+  "missing_evidence": [
+    "pinned_offline_artifact",
+    "runtime_install",
+    "license_evidence"
+  ],
+  "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/python_hwpx/S04/result.json",
+  "planned_commands": [
+    "Acquire pinned offline artifact for python_hwpx",
+    "Install python_hwpx in a clean offline environment",
+    "Run python_hwpx process for S04"
+  ],
+  "attempted_commands": [],
+  "checked_paths": [
+    "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/external-artifacts/python_hwpx"
+  ],
+  "checked_path_results": [
+    {
+      "path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/external-artifacts/python_hwpx",
+      "exists": false
+    }
+  ],
+  "validator_results": [
+    {
+      "validator_id": "s04-role-status-gate",
+      "valid": false,
+      "missing_evidence": [
+        "complete_scenario_evidence_not_available"
+      ]
+    }
+  ],
+  "generated_at": "2026-07-03T02:04:14.416Z"
+}

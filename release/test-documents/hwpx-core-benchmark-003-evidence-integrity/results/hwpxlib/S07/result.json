@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0.0",
+  "task_id": "hwpx-core-benchmark-003-evidence-integrity",
+  "candidate_id": "hwpxlib",
+  "candidate_role": "validator",
+  "scenario_id": "S07",
+  "scenario_name": "image and BinData preservation",
+  "previous_status": "blocked",
+  "status": "blocked",
+  "status_reason": "hwpxlib artifact/runtime/license evidence is not acquired in Task 003",
+  "evidence_completeness": "missing",
+  "missing_evidence": [
+    "pinned_offline_artifact",
+    "runtime_install",
+    "license_evidence"
+  ],
+  "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/hwpxlib/S07/result.json",
+  "planned_commands": [
+    "Acquire pinned offline artifact for hwpxlib",
+    "Install hwpxlib in a clean offline environment",
+    "Run hwpxlib process for S07"
+  ],
+  "attempted_commands": [],
+  "checked_paths": [
+    "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/external-artifacts/hwpxlib"
+  ],
+  "checked_path_results": [
+    {
+      "path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/external-artifacts/hwpxlib",
+      "exists": false
+    }
+  ],
+  "validator_results": [
+    {
+      "validator_id": "s07-complete-evidence-gate",
+      "valid": false,
+      "missing_evidence": [
+        "image_entry_hash_comparison",
+        "bindata_entry_hash_comparison",
+        "relationship_reference_comparison",
+        "mutation_output_path"
+      ]
+    }
+  ],
+  "generated_at": "2026-07-03T02:04:14.437Z"
+}

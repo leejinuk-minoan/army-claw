@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0.0",
+  "task_id": "hwpx-core-benchmark-003-evidence-integrity",
+  "candidate_id": "hancom_com",
+  "candidate_role": "layout_authority",
+  "scenario_id": "S08",
+  "scenario_name": "hp:fwSpace and namespace preservation",
+  "previous_status": null,
+  "status": "not_applicable",
+  "status_reason": "layout_authority role does not own S08",
+  "evidence_completeness": "not_applicable",
+  "missing_evidence": [],
+  "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/hancom_com/S08/result.json",
+  "planned_commands": [],
+  "attempted_commands": [],
+  "checked_paths": [],
+  "checked_path_results": [],
+  "validator_results": [
+    {
+      "validator_id": "s08-complete-evidence-gate",
+      "valid": false,
+      "missing_evidence": [
+        "fwspace_before_after_comparison",
+        "namespace_prefix_uri_map_before_after",
+        "mutation_output_path"
+      ]
+    }
+  ],
+  "generated_at": "2026-07-03T02:04:14.473Z"
+}

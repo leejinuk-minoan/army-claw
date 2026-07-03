@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0.0",
+  "task_id": "hwpx-core-benchmark-003-evidence-integrity",
+  "candidate_id": "current_node_xml",
+  "candidate_role": "editor",
+  "scenario_id": "S03",
+  "scenario_name": "nested table discovery",
+  "previous_status": "unsupported",
+  "status": "unsupported",
+  "status_reason": "S03 API is not yet exposed by current Node/XML core",
+  "evidence_completeness": "partial",
+  "missing_evidence": [
+    "stable_node_path_or_mutation_api"
+  ],
+  "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/current_node_xml/S03/result.json",
+  "planned_commands": [
+    "Future Task 004/005 may execute external candidate or COM measurement where applicable."
+  ],
+  "attempted_commands": [],
+  "checked_paths": [
+    "tools/hancom/army-claw-hancom-tools.mjs",
+    "release/test-documents/hwpx-core-benchmark-002/summary/benchmark-results.json"
+  ],
+  "checked_path_results": [
+    {
+      "path": "tools/hancom/army-claw-hancom-tools.mjs",
+      "exists": true
+    },
+    {
+      "path": "release/test-documents/hwpx-core-benchmark-002/summary/benchmark-results.json",
+      "exists": true
+    }
+  ],
+  "validator_results": [
+    {
+      "validator_id": "s03-role-status-gate",
+      "valid": false,
+      "missing_evidence": [
+        "complete_scenario_evidence_not_available"
+      ]
+    }
+  ],
+  "generated_at": "2026-07-03T02:04:14.395Z"
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.0.0",
+  "task_id": "hwpx-core-benchmark-003-evidence-integrity",
+  "generated_at": "2026-07-03T02:04:14.392Z",
+  "records": [
+    {
+      "target": "release/test-documents/hwpx-core-benchmark-001",
+      "kind": "directory",
+      "file_count": 72,
+      "digest": "c4f19224cdc030558eddc5f2c2049a052a91ddad19dd82701dc8c3b428b05691"
+    },
+    {
+      "target": "release/test-documents/hwpx-core-benchmark-002",
+      "kind": "directory",
+      "file_count": 133,
+      "digest": "cc5995683ba50c4e338c721e9bf6c8031fbd2811fa7c9916fd99523430c626fa"
+    },
+    {
+      "target": "docs/gpt-communication/reports/2026-07-02-hwpx-core-benchmark-001.md",
+      "kind": "file",
+      "repository_relative_path": "docs/gpt-communication/reports/2026-07-02-hwpx-core-benchmark-001.md",
+      "availability_status": "available",
+      "sha256_before": "3e3064a5ac4d4daa451f4c14707c2257fd3cbc14fdc6f066c98a87cf123734b7",
+      "sha256_after": "3e3064a5ac4d4daa451f4c14707c2257fd3cbc14fdc6f066c98a87cf123734b7",
+      "byte_size": 5857
+    },
+    {
+      "target": "docs/gpt-communication/reports/2026-07-02-hwpx-core-benchmark-002.md",
+      "kind": "file",
+      "repository_relative_path": "docs/gpt-communication/reports/2026-07-02-hwpx-core-benchmark-002.md",
+      "availability_status": "available",
+      "sha256_before": "f03f4532ed1ffc70aeb11c530481f6e1f2c3350533c6368c2fcf053ba5cf054f",
+      "sha256_after": "f03f4532ed1ffc70aeb11c530481f6e1f2c3350533c6368c2fcf053ba5cf054f",
+      "byte_size": 10260
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0.0",
+  "task_id": "hwpx-core-benchmark-003-evidence-integrity",
+  "candidate_id": "hwpxlib",
+  "candidate_role": "validator",
+  "scenario_id": "S14",
+  "scenario_name": "license and redistribution evidence",
+  "previous_status": "blocked",
+  "status": "blocked",
+  "status_reason": "hwpxlib artifact/runtime/license evidence is not acquired in Task 003",
+  "evidence_completeness": "missing",
+  "missing_evidence": [
+    "pinned_offline_artifact",
+    "runtime_install",
+    "license_evidence"
+  ],
+  "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/hwpxlib/S14/result.json",
+  "planned_commands": [
+    "Acquire pinned offline artifact for hwpxlib",
+    "Install hwpxlib in a clean offline environment",
+    "Run hwpxlib process for S14"
+  ],
+  "attempted_commands": [],
+  "checked_paths": [
+    "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/external-artifacts/hwpxlib"
+  ],
+  "checked_path_results": [
+    {
+      "path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/external-artifacts/hwpxlib",
+      "exists": false
+    }
+  ],
+  "validator_results": [
+    {
+      "validator_id": "s14-complete-evidence-gate",
+      "valid": false,
+      "missing_evidence": [
+        "license_file_path",
+        "license_sha256",
+        "redistribution_assessment",
+        "redistribution_obligations"
+      ]
+    }
+  ],
+  "generated_at": "2026-07-03T02:04:14.446Z"
+}

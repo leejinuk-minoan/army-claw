@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0.0",
+  "task_id": "hwpx-core-benchmark-003-evidence-integrity",
+  "candidate_id": "hwpforge",
+  "candidate_role": "validator",
+  "scenario_id": "S03",
+  "scenario_name": "nested table discovery",
+  "previous_status": "blocked",
+  "status": "not_applicable",
+  "status_reason": "validator role does not own S03",
+  "evidence_completeness": "not_applicable",
+  "missing_evidence": [],
+  "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/hwpforge/S03/result.json",
+  "planned_commands": [],
+  "attempted_commands": [],
+  "checked_paths": [],
+  "checked_path_results": [],
+  "validator_results": [
+    {
+      "validator_id": "s03-role-status-gate",
+      "valid": false,
+      "missing_evidence": [
+        "complete_scenario_evidence_not_available"
+      ]
+    }
+  ],
+  "generated_at": "2026-07-03T02:04:14.450Z"
+}

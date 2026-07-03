@@ -1,0 +1,12 @@
+{
+  "schema_version": "1.0.0",
+  "task_id": "hwpx-core-benchmark-003-evidence-integrity",
+  "candidate_id": "hancom_com",
+  "method": "S06-evidence-integrity-gate",
+  "status": "not_applicable",
+  "planned_commands": [],
+  "attempted_commands": [],
+  "checked_paths": [],
+  "checked_path_results": [],
+  "generated_at": "2026-07-03T02:04:14.471Z"
+}

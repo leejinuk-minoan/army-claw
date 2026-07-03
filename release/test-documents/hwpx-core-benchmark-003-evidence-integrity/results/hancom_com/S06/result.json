@@ -1,0 +1,31 @@
+{
+  "schema_version": "1.0.0",
+  "task_id": "hwpx-core-benchmark-003-evidence-integrity",
+  "candidate_id": "hancom_com",
+  "candidate_role": "layout_authority",
+  "scenario_id": "S06",
+  "scenario_name": "merged table preservation",
+  "previous_status": null,
+  "status": "not_applicable",
+  "status_reason": "layout_authority role does not own S06",
+  "evidence_completeness": "not_applicable",
+  "missing_evidence": [],
+  "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/hancom_com/S06/result.json",
+  "planned_commands": [],
+  "attempted_commands": [],
+  "checked_paths": [],
+  "checked_path_results": [],
+  "validator_results": [
+    {
+      "validator_id": "s06-complete-evidence-gate",
+      "valid": false,
+      "missing_evidence": [
+        "before_after_merged_table_snapshots",
+        "mutation_output_path",
+        "merged_cell_row_col_span_maps",
+        "non_target_entry_hashes_before_after"
+      ]
+    }
+  ],
+  "generated_at": "2026-07-03T02:04:14.471Z"
+}

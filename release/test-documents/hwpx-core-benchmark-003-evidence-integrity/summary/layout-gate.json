@@ -1,0 +1,13 @@
+{
+  "hancom_com": {
+    "status": "blocked",
+    "scenarios": [
+      "S09",
+      "S10",
+      "S11"
+    ],
+    "blocking_conditions": [
+      "Hancom COM execution is Task 005 scope"
+    ]
+  }
+}

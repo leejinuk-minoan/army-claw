@@ -1,0 +1,67 @@
+{
+  "schema_version": "1.0.0",
+  "task_id": "hwpx-core-benchmark-003-evidence-integrity",
+  "generated_at": "2026-07-03T02:04:14.483Z",
+  "dependencies": [
+    {
+      "candidate_id": "current_node_xml",
+      "role": "editor",
+      "runtime": "node",
+      "project_identity": "tools/hancom/army-claw-hancom-tools.mjs",
+      "exact_version_or_immutable_commit": "repository HEAD at task start",
+      "offline_artifact_status": "repository_local",
+      "license_status": "missing_or_unknown",
+      "license_file_path": null,
+      "license_sha256": null,
+      "redistribution_assessment": "unknown"
+    },
+    {
+      "candidate_id": "python_hwpx",
+      "role": "editor",
+      "runtime": "python",
+      "project_identity": "external artifact not acquired in Task 003",
+      "exact_version_or_immutable_commit": null,
+      "offline_artifact_status": "missing_task_004_scope",
+      "license_status": "missing_or_unknown",
+      "license_file_path": null,
+      "license_sha256": null,
+      "redistribution_assessment": "unknown"
+    },
+    {
+      "candidate_id": "hwpxlib",
+      "role": "validator",
+      "runtime": "java",
+      "project_identity": "external artifact not acquired in Task 003",
+      "exact_version_or_immutable_commit": null,
+      "offline_artifact_status": "missing_task_004_scope",
+      "license_status": "missing_or_unknown",
+      "license_file_path": null,
+      "license_sha256": null,
+      "redistribution_assessment": "unknown"
+    },
+    {
+      "candidate_id": "hwpforge",
+      "role": "validator",
+      "runtime": "rust",
+      "project_identity": "external identity/artifact not acquired in Task 003",
+      "exact_version_or_immutable_commit": null,
+      "offline_artifact_status": "missing_task_004_scope",
+      "license_status": "missing_or_unknown",
+      "license_file_path": null,
+      "license_sha256": null,
+      "redistribution_assessment": "unknown"
+    },
+    {
+      "candidate_id": "hancom_com",
+      "role": "layout_authority",
+      "runtime": "hancom_com",
+      "project_identity": "local Hancom 2024 COM not executed in Task 003",
+      "exact_version_or_immutable_commit": null,
+      "offline_artifact_status": "missing_task_004_scope",
+      "license_status": "missing_or_unknown",
+      "license_file_path": null,
+      "license_sha256": null,
+      "redistribution_assessment": "unknown"
+    }
+  ]
+}

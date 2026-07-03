@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Task 003 dependency license manifest",
+  "type": "object",
+  "required": [
+    "task_id",
+    "dependencies"
+  ],
+  "properties": {
+    "task_id": {
+      "const": "hwpx-core-benchmark-003-evidence-integrity"
+    },
+    "dependencies": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "candidate_id",
+          "license_status",
+          "offline_artifact_status"
+        ],
+        "properties": {
+          "candidate_id": {
+            "type": "string"
+          },
+          "license_status": {
+            "type": "string"
+          },
+          "offline_artifact_status": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": true
+}

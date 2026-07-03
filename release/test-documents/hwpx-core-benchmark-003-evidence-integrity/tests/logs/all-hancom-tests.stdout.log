@@ -1,0 +1,539 @@
+node:internal/modules/cjs/loader:1456
+  const err = new Error(message);
+              ^
+
+Error: Cannot find module 'jszip'
+Require stack:
+- C:\Users\USER\Desktop\로컬 open claw 만들기\tools\node_modules\.army-claw-loader.cjs
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1456:15)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1066:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1071:22)
+    at Module._load (node:internal/modules/cjs/loader:1242:25)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.require (node:internal/modules/cjs/loader:1556:12)
+    at require (node:internal/modules/helpers:152:16)
+    at file:///C:/Users/USER/Desktop/%EB%A1%9C%EC%BB%AC%20open%20claw%20%EB%A7%8C%EB%93%A4%EA%B8%B0/tools/hancom/army-claw-hancom-tools.mjs:16:15
+    at ModuleJob.run (node:internal/modules/esm/module_job:430:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:661:26) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\tools\\node_modules\\.army-claw-loader.cjs'
+  ]
+}
+
+Node.js v24.14.0
+✖ tools\hancom\army-claw-hancom-tools.test.mjs (78.3041ms)
+node:internal/modules/cjs/loader:1456
+  const err = new Error(message);
+              ^
+
+Error: Cannot find module 'jszip'
+Require stack:
+- C:\Users\USER\Desktop\로컬 open claw 만들기\tools\node_modules\.army-claw-loader.cjs
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1456:15)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1066:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1071:22)
+    at Module._load (node:internal/modules/cjs/loader:1242:25)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.require (node:internal/modules/cjs/loader:1556:12)
+    at require (node:internal/modules/helpers:152:16)
+    at file:///C:/Users/USER/Desktop/%EB%A1%9C%EC%BB%AC%20open%20claw%20%EB%A7%8C%EB%93%A4%EA%B8%B0/tools/hancom/army-claw-hancom-tools.mjs:16:15
+    at ModuleJob.run (node:internal/modules/esm/module_job:430:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:661:26) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\tools\\node_modules\\.army-claw-loader.cjs'
+  ]
+}
+
+Node.js v24.14.0
+✖ tools\hancom\hwp-reference-analyzer-nested-tables.test.mjs (79.2417ms)
+node:internal/modules/cjs/loader:1456
+  const err = new Error(message);
+              ^
+
+Error: Cannot find module 'jszip'
+Require stack:
+- C:\Users\USER\Desktop\로컬 open claw 만들기\tools\node_modules\.army-claw-loader.cjs
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1456:15)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1066:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1071:22)
+    at Module._load (node:internal/modules/cjs/loader:1242:25)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.require (node:internal/modules/cjs/loader:1556:12)
+    at require (node:internal/modules/helpers:152:16)
+    at file:///C:/Users/USER/Desktop/%EB%A1%9C%EC%BB%AC%20open%20claw%20%EB%A7%8C%EB%93%A4%EA%B8%B0/tools/hancom/army-claw-hancom-tools.mjs:16:15
+    at ModuleJob.run (node:internal/modules/esm/module_job:430:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:661:26) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\tools\\node_modules\\.army-claw-loader.cjs'
+  ]
+}
+
+Node.js v24.14.0
+✖ tools\hancom\hwp-reference-style-profiles.test.mjs (80.7092ms)
+node:internal/modules/cjs/loader:1456
+  const err = new Error(message);
+              ^
+
+Error: Cannot find module 'jszip'
+Require stack:
+- C:\Users\USER\Desktop\로컬 open claw 만들기\tools\node_modules\.army-claw-loader.cjs
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1456:15)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1066:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1071:22)
+    at Module._load (node:internal/modules/cjs/loader:1242:25)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.require (node:internal/modules/cjs/loader:1556:12)
+    at require (node:internal/modules/helpers:152:16)
+    at file:///C:/Users/USER/Desktop/%EB%A1%9C%EC%BB%AC%20open%20claw%20%EB%A7%8C%EB%93%A4%EA%B8%B0/tools/hancom/army-claw-hancom-tools.mjs:16:15
+    at ModuleJob.run (node:internal/modules/esm/module_job:430:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:661:26) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\tools\\node_modules\\.army-claw-loader.cjs'
+  ]
+}
+
+Node.js v24.14.0
+✖ tools\hancom\hwpx-adaptive-board-fit.test.mjs (82.1999ms)
+node:internal/modules/cjs/loader:1456
+  const err = new Error(message);
+              ^
+
+Error: Cannot find module 'jszip'
+Require stack:
+- C:\Users\USER\Desktop\로컬 open claw 만들기\tools\node_modules\.army-claw-loader.cjs
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1456:15)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1066:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1071:22)
+    at Module._load (node:internal/modules/cjs/loader:1242:25)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.require (node:internal/modules/cjs/loader:1556:12)
+    at require (node:internal/modules/helpers:152:16)
+    at file:///C:/Users/USER/Desktop/%EB%A1%9C%EC%BB%AC%20open%20claw%20%EB%A7%8C%EB%93%A4%EA%B8%B0/tools/hancom/army-claw-hancom-tools.mjs:16:15
+    at ModuleJob.run (node:internal/modules/esm/module_job:430:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:661:26) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\tools\\node_modules\\.army-claw-loader.cjs'
+  ]
+}
+
+Node.js v24.14.0
+✖ tools\hancom\hwpx-board-metadata.test.mjs (84.5722ms)
+node:internal/modules/cjs/loader:1456
+  const err = new Error(message);
+              ^
+
+Error: Cannot find module 'jszip'
+Require stack:
+- C:\Users\USER\Desktop\로컬 open claw 만들기\tools\node_modules\.army-claw-loader.cjs
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1456:15)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1066:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1071:22)
+    at Module._load (node:internal/modules/cjs/loader:1242:25)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.require (node:internal/modules/cjs/loader:1556:12)
+    at require (node:internal/modules/helpers:152:16)
+    at file:///C:/Users/USER/Desktop/%EB%A1%9C%EC%BB%AC%20open%20claw%20%EB%A7%8C%EB%93%A4%EA%B8%B0/tools/hancom/army-claw-hancom-tools.mjs:16:15
+    at ModuleJob.run (node:internal/modules/esm/module_job:430:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:661:26) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\tools\\node_modules\\.army-claw-loader.cjs'
+  ]
+}
+
+Node.js v24.14.0
+✖ tools\hancom\hwpx-core-benchmark-contract.test.mjs (84.675ms)
+node:internal/modules/cjs/loader:1456
+  const err = new Error(message);
+              ^
+
+Error: Cannot find module 'jszip'
+Require stack:
+- C:\Users\USER\Desktop\로컬 open claw 만들기\tools\node_modules\.army-claw-loader.cjs
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1456:15)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1066:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1071:22)
+    at Module._load (node:internal/modules/cjs/loader:1242:25)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.require (node:internal/modules/cjs/loader:1556:12)
+    at require (node:internal/modules/helpers:152:16)
+    at file:///C:/Users/USER/Desktop/%EB%A1%9C%EC%BB%AC%20open%20claw%20%EB%A7%8C%EB%93%A4%EA%B8%B0/tools/hancom/army-claw-hancom-tools.mjs:16:15
+    at ModuleJob.run (node:internal/modules/esm/module_job:430:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:661:26) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\tools\\node_modules\\.army-claw-loader.cjs'
+  ]
+}
+
+Node.js v24.14.0
+✖ tools\hancom\hwpx-core-benchmark-corrective.test.mjs (79.0039ms)
+✔ Task 003 constants isolate output from benchmark-002 (0.751ms)
+✔ role matrix marks role-inapplicable scenarios as not_applicable instead of blocked (0.9586ms)
+✔ S06-S08 cannot pass without before/after snapshots and mutation output (0.576ms)
+✔ S12-S14 gates reject partial timing, package-open install, and unknown license evidence (0.6736ms)
+✔ planned commands are separated from actually attempted commands (0.5832ms)
+✔ rubric scoring ignores invalid passed and status-count formulas (0.7585ms)
+✔ schema validation reports negative fixture failure (0.5069ms)
+node:internal/modules/cjs/loader:1456
+  const err = new Error(message);
+              ^
+
+Error: Cannot find module 'jszip'
+Require stack:
+- C:\Users\USER\Desktop\로컬 open claw 만들기\tools\node_modules\.army-claw-loader.cjs
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1456:15)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1066:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1071:22)
+    at Module._load (node:internal/modules/cjs/loader:1242:25)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.require (node:internal/modules/cjs/loader:1556:12)
+    at require (node:internal/modules/helpers:152:16)
+    at file:///C:/Users/USER/Desktop/%EB%A1%9C%EC%BB%AC%20open%20claw%20%EB%A7%8C%EB%93%A4%EA%B8%B0/tools/hancom/army-claw-hancom-tools.mjs:16:15
+    at ModuleJob.run (node:internal/modules/esm/module_job:430:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:661:26) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\tools\\node_modules\\.army-claw-loader.cjs'
+  ]
+}
+
+Node.js v24.14.0
+✖ tools\hancom\hwpx-document-order-container-leaf.test.mjs (70.0081ms)
+node:internal/modules/cjs/loader:1456
+  const err = new Error(message);
+              ^
+
+Error: Cannot find module 'jszip'
+Require stack:
+- C:\Users\USER\Desktop\로컬 open claw 만들기\tools\node_modules\.army-claw-loader.cjs
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1456:15)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1066:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1071:22)
+    at Module._load (node:internal/modules/cjs/loader:1242:25)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.require (node:internal/modules/cjs/loader:1556:12)
+    at require (node:internal/modules/helpers:152:16)
+    at file:///C:/Users/USER/Desktop/%EB%A1%9C%EC%BB%AC%20open%20claw%20%EB%A7%8C%EB%93%A4%EA%B8%B0/tools/hancom/army-claw-hancom-tools.mjs:16:15
+    at ModuleJob.run (node:internal/modules/esm/module_job:430:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:661:26) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\tools\\node_modules\\.army-claw-loader.cjs'
+  ]
+}
+
+Node.js v24.14.0
+✖ tools\hancom\hwpx-inline-token-serialization.test.mjs (73.0575ms)
+node:internal/modules/cjs/loader:1456
+  const err = new Error(message);
+              ^
+
+Error: Cannot find module 'jszip'
+Require stack:
+- C:\Users\USER\Desktop\로컬 open claw 만들기\tools\node_modules\.army-claw-loader.cjs
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1456:15)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1066:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1071:22)
+    at Module._load (node:internal/modules/cjs/loader:1242:25)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.require (node:internal/modules/cjs/loader:1556:12)
+    at require (node:internal/modules/helpers:152:16)
+    at file:///C:/Users/USER/Desktop/%EB%A1%9C%EC%BB%AC%20open%20claw%20%EB%A7%8C%EB%93%A4%EA%B8%B0/tools/hancom/army-claw-hancom-tools.mjs:16:15
+    at ModuleJob.run (node:internal/modules/esm/module_job:430:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:661:26) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\tools\\node_modules\\.army-claw-loader.cjs'
+  ]
+}
+
+Node.js v24.14.0
+✖ tools\hancom\hwpx-merged-table-grid.test.mjs (61.748ms)
+node:internal/modules/cjs/loader:1456
+  const err = new Error(message);
+              ^
+
+Error: Cannot find module 'jszip'
+Require stack:
+- C:\Users\USER\Desktop\로컬 open claw 만들기\tools\node_modules\.army-claw-loader.cjs
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1456:15)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1066:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1071:22)
+    at Module._load (node:internal/modules/cjs/loader:1242:25)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.require (node:internal/modules/cjs/loader:1556:12)
+    at require (node:internal/modules/helpers:152:16)
+    at file:///C:/Users/USER/Desktop/%EB%A1%9C%EC%BB%AC%20open%20claw%20%EB%A7%8C%EB%93%A4%EA%B8%B0/tools/hancom/army-claw-hancom-tools.mjs:16:15
+    at ModuleJob.run (node:internal/modules/esm/module_job:430:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:661:26) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\tools\\node_modules\\.army-claw-loader.cjs'
+  ]
+}
+
+Node.js v24.14.0
+✖ tools\hancom\hwpx-native-line-reflow.test.mjs (64.8525ms)
+node:internal/modules/cjs/loader:1456
+  const err = new Error(message);
+              ^
+
+Error: Cannot find module 'jszip'
+Require stack:
+- C:\Users\USER\Desktop\로컬 open claw 만들기\tools\node_modules\.army-claw-loader.cjs
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1456:15)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1066:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1071:22)
+    at Module._load (node:internal/modules/cjs/loader:1242:25)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.require (node:internal/modules/cjs/loader:1556:12)
+    at require (node:internal/modules/helpers:152:16)
+    at file:///C:/Users/USER/Desktop/%EB%A1%9C%EC%BB%AC%20open%20claw%20%EB%A7%8C%EB%93%A4%EA%B8%B0/tools/hancom/hwpx-native-structure-diff.mjs:14:31
+    at ModuleJob.run (node:internal/modules/esm/module_job:430:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:661:26) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\tools\\node_modules\\.army-claw-loader.cjs'
+  ]
+}
+
+Node.js v24.14.0
+✖ tools\hancom\hwpx-native-structure-diff.test.mjs (61.4939ms)
+node:internal/modules/cjs/loader:1456
+  const err = new Error(message);
+              ^
+
+Error: Cannot find module 'jszip'
+Require stack:
+- C:\Users\USER\Desktop\로컬 open claw 만들기\tools\node_modules\.army-claw-loader.cjs
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1456:15)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1066:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1071:22)
+    at Module._load (node:internal/modules/cjs/loader:1242:25)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.require (node:internal/modules/cjs/loader:1556:12)
+    at require (node:internal/modules/helpers:152:16)
+    at file:///C:/Users/USER/Desktop/%EB%A1%9C%EC%BB%AC%20open%20claw%20%EB%A7%8C%EB%93%A4%EA%B8%B0/tools/hancom/army-claw-hancom-tools.mjs:16:15
+    at ModuleJob.run (node:internal/modules/esm/module_job:430:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:661:26) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\tools\\node_modules\\.army-claw-loader.cjs'
+  ]
+}
+
+Node.js v24.14.0
+✖ tools\hancom\hwpx-native-table-wrapper.test.mjs (54.9452ms)
+node:internal/modules/cjs/loader:1456
+  const err = new Error(message);
+              ^
+
+Error: Cannot find module 'jszip'
+Require stack:
+- C:\Users\USER\Desktop\로컬 open claw 만들기\tools\node_modules\.army-claw-loader.cjs
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1456:15)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1066:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1071:22)
+    at Module._load (node:internal/modules/cjs/loader:1242:25)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.require (node:internal/modules/cjs/loader:1556:12)
+    at require (node:internal/modules/helpers:152:16)
+    at file:///C:/Users/USER/Desktop/%EB%A1%9C%EC%BB%AC%20open%20claw%20%EB%A7%8C%EB%93%A4%EA%B8%B0/tools/hancom/army-claw-hancom-tools.mjs:16:15
+    at ModuleJob.run (node:internal/modules/esm/module_job:430:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:661:26) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\tools\\node_modules\\.army-claw-loader.cjs'
+  ]
+}
+
+Node.js v24.14.0
+✖ tools\hancom\hwpx-semantic-compression-contract.test.mjs (64.9954ms)
+node:internal/modules/cjs/loader:1456
+  const err = new Error(message);
+              ^
+
+Error: Cannot find module 'jszip'
+Require stack:
+- C:\Users\USER\Desktop\로컬 open claw 만들기\tools\node_modules\.army-claw-loader.cjs
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1456:15)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1066:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1071:22)
+    at Module._load (node:internal/modules/cjs/loader:1242:25)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.require (node:internal/modules/cjs/loader:1556:12)
+    at require (node:internal/modules/helpers:152:16)
+    at file:///C:/Users/USER/Desktop/%EB%A1%9C%EC%BB%AC%20open%20claw%20%EB%A7%8C%EB%93%A4%EA%B8%B0/tools/hancom/army-claw-hancom-tools.mjs:16:15
+    at ModuleJob.run (node:internal/modules/esm/module_job:430:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:661:26) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\tools\\node_modules\\.army-claw-loader.cjs'
+  ]
+}
+
+Node.js v24.14.0
+✖ tools\hancom\hwpx-template-fidelity-paragraph-blocks.test.mjs (60.4464ms)
+node:internal/modules/cjs/loader:1456
+  const err = new Error(message);
+              ^
+
+Error: Cannot find module 'jszip'
+Require stack:
+- C:\Users\USER\Desktop\로컬 open claw 만들기\tools\node_modules\.army-claw-loader.cjs
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1456:15)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1066:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1071:22)
+    at Module._load (node:internal/modules/cjs/loader:1242:25)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.require (node:internal/modules/cjs/loader:1556:12)
+    at require (node:internal/modules/helpers:152:16)
+    at file:///C:/Users/USER/Desktop/%EB%A1%9C%EC%BB%AC%20open%20claw%20%EB%A7%8C%EB%93%A4%EA%B8%B0/tools/hancom/army-claw-hancom-tools.mjs:16:15
+    at ModuleJob.run (node:internal/modules/esm/module_job:430:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:661:26) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\tools\\node_modules\\.army-claw-loader.cjs'
+  ]
+}
+
+Node.js v24.14.0
+✖ tools\hancom\hwpx-template-fidelity-scopes.test.mjs (56.269ms)
+node:internal/modules/cjs/loader:1456
+  const err = new Error(message);
+              ^
+
+Error: Cannot find module 'jszip'
+Require stack:
+- C:\Users\USER\Desktop\로컬 open claw 만들기\tools\node_modules\.army-claw-loader.cjs
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1456:15)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1066:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1071:22)
+    at Module._load (node:internal/modules/cjs/loader:1242:25)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.require (node:internal/modules/cjs/loader:1556:12)
+    at require (node:internal/modules/helpers:152:16)
+    at file:///C:/Users/USER/Desktop/%EB%A1%9C%EC%BB%AC%20open%20claw%20%EB%A7%8C%EB%93%A4%EA%B8%B0/tools/hancom/army-claw-hancom-tools.mjs:16:15
+    at ModuleJob.run (node:internal/modules/esm/module_job:430:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:661:26) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\tools\\node_modules\\.army-claw-loader.cjs'
+  ]
+}
+
+Node.js v24.14.0
+✖ tools\hancom\hwpx-template-fidelity-selectors.test.mjs (53.0007ms)
+node:internal/modules/cjs/loader:1456
+  const err = new Error(message);
+              ^
+
+Error: Cannot find module 'jszip'
+Require stack:
+- C:\Users\USER\Desktop\로컬 open claw 만들기\tools\node_modules\.army-claw-loader.cjs
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1456:15)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1066:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1071:22)
+    at Module._load (node:internal/modules/cjs/loader:1242:25)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.require (node:internal/modules/cjs/loader:1556:12)
+    at require (node:internal/modules/helpers:152:16)
+    at file:///C:/Users/USER/Desktop/%EB%A1%9C%EC%BB%AC%20open%20claw%20%EB%A7%8C%EB%93%A4%EA%B8%B0/tools/hancom/army-claw-hancom-tools.mjs:16:15
+    at ModuleJob.run (node:internal/modules/esm/module_job:430:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:661:26) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\tools\\node_modules\\.army-claw-loader.cjs'
+  ]
+}
+
+Node.js v24.14.0
+✖ tools\hancom\hwpx-template-fidelity.test.mjs (52.2412ms)
+ℹ tests 25
+ℹ suites 0
+ℹ pass 7
+ℹ fail 18
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 156.0021
+
+✖ failing tests:
+
+test at tools\hancom\army-claw-hancom-tools.test.mjs:1:1
+✖ tools\hancom\army-claw-hancom-tools.test.mjs (78.3041ms)
+  'test failed'
+
+test at tools\hancom\hwp-reference-analyzer-nested-tables.test.mjs:1:1
+✖ tools\hancom\hwp-reference-analyzer-nested-tables.test.mjs (79.2417ms)
+  'test failed'
+
+test at tools\hancom\hwp-reference-style-profiles.test.mjs:1:1
+✖ tools\hancom\hwp-reference-style-profiles.test.mjs (80.7092ms)
+  'test failed'
+
+test at tools\hancom\hwpx-adaptive-board-fit.test.mjs:1:1
+✖ tools\hancom\hwpx-adaptive-board-fit.test.mjs (82.1999ms)
+  'test failed'
+
+test at tools\hancom\hwpx-board-metadata.test.mjs:1:1
+✖ tools\hancom\hwpx-board-metadata.test.mjs (84.5722ms)
+  'test failed'
+
+test at tools\hancom\hwpx-core-benchmark-contract.test.mjs:1:1
+✖ tools\hancom\hwpx-core-benchmark-contract.test.mjs (84.675ms)
+  'test failed'
+
+test at tools\hancom\hwpx-core-benchmark-corrective.test.mjs:1:1
+✖ tools\hancom\hwpx-core-benchmark-corrective.test.mjs (79.0039ms)
+  'test failed'
+
+test at tools\hancom\hwpx-document-order-container-leaf.test.mjs:1:1
+✖ tools\hancom\hwpx-document-order-container-leaf.test.mjs (70.0081ms)
+  'test failed'
+
+test at tools\hancom\hwpx-inline-token-serialization.test.mjs:1:1
+✖ tools\hancom\hwpx-inline-token-serialization.test.mjs (73.0575ms)
+  'test failed'
+
+test at tools\hancom\hwpx-merged-table-grid.test.mjs:1:1
+✖ tools\hancom\hwpx-merged-table-grid.test.mjs (61.748ms)
+  'test failed'
+
+test at tools\hancom\hwpx-native-line-reflow.test.mjs:1:1
+✖ tools\hancom\hwpx-native-line-reflow.test.mjs (64.8525ms)
+  'test failed'
+
+test at tools\hancom\hwpx-native-structure-diff.test.mjs:1:1
+✖ tools\hancom\hwpx-native-structure-diff.test.mjs (61.4939ms)
+  'test failed'
+
+test at tools\hancom\hwpx-native-table-wrapper.test.mjs:1:1
+✖ tools\hancom\hwpx-native-table-wrapper.test.mjs (54.9452ms)
+  'test failed'
+
+test at tools\hancom\hwpx-semantic-compression-contract.test.mjs:1:1
+✖ tools\hancom\hwpx-semantic-compression-contract.test.mjs (64.9954ms)
+  'test failed'
+
+test at tools\hancom\hwpx-template-fidelity-paragraph-blocks.test.mjs:1:1
+✖ tools\hancom\hwpx-template-fidelity-paragraph-blocks.test.mjs (60.4464ms)
+  'test failed'
+
+test at tools\hancom\hwpx-template-fidelity-scopes.test.mjs:1:1
+✖ tools\hancom\hwpx-template-fidelity-scopes.test.mjs (56.269ms)
+  'test failed'
+
+test at tools\hancom\hwpx-template-fidelity-selectors.test.mjs:1:1
+✖ tools\hancom\hwpx-template-fidelity-selectors.test.mjs (53.0007ms)
+  'test failed'
+
+test at tools\hancom\hwpx-template-fidelity.test.mjs:1:1
+✖ tools\hancom\hwpx-template-fidelity.test.mjs (52.2412ms)
+  'test failed'

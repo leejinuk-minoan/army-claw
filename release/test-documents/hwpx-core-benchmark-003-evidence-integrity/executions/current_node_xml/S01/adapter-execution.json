@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0.0",
+  "task_id": "hwpx-core-benchmark-003-evidence-integrity",
+  "candidate_id": "current_node_xml",
+  "method": "S01-evidence-integrity-gate",
+  "status": "unsupported",
+  "planned_commands": [
+    "Future Task 004/005 may execute external candidate or COM measurement where applicable."
+  ],
+  "attempted_commands": [],
+  "checked_paths": [
+    "tools/hancom/army-claw-hancom-tools.mjs",
+    "release/test-documents/hwpx-core-benchmark-002/summary/benchmark-results.json"
+  ],
+  "checked_path_results": [
+    {
+      "path": "tools/hancom/army-claw-hancom-tools.mjs",
+      "exists": true
+    },
+    {
+      "path": "release/test-documents/hwpx-core-benchmark-002/summary/benchmark-results.json",
+      "exists": true
+    }
+  ],
+  "generated_at": "2026-07-03T02:04:14.393Z"
+}

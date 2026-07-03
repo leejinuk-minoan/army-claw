@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0.0",
+  "task_id": "hwpx-core-benchmark-003-evidence-integrity",
+  "candidate_id": "hwpxlib",
+  "method": "S13-evidence-integrity-gate",
+  "status": "blocked",
+  "planned_commands": [
+    "Acquire pinned offline artifact for hwpxlib",
+    "Install hwpxlib in a clean offline environment",
+    "Run hwpxlib process for S13"
+  ],
+  "attempted_commands": [],
+  "checked_paths": [
+    "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/external-artifacts/hwpxlib"
+  ],
+  "checked_path_results": [
+    {
+      "path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/external-artifacts/hwpxlib",
+      "exists": false
+    }
+  ],
+  "generated_at": "2026-07-03T02:04:14.445Z"
+}

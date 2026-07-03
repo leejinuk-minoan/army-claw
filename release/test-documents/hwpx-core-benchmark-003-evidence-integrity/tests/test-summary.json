@@ -1,0 +1,34 @@
+{
+  "schema_version": "1.0.0",
+  "task_id": "hwpx-core-benchmark-003-evidence-integrity",
+  "independent_ci_verification": "unavailable",
+  "generated_at": "2026-07-03T02:04:14.483Z",
+  "runs": [
+    {
+      "command": "C:\\Users\\USER\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe --test tools/hancom/hwpx-core-benchmark-evidence-integrity.test.mjs",
+      "working_directory": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기",
+      "runtime_version": "v24.14.0",
+      "started_at": "2026-07-03T02:04:14.541Z",
+      "ended_at": "2026-07-03T02:04:14.643Z",
+      "exit_code": 0,
+      "passed": 7,
+      "failed": 0,
+      "skipped": 0,
+      "stdout_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\tests\\logs\\task003-evidence-integrity.stdout.log",
+      "stderr_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\tests\\logs\\task003-evidence-integrity.stderr.log"
+    },
+    {
+      "command": "C:\\Users\\USER\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe --test tools\\hancom\\army-claw-hancom-tools.test.mjs tools\\hancom\\hwp-reference-analyzer-nested-tables.test.mjs tools\\hancom\\hwp-reference-style-profiles.test.mjs tools\\hancom\\hwpx-adaptive-board-fit.test.mjs tools\\hancom\\hwpx-board-metadata.test.mjs tools\\hancom\\hwpx-core-benchmark-contract.test.mjs tools\\hancom\\hwpx-core-benchmark-corrective.test.mjs tools\\hancom\\hwpx-core-benchmark-evidence-integrity.test.mjs tools\\hancom\\hwpx-document-order-container-leaf.test.mjs tools\\hancom\\hwpx-inline-token-serialization.test.mjs tools\\hancom\\hwpx-merged-table-grid.test.mjs tools\\hancom\\hwpx-native-line-reflow.test.mjs tools\\hancom\\hwpx-native-structure-diff.test.mjs tools\\hancom\\hwpx-native-table-wrapper.test.mjs tools\\hancom\\hwpx-semantic-compression-contract.test.mjs tools\\hancom\\hwpx-template-fidelity-paragraph-blocks.test.mjs tools\\hancom\\hwpx-template-fidelity-scopes.test.mjs tools\\hancom\\hwpx-template-fidelity-selectors.test.mjs tools\\hancom\\hwpx-template-fidelity.test.mjs",
+      "working_directory": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기",
+      "runtime_version": "v24.14.0",
+      "started_at": "2026-07-03T02:04:14.646Z",
+      "ended_at": "2026-07-03T02:04:14.838Z",
+      "exit_code": 1,
+      "passed": 7,
+      "failed": 18,
+      "skipped": 0,
+      "stdout_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\tests\\logs\\all-hancom-tests.stdout.log",
+      "stderr_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\tests\\logs\\all-hancom-tests.stderr.log"
+    }
+  ]
+}

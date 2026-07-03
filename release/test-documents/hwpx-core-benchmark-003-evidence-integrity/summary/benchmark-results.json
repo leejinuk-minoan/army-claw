@@ -1,0 +1,1786 @@
+{
+  "schema_version": "1.0.0",
+  "task_id": "hwpx-core-benchmark-003-evidence-integrity",
+  "generated_at": "2026-07-03T02:04:14.483Z",
+  "candidate_matrix": [
+    {
+      "candidate_id": "current_node_xml",
+      "role": "editor",
+      "runtime": "node",
+      "scenario_counts": {
+        "passed": 0,
+        "failed": 1,
+        "unsupported": 4,
+        "blocked": 6,
+        "not_applicable": 3
+      }
+    },
+    {
+      "candidate_id": "python_hwpx",
+      "role": "editor",
+      "runtime": "python",
+      "scenario_counts": {
+        "passed": 0,
+        "failed": 0,
+        "unsupported": 0,
+        "blocked": 11,
+        "not_applicable": 3
+      }
+    },
+    {
+      "candidate_id": "hwpxlib",
+      "role": "validator",
+      "runtime": "java",
+      "scenario_counts": {
+        "passed": 0,
+        "failed": 0,
+        "unsupported": 0,
+        "blocked": 6,
+        "not_applicable": 8
+      }
+    },
+    {
+      "candidate_id": "hwpforge",
+      "role": "validator",
+      "runtime": "rust",
+      "scenario_counts": {
+        "passed": 0,
+        "failed": 0,
+        "unsupported": 0,
+        "blocked": 6,
+        "not_applicable": 8
+      }
+    },
+    {
+      "candidate_id": "hancom_com",
+      "role": "layout_authority",
+      "runtime": "hancom_com",
+      "scenario_counts": {
+        "passed": 0,
+        "failed": 0,
+        "unsupported": 0,
+        "blocked": 3,
+        "not_applicable": 11
+      }
+    }
+  ],
+  "role_matrix_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/role-matrix.json",
+  "scenario_results": [
+    {
+      "candidate_id": "current_node_xml",
+      "scenario_id": "S01",
+      "previous_status": "unsupported",
+      "corrected_status": "unsupported",
+      "evidence_completeness": "missing",
+      "missing_evidence": [
+        "general_serializer"
+      ],
+      "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/current_node_xml/S01/result.json"
+    },
+    {
+      "candidate_id": "current_node_xml",
+      "scenario_id": "S02",
+      "previous_status": "failed",
+      "corrected_status": "failed",
+      "evidence_completeness": "partial",
+      "missing_evidence": [
+        "complete_replacement_diff"
+      ],
+      "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/current_node_xml/S02/result.json"
+    },
+    {
+      "candidate_id": "current_node_xml",
+      "scenario_id": "S03",
+      "previous_status": "unsupported",
+      "corrected_status": "unsupported",
+      "evidence_completeness": "partial",
+      "missing_evidence": [
+        "stable_node_path_or_mutation_api"
+      ],
+      "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/current_node_xml/S03/result.json"
+    },
+    {
+      "candidate_id": "current_node_xml",
+      "scenario_id": "S04",
+      "previous_status": "unsupported",
+      "corrected_status": "unsupported",
+      "evidence_completeness": "partial",
+      "missing_evidence": [
+        "stable_node_path_or_mutation_api"
+      ],
+      "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/current_node_xml/S04/result.json"
+    },
+    {
+      "candidate_id": "current_node_xml",
+      "scenario_id": "S05",
+      "previous_status": "unsupported",
+      "corrected_status": "unsupported",
+      "evidence_completeness": "partial",
+      "missing_evidence": [
+        "stable_node_path_or_mutation_api"
+      ],
+      "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/current_node_xml/S05/result.json"
+    },
+    {
+      "candidate_id": "current_node_xml",
+      "scenario_id": "S06",
+      "previous_status": "passed",
+      "corrected_status": "blocked",
+      "evidence_completeness": "partial",
+      "missing_evidence": [
+        "before_after_merged_table_snapshots",
+        "mutation_output_path",
+        "merged_cell_row_col_span_maps",
+        "non_target_entry_hashes_before_after"
+      ],
+      "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/current_node_xml/S06/result.json"
+    },
+    {
+      "candidate_id": "current_node_xml",
+      "scenario_id": "S07",
+      "previous_status": "passed",
+      "corrected_status": "blocked",
+      "evidence_completeness": "partial",
+      "missing_evidence": [
+        "image_entry_hash_comparison",
+        "bindata_entry_hash_comparison",
+        "relationship_reference_comparison",
+        "mutation_output_path"
+      ],
+      "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/current_node_xml/S07/result.json"
+    },
+    {
+      "candidate_id": "current_node_xml",
+      "scenario_id": "S08",
+      "previous_status": "passed",
+      "corrected_status": "blocked",
+      "evidence_completeness": "partial",
+      "missing_evidence": [
+        "fwspace_before_after_comparison",
+        "namespace_prefix_uri_map_before_after",
+        "mutation_output_path"
+      ],
+      "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/current_node_xml/S08/result.json"
+    },
+    {
+      "candidate_id": "current_node_xml",
+      "scenario_id": "S09",
+      "previous_status": "blocked",
+      "corrected_status": "not_applicable",
+      "evidence_completeness": "not_applicable",
+      "missing_evidence": [],
+      "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/current_node_xml/S09/result.json"
+    },
+    {
+      "candidate_id": "current_node_xml",
+      "scenario_id": "S10",
+      "previous_status": "blocked",
+      "corrected_status": "not_applicable",
+      "evidence_completeness": "not_applicable",
+      "missing_evidence": [],
+      "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/current_node_xml/S10/result.json"
+    },
+    {
+      "candidate_id": "current_node_xml",
+      "scenario_id": "S11",
+      "previous_status": "blocked",
+      "corrected_status": "not_applicable",
+      "evidence_completeness": "not_applicable",
+      "missing_evidence": [],
+      "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/current_node_xml/S11/result.json"
+    },
+    {
+      "candidate_id": "current_node_xml",
+      "scenario_id": "S12",
+      "previous_status": "passed",
+      "corrected_status": "blocked",
+      "evidence_completeness": "partial",
+      "missing_evidence": [
+        "raw_duration_samples",
+        "peak_rss_raw_samples",
+        "candidate_artifact_total_size",
+        "runtime_dependency_install_size",
+        "raw_stdout_or_structured_log"
+      ],
+      "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/current_node_xml/S12/result.json"
+    },
+    {
+      "candidate_id": "current_node_xml",
+      "scenario_id": "S13",
+      "previous_status": "passed",
+      "corrected_status": "blocked",
+      "evidence_completeness": "partial",
+      "missing_evidence": [
+        "clean_environment_offline_install",
+        "attempted_command_execution_record",
+        "runtime_network_test_result"
+      ],
+      "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/current_node_xml/S13/result.json"
+    },
+    {
+      "candidate_id": "current_node_xml",
+      "scenario_id": "S14",
+      "previous_status": "passed",
+      "corrected_status": "blocked",
+      "evidence_completeness": "partial",
+      "missing_evidence": [
+        "license_file_path",
+        "license_sha256",
+        "redistribution_assessment",
+        "redistribution_obligations"
+      ],
+      "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/current_node_xml/S14/result.json"
+    },
+    {
+      "candidate_id": "python_hwpx",
+      "scenario_id": "S01",
+      "previous_status": "blocked",
+      "corrected_status": "blocked",
+      "evidence_completeness": "missing",
+      "missing_evidence": [
+        "pinned_offline_artifact",
+        "runtime_install",
+        "license_evidence"
+      ],
+      "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/python_hwpx/S01/result.json"
+    },
+    {
+      "candidate_id": "python_hwpx",
+      "scenario_id": "S02",
+      "previous_status": "blocked",
+      "corrected_status": "blocked",
+      "evidence_completeness": "missing",
+      "missing_evidence": [
+        "pinned_offline_artifact",
+        "runtime_install",
+        "license_evidence"
+      ],
+      "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/python_hwpx/S02/result.json"
+    },
+    {
+      "candidate_id": "python_hwpx",
+      "scenario_id": "S03",
+      "previous_status": "blocked",
+      "corrected_status": "blocked",
+      "evidence_completeness": "missing",
+      "missing_evidence": [
+        "pinned_offline_artifact",
+        "runtime_install",
+        "license_evidence"
+      ],
+      "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/python_hwpx/S03/result.json"
+    },
+    {
+      "candidate_id": "python_hwpx",
+      "scenario_id": "S04",
+      "previous_status": "blocked",
+      "corrected_status": "blocked",
+      "evidence_completeness": "missing",
+      "missing_evidence": [
+        "pinned_offline_artifact",
+        "runtime_install",
+        "license_evidence"
+      ],
+      "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/python_hwpx/S04/result.json"
+    },
+    {
+      "candidate_id": "python_hwpx",
+      "scenario_id": "S05",
+      "previous_status": "blocked",
+      "corrected_status": "blocked",
+      "evidence_completeness": "missing",
+      "missing_evidence": [
+        "pinned_offline_artifact",
+        "runtime_install",
+        "license_evidence"
+      ],
+      "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/python_hwpx/S05/result.json"
+    },
+    {
+      "candidate_id": "python_hwpx",
+      "scenario_id": "S06",
+      "previous_status": "blocked",
+      "corrected_status": "blocked",
+      "evidence_completeness": "missing",
+      "missing_evidence": [
+        "pinned_offline_artifact",
+        "runtime_install",
+        "license_evidence"
+      ],
+      "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/python_hwpx/S06/result.json"
+    },
+    {
+      "candidate_id": "python_hwpx",
+      "scenario_id": "S07",
+      "previous_status": "blocked",
+      "corrected_status": "blocked",
+      "evidence_completeness": "missing",
+      "missing_evidence": [
+        "pinned_offline_artifact",
+        "runtime_install",
+        "license_evidence"
+      ],
+      "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/python_hwpx/S07/result.json"
+    },
+    {
+      "candidate_id": "python_hwpx",
+      "scenario_id": "S08",
+      "previous_status": "blocked",
+      "corrected_status": "blocked",
+      "evidence_completeness": "missing",
+      "missing_evidence": [
+        "pinned_offline_artifact",
+        "runtime_install",
+        "license_evidence"
+      ],
+      "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/python_hwpx/S08/result.json"
+    },
+    {
+      "candidate_id": "python_hwpx",
+      "scenario_id": "S09",
+      "previous_status": "blocked",
+      "corrected_status": "not_applicable",
+      "evidence_completeness": "not_applicable",
+      "missing_evidence": [],
+      "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/python_hwpx/S09/result.json"
+    },
+    {
+      "candidate_id": "python_hwpx",
+      "scenario_id": "S10",
+      "previous_status": "blocked",
+      "corrected_status": "not_applicable",
+      "evidence_completeness": "not_applicable",
+      "missing_evidence": [],
+      "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/python_hwpx/S10/result.json"
+    },
+    {
+      "candidate_id": "python_hwpx",
+      "scenario_id": "S11",
+      "previous_status": "blocked",
+      "corrected_status": "not_applicable",
+      "evidence_completeness": "not_applicable",
+      "missing_evidence": [],
+      "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/python_hwpx/S11/result.json"
+    },
+    {
+      "candidate_id": "python_hwpx",
+      "scenario_id": "S12",
+      "previous_status": "blocked",
+      "corrected_status": "blocked",
+      "evidence_completeness": "missing",
+      "missing_evidence": [
+        "pinned_offline_artifact",
+        "runtime_install",
+        "license_evidence"
+      ],
+      "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/python_hwpx/S12/result.json"
+    },
+    {
+      "candidate_id": "python_hwpx",
+      "scenario_id": "S13",
+      "previous_status": "blocked",
+      "corrected_status": "blocked",
+      "evidence_completeness": "missing",
+      "missing_evidence": [
+        "pinned_offline_artifact",
+        "runtime_install",
+        "license_evidence"
+      ],
+      "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/python_hwpx/S13/result.json"
+    },
+    {
+      "candidate_id": "python_hwpx",
+      "scenario_id": "S14",
+      "previous_status": "blocked",
+      "corrected_status": "blocked",
+      "evidence_completeness": "missing",
+      "missing_evidence": [
+        "pinned_offline_artifact",
+        "runtime_install",
+        "license_evidence"
+      ],
+      "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/python_hwpx/S14/result.json"
+    },
+    {
+      "candidate_id": "hwpxlib",
+      "scenario_id": "S01",
+      "previous_status": "blocked",
+      "corrected_status": "not_applicable",
+      "evidence_completeness": "not_applicable",
+      "missing_evidence": [],
+      "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/hwpxlib/S01/result.json"
+    },
+    {
+      "candidate_id": "hwpxlib",
+      "scenario_id": "S02",
+      "previous_status": "blocked",
+      "corrected_status": "not_applicable",
+      "evidence_completeness": "not_applicable",
+      "missing_evidence": [],
+      "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/hwpxlib/S02/result.json"
+    },
+    {
+      "candidate_id": "hwpxlib",
+      "scenario_id": "S03",
+      "previous_status": "blocked",
+      "corrected_status": "not_applicable",
+      "evidence_completeness": "not_applicable",
+      "missing_evidence": [],
+      "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/hwpxlib/S03/result.json"
+    },
+    {
+      "candidate_id": "hwpxlib",
+      "scenario_id": "S04",
+      "previous_status": "blocked",
+      "corrected_status": "not_applicable",
+      "evidence_completeness": "not_applicable",
+      "missing_evidence": [],
+      "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/hwpxlib/S04/result.json"
+    },
+    {
+      "candidate_id": "hwpxlib",
+      "scenario_id": "S05",
+      "previous_status": "blocked",
+      "corrected_status": "not_applicable",
+      "evidence_completeness": "not_applicable",
+      "missing_evidence": [],
+      "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/hwpxlib/S05/result.json"
+    },
+    {
+      "candidate_id": "hwpxlib",
+      "scenario_id": "S06",
+      "previous_status": "blocked",
+      "corrected_status": "blocked",
+      "evidence_completeness": "missing",
+      "missing_evidence": [
+        "pinned_offline_artifact",
+        "runtime_install",
+        "license_evidence"
+      ],
+      "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/hwpxlib/S06/result.json"
+    },
+    {
+      "candidate_id": "hwpxlib",
+      "scenario_id": "S07",
+      "previous_status": "blocked",
+      "corrected_status": "blocked",
+      "evidence_completeness": "missing",
+      "missing_evidence": [
+        "pinned_offline_artifact",
+        "runtime_install",
+        "license_evidence"
+      ],
+      "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/hwpxlib/S07/result.json"
+    },
+    {
+      "candidate_id": "hwpxlib",
+      "scenario_id": "S08",
+      "previous_status": "blocked",
+      "corrected_status": "blocked",
+      "evidence_completeness": "missing",
+      "missing_evidence": [
+        "pinned_offline_artifact",
+        "runtime_install",
+        "license_evidence"
+      ],
+      "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/hwpxlib/S08/result.json"
+    },
+    {
+      "candidate_id": "hwpxlib",
+      "scenario_id": "S09",
+      "previous_status": "blocked",
+      "corrected_status": "not_applicable",
+      "evidence_completeness": "not_applicable",
+      "missing_evidence": [],
+      "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/hwpxlib/S09/result.json"
+    },
+    {
+      "candidate_id": "hwpxlib",
+      "scenario_id": "S10",
+      "previous_status": "blocked",
+      "corrected_status": "not_applicable",
+      "evidence_completeness": "not_applicable",
+      "missing_evidence": [],
+      "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/hwpxlib/S10/result.json"
+    },
+    {
+      "candidate_id": "hwpxlib",
+      "scenario_id": "S11",
+      "previous_status": "blocked",
+      "corrected_status": "not_applicable",
+      "evidence_completeness": "not_applicable",
+      "missing_evidence": [],
+      "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/hwpxlib/S11/result.json"
+    },
+    {
+      "candidate_id": "hwpxlib",
+      "scenario_id": "S12",
+      "previous_status": "blocked",
+      "corrected_status": "blocked",
+      "evidence_completeness": "missing",
+      "missing_evidence": [
+        "pinned_offline_artifact",
+        "runtime_install",
+        "license_evidence"
+      ],
+      "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/hwpxlib/S12/result.json"
+    },
+    {
+      "candidate_id": "hwpxlib",
+      "scenario_id": "S13",
+      "previous_status": "blocked",
+      "corrected_status": "blocked",
+      "evidence_completeness": "missing",
+      "missing_evidence": [
+        "pinned_offline_artifact",
+        "runtime_install",
+        "license_evidence"
+      ],
+      "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/hwpxlib/S13/result.json"
+    },
+    {
+      "candidate_id": "hwpxlib",
+      "scenario_id": "S14",
+      "previous_status": "blocked",
+      "corrected_status": "blocked",
+      "evidence_completeness": "missing",
+      "missing_evidence": [
+        "pinned_offline_artifact",
+        "runtime_install",
+        "license_evidence"
+      ],
+      "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/hwpxlib/S14/result.json"
+    },
+    {
+      "candidate_id": "hwpforge",
+      "scenario_id": "S01",
+      "previous_status": "blocked",
+      "corrected_status": "not_applicable",
+      "evidence_completeness": "not_applicable",
+      "missing_evidence": [],
+      "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/hwpforge/S01/result.json"
+    },
+    {
+      "candidate_id": "hwpforge",
+      "scenario_id": "S02",
+      "previous_status": "blocked",
+      "corrected_status": "not_applicable",
+      "evidence_completeness": "not_applicable",
+      "missing_evidence": [],
+      "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/hwpforge/S02/result.json"
+    },
+    {
+      "candidate_id": "hwpforge",
+      "scenario_id": "S03",
+      "previous_status": "blocked",
+      "corrected_status": "not_applicable",
+      "evidence_completeness": "not_applicable",
+      "missing_evidence": [],
+      "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/hwpforge/S03/result.json"
+    },
+    {
+      "candidate_id": "hwpforge",
+      "scenario_id": "S04",
+      "previous_status": "blocked",
+      "corrected_status": "not_applicable",
+      "evidence_completeness": "not_applicable",
+      "missing_evidence": [],
+      "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/hwpforge/S04/result.json"
+    },
+    {
+      "candidate_id": "hwpforge",
+      "scenario_id": "S05",
+      "previous_status": "blocked",
+      "corrected_status": "not_applicable",
+      "evidence_completeness": "not_applicable",
+      "missing_evidence": [],
+      "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/hwpforge/S05/result.json"
+    },
+    {
+      "candidate_id": "hwpforge",
+      "scenario_id": "S06",
+      "previous_status": "blocked",
+      "corrected_status": "blocked",
+      "evidence_completeness": "missing",
+      "missing_evidence": [
+        "pinned_offline_artifact",
+        "runtime_install",
+        "license_evidence"
+      ],
+      "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/hwpforge/S06/result.json"
+    },
+    {
+      "candidate_id": "hwpforge",
+      "scenario_id": "S07",
+      "previous_status": "blocked",
+      "corrected_status": "blocked",
+      "evidence_completeness": "missing",
+      "missing_evidence": [
+        "pinned_offline_artifact",
+        "runtime_install",
+        "license_evidence"
+      ],
+      "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/hwpforge/S07/result.json"
+    },
+    {
+      "candidate_id": "hwpforge",
+      "scenario_id": "S08",
+      "previous_status": "blocked",
+      "corrected_status": "blocked",
+      "evidence_completeness": "missing",
+      "missing_evidence": [
+        "pinned_offline_artifact",
+        "runtime_install",
+        "license_evidence"
+      ],
+      "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/hwpforge/S08/result.json"
+    },
+    {
+      "candidate_id": "hwpforge",
+      "scenario_id": "S09",
+      "previous_status": "blocked",
+      "corrected_status": "not_applicable",
+      "evidence_completeness": "not_applicable",
+      "missing_evidence": [],
+      "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/hwpforge/S09/result.json"
+    },
+    {
+      "candidate_id": "hwpforge",
+      "scenario_id": "S10",
+      "previous_status": "blocked",
+      "corrected_status": "not_applicable",
+      "evidence_completeness": "not_applicable",
+      "missing_evidence": [],
+      "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/hwpforge/S10/result.json"
+    },
+    {
+      "candidate_id": "hwpforge",
+      "scenario_id": "S11",
+      "previous_status": "blocked",
+      "corrected_status": "not_applicable",
+      "evidence_completeness": "not_applicable",
+      "missing_evidence": [],
+      "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/hwpforge/S11/result.json"
+    },
+    {
+      "candidate_id": "hwpforge",
+      "scenario_id": "S12",
+      "previous_status": "blocked",
+      "corrected_status": "blocked",
+      "evidence_completeness": "missing",
+      "missing_evidence": [
+        "pinned_offline_artifact",
+        "runtime_install",
+        "license_evidence"
+      ],
+      "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/hwpforge/S12/result.json"
+    },
+    {
+      "candidate_id": "hwpforge",
+      "scenario_id": "S13",
+      "previous_status": "blocked",
+      "corrected_status": "blocked",
+      "evidence_completeness": "missing",
+      "missing_evidence": [
+        "pinned_offline_artifact",
+        "runtime_install",
+        "license_evidence"
+      ],
+      "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/hwpforge/S13/result.json"
+    },
+    {
+      "candidate_id": "hwpforge",
+      "scenario_id": "S14",
+      "previous_status": "blocked",
+      "corrected_status": "blocked",
+      "evidence_completeness": "missing",
+      "missing_evidence": [
+        "pinned_offline_artifact",
+        "runtime_install",
+        "license_evidence"
+      ],
+      "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/hwpforge/S14/result.json"
+    },
+    {
+      "candidate_id": "hancom_com",
+      "scenario_id": "S01",
+      "previous_status": null,
+      "corrected_status": "not_applicable",
+      "evidence_completeness": "not_applicable",
+      "missing_evidence": [],
+      "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/hancom_com/S01/result.json"
+    },
+    {
+      "candidate_id": "hancom_com",
+      "scenario_id": "S02",
+      "previous_status": null,
+      "corrected_status": "not_applicable",
+      "evidence_completeness": "not_applicable",
+      "missing_evidence": [],
+      "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/hancom_com/S02/result.json"
+    },
+    {
+      "candidate_id": "hancom_com",
+      "scenario_id": "S03",
+      "previous_status": null,
+      "corrected_status": "not_applicable",
+      "evidence_completeness": "not_applicable",
+      "missing_evidence": [],
+      "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/hancom_com/S03/result.json"
+    },
+    {
+      "candidate_id": "hancom_com",
+      "scenario_id": "S04",
+      "previous_status": null,
+      "corrected_status": "not_applicable",
+      "evidence_completeness": "not_applicable",
+      "missing_evidence": [],
+      "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/hancom_com/S04/result.json"
+    },
+    {
+      "candidate_id": "hancom_com",
+      "scenario_id": "S05",
+      "previous_status": null,
+      "corrected_status": "not_applicable",
+      "evidence_completeness": "not_applicable",
+      "missing_evidence": [],
+      "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/hancom_com/S05/result.json"
+    },
+    {
+      "candidate_id": "hancom_com",
+      "scenario_id": "S06",
+      "previous_status": null,
+      "corrected_status": "not_applicable",
+      "evidence_completeness": "not_applicable",
+      "missing_evidence": [],
+      "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/hancom_com/S06/result.json"
+    },
+    {
+      "candidate_id": "hancom_com",
+      "scenario_id": "S07",
+      "previous_status": null,
+      "corrected_status": "not_applicable",
+      "evidence_completeness": "not_applicable",
+      "missing_evidence": [],
+      "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/hancom_com/S07/result.json"
+    },
+    {
+      "candidate_id": "hancom_com",
+      "scenario_id": "S08",
+      "previous_status": null,
+      "corrected_status": "not_applicable",
+      "evidence_completeness": "not_applicable",
+      "missing_evidence": [],
+      "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/hancom_com/S08/result.json"
+    },
+    {
+      "candidate_id": "hancom_com",
+      "scenario_id": "S09",
+      "previous_status": null,
+      "corrected_status": "blocked",
+      "evidence_completeness": "missing",
+      "missing_evidence": [
+        "hancom_com_execution",
+        "com_resaved_hwpx",
+        "page_measurement"
+      ],
+      "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/hancom_com/S09/result.json"
+    },
+    {
+      "candidate_id": "hancom_com",
+      "scenario_id": "S10",
+      "previous_status": null,
+      "corrected_status": "blocked",
+      "evidence_completeness": "missing",
+      "missing_evidence": [
+        "hancom_com_execution",
+        "com_resaved_hwpx",
+        "page_measurement"
+      ],
+      "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/hancom_com/S10/result.json"
+    },
+    {
+      "candidate_id": "hancom_com",
+      "scenario_id": "S11",
+      "previous_status": null,
+      "corrected_status": "blocked",
+      "evidence_completeness": "missing",
+      "missing_evidence": [
+        "hancom_com_execution",
+        "com_resaved_hwpx",
+        "page_measurement"
+      ],
+      "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/hancom_com/S11/result.json"
+    },
+    {
+      "candidate_id": "hancom_com",
+      "scenario_id": "S12",
+      "previous_status": null,
+      "corrected_status": "not_applicable",
+      "evidence_completeness": "not_applicable",
+      "missing_evidence": [],
+      "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/hancom_com/S12/result.json"
+    },
+    {
+      "candidate_id": "hancom_com",
+      "scenario_id": "S13",
+      "previous_status": null,
+      "corrected_status": "not_applicable",
+      "evidence_completeness": "not_applicable",
+      "missing_evidence": [],
+      "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/hancom_com/S13/result.json"
+    },
+    {
+      "candidate_id": "hancom_com",
+      "scenario_id": "S14",
+      "previous_status": null,
+      "corrected_status": "not_applicable",
+      "evidence_completeness": "not_applicable",
+      "missing_evidence": [],
+      "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/hancom_com/S14/result.json"
+    }
+  ],
+  "scorecard": {
+    "schema_version": "1.0.0",
+    "task_id": "hwpx-core-benchmark-003-evidence-integrity",
+    "generated_at": "2026-07-03T02:04:14.483Z",
+    "scoring_weights": {
+      "functional_fit": 30,
+      "visual_fidelity": 25,
+      "api_extensibility": 15,
+      "offline_distribution": 10,
+      "performance": 10,
+      "license_maintenance": 10
+    },
+    "editor_gate": {
+      "current_node_xml": {
+        "categories": {
+          "functional_fit": {
+            "weight": 30,
+            "rubric_items": [
+              {
+                "scenario_id": "S01",
+                "points": 5,
+                "awarded": 0,
+                "status": "unsupported"
+              },
+              {
+                "scenario_id": "S02",
+                "points": 5,
+                "awarded": 0,
+                "status": "failed"
+              },
+              {
+                "scenario_id": "S03",
+                "points": 4,
+                "awarded": 0,
+                "status": "unsupported"
+              },
+              {
+                "scenario_id": "S04",
+                "points": 4,
+                "awarded": 0,
+                "status": "unsupported"
+              },
+              {
+                "scenario_id": "S05",
+                "points": 4,
+                "awarded": 0,
+                "status": "unsupported"
+              },
+              {
+                "scenario_id": "S06",
+                "points": 3,
+                "awarded": 0,
+                "status": "blocked"
+              },
+              {
+                "scenario_id": "S07",
+                "points": 3,
+                "awarded": 0,
+                "status": "blocked"
+              },
+              {
+                "scenario_id": "S08",
+                "points": 2,
+                "awarded": 0,
+                "status": "blocked"
+              }
+            ],
+            "measured_points": 0,
+            "pending_points": 30,
+            "score_formula": "sum of explicit rubric items whose scenario-specific evidence validators passed",
+            "evidence_paths": [
+              "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/current_node_xml/S01/result.json",
+              "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/current_node_xml/S02/result.json",
+              "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/current_node_xml/S03/result.json",
+              "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/current_node_xml/S04/result.json",
+              "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/current_node_xml/S05/result.json",
+              "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/current_node_xml/S06/result.json",
+              "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/current_node_xml/S07/result.json",
+              "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/current_node_xml/S08/result.json",
+              "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/current_node_xml/S09/result.json",
+              "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/current_node_xml/S10/result.json",
+              "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/current_node_xml/S11/result.json",
+              "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/current_node_xml/S12/result.json",
+              "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/current_node_xml/S13/result.json",
+              "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/current_node_xml/S14/result.json"
+            ],
+            "validator_results": [
+              {
+                "validator_id": "s01-role-status-gate",
+                "valid": false,
+                "missing_evidence": [
+                  "complete_scenario_evidence_not_available"
+                ]
+              },
+              {
+                "validator_id": "s02-role-status-gate",
+                "valid": false,
+                "missing_evidence": [
+                  "complete_scenario_evidence_not_available"
+                ]
+              },
+              {
+                "validator_id": "s03-role-status-gate",
+                "valid": false,
+                "missing_evidence": [
+                  "complete_scenario_evidence_not_available"
+                ]
+              },
+              {
+                "validator_id": "s04-role-status-gate",
+                "valid": false,
+                "missing_evidence": [
+                  "complete_scenario_evidence_not_available"
+                ]
+              },
+              {
+                "validator_id": "s05-role-status-gate",
+                "valid": false,
+                "missing_evidence": [
+                  "complete_scenario_evidence_not_available"
+                ]
+              },
+              {
+                "validator_id": "s06-complete-evidence-gate",
+                "valid": false,
+                "missing_evidence": [
+                  "before_after_merged_table_snapshots",
+                  "mutation_output_path",
+                  "merged_cell_row_col_span_maps",
+                  "non_target_entry_hashes_before_after"
+                ]
+              },
+              {
+                "validator_id": "s07-complete-evidence-gate",
+                "valid": false,
+                "missing_evidence": [
+                  "image_entry_hash_comparison",
+                  "bindata_entry_hash_comparison",
+                  "relationship_reference_comparison",
+                  "mutation_output_path"
+                ]
+              },
+              {
+                "validator_id": "s08-complete-evidence-gate",
+                "valid": false,
+                "missing_evidence": [
+                  "fwspace_before_after_comparison",
+                  "namespace_prefix_uri_map_before_after",
+                  "mutation_output_path"
+                ]
+              },
+              {
+                "validator_id": "s09-role-status-gate",
+                "valid": false,
+                "missing_evidence": [
+                  "complete_scenario_evidence_not_available"
+                ]
+              },
+              {
+                "validator_id": "s10-role-status-gate",
+                "valid": false,
+                "missing_evidence": [
+                  "complete_scenario_evidence_not_available"
+                ]
+              },
+              {
+                "validator_id": "s11-role-status-gate",
+                "valid": false,
+                "missing_evidence": [
+                  "complete_scenario_evidence_not_available"
+                ]
+              },
+              {
+                "validator_id": "s12-complete-evidence-gate",
+                "valid": false,
+                "missing_evidence": [
+                  "raw_duration_samples",
+                  "peak_rss_raw_samples",
+                  "candidate_artifact_total_size",
+                  "runtime_dependency_install_size",
+                  "raw_stdout_or_structured_log"
+                ]
+              },
+              {
+                "validator_id": "s13-complete-evidence-gate",
+                "valid": false,
+                "missing_evidence": [
+                  "clean_environment_offline_install",
+                  "attempted_command_execution_record",
+                  "runtime_network_test_result"
+                ]
+              },
+              {
+                "validator_id": "s14-complete-evidence-gate",
+                "valid": false,
+                "missing_evidence": [
+                  "license_file_path",
+                  "license_sha256",
+                  "redistribution_assessment",
+                  "redistribution_obligations"
+                ]
+              }
+            ],
+            "blocking_conditions": [
+              "general_serializer",
+              "complete_replacement_diff",
+              "stable_node_path_or_mutation_api",
+              "stable_node_path_or_mutation_api",
+              "stable_node_path_or_mutation_api",
+              "before_after_merged_table_snapshots",
+              "mutation_output_path",
+              "merged_cell_row_col_span_maps",
+              "non_target_entry_hashes_before_after",
+              "image_entry_hash_comparison",
+              "bindata_entry_hash_comparison",
+              "relationship_reference_comparison",
+              "mutation_output_path",
+              "fwspace_before_after_comparison",
+              "namespace_prefix_uri_map_before_after",
+              "mutation_output_path",
+              "raw_duration_samples",
+              "peak_rss_raw_samples",
+              "candidate_artifact_total_size",
+              "runtime_dependency_install_size",
+              "raw_stdout_or_structured_log",
+              "clean_environment_offline_install",
+              "attempted_command_execution_record",
+              "runtime_network_test_result",
+              "license_file_path",
+              "license_sha256",
+              "redistribution_assessment",
+              "redistribution_obligations"
+            ]
+          },
+          "visual_fidelity": {
+            "weight": 25,
+            "rubric_items": [],
+            "measured_points": 0,
+            "pending_points": 25,
+            "score_formula": "sum of explicit rubric items whose scenario-specific evidence validators passed",
+            "evidence_paths": [],
+            "validator_results": [],
+            "blocking_conditions": [
+              "Task 005 visual/COM evidence pending"
+            ]
+          },
+          "api_extensibility": {
+            "weight": 15,
+            "rubric_items": [
+              {
+                "item": "common adapter contract exists",
+                "points": 5,
+                "awarded": 5
+              }
+            ],
+            "measured_points": 5,
+            "pending_points": 10,
+            "score_formula": "sum of explicit rubric items whose scenario-specific evidence validators passed",
+            "evidence_paths": [
+              "tools/hancom/adapters/hwp-core-adapter-contract.mjs"
+            ],
+            "validator_results": [],
+            "blocking_conditions": []
+          },
+          "offline_distribution": {
+            "weight": 10,
+            "rubric_items": [],
+            "measured_points": 0,
+            "pending_points": 10,
+            "score_formula": "sum of explicit rubric items whose scenario-specific evidence validators passed",
+            "evidence_paths": [],
+            "validator_results": [],
+            "blocking_conditions": [
+              "S13 clean offline install evidence missing"
+            ]
+          },
+          "performance": {
+            "weight": 10,
+            "rubric_items": [],
+            "measured_points": 0,
+            "pending_points": 10,
+            "score_formula": "sum of explicit rubric items whose scenario-specific evidence validators passed",
+            "evidence_paths": [],
+            "validator_results": [],
+            "blocking_conditions": [
+              "S12 complete performance/install-size gate missing"
+            ]
+          },
+          "license_maintenance": {
+            "weight": 10,
+            "rubric_items": [],
+            "measured_points": 0,
+            "pending_points": 10,
+            "score_formula": "sum of explicit rubric items whose scenario-specific evidence validators passed",
+            "evidence_paths": [],
+            "validator_results": [],
+            "blocking_conditions": [
+              "S14 license evidence missing"
+            ]
+          }
+        }
+      },
+      "python_hwpx": {
+        "categories": {
+          "functional_fit": {
+            "weight": 30,
+            "rubric_items": [
+              {
+                "scenario_id": "S01",
+                "points": 5,
+                "awarded": 0,
+                "status": "blocked"
+              },
+              {
+                "scenario_id": "S02",
+                "points": 5,
+                "awarded": 0,
+                "status": "blocked"
+              },
+              {
+                "scenario_id": "S03",
+                "points": 4,
+                "awarded": 0,
+                "status": "blocked"
+              },
+              {
+                "scenario_id": "S04",
+                "points": 4,
+                "awarded": 0,
+                "status": "blocked"
+              },
+              {
+                "scenario_id": "S05",
+                "points": 4,
+                "awarded": 0,
+                "status": "blocked"
+              },
+              {
+                "scenario_id": "S06",
+                "points": 3,
+                "awarded": 0,
+                "status": "blocked"
+              },
+              {
+                "scenario_id": "S07",
+                "points": 3,
+                "awarded": 0,
+                "status": "blocked"
+              },
+              {
+                "scenario_id": "S08",
+                "points": 2,
+                "awarded": 0,
+                "status": "blocked"
+              }
+            ],
+            "measured_points": 0,
+            "pending_points": 30,
+            "score_formula": "sum of explicit rubric items whose scenario-specific evidence validators passed",
+            "evidence_paths": [
+              "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/python_hwpx/S01/result.json",
+              "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/python_hwpx/S02/result.json",
+              "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/python_hwpx/S03/result.json",
+              "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/python_hwpx/S04/result.json",
+              "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/python_hwpx/S05/result.json",
+              "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/python_hwpx/S06/result.json",
+              "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/python_hwpx/S07/result.json",
+              "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/python_hwpx/S08/result.json",
+              "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/python_hwpx/S09/result.json",
+              "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/python_hwpx/S10/result.json",
+              "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/python_hwpx/S11/result.json",
+              "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/python_hwpx/S12/result.json",
+              "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/python_hwpx/S13/result.json",
+              "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/python_hwpx/S14/result.json"
+            ],
+            "validator_results": [
+              {
+                "validator_id": "s01-role-status-gate",
+                "valid": false,
+                "missing_evidence": [
+                  "complete_scenario_evidence_not_available"
+                ]
+              },
+              {
+                "validator_id": "s02-role-status-gate",
+                "valid": false,
+                "missing_evidence": [
+                  "complete_scenario_evidence_not_available"
+                ]
+              },
+              {
+                "validator_id": "s03-role-status-gate",
+                "valid": false,
+                "missing_evidence": [
+                  "complete_scenario_evidence_not_available"
+                ]
+              },
+              {
+                "validator_id": "s04-role-status-gate",
+                "valid": false,
+                "missing_evidence": [
+                  "complete_scenario_evidence_not_available"
+                ]
+              },
+              {
+                "validator_id": "s05-role-status-gate",
+                "valid": false,
+                "missing_evidence": [
+                  "complete_scenario_evidence_not_available"
+                ]
+              },
+              {
+                "validator_id": "s06-complete-evidence-gate",
+                "valid": false,
+                "missing_evidence": [
+                  "before_after_merged_table_snapshots",
+                  "mutation_output_path",
+                  "merged_cell_row_col_span_maps",
+                  "non_target_entry_hashes_before_after"
+                ]
+              },
+              {
+                "validator_id": "s07-complete-evidence-gate",
+                "valid": false,
+                "missing_evidence": [
+                  "image_entry_hash_comparison",
+                  "bindata_entry_hash_comparison",
+                  "relationship_reference_comparison",
+                  "mutation_output_path"
+                ]
+              },
+              {
+                "validator_id": "s08-complete-evidence-gate",
+                "valid": false,
+                "missing_evidence": [
+                  "fwspace_before_after_comparison",
+                  "namespace_prefix_uri_map_before_after",
+                  "mutation_output_path"
+                ]
+              },
+              {
+                "validator_id": "s09-role-status-gate",
+                "valid": false,
+                "missing_evidence": [
+                  "complete_scenario_evidence_not_available"
+                ]
+              },
+              {
+                "validator_id": "s10-role-status-gate",
+                "valid": false,
+                "missing_evidence": [
+                  "complete_scenario_evidence_not_available"
+                ]
+              },
+              {
+                "validator_id": "s11-role-status-gate",
+                "valid": false,
+                "missing_evidence": [
+                  "complete_scenario_evidence_not_available"
+                ]
+              },
+              {
+                "validator_id": "s12-complete-evidence-gate",
+                "valid": false,
+                "missing_evidence": [
+                  "raw_duration_samples",
+                  "peak_rss_raw_samples",
+                  "candidate_artifact_total_size",
+                  "runtime_dependency_install_size",
+                  "raw_stdout_or_structured_log"
+                ]
+              },
+              {
+                "validator_id": "s13-complete-evidence-gate",
+                "valid": false,
+                "missing_evidence": [
+                  "clean_environment_offline_install",
+                  "attempted_command_execution_record",
+                  "runtime_network_test_result"
+                ]
+              },
+              {
+                "validator_id": "s14-complete-evidence-gate",
+                "valid": false,
+                "missing_evidence": [
+                  "license_file_path",
+                  "license_sha256",
+                  "redistribution_assessment",
+                  "redistribution_obligations"
+                ]
+              }
+            ],
+            "blocking_conditions": [
+              "pinned_offline_artifact",
+              "runtime_install",
+              "license_evidence",
+              "pinned_offline_artifact",
+              "runtime_install",
+              "license_evidence",
+              "pinned_offline_artifact",
+              "runtime_install",
+              "license_evidence",
+              "pinned_offline_artifact",
+              "runtime_install",
+              "license_evidence",
+              "pinned_offline_artifact",
+              "runtime_install",
+              "license_evidence",
+              "pinned_offline_artifact",
+              "runtime_install",
+              "license_evidence",
+              "pinned_offline_artifact",
+              "runtime_install",
+              "license_evidence",
+              "pinned_offline_artifact",
+              "runtime_install",
+              "license_evidence",
+              "pinned_offline_artifact",
+              "runtime_install",
+              "license_evidence",
+              "pinned_offline_artifact",
+              "runtime_install",
+              "license_evidence",
+              "pinned_offline_artifact",
+              "runtime_install",
+              "license_evidence"
+            ]
+          },
+          "visual_fidelity": {
+            "weight": 25,
+            "rubric_items": [],
+            "measured_points": 0,
+            "pending_points": 25,
+            "score_formula": "sum of explicit rubric items whose scenario-specific evidence validators passed",
+            "evidence_paths": [],
+            "validator_results": [],
+            "blocking_conditions": [
+              "no candidate output"
+            ]
+          },
+          "api_extensibility": {
+            "weight": 15,
+            "rubric_items": [],
+            "measured_points": 0,
+            "pending_points": 15,
+            "score_formula": "sum of explicit rubric items whose scenario-specific evidence validators passed",
+            "evidence_paths": [],
+            "validator_results": [],
+            "blocking_conditions": [
+              "process adapter not executed"
+            ]
+          },
+          "offline_distribution": {
+            "weight": 10,
+            "rubric_items": [],
+            "measured_points": 0,
+            "pending_points": 10,
+            "score_formula": "sum of explicit rubric items whose scenario-specific evidence validators passed",
+            "evidence_paths": [],
+            "validator_results": [],
+            "blocking_conditions": [
+              "pinned artifact missing"
+            ]
+          },
+          "performance": {
+            "weight": 10,
+            "rubric_items": [],
+            "measured_points": 0,
+            "pending_points": 10,
+            "score_formula": "sum of explicit rubric items whose scenario-specific evidence validators passed",
+            "evidence_paths": [],
+            "validator_results": [],
+            "blocking_conditions": [
+              "raw performance evidence missing"
+            ]
+          },
+          "license_maintenance": {
+            "weight": 10,
+            "rubric_items": [],
+            "measured_points": 0,
+            "pending_points": 10,
+            "score_formula": "sum of explicit rubric items whose scenario-specific evidence validators passed",
+            "evidence_paths": [],
+            "validator_results": [],
+            "blocking_conditions": [
+              "license evidence missing"
+            ]
+          }
+        }
+      }
+    },
+    "validator_gate": {
+      "hwpxlib": {
+        "categories": {
+          "functional_fit": {
+            "weight": 30,
+            "rubric_items": [
+              {
+                "item": "independent package parse",
+                "points": 10,
+                "awarded": 0
+              },
+              {
+                "item": "structural counts and hashes",
+                "points": 10,
+                "awarded": 0
+              },
+              {
+                "item": "invalid package detection",
+                "points": 10,
+                "awarded": 0
+              }
+            ],
+            "measured_points": 0,
+            "pending_points": 30,
+            "score_formula": "sum of explicit rubric items whose scenario-specific evidence validators passed",
+            "evidence_paths": [],
+            "validator_results": [
+              {
+                "validator_id": "s01-role-status-gate",
+                "valid": false,
+                "missing_evidence": [
+                  "complete_scenario_evidence_not_available"
+                ]
+              },
+              {
+                "validator_id": "s02-role-status-gate",
+                "valid": false,
+                "missing_evidence": [
+                  "complete_scenario_evidence_not_available"
+                ]
+              },
+              {
+                "validator_id": "s03-role-status-gate",
+                "valid": false,
+                "missing_evidence": [
+                  "complete_scenario_evidence_not_available"
+                ]
+              },
+              {
+                "validator_id": "s04-role-status-gate",
+                "valid": false,
+                "missing_evidence": [
+                  "complete_scenario_evidence_not_available"
+                ]
+              },
+              {
+                "validator_id": "s05-role-status-gate",
+                "valid": false,
+                "missing_evidence": [
+                  "complete_scenario_evidence_not_available"
+                ]
+              },
+              {
+                "validator_id": "s06-complete-evidence-gate",
+                "valid": false,
+                "missing_evidence": [
+                  "before_after_merged_table_snapshots",
+                  "mutation_output_path",
+                  "merged_cell_row_col_span_maps",
+                  "non_target_entry_hashes_before_after"
+                ]
+              },
+              {
+                "validator_id": "s07-complete-evidence-gate",
+                "valid": false,
+                "missing_evidence": [
+                  "image_entry_hash_comparison",
+                  "bindata_entry_hash_comparison",
+                  "relationship_reference_comparison",
+                  "mutation_output_path"
+                ]
+              },
+              {
+                "validator_id": "s08-complete-evidence-gate",
+                "valid": false,
+                "missing_evidence": [
+                  "fwspace_before_after_comparison",
+                  "namespace_prefix_uri_map_before_after",
+                  "mutation_output_path"
+                ]
+              },
+              {
+                "validator_id": "s09-role-status-gate",
+                "valid": false,
+                "missing_evidence": [
+                  "complete_scenario_evidence_not_available"
+                ]
+              },
+              {
+                "validator_id": "s10-role-status-gate",
+                "valid": false,
+                "missing_evidence": [
+                  "complete_scenario_evidence_not_available"
+                ]
+              },
+              {
+                "validator_id": "s11-role-status-gate",
+                "valid": false,
+                "missing_evidence": [
+                  "complete_scenario_evidence_not_available"
+                ]
+              },
+              {
+                "validator_id": "s12-complete-evidence-gate",
+                "valid": false,
+                "missing_evidence": [
+                  "raw_duration_samples",
+                  "peak_rss_raw_samples",
+                  "candidate_artifact_total_size",
+                  "runtime_dependency_install_size",
+                  "raw_stdout_or_structured_log"
+                ]
+              },
+              {
+                "validator_id": "s13-complete-evidence-gate",
+                "valid": false,
+                "missing_evidence": [
+                  "clean_environment_offline_install",
+                  "attempted_command_execution_record",
+                  "runtime_network_test_result"
+                ]
+              },
+              {
+                "validator_id": "s14-complete-evidence-gate",
+                "valid": false,
+                "missing_evidence": [
+                  "license_file_path",
+                  "license_sha256",
+                  "redistribution_assessment",
+                  "redistribution_obligations"
+                ]
+              }
+            ],
+            "blocking_conditions": [
+              "external validator process not executed in Task 003"
+            ]
+          },
+          "license_maintenance": {
+            "weight": 10,
+            "rubric_items": [],
+            "measured_points": 0,
+            "pending_points": 10,
+            "score_formula": "sum of explicit rubric items whose scenario-specific evidence validators passed",
+            "evidence_paths": [],
+            "validator_results": [],
+            "blocking_conditions": [
+              "license evidence missing"
+            ]
+          }
+        }
+      },
+      "hwpforge": {
+        "categories": {
+          "functional_fit": {
+            "weight": 30,
+            "rubric_items": [
+              {
+                "item": "independent package parse",
+                "points": 10,
+                "awarded": 0
+              },
+              {
+                "item": "structural counts and hashes",
+                "points": 10,
+                "awarded": 0
+              },
+              {
+                "item": "invalid package detection",
+                "points": 10,
+                "awarded": 0
+              }
+            ],
+            "measured_points": 0,
+            "pending_points": 30,
+            "score_formula": "sum of explicit rubric items whose scenario-specific evidence validators passed",
+            "evidence_paths": [],
+            "validator_results": [
+              {
+                "validator_id": "s01-role-status-gate",
+                "valid": false,
+                "missing_evidence": [
+                  "complete_scenario_evidence_not_available"
+                ]
+              },
+              {
+                "validator_id": "s02-role-status-gate",
+                "valid": false,
+                "missing_evidence": [
+                  "complete_scenario_evidence_not_available"
+                ]
+              },
+              {
+                "validator_id": "s03-role-status-gate",
+                "valid": false,
+                "missing_evidence": [
+                  "complete_scenario_evidence_not_available"
+                ]
+              },
+              {
+                "validator_id": "s04-role-status-gate",
+                "valid": false,
+                "missing_evidence": [
+                  "complete_scenario_evidence_not_available"
+                ]
+              },
+              {
+                "validator_id": "s05-role-status-gate",
+                "valid": false,
+                "missing_evidence": [
+                  "complete_scenario_evidence_not_available"
+                ]
+              },
+              {
+                "validator_id": "s06-complete-evidence-gate",
+                "valid": false,
+                "missing_evidence": [
+                  "before_after_merged_table_snapshots",
+                  "mutation_output_path",
+                  "merged_cell_row_col_span_maps",
+                  "non_target_entry_hashes_before_after"
+                ]
+              },
+              {
+                "validator_id": "s07-complete-evidence-gate",
+                "valid": false,
+                "missing_evidence": [
+                  "image_entry_hash_comparison",
+                  "bindata_entry_hash_comparison",
+                  "relationship_reference_comparison",
+                  "mutation_output_path"
+                ]
+              },
+              {
+                "validator_id": "s08-complete-evidence-gate",
+                "valid": false,
+                "missing_evidence": [
+                  "fwspace_before_after_comparison",
+                  "namespace_prefix_uri_map_before_after",
+                  "mutation_output_path"
+                ]
+              },
+              {
+                "validator_id": "s09-role-status-gate",
+                "valid": false,
+                "missing_evidence": [
+                  "complete_scenario_evidence_not_available"
+                ]
+              },
+              {
+                "validator_id": "s10-role-status-gate",
+                "valid": false,
+                "missing_evidence": [
+                  "complete_scenario_evidence_not_available"
+                ]
+              },
+              {
+                "validator_id": "s11-role-status-gate",
+                "valid": false,
+                "missing_evidence": [
+                  "complete_scenario_evidence_not_available"
+                ]
+              },
+              {
+                "validator_id": "s12-complete-evidence-gate",
+                "valid": false,
+                "missing_evidence": [
+                  "raw_duration_samples",
+                  "peak_rss_raw_samples",
+                  "candidate_artifact_total_size",
+                  "runtime_dependency_install_size",
+                  "raw_stdout_or_structured_log"
+                ]
+              },
+              {
+                "validator_id": "s13-complete-evidence-gate",
+                "valid": false,
+                "missing_evidence": [
+                  "clean_environment_offline_install",
+                  "attempted_command_execution_record",
+                  "runtime_network_test_result"
+                ]
+              },
+              {
+                "validator_id": "s14-complete-evidence-gate",
+                "valid": false,
+                "missing_evidence": [
+                  "license_file_path",
+                  "license_sha256",
+                  "redistribution_assessment",
+                  "redistribution_obligations"
+                ]
+              }
+            ],
+            "blocking_conditions": [
+              "external validator process not executed in Task 003"
+            ]
+          },
+          "license_maintenance": {
+            "weight": 10,
+            "rubric_items": [],
+            "measured_points": 0,
+            "pending_points": 10,
+            "score_formula": "sum of explicit rubric items whose scenario-specific evidence validators passed",
+            "evidence_paths": [],
+            "validator_results": [],
+            "blocking_conditions": [
+              "identity and license evidence missing"
+            ]
+          }
+        }
+      }
+    },
+    "layout_gate": {
+      "hancom_com": {
+        "status": "blocked",
+        "scenarios": [
+          "S09",
+          "S10",
+          "S11"
+        ],
+        "blocking_conditions": [
+          "Hancom COM execution is Task 005 scope"
+        ]
+      }
+    },
+    "core_selection": "prohibited",
+    "stage_transition": "prohibited"
+  },
+  "role_matrix_applied": true,
+  "invalid_pass_count": 0,
+  "schema_validation_mode": "internal_profile_validator",
+  "schema_validator_limitation": "AJV/jsonschema 같은 표준 Draft 2020-12 검증기가 로컬 환경에 없어 Task 003 전용 내부 프로필 검증기로 스키마를 검증했다.",
+  "completion_gate_passed": false,
+  "codex_execution_status": "partial",
+  "master_review_required": true,
+  "master_review_reasons": [
+    "standards_compliant_schema_validator_unavailable"
+  ],
+  "core_selection": "prohibited",
+  "stage_transition": "prohibited",
+  "hwp_adapter_completion": "not_declared",
+  "user_visual_status": "not_requested_task_003_no_valid_com_resaved_outputs"
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0.0",
+  "task_id": "hwpx-core-benchmark-003-evidence-integrity",
+  "candidate_id": "python_hwpx",
+  "candidate_role": "editor",
+  "scenario_id": "S08",
+  "scenario_name": "hp:fwSpace and namespace preservation",
+  "previous_status": "blocked",
+  "status": "blocked",
+  "status_reason": "python_hwpx artifact/runtime/license evidence is not acquired in Task 003",
+  "evidence_completeness": "missing",
+  "missing_evidence": [
+    "pinned_offline_artifact",
+    "runtime_install",
+    "license_evidence"
+  ],
+  "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/python_hwpx/S08/result.json",
+  "planned_commands": [
+    "Acquire pinned offline artifact for python_hwpx",
+    "Install python_hwpx in a clean offline environment",
+    "Run python_hwpx process for S08"
+  ],
+  "attempted_commands": [],
+  "checked_paths": [
+    "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/external-artifacts/python_hwpx"
+  ],
+  "checked_path_results": [
+    {
+      "path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/external-artifacts/python_hwpx",
+      "exists": false
+    }
+  ],
+  "validator_results": [
+    {
+      "validator_id": "s08-complete-evidence-gate",
+      "valid": false,
+      "missing_evidence": [
+        "fwspace_before_after_comparison",
+        "namespace_prefix_uri_map_before_after",
+        "mutation_output_path"
+      ]
+    }
+  ],
+  "generated_at": "2026-07-03T02:04:14.421Z"
+}

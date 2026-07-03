@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0.0",
+  "task_id": "hwpx-core-benchmark-003-evidence-integrity",
+  "candidate_id": "current_node_xml",
+  "candidate_role": "editor",
+  "scenario_id": "S12",
+  "scenario_name": "performance and install size evidence",
+  "previous_status": "passed",
+  "status": "blocked",
+  "status_reason": "previous passed cannot be retained without complete Task 003 evidence",
+  "evidence_completeness": "partial",
+  "missing_evidence": [
+    "raw_duration_samples",
+    "peak_rss_raw_samples",
+    "candidate_artifact_total_size",
+    "runtime_dependency_install_size",
+    "raw_stdout_or_structured_log"
+  ],
+  "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/current_node_xml/S12/result.json",
+  "planned_commands": [
+    "Future Task 004/005 may execute external candidate or COM measurement where applicable."
+  ],
+  "attempted_commands": [],
+  "checked_paths": [
+    "tools/hancom/army-claw-hancom-tools.mjs",
+    "release/test-documents/hwpx-core-benchmark-002/summary/benchmark-results.json"
+  ],
+  "checked_path_results": [
+    {
+      "path": "tools/hancom/army-claw-hancom-tools.mjs",
+      "exists": true
+    },
+    {
+      "path": "release/test-documents/hwpx-core-benchmark-002/summary/benchmark-results.json",
+      "exists": true
+    }
+  ],
+  "validator_results": [
+    {
+      "validator_id": "s12-complete-evidence-gate",
+      "valid": false,
+      "missing_evidence": [
+        "raw_duration_samples",
+        "peak_rss_raw_samples",
+        "candidate_artifact_total_size",
+        "runtime_dependency_install_size",
+        "raw_stdout_or_structured_log"
+      ]
+    }
+  ],
+  "generated_at": "2026-07-03T02:04:14.407Z"
+}

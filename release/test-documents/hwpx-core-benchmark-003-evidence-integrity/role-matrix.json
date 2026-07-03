@@ -1,0 +1,322 @@
+{
+  "schema_version": "1.0.0",
+  "task_id": "hwpx-core-benchmark-003-evidence-integrity",
+  "generated_at": "2026-07-03T02:04:14.309Z",
+  "candidates": {
+    "current_node_xml": {
+      "role": "editor",
+      "runtime": "node",
+      "source": "tools/hancom/army-claw-hancom-tools.mjs",
+      "scenarios": {
+        "S01": {
+          "applicability": "applicable",
+          "rationale": "editor role owns S01"
+        },
+        "S02": {
+          "applicability": "applicable",
+          "rationale": "editor role owns S02"
+        },
+        "S03": {
+          "applicability": "applicable",
+          "rationale": "editor role owns S03"
+        },
+        "S04": {
+          "applicability": "applicable",
+          "rationale": "editor role owns S04"
+        },
+        "S05": {
+          "applicability": "applicable",
+          "rationale": "editor role owns S05"
+        },
+        "S06": {
+          "applicability": "applicable",
+          "rationale": "editor role owns S06"
+        },
+        "S07": {
+          "applicability": "applicable",
+          "rationale": "editor role owns S07"
+        },
+        "S08": {
+          "applicability": "applicable",
+          "rationale": "editor role owns S08"
+        },
+        "S09": {
+          "applicability": "not_applicable",
+          "rationale": "editor role does not own S09; result must be not_applicable"
+        },
+        "S10": {
+          "applicability": "not_applicable",
+          "rationale": "editor role does not own S10; result must be not_applicable"
+        },
+        "S11": {
+          "applicability": "not_applicable",
+          "rationale": "editor role does not own S11; result must be not_applicable"
+        },
+        "S12": {
+          "applicability": "applicable",
+          "rationale": "editor role owns S12"
+        },
+        "S13": {
+          "applicability": "applicable",
+          "rationale": "editor role owns S13"
+        },
+        "S14": {
+          "applicability": "applicable",
+          "rationale": "editor role owns S14"
+        }
+      }
+    },
+    "python_hwpx": {
+      "role": "editor",
+      "runtime": "python",
+      "source": "external artifact not acquired in Task 003",
+      "scenarios": {
+        "S01": {
+          "applicability": "applicable",
+          "rationale": "editor role owns S01"
+        },
+        "S02": {
+          "applicability": "applicable",
+          "rationale": "editor role owns S02"
+        },
+        "S03": {
+          "applicability": "applicable",
+          "rationale": "editor role owns S03"
+        },
+        "S04": {
+          "applicability": "applicable",
+          "rationale": "editor role owns S04"
+        },
+        "S05": {
+          "applicability": "applicable",
+          "rationale": "editor role owns S05"
+        },
+        "S06": {
+          "applicability": "applicable",
+          "rationale": "editor role owns S06"
+        },
+        "S07": {
+          "applicability": "applicable",
+          "rationale": "editor role owns S07"
+        },
+        "S08": {
+          "applicability": "applicable",
+          "rationale": "editor role owns S08"
+        },
+        "S09": {
+          "applicability": "not_applicable",
+          "rationale": "editor role does not own S09; result must be not_applicable"
+        },
+        "S10": {
+          "applicability": "not_applicable",
+          "rationale": "editor role does not own S10; result must be not_applicable"
+        },
+        "S11": {
+          "applicability": "not_applicable",
+          "rationale": "editor role does not own S11; result must be not_applicable"
+        },
+        "S12": {
+          "applicability": "applicable",
+          "rationale": "editor role owns S12"
+        },
+        "S13": {
+          "applicability": "applicable",
+          "rationale": "editor role owns S13"
+        },
+        "S14": {
+          "applicability": "applicable",
+          "rationale": "editor role owns S14"
+        }
+      }
+    },
+    "hwpxlib": {
+      "role": "validator",
+      "runtime": "java",
+      "source": "external artifact not acquired in Task 003",
+      "scenarios": {
+        "S01": {
+          "applicability": "not_applicable",
+          "rationale": "validator role does not own S01; result must be not_applicable"
+        },
+        "S02": {
+          "applicability": "not_applicable",
+          "rationale": "validator role does not own S02; result must be not_applicable"
+        },
+        "S03": {
+          "applicability": "not_applicable",
+          "rationale": "validator role does not own S03; result must be not_applicable"
+        },
+        "S04": {
+          "applicability": "not_applicable",
+          "rationale": "validator role does not own S04; result must be not_applicable"
+        },
+        "S05": {
+          "applicability": "not_applicable",
+          "rationale": "validator role does not own S05; result must be not_applicable"
+        },
+        "S06": {
+          "applicability": "applicable",
+          "rationale": "validator role owns S06"
+        },
+        "S07": {
+          "applicability": "applicable",
+          "rationale": "validator role owns S07"
+        },
+        "S08": {
+          "applicability": "applicable",
+          "rationale": "validator role owns S08"
+        },
+        "S09": {
+          "applicability": "not_applicable",
+          "rationale": "validator role does not own S09; result must be not_applicable"
+        },
+        "S10": {
+          "applicability": "not_applicable",
+          "rationale": "validator role does not own S10; result must be not_applicable"
+        },
+        "S11": {
+          "applicability": "not_applicable",
+          "rationale": "validator role does not own S11; result must be not_applicable"
+        },
+        "S12": {
+          "applicability": "applicable",
+          "rationale": "validator role owns S12"
+        },
+        "S13": {
+          "applicability": "applicable",
+          "rationale": "validator role owns S13"
+        },
+        "S14": {
+          "applicability": "applicable",
+          "rationale": "validator role owns S14"
+        }
+      }
+    },
+    "hwpforge": {
+      "role": "validator",
+      "runtime": "rust",
+      "source": "external identity/artifact not acquired in Task 003",
+      "scenarios": {
+        "S01": {
+          "applicability": "not_applicable",
+          "rationale": "validator role does not own S01; result must be not_applicable"
+        },
+        "S02": {
+          "applicability": "not_applicable",
+          "rationale": "validator role does not own S02; result must be not_applicable"
+        },
+        "S03": {
+          "applicability": "not_applicable",
+          "rationale": "validator role does not own S03; result must be not_applicable"
+        },
+        "S04": {
+          "applicability": "not_applicable",
+          "rationale": "validator role does not own S04; result must be not_applicable"
+        },
+        "S05": {
+          "applicability": "not_applicable",
+          "rationale": "validator role does not own S05; result must be not_applicable"
+        },
+        "S06": {
+          "applicability": "applicable",
+          "rationale": "validator role owns S06"
+        },
+        "S07": {
+          "applicability": "applicable",
+          "rationale": "validator role owns S07"
+        },
+        "S08": {
+          "applicability": "applicable",
+          "rationale": "validator role owns S08"
+        },
+        "S09": {
+          "applicability": "not_applicable",
+          "rationale": "validator role does not own S09; result must be not_applicable"
+        },
+        "S10": {
+          "applicability": "not_applicable",
+          "rationale": "validator role does not own S10; result must be not_applicable"
+        },
+        "S11": {
+          "applicability": "not_applicable",
+          "rationale": "validator role does not own S11; result must be not_applicable"
+        },
+        "S12": {
+          "applicability": "applicable",
+          "rationale": "validator role owns S12"
+        },
+        "S13": {
+          "applicability": "applicable",
+          "rationale": "validator role owns S13"
+        },
+        "S14": {
+          "applicability": "applicable",
+          "rationale": "validator role owns S14"
+        }
+      }
+    },
+    "hancom_com": {
+      "role": "layout_authority",
+      "runtime": "hancom_com",
+      "source": "local Hancom 2024 COM not executed in Task 003",
+      "scenarios": {
+        "S01": {
+          "applicability": "not_applicable",
+          "rationale": "layout_authority role does not own S01; result must be not_applicable"
+        },
+        "S02": {
+          "applicability": "not_applicable",
+          "rationale": "layout_authority role does not own S02; result must be not_applicable"
+        },
+        "S03": {
+          "applicability": "not_applicable",
+          "rationale": "layout_authority role does not own S03; result must be not_applicable"
+        },
+        "S04": {
+          "applicability": "not_applicable",
+          "rationale": "layout_authority role does not own S04; result must be not_applicable"
+        },
+        "S05": {
+          "applicability": "not_applicable",
+          "rationale": "layout_authority role does not own S05; result must be not_applicable"
+        },
+        "S06": {
+          "applicability": "not_applicable",
+          "rationale": "layout_authority role does not own S06; result must be not_applicable"
+        },
+        "S07": {
+          "applicability": "not_applicable",
+          "rationale": "layout_authority role does not own S07; result must be not_applicable"
+        },
+        "S08": {
+          "applicability": "not_applicable",
+          "rationale": "layout_authority role does not own S08; result must be not_applicable"
+        },
+        "S09": {
+          "applicability": "applicable",
+          "rationale": "layout_authority role owns S09"
+        },
+        "S10": {
+          "applicability": "applicable",
+          "rationale": "layout_authority role owns S10"
+        },
+        "S11": {
+          "applicability": "applicable",
+          "rationale": "layout_authority role owns S11"
+        },
+        "S12": {
+          "applicability": "not_applicable",
+          "rationale": "layout_authority role does not own S12; result must be not_applicable"
+        },
+        "S13": {
+          "applicability": "not_applicable",
+          "rationale": "layout_authority role does not own S13; result must be not_applicable"
+        },
+        "S14": {
+          "applicability": "not_applicable",
+          "rationale": "layout_authority role does not own S14; result must be not_applicable"
+        }
+      }
+    }
+  }
+}

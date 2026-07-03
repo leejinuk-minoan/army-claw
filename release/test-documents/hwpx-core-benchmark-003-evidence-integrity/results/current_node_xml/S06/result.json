@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0.0",
+  "task_id": "hwpx-core-benchmark-003-evidence-integrity",
+  "candidate_id": "current_node_xml",
+  "candidate_role": "editor",
+  "scenario_id": "S06",
+  "scenario_name": "merged table preservation",
+  "previous_status": "passed",
+  "status": "blocked",
+  "status_reason": "previous passed cannot be retained without complete Task 003 evidence",
+  "evidence_completeness": "partial",
+  "missing_evidence": [
+    "before_after_merged_table_snapshots",
+    "mutation_output_path",
+    "merged_cell_row_col_span_maps",
+    "non_target_entry_hashes_before_after"
+  ],
+  "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/current_node_xml/S06/result.json",
+  "planned_commands": [
+    "Future Task 004/005 may execute external candidate or COM measurement where applicable."
+  ],
+  "attempted_commands": [],
+  "checked_paths": [
+    "tools/hancom/army-claw-hancom-tools.mjs",
+    "release/test-documents/hwpx-core-benchmark-002/summary/benchmark-results.json"
+  ],
+  "checked_path_results": [
+    {
+      "path": "tools/hancom/army-claw-hancom-tools.mjs",
+      "exists": true
+    },
+    {
+      "path": "release/test-documents/hwpx-core-benchmark-002/summary/benchmark-results.json",
+      "exists": true
+    }
+  ],
+  "validator_results": [
+    {
+      "validator_id": "s06-complete-evidence-gate",
+      "valid": false,
+      "missing_evidence": [
+        "before_after_merged_table_snapshots",
+        "mutation_output_path",
+        "merged_cell_row_col_span_maps",
+        "non_target_entry_hashes_before_after"
+      ]
+    }
+  ],
+  "generated_at": "2026-07-03T02:04:14.399Z"
+}
