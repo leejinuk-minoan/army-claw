@@ -41,8 +41,7 @@
     "COM layout and performance measurement",
     "final local report generation"
   ],
-  "delegation_payload_sha": null,
-  "delegation_payload_sha_assignment": "recorded by a metadata-only push after this payload commit",
+  "delegation_payload_sha": "bef3a7d5e247963fbd0651b44c96f8b4cb3fc165",
   "final_remote_head_recording": "external verifier/master attestation",
   "local_execution_base_sha": null,
   "local_execution_base_assignment": "master assigns verified final remote HEAD after read-only verification",
