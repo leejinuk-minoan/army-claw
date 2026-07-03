@@ -12,6 +12,7 @@ export const CANONICAL_SCHEMA_FILES = [
   "test-summary.schema.json",
 ];
 export const CANONICAL_SCHEMA_PATHS = CANONICAL_SCHEMA_FILES.map((name) => `schemas-v2/${name}`);
+export const ACTIVE_OUTPUT_CLASSIFICATIONS = ["benchmark_result", "adapter_execution", "dependency_license_offline_manifest", "test_summary", "benchmark_summary"];
 
 async function files(root) {
   const output = [];
@@ -42,6 +43,8 @@ export function classifyJson(path, document = {}) {
   return { classification: "unclassified", schema_path: null };
 }
 export const selectSchemaForJson = (path, document = {}) => classifyJson(path, document).schema_path;
+export const isActiveOutputRecord = (record) => ACTIVE_OUTPUT_CLASSIFICATIONS.includes(record?.classification);
+export const activeOutputRecords = (records = []) => records.filter(isActiveOutputRecord);
 
 export function evaluateInventoryRecords({ records = [], expectedPaths = CANONICAL_SCHEMA_PATHS, root = TASK_003_ROOT, validationStartedAtMs = null, lastWriteCompletedAtMs = null }) {
   const paths = records.map((record) => record.path);
@@ -76,6 +79,38 @@ export function evaluateInventoryRecords({ records = [], expectedPaths = CANONIC
     validation_failures,
     evidence_linkage,
     valid: validation_failures === 0,
+  };
+}
+
+export function buildPreOutputSchemaInventory(inventory) {
+  const records = (inventory?.records ?? []).filter((record) => record.classification === "canonical_schema" || record.classification === "legacy_schema_inactive");
+  const deferred = activeOutputRecords(inventory?.records ?? []).map((record) => record.path).sort();
+  const summary = evaluateInventoryRecords({
+    records: records.sort((a, b) => a.path.localeCompare(b.path)),
+    expectedPaths: CANONICAL_SCHEMA_PATHS,
+    root: inventory?.root ?? TASK_003_ROOT,
+    validationStartedAtMs: 1,
+    lastWriteCompletedAtMs: 0,
+  });
+  return {
+    ...summary,
+    limitations: [
+      "pre_output_schema_only_inventory_not_completion_candidate",
+      `deferred_active_json_count:${deferred.length}`,
+      ...deferred.slice(0, 20).map((path) => `deferred_active_json:${path}`),
+    ],
+  };
+}
+
+export function evaluateMappedValidationGateOrder({ inventory, outputGenerationCompleted = false }) {
+  const errors = [];
+  if (outputGenerationCompleted !== true) errors.push("output_generation_required_before_final_mapped_validation");
+  if (inventory?.valid !== true) errors.push("inventory_invalid_before_final_mapped_validation");
+  return {
+    valid: errors.length === 0,
+    errors,
+    active_output_count: activeOutputRecords(inventory?.records ?? []).length,
+    limitation: errors.length === 0 ? null : "pre-output checks may inspect schema and classify stale artifacts, but cannot claim final mapped JSON validation or completion",
   };
 }
 
