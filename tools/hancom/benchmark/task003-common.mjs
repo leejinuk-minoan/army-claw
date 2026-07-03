@@ -8,6 +8,7 @@ export const STATUS_ENUM = ["passed", "failed", "unsupported", "blocked", "not_a
 export const ROLE_ENUM = ["editor", "validator", "layout_authority"];
 export const SCENARIOS = Array.from({ length: 14 }, (_, i) => `S${String(i + 1).padStart(2, "0")}`);
 export const SHA256_PATTERN = "^[a-f0-9]{64}$";
+export const GIT_COMMIT_SHA_PATTERN = "^[a-f0-9]{40}$";
 export const CANDIDATES = {
   current_node_xml: { role: "editor", runtime: "node" },
   python_hwpx: { role: "editor", runtime: "python" },
@@ -25,6 +26,7 @@ const RFC3339_UTC = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{1,9})?Z$/u;
 export const nowIso = () => new Date().toISOString();
 export const isObject = (v) => v !== null && typeof v === "object" && !Array.isArray(v);
 export const isSha256 = (v) => typeof v === "string" && new RegExp(SHA256_PATTERN, "u").test(v);
+export const isGitCommitSha = (v) => typeof v === "string" && new RegExp(GIT_COMMIT_SHA_PATTERN, "u").test(v);
 export const unique = (values) => [...new Set(values.filter(Boolean))];
 function stable(v) { if (Array.isArray(v)) return v.map(stable); if (!isObject(v)) return v; return Object.fromEntries(Object.keys(v).sort().map((k) => [k, stable(v[k])])); }
 export const deepEqual = (a, b) => JSON.stringify(stable(a)) === JSON.stringify(stable(b));
@@ -126,9 +128,9 @@ export function commonPreservationEvidence(evidence = {}) {
   const results = refs.map(([ref, probe, label]) => fileReferenceValidation(ref, probe, label));
   const assertions = results.flatMap((r) => r.assertions);
   const missing = results.flatMap((r) => r.missing_evidence);
-  assertions.push({ assertion_id: "input_output_hwpx_distinct_identity", expected: "different path or SHA256", actual: { input: evidence.input_hwpx ?? null, output: evidence.output_hwpx ?? null }, passed: Boolean(evidence.input_hwpx?.path && evidence.output_hwpx?.path && (evidence.input_hwpx.path !== evidence.output_hwpx.path || evidence.input_hwpx.sha256 !== evidence.output_hwpx.sha256)) });
+  assertions.push({ assertion_id: "input_output_hwpx_distinct_identity", expected: "different path AND different SHA256", actual: { input: evidence.input_hwpx ?? null, output: evidence.output_hwpx ?? null }, passed: Boolean(evidence.input_hwpx?.path && evidence.output_hwpx?.path && evidence.input_hwpx.path !== evidence.output_hwpx.path && evidence.input_hwpx.sha256 !== evidence.output_hwpx.sha256) });
   assertions.push({ assertion_id: "before_snapshot_lineage_to_input", expected: { path: evidence.input_hwpx?.path, sha256: evidence.input_hwpx?.sha256 }, actual: { path: evidence.before_snapshot?.source_hwpx_path, sha256: evidence.before_snapshot?.source_hwpx_sha256 }, passed: evidence.before_snapshot?.source_hwpx_path === evidence.input_hwpx?.path && evidence.before_snapshot?.source_hwpx_sha256 === evidence.input_hwpx?.sha256 });
-  assertions.push({ assertion_id: "after_snapshot_lineage_to_output", expected: { path: evidence.output_hwpx?.path, sha256: evidence.output_hwpx?.sha256 }, actual: { path: evidence.after_snapshot?.source_hwpx_path, sha256: evidence.after_snapshot?.source_hwpx_sha256 }, passed: evidence.after_snapshot?.source_hwpx_path === evidence.output_hwpx?.path && evidence.after_snapshot?.source_hwpx_sha256 === evidence.output_hwpx?.sha256 });
+  assertions.push({ assertion_id: "after_snapshot_lineage_to_output", expected: { path: evidence.output_hwpx?.path, sha256: evidence.output_hwpx?.sha256 }, actual: { path: evidence.after_snapshot?.source_hwpx_path, sha256: evidence.output_hwpx?.sha256 }, passed: evidence.after_snapshot?.source_hwpx_path === evidence.output_hwpx?.path && evidence.after_snapshot?.source_hwpx_sha256 === evidence.output_hwpx?.sha256 });
   if (!Array.isArray(evidence.allowed_target_diff) || evidence.allowed_target_diff.length === 0) missing.push("allowed_target_diff_missing");
   return { assertions, missing: unique(missing) };
 }
