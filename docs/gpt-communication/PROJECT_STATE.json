@@ -24,6 +24,7 @@
       "docs/gpt-communication/opinions/2026-07-02-hwpx-core-architecture-decision.md",
       "docs/gpt-communication/opinions/2026-07-02-hwpx-core-benchmark-001-master-review.md",
       "docs/gpt-communication/opinions/2026-07-03-hwpx-core-benchmark-002-master-review.md",
+      "docs/gpt-communication/opinions/2026-07-03-hwpx-core-benchmark-003-master-review.md",
       "docs/gpt-communication/MASTER_MONITORING_POLICY.md",
       "docs/gpt-communication/AGENT_OPERATING_MODEL.md",
       "docs/gpt-communication/tasks/<task-id>/TASK_CONTRACT.md",
@@ -36,7 +37,7 @@
     "substage": "1-3",
     "substage_name": "선행 HWPX 엔진 비교·코어 선정",
     "status": "in_progress",
-    "current_task": "hwpx-core-benchmark-003-evidence-integrity"
+    "current_task": "hwpx-core-benchmark-003-evidence-integrity corrective continuation"
   },
   "completed_substages": [
     {
@@ -62,8 +63,9 @@
     "decision_status": "accepted_for_benchmark_implementation_not_core_selection"
   },
   "current_branch": "feature/hwpx-core-benchmark",
-  "latest_implementation_commit": "d666bb6d9ecfdad6707e2924dde7316a02c739be",
-  "latest_master_review_commit": "58686eac0f17794cb16487f91fd4695ef6d5cd40",
+  "latest_implementation_commit": "534df85b74c7c3cb6fc749e24ae1633927d72a3e",
+  "latest_prompt_agent_review_commit": "14d151f6898e64eb0ba0b397b566209b49956d82",
+  "latest_master_review_commit": "e3b6ccd327da0a6c4d1bb878a00d6601501cfb8c",
   "benchmark_reviews": {
     "benchmark_001": {
       "status": "partial_rejected_as_complete",
@@ -72,7 +74,16 @@
     "benchmark_002": {
       "status": "partial_meaningful_progress",
       "completion_gate_passed": false,
-      "reported_pass_counts_valid": false,
+      "scorecard_valid_for_selection": false
+    },
+    "benchmark_003": {
+      "status": "partial_meaningful_progress",
+      "completion_gate_passed": false,
+      "task_completion": "rejected",
+      "proceed_to_task_004": false,
+      "invalid_pass_cleanup": "achieved",
+      "standards_compliant_schema_validation": "not_achieved",
+      "full_hancom_regression": "failed_18_missing_jszip_environment",
       "scorecard_valid_for_selection": false,
       "user_visual_review_required_now": false
     }
@@ -80,14 +91,17 @@
   "benchmark_followup_plan": [
     {
       "task_id": "hwpx-core-benchmark-003-evidence-integrity",
-      "purpose": "invalid passed 제거, scenario-specific evidence gate, schemas, evidence rubric"
+      "status": "corrective_continuation_required",
+      "purpose": "evidence-only status, semantic gates, standard schema validation, full regression closure"
     },
     {
       "task_id": "hwpx-core-benchmark-004-external-candidates",
+      "status": "blocked_by_task_003",
       "purpose": "pinned python-hwpx, hwpxlib, HwpForge artifact·license·offline install·실제 process 실행"
     },
     {
       "task_id": "hwpx-core-benchmark-005-hancom-layout",
+      "status": "blocked_by_task_003_and_004",
       "purpose": "Hancom COM open/save, page measurement, S05 두 번째 1×1 표 before/after, 사용자 검토 산출물"
     }
   ],
@@ -101,17 +115,21 @@
   "next_work": {
     "recommended_branch": "feature/hwpx-core-benchmark",
     "recommended_task_id": "hwpx-core-benchmark-003-evidence-integrity",
+    "mode": "corrective_continuation",
     "tasks": [
-      "S06-S08 before/after preservation evidence validator 구현",
-      "S12 artifact/runtime/install size와 측정 한계 gate 구현",
-      "S13 clean offline install evidence gate 구현",
-      "S14 실제 LICENSE·hash·redistribution evidence gate 구현",
-      "planned_commands와 attempted_commands 분리",
-      "v1 available 또는 explicit missing record 추가",
-      "5개 상세 Draft 2020-12 schema 구현 및 모든 JSON 실제 검증",
-      "scenario-to-category evidence rubric 구현",
-      "invalid passed를 failed/unsupported/blocked로 하향",
-      "report·test logs·handoff·commit SHA 일치"
+      "repository-approved pinned jszip 환경 복구와 baseline/current 전체 회귀 0-failure 확인",
+      "standards-compliant Draft 2020-12 validator exact version·LICENSE·SHA256·offline replay 확보",
+      "5개 schema conditional/nested 구조 보강과 schema meta-validation",
+      "filesystem-derived 전체 Task 003 JSON inventory와 final-write 이후 전량 검증",
+      "candidate/scenario 고정 status 분기 제거",
+      "S06-S08 artifact·hash·semantic before/after·allowed diff 검증",
+      "S12-S14 complete evidence gate 구현",
+      "invalid_pass_count 실제 계산과 injection test",
+      "모든 score point에 validator result 연결",
+      "benchmark-002 검증된 부분 evidence lineage import",
+      "task-start/task-end immutability manifest 비교",
+      "RED/positive tests 보강",
+      "report·logs·artifacts·handoff·commit SHA 재정합"
     ]
   },
   "current_visual_findings": {
@@ -122,7 +140,8 @@
     "main_3_position": "displaced_by_support_2_spill",
     "required_future_fix": "ContainerAwareTableFit shrink_to_content",
     "benchmark_001_outputs": "not_valid_for_new_visual_review",
-    "benchmark_002_outputs": "not_valid_for_new_visual_review"
+    "benchmark_002_outputs": "not_valid_for_new_visual_review",
+    "benchmark_003_outputs": "not_visual_outputs"
   },
   "stage_1_gate": [
     "선행 HWPX 코어 benchmark와 선택 근거 완료",
@@ -140,7 +159,8 @@
     "여러 HWPX 코어의 연속 재저장 금지",
     "아키텍처·단계 변경은 마스터 에이전트 승인 필요",
     "사용자 시각 확인 전 엔진 완료 선언 금지",
-    "benchmark-002 scorecard를 코어 선정에 사용 금지",
-    "Task 003 완료 전 Stage 1-4 진입 금지"
+    "benchmark-001/002/003 scorecard를 코어 선정에 사용 금지",
+    "Task 003 완료 전 Task 004와 Stage 1-4 진입 금지",
+    "실제 COM output 전 사용자 시각검증 요청 금지"
   ]
 }
