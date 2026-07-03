@@ -1,28 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "Task 003 benchmark summary",
+  "title": "Legacy inactive Task 003 benchmark summary schema",
+  "$comment": "Inactive compatibility artifact. Canonical schema: ../schemas-v2/benchmark-summary.schema.json",
+  "x-task003-schema-status": "legacy_inactive",
   "type": "object",
-  "required": ["document_type", "task_id", "completion_gate_passed", "invalid_pass_count", "core_selection", "stage_transition"],
-  "properties": {
-    "document_type": {"enum": ["benchmark_summary", "scorecard", "role_matrix", "task_manifest", "immutability_comparison", "schema_validation_summary"]},
-    "task_id": {"const": "hwpx-core-benchmark-003-evidence-integrity"},
-    "completion_gate_passed": {"type": "boolean"},
-    "invalid_pass_count": {"type": "integer", "minimum": 0},
-    "core_selection": {"const": "prohibited"},
-    "stage_transition": {"const": "prohibited"},
-    "scenario_results": {"type": "array", "items": {"type": "object"}},
-    "candidate_matrix": {"type": "array", "items": {"type": "object"}},
-    "rubric_items": {"type": "array", "items": {"$ref": "#/$defs/rubric"}},
-    "records": {"type": "array", "items": {"$ref": "#/$defs/record"}},
-    "unexpected_diffs": {"type": "array", "items": {"type": "object"}},
-    "generated_at": {"type": "string", "format": "date-time"}
-  },
-  "allOf": [
-    {"if": {"properties": {"completion_gate_passed": {"const": true}}}, "then": {"properties": {"invalid_pass_count": {"const": 0}, "unexpected_diffs": {"maxItems": 0}}}}
-  ],
-  "$defs": {
-    "rubric": {"type": "object", "required": ["rubric_id", "points", "validator_id", "awarded", "state"], "properties": {"rubric_id": {"type": "string"}, "points": {"type": "number", "minimum": 0}, "validator_id": {"type": "string"}, "awarded": {"type": "number", "minimum": 0}, "state": {"enum": ["awarded", "pending"]}}, "additionalProperties": true},
-    "record": {"type": "object", "required": ["path", "exists", "sha256", "size"], "properties": {"path": {"type": "string"}, "exists": {"type": "boolean"}, "sha256": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"}, "size": {"type": ["integer", "null"], "minimum": 0}}, "additionalProperties": false}
-  },
-  "additionalProperties": false
+  "additionalProperties": true
 }
