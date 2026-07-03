@@ -41,8 +41,7 @@
     "COM layout and performance measurement",
     "final local report generation"
   ],
-  "delegation_payload_sha": null,
-  "delegation_payload_sha_assignment": "the following metadata-only push records the commit containing the completed source Schema test and six-file package payload",
+  "delegation_payload_sha": "1d953031a8a4baf76b971c175b0bbbc2ae7ea709",
   "final_remote_head_recording": "external verifier/master attestation",
   "local_execution_base_sha": null,
   "local_execution_base_assignment": "master assigns verified final remote HEAD after read-only verification",
