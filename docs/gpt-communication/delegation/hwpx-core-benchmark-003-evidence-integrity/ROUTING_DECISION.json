@@ -1,0 +1,44 @@
+{
+  "task_id": "hwpx-core-benchmark-003-evidence-integrity",
+  "stage": "1-3",
+  "branch": "feature/hwpx-core-benchmark",
+  "routing_class": "hybrid",
+  "phase": "cloud_preparation",
+  "task_contract_path": "docs/gpt-communication/tasks/hwpx-core-benchmark-003-evidence-integrity/TASK_CONTRACT.md",
+  "master_review_path": "docs/gpt-communication/opinions/2026-07-03-hwpx-core-benchmark-003-master-review.md",
+  "cloud_scope": [
+    "replace fixed candidate/scenario status branches with evidence and prerequisite driven decisions",
+    "implement semantic S06-S08 validators",
+    "complete S12-S14 evidence gates",
+    "strengthen Draft 2020-12 schemas",
+    "design filesystem-derived JSON inventory and final validation",
+    "add invalid-pass and score-validator tests",
+    "design task-start/task-end immutability manifests",
+    "prepare local Codex execution brief"
+  ],
+  "local_scope": [
+    "restore repository-approved pinned jszip environment",
+    "install pinned standards-compliant Draft 2020-12 validator artifact",
+    "collect actual LICENSE and SHA256 evidence",
+    "run baseline and current full Hancom regression",
+    "run final filesystem and schema validation",
+    "generate final logs, artifacts, report, commit and push"
+  ],
+  "local_validation_required": [
+    "all cloud code changes",
+    "dependency installation",
+    "full regression",
+    "final artifacts and reports"
+  ],
+  "forbidden_scope": [
+    "Task 004 execution",
+    "core selection",
+    "Stage 1-4 transition",
+    "main merge",
+    "user visual review request"
+  ],
+  "delegation_commit_sha": null,
+  "local_execution_base_sha": null,
+  "master_review_required": false,
+  "master_review_reasons": []
+}
