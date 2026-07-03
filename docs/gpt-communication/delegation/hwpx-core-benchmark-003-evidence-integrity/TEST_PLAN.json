@@ -1,0 +1,67 @@
+{
+  "task_id": "hwpx-core-benchmark-003-evidence-integrity",
+  "branch": "agent/task003-cloud-restart",
+  "cloud_validation_performed": [
+    {
+      "name": "branch_base_verification",
+      "method": "GitHub compare",
+      "result": "branch began at clean base c222429d6f9698022e3f2d326ca914f245cebc65 with zero pre-existing commits"
+    },
+    {
+      "name": "scope_diff_review",
+      "method": "GitHub compare and per-file review",
+      "result": "Task 003 implementation, tests, strict schemas and delegation paths only; no Task 004 path added"
+    },
+    {
+      "name": "static_source_review",
+      "method": "manual review of committed JavaScript and JSON",
+      "result": "evidence/probe status flow, S06-S08 semantic assertions, S12-S14 gates, invalid-pass calculation, score gating, inventory and manifest structures are present"
+    },
+    {
+      "name": "draft_marker_review",
+      "method": "manual JSON review",
+      "result": "all five schemas-v2 declare Draft 2020-12 and contain nested constraints or conditionals"
+    }
+  ],
+  "cloud_validation_not_performed": [
+    "Node test execution against the final remote branch",
+    "standards-compliant Draft 2020-12 schema compilation or meta-schema validation",
+    "actual filesystem-derived JSON inventory execution",
+    "actual HWPX mutation or preservation execution",
+    "pinned jszip restoration",
+    "dependency installation",
+    "actual LICENSE and SHA256 collection",
+    "offline replay",
+    "baseline/current full Hancom regression",
+    "COM execution, page count or layout measurement",
+    "performance and memory measurement",
+    "final report artifact generation"
+  ],
+  "local_test_sequence": [
+    "confirm branch HEAD equals the approved final delegation SHA",
+    "capture task-start manifest before dependency or output writes",
+    "restore the repository-approved pinned jszip environment",
+    "install a pinned standards-compliant Draft 2020-12 validator from an offline artifact",
+    "run node --test tools/hancom/hwpx-core-benchmark-task003-cloud-positive.test.mjs tools/hancom/hwpx-core-benchmark-task003-cloud-red.test.mjs",
+    "run baseline and current full tools/hancom regression in the same environment",
+    "execute candidate probes and permitted scenario runs",
+    "collect stdout, stderr, exit codes, artifact SHA256 and exact license files",
+    "run filesystem-derived inventory after all JSON writes complete",
+    "meta-validate all schemas-v2 and validate every mapped JSON document",
+    "calculate invalid_pass_count and assert it is zero before any completion claim",
+    "capture task-end manifest and compare against the allowed change list",
+    "run cross-artifact consistency checks",
+    "write final reports without changing cloud source modules"
+  ],
+  "completion_conditions": {
+    "node_tests_failed": 0,
+    "invalid_pass_count": 0,
+    "unclassified_json": 0,
+    "missing_json": 0,
+    "duplicate_json": 0,
+    "unexpected_manifest_diffs": 0,
+    "schema_validation_failures": 0,
+    "actual_execution_evidence_required_for_passed": true
+  },
+  "current_completion_gate_passed": false
+}
