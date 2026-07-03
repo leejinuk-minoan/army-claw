@@ -10,7 +10,7 @@ The Task 003 cloud-preparation correction payload is complete and awaits read-on
 - branch: `agent/task003-cloud-restart`
 - correction_start_sha: `89e465f7e1c79b11cb6acbe321279eb3daa53eff`
 - clean_base_sha: `c222429d6f9698022e3f2d326ca914f245cebc65`
-- delegation_payload_sha: assigned by the following metadata-only push to the commit containing this completed payload
+- delegation_payload_sha: `bef3a7d5e247963fbd0651b44c96f8b4cb3fc165`
 - final_remote_head_recording: external verifier/master attestation
 - local_execution_base_sha: `null`
 - local_execution_base_assignment: master assigns the verified final remote HEAD after read-only verification
