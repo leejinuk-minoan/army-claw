@@ -75,8 +75,6 @@ export function deriveStatusFromEvidence({ role, scenarioId, execution_record = 
       evidence_completeness: "complete",
       missing_evidence: scenario_validator_result?.missing_evidence ?? [],
       status_reason: "actual execution failed",
-      execution_record,
-      scenario_gate_result: scenario_validator_result,
     });
     if (importedValid(imported_evidence) && scenario_validator_result?.valid === true) return resultEnvelope({
       plannedCommands,
@@ -86,10 +84,7 @@ export function deriveStatusFromEvidence({ role, scenarioId, execution_record = 
       evidence_completeness: "complete",
       missing_evidence: [],
       status_reason: "actual execution, imported evidence filesystem lineage and semantic validator passed",
-      execution_record,
       imported_evidence,
-      scenario_gate_result: scenario_validator_result,
-      required_filesystem_evidence_complete: true,
     });
     return resultEnvelope({
       plannedCommands,
@@ -99,8 +94,6 @@ export function deriveStatusFromEvidence({ role, scenarioId, execution_record = 
       evidence_completeness: "partial",
       missing_evidence: unique([...(scenario_validator_result?.missing_evidence ?? []), importedValid(imported_evidence) ? null : "imported_evidence_filesystem_lineage_missing"]),
       status_reason: "execution succeeded but complete scenario evidence did not",
-      execution_record,
-      scenario_gate_result: scenario_validator_result,
     });
   }
 
@@ -118,7 +111,6 @@ export function deriveStatusFromEvidence({ role, scenarioId, execution_record = 
     blocked_reason_code: prerequisite_probe.blocked_reason_code,
     missing_prerequisites: prerequisite_probe.missing_prerequisites,
     prerequisite_probe,
-    probe_evidence_path: prerequisite_probe.probe_evidence_path,
     evidence_completeness: "complete",
     missing_evidence: prerequisite_probe.missing_prerequisites,
     status_reason: "verified prerequisite filesystem/runtime probe found unavailable prerequisites",
