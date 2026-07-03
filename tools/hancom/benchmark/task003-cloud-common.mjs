@@ -1,4 +1,6 @@
 // Legacy compatibility wrapper. Canonical implementation: task003-common.mjs
+import * as canonical from "./task003-common.mjs";
+
 export {
   TASK_003_ID as TASK_ID,
   TASK_003_ROOT as OUTPUT_ROOT,
@@ -26,10 +28,10 @@ export {
 } from "./task003-common.mjs";
 
 export function roleApplicability(role, scenarioId) {
-  const applicable = scenarioApplicable(role, scenarioId);
+  const applicable = canonical.scenarioApplicable(role, scenarioId);
   return { applicable, role, rationale: applicable ? `${role} role owns ${scenarioId}` : `${role} role does not own ${scenarioId}` };
 }
 
 export function artifactInventoryValid(items, probes = {}) {
-  return inventoryProbeValidation(items, probes).valid;
+  return canonical.inventoryProbeValidation(items, probes).valid;
 }
