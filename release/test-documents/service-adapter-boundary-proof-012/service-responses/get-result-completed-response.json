@@ -1,0 +1,31 @@
+{
+  "service_request_id": "svc-getResult-job-api-create-document-1783205231847",
+  "service_operation": "getResult",
+  "ok": true,
+  "status": "completed",
+  "job_id": "job-api-create-document",
+  "job_status": "completed",
+  "data": {
+    "job_id": "job-api-create-document",
+    "status": "completed",
+    "response_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\t12\\release\\test-documents\\service-adapter-boundary-proof-012\\responses\\job-api-create-document-response.json",
+    "report_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\t12\\release\\test-documents\\service-adapter-boundary-proof-012\\reports\\job-api-create-document-agent-report.json",
+    "output_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\t12\\release\\test-documents\\service-adapter-boundary-proof-012\\outputs\\job-api-create-document-output.hwpx",
+    "evidence_paths": [
+      "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\t12\\release\\test-documents\\service-adapter-boundary-proof-012\\evidence\\job-api-create-document-evidence-1.json"
+    ],
+    "failure": null
+  },
+  "error": null,
+  "artifacts": {
+    "response_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\t12\\release\\test-documents\\service-adapter-boundary-proof-012\\responses\\job-api-create-document-response.json",
+    "report_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\t12\\release\\test-documents\\service-adapter-boundary-proof-012\\reports\\job-api-create-document-agent-report.json",
+    "output_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\t12\\release\\test-documents\\service-adapter-boundary-proof-012\\outputs\\job-api-create-document-output.hwpx",
+    "evidence_paths": [
+      "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\t12\\release\\test-documents\\service-adapter-boundary-proof-012\\evidence\\job-api-create-document-evidence-1.json"
+    ]
+  },
+  "real_com_executed": false,
+  "final_core_selection_declared": false,
+  "stage_2_transition_declared": false
+}

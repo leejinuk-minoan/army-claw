@@ -1,0 +1,21 @@
+{
+  "service_request_id": "svc-submit-invalid-1783205231850",
+  "service_operation": "submit",
+  "ok": true,
+  "status": "accepted",
+  "job_id": "job-api-invalid",
+  "job_status": "pending",
+  "data": {
+    "job_id": "job-api-invalid",
+    "status": "pending",
+    "request_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\t12\\release\\test-documents\\service-adapter-boundary-proof-012\\requests\\job-api-invalid-request.json",
+    "submitted_at": "2026-07-04T22:47:11.852Z"
+  },
+  "error": null,
+  "artifacts": {
+    "job_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\t12\\release\\test-documents\\service-adapter-boundary-proof-012\\jobs\\job-api-invalid\\job.json"
+  },
+  "real_com_executed": false,
+  "final_core_selection_declared": false,
+  "stage_2_transition_declared": false
+}

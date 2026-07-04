@@ -1,0 +1,36 @@
+{
+  "service_request_id": "svc-getResult-job-api-validation-failure-1783205232056",
+  "service_operation": "getResult",
+  "ok": true,
+  "status": "failed",
+  "job_id": "job-api-validation-failure",
+  "job_status": "failed",
+  "data": {
+    "job_id": "job-api-validation-failure",
+    "status": "failed",
+    "response_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\t12\\release\\test-documents\\service-adapter-boundary-proof-012\\responses\\job-api-validation-failure-response.json",
+    "report_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\t12\\release\\test-documents\\service-adapter-boundary-proof-012\\reports\\job-api-validation-failure-agent-report.json",
+    "output_path": null,
+    "evidence_paths": [
+      "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\t12\\release\\test-documents\\service-adapter-boundary-proof-012\\evidence\\job-api-validation-failure-evidence-1.json"
+    ],
+    "failure": {
+      "type": "validation_error",
+      "message": "interim_editor_output_invalid",
+      "last_successful_step": "validate_output",
+      "quarantine_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\t12\\release\\test-documents\\service-adapter-boundary-proof-012\\execution-workspaces\\svc-submit-validation-1783205231887\\release\\test-documents\\local-job-boundary-proof-011\\api-workspaces\\job-api-validation-failure\\release\\test-documents\\agent-api-boundary-proof-010\\outputs\\validation-failure-output.hwpx.quarantine-edit-paragraph"
+    }
+  },
+  "error": null,
+  "artifacts": {
+    "response_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\t12\\release\\test-documents\\service-adapter-boundary-proof-012\\responses\\job-api-validation-failure-response.json",
+    "report_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\t12\\release\\test-documents\\service-adapter-boundary-proof-012\\reports\\job-api-validation-failure-agent-report.json",
+    "output_path": null,
+    "evidence_paths": [
+      "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\t12\\release\\test-documents\\service-adapter-boundary-proof-012\\evidence\\job-api-validation-failure-evidence-1.json"
+    ]
+  },
+  "real_com_executed": false,
+  "final_core_selection_declared": false,
+  "stage_2_transition_declared": false
+}

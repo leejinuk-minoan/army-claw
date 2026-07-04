@@ -1,0 +1,46 @@
+{
+  "plan_id": "plan-req-validation-failure",
+  "request_id": "req-validation-failure",
+  "api_request_id": "api-validation-failure",
+  "task_id": "local-job-boundary-proof-011",
+  "created_at": "2026-07-04T22:47:11.911Z",
+  "planner_id": "AgentApiBoundaryPlanner",
+  "steps": [
+    {
+      "step_id": "step-edit-paragraph",
+      "operation_id": "edit-paragraph",
+      "intent": "edit_paragraph",
+      "backend_role": "editor",
+      "input_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\t12\\release\\test-documents\\service-adapter-boundary-proof-012\\execution-workspaces\\svc-submit-validation-1783205231887\\release\\test-documents\\local-job-boundary-proof-011\\api-workspaces\\job-api-validation-failure\\release\\test-documents\\agent-api-boundary-proof-010\\fixtures\\source.hwpx",
+      "output_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\t12\\release\\test-documents\\service-adapter-boundary-proof-012\\execution-workspaces\\svc-submit-validation-1783205231887\\release\\test-documents\\local-job-boundary-proof-011\\api-workspaces\\job-api-validation-failure\\release\\test-documents\\agent-api-boundary-proof-010\\outputs\\validation-failure-output.hwpx",
+      "options": {
+        "text": "Task 012 validation failure"
+      },
+      "evidence_tag": "edit-paragraph-editor",
+      "expected_evidence_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\t12\\release\\test-documents\\service-adapter-boundary-proof-012\\execution-workspaces\\svc-submit-validation-1783205231887\\release\\test-documents\\local-job-boundary-proof-011\\api-workspaces\\job-api-validation-failure\\release\\test-documents\\agent-api-boundary-proof-010\\evidence\\edit-paragraph-editor.json"
+    }
+  ],
+  "constraints": {
+    "backend_role": "editor",
+    "backend_id": "NodeXmlThinInterimEditorAdapter",
+    "no_real_com": true,
+    "no_final_core_selection": true,
+    "force_validation_failure": true
+  },
+  "source_request": {
+    "api_request_id": "api-validation-failure",
+    "request_id": "req-validation-failure",
+    "task_id": "local-job-boundary-proof-011",
+    "document_intent": "edit_paragraph",
+    "content": {
+      "text": "Task 012 validation failure"
+    },
+    "constraints": {
+      "backend_role": "editor",
+      "backend_id": "NodeXmlThinInterimEditorAdapter",
+      "no_real_com": true,
+      "no_final_core_selection": true,
+      "force_validation_failure": true
+    }
+  }
+}

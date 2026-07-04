@@ -1,0 +1,17 @@
+{
+  "service_request_id": "svc-getJob-job-missing-1783205232057",
+  "service_operation": "getJob",
+  "ok": false,
+  "status": "error",
+  "job_id": null,
+  "job_status": null,
+  "data": null,
+  "error": {
+    "type": "not_found",
+    "message": "job_not_found:job-missing"
+  },
+  "artifacts": {},
+  "real_com_executed": false,
+  "final_core_selection_declared": false,
+  "stage_2_transition_declared": false
+}

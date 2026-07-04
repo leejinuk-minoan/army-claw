@@ -1,0 +1,17 @@
+{
+  "snapshot_id": "job-api-create-document-running",
+  "job_id": "job-api-create-document",
+  "status": "running",
+  "timestamp": "2026-07-04T22:47:11.616Z",
+  "request_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\t12\\release\\test-documents\\service-adapter-boundary-proof-012\\execution-workspaces\\svc-submit-create-1783205231588\\release\\test-documents\\local-job-boundary-proof-011\\requests\\create-document-request.json",
+  "response_path": null,
+  "plan_path": null,
+  "report_path": null,
+  "output_path": null,
+  "evidence_paths": [],
+  "failure": null,
+  "attempts": 1,
+  "real_com_executed": false,
+  "final_core_selection_declared": false,
+  "stage_2_transition_declared": false
+}
