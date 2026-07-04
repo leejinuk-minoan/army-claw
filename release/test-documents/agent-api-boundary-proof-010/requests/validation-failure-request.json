@@ -1,0 +1,27 @@
+{
+  "api_request_id": "api-validation-failure",
+  "request_id": "req-validation-failure",
+  "task_id": "agent-api-boundary-proof-010",
+  "document_intent": "edit_paragraph",
+  "content": {
+    "text": "Task 010 edit_paragraph content",
+    "table": [
+      [
+        "A",
+        "B"
+      ],
+      [
+        "1",
+        "2"
+      ]
+    ],
+    "style": "emphasis"
+  },
+  "constraints": {
+    "backend_role": "editor",
+    "backend_id": "NodeXmlThinInterimEditorAdapter",
+    "no_real_com": true,
+    "no_final_core_selection": true,
+    "force_validation_failure": true
+  }
+}
