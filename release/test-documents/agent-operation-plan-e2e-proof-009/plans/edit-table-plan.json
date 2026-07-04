@@ -1,0 +1,63 @@
+{
+  "plan_id": "plan-req-edit_table",
+  "request_id": "req-edit_table",
+  "task_id": "agent-operation-plan-e2e-proof-009",
+  "created_at": "2026-07-04T21:43:26.432Z",
+  "planner_id": "AgentOperationPlanE2EPlanner",
+  "steps": [
+    {
+      "step_id": "step-edit-table",
+      "operation_id": "edit-table",
+      "intent": "edit_table",
+      "backend_role": "editor",
+      "input_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\t9\\release\\test-documents\\agent-operation-plan-e2e-proof-009\\fixtures\\source.hwpx",
+      "output_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\t9\\release\\test-documents\\agent-operation-plan-e2e-proof-009\\outputs\\edit-table-output.hwpx",
+      "options": {
+        "rows": [
+          [
+            "A",
+            "B"
+          ],
+          [
+            "1",
+            "2"
+          ]
+        ]
+      },
+      "evidence_tag": "edit-table-editor",
+      "expected_evidence_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\t9\\release\\test-documents\\agent-operation-plan-e2e-proof-009\\evidence\\edit-table-editor.json"
+    }
+  ],
+  "constraints": {
+    "backend_role": "editor",
+    "backend_id": "NodeXmlThinInterimEditorAdapter",
+    "no_real_com": true,
+    "no_final_core_selection": true,
+    "force_validation_failure": false
+  },
+  "source_request": {
+    "request_id": "req-edit_table",
+    "task_id": "agent-operation-plan-e2e-proof-009",
+    "document_intent": "edit_table",
+    "content": {
+      "text": "Task 009 edit_table content",
+      "table": [
+        [
+          "A",
+          "B"
+        ],
+        [
+          "1",
+          "2"
+        ]
+      ],
+      "style": "emphasis"
+    },
+    "constraints": {
+      "backend_role": "editor",
+      "backend_id": "NodeXmlThinInterimEditorAdapter",
+      "no_real_com": true,
+      "no_final_core_selection": true
+    }
+  }
+}

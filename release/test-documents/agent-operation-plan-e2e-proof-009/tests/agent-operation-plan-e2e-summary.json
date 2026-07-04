@@ -1,0 +1,72 @@
+{
+  "task_id": "agent-operation-plan-e2e-proof-009",
+  "generated_at": "2026-07-04T21:43:26.694Z",
+  "completion_candidate": true,
+  "request_count": 6,
+  "successful_request_count": 4,
+  "supported_intents": [
+    "create_document",
+    "edit_paragraph",
+    "edit_table",
+    "apply_style"
+  ],
+  "outputs": [
+    {
+      "path": "C:/Users/USER/Desktop/로컬 open claw 만들기/.tmp/t9/release/test-documents/agent-operation-plan-e2e-proof-009/outputs/create-document-output.hwpx",
+      "exists": true,
+      "size": 1842613,
+      "sha256": "a84cafb3ce8563655d6b1a9a08d1f33e8ef1bd17b01116c8527feaa51ef7769b"
+    },
+    {
+      "path": "C:/Users/USER/Desktop/로컬 open claw 만들기/.tmp/t9/release/test-documents/agent-operation-plan-e2e-proof-009/outputs/edit-paragraph-output.hwpx",
+      "exists": true,
+      "size": 1842610,
+      "sha256": "1ef85acf058e5559d74c7d374e19d34365fd81fdae64d33ef0a1b66fed450bdd"
+    },
+    {
+      "path": "C:/Users/USER/Desktop/로컬 open claw 만들기/.tmp/t9/release/test-documents/agent-operation-plan-e2e-proof-009/outputs/edit-table-output.hwpx",
+      "exists": true,
+      "size": 1842648,
+      "sha256": "0ed7264c84cf3afdf02869f97a0798751be62c9b5eddf4e4cc5b542be1355bf4"
+    },
+    {
+      "path": "C:/Users/USER/Desktop/로컬 open claw 만들기/.tmp/t9/release/test-documents/agent-operation-plan-e2e-proof-009/outputs/apply-style-output.hwpx",
+      "exists": true,
+      "size": 1842612,
+      "sha256": "9b48749224877ae8176922ced15f7fcc47284d1af6fb54f49e2b6556b7330967"
+    }
+  ],
+  "report_paths": [
+    "release/test-documents/agent-operation-plan-e2e-proof-009/reports/create-document-agent-report.json",
+    "release/test-documents/agent-operation-plan-e2e-proof-009/reports/edit-paragraph-agent-report.json",
+    "release/test-documents/agent-operation-plan-e2e-proof-009/reports/edit-table-agent-report.json",
+    "release/test-documents/agent-operation-plan-e2e-proof-009/reports/apply-style-agent-report.json",
+    "release/test-documents/agent-operation-plan-e2e-proof-009/reports/unknown-intent-agent-report.json",
+    "release/test-documents/agent-operation-plan-e2e-proof-009/reports/validation-failure-agent-report.json"
+  ],
+  "evidence_paths": [
+    "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\t9\\release\\test-documents\\agent-operation-plan-e2e-proof-009\\evidence\\create-document-editor.json",
+    "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\t9\\release\\test-documents\\agent-operation-plan-e2e-proof-009\\evidence\\edit-paragraph-editor.json",
+    "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\t9\\release\\test-documents\\agent-operation-plan-e2e-proof-009\\evidence\\edit-table-editor.json",
+    "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\t9\\release\\test-documents\\agent-operation-plan-e2e-proof-009\\evidence\\apply-style-editor.json"
+  ],
+  "unknown_intent": {
+    "success": false,
+    "failure_type": "policy_error"
+  },
+  "validation_failure": {
+    "success": false,
+    "promoted_outputs": 0,
+    "failure_type": "validation_error"
+  },
+  "real_com_executed": false,
+  "final_core_selection_declared": false,
+  "stage_2_transition_declared": false,
+  "completed_artifacts_modified": false,
+  "read_only_reference_roots": [
+    "release/test-documents/hwpx-core-benchmark-003-evidence-integrity",
+    "release/test-documents/hwpcoreadapter-backend-proof-006",
+    "release/test-documents/editor-backend-candidate-comparison-007",
+    "release/test-documents/node-xml-thin-interim-adapter-integration-008"
+  ]
+}
