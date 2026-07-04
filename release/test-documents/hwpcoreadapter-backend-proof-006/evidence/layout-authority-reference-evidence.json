@@ -1,0 +1,36 @@
+{
+  "task_id": "hwpcoreadapter-backend-proof-006",
+  "operation_id": "layout-authority-reference",
+  "backend_role": "layout_authority",
+  "backend_id": "LayoutAuthorityReferenceBackendProof",
+  "promoted": true,
+  "input": {
+    "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task006-hwpcoreadapter-backend-proof-20260704141000\\release\\test-documents\\hwpcoreadapter-backend-proof-006\\fixtures\\source.hwpx",
+    "exists": true,
+    "size": 1842578,
+    "sha256": "33f5ec297ce6b6ab60c342a368800ff42ab0dc86a7ba79ec100ff2c7896bbe41",
+    "hash_algorithm": "sha256"
+  },
+  "output": {
+    "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task006-hwpcoreadapter-backend-proof-20260704141000\\release\\test-documents\\hwpcoreadapter-backend-proof-006\\outputs\\layout-authority-reference-output.json",
+    "exists": true,
+    "size": 580,
+    "sha256": "221b176ce99df424d07c469bbb54c32ea5a1e6e3fb22633ba41592aa0596dd86",
+    "hash_algorithm": "sha256"
+  },
+  "validation": {
+    "valid": true,
+    "validator": "Task006LayoutAuthorityReferenceValidator",
+    "failure_count": 0,
+    "failures": []
+  },
+  "failure": null,
+  "real_com_executed": false,
+  "task003_reference": {
+    "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task006-hwpcoreadapter-backend-proof-20260704141000\\release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\external-artifacts\\task003-v6\\native-hwpx\\hancom-open-save-output.hwpx",
+    "exists": true,
+    "size": 14468,
+    "sha256": "8c092794177aeca2c1630c06adc883c81e45d9d9ea97edb038449a46dae9e9dd",
+    "hash_algorithm": "sha256"
+  }
+}

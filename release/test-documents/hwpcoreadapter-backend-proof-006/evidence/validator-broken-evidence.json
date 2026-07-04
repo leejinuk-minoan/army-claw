@@ -1,0 +1,47 @@
+{
+  "task_id": "hwpcoreadapter-backend-proof-006",
+  "operation_id": "validator-broken",
+  "backend_role": "validator",
+  "backend_id": "ValidatorBackendProof",
+  "promoted": false,
+  "input": {
+    "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task006-hwpcoreadapter-backend-proof-20260704141000\\release\\test-documents\\hwpcoreadapter-backend-proof-006\\fixtures\\broken-not-hwpx.hwpx",
+    "exists": true,
+    "size": 9,
+    "sha256": "a3989126344744ef800dbc88bf7e744853f3f2eac75c9ab3301f4e845ef22078",
+    "hash_algorithm": "sha256"
+  },
+  "output": {
+    "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task006-hwpcoreadapter-backend-proof-20260704141000\\release\\test-documents\\hwpcoreadapter-backend-proof-006\\outputs\\validator-proof-output.hwpx",
+    "exists": true,
+    "size": 1842613,
+    "sha256": "1681ec4d8fc0d2e81f514e8c44e9a96140caa154bf8ece1e918764d0204041a5",
+    "hash_algorithm": "sha256"
+  },
+  "validation": {
+    "valid": false,
+    "validator": "Task006HwpxStructuralValidator",
+    "failure_count": 1,
+    "failures": [
+      "Can't find end of central directory : is this a zip file ? If it is, see https://stuk.github.io/jszip/documentation/howto/read_zip.html"
+    ],
+    "entries": [],
+    "sectionXml": ""
+  },
+  "failure": {
+    "type": "validation_error",
+    "message": "validation_valid_false",
+    "last_successful_step": "validation",
+    "quarantine_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task006-hwpcoreadapter-backend-proof-20260704141000\\release\\test-documents\\hwpcoreadapter-backend-proof-006\\outputs\\validator-proof-output.hwpx.quarantine-validator-broken"
+  },
+  "validator_result": {
+    "valid": false,
+    "validator": "Task006HwpxStructuralValidator",
+    "failure_count": 1,
+    "failures": [
+      "Can't find end of central directory : is this a zip file ? If it is, see https://stuk.github.io/jszip/documentation/howto/read_zip.html"
+    ],
+    "entries": [],
+    "sectionXml": ""
+  }
+}

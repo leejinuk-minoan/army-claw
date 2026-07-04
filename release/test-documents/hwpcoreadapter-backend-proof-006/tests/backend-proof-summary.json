@@ -1,0 +1,63 @@
+{
+  "task_id": "hwpcoreadapter-backend-proof-006",
+  "generated_at": "2026-07-04T10:29:37.634Z",
+  "completion_candidate": true,
+  "real_com_executed": false,
+  "outputs": [
+    {
+      "path": "C:/Users/USER/Desktop/로컬 open claw 만들기/.tmp/task006-hwpcoreadapter-backend-proof-20260704141000/release/test-documents/hwpcoreadapter-backend-proof-006/outputs/editor-paragraph-output.hwpx",
+      "size": 1842613,
+      "sha256": "1681ec4d8fc0d2e81f514e8c44e9a96140caa154bf8ece1e918764d0204041a5"
+    },
+    {
+      "path": "C:/Users/USER/Desktop/로컬 open claw 만들기/.tmp/task006-hwpcoreadapter-backend-proof-20260704141000/release/test-documents/hwpcoreadapter-backend-proof-006/outputs/editor-table-output.hwpx",
+      "size": 1842659,
+      "sha256": "ddb524562e2b47b878100fc035f2280c1fe50be9b6c2659ff4518cd00f6f74c8"
+    },
+    {
+      "path": "C:/Users/USER/Desktop/로컬 open claw 만들기/.tmp/task006-hwpcoreadapter-backend-proof-20260704141000/release/test-documents/hwpcoreadapter-backend-proof-006/outputs/editor-style-output.hwpx",
+      "size": 1842612,
+      "sha256": "5d8ab8241b3763fb120d15edfd72fcacc4001fb7272b71b7293aeca81152def2"
+    },
+    {
+      "path": "C:/Users/USER/Desktop/로컬 open claw 만들기/.tmp/task006-hwpcoreadapter-backend-proof-20260704141000/release/test-documents/hwpcoreadapter-backend-proof-006/outputs/surgical-patch-output.hwpx",
+      "size": 1842620,
+      "sha256": "4368492d572ef39f0b59840cd9d24ec93e49e0a3fbc914a08032c207ff87e4b8"
+    },
+    {
+      "path": "C:/Users/USER/Desktop/로컬 open claw 만들기/.tmp/task006-hwpcoreadapter-backend-proof-20260704141000/release/test-documents/hwpcoreadapter-backend-proof-006/outputs/validator-proof-output.hwpx",
+      "size": 1842613,
+      "sha256": "1681ec4d8fc0d2e81f514e8c44e9a96140caa154bf8ece1e918764d0204041a5"
+    },
+    {
+      "path": "C:/Users/USER/Desktop/로컬 open claw 만들기/.tmp/task006-hwpcoreadapter-backend-proof-20260704141000/release/test-documents/hwpcoreadapter-backend-proof-006/outputs/layout-authority-reference-output.json",
+      "size": 580,
+      "sha256": "221b176ce99df424d07c469bbb54c32ea5a1e6e3fb22633ba41592aa0596dd86"
+    }
+  ],
+  "backend_ids": [
+    "EditorThinHwpxBackendProof",
+    "EditorThinHwpxBackendProof",
+    "EditorThinHwpxBackendProof",
+    "SurgicalPatchBackendProof",
+    "ValidatorBackendProof",
+    "LayoutAuthorityReferenceBackendProof"
+  ],
+  "expected_failures": [
+    {
+      "backend_id": "SurgicalPatchBackendProof",
+      "failure_type": "preservation_error",
+      "promoted": false
+    },
+    {
+      "backend_id": "ValidatorBackendProof",
+      "failure_type": "validation_error",
+      "promoted": false
+    },
+    {
+      "backend_id": "ValidatorBackendProof",
+      "failure_type": "validation_error",
+      "promoted": false
+    }
+  ]
+}
