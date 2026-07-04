@@ -1,34 +1,97 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "2.1.0",
+  "document_type": "test_summary",
   "task_id": "hwpx-core-benchmark-003-evidence-integrity",
-  "independent_ci_verification": "unavailable",
-  "generated_at": "2026-07-03T02:04:14.483Z",
-  "runs": [
+  "tested_implementation_commit_sha": "e182f2e0259ff2ac451c5a8a621516304015ac82",
+  "independent_ci_verification": {
+    "required_for_completion": false,
+    "status": "not_required",
+    "limitation": "local offline rerun evidence only",
+    "evidence_path": null,
+    "evidence_sha256": null
+  },
+  "totals": {
+    "passed": 226,
+    "failed": 0,
+    "skipped": 0
+  },
+  "required_runs": [
     {
-      "command": "C:\\Users\\USER\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe --test tools/hancom/hwpx-core-benchmark-evidence-integrity.test.mjs",
-      "working_directory": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기",
-      "runtime_version": "v24.14.0",
-      "started_at": "2026-07-03T02:04:14.541Z",
-      "ended_at": "2026-07-03T02:04:14.643Z",
+      "run_id": "gate-a-task003-six-node-v6",
+      "required_for_completion": true,
+      "executed": true,
       "exit_code": 0,
-      "passed": 7,
+      "passed": true,
       "failed": 0,
-      "skipped": 0,
-      "stdout_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\tests\\logs\\task003-evidence-integrity.stdout.log",
-      "stderr_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\tests\\logs\\task003-evidence-integrity.stderr.log"
+      "stdout_path": "tests/logs/gate-a-task003-six-node-v6.stdout.log",
+      "stderr_path": "tests/logs/gate-a-task003-six-node-v6.stderr.log"
     },
     {
-      "command": "C:\\Users\\USER\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe --test tools\\hancom\\army-claw-hancom-tools.test.mjs tools\\hancom\\hwp-reference-analyzer-nested-tables.test.mjs tools\\hancom\\hwp-reference-style-profiles.test.mjs tools\\hancom\\hwpx-adaptive-board-fit.test.mjs tools\\hancom\\hwpx-board-metadata.test.mjs tools\\hancom\\hwpx-core-benchmark-contract.test.mjs tools\\hancom\\hwpx-core-benchmark-corrective.test.mjs tools\\hancom\\hwpx-core-benchmark-evidence-integrity.test.mjs tools\\hancom\\hwpx-document-order-container-leaf.test.mjs tools\\hancom\\hwpx-inline-token-serialization.test.mjs tools\\hancom\\hwpx-merged-table-grid.test.mjs tools\\hancom\\hwpx-native-line-reflow.test.mjs tools\\hancom\\hwpx-native-structure-diff.test.mjs tools\\hancom\\hwpx-native-table-wrapper.test.mjs tools\\hancom\\hwpx-semantic-compression-contract.test.mjs tools\\hancom\\hwpx-template-fidelity-paragraph-blocks.test.mjs tools\\hancom\\hwpx-template-fidelity-scopes.test.mjs tools\\hancom\\hwpx-template-fidelity-selectors.test.mjs tools\\hancom\\hwpx-template-fidelity.test.mjs",
-      "working_directory": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기",
-      "runtime_version": "v24.14.0",
-      "started_at": "2026-07-03T02:04:14.646Z",
-      "ended_at": "2026-07-03T02:04:14.838Z",
-      "exit_code": 1,
-      "passed": 7,
-      "failed": 18,
-      "skipped": 0,
-      "stdout_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\tests\\logs\\all-hancom-tests.stdout.log",
-      "stderr_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\tests\\logs\\all-hancom-tests.stderr.log"
+      "run_id": "gate-b-current-full-hancom-v6",
+      "required_for_completion": true,
+      "executed": true,
+      "exit_code": 0,
+      "passed": true,
+      "failed": 0,
+      "stdout_path": "tests/logs/gate-b-current-full-hancom-v6.stdout.log",
+      "stderr_path": "tests/logs/gate-b-current-full-hancom-v6.stderr.log"
+    },
+    {
+      "run_id": "gate-c-ajv-meta-schema-v6",
+      "required_for_completion": true,
+      "executed": true,
+      "exit_code": 0,
+      "passed": true,
+      "failed": 0,
+      "stdout_path": "tests/logs/gate-c-ajv-meta-schema-v6.stdout.log",
+      "stderr_path": "tests/logs/gate-c-ajv-meta-schema-v6.stderr.log"
+    },
+    {
+      "run_id": "gate-d0-pre-output-sanity-v6",
+      "required_for_completion": true,
+      "executed": true,
+      "exit_code": 0,
+      "passed": true,
+      "failed": 0,
+      "stdout_path": "tests/logs/gate-d0-pre-output-sanity-v6.stdout.log",
+      "stderr_path": "tests/logs/gate-d0-pre-output-sanity-v6.stderr.log"
+    },
+    {
+      "run_id": "gate-d1-canonical-output-generation-v6",
+      "required_for_completion": true,
+      "executed": true,
+      "exit_code": 0,
+      "passed": true,
+      "failed": 0,
+      "stdout_path": "tests/gate-d1-canonical-output-generation-v6.result.txt",
+      "stderr_path": "tests/logs/gate-d2-final-mapped-json-validation-v6.stderr.log"
+    },
+    {
+      "run_id": "gate-d2-final-mapped-json-validation-v6",
+      "required_for_completion": true,
+      "executed": true,
+      "exit_code": 0,
+      "passed": true,
+      "failed": 0,
+      "stdout_path": "tests/logs/gate-d2-final-mapped-json-validation-v6.stdout.log",
+      "stderr_path": "tests/logs/gate-d2-final-mapped-json-validation-v6.stderr.log"
+    },
+    {
+      "run_id": "post-d2-native-scenario-gates-v6",
+      "required_for_completion": true,
+      "executed": true,
+      "exit_code": 0,
+      "passed": true,
+      "failed": 0,
+      "stdout_path": "tests/logs/post-d2-scenario-gates-v6.stdout.log",
+      "stderr_path": "tests/logs/post-d2-scenario-gates-v6.stderr.log"
     }
+  ],
+  "optional_runs": [],
+  "invalid_pass_count": 0,
+  "schema_validation_failures": 0,
+  "completion_gate_passed": true,
+  "limitations": [
+    "Native HWPX evidence generated by local Hancom COM; external-artifacts/task003-v6 is git ignored and requires explicit tracking strategy before commit."
   ]
 }

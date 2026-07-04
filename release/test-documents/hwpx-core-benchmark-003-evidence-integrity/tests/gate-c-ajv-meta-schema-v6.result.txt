@@ -1,0 +1,9 @@
+﻿gate=C
+start_utc=2026-07-03T22:42:21.4816145Z
+end_utc=2026-07-03T22:42:21.6483332Z
+exit_code=0
+stdout_log=C:\Users\USER\Desktop\로컬 open claw 만들기\.tmp\task003-local-rerun-v6-20260704073958\release\test-documents\hwpx-core-benchmark-003-evidence-integrity\tests\logs\gate-c-ajv-meta-schema-v6.stdout.log
+stderr_log=C:\Users\USER\Desktop\로컬 open claw 만들기\.tmp\task003-local-rerun-v6-20260704073958\release\test-documents\hwpx-core-benchmark-003-evidence-integrity\tests\logs\gate-c-ajv-meta-schema-v6.stderr.log
+summary_json=C:\Users\USER\Desktop\로컬 open claw 만들기\.tmp\task003-local-rerun-v6-20260704073958\release\test-documents\hwpx-core-benchmark-003-evidence-integrity\summary\ajv-meta-schema-validation-v6.json
+details_txt=C:\Users\USER\Desktop\로컬 open claw 만들기\.tmp\task003-local-rerun-v6-20260704073958\release\test-documents\hwpx-core-benchmark-003-evidence-integrity\summary\ajv-meta-schema-validation-v6.details.txt
+command=C:\Users\USER\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\bin\node.exe --input-type=module -e <gate-c-ajv-script> C:\Users\USER\Desktop\로컬 open claw 만들기\.tmp\task003-local-rerun-v6-20260704073958\release\test-documents\hwpx-core-benchmark-003-evidence-integrity\summary\ajv-meta-schema-validation-v6.json C:\Users\USER\Desktop\로컬 open claw 만들기\.tmp\task003-local-rerun-v6-20260704073958\release\test-documents\hwpx-core-benchmark-003-evidence-integrity\summary\ajv-meta-schema-validation-v6.details.txt

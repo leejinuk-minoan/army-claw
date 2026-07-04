@@ -1,0 +1,1 @@
+Task 003 v6 local rerun prerequisite probe. Scenario execution remains blocked until concrete native HWPX/runtime operation evidence is produced in later gates.

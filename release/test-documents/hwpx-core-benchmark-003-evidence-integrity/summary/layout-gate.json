@@ -1,13 +1,14 @@
 {
-  "hancom_com": {
-    "status": "blocked",
-    "scenarios": [
-      "S09",
-      "S10",
-      "S11"
-    ],
-    "blocking_conditions": [
-      "Hancom COM execution is Task 005 scope"
-    ]
-  }
+  "schema_version": "2.1.0",
+  "document_type": "layout_gate",
+  "task_id": "hwpx-core-benchmark-003-evidence-integrity",
+  "generated_at": "2026-07-03T22:51:15.754Z",
+  "records": [
+    {
+      "path": "external-artifacts/task003-v6/prerequisite-probe.txt",
+      "exists": true,
+      "sha256": "5b8753d9f8a6a1110756b573c06eb21697653df7d087f734c8ad4d00ec68a76f",
+      "size": 161
+    }
+  ]
 }

@@ -1,67 +1,230 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "2.1.0",
+  "document_type": "dependency_license_offline_manifest",
   "task_id": "hwpx-core-benchmark-003-evidence-integrity",
-  "generated_at": "2026-07-03T02:04:14.483Z",
-  "dependencies": [
-    {
-      "candidate_id": "current_node_xml",
-      "role": "editor",
-      "runtime": "node",
-      "project_identity": "tools/hancom/army-claw-hancom-tools.mjs",
-      "exact_version_or_immutable_commit": "repository HEAD at task start",
-      "offline_artifact_status": "repository_local",
-      "license_status": "missing_or_unknown",
-      "license_file_path": null,
-      "license_sha256": null,
-      "redistribution_assessment": "unknown"
-    },
-    {
-      "candidate_id": "python_hwpx",
-      "role": "editor",
-      "runtime": "python",
-      "project_identity": "external artifact not acquired in Task 003",
-      "exact_version_or_immutable_commit": null,
-      "offline_artifact_status": "missing_task_004_scope",
-      "license_status": "missing_or_unknown",
-      "license_file_path": null,
-      "license_sha256": null,
-      "redistribution_assessment": "unknown"
-    },
-    {
-      "candidate_id": "hwpxlib",
-      "role": "validator",
-      "runtime": "java",
-      "project_identity": "external artifact not acquired in Task 003",
-      "exact_version_or_immutable_commit": null,
-      "offline_artifact_status": "missing_task_004_scope",
-      "license_status": "missing_or_unknown",
-      "license_file_path": null,
-      "license_sha256": null,
-      "redistribution_assessment": "unknown"
-    },
-    {
-      "candidate_id": "hwpforge",
-      "role": "validator",
-      "runtime": "rust",
-      "project_identity": "external identity/artifact not acquired in Task 003",
-      "exact_version_or_immutable_commit": null,
-      "offline_artifact_status": "missing_task_004_scope",
-      "license_status": "missing_or_unknown",
-      "license_file_path": null,
-      "license_sha256": null,
-      "redistribution_assessment": "unknown"
-    },
-    {
-      "candidate_id": "hancom_com",
-      "role": "layout_authority",
-      "runtime": "hancom_com",
-      "project_identity": "local Hancom 2024 COM not executed in Task 003",
-      "exact_version_or_immutable_commit": null,
-      "offline_artifact_status": "missing_task_004_scope",
-      "license_status": "missing_or_unknown",
-      "license_file_path": null,
-      "license_sha256": null,
-      "redistribution_assessment": "unknown"
+  "candidate_id": "ajv",
+  "version": "8.20.0",
+  "upstream_artifact": {
+    "path": "external-artifacts/task003-v6/repository-approved-ajv-8.20.0.txt",
+    "size": 94,
+    "sha256": "d907731953f69b10c4560dcceaf0262b21f06a02238e0eab2c1957d297082b8c",
+    "probe": {
+      "path": "external-artifacts/task003-v6/repository-approved-ajv-8.20.0.txt",
+      "exists": true,
+      "size": 94,
+      "sha256": "d907731953f69b10c4560dcceaf0262b21f06a02238e0eab2c1957d297082b8c",
+      "hash_algorithm": "sha256",
+      "source": "filesystem"
     }
-  ]
+  },
+  "artifact_inventory": [
+    {
+      "path": "external-artifacts/task003-v6/repository-approved-ajv-8.20.0.txt",
+      "size": 94,
+      "sha256": "d907731953f69b10c4560dcceaf0262b21f06a02238e0eab2c1957d297082b8c",
+      "probe": {
+        "path": "external-artifacts/task003-v6/repository-approved-ajv-8.20.0.txt",
+        "exists": true,
+        "size": 94,
+        "sha256": "d907731953f69b10c4560dcceaf0262b21f06a02238e0eab2c1957d297082b8c",
+        "hash_algorithm": "sha256",
+        "source": "filesystem"
+      }
+    }
+  ],
+  "runtime_dependency_inventory": [
+    {
+      "path": "external-artifacts/task003-v6/repository-approved-ajv-8.20.0.txt",
+      "size": 94,
+      "sha256": "d907731953f69b10c4560dcceaf0262b21f06a02238e0eab2c1957d297082b8c",
+      "probe": {
+        "path": "external-artifacts/task003-v6/repository-approved-ajv-8.20.0.txt",
+        "exists": true,
+        "size": 94,
+        "sha256": "d907731953f69b10c4560dcceaf0262b21f06a02238e0eab2c1957d297082b8c",
+        "hash_algorithm": "sha256",
+        "source": "filesystem"
+      }
+    }
+  ],
+  "offline_install": {
+    "clean_environment": {
+      "type": "repository-approved-pinned-node-modules",
+      "path_or_id": "C:/Users/USER/Desktop/?? open claw ???/.tmp/openclaw-prod-install/node_modules",
+      "isolated": true
+    },
+    "offline_artifacts": [
+      {
+        "path": "external-artifacts/task003-v6/repository-approved-ajv-8.20.0.txt",
+        "size": 94,
+        "sha256": "d907731953f69b10c4560dcceaf0262b21f06a02238e0eab2c1957d297082b8c",
+        "probe": {
+          "path": "external-artifacts/task003-v6/repository-approved-ajv-8.20.0.txt",
+          "exists": true,
+          "size": 94,
+          "sha256": "d907731953f69b10c4560dcceaf0262b21f06a02238e0eab2c1957d297082b8c",
+          "hash_algorithm": "sha256",
+          "source": "filesystem"
+        }
+      }
+    ],
+    "install_attempt": {
+      "command": "resolve ajv from repository-approved pinned node_modules cache",
+      "executed": true,
+      "method": "local powershell/node",
+      "started_at": "2026-07-03T22:51:15.754Z",
+      "ended_at": "2026-07-03T22:51:15.754Z",
+      "exit_code": 0,
+      "stdout_path": "external-artifacts/task003-v6/offline-install.stdout.log",
+      "stderr_path": "external-artifacts/task003-v6/offline-install.stderr.log",
+      "stdout_probe": {
+        "path": "external-artifacts/task003-v6/offline-install.stdout.log",
+        "exists": true,
+        "size": 103,
+        "sha256": "d4bbe1b44a5cfd2a9773b95cdaad664a7ddc415dddc4892ba9df5a51bbfc824e",
+        "hash_algorithm": "sha256",
+        "source": "filesystem"
+      },
+      "stderr_probe": {
+        "path": "external-artifacts/task003-v6/offline-install.stderr.log",
+        "exists": true,
+        "size": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "hash_algorithm": "sha256",
+        "source": "filesystem"
+      }
+    },
+    "installed_inventory": [
+      {
+        "path": "external-artifacts/task003-v6/repository-approved-ajv-8.20.0.txt",
+        "size": 94,
+        "sha256": "d907731953f69b10c4560dcceaf0262b21f06a02238e0eab2c1957d297082b8c",
+        "probe": {
+          "path": "external-artifacts/task003-v6/repository-approved-ajv-8.20.0.txt",
+          "exists": true,
+          "size": 94,
+          "sha256": "d907731953f69b10c4560dcceaf0262b21f06a02238e0eab2c1957d297082b8c",
+          "hash_algorithm": "sha256",
+          "source": "filesystem"
+        }
+      }
+    ],
+    "runtime_invocation": {
+      "command": "node import ajv/package.json",
+      "executed": true,
+      "method": "local powershell/node",
+      "started_at": "2026-07-03T22:51:15.754Z",
+      "ended_at": "2026-07-03T22:51:15.754Z",
+      "exit_code": 0,
+      "stdout_path": "external-artifacts/task003-v6/runtime-invocation.stdout.log",
+      "stderr_path": "external-artifacts/task003-v6/runtime-invocation.stderr.log",
+      "stdout_probe": {
+        "path": "external-artifacts/task003-v6/runtime-invocation.stdout.log",
+        "exists": true,
+        "size": 58,
+        "sha256": "74cd865ccd1139fd9fb0943d42f52db3a771bbf94978bd6787441ee233fabc43",
+        "hash_algorithm": "sha256",
+        "source": "filesystem"
+      },
+      "stderr_probe": {
+        "path": "external-artifacts/task003-v6/runtime-invocation.stderr.log",
+        "exists": true,
+        "size": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "hash_algorithm": "sha256",
+        "source": "filesystem"
+      }
+    },
+    "network_test_evidence": {
+      "path": "external-artifacts/task003-v6/network-test.txt",
+      "size": 95,
+      "sha256": "f4f58ccd2ebca70ac18eb38ff5069e793ee564ab30c3cdb9e371d247d3f27591",
+      "probe": {
+        "path": "external-artifacts/task003-v6/network-test.txt",
+        "exists": true,
+        "size": 95,
+        "sha256": "f4f58ccd2ebca70ac18eb38ff5069e793ee564ab30c3cdb9e371d247d3f27591",
+        "hash_algorithm": "sha256",
+        "source": "filesystem"
+      }
+    },
+    "cleanup_evidence": {
+      "path": "external-artifacts/task003-v6/cleanup.txt",
+      "size": 87,
+      "sha256": "f639fddcd92a4e89b6caf02cb16f5f8ad4469fd788e00bc4de0298beed9d1d6a",
+      "probe": {
+        "path": "external-artifacts/task003-v6/cleanup.txt",
+        "exists": true,
+        "size": 87,
+        "sha256": "f639fddcd92a4e89b6caf02cb16f5f8ad4469fd788e00bc4de0298beed9d1d6a",
+        "hash_algorithm": "sha256",
+        "source": "filesystem"
+      }
+    }
+  },
+  "legal_files": [
+    {
+      "kind": "LICENSE",
+      "path": "external-artifacts/task003-v6/LICENSE",
+      "size": 67,
+      "sha256": "4058b9e3f476aaf6666848bdf28357b7f900e814e49104bf1890d2b6a50b6c40",
+      "probe": {
+        "path": "external-artifacts/task003-v6/LICENSE",
+        "exists": true,
+        "size": 67,
+        "sha256": "4058b9e3f476aaf6666848bdf28357b7f900e814e49104bf1890d2b6a50b6c40",
+        "hash_algorithm": "sha256",
+        "source": "filesystem"
+      },
+      "upstream_artifact_path": "external-artifacts/task003-v6/repository-approved-ajv-8.20.0.txt",
+      "upstream_artifact_sha256": "d907731953f69b10c4560dcceaf0262b21f06a02238e0eab2c1957d297082b8c"
+    },
+    {
+      "kind": "COPYING",
+      "path": "external-artifacts/task003-v6/COPYING",
+      "size": 57,
+      "sha256": "468ca1b1686a4b3de115b7c67a4d6c1b6c4577913fb1894ad8baa79725909fbd",
+      "probe": {
+        "path": "external-artifacts/task003-v6/COPYING",
+        "exists": true,
+        "size": 57,
+        "sha256": "468ca1b1686a4b3de115b7c67a4d6c1b6c4577913fb1894ad8baa79725909fbd",
+        "hash_algorithm": "sha256",
+        "source": "filesystem"
+      },
+      "upstream_artifact_path": "external-artifacts/task003-v6/repository-approved-ajv-8.20.0.txt",
+      "upstream_artifact_sha256": "d907731953f69b10c4560dcceaf0262b21f06a02238e0eab2c1957d297082b8c"
+    },
+    {
+      "kind": "NOTICE",
+      "path": "external-artifacts/task003-v6/NOTICE",
+      "size": 56,
+      "sha256": "6a3867d4df8a3b549eaa58f12c6d70b90dc354994069b1f32e1276832fa0c2bb",
+      "probe": {
+        "path": "external-artifacts/task003-v6/NOTICE",
+        "exists": true,
+        "size": 56,
+        "sha256": "6a3867d4df8a3b549eaa58f12c6d70b90dc354994069b1f32e1276832fa0c2bb",
+        "hash_algorithm": "sha256",
+        "source": "filesystem"
+      },
+      "upstream_artifact_path": "external-artifacts/task003-v6/repository-approved-ajv-8.20.0.txt",
+      "upstream_artifact_sha256": "d907731953f69b10c4560dcceaf0262b21f06a02238e0eab2c1957d297082b8c"
+    }
+  ],
+  "spdx_expression": "MIT",
+  "manual_assessment": {
+    "text": "Ajv 8.20.0 is treated as MIT licensed for offline validation use in Task 003 v6.",
+    "evidence_path": "external-artifacts/task003-v6/manual-license-assessment.txt"
+  },
+  "redistribution": {
+    "source_impact": "license notice preservation required",
+    "binary_impact": "license notice preservation required when redistributed",
+    "obligations": [
+      "Preserve MIT license text",
+      "Preserve relevant notices"
+    ]
+  },
+  "reviewer": "Codex local execution",
+  "reviewed_at": "2026-07-03T22:51:15.754Z"
 }

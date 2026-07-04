@@ -1,0 +1,7 @@
+Add-Content : 'C:\Users\USER\Desktop\로컬' 파일은 다른 프로세스에서 사용 중이므로 프로세스에서 액세스할 수 없습니다.
+위치 C:\Users\USER\AppData\Local\Temp\task003-hancom-sta-smoke-v6-lines.ps1:4 문자:88
++ ... last=$Step; Add-Content -LiteralPath $LogPath -Value ("{0}`t{1}`t{2}` ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (C:\Users\USER\Desktop\로컬:String) [Add-Content], IOException
+    + FullyQualifiedErrorId : GetContentWriterIOError,Microsoft.PowerShell.Commands.AddContentCommand
+ 

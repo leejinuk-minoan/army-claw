@@ -1,50 +1,42 @@
 {
-  "schema_version": "1.0.0",
   "task_id": "hwpx-core-benchmark-003-evidence-integrity",
   "candidate_id": "current_node_xml",
   "candidate_role": "editor",
   "scenario_id": "S07",
-  "scenario_name": "image and BinData preservation",
-  "previous_status": "passed",
-  "status": "blocked",
-  "status_reason": "previous passed cannot be retained without complete Task 003 evidence",
+  "status_reason": "Concrete native execution evidence has not been generated in the D-1 output-alignment gate",
   "evidence_completeness": "partial",
   "missing_evidence": [
-    "image_entry_hash_comparison",
-    "bindata_entry_hash_comparison",
-    "relationship_reference_comparison",
-    "mutation_output_path"
+    "runtime_execution_evidence"
   ],
-  "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/current_node_xml/S07/result.json",
   "planned_commands": [
-    "Future Task 004/005 may execute external candidate or COM measurement where applicable."
+    "Task 003 current_node_xml S07 local evidence execution"
   ],
   "attempted_commands": [],
-  "checked_paths": [
-    "tools/hancom/army-claw-hancom-tools.mjs",
-    "release/test-documents/hwpx-core-benchmark-002/summary/benchmark-results.json"
-  ],
-  "checked_path_results": [
-    {
-      "path": "tools/hancom/army-claw-hancom-tools.mjs",
-      "exists": true
-    },
-    {
-      "path": "release/test-documents/hwpx-core-benchmark-002/summary/benchmark-results.json",
-      "exists": true
-    }
-  ],
-  "validator_results": [
-    {
-      "validator_id": "s07-complete-evidence-gate",
-      "valid": false,
-      "missing_evidence": [
-        "image_entry_hash_comparison",
-        "bindata_entry_hash_comparison",
-        "relationship_reference_comparison",
-        "mutation_output_path"
-      ]
-    }
-  ],
-  "generated_at": "2026-07-03T02:04:14.400Z"
+  "validator_results": [],
+  "status": "blocked",
+  "prerequisite_probe": {
+    "performed": true,
+    "available": false,
+    "method": "filesystem evidence probe before final scenario execution",
+    "probe_evidence_path": "external-artifacts/task003-v6/prerequisite-probe.txt",
+    "probe_evidence_sha256": "5b8753d9f8a6a1110756b573c06eb21697653df7d087f734c8ad4d00ec68a76f",
+    "checked_path_results": [
+      {
+        "path": "external-artifacts/task003-v6/current_node_xml-S07-native-output.hwpx",
+        "exists": false,
+        "size": null,
+        "sha256": null,
+        "hash_algorithm": null,
+        "source": null
+      }
+    ],
+    "blocked_reason_code": "runtime_evidence_not_generated_yet",
+    "missing_prerequisites": [
+      "current_node_xml_S07_runtime_execution_evidence"
+    ]
+  },
+  "blocked_reason_code": "runtime_evidence_not_generated_yet",
+  "missing_prerequisites": [
+    "current_node_xml_S07_runtime_execution_evidence"
+  ]
 }

@@ -1,28 +1,17 @@
 {
-  "schema_version": "1.0.0",
   "task_id": "hwpx-core-benchmark-003-evidence-integrity",
   "candidate_id": "current_node_xml",
   "candidate_role": "editor",
   "scenario_id": "S11",
-  "scenario_name": "physical page position measurement",
-  "previous_status": "blocked",
-  "status": "not_applicable",
-  "status_reason": "editor role does not own S11",
+  "status_reason": "S11 is outside editor responsibility",
   "evidence_completeness": "not_applicable",
   "missing_evidence": [],
-  "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/current_node_xml/S11/result.json",
-  "planned_commands": [],
-  "attempted_commands": [],
-  "checked_paths": [],
-  "checked_path_results": [],
-  "validator_results": [
-    {
-      "validator_id": "s11-role-status-gate",
-      "valid": false,
-      "missing_evidence": [
-        "complete_scenario_evidence_not_available"
-      ]
-    }
+  "planned_commands": [
+    "Task 003 current_node_xml S11 local evidence execution"
   ],
-  "generated_at": "2026-07-03T02:04:14.406Z"
+  "attempted_commands": [],
+  "validator_results": [],
+  "status": "not_applicable",
+  "rationale": "S11 is not assigned to editor in the v6 role matrix",
+  "governing_role_matrix_reference": "role-matrix:v6-canonical-output-alignment"
 }

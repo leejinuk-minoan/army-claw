@@ -1,44 +1,42 @@
 {
-  "schema_version": "1.0.0",
   "task_id": "hwpx-core-benchmark-003-evidence-integrity",
   "candidate_id": "hancom_com",
   "candidate_role": "layout_authority",
   "scenario_id": "S11",
-  "scenario_name": "physical page position measurement",
-  "previous_status": null,
-  "status": "blocked",
-  "status_reason": "Hancom COM execution is intentionally out of scope for Task 003",
-  "evidence_completeness": "missing",
+  "status_reason": "Concrete native execution evidence has not been generated in the D-1 output-alignment gate",
+  "evidence_completeness": "partial",
   "missing_evidence": [
-    "hancom_com_execution",
-    "com_resaved_hwpx",
-    "page_measurement"
+    "runtime_execution_evidence"
   ],
-  "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/hancom_com/S11/result.json",
   "planned_commands": [
-    "Detect Hancom COM ProgID",
-    "Open candidate copy",
-    "Save as .com-resaved.hwpx",
-    "Measure page markers"
+    "Task 003 hancom_com S11 local evidence execution"
   ],
   "attempted_commands": [],
-  "checked_paths": [
-    "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/external-artifacts/hancom_com"
-  ],
-  "checked_path_results": [
-    {
-      "path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/external-artifacts/hancom_com",
-      "exists": false
-    }
-  ],
-  "validator_results": [
-    {
-      "validator_id": "s11-role-status-gate",
-      "valid": false,
-      "missing_evidence": [
-        "complete_scenario_evidence_not_available"
-      ]
-    }
-  ],
-  "generated_at": "2026-07-03T02:04:14.477Z"
+  "validator_results": [],
+  "status": "blocked",
+  "prerequisite_probe": {
+    "performed": true,
+    "available": false,
+    "method": "filesystem evidence probe before final scenario execution",
+    "probe_evidence_path": "external-artifacts/task003-v6/prerequisite-probe.txt",
+    "probe_evidence_sha256": "5b8753d9f8a6a1110756b573c06eb21697653df7d087f734c8ad4d00ec68a76f",
+    "checked_path_results": [
+      {
+        "path": "external-artifacts/task003-v6/hancom_com-S11-native-output.hwpx",
+        "exists": false,
+        "size": null,
+        "sha256": null,
+        "hash_algorithm": null,
+        "source": null
+      }
+    ],
+    "blocked_reason_code": "runtime_evidence_not_generated_yet",
+    "missing_prerequisites": [
+      "hancom_com_S11_runtime_execution_evidence"
+    ]
+  },
+  "blocked_reason_code": "runtime_evidence_not_generated_yet",
+  "missing_prerequisites": [
+    "hancom_com_S11_runtime_execution_evidence"
+  ]
 }

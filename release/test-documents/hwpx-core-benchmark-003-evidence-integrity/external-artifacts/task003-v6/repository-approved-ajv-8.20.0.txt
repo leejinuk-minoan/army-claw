@@ -1,0 +1,1 @@
+Pinned offline validator dependency: Ajv 8.20.0, MIT, repository-approved node_modules cache.

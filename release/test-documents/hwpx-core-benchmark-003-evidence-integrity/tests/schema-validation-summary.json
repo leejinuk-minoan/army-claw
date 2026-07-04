@@ -1,1459 +1,2166 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "2.1.0",
+  "document_type": "schema_validation_summary",
   "task_id": "hwpx-core-benchmark-003-evidence-integrity",
+  "generated_at": "2026-07-04T03:47:51.450Z",
+  "canonical_schema_root": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/schemas-v2",
   "root": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity",
-  "generated_at": "2026-07-03T02:04:42.027Z",
-  "validator": {
-    "name": "ArmyClaw internal Draft 2020-12 profile validator",
-    "version": "0.3.0",
-    "path": "tools/hancom/benchmark/hwpx-core-benchmark-003-evidence-integrity.mjs",
-    "license_path": null,
-    "license_sha256": null,
-    "limitation": "No ajv/jsonschema package was available locally; validator implements the Task 003 schema profile only."
-  },
-  "results": [
+  "records": [
     {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\results\\current_node_xml\\S01\\result.json",
-      "schema_path": "benchmark-result.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.026Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\results\\current_node_xml\\S02\\result.json",
-      "schema_path": "benchmark-result.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.026Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\results\\current_node_xml\\S03\\result.json",
-      "schema_path": "benchmark-result.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.026Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\results\\current_node_xml\\S04\\result.json",
-      "schema_path": "benchmark-result.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.026Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\results\\current_node_xml\\S05\\result.json",
-      "schema_path": "benchmark-result.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.026Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\results\\current_node_xml\\S06\\result.json",
-      "schema_path": "benchmark-result.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.026Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\results\\current_node_xml\\S07\\result.json",
-      "schema_path": "benchmark-result.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.026Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\results\\current_node_xml\\S08\\result.json",
-      "schema_path": "benchmark-result.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.026Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\results\\current_node_xml\\S09\\result.json",
-      "schema_path": "benchmark-result.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.026Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\results\\current_node_xml\\S10\\result.json",
-      "schema_path": "benchmark-result.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.026Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\results\\current_node_xml\\S11\\result.json",
-      "schema_path": "benchmark-result.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.026Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\results\\current_node_xml\\S12\\result.json",
-      "schema_path": "benchmark-result.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.026Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\results\\current_node_xml\\S13\\result.json",
-      "schema_path": "benchmark-result.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.026Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\results\\current_node_xml\\S14\\result.json",
-      "schema_path": "benchmark-result.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.026Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\results\\hancom_com\\S01\\result.json",
-      "schema_path": "benchmark-result.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.026Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\results\\hancom_com\\S02\\result.json",
-      "schema_path": "benchmark-result.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.026Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\results\\hancom_com\\S03\\result.json",
-      "schema_path": "benchmark-result.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.026Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\results\\hancom_com\\S04\\result.json",
-      "schema_path": "benchmark-result.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.026Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\results\\hancom_com\\S05\\result.json",
-      "schema_path": "benchmark-result.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.026Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\results\\hancom_com\\S06\\result.json",
-      "schema_path": "benchmark-result.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.026Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\results\\hancom_com\\S07\\result.json",
-      "schema_path": "benchmark-result.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.026Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\results\\hancom_com\\S08\\result.json",
-      "schema_path": "benchmark-result.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.026Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\results\\hancom_com\\S09\\result.json",
-      "schema_path": "benchmark-result.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.026Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\results\\hancom_com\\S10\\result.json",
-      "schema_path": "benchmark-result.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.026Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\results\\hancom_com\\S11\\result.json",
-      "schema_path": "benchmark-result.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.026Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\results\\hancom_com\\S12\\result.json",
-      "schema_path": "benchmark-result.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.026Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\results\\hancom_com\\S13\\result.json",
-      "schema_path": "benchmark-result.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.026Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\results\\hancom_com\\S14\\result.json",
-      "schema_path": "benchmark-result.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.026Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\results\\hwpforge\\S01\\result.json",
-      "schema_path": "benchmark-result.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.026Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\results\\hwpforge\\S02\\result.json",
-      "schema_path": "benchmark-result.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\results\\hwpforge\\S03\\result.json",
-      "schema_path": "benchmark-result.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\results\\hwpforge\\S04\\result.json",
-      "schema_path": "benchmark-result.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\results\\hwpforge\\S05\\result.json",
-      "schema_path": "benchmark-result.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\results\\hwpforge\\S06\\result.json",
-      "schema_path": "benchmark-result.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\results\\hwpforge\\S07\\result.json",
-      "schema_path": "benchmark-result.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\results\\hwpforge\\S08\\result.json",
-      "schema_path": "benchmark-result.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\results\\hwpforge\\S09\\result.json",
-      "schema_path": "benchmark-result.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\results\\hwpforge\\S10\\result.json",
-      "schema_path": "benchmark-result.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\results\\hwpforge\\S11\\result.json",
-      "schema_path": "benchmark-result.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\results\\hwpforge\\S12\\result.json",
-      "schema_path": "benchmark-result.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\results\\hwpforge\\S13\\result.json",
-      "schema_path": "benchmark-result.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\results\\hwpforge\\S14\\result.json",
-      "schema_path": "benchmark-result.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\results\\hwpxlib\\S01\\result.json",
-      "schema_path": "benchmark-result.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\results\\hwpxlib\\S02\\result.json",
-      "schema_path": "benchmark-result.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\results\\hwpxlib\\S03\\result.json",
-      "schema_path": "benchmark-result.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\results\\hwpxlib\\S04\\result.json",
-      "schema_path": "benchmark-result.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\results\\hwpxlib\\S05\\result.json",
-      "schema_path": "benchmark-result.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\results\\hwpxlib\\S06\\result.json",
-      "schema_path": "benchmark-result.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\results\\hwpxlib\\S07\\result.json",
-      "schema_path": "benchmark-result.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\results\\hwpxlib\\S08\\result.json",
-      "schema_path": "benchmark-result.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\results\\hwpxlib\\S09\\result.json",
-      "schema_path": "benchmark-result.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\results\\hwpxlib\\S10\\result.json",
-      "schema_path": "benchmark-result.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\results\\hwpxlib\\S11\\result.json",
-      "schema_path": "benchmark-result.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\results\\hwpxlib\\S12\\result.json",
-      "schema_path": "benchmark-result.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\results\\hwpxlib\\S13\\result.json",
-      "schema_path": "benchmark-result.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\results\\hwpxlib\\S14\\result.json",
-      "schema_path": "benchmark-result.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\results\\python_hwpx\\S01\\result.json",
-      "schema_path": "benchmark-result.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\results\\python_hwpx\\S02\\result.json",
-      "schema_path": "benchmark-result.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\results\\python_hwpx\\S03\\result.json",
-      "schema_path": "benchmark-result.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\results\\python_hwpx\\S04\\result.json",
-      "schema_path": "benchmark-result.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\results\\python_hwpx\\S05\\result.json",
-      "schema_path": "benchmark-result.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\results\\python_hwpx\\S06\\result.json",
-      "schema_path": "benchmark-result.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\results\\python_hwpx\\S07\\result.json",
-      "schema_path": "benchmark-result.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\results\\python_hwpx\\S08\\result.json",
-      "schema_path": "benchmark-result.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\results\\python_hwpx\\S09\\result.json",
-      "schema_path": "benchmark-result.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\results\\python_hwpx\\S10\\result.json",
-      "schema_path": "benchmark-result.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\results\\python_hwpx\\S11\\result.json",
-      "schema_path": "benchmark-result.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\results\\python_hwpx\\S12\\result.json",
-      "schema_path": "benchmark-result.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\results\\python_hwpx\\S13\\result.json",
-      "schema_path": "benchmark-result.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\results\\python_hwpx\\S14\\result.json",
-      "schema_path": "benchmark-result.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\executions\\current_node_xml\\S01\\adapter-execution.json",
-      "schema_path": "adapter-execution.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\executions\\current_node_xml\\S02\\adapter-execution.json",
-      "schema_path": "adapter-execution.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\executions\\current_node_xml\\S03\\adapter-execution.json",
-      "schema_path": "adapter-execution.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\executions\\current_node_xml\\S04\\adapter-execution.json",
-      "schema_path": "adapter-execution.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\executions\\current_node_xml\\S05\\adapter-execution.json",
-      "schema_path": "adapter-execution.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\executions\\current_node_xml\\S06\\adapter-execution.json",
-      "schema_path": "adapter-execution.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\executions\\current_node_xml\\S07\\adapter-execution.json",
-      "schema_path": "adapter-execution.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\executions\\current_node_xml\\S08\\adapter-execution.json",
-      "schema_path": "adapter-execution.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\executions\\current_node_xml\\S09\\adapter-execution.json",
-      "schema_path": "adapter-execution.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\executions\\current_node_xml\\S10\\adapter-execution.json",
-      "schema_path": "adapter-execution.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\executions\\current_node_xml\\S11\\adapter-execution.json",
-      "schema_path": "adapter-execution.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\executions\\current_node_xml\\S12\\adapter-execution.json",
-      "schema_path": "adapter-execution.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\executions\\current_node_xml\\S13\\adapter-execution.json",
-      "schema_path": "adapter-execution.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\executions\\current_node_xml\\S14\\adapter-execution.json",
-      "schema_path": "adapter-execution.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\executions\\hancom_com\\S01\\adapter-execution.json",
-      "schema_path": "adapter-execution.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\executions\\hancom_com\\S02\\adapter-execution.json",
-      "schema_path": "adapter-execution.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\executions\\hancom_com\\S03\\adapter-execution.json",
-      "schema_path": "adapter-execution.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\executions\\hancom_com\\S04\\adapter-execution.json",
-      "schema_path": "adapter-execution.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\executions\\hancom_com\\S05\\adapter-execution.json",
-      "schema_path": "adapter-execution.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\executions\\hancom_com\\S06\\adapter-execution.json",
-      "schema_path": "adapter-execution.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\executions\\hancom_com\\S07\\adapter-execution.json",
-      "schema_path": "adapter-execution.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\executions\\hancom_com\\S08\\adapter-execution.json",
-      "schema_path": "adapter-execution.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\executions\\hancom_com\\S09\\adapter-execution.json",
-      "schema_path": "adapter-execution.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\executions\\hancom_com\\S10\\adapter-execution.json",
-      "schema_path": "adapter-execution.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\executions\\hancom_com\\S11\\adapter-execution.json",
-      "schema_path": "adapter-execution.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\executions\\hancom_com\\S12\\adapter-execution.json",
-      "schema_path": "adapter-execution.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\executions\\hancom_com\\S13\\adapter-execution.json",
-      "schema_path": "adapter-execution.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\executions\\hancom_com\\S14\\adapter-execution.json",
-      "schema_path": "adapter-execution.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\executions\\hwpforge\\S01\\adapter-execution.json",
-      "schema_path": "adapter-execution.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\executions\\hwpforge\\S02\\adapter-execution.json",
-      "schema_path": "adapter-execution.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\executions\\hwpforge\\S03\\adapter-execution.json",
-      "schema_path": "adapter-execution.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\executions\\hwpforge\\S04\\adapter-execution.json",
-      "schema_path": "adapter-execution.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\executions\\hwpforge\\S05\\adapter-execution.json",
-      "schema_path": "adapter-execution.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\executions\\hwpforge\\S06\\adapter-execution.json",
-      "schema_path": "adapter-execution.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\executions\\hwpforge\\S07\\adapter-execution.json",
-      "schema_path": "adapter-execution.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\executions\\hwpforge\\S08\\adapter-execution.json",
-      "schema_path": "adapter-execution.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\executions\\hwpforge\\S09\\adapter-execution.json",
-      "schema_path": "adapter-execution.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\executions\\hwpforge\\S10\\adapter-execution.json",
-      "schema_path": "adapter-execution.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\executions\\hwpforge\\S11\\adapter-execution.json",
-      "schema_path": "adapter-execution.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\executions\\hwpforge\\S12\\adapter-execution.json",
-      "schema_path": "adapter-execution.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\executions\\hwpforge\\S13\\adapter-execution.json",
-      "schema_path": "adapter-execution.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\executions\\hwpforge\\S14\\adapter-execution.json",
-      "schema_path": "adapter-execution.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\executions\\hwpxlib\\S01\\adapter-execution.json",
-      "schema_path": "adapter-execution.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\executions\\hwpxlib\\S02\\adapter-execution.json",
-      "schema_path": "adapter-execution.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\executions\\hwpxlib\\S03\\adapter-execution.json",
-      "schema_path": "adapter-execution.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\executions\\hwpxlib\\S04\\adapter-execution.json",
-      "schema_path": "adapter-execution.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\executions\\hwpxlib\\S05\\adapter-execution.json",
-      "schema_path": "adapter-execution.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\executions\\hwpxlib\\S06\\adapter-execution.json",
-      "schema_path": "adapter-execution.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\executions\\hwpxlib\\S07\\adapter-execution.json",
-      "schema_path": "adapter-execution.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\executions\\hwpxlib\\S08\\adapter-execution.json",
-      "schema_path": "adapter-execution.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\executions\\hwpxlib\\S09\\adapter-execution.json",
-      "schema_path": "adapter-execution.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\executions\\hwpxlib\\S10\\adapter-execution.json",
-      "schema_path": "adapter-execution.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\executions\\hwpxlib\\S11\\adapter-execution.json",
-      "schema_path": "adapter-execution.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\executions\\hwpxlib\\S12\\adapter-execution.json",
-      "schema_path": "adapter-execution.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\executions\\hwpxlib\\S13\\adapter-execution.json",
-      "schema_path": "adapter-execution.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\executions\\hwpxlib\\S14\\adapter-execution.json",
-      "schema_path": "adapter-execution.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\executions\\python_hwpx\\S01\\adapter-execution.json",
-      "schema_path": "adapter-execution.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\executions\\python_hwpx\\S02\\adapter-execution.json",
-      "schema_path": "adapter-execution.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\executions\\python_hwpx\\S03\\adapter-execution.json",
-      "schema_path": "adapter-execution.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\executions\\python_hwpx\\S04\\adapter-execution.json",
-      "schema_path": "adapter-execution.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\executions\\python_hwpx\\S05\\adapter-execution.json",
-      "schema_path": "adapter-execution.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\executions\\python_hwpx\\S06\\adapter-execution.json",
-      "schema_path": "adapter-execution.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\executions\\python_hwpx\\S07\\adapter-execution.json",
-      "schema_path": "adapter-execution.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\executions\\python_hwpx\\S08\\adapter-execution.json",
-      "schema_path": "adapter-execution.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\executions\\python_hwpx\\S09\\adapter-execution.json",
-      "schema_path": "adapter-execution.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\executions\\python_hwpx\\S10\\adapter-execution.json",
-      "schema_path": "adapter-execution.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\executions\\python_hwpx\\S11\\adapter-execution.json",
-      "schema_path": "adapter-execution.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\executions\\python_hwpx\\S12\\adapter-execution.json",
-      "schema_path": "adapter-execution.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\executions\\python_hwpx\\S13\\adapter-execution.json",
-      "schema_path": "adapter-execution.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\executions\\python_hwpx\\S14\\adapter-execution.json",
-      "schema_path": "adapter-execution.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
-    },
-    {
-      "json_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/summary/benchmark-results.json",
+      "path": "corpus-manifest.json",
+      "classification": "benchmark_summary",
       "schema_path": "benchmark-summary.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
+      "document_type": "corpus_manifest",
+      "sha256": "adac23f7dc26de2351cf0478633330bff749821a74a815bc94c2cb0ec78d12ed",
+      "size": 1162
     },
     {
-      "json_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/summary/dependency-license-offline-manifest.json",
-      "schema_path": "dependency-license-offline-manifest.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
+      "path": "executions/current_node_xml/S01/adapter-execution.json",
+      "classification": "adapter_execution",
+      "schema_path": "adapter-execution.schema.json",
+      "document_type": null,
+      "sha256": "0ab7a543b8c3180a80b24db327b82b054e5091077e697a6402c94ff484bb6334",
+      "size": 1445
     },
     {
-      "json_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/tests/test-summary.json",
-      "schema_path": "test-summary.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": true,
-      "expected_valid": true,
-      "errors": [],
-      "validated_at": "2026-07-03T02:04:42.027Z"
+      "path": "executions/current_node_xml/S02/adapter-execution.json",
+      "classification": "adapter_execution",
+      "schema_path": "adapter-execution.schema.json",
+      "document_type": null,
+      "sha256": "ac484f0e42ec594de07f9ce2d5aa5e0b12cce0b1109bcbf9dd7d98dcdbdf7256",
+      "size": 1445
     },
     {
-      "json_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/tests/negative-fixtures/bad-status.json",
+      "path": "executions/current_node_xml/S03/adapter-execution.json",
+      "classification": "adapter_execution",
+      "schema_path": "adapter-execution.schema.json",
+      "document_type": null,
+      "sha256": "3b81decf382ee6880f743a8c04684e3d0b488ce6549ef8a6691728416c58acfa",
+      "size": 1445
+    },
+    {
+      "path": "executions/current_node_xml/S04/adapter-execution.json",
+      "classification": "adapter_execution",
+      "schema_path": "adapter-execution.schema.json",
+      "document_type": null,
+      "sha256": "7abdf26adcfe2a4e3a5bc9b2bd08cd859e8f1f181099ce681a5e4cd28512b6f4",
+      "size": 1445
+    },
+    {
+      "path": "executions/current_node_xml/S05/adapter-execution.json",
+      "classification": "adapter_execution",
+      "schema_path": "adapter-execution.schema.json",
+      "document_type": null,
+      "sha256": "40d0c31108ae1800c169208859f4bf8ddd0cf025fab21c3ae3aebab147b376e9",
+      "size": 1445
+    },
+    {
+      "path": "executions/current_node_xml/S06/adapter-execution.json",
+      "classification": "adapter_execution",
+      "schema_path": "adapter-execution.schema.json",
+      "document_type": null,
+      "sha256": "92828a290a73043c7b6c592daf7c57925e07e3853e5172129a33016eee1a38ab",
+      "size": 1445
+    },
+    {
+      "path": "executions/current_node_xml/S07/adapter-execution.json",
+      "classification": "adapter_execution",
+      "schema_path": "adapter-execution.schema.json",
+      "document_type": null,
+      "sha256": "7532c55fb72f14d9d84beeaf51b6d7d0d9d5a072e04794cb5bc029bc4d1296ab",
+      "size": 1445
+    },
+    {
+      "path": "executions/current_node_xml/S08/adapter-execution.json",
+      "classification": "adapter_execution",
+      "schema_path": "adapter-execution.schema.json",
+      "document_type": null,
+      "sha256": "419080582b0495235084012fc71f310b2e6887c488f5e79d06655c6823636bd3",
+      "size": 1445
+    },
+    {
+      "path": "executions/current_node_xml/S09/adapter-execution.json",
+      "classification": "adapter_execution",
+      "schema_path": "adapter-execution.schema.json",
+      "document_type": null,
+      "sha256": "a3ae62a60e03809dd10966e7f37f087e3b1e15846c3e29dfbc6cb3d688f50e5c",
+      "size": 616
+    },
+    {
+      "path": "executions/current_node_xml/S10/adapter-execution.json",
+      "classification": "adapter_execution",
+      "schema_path": "adapter-execution.schema.json",
+      "document_type": null,
+      "sha256": "3ead0608f02ca0c4d614cb394fd36f6c77da93e14bb5dada46fc36ceb820eb99",
+      "size": 616
+    },
+    {
+      "path": "executions/current_node_xml/S11/adapter-execution.json",
+      "classification": "adapter_execution",
+      "schema_path": "adapter-execution.schema.json",
+      "document_type": null,
+      "sha256": "bc93b9900b324fd624e81e8d388c82d3a0647164c919d9a7fc68ea20cd7dfdc9",
+      "size": 616
+    },
+    {
+      "path": "executions/current_node_xml/S12/adapter-execution.json",
+      "classification": "adapter_execution",
+      "schema_path": "adapter-execution.schema.json",
+      "document_type": null,
+      "sha256": "719786c76cbefee1dd9e4719d402554cb3410e17d6b0aa3eec49a85d022a5177",
+      "size": 1445
+    },
+    {
+      "path": "executions/current_node_xml/S13/adapter-execution.json",
+      "classification": "adapter_execution",
+      "schema_path": "adapter-execution.schema.json",
+      "document_type": null,
+      "sha256": "d98bba1a9de2228077bb40f3af30b2421bfb8207d598884ecba2d9eda7c8fd8d",
+      "size": 1445
+    },
+    {
+      "path": "executions/current_node_xml/S14/adapter-execution.json",
+      "classification": "adapter_execution",
+      "schema_path": "adapter-execution.schema.json",
+      "document_type": null,
+      "sha256": "a01ecf7f4cd30cddb316a99739e18142e692f350c83ba367a2a6114ba85436fb",
+      "size": 1445
+    },
+    {
+      "path": "executions/hancom_com/S01/adapter-execution.json",
+      "classification": "adapter_execution",
+      "schema_path": "adapter-execution.schema.json",
+      "document_type": null,
+      "sha256": "ef8b44e49fa5858d5eefd37315af2c789360e3e71dd7f0444593a8b88dc130f5",
+      "size": 634
+    },
+    {
+      "path": "executions/hancom_com/S02/adapter-execution.json",
+      "classification": "adapter_execution",
+      "schema_path": "adapter-execution.schema.json",
+      "document_type": null,
+      "sha256": "d29a5cc999d9dff46e5d8c5669f84d2e37a130d12238a5e594235388405de9bc",
+      "size": 634
+    },
+    {
+      "path": "executions/hancom_com/S03/adapter-execution.json",
+      "classification": "adapter_execution",
+      "schema_path": "adapter-execution.schema.json",
+      "document_type": null,
+      "sha256": "3d03b4caeb8d8e11d7a699efa6aaed70a2fbbe28c7c3b46129f71c6c4321228a",
+      "size": 634
+    },
+    {
+      "path": "executions/hancom_com/S04/adapter-execution.json",
+      "classification": "adapter_execution",
+      "schema_path": "adapter-execution.schema.json",
+      "document_type": null,
+      "sha256": "d2e1aa541b2ac2a6966fec7786e04e0fe824eb5b86d15cbeaf8fbdc39021134b",
+      "size": 634
+    },
+    {
+      "path": "executions/hancom_com/S05/adapter-execution.json",
+      "classification": "adapter_execution",
+      "schema_path": "adapter-execution.schema.json",
+      "document_type": null,
+      "sha256": "3ab8b4b6e2aad4702f1d51ebcdc388ec8b26627219ad5f40d18d01ecf4040fd0",
+      "size": 634
+    },
+    {
+      "path": "executions/hancom_com/S06/adapter-execution.json",
+      "classification": "adapter_execution",
+      "schema_path": "adapter-execution.schema.json",
+      "document_type": null,
+      "sha256": "e7d0d24b8f6f935b9ce69a6ad93eee63bcfc05fc4172f1dfd7ef7465edbe2829",
+      "size": 634
+    },
+    {
+      "path": "executions/hancom_com/S07/adapter-execution.json",
+      "classification": "adapter_execution",
+      "schema_path": "adapter-execution.schema.json",
+      "document_type": null,
+      "sha256": "ba9c5b67e08dd197f18a424a5fc8096e20895b13f33ed705195aaa04a8eaf6d1",
+      "size": 634
+    },
+    {
+      "path": "executions/hancom_com/S08/adapter-execution.json",
+      "classification": "adapter_execution",
+      "schema_path": "adapter-execution.schema.json",
+      "document_type": null,
+      "sha256": "5e749492d8f6084806a4531cd3e791f48ff60bca75c04aa7b6e953ad2c0554f4",
+      "size": 634
+    },
+    {
+      "path": "executions/hancom_com/S09/adapter-execution.json",
+      "classification": "adapter_execution",
+      "schema_path": "adapter-execution.schema.json",
+      "document_type": null,
+      "sha256": "5c7bb725617579edf08ab852b7541138e8bea74dd208fad29b68d4abbe195ef4",
+      "size": 1425
+    },
+    {
+      "path": "executions/hancom_com/S10/adapter-execution.json",
+      "classification": "adapter_execution",
+      "schema_path": "adapter-execution.schema.json",
+      "document_type": null,
+      "sha256": "289999364ca4deb1a20f7542a10a6de3d07439db8b99a1816ef2eeb854266123",
+      "size": 1425
+    },
+    {
+      "path": "executions/hancom_com/S11/adapter-execution.json",
+      "classification": "adapter_execution",
+      "schema_path": "adapter-execution.schema.json",
+      "document_type": null,
+      "sha256": "16f6777e2e334c4b7be26ca374f700cfb21d6fdf8314bc019bb8ba3e957b46b3",
+      "size": 1425
+    },
+    {
+      "path": "executions/hancom_com/S12/adapter-execution.json",
+      "classification": "adapter_execution",
+      "schema_path": "adapter-execution.schema.json",
+      "document_type": null,
+      "sha256": "d2b6797ef8087ec342d9b09a20debea8cc86fe4ca7bc62327d8efd1b7c206b08",
+      "size": 634
+    },
+    {
+      "path": "executions/hancom_com/S13/adapter-execution.json",
+      "classification": "adapter_execution",
+      "schema_path": "adapter-execution.schema.json",
+      "document_type": null,
+      "sha256": "ab91ae39536403b2232b8d969d5ba1b028827a2a6b07da8c73ced963df68244d",
+      "size": 634
+    },
+    {
+      "path": "executions/hancom_com/S14/adapter-execution.json",
+      "classification": "adapter_execution",
+      "schema_path": "adapter-execution.schema.json",
+      "document_type": null,
+      "sha256": "c6b2169fae5feaa51087bdcc03a9ec4b2fbbf1d7e3c0033445d16cf772f122af",
+      "size": 634
+    },
+    {
+      "path": "executions/hwpforge/S01/adapter-execution.json",
+      "classification": "adapter_execution",
+      "schema_path": "adapter-execution.schema.json",
+      "document_type": null,
+      "sha256": "e570a9e8073207ed5501598a5e81aaa1fd4daeed36ee67d786d72aee4e11547e",
+      "size": 609
+    },
+    {
+      "path": "executions/hwpforge/S02/adapter-execution.json",
+      "classification": "adapter_execution",
+      "schema_path": "adapter-execution.schema.json",
+      "document_type": null,
+      "sha256": "7781bcfc07f1e6adf27d160c93844f9308632053511e8275cc88ae686d2f8fd8",
+      "size": 609
+    },
+    {
+      "path": "executions/hwpforge/S03/adapter-execution.json",
+      "classification": "adapter_execution",
+      "schema_path": "adapter-execution.schema.json",
+      "document_type": null,
+      "sha256": "b83fa18da1039280a9a4a9bf0296ff92835396a39c34aa071a2f8bcb0d0b5e00",
+      "size": 1408
+    },
+    {
+      "path": "executions/hwpforge/S04/adapter-execution.json",
+      "classification": "adapter_execution",
+      "schema_path": "adapter-execution.schema.json",
+      "document_type": null,
+      "sha256": "1d5caf7d35a3fec0903ae5bcfc7ea776c675e4b3f3ca3e0b278ed3e742946b16",
+      "size": 1408
+    },
+    {
+      "path": "executions/hwpforge/S05/adapter-execution.json",
+      "classification": "adapter_execution",
+      "schema_path": "adapter-execution.schema.json",
+      "document_type": null,
+      "sha256": "1742266dffbbaa3522ea5a6f3520febed783147677a4bb1273cd942ae7bdf483",
+      "size": 609
+    },
+    {
+      "path": "executions/hwpforge/S06/adapter-execution.json",
+      "classification": "adapter_execution",
+      "schema_path": "adapter-execution.schema.json",
+      "document_type": null,
+      "sha256": "50d8f4e1fd3acc928ff6fe23090b9c701cb79235a76354dd1a3bd4dd199545b1",
+      "size": 1408
+    },
+    {
+      "path": "executions/hwpforge/S07/adapter-execution.json",
+      "classification": "adapter_execution",
+      "schema_path": "adapter-execution.schema.json",
+      "document_type": null,
+      "sha256": "0c7bf87f4890c04f8b7836853bfed6bf6877644143f0a54de3acc4db093599b5",
+      "size": 1408
+    },
+    {
+      "path": "executions/hwpforge/S08/adapter-execution.json",
+      "classification": "adapter_execution",
+      "schema_path": "adapter-execution.schema.json",
+      "document_type": null,
+      "sha256": "a16cf3b719a07f67b7a2437a74fd9b108df2cd2f9406cfb8f54e5b4953ceb2a2",
+      "size": 1408
+    },
+    {
+      "path": "executions/hwpforge/S09/adapter-execution.json",
+      "classification": "adapter_execution",
+      "schema_path": "adapter-execution.schema.json",
+      "document_type": null,
+      "sha256": "3cb36d6c1f59adcd1668fb4dc0cbb5ac3fd9d751c534ab05cd66a479a7afc51d",
+      "size": 609
+    },
+    {
+      "path": "executions/hwpforge/S10/adapter-execution.json",
+      "classification": "adapter_execution",
+      "schema_path": "adapter-execution.schema.json",
+      "document_type": null,
+      "sha256": "7118af44e88ff4a3cfa97b0d87d691e7fc505f3fbf918b4a0544d02e63d9fa0d",
+      "size": 609
+    },
+    {
+      "path": "executions/hwpforge/S11/adapter-execution.json",
+      "classification": "adapter_execution",
+      "schema_path": "adapter-execution.schema.json",
+      "document_type": null,
+      "sha256": "a796afb94416d15b1c866224382e9b4cfb3edcafd99bb360a6f4c4d489c32566",
+      "size": 609
+    },
+    {
+      "path": "executions/hwpforge/S12/adapter-execution.json",
+      "classification": "adapter_execution",
+      "schema_path": "adapter-execution.schema.json",
+      "document_type": null,
+      "sha256": "6a8e97070b7c18187050fc8e271685d84aaf93db954ef73e70b30be472a01f0d",
+      "size": 1408
+    },
+    {
+      "path": "executions/hwpforge/S13/adapter-execution.json",
+      "classification": "adapter_execution",
+      "schema_path": "adapter-execution.schema.json",
+      "document_type": null,
+      "sha256": "d0b17759ee0db3bfc5a0855101b3dfa94e484432e2198e924163726cb7c9e22d",
+      "size": 1408
+    },
+    {
+      "path": "executions/hwpforge/S14/adapter-execution.json",
+      "classification": "adapter_execution",
+      "schema_path": "adapter-execution.schema.json",
+      "document_type": null,
+      "sha256": "420165a3281fdfad4cf49dad1bdb66362099532e7e05ff26bb307f5c37e7e48e",
+      "size": 1408
+    },
+    {
+      "path": "executions/hwpxlib/S01/adapter-execution.json",
+      "classification": "adapter_execution",
+      "schema_path": "adapter-execution.schema.json",
+      "document_type": null,
+      "sha256": "0c12f1c40ed34636b1c186fdd5ab9b9f46e8304634be0ba76c7b2703c6274f94",
+      "size": 607
+    },
+    {
+      "path": "executions/hwpxlib/S02/adapter-execution.json",
+      "classification": "adapter_execution",
+      "schema_path": "adapter-execution.schema.json",
+      "document_type": null,
+      "sha256": "588687e1a3b07ec348befefc15878f2d06b9f1dd2d8342e1404a216ffbfab7ac",
+      "size": 607
+    },
+    {
+      "path": "executions/hwpxlib/S03/adapter-execution.json",
+      "classification": "adapter_execution",
+      "schema_path": "adapter-execution.schema.json",
+      "document_type": null,
+      "sha256": "ea4037b7dc617b9e0612b02cb048e3a8720ce537ef245f57077f1c71f074c80a",
+      "size": 1403
+    },
+    {
+      "path": "executions/hwpxlib/S04/adapter-execution.json",
+      "classification": "adapter_execution",
+      "schema_path": "adapter-execution.schema.json",
+      "document_type": null,
+      "sha256": "ef056b2bd0c55152b8acb7b37d779dccd0994876e39181e8859f843322762970",
+      "size": 1403
+    },
+    {
+      "path": "executions/hwpxlib/S05/adapter-execution.json",
+      "classification": "adapter_execution",
+      "schema_path": "adapter-execution.schema.json",
+      "document_type": null,
+      "sha256": "5b750b0461a0014315944e5a4f80af7551a23e441a357fa228026f70f9bc4c5f",
+      "size": 607
+    },
+    {
+      "path": "executions/hwpxlib/S06/adapter-execution.json",
+      "classification": "adapter_execution",
+      "schema_path": "adapter-execution.schema.json",
+      "document_type": null,
+      "sha256": "ba13fac7e9d28d39173ac18f35db8656b1d0dbd2537af3e3f9c7d4e28a8cc281",
+      "size": 1403
+    },
+    {
+      "path": "executions/hwpxlib/S07/adapter-execution.json",
+      "classification": "adapter_execution",
+      "schema_path": "adapter-execution.schema.json",
+      "document_type": null,
+      "sha256": "996dc5463fb6612f15fef5d70e7de9d37f72e5346e0538717a0f670473e2fa1f",
+      "size": 1403
+    },
+    {
+      "path": "executions/hwpxlib/S08/adapter-execution.json",
+      "classification": "adapter_execution",
+      "schema_path": "adapter-execution.schema.json",
+      "document_type": null,
+      "sha256": "002fc0f43f0529ced9191c63c18ad31578bae8eacbd431059ccd663cb43768ff",
+      "size": 1403
+    },
+    {
+      "path": "executions/hwpxlib/S09/adapter-execution.json",
+      "classification": "adapter_execution",
+      "schema_path": "adapter-execution.schema.json",
+      "document_type": null,
+      "sha256": "0db42d88f2516170a77b612159b4ec234fc0cd32cca47ad62b72bbe99c6cdca6",
+      "size": 607
+    },
+    {
+      "path": "executions/hwpxlib/S10/adapter-execution.json",
+      "classification": "adapter_execution",
+      "schema_path": "adapter-execution.schema.json",
+      "document_type": null,
+      "sha256": "8d16ccd4ba904f8edd28e4f0987c75c914f17e57c9b439d3d25902479e6ef003",
+      "size": 607
+    },
+    {
+      "path": "executions/hwpxlib/S11/adapter-execution.json",
+      "classification": "adapter_execution",
+      "schema_path": "adapter-execution.schema.json",
+      "document_type": null,
+      "sha256": "c436f0bab2762434ede1d682a675709a254c6e4b0faf3731139a0b3dcf4795b2",
+      "size": 607
+    },
+    {
+      "path": "executions/hwpxlib/S12/adapter-execution.json",
+      "classification": "adapter_execution",
+      "schema_path": "adapter-execution.schema.json",
+      "document_type": null,
+      "sha256": "1bba41a075ee3488d44ddd9c467086d482777b665c3d7895e76c46ab9bfafb5d",
+      "size": 1403
+    },
+    {
+      "path": "executions/hwpxlib/S13/adapter-execution.json",
+      "classification": "adapter_execution",
+      "schema_path": "adapter-execution.schema.json",
+      "document_type": null,
+      "sha256": "4a111ecc3f598d5f91171963191c32dbc86419a07bd951f0fce774be0bc9fb67",
+      "size": 1403
+    },
+    {
+      "path": "executions/hwpxlib/S14/adapter-execution.json",
+      "classification": "adapter_execution",
+      "schema_path": "adapter-execution.schema.json",
+      "document_type": null,
+      "sha256": "d956f4d9884be3dbde7bae285fa43f16f59d62aca7d732aa0bff8d7821cc2287",
+      "size": 1403
+    },
+    {
+      "path": "executions/python_hwpx/S01/adapter-execution.json",
+      "classification": "adapter_execution",
+      "schema_path": "adapter-execution.schema.json",
+      "document_type": null,
+      "sha256": "3dce610314eda1cba6c36b3b94584e1175cf3b06c90f8a17336cf19a1e1add59",
+      "size": 1420
+    },
+    {
+      "path": "executions/python_hwpx/S02/adapter-execution.json",
+      "classification": "adapter_execution",
+      "schema_path": "adapter-execution.schema.json",
+      "document_type": null,
+      "sha256": "f3d59c7a602302cfbaebda00c678026d68ae8c3a4a537a7c75e7bda7a0f66c81",
+      "size": 1420
+    },
+    {
+      "path": "executions/python_hwpx/S03/adapter-execution.json",
+      "classification": "adapter_execution",
+      "schema_path": "adapter-execution.schema.json",
+      "document_type": null,
+      "sha256": "dcdd73ed0a6ef9ed4d5bb51f1d2d82e9dd2e9f83d233d3cdc2a00da2ab76b531",
+      "size": 1420
+    },
+    {
+      "path": "executions/python_hwpx/S04/adapter-execution.json",
+      "classification": "adapter_execution",
+      "schema_path": "adapter-execution.schema.json",
+      "document_type": null,
+      "sha256": "e237a07ca80d20907b13f5df7f4e07397a1da77a7b7487ad6303debeed667229",
+      "size": 1420
+    },
+    {
+      "path": "executions/python_hwpx/S05/adapter-execution.json",
+      "classification": "adapter_execution",
+      "schema_path": "adapter-execution.schema.json",
+      "document_type": null,
+      "sha256": "dcbca38b811719ac48213009bb7a2b39ce5cc7daba12828b5e40808b5a86b0e2",
+      "size": 1420
+    },
+    {
+      "path": "executions/python_hwpx/S06/adapter-execution.json",
+      "classification": "adapter_execution",
+      "schema_path": "adapter-execution.schema.json",
+      "document_type": null,
+      "sha256": "0d55e2160a18be490bcfae19bcd7d339510a6855aa28c7e80a602ac36b50b9d4",
+      "size": 1420
+    },
+    {
+      "path": "executions/python_hwpx/S07/adapter-execution.json",
+      "classification": "adapter_execution",
+      "schema_path": "adapter-execution.schema.json",
+      "document_type": null,
+      "sha256": "ee5f08a746f698e6de444233294903116bde1186881b64cc47550778a965e4bd",
+      "size": 1420
+    },
+    {
+      "path": "executions/python_hwpx/S08/adapter-execution.json",
+      "classification": "adapter_execution",
+      "schema_path": "adapter-execution.schema.json",
+      "document_type": null,
+      "sha256": "8153e612d52cc7478a8fa376ccf14f2033e0099e40d9c32f6b064d5694c48f02",
+      "size": 1420
+    },
+    {
+      "path": "executions/python_hwpx/S09/adapter-execution.json",
+      "classification": "adapter_execution",
+      "schema_path": "adapter-execution.schema.json",
+      "document_type": null,
+      "sha256": "5b940ae3443dfd60f24fd836d1631e05e8469e085f94b0f10b67870c81b38990",
+      "size": 606
+    },
+    {
+      "path": "executions/python_hwpx/S10/adapter-execution.json",
+      "classification": "adapter_execution",
+      "schema_path": "adapter-execution.schema.json",
+      "document_type": null,
+      "sha256": "3b580ca0ab65b1e12c978ad9cc1ee55e003ef9b664bebd875d3cf2330e5fce93",
+      "size": 606
+    },
+    {
+      "path": "executions/python_hwpx/S11/adapter-execution.json",
+      "classification": "adapter_execution",
+      "schema_path": "adapter-execution.schema.json",
+      "document_type": null,
+      "sha256": "22469932463627d944dfdb02b000fc11dd2dc114bb94e8b6753cc04a9a5f0937",
+      "size": 606
+    },
+    {
+      "path": "executions/python_hwpx/S12/adapter-execution.json",
+      "classification": "adapter_execution",
+      "schema_path": "adapter-execution.schema.json",
+      "document_type": null,
+      "sha256": "9c9692e86e37c29eaeae1c792378b92a9a04b4ac460b547804f16271617937c7",
+      "size": 1420
+    },
+    {
+      "path": "executions/python_hwpx/S13/adapter-execution.json",
+      "classification": "adapter_execution",
+      "schema_path": "adapter-execution.schema.json",
+      "document_type": null,
+      "sha256": "e6eb0461a7a4e01c72609eb5320fb3b7fef1feda5143a836ca90e3d06b60f672",
+      "size": 1420
+    },
+    {
+      "path": "executions/python_hwpx/S14/adapter-execution.json",
+      "classification": "adapter_execution",
+      "schema_path": "adapter-execution.schema.json",
+      "document_type": null,
+      "sha256": "1d5d5cff6ebc3f8e4a2a6341237993c69fa64f6dce232d3acfc2742e402cf6f9",
+      "size": 1420
+    },
+    {
+      "path": "results/current_node_xml/S01/result.json",
+      "classification": "benchmark_result",
       "schema_path": "benchmark-result.schema.json",
-      "validator": "ArmyClaw internal Draft 2020-12 profile validator",
-      "validator_version": "0.3.0",
-      "valid": false,
-      "expected_valid": false,
-      "errors": [
-        "$.status: enum"
-      ],
-      "validated_at": "2026-07-03T02:04:42.027Z"
+      "document_type": null,
+      "sha256": "8e97416a1cff159ac029ea5684a18feaf15cbe818644566881f38899250fa009",
+      "size": 1445
+    },
+    {
+      "path": "results/current_node_xml/S02/result.json",
+      "classification": "benchmark_result",
+      "schema_path": "benchmark-result.schema.json",
+      "document_type": null,
+      "sha256": "ab547dc34839e56d4067923173b0c583ea1a6769b38b4af7b465477b9f397e95",
+      "size": 1445
+    },
+    {
+      "path": "results/current_node_xml/S03/result.json",
+      "classification": "benchmark_result",
+      "schema_path": "benchmark-result.schema.json",
+      "document_type": null,
+      "sha256": "5c885cbaa55c03e87431b4be424d896f593f15f89da57163de7ad3eb88874a66",
+      "size": 1445
+    },
+    {
+      "path": "results/current_node_xml/S04/result.json",
+      "classification": "benchmark_result",
+      "schema_path": "benchmark-result.schema.json",
+      "document_type": null,
+      "sha256": "9672b075bc87e59082fd7d8ecee648bd2fa508a08ce9470dbfea9bed5ac3da80",
+      "size": 1445
+    },
+    {
+      "path": "results/current_node_xml/S05/result.json",
+      "classification": "benchmark_result",
+      "schema_path": "benchmark-result.schema.json",
+      "document_type": null,
+      "sha256": "94a18bff1bf768a77ce8b64c3bd5cca7b355e9fd46fbcbfe88042477acac8524",
+      "size": 1445
+    },
+    {
+      "path": "results/current_node_xml/S06/result.json",
+      "classification": "benchmark_result",
+      "schema_path": "benchmark-result.schema.json",
+      "document_type": null,
+      "sha256": "4959ac85e60f9564f44c47177a47a8942f8659c968a1802292dccd4920c43c1c",
+      "size": 1445
+    },
+    {
+      "path": "results/current_node_xml/S07/result.json",
+      "classification": "benchmark_result",
+      "schema_path": "benchmark-result.schema.json",
+      "document_type": null,
+      "sha256": "5ce9ce37a2d4b48fd65cc2487b9eb9ba0039d8973773ab399a9e6755db62792e",
+      "size": 1445
+    },
+    {
+      "path": "results/current_node_xml/S08/result.json",
+      "classification": "benchmark_result",
+      "schema_path": "benchmark-result.schema.json",
+      "document_type": null,
+      "sha256": "7bcac64c5b79f00fb592e3d2856ff5439f61b21437bacfd3520dadadca3ea990",
+      "size": 1445
+    },
+    {
+      "path": "results/current_node_xml/S09/result.json",
+      "classification": "benchmark_result",
+      "schema_path": "benchmark-result.schema.json",
+      "document_type": null,
+      "sha256": "383fa78e3a978a8ddce563cae5170bccbc3a749ddbc6c8386df6a3cbfdf6bd3e",
+      "size": 611
+    },
+    {
+      "path": "results/current_node_xml/S10/result.json",
+      "classification": "benchmark_result",
+      "schema_path": "benchmark-result.schema.json",
+      "document_type": null,
+      "sha256": "0ed5dffe088a857068fb27818848df4075a3dab60bfe08a92ded7d688590fee2",
+      "size": 611
+    },
+    {
+      "path": "results/current_node_xml/S11/result.json",
+      "classification": "benchmark_result",
+      "schema_path": "benchmark-result.schema.json",
+      "document_type": null,
+      "sha256": "79db9ab0fcf7dab4e2f59a5d831007b4e6673570b0fa85edb2ece595c8a30f78",
+      "size": 611
+    },
+    {
+      "path": "results/current_node_xml/S12/result.json",
+      "classification": "benchmark_result",
+      "schema_path": "benchmark-result.schema.json",
+      "document_type": null,
+      "sha256": "5ee3c4d66ec854ab76a6e3880f27cc8b3ae556d7b186150e407b1c376fbda8d6",
+      "size": 1445
+    },
+    {
+      "path": "results/current_node_xml/S13/result.json",
+      "classification": "benchmark_result",
+      "schema_path": "benchmark-result.schema.json",
+      "document_type": null,
+      "sha256": "faec56a7a1e905cc437258b2ad16f7a2768d68f4c721ff281fa63bafcef4f002",
+      "size": 1445
+    },
+    {
+      "path": "results/current_node_xml/S14/result.json",
+      "classification": "benchmark_result",
+      "schema_path": "benchmark-result.schema.json",
+      "document_type": null,
+      "sha256": "04c345d55b9c2ce8ae540f24932ea1fe705ddf2d6e4b16ce6ee934ed89baf918",
+      "size": 1445
+    },
+    {
+      "path": "results/hancom_com/S01/result.json",
+      "classification": "benchmark_result",
+      "schema_path": "benchmark-result.schema.json",
+      "document_type": null,
+      "sha256": "3046c58e1161e50871609525fa0b6dadd0cfba9ecfec0a74fd766de4c03134a3",
+      "size": 629
+    },
+    {
+      "path": "results/hancom_com/S02/result.json",
+      "classification": "benchmark_result",
+      "schema_path": "benchmark-result.schema.json",
+      "document_type": null,
+      "sha256": "233f855946be89cef63bb6857204a94f5fae2723fb3c138608717ddc6351a138",
+      "size": 629
+    },
+    {
+      "path": "results/hancom_com/S03/result.json",
+      "classification": "benchmark_result",
+      "schema_path": "benchmark-result.schema.json",
+      "document_type": null,
+      "sha256": "967502ab399d4266d2067d97a6c7b600da6d4e977a8f2203ea69a6b863b56c6d",
+      "size": 629
+    },
+    {
+      "path": "results/hancom_com/S04/result.json",
+      "classification": "benchmark_result",
+      "schema_path": "benchmark-result.schema.json",
+      "document_type": null,
+      "sha256": "e54543ba96734c6777a025a56f540f300f95de62d6cd2782a02592b1656e95f0",
+      "size": 629
+    },
+    {
+      "path": "results/hancom_com/S05/result.json",
+      "classification": "benchmark_result",
+      "schema_path": "benchmark-result.schema.json",
+      "document_type": null,
+      "sha256": "fca0d2500f7229b991ed3589c234f3071f9c7358ab2b807ba8db69390e5e95b0",
+      "size": 629
+    },
+    {
+      "path": "results/hancom_com/S06/result.json",
+      "classification": "benchmark_result",
+      "schema_path": "benchmark-result.schema.json",
+      "document_type": null,
+      "sha256": "f3bf734eb27a2e6950038f93381e5caa2052422d7081f1da254008e787a9ffb4",
+      "size": 629
+    },
+    {
+      "path": "results/hancom_com/S07/result.json",
+      "classification": "benchmark_result",
+      "schema_path": "benchmark-result.schema.json",
+      "document_type": null,
+      "sha256": "6212f99e3644dfc89f499e325352d83397169ce16e3c100d3886076ae8a6c480",
+      "size": 629
+    },
+    {
+      "path": "results/hancom_com/S08/result.json",
+      "classification": "benchmark_result",
+      "schema_path": "benchmark-result.schema.json",
+      "document_type": null,
+      "sha256": "2e00457ae5eae9b390024bf3eb6fbd2b3785935a8f3eca606b4bf9d9627d3d62",
+      "size": 629
+    },
+    {
+      "path": "results/hancom_com/S09/result.json",
+      "classification": "benchmark_result",
+      "schema_path": "benchmark-result.schema.json",
+      "document_type": null,
+      "sha256": "a4150cde34b0fabf8e62030e91909c45400e8c8c83688b8c6f5ba47f0c9594bb",
+      "size": 1425
+    },
+    {
+      "path": "results/hancom_com/S10/result.json",
+      "classification": "benchmark_result",
+      "schema_path": "benchmark-result.schema.json",
+      "document_type": null,
+      "sha256": "201d335fd26e45851f587780af5fef82dcac15581e2b49ffd83635a878f12ef7",
+      "size": 1425
+    },
+    {
+      "path": "results/hancom_com/S11/result.json",
+      "classification": "benchmark_result",
+      "schema_path": "benchmark-result.schema.json",
+      "document_type": null,
+      "sha256": "c47b83d8f86b880d29f1a8698f4c176dd68fa945dd4cdc7bd291c43cefb36284",
+      "size": 1425
+    },
+    {
+      "path": "results/hancom_com/S12/result.json",
+      "classification": "benchmark_result",
+      "schema_path": "benchmark-result.schema.json",
+      "document_type": null,
+      "sha256": "d49ff17a6ef63760304ee769fd3dbfdd78980ffd6bd7acaf39623b4beafdb05f",
+      "size": 629
+    },
+    {
+      "path": "results/hancom_com/S13/result.json",
+      "classification": "benchmark_result",
+      "schema_path": "benchmark-result.schema.json",
+      "document_type": null,
+      "sha256": "418c08d147ec0b05c8f553c8ac265e36711ae85dba5100f1b3a96185d427dbc6",
+      "size": 629
+    },
+    {
+      "path": "results/hancom_com/S14/result.json",
+      "classification": "benchmark_result",
+      "schema_path": "benchmark-result.schema.json",
+      "document_type": null,
+      "sha256": "e1cb060ea71010de281aaf8752e58716c550d220f9f12492a24d8efb72f79699",
+      "size": 629
+    },
+    {
+      "path": "results/hwpforge/S01/result.json",
+      "classification": "benchmark_result",
+      "schema_path": "benchmark-result.schema.json",
+      "document_type": null,
+      "sha256": "992ffbfc5c1a2672df25526d8e23ef13e83150a7e249e370ed43ea7d7e7cf6f2",
+      "size": 604
+    },
+    {
+      "path": "results/hwpforge/S02/result.json",
+      "classification": "benchmark_result",
+      "schema_path": "benchmark-result.schema.json",
+      "document_type": null,
+      "sha256": "87f6c9372175600d902ba318cde77d461db0838ae58204125ab45b8cdb7a9722",
+      "size": 604
+    },
+    {
+      "path": "results/hwpforge/S03/result.json",
+      "classification": "benchmark_result",
+      "schema_path": "benchmark-result.schema.json",
+      "document_type": null,
+      "sha256": "da7d3bf4d72f21ec7a82948d0f288e3e6bfd87a68edf69a8b4458d787df7301b",
+      "size": 1408
+    },
+    {
+      "path": "results/hwpforge/S04/result.json",
+      "classification": "benchmark_result",
+      "schema_path": "benchmark-result.schema.json",
+      "document_type": null,
+      "sha256": "194b72a032bb9f7ba1368f1d3890b64d17e69acd4965f3af9ecde8b527b18830",
+      "size": 1408
+    },
+    {
+      "path": "results/hwpforge/S05/result.json",
+      "classification": "benchmark_result",
+      "schema_path": "benchmark-result.schema.json",
+      "document_type": null,
+      "sha256": "9086c691193ac7f8573aed1ce5e62319308d1558ff6795afe07e6a360b679e85",
+      "size": 604
+    },
+    {
+      "path": "results/hwpforge/S06/result.json",
+      "classification": "benchmark_result",
+      "schema_path": "benchmark-result.schema.json",
+      "document_type": null,
+      "sha256": "061808a6ae520b4e4afa29956f94d4d316ac93836da0b75e5522ebf7acdc9636",
+      "size": 1408
+    },
+    {
+      "path": "results/hwpforge/S07/result.json",
+      "classification": "benchmark_result",
+      "schema_path": "benchmark-result.schema.json",
+      "document_type": null,
+      "sha256": "91c85e6d715742fdf17a13e55247becdafceda562f09632b112585e698d24a2b",
+      "size": 1408
+    },
+    {
+      "path": "results/hwpforge/S08/result.json",
+      "classification": "benchmark_result",
+      "schema_path": "benchmark-result.schema.json",
+      "document_type": null,
+      "sha256": "098c4dd6899ae21654ef9bce8ec238a2f8aa4cc97f4e3a382ae2bf2b82366f45",
+      "size": 1408
+    },
+    {
+      "path": "results/hwpforge/S09/result.json",
+      "classification": "benchmark_result",
+      "schema_path": "benchmark-result.schema.json",
+      "document_type": null,
+      "sha256": "d8aa5f1b699d5fc0f9976e04ff43e6de0a7251ce22c56abdd919e6dd49d1a5f7",
+      "size": 604
+    },
+    {
+      "path": "results/hwpforge/S10/result.json",
+      "classification": "benchmark_result",
+      "schema_path": "benchmark-result.schema.json",
+      "document_type": null,
+      "sha256": "7be9107ab92a0bbb06d5504d16c358e54708671736947f2412da21e4d2abd246",
+      "size": 604
+    },
+    {
+      "path": "results/hwpforge/S11/result.json",
+      "classification": "benchmark_result",
+      "schema_path": "benchmark-result.schema.json",
+      "document_type": null,
+      "sha256": "1af773c79ff11f16ef7fbb560f37a8e97b97e069e7e7f0bb3dd5d39cb7bd762e",
+      "size": 604
+    },
+    {
+      "path": "results/hwpforge/S12/result.json",
+      "classification": "benchmark_result",
+      "schema_path": "benchmark-result.schema.json",
+      "document_type": null,
+      "sha256": "a2e84a0ba0d7d0b7d09495e335abbefb4362b54da261d945b65f18314ce43155",
+      "size": 1408
+    },
+    {
+      "path": "results/hwpforge/S13/result.json",
+      "classification": "benchmark_result",
+      "schema_path": "benchmark-result.schema.json",
+      "document_type": null,
+      "sha256": "55e0acbf38a4b454ada17893823b721ea4a1d518a222c421ccbfe15b2faff1d7",
+      "size": 1408
+    },
+    {
+      "path": "results/hwpforge/S14/result.json",
+      "classification": "benchmark_result",
+      "schema_path": "benchmark-result.schema.json",
+      "document_type": null,
+      "sha256": "ae0671a79575c374a1cc0493016efd396a3194e0dc5457941aa333860ec42614",
+      "size": 1408
+    },
+    {
+      "path": "results/hwpxlib/S01/result.json",
+      "classification": "benchmark_result",
+      "schema_path": "benchmark-result.schema.json",
+      "document_type": null,
+      "sha256": "3caf72d398d74fded533523c2bb7ea43285715427b272329ceede8abf824def2",
+      "size": 602
+    },
+    {
+      "path": "results/hwpxlib/S02/result.json",
+      "classification": "benchmark_result",
+      "schema_path": "benchmark-result.schema.json",
+      "document_type": null,
+      "sha256": "e84b047e6fa77b09dca30c4d5d25b6b72e775ef0ffcf292d8d3504aa96f8f3c7",
+      "size": 602
+    },
+    {
+      "path": "results/hwpxlib/S03/result.json",
+      "classification": "benchmark_result",
+      "schema_path": "benchmark-result.schema.json",
+      "document_type": null,
+      "sha256": "8a140c30059566844caa8d0d6cabe7126ff441b21ec6e9ba6f7dbb9aaa9f8cc2",
+      "size": 1403
+    },
+    {
+      "path": "results/hwpxlib/S04/result.json",
+      "classification": "benchmark_result",
+      "schema_path": "benchmark-result.schema.json",
+      "document_type": null,
+      "sha256": "88859a8d9797b4eb58354ec3a87640a47e176ac1907ecaddfcecd3d719971a82",
+      "size": 1403
+    },
+    {
+      "path": "results/hwpxlib/S05/result.json",
+      "classification": "benchmark_result",
+      "schema_path": "benchmark-result.schema.json",
+      "document_type": null,
+      "sha256": "ce9cc1d637f7f2fe7fd6711065da7c2a98458d5a50b8377b98b6714824b10627",
+      "size": 602
+    },
+    {
+      "path": "results/hwpxlib/S06/result.json",
+      "classification": "benchmark_result",
+      "schema_path": "benchmark-result.schema.json",
+      "document_type": null,
+      "sha256": "79ac79de98cdb7bbde8d80edfb2b9d4fd80c4b542f701f7b67b74ec468752edf",
+      "size": 1403
+    },
+    {
+      "path": "results/hwpxlib/S07/result.json",
+      "classification": "benchmark_result",
+      "schema_path": "benchmark-result.schema.json",
+      "document_type": null,
+      "sha256": "007c8f821b052c6564db36354cf8a6261dcb897a13f199e8d54c0b37add92e89",
+      "size": 1403
+    },
+    {
+      "path": "results/hwpxlib/S08/result.json",
+      "classification": "benchmark_result",
+      "schema_path": "benchmark-result.schema.json",
+      "document_type": null,
+      "sha256": "64cadca431b44d5128ced430904de18b5f65046ba14cdc63ae35bca5727f9f95",
+      "size": 1403
+    },
+    {
+      "path": "results/hwpxlib/S09/result.json",
+      "classification": "benchmark_result",
+      "schema_path": "benchmark-result.schema.json",
+      "document_type": null,
+      "sha256": "bd83aa8f5ae3d96d0bd7d2170953b9d00ffcbd22c744191c6425ed3fcbc9c4f7",
+      "size": 602
+    },
+    {
+      "path": "results/hwpxlib/S10/result.json",
+      "classification": "benchmark_result",
+      "schema_path": "benchmark-result.schema.json",
+      "document_type": null,
+      "sha256": "89938f41333852fc3e3b62f574432d6ec26ddc84207b2136d409128e276af9c2",
+      "size": 602
+    },
+    {
+      "path": "results/hwpxlib/S11/result.json",
+      "classification": "benchmark_result",
+      "schema_path": "benchmark-result.schema.json",
+      "document_type": null,
+      "sha256": "d5ac6d0825db0e9c3f4161f952d7f357ce84d3d02d4f2803701322aa100aabf6",
+      "size": 602
+    },
+    {
+      "path": "results/hwpxlib/S12/result.json",
+      "classification": "benchmark_result",
+      "schema_path": "benchmark-result.schema.json",
+      "document_type": null,
+      "sha256": "662873325be35b9b18a0643a94624a11cef55ce539b02ac410a07727436633dd",
+      "size": 1403
+    },
+    {
+      "path": "results/hwpxlib/S13/result.json",
+      "classification": "benchmark_result",
+      "schema_path": "benchmark-result.schema.json",
+      "document_type": null,
+      "sha256": "12944a80a122a978dbadb6c08c0ca0d5e4a48e6107ae18a35d3f7eeca24752fb",
+      "size": 1403
+    },
+    {
+      "path": "results/hwpxlib/S14/result.json",
+      "classification": "benchmark_result",
+      "schema_path": "benchmark-result.schema.json",
+      "document_type": null,
+      "sha256": "ccab935218cba0a8c9d9f7ba92b2d23d04b0bce42a77bc5345956e9e77ad244c",
+      "size": 1403
+    },
+    {
+      "path": "results/python_hwpx/S01/result.json",
+      "classification": "benchmark_result",
+      "schema_path": "benchmark-result.schema.json",
+      "document_type": null,
+      "sha256": "f54707adb4a587468e50413438e53531a2046c0bc2eba0ddace64fb2ccb668dc",
+      "size": 1420
+    },
+    {
+      "path": "results/python_hwpx/S02/result.json",
+      "classification": "benchmark_result",
+      "schema_path": "benchmark-result.schema.json",
+      "document_type": null,
+      "sha256": "8654d64165270e53d11aa038776a90786afcc80455dd23875612b331ccb03949",
+      "size": 1420
+    },
+    {
+      "path": "results/python_hwpx/S03/result.json",
+      "classification": "benchmark_result",
+      "schema_path": "benchmark-result.schema.json",
+      "document_type": null,
+      "sha256": "f6ee9abcb214ee3c8fe9219d71a48278e85c0857a931b2defeca6219de978f72",
+      "size": 1420
+    },
+    {
+      "path": "results/python_hwpx/S04/result.json",
+      "classification": "benchmark_result",
+      "schema_path": "benchmark-result.schema.json",
+      "document_type": null,
+      "sha256": "0999d4cf3c04726c31533bd8cc99ee9603b7942034df1466c5b925ce2902020f",
+      "size": 1420
+    },
+    {
+      "path": "results/python_hwpx/S05/result.json",
+      "classification": "benchmark_result",
+      "schema_path": "benchmark-result.schema.json",
+      "document_type": null,
+      "sha256": "490095d4bfdb66c4de4fb7259f40e32fff7ce2109485329f2b4628f52c1c8dc2",
+      "size": 1420
+    },
+    {
+      "path": "results/python_hwpx/S06/result.json",
+      "classification": "benchmark_result",
+      "schema_path": "benchmark-result.schema.json",
+      "document_type": null,
+      "sha256": "2c26a45a05890d83da8cc5c403536e797cbeac43dadc535c0c5c48c3ede75312",
+      "size": 1420
+    },
+    {
+      "path": "results/python_hwpx/S07/result.json",
+      "classification": "benchmark_result",
+      "schema_path": "benchmark-result.schema.json",
+      "document_type": null,
+      "sha256": "5474092fbdb72a652c27a43987898f0a0e7c80b5409f86b339ed01b6e4c94b20",
+      "size": 1420
+    },
+    {
+      "path": "results/python_hwpx/S08/result.json",
+      "classification": "benchmark_result",
+      "schema_path": "benchmark-result.schema.json",
+      "document_type": null,
+      "sha256": "c97a93c42303b7d6f7d9797a9b6674f95f567d49d43e71d3d517d5840170c9f2",
+      "size": 1420
+    },
+    {
+      "path": "results/python_hwpx/S09/result.json",
+      "classification": "benchmark_result",
+      "schema_path": "benchmark-result.schema.json",
+      "document_type": null,
+      "sha256": "7640f7dab2121002bb4625fea4bcbe02afe128d49bab3e099232b95a65fee85b",
+      "size": 601
+    },
+    {
+      "path": "results/python_hwpx/S10/result.json",
+      "classification": "benchmark_result",
+      "schema_path": "benchmark-result.schema.json",
+      "document_type": null,
+      "sha256": "0118db6dbea07eb46d75f347551920fa32b3c97f165754ce11e80dde9e0af7cb",
+      "size": 601
+    },
+    {
+      "path": "results/python_hwpx/S11/result.json",
+      "classification": "benchmark_result",
+      "schema_path": "benchmark-result.schema.json",
+      "document_type": null,
+      "sha256": "d214e3205c4a8447ead5510f8807428fa2ce31373c62973120ee17b542012d8b",
+      "size": 601
+    },
+    {
+      "path": "results/python_hwpx/S12/result.json",
+      "classification": "benchmark_result",
+      "schema_path": "benchmark-result.schema.json",
+      "document_type": null,
+      "sha256": "a107d47c00feac295162f0d2ffe67329d4538fa93efbd82f08c026b336581861",
+      "size": 1420
+    },
+    {
+      "path": "results/python_hwpx/S13/result.json",
+      "classification": "benchmark_result",
+      "schema_path": "benchmark-result.schema.json",
+      "document_type": null,
+      "sha256": "0ed6d4980ab856810e57afc27ef2b580db4250f6fcd69d3e8fca658a499060ba",
+      "size": 1420
+    },
+    {
+      "path": "results/python_hwpx/S14/result.json",
+      "classification": "benchmark_result",
+      "schema_path": "benchmark-result.schema.json",
+      "document_type": null,
+      "sha256": "69651fa39798c4077e2f992b29fa534ddb48443ebb8106e768506920911faf39",
+      "size": 1420
+    },
+    {
+      "path": "role-matrix.json",
+      "classification": "benchmark_summary",
+      "schema_path": "benchmark-summary.schema.json",
+      "document_type": "role_matrix",
+      "sha256": "7ead56370804820b5c4c2532f6808604b1485306be3e7bd2f7d0201c9ffdf242",
+      "size": 8844
+    },
+    {
+      "path": "schemas-v2/adapter-execution.schema.json",
+      "classification": "canonical_schema",
+      "schema_path": "draft2020-12-meta-schema",
+      "document_type": null,
+      "sha256": "3ccc764f6afaf9a87f1e50ae3c5fc2bd18e7e84bf9b5a8f2b9fd55c75282189c",
+      "size": 10315
+    },
+    {
+      "path": "schemas-v2/benchmark-result.schema.json",
+      "classification": "canonical_schema",
+      "schema_path": "draft2020-12-meta-schema",
+      "document_type": null,
+      "sha256": "0cfaf90a4e1e7927c6226df77fe0f103d4152257e63c221d909a5c13417485d3",
+      "size": 7941
+    },
+    {
+      "path": "schemas-v2/benchmark-summary.schema.json",
+      "classification": "canonical_schema",
+      "schema_path": "draft2020-12-meta-schema",
+      "document_type": null,
+      "sha256": "4545194d9421ac5eace7d72ce627d075c45cb625b11e2d12687c0ff70acbf6a9",
+      "size": 8533
+    },
+    {
+      "path": "schemas-v2/dependency-license-offline-manifest.schema.json",
+      "classification": "canonical_schema",
+      "schema_path": "draft2020-12-meta-schema",
+      "document_type": null,
+      "sha256": "a1d5ee2059b2955637ac9ecc3b2ad6ee8c630f8cc8f8edbbe365814f8177b202",
+      "size": 5688
+    },
+    {
+      "path": "schemas-v2/test-summary.schema.json",
+      "classification": "canonical_schema",
+      "schema_path": "draft2020-12-meta-schema",
+      "document_type": null,
+      "sha256": "ce4e9d5473de36b9fc9d7f6eb1c86572363479319603247b3a66e4e61ca9ea20",
+      "size": 3891
+    },
+    {
+      "path": "schemas/adapter-execution.schema.json",
+      "classification": "legacy_schema_inactive",
+      "schema_path": null,
+      "document_type": null,
+      "sha256": "d9f2f72aa8301a20337f85adce973830b4ed11b9c93fbeede319584e9bab86f0",
+      "size": 348
+    },
+    {
+      "path": "schemas/benchmark-result.schema.json",
+      "classification": "legacy_schema_inactive",
+      "schema_path": null,
+      "document_type": null,
+      "sha256": "40f3ea8b99ffacc235840cf60bbb7be0e14280d682d7673ace8225e380e395e7",
+      "size": 346
+    },
+    {
+      "path": "schemas/benchmark-summary.schema.json",
+      "classification": "legacy_schema_inactive",
+      "schema_path": null,
+      "document_type": null,
+      "sha256": "4bbbe17f1dede4e213be356ec51237f1fea534540cdcaa689ad6e119c89bc5eb",
+      "size": 348
+    },
+    {
+      "path": "schemas/dependency-license-offline-manifest.schema.json",
+      "classification": "legacy_schema_inactive",
+      "schema_path": null,
+      "document_type": null,
+      "sha256": "a66c0892d0c53381b66805365609b304366edd36bed57ef4a2a48f211bfe6a0f",
+      "size": 312
+    },
+    {
+      "path": "schemas/test-summary.schema.json",
+      "classification": "legacy_schema_inactive",
+      "schema_path": null,
+      "document_type": null,
+      "sha256": "9d1de14ef5d8306b7659616328d865a66475c8edef9d5a2fe7aea0d730f9d77f",
+      "size": 338
+    },
+    {
+      "path": "summary/ajv-meta-schema-validation-v6.json",
+      "classification": "benchmark_summary",
+      "schema_path": "benchmark-summary.schema.json",
+      "document_type": "schema_validation_summary",
+      "sha256": "1967d271b2ac26091d836c0a56c16f7369713de447e40cce492309f7d9770417",
+      "size": 3483
+    },
+    {
+      "path": "summary/benchmark-results.json",
+      "classification": "benchmark_summary",
+      "schema_path": "benchmark-summary.schema.json",
+      "document_type": "benchmark_results",
+      "sha256": "450b9bd01964903947a72c0182c7e3212d32448e46b2fe3e23baae547d05c9bf",
+      "size": 21330
+    },
+    {
+      "path": "summary/capability-evidence-matrix.json",
+      "classification": "benchmark_summary",
+      "schema_path": "benchmark-summary.schema.json",
+      "document_type": "capability_evidence_matrix",
+      "sha256": "3c782227d85276c9c869f0a50783332dbcb706c9ad3048bd1bc739649b7f721f",
+      "size": 1173
+    },
+    {
+      "path": "summary/dependency-license-offline-manifest.json",
+      "classification": "dependency_license_offline_manifest",
+      "schema_path": "dependency-license-offline-manifest.schema.json",
+      "document_type": "dependency_license_offline_manifest",
+      "sha256": "01a2fa9b4f8cb713e06b25f7e7fcad5fd5bbac72c3e445e28e6b71650f2fc0c6",
+      "size": 8860
+    },
+    {
+      "path": "summary/editor-scorecard.json",
+      "classification": "benchmark_summary",
+      "schema_path": "benchmark-summary.schema.json",
+      "document_type": "scorecard",
+      "sha256": "75a6766203d6195716ba040281d20ac798e55c9f1080e040d12f4db7b2d752cf",
+      "size": 2542
+    },
+    {
+      "path": "summary/layout-gate.json",
+      "classification": "benchmark_summary",
+      "schema_path": "benchmark-summary.schema.json",
+      "document_type": "layout_gate",
+      "sha256": "4303ce222ecc7aab1871b81c539931ce91311eb1d951bd149f85522e1c71addd",
+      "size": 397
+    },
+    {
+      "path": "summary/source-immutability.json",
+      "classification": "benchmark_summary",
+      "schema_path": "benchmark-summary.schema.json",
+      "document_type": "immutability_comparison",
+      "sha256": "89c9fccef79aa6e9dcf27d491670a2a677c574774afea515694af4d4c8467c1a",
+      "size": 241
+    },
+    {
+      "path": "summary/task-end-manifest.json",
+      "classification": "benchmark_summary",
+      "schema_path": "benchmark-summary.schema.json",
+      "document_type": "task_manifest",
+      "sha256": "6e2d2395eb851e133ba0a4b4f131f8927af6840ece248d7e8e29d0e5a86e659e",
+      "size": 1277
+    },
+    {
+      "path": "summary/task-start-manifest.json",
+      "classification": "benchmark_summary",
+      "schema_path": "benchmark-summary.schema.json",
+      "document_type": "task_manifest",
+      "sha256": "3ec18ecbaa3bd7c79647e763846ea0e63532096324ea60cb5914d2c1b7d46b69",
+      "size": 1248
+    },
+    {
+      "path": "summary/validator-scorecard.json",
+      "classification": "benchmark_summary",
+      "schema_path": "benchmark-summary.schema.json",
+      "document_type": "scorecard",
+      "sha256": "75a6766203d6195716ba040281d20ac798e55c9f1080e040d12f4db7b2d752cf",
+      "size": 2542
+    },
+    {
+      "path": "tests/pre-output-schema-inventory-v6.json",
+      "classification": "benchmark_summary",
+      "schema_path": "benchmark-summary.schema.json",
+      "document_type": "schema_validation_summary",
+      "sha256": "fab85408bc1f7b868c63d0906aa4852b5ccf406a7c3ea33bb2607739af8a9f0c",
+      "size": 7258
+    },
+    {
+      "path": "tests/schema-validation-summary.json",
+      "classification": "benchmark_summary",
+      "schema_path": "benchmark-summary.schema.json",
+      "document_type": "schema_validation_summary",
+      "sha256": "43196f9265ac7bd107a2f629d2bfa252d0b62741c85f839758fd9114cd7a22d2",
+      "size": 83207
+    },
+    {
+      "path": "tests/test-summary.json",
+      "classification": "test_summary",
+      "schema_path": "test-summary.schema.json",
+      "document_type": "test_summary",
+      "sha256": "00875624be7ce23adfa95dde6beda2e172279dbe79c197ff0b932745203aace1",
+      "size": 3221
     }
   ],
-  "all_expected_outcomes_met": true
+  "missing_json": [],
+  "duplicate_json": [],
+  "unclassified_json": [],
+  "schema_mapping_errors": [],
+  "canonical_schema_set_complete": true,
+  "validation_order_valid": true,
+  "validation_failures": 0,
+  "evidence_linkage": [
+    {
+      "artifact_role": "benchmark_summary",
+      "path": "corpus-manifest.json",
+      "sha256": "adac23f7dc26de2351cf0478633330bff749821a74a815bc94c2cb0ec78d12ed"
+    },
+    {
+      "artifact_role": "adapter_execution",
+      "path": "executions/current_node_xml/S01/adapter-execution.json",
+      "sha256": "0ab7a543b8c3180a80b24db327b82b054e5091077e697a6402c94ff484bb6334"
+    },
+    {
+      "artifact_role": "adapter_execution",
+      "path": "executions/current_node_xml/S02/adapter-execution.json",
+      "sha256": "ac484f0e42ec594de07f9ce2d5aa5e0b12cce0b1109bcbf9dd7d98dcdbdf7256"
+    },
+    {
+      "artifact_role": "adapter_execution",
+      "path": "executions/current_node_xml/S03/adapter-execution.json",
+      "sha256": "3b81decf382ee6880f743a8c04684e3d0b488ce6549ef8a6691728416c58acfa"
+    },
+    {
+      "artifact_role": "adapter_execution",
+      "path": "executions/current_node_xml/S04/adapter-execution.json",
+      "sha256": "7abdf26adcfe2a4e3a5bc9b2bd08cd859e8f1f181099ce681a5e4cd28512b6f4"
+    },
+    {
+      "artifact_role": "adapter_execution",
+      "path": "executions/current_node_xml/S05/adapter-execution.json",
+      "sha256": "40d0c31108ae1800c169208859f4bf8ddd0cf025fab21c3ae3aebab147b376e9"
+    },
+    {
+      "artifact_role": "adapter_execution",
+      "path": "executions/current_node_xml/S06/adapter-execution.json",
+      "sha256": "92828a290a73043c7b6c592daf7c57925e07e3853e5172129a33016eee1a38ab"
+    },
+    {
+      "artifact_role": "adapter_execution",
+      "path": "executions/current_node_xml/S07/adapter-execution.json",
+      "sha256": "7532c55fb72f14d9d84beeaf51b6d7d0d9d5a072e04794cb5bc029bc4d1296ab"
+    },
+    {
+      "artifact_role": "adapter_execution",
+      "path": "executions/current_node_xml/S08/adapter-execution.json",
+      "sha256": "419080582b0495235084012fc71f310b2e6887c488f5e79d06655c6823636bd3"
+    },
+    {
+      "artifact_role": "adapter_execution",
+      "path": "executions/current_node_xml/S09/adapter-execution.json",
+      "sha256": "a3ae62a60e03809dd10966e7f37f087e3b1e15846c3e29dfbc6cb3d688f50e5c"
+    },
+    {
+      "artifact_role": "adapter_execution",
+      "path": "executions/current_node_xml/S10/adapter-execution.json",
+      "sha256": "3ead0608f02ca0c4d614cb394fd36f6c77da93e14bb5dada46fc36ceb820eb99"
+    },
+    {
+      "artifact_role": "adapter_execution",
+      "path": "executions/current_node_xml/S11/adapter-execution.json",
+      "sha256": "bc93b9900b324fd624e81e8d388c82d3a0647164c919d9a7fc68ea20cd7dfdc9"
+    },
+    {
+      "artifact_role": "adapter_execution",
+      "path": "executions/current_node_xml/S12/adapter-execution.json",
+      "sha256": "719786c76cbefee1dd9e4719d402554cb3410e17d6b0aa3eec49a85d022a5177"
+    },
+    {
+      "artifact_role": "adapter_execution",
+      "path": "executions/current_node_xml/S13/adapter-execution.json",
+      "sha256": "d98bba1a9de2228077bb40f3af30b2421bfb8207d598884ecba2d9eda7c8fd8d"
+    },
+    {
+      "artifact_role": "adapter_execution",
+      "path": "executions/current_node_xml/S14/adapter-execution.json",
+      "sha256": "a01ecf7f4cd30cddb316a99739e18142e692f350c83ba367a2a6114ba85436fb"
+    },
+    {
+      "artifact_role": "adapter_execution",
+      "path": "executions/hancom_com/S01/adapter-execution.json",
+      "sha256": "ef8b44e49fa5858d5eefd37315af2c789360e3e71dd7f0444593a8b88dc130f5"
+    },
+    {
+      "artifact_role": "adapter_execution",
+      "path": "executions/hancom_com/S02/adapter-execution.json",
+      "sha256": "d29a5cc999d9dff46e5d8c5669f84d2e37a130d12238a5e594235388405de9bc"
+    },
+    {
+      "artifact_role": "adapter_execution",
+      "path": "executions/hancom_com/S03/adapter-execution.json",
+      "sha256": "3d03b4caeb8d8e11d7a699efa6aaed70a2fbbe28c7c3b46129f71c6c4321228a"
+    },
+    {
+      "artifact_role": "adapter_execution",
+      "path": "executions/hancom_com/S04/adapter-execution.json",
+      "sha256": "d2e1aa541b2ac2a6966fec7786e04e0fe824eb5b86d15cbeaf8fbdc39021134b"
+    },
+    {
+      "artifact_role": "adapter_execution",
+      "path": "executions/hancom_com/S05/adapter-execution.json",
+      "sha256": "3ab8b4b6e2aad4702f1d51ebcdc388ec8b26627219ad5f40d18d01ecf4040fd0"
+    },
+    {
+      "artifact_role": "adapter_execution",
+      "path": "executions/hancom_com/S06/adapter-execution.json",
+      "sha256": "e7d0d24b8f6f935b9ce69a6ad93eee63bcfc05fc4172f1dfd7ef7465edbe2829"
+    },
+    {
+      "artifact_role": "adapter_execution",
+      "path": "executions/hancom_com/S07/adapter-execution.json",
+      "sha256": "ba9c5b67e08dd197f18a424a5fc8096e20895b13f33ed705195aaa04a8eaf6d1"
+    },
+    {
+      "artifact_role": "adapter_execution",
+      "path": "executions/hancom_com/S08/adapter-execution.json",
+      "sha256": "5e749492d8f6084806a4531cd3e791f48ff60bca75c04aa7b6e953ad2c0554f4"
+    },
+    {
+      "artifact_role": "adapter_execution",
+      "path": "executions/hancom_com/S09/adapter-execution.json",
+      "sha256": "5c7bb725617579edf08ab852b7541138e8bea74dd208fad29b68d4abbe195ef4"
+    },
+    {
+      "artifact_role": "adapter_execution",
+      "path": "executions/hancom_com/S10/adapter-execution.json",
+      "sha256": "289999364ca4deb1a20f7542a10a6de3d07439db8b99a1816ef2eeb854266123"
+    },
+    {
+      "artifact_role": "adapter_execution",
+      "path": "executions/hancom_com/S11/adapter-execution.json",
+      "sha256": "16f6777e2e334c4b7be26ca374f700cfb21d6fdf8314bc019bb8ba3e957b46b3"
+    },
+    {
+      "artifact_role": "adapter_execution",
+      "path": "executions/hancom_com/S12/adapter-execution.json",
+      "sha256": "d2b6797ef8087ec342d9b09a20debea8cc86fe4ca7bc62327d8efd1b7c206b08"
+    },
+    {
+      "artifact_role": "adapter_execution",
+      "path": "executions/hancom_com/S13/adapter-execution.json",
+      "sha256": "ab91ae39536403b2232b8d969d5ba1b028827a2a6b07da8c73ced963df68244d"
+    },
+    {
+      "artifact_role": "adapter_execution",
+      "path": "executions/hancom_com/S14/adapter-execution.json",
+      "sha256": "c6b2169fae5feaa51087bdcc03a9ec4b2fbbf1d7e3c0033445d16cf772f122af"
+    },
+    {
+      "artifact_role": "adapter_execution",
+      "path": "executions/hwpforge/S01/adapter-execution.json",
+      "sha256": "e570a9e8073207ed5501598a5e81aaa1fd4daeed36ee67d786d72aee4e11547e"
+    },
+    {
+      "artifact_role": "adapter_execution",
+      "path": "executions/hwpforge/S02/adapter-execution.json",
+      "sha256": "7781bcfc07f1e6adf27d160c93844f9308632053511e8275cc88ae686d2f8fd8"
+    },
+    {
+      "artifact_role": "adapter_execution",
+      "path": "executions/hwpforge/S03/adapter-execution.json",
+      "sha256": "b83fa18da1039280a9a4a9bf0296ff92835396a39c34aa071a2f8bcb0d0b5e00"
+    },
+    {
+      "artifact_role": "adapter_execution",
+      "path": "executions/hwpforge/S04/adapter-execution.json",
+      "sha256": "1d5caf7d35a3fec0903ae5bcfc7ea776c675e4b3f3ca3e0b278ed3e742946b16"
+    },
+    {
+      "artifact_role": "adapter_execution",
+      "path": "executions/hwpforge/S05/adapter-execution.json",
+      "sha256": "1742266dffbbaa3522ea5a6f3520febed783147677a4bb1273cd942ae7bdf483"
+    },
+    {
+      "artifact_role": "adapter_execution",
+      "path": "executions/hwpforge/S06/adapter-execution.json",
+      "sha256": "50d8f4e1fd3acc928ff6fe23090b9c701cb79235a76354dd1a3bd4dd199545b1"
+    },
+    {
+      "artifact_role": "adapter_execution",
+      "path": "executions/hwpforge/S07/adapter-execution.json",
+      "sha256": "0c7bf87f4890c04f8b7836853bfed6bf6877644143f0a54de3acc4db093599b5"
+    },
+    {
+      "artifact_role": "adapter_execution",
+      "path": "executions/hwpforge/S08/adapter-execution.json",
+      "sha256": "a16cf3b719a07f67b7a2437a74fd9b108df2cd2f9406cfb8f54e5b4953ceb2a2"
+    },
+    {
+      "artifact_role": "adapter_execution",
+      "path": "executions/hwpforge/S09/adapter-execution.json",
+      "sha256": "3cb36d6c1f59adcd1668fb4dc0cbb5ac3fd9d751c534ab05cd66a479a7afc51d"
+    },
+    {
+      "artifact_role": "adapter_execution",
+      "path": "executions/hwpforge/S10/adapter-execution.json",
+      "sha256": "7118af44e88ff4a3cfa97b0d87d691e7fc505f3fbf918b4a0544d02e63d9fa0d"
+    },
+    {
+      "artifact_role": "adapter_execution",
+      "path": "executions/hwpforge/S11/adapter-execution.json",
+      "sha256": "a796afb94416d15b1c866224382e9b4cfb3edcafd99bb360a6f4c4d489c32566"
+    },
+    {
+      "artifact_role": "adapter_execution",
+      "path": "executions/hwpforge/S12/adapter-execution.json",
+      "sha256": "6a8e97070b7c18187050fc8e271685d84aaf93db954ef73e70b30be472a01f0d"
+    },
+    {
+      "artifact_role": "adapter_execution",
+      "path": "executions/hwpforge/S13/adapter-execution.json",
+      "sha256": "d0b17759ee0db3bfc5a0855101b3dfa94e484432e2198e924163726cb7c9e22d"
+    },
+    {
+      "artifact_role": "adapter_execution",
+      "path": "executions/hwpforge/S14/adapter-execution.json",
+      "sha256": "420165a3281fdfad4cf49dad1bdb66362099532e7e05ff26bb307f5c37e7e48e"
+    },
+    {
+      "artifact_role": "adapter_execution",
+      "path": "executions/hwpxlib/S01/adapter-execution.json",
+      "sha256": "0c12f1c40ed34636b1c186fdd5ab9b9f46e8304634be0ba76c7b2703c6274f94"
+    },
+    {
+      "artifact_role": "adapter_execution",
+      "path": "executions/hwpxlib/S02/adapter-execution.json",
+      "sha256": "588687e1a3b07ec348befefc15878f2d06b9f1dd2d8342e1404a216ffbfab7ac"
+    },
+    {
+      "artifact_role": "adapter_execution",
+      "path": "executions/hwpxlib/S03/adapter-execution.json",
+      "sha256": "ea4037b7dc617b9e0612b02cb048e3a8720ce537ef245f57077f1c71f074c80a"
+    },
+    {
+      "artifact_role": "adapter_execution",
+      "path": "executions/hwpxlib/S04/adapter-execution.json",
+      "sha256": "ef056b2bd0c55152b8acb7b37d779dccd0994876e39181e8859f843322762970"
+    },
+    {
+      "artifact_role": "adapter_execution",
+      "path": "executions/hwpxlib/S05/adapter-execution.json",
+      "sha256": "5b750b0461a0014315944e5a4f80af7551a23e441a357fa228026f70f9bc4c5f"
+    },
+    {
+      "artifact_role": "adapter_execution",
+      "path": "executions/hwpxlib/S06/adapter-execution.json",
+      "sha256": "ba13fac7e9d28d39173ac18f35db8656b1d0dbd2537af3e3f9c7d4e28a8cc281"
+    },
+    {
+      "artifact_role": "adapter_execution",
+      "path": "executions/hwpxlib/S07/adapter-execution.json",
+      "sha256": "996dc5463fb6612f15fef5d70e7de9d37f72e5346e0538717a0f670473e2fa1f"
+    },
+    {
+      "artifact_role": "adapter_execution",
+      "path": "executions/hwpxlib/S08/adapter-execution.json",
+      "sha256": "002fc0f43f0529ced9191c63c18ad31578bae8eacbd431059ccd663cb43768ff"
+    },
+    {
+      "artifact_role": "adapter_execution",
+      "path": "executions/hwpxlib/S09/adapter-execution.json",
+      "sha256": "0db42d88f2516170a77b612159b4ec234fc0cd32cca47ad62b72bbe99c6cdca6"
+    },
+    {
+      "artifact_role": "adapter_execution",
+      "path": "executions/hwpxlib/S10/adapter-execution.json",
+      "sha256": "8d16ccd4ba904f8edd28e4f0987c75c914f17e57c9b439d3d25902479e6ef003"
+    },
+    {
+      "artifact_role": "adapter_execution",
+      "path": "executions/hwpxlib/S11/adapter-execution.json",
+      "sha256": "c436f0bab2762434ede1d682a675709a254c6e4b0faf3731139a0b3dcf4795b2"
+    },
+    {
+      "artifact_role": "adapter_execution",
+      "path": "executions/hwpxlib/S12/adapter-execution.json",
+      "sha256": "1bba41a075ee3488d44ddd9c467086d482777b665c3d7895e76c46ab9bfafb5d"
+    },
+    {
+      "artifact_role": "adapter_execution",
+      "path": "executions/hwpxlib/S13/adapter-execution.json",
+      "sha256": "4a111ecc3f598d5f91171963191c32dbc86419a07bd951f0fce774be0bc9fb67"
+    },
+    {
+      "artifact_role": "adapter_execution",
+      "path": "executions/hwpxlib/S14/adapter-execution.json",
+      "sha256": "d956f4d9884be3dbde7bae285fa43f16f59d62aca7d732aa0bff8d7821cc2287"
+    },
+    {
+      "artifact_role": "adapter_execution",
+      "path": "executions/python_hwpx/S01/adapter-execution.json",
+      "sha256": "3dce610314eda1cba6c36b3b94584e1175cf3b06c90f8a17336cf19a1e1add59"
+    },
+    {
+      "artifact_role": "adapter_execution",
+      "path": "executions/python_hwpx/S02/adapter-execution.json",
+      "sha256": "f3d59c7a602302cfbaebda00c678026d68ae8c3a4a537a7c75e7bda7a0f66c81"
+    },
+    {
+      "artifact_role": "adapter_execution",
+      "path": "executions/python_hwpx/S03/adapter-execution.json",
+      "sha256": "dcdd73ed0a6ef9ed4d5bb51f1d2d82e9dd2e9f83d233d3cdc2a00da2ab76b531"
+    },
+    {
+      "artifact_role": "adapter_execution",
+      "path": "executions/python_hwpx/S04/adapter-execution.json",
+      "sha256": "e237a07ca80d20907b13f5df7f4e07397a1da77a7b7487ad6303debeed667229"
+    },
+    {
+      "artifact_role": "adapter_execution",
+      "path": "executions/python_hwpx/S05/adapter-execution.json",
+      "sha256": "dcbca38b811719ac48213009bb7a2b39ce5cc7daba12828b5e40808b5a86b0e2"
+    },
+    {
+      "artifact_role": "adapter_execution",
+      "path": "executions/python_hwpx/S06/adapter-execution.json",
+      "sha256": "0d55e2160a18be490bcfae19bcd7d339510a6855aa28c7e80a602ac36b50b9d4"
+    },
+    {
+      "artifact_role": "adapter_execution",
+      "path": "executions/python_hwpx/S07/adapter-execution.json",
+      "sha256": "ee5f08a746f698e6de444233294903116bde1186881b64cc47550778a965e4bd"
+    },
+    {
+      "artifact_role": "adapter_execution",
+      "path": "executions/python_hwpx/S08/adapter-execution.json",
+      "sha256": "8153e612d52cc7478a8fa376ccf14f2033e0099e40d9c32f6b064d5694c48f02"
+    },
+    {
+      "artifact_role": "adapter_execution",
+      "path": "executions/python_hwpx/S09/adapter-execution.json",
+      "sha256": "5b940ae3443dfd60f24fd836d1631e05e8469e085f94b0f10b67870c81b38990"
+    },
+    {
+      "artifact_role": "adapter_execution",
+      "path": "executions/python_hwpx/S10/adapter-execution.json",
+      "sha256": "3b580ca0ab65b1e12c978ad9cc1ee55e003ef9b664bebd875d3cf2330e5fce93"
+    },
+    {
+      "artifact_role": "adapter_execution",
+      "path": "executions/python_hwpx/S11/adapter-execution.json",
+      "sha256": "22469932463627d944dfdb02b000fc11dd2dc114bb94e8b6753cc04a9a5f0937"
+    },
+    {
+      "artifact_role": "adapter_execution",
+      "path": "executions/python_hwpx/S12/adapter-execution.json",
+      "sha256": "9c9692e86e37c29eaeae1c792378b92a9a04b4ac460b547804f16271617937c7"
+    },
+    {
+      "artifact_role": "adapter_execution",
+      "path": "executions/python_hwpx/S13/adapter-execution.json",
+      "sha256": "e6eb0461a7a4e01c72609eb5320fb3b7fef1feda5143a836ca90e3d06b60f672"
+    },
+    {
+      "artifact_role": "adapter_execution",
+      "path": "executions/python_hwpx/S14/adapter-execution.json",
+      "sha256": "1d5d5cff6ebc3f8e4a2a6341237993c69fa64f6dce232d3acfc2742e402cf6f9"
+    },
+    {
+      "artifact_role": "benchmark_result",
+      "path": "results/current_node_xml/S01/result.json",
+      "sha256": "8e97416a1cff159ac029ea5684a18feaf15cbe818644566881f38899250fa009"
+    },
+    {
+      "artifact_role": "benchmark_result",
+      "path": "results/current_node_xml/S02/result.json",
+      "sha256": "ab547dc34839e56d4067923173b0c583ea1a6769b38b4af7b465477b9f397e95"
+    },
+    {
+      "artifact_role": "benchmark_result",
+      "path": "results/current_node_xml/S03/result.json",
+      "sha256": "5c885cbaa55c03e87431b4be424d896f593f15f89da57163de7ad3eb88874a66"
+    },
+    {
+      "artifact_role": "benchmark_result",
+      "path": "results/current_node_xml/S04/result.json",
+      "sha256": "9672b075bc87e59082fd7d8ecee648bd2fa508a08ce9470dbfea9bed5ac3da80"
+    },
+    {
+      "artifact_role": "benchmark_result",
+      "path": "results/current_node_xml/S05/result.json",
+      "sha256": "94a18bff1bf768a77ce8b64c3bd5cca7b355e9fd46fbcbfe88042477acac8524"
+    },
+    {
+      "artifact_role": "benchmark_result",
+      "path": "results/current_node_xml/S06/result.json",
+      "sha256": "4959ac85e60f9564f44c47177a47a8942f8659c968a1802292dccd4920c43c1c"
+    },
+    {
+      "artifact_role": "benchmark_result",
+      "path": "results/current_node_xml/S07/result.json",
+      "sha256": "5ce9ce37a2d4b48fd65cc2487b9eb9ba0039d8973773ab399a9e6755db62792e"
+    },
+    {
+      "artifact_role": "benchmark_result",
+      "path": "results/current_node_xml/S08/result.json",
+      "sha256": "7bcac64c5b79f00fb592e3d2856ff5439f61b21437bacfd3520dadadca3ea990"
+    },
+    {
+      "artifact_role": "benchmark_result",
+      "path": "results/current_node_xml/S09/result.json",
+      "sha256": "383fa78e3a978a8ddce563cae5170bccbc3a749ddbc6c8386df6a3cbfdf6bd3e"
+    },
+    {
+      "artifact_role": "benchmark_result",
+      "path": "results/current_node_xml/S10/result.json",
+      "sha256": "0ed5dffe088a857068fb27818848df4075a3dab60bfe08a92ded7d688590fee2"
+    },
+    {
+      "artifact_role": "benchmark_result",
+      "path": "results/current_node_xml/S11/result.json",
+      "sha256": "79db9ab0fcf7dab4e2f59a5d831007b4e6673570b0fa85edb2ece595c8a30f78"
+    },
+    {
+      "artifact_role": "benchmark_result",
+      "path": "results/current_node_xml/S12/result.json",
+      "sha256": "5ee3c4d66ec854ab76a6e3880f27cc8b3ae556d7b186150e407b1c376fbda8d6"
+    },
+    {
+      "artifact_role": "benchmark_result",
+      "path": "results/current_node_xml/S13/result.json",
+      "sha256": "faec56a7a1e905cc437258b2ad16f7a2768d68f4c721ff281fa63bafcef4f002"
+    },
+    {
+      "artifact_role": "benchmark_result",
+      "path": "results/current_node_xml/S14/result.json",
+      "sha256": "04c345d55b9c2ce8ae540f24932ea1fe705ddf2d6e4b16ce6ee934ed89baf918"
+    },
+    {
+      "artifact_role": "benchmark_result",
+      "path": "results/hancom_com/S01/result.json",
+      "sha256": "3046c58e1161e50871609525fa0b6dadd0cfba9ecfec0a74fd766de4c03134a3"
+    },
+    {
+      "artifact_role": "benchmark_result",
+      "path": "results/hancom_com/S02/result.json",
+      "sha256": "233f855946be89cef63bb6857204a94f5fae2723fb3c138608717ddc6351a138"
+    },
+    {
+      "artifact_role": "benchmark_result",
+      "path": "results/hancom_com/S03/result.json",
+      "sha256": "967502ab399d4266d2067d97a6c7b600da6d4e977a8f2203ea69a6b863b56c6d"
+    },
+    {
+      "artifact_role": "benchmark_result",
+      "path": "results/hancom_com/S04/result.json",
+      "sha256": "e54543ba96734c6777a025a56f540f300f95de62d6cd2782a02592b1656e95f0"
+    },
+    {
+      "artifact_role": "benchmark_result",
+      "path": "results/hancom_com/S05/result.json",
+      "sha256": "fca0d2500f7229b991ed3589c234f3071f9c7358ab2b807ba8db69390e5e95b0"
+    },
+    {
+      "artifact_role": "benchmark_result",
+      "path": "results/hancom_com/S06/result.json",
+      "sha256": "f3bf734eb27a2e6950038f93381e5caa2052422d7081f1da254008e787a9ffb4"
+    },
+    {
+      "artifact_role": "benchmark_result",
+      "path": "results/hancom_com/S07/result.json",
+      "sha256": "6212f99e3644dfc89f499e325352d83397169ce16e3c100d3886076ae8a6c480"
+    },
+    {
+      "artifact_role": "benchmark_result",
+      "path": "results/hancom_com/S08/result.json",
+      "sha256": "2e00457ae5eae9b390024bf3eb6fbd2b3785935a8f3eca606b4bf9d9627d3d62"
+    },
+    {
+      "artifact_role": "benchmark_result",
+      "path": "results/hancom_com/S09/result.json",
+      "sha256": "a4150cde34b0fabf8e62030e91909c45400e8c8c83688b8c6f5ba47f0c9594bb"
+    },
+    {
+      "artifact_role": "benchmark_result",
+      "path": "results/hancom_com/S10/result.json",
+      "sha256": "201d335fd26e45851f587780af5fef82dcac15581e2b49ffd83635a878f12ef7"
+    },
+    {
+      "artifact_role": "benchmark_result",
+      "path": "results/hancom_com/S11/result.json",
+      "sha256": "c47b83d8f86b880d29f1a8698f4c176dd68fa945dd4cdc7bd291c43cefb36284"
+    },
+    {
+      "artifact_role": "benchmark_result",
+      "path": "results/hancom_com/S12/result.json",
+      "sha256": "d49ff17a6ef63760304ee769fd3dbfdd78980ffd6bd7acaf39623b4beafdb05f"
+    },
+    {
+      "artifact_role": "benchmark_result",
+      "path": "results/hancom_com/S13/result.json",
+      "sha256": "418c08d147ec0b05c8f553c8ac265e36711ae85dba5100f1b3a96185d427dbc6"
+    },
+    {
+      "artifact_role": "benchmark_result",
+      "path": "results/hancom_com/S14/result.json",
+      "sha256": "e1cb060ea71010de281aaf8752e58716c550d220f9f12492a24d8efb72f79699"
+    },
+    {
+      "artifact_role": "benchmark_result",
+      "path": "results/hwpforge/S01/result.json",
+      "sha256": "992ffbfc5c1a2672df25526d8e23ef13e83150a7e249e370ed43ea7d7e7cf6f2"
+    },
+    {
+      "artifact_role": "benchmark_result",
+      "path": "results/hwpforge/S02/result.json",
+      "sha256": "87f6c9372175600d902ba318cde77d461db0838ae58204125ab45b8cdb7a9722"
+    },
+    {
+      "artifact_role": "benchmark_result",
+      "path": "results/hwpforge/S03/result.json",
+      "sha256": "da7d3bf4d72f21ec7a82948d0f288e3e6bfd87a68edf69a8b4458d787df7301b"
+    },
+    {
+      "artifact_role": "benchmark_result",
+      "path": "results/hwpforge/S04/result.json",
+      "sha256": "194b72a032bb9f7ba1368f1d3890b64d17e69acd4965f3af9ecde8b527b18830"
+    },
+    {
+      "artifact_role": "benchmark_result",
+      "path": "results/hwpforge/S05/result.json",
+      "sha256": "9086c691193ac7f8573aed1ce5e62319308d1558ff6795afe07e6a360b679e85"
+    },
+    {
+      "artifact_role": "benchmark_result",
+      "path": "results/hwpforge/S06/result.json",
+      "sha256": "061808a6ae520b4e4afa29956f94d4d316ac93836da0b75e5522ebf7acdc9636"
+    },
+    {
+      "artifact_role": "benchmark_result",
+      "path": "results/hwpforge/S07/result.json",
+      "sha256": "91c85e6d715742fdf17a13e55247becdafceda562f09632b112585e698d24a2b"
+    },
+    {
+      "artifact_role": "benchmark_result",
+      "path": "results/hwpforge/S08/result.json",
+      "sha256": "098c4dd6899ae21654ef9bce8ec238a2f8aa4cc97f4e3a382ae2bf2b82366f45"
+    },
+    {
+      "artifact_role": "benchmark_result",
+      "path": "results/hwpforge/S09/result.json",
+      "sha256": "d8aa5f1b699d5fc0f9976e04ff43e6de0a7251ce22c56abdd919e6dd49d1a5f7"
+    },
+    {
+      "artifact_role": "benchmark_result",
+      "path": "results/hwpforge/S10/result.json",
+      "sha256": "7be9107ab92a0bbb06d5504d16c358e54708671736947f2412da21e4d2abd246"
+    },
+    {
+      "artifact_role": "benchmark_result",
+      "path": "results/hwpforge/S11/result.json",
+      "sha256": "1af773c79ff11f16ef7fbb560f37a8e97b97e069e7e7f0bb3dd5d39cb7bd762e"
+    },
+    {
+      "artifact_role": "benchmark_result",
+      "path": "results/hwpforge/S12/result.json",
+      "sha256": "a2e84a0ba0d7d0b7d09495e335abbefb4362b54da261d945b65f18314ce43155"
+    },
+    {
+      "artifact_role": "benchmark_result",
+      "path": "results/hwpforge/S13/result.json",
+      "sha256": "55e0acbf38a4b454ada17893823b721ea4a1d518a222c421ccbfe15b2faff1d7"
+    },
+    {
+      "artifact_role": "benchmark_result",
+      "path": "results/hwpforge/S14/result.json",
+      "sha256": "ae0671a79575c374a1cc0493016efd396a3194e0dc5457941aa333860ec42614"
+    },
+    {
+      "artifact_role": "benchmark_result",
+      "path": "results/hwpxlib/S01/result.json",
+      "sha256": "3caf72d398d74fded533523c2bb7ea43285715427b272329ceede8abf824def2"
+    },
+    {
+      "artifact_role": "benchmark_result",
+      "path": "results/hwpxlib/S02/result.json",
+      "sha256": "e84b047e6fa77b09dca30c4d5d25b6b72e775ef0ffcf292d8d3504aa96f8f3c7"
+    },
+    {
+      "artifact_role": "benchmark_result",
+      "path": "results/hwpxlib/S03/result.json",
+      "sha256": "8a140c30059566844caa8d0d6cabe7126ff441b21ec6e9ba6f7dbb9aaa9f8cc2"
+    },
+    {
+      "artifact_role": "benchmark_result",
+      "path": "results/hwpxlib/S04/result.json",
+      "sha256": "88859a8d9797b4eb58354ec3a87640a47e176ac1907ecaddfcecd3d719971a82"
+    },
+    {
+      "artifact_role": "benchmark_result",
+      "path": "results/hwpxlib/S05/result.json",
+      "sha256": "ce9cc1d637f7f2fe7fd6711065da7c2a98458d5a50b8377b98b6714824b10627"
+    },
+    {
+      "artifact_role": "benchmark_result",
+      "path": "results/hwpxlib/S06/result.json",
+      "sha256": "79ac79de98cdb7bbde8d80edfb2b9d4fd80c4b542f701f7b67b74ec468752edf"
+    },
+    {
+      "artifact_role": "benchmark_result",
+      "path": "results/hwpxlib/S07/result.json",
+      "sha256": "007c8f821b052c6564db36354cf8a6261dcb897a13f199e8d54c0b37add92e89"
+    },
+    {
+      "artifact_role": "benchmark_result",
+      "path": "results/hwpxlib/S08/result.json",
+      "sha256": "64cadca431b44d5128ced430904de18b5f65046ba14cdc63ae35bca5727f9f95"
+    },
+    {
+      "artifact_role": "benchmark_result",
+      "path": "results/hwpxlib/S09/result.json",
+      "sha256": "bd83aa8f5ae3d96d0bd7d2170953b9d00ffcbd22c744191c6425ed3fcbc9c4f7"
+    },
+    {
+      "artifact_role": "benchmark_result",
+      "path": "results/hwpxlib/S10/result.json",
+      "sha256": "89938f41333852fc3e3b62f574432d6ec26ddc84207b2136d409128e276af9c2"
+    },
+    {
+      "artifact_role": "benchmark_result",
+      "path": "results/hwpxlib/S11/result.json",
+      "sha256": "d5ac6d0825db0e9c3f4161f952d7f357ce84d3d02d4f2803701322aa100aabf6"
+    },
+    {
+      "artifact_role": "benchmark_result",
+      "path": "results/hwpxlib/S12/result.json",
+      "sha256": "662873325be35b9b18a0643a94624a11cef55ce539b02ac410a07727436633dd"
+    },
+    {
+      "artifact_role": "benchmark_result",
+      "path": "results/hwpxlib/S13/result.json",
+      "sha256": "12944a80a122a978dbadb6c08c0ca0d5e4a48e6107ae18a35d3f7eeca24752fb"
+    },
+    {
+      "artifact_role": "benchmark_result",
+      "path": "results/hwpxlib/S14/result.json",
+      "sha256": "ccab935218cba0a8c9d9f7ba92b2d23d04b0bce42a77bc5345956e9e77ad244c"
+    },
+    {
+      "artifact_role": "benchmark_result",
+      "path": "results/python_hwpx/S01/result.json",
+      "sha256": "f54707adb4a587468e50413438e53531a2046c0bc2eba0ddace64fb2ccb668dc"
+    },
+    {
+      "artifact_role": "benchmark_result",
+      "path": "results/python_hwpx/S02/result.json",
+      "sha256": "8654d64165270e53d11aa038776a90786afcc80455dd23875612b331ccb03949"
+    },
+    {
+      "artifact_role": "benchmark_result",
+      "path": "results/python_hwpx/S03/result.json",
+      "sha256": "f6ee9abcb214ee3c8fe9219d71a48278e85c0857a931b2defeca6219de978f72"
+    },
+    {
+      "artifact_role": "benchmark_result",
+      "path": "results/python_hwpx/S04/result.json",
+      "sha256": "0999d4cf3c04726c31533bd8cc99ee9603b7942034df1466c5b925ce2902020f"
+    },
+    {
+      "artifact_role": "benchmark_result",
+      "path": "results/python_hwpx/S05/result.json",
+      "sha256": "490095d4bfdb66c4de4fb7259f40e32fff7ce2109485329f2b4628f52c1c8dc2"
+    },
+    {
+      "artifact_role": "benchmark_result",
+      "path": "results/python_hwpx/S06/result.json",
+      "sha256": "2c26a45a05890d83da8cc5c403536e797cbeac43dadc535c0c5c48c3ede75312"
+    },
+    {
+      "artifact_role": "benchmark_result",
+      "path": "results/python_hwpx/S07/result.json",
+      "sha256": "5474092fbdb72a652c27a43987898f0a0e7c80b5409f86b339ed01b6e4c94b20"
+    },
+    {
+      "artifact_role": "benchmark_result",
+      "path": "results/python_hwpx/S08/result.json",
+      "sha256": "c97a93c42303b7d6f7d9797a9b6674f95f567d49d43e71d3d517d5840170c9f2"
+    },
+    {
+      "artifact_role": "benchmark_result",
+      "path": "results/python_hwpx/S09/result.json",
+      "sha256": "7640f7dab2121002bb4625fea4bcbe02afe128d49bab3e099232b95a65fee85b"
+    },
+    {
+      "artifact_role": "benchmark_result",
+      "path": "results/python_hwpx/S10/result.json",
+      "sha256": "0118db6dbea07eb46d75f347551920fa32b3c97f165754ce11e80dde9e0af7cb"
+    },
+    {
+      "artifact_role": "benchmark_result",
+      "path": "results/python_hwpx/S11/result.json",
+      "sha256": "d214e3205c4a8447ead5510f8807428fa2ce31373c62973120ee17b542012d8b"
+    },
+    {
+      "artifact_role": "benchmark_result",
+      "path": "results/python_hwpx/S12/result.json",
+      "sha256": "a107d47c00feac295162f0d2ffe67329d4538fa93efbd82f08c026b336581861"
+    },
+    {
+      "artifact_role": "benchmark_result",
+      "path": "results/python_hwpx/S13/result.json",
+      "sha256": "0ed6d4980ab856810e57afc27ef2b580db4250f6fcd69d3e8fca658a499060ba"
+    },
+    {
+      "artifact_role": "benchmark_result",
+      "path": "results/python_hwpx/S14/result.json",
+      "sha256": "69651fa39798c4077e2f992b29fa534ddb48443ebb8106e768506920911faf39"
+    },
+    {
+      "artifact_role": "benchmark_summary",
+      "path": "role-matrix.json",
+      "sha256": "7ead56370804820b5c4c2532f6808604b1485306be3e7bd2f7d0201c9ffdf242"
+    },
+    {
+      "artifact_role": "canonical_schema",
+      "path": "schemas-v2/adapter-execution.schema.json",
+      "sha256": "3ccc764f6afaf9a87f1e50ae3c5fc2bd18e7e84bf9b5a8f2b9fd55c75282189c"
+    },
+    {
+      "artifact_role": "canonical_schema",
+      "path": "schemas-v2/benchmark-result.schema.json",
+      "sha256": "0cfaf90a4e1e7927c6226df77fe0f103d4152257e63c221d909a5c13417485d3"
+    },
+    {
+      "artifact_role": "canonical_schema",
+      "path": "schemas-v2/benchmark-summary.schema.json",
+      "sha256": "4545194d9421ac5eace7d72ce627d075c45cb625b11e2d12687c0ff70acbf6a9"
+    },
+    {
+      "artifact_role": "canonical_schema",
+      "path": "schemas-v2/dependency-license-offline-manifest.schema.json",
+      "sha256": "a1d5ee2059b2955637ac9ecc3b2ad6ee8c630f8cc8f8edbbe365814f8177b202"
+    },
+    {
+      "artifact_role": "canonical_schema",
+      "path": "schemas-v2/test-summary.schema.json",
+      "sha256": "ce4e9d5473de36b9fc9d7f6eb1c86572363479319603247b3a66e4e61ca9ea20"
+    },
+    {
+      "artifact_role": "legacy_schema_inactive",
+      "path": "schemas/adapter-execution.schema.json",
+      "sha256": "d9f2f72aa8301a20337f85adce973830b4ed11b9c93fbeede319584e9bab86f0"
+    },
+    {
+      "artifact_role": "legacy_schema_inactive",
+      "path": "schemas/benchmark-result.schema.json",
+      "sha256": "40f3ea8b99ffacc235840cf60bbb7be0e14280d682d7673ace8225e380e395e7"
+    },
+    {
+      "artifact_role": "legacy_schema_inactive",
+      "path": "schemas/benchmark-summary.schema.json",
+      "sha256": "4bbbe17f1dede4e213be356ec51237f1fea534540cdcaa689ad6e119c89bc5eb"
+    },
+    {
+      "artifact_role": "legacy_schema_inactive",
+      "path": "schemas/dependency-license-offline-manifest.schema.json",
+      "sha256": "a66c0892d0c53381b66805365609b304366edd36bed57ef4a2a48f211bfe6a0f"
+    },
+    {
+      "artifact_role": "legacy_schema_inactive",
+      "path": "schemas/test-summary.schema.json",
+      "sha256": "9d1de14ef5d8306b7659616328d865a66475c8edef9d5a2fe7aea0d730f9d77f"
+    },
+    {
+      "artifact_role": "benchmark_summary",
+      "path": "summary/ajv-meta-schema-validation-v6.json",
+      "sha256": "1967d271b2ac26091d836c0a56c16f7369713de447e40cce492309f7d9770417"
+    },
+    {
+      "artifact_role": "benchmark_summary",
+      "path": "summary/benchmark-results.json",
+      "sha256": "450b9bd01964903947a72c0182c7e3212d32448e46b2fe3e23baae547d05c9bf"
+    },
+    {
+      "artifact_role": "benchmark_summary",
+      "path": "summary/capability-evidence-matrix.json",
+      "sha256": "3c782227d85276c9c869f0a50783332dbcb706c9ad3048bd1bc739649b7f721f"
+    },
+    {
+      "artifact_role": "dependency_license_offline_manifest",
+      "path": "summary/dependency-license-offline-manifest.json",
+      "sha256": "01a2fa9b4f8cb713e06b25f7e7fcad5fd5bbac72c3e445e28e6b71650f2fc0c6"
+    },
+    {
+      "artifact_role": "benchmark_summary",
+      "path": "summary/editor-scorecard.json",
+      "sha256": "75a6766203d6195716ba040281d20ac798e55c9f1080e040d12f4db7b2d752cf"
+    },
+    {
+      "artifact_role": "benchmark_summary",
+      "path": "summary/layout-gate.json",
+      "sha256": "4303ce222ecc7aab1871b81c539931ce91311eb1d951bd149f85522e1c71addd"
+    },
+    {
+      "artifact_role": "benchmark_summary",
+      "path": "summary/source-immutability.json",
+      "sha256": "89c9fccef79aa6e9dcf27d491670a2a677c574774afea515694af4d4c8467c1a"
+    },
+    {
+      "artifact_role": "benchmark_summary",
+      "path": "summary/task-end-manifest.json",
+      "sha256": "6e2d2395eb851e133ba0a4b4f131f8927af6840ece248d7e8e29d0e5a86e659e"
+    },
+    {
+      "artifact_role": "benchmark_summary",
+      "path": "summary/task-start-manifest.json",
+      "sha256": "3ec18ecbaa3bd7c79647e763846ea0e63532096324ea60cb5914d2c1b7d46b69"
+    },
+    {
+      "artifact_role": "benchmark_summary",
+      "path": "summary/validator-scorecard.json",
+      "sha256": "75a6766203d6195716ba040281d20ac798e55c9f1080e040d12f4db7b2d752cf"
+    },
+    {
+      "artifact_role": "benchmark_summary",
+      "path": "tests/pre-output-schema-inventory-v6.json",
+      "sha256": "fab85408bc1f7b868c63d0906aa4852b5ccf406a7c3ea33bb2607739af8a9f0c"
+    },
+    {
+      "artifact_role": "benchmark_summary",
+      "path": "tests/schema-validation-summary.json",
+      "sha256": "43196f9265ac7bd107a2f629d2bfa252d0b62741c85f839758fd9114cd7a22d2"
+    },
+    {
+      "artifact_role": "test_summary",
+      "path": "tests/test-summary.json",
+      "sha256": "00875624be7ce23adfa95dde6beda2e172279dbe79c197ff0b932745203aace1"
+    }
+  ],
+  "valid": true,
+  "limitations": []
 }

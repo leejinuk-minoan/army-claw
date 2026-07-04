@@ -1,45 +1,42 @@
 {
-  "schema_version": "1.0.0",
   "task_id": "hwpx-core-benchmark-003-evidence-integrity",
   "candidate_id": "hwpforge",
   "candidate_role": "validator",
   "scenario_id": "S08",
-  "scenario_name": "hp:fwSpace and namespace preservation",
-  "previous_status": "blocked",
-  "status": "blocked",
-  "status_reason": "hwpforge artifact/runtime/license evidence is not acquired in Task 003",
-  "evidence_completeness": "missing",
+  "status_reason": "Concrete native execution evidence has not been generated in the D-1 output-alignment gate",
+  "evidence_completeness": "partial",
   "missing_evidence": [
-    "pinned_offline_artifact",
-    "runtime_install",
-    "license_evidence"
+    "runtime_execution_evidence"
   ],
-  "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/hwpforge/S08/result.json",
   "planned_commands": [
-    "Acquire pinned offline artifact for hwpforge",
-    "Install hwpforge in a clean offline environment",
-    "Run hwpforge process for S08"
+    "Task 003 hwpforge S08 local evidence execution"
   ],
   "attempted_commands": [],
-  "checked_paths": [
-    "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/external-artifacts/hwpforge"
-  ],
-  "checked_path_results": [
-    {
-      "path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/external-artifacts/hwpforge",
-      "exists": false
-    }
-  ],
-  "validator_results": [
-    {
-      "validator_id": "s08-complete-evidence-gate",
-      "valid": false,
-      "missing_evidence": [
-        "fwspace_before_after_comparison",
-        "namespace_prefix_uri_map_before_after",
-        "mutation_output_path"
-      ]
-    }
-  ],
-  "generated_at": "2026-07-03T02:04:14.456Z"
+  "validator_results": [],
+  "status": "blocked",
+  "prerequisite_probe": {
+    "performed": true,
+    "available": false,
+    "method": "filesystem evidence probe before final scenario execution",
+    "probe_evidence_path": "external-artifacts/task003-v6/prerequisite-probe.txt",
+    "probe_evidence_sha256": "5b8753d9f8a6a1110756b573c06eb21697653df7d087f734c8ad4d00ec68a76f",
+    "checked_path_results": [
+      {
+        "path": "external-artifacts/task003-v6/hwpforge-S08-native-output.hwpx",
+        "exists": false,
+        "size": null,
+        "sha256": null,
+        "hash_algorithm": null,
+        "source": null
+      }
+    ],
+    "blocked_reason_code": "runtime_evidence_not_generated_yet",
+    "missing_prerequisites": [
+      "hwpforge_S08_runtime_execution_evidence"
+    ]
+  },
+  "blocked_reason_code": "runtime_evidence_not_generated_yet",
+  "missing_prerequisites": [
+    "hwpforge_S08_runtime_execution_evidence"
+  ]
 }

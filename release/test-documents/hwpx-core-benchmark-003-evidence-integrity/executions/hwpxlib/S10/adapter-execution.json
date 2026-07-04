@@ -1,12 +1,17 @@
 {
-  "schema_version": "1.0.0",
   "task_id": "hwpx-core-benchmark-003-evidence-integrity",
   "candidate_id": "hwpxlib",
-  "method": "S10-evidence-integrity-gate",
-  "status": "not_applicable",
-  "planned_commands": [],
+  "candidate_role": "validator",
+  "scenario_id": "S10",
+  "planned_commands": [
+    "Task 003 hwpxlib S10 local evidence execution"
+  ],
   "attempted_commands": [],
-  "checked_paths": [],
-  "checked_path_results": [],
-  "generated_at": "2026-07-03T02:04:14.441Z"
+  "validator_results": [],
+  "missing_evidence": [],
+  "evidence_completeness": "not_applicable",
+  "status": "not_applicable",
+  "status_reason": "S10 is outside validator responsibility",
+  "not_applicable_rationale": "S10 is not assigned to validator in the v6 role matrix",
+  "role_matrix_reference": "role-matrix:v6-canonical-output-alignment"
 }

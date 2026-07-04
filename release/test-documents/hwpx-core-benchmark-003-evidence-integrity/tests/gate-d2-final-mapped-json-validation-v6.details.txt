@@ -1,0 +1,10 @@
+{
+  "inventory_valid": true,
+  "validation_valid": true,
+  "missing_json": [],
+  "duplicate_json": [],
+  "unclassified_json": [],
+  "schema_mapping_errors": [],
+  "failure_count": 0,
+  "failures": []
+}

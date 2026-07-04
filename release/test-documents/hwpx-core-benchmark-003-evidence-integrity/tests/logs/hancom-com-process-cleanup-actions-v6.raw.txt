@@ -1,0 +1,42 @@
+﻿[
+    {
+        "id":  2792,
+        "processName":  "Hwp",
+        "path":  "C:\\Program Files (x86)\\HNC\\Office 2024\\HOffice130\\Bin\\Hwp.exe",
+        "mainWindowTitle":  "",
+        "responding":  true,
+        "action":  "stop_attempted",
+        "stopped":  true,
+        "error":  null
+    },
+    {
+        "id":  12380,
+        "processName":  "Hwp",
+        "path":  "C:\\Program Files (x86)\\HNC\\Office 2024\\HOffice130\\Bin\\Hwp.exe",
+        "mainWindowTitle":  "",
+        "responding":  true,
+        "action":  "stop_attempted",
+        "stopped":  true,
+        "error":  null
+    },
+    {
+        "id":  26000,
+        "processName":  "Hwp",
+        "path":  "C:\\Program Files (x86)\\HNC\\Office 2024\\HOffice130\\Bin\\Hwp.exe",
+        "mainWindowTitle":  "",
+        "responding":  true,
+        "action":  "stop_attempted",
+        "stopped":  true,
+        "error":  null
+    },
+    {
+        "id":  36424,
+        "processName":  "Hwp",
+        "path":  "C:\\Program Files (x86)\\HNC\\Office 2024\\HOffice130\\Bin\\Hwp.exe",
+        "mainWindowTitle":  "",
+        "responding":  true,
+        "action":  "stop_attempted",
+        "stopped":  true,
+        "error":  null
+    }
+]

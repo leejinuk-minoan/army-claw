@@ -1,0 +1,1 @@
+Ajv 8.20.0 is MIT licensed; redistribution obligations are preservation of copyright and license notice.

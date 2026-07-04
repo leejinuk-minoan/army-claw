@@ -1,12 +1,17 @@
 {
-  "schema_version": "1.0.0",
   "task_id": "hwpx-core-benchmark-003-evidence-integrity",
   "candidate_id": "hancom_com",
-  "method": "S01-evidence-integrity-gate",
-  "status": "not_applicable",
-  "planned_commands": [],
+  "candidate_role": "layout_authority",
+  "scenario_id": "S01",
+  "planned_commands": [
+    "Task 003 hancom_com S01 local evidence execution"
+  ],
   "attempted_commands": [],
-  "checked_paths": [],
-  "checked_path_results": [],
-  "generated_at": "2026-07-03T02:04:14.465Z"
+  "validator_results": [],
+  "missing_evidence": [],
+  "evidence_completeness": "not_applicable",
+  "status": "not_applicable",
+  "status_reason": "S01 is outside layout_authority responsibility",
+  "not_applicable_rationale": "S01 is not assigned to layout_authority in the v6 role matrix",
+  "role_matrix_reference": "role-matrix:v6-canonical-output-alignment"
 }

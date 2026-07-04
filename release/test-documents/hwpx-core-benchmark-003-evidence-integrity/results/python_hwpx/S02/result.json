@@ -1,43 +1,42 @@
 {
-  "schema_version": "1.0.0",
   "task_id": "hwpx-core-benchmark-003-evidence-integrity",
   "candidate_id": "python_hwpx",
   "candidate_role": "editor",
   "scenario_id": "S02",
-  "scenario_name": "scoped main 11-2 paragraph replacement",
-  "previous_status": "blocked",
-  "status": "blocked",
-  "status_reason": "python_hwpx artifact/runtime/license evidence is not acquired in Task 003",
-  "evidence_completeness": "missing",
+  "status_reason": "Concrete native execution evidence has not been generated in the D-1 output-alignment gate",
+  "evidence_completeness": "partial",
   "missing_evidence": [
-    "pinned_offline_artifact",
-    "runtime_install",
-    "license_evidence"
+    "runtime_execution_evidence"
   ],
-  "evidence_path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/results/python_hwpx/S02/result.json",
   "planned_commands": [
-    "Acquire pinned offline artifact for python_hwpx",
-    "Install python_hwpx in a clean offline environment",
-    "Run python_hwpx process for S02"
+    "Task 003 python_hwpx S02 local evidence execution"
   ],
   "attempted_commands": [],
-  "checked_paths": [
-    "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/external-artifacts/python_hwpx"
-  ],
-  "checked_path_results": [
-    {
-      "path": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/external-artifacts/python_hwpx",
-      "exists": false
-    }
-  ],
-  "validator_results": [
-    {
-      "validator_id": "s02-role-status-gate",
-      "valid": false,
-      "missing_evidence": [
-        "complete_scenario_evidence_not_available"
-      ]
-    }
-  ],
-  "generated_at": "2026-07-03T02:04:14.413Z"
+  "validator_results": [],
+  "status": "blocked",
+  "prerequisite_probe": {
+    "performed": true,
+    "available": false,
+    "method": "filesystem evidence probe before final scenario execution",
+    "probe_evidence_path": "external-artifacts/task003-v6/prerequisite-probe.txt",
+    "probe_evidence_sha256": "5b8753d9f8a6a1110756b573c06eb21697653df7d087f734c8ad4d00ec68a76f",
+    "checked_path_results": [
+      {
+        "path": "external-artifacts/task003-v6/python_hwpx-S02-native-output.hwpx",
+        "exists": false,
+        "size": null,
+        "sha256": null,
+        "hash_algorithm": null,
+        "source": null
+      }
+    ],
+    "blocked_reason_code": "runtime_evidence_not_generated_yet",
+    "missing_prerequisites": [
+      "python_hwpx_S02_runtime_execution_evidence"
+    ]
+  },
+  "blocked_reason_code": "runtime_evidence_not_generated_yet",
+  "missing_prerequisites": [
+    "python_hwpx_S02_runtime_execution_evidence"
+  ]
 }
