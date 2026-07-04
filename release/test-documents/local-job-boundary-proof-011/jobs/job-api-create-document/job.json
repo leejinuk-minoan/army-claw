@@ -1,0 +1,24 @@
+{
+  "job_id": "job-api-create-document",
+  "api_request_id": "api-create_document",
+  "request_id": "req-create_document",
+  "task_id": "local-job-boundary-proof-011",
+  "status": "completed",
+  "created_at": "2026-07-04T22:15:53.625Z",
+  "updated_at": "2026-07-04T22:15:53.851Z",
+  "started_at": "2026-07-04T22:15:53.636Z",
+  "ended_at": "2026-07-04T22:15:53.851Z",
+  "request_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\t11\\release\\test-documents\\local-job-boundary-proof-011\\requests\\create-document-request.json",
+  "response_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\t11\\release\\test-documents\\local-job-boundary-proof-011\\responses\\job-api-create-document-response.json",
+  "plan_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\t11\\release\\test-documents\\local-job-boundary-proof-011\\plans\\job-api-create-document-plan.json",
+  "report_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\t11\\release\\test-documents\\local-job-boundary-proof-011\\reports\\job-api-create-document-agent-report.json",
+  "output_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\t11\\release\\test-documents\\local-job-boundary-proof-011\\outputs\\job-api-create-document-output.hwpx",
+  "evidence_paths": [
+    "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\t11\\release\\test-documents\\local-job-boundary-proof-011\\evidence\\job-api-create-document-evidence-1.json"
+  ],
+  "failure": null,
+  "attempts": 1,
+  "real_com_executed": false,
+  "final_core_selection_declared": false,
+  "stage_2_transition_declared": false
+}

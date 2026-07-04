@@ -1,0 +1,57 @@
+{
+  "plan_id": "plan-req-apply_style",
+  "request_id": "req-apply_style",
+  "api_request_id": "api-apply_style",
+  "task_id": "local-job-boundary-proof-011",
+  "created_at": "2026-07-04T22:15:54.184Z",
+  "planner_id": "AgentApiBoundaryPlanner",
+  "steps": [
+    {
+      "step_id": "step-apply-style",
+      "operation_id": "apply-style",
+      "intent": "apply_style",
+      "backend_role": "editor",
+      "input_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\t11\\release\\test-documents\\local-job-boundary-proof-011\\api-workspaces\\job-api-apply-style\\release\\test-documents\\agent-api-boundary-proof-010\\fixtures\\source.hwpx",
+      "output_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\t11\\release\\test-documents\\local-job-boundary-proof-011\\api-workspaces\\job-api-apply-style\\release\\test-documents\\agent-api-boundary-proof-010\\outputs\\apply-style-output.hwpx",
+      "options": {
+        "text": "Task 011 apply_style content",
+        "style": "emphasis"
+      },
+      "evidence_tag": "apply-style-editor",
+      "expected_evidence_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\t11\\release\\test-documents\\local-job-boundary-proof-011\\api-workspaces\\job-api-apply-style\\release\\test-documents\\agent-api-boundary-proof-010\\evidence\\apply-style-editor.json"
+    }
+  ],
+  "constraints": {
+    "backend_role": "editor",
+    "backend_id": "NodeXmlThinInterimEditorAdapter",
+    "no_real_com": true,
+    "no_final_core_selection": true,
+    "force_validation_failure": false
+  },
+  "source_request": {
+    "api_request_id": "api-apply_style",
+    "request_id": "req-apply_style",
+    "task_id": "local-job-boundary-proof-011",
+    "document_intent": "apply_style",
+    "content": {
+      "text": "Task 011 apply_style content",
+      "table": [
+        [
+          "A",
+          "B"
+        ],
+        [
+          "1",
+          "2"
+        ]
+      ],
+      "style": "emphasis"
+    },
+    "constraints": {
+      "backend_role": "editor",
+      "backend_id": "NodeXmlThinInterimEditorAdapter",
+      "no_real_com": true,
+      "no_final_core_selection": true
+    }
+  }
+}

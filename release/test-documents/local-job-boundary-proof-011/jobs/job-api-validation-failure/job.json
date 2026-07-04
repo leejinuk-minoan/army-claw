@@ -1,0 +1,29 @@
+{
+  "job_id": "job-api-validation-failure",
+  "api_request_id": "api-validation-failure",
+  "request_id": "req-validation-failure",
+  "task_id": "local-job-boundary-proof-011",
+  "status": "failed",
+  "created_at": "2026-07-04T22:15:54.343Z",
+  "updated_at": "2026-07-04T22:15:54.490Z",
+  "started_at": "2026-07-04T22:15:54.352Z",
+  "ended_at": "2026-07-04T22:15:54.490Z",
+  "request_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\t11\\release\\test-documents\\local-job-boundary-proof-011\\requests\\validation-failure-request.json",
+  "response_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\t11\\release\\test-documents\\local-job-boundary-proof-011\\responses\\job-api-validation-failure-response.json",
+  "plan_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\t11\\release\\test-documents\\local-job-boundary-proof-011\\plans\\job-api-validation-failure-plan.json",
+  "report_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\t11\\release\\test-documents\\local-job-boundary-proof-011\\reports\\job-api-validation-failure-agent-report.json",
+  "output_path": null,
+  "evidence_paths": [
+    "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\t11\\release\\test-documents\\local-job-boundary-proof-011\\evidence\\job-api-validation-failure-evidence-1.json"
+  ],
+  "failure": {
+    "type": "validation_error",
+    "message": "interim_editor_output_invalid",
+    "last_successful_step": "validate_output",
+    "quarantine_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\t11\\release\\test-documents\\local-job-boundary-proof-011\\api-workspaces\\job-api-validation-failure\\release\\test-documents\\agent-api-boundary-proof-010\\outputs\\validation-failure-output.hwpx.quarantine-edit-paragraph"
+  },
+  "attempts": 1,
+  "real_com_executed": false,
+  "final_core_selection_declared": false,
+  "stage_2_transition_declared": false
+}

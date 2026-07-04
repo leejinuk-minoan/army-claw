@@ -1,0 +1,26 @@
+{
+  "api_request_id": "api-invalid",
+  "request_id": "req-invalid",
+  "accepted": false,
+  "status": "rejected",
+  "plan_path": null,
+  "report_path": null,
+  "output_path": null,
+  "evidence_paths": [],
+  "failure": {
+    "type": "policy_error",
+    "message": "document_intent_required",
+    "last_successful_step": "validate_api_request",
+    "quarantine_path": null
+  },
+  "validation": {
+    "valid": false,
+    "failure_count": 1,
+    "failures": [
+      "document_intent_required"
+    ]
+  },
+  "real_com_executed": false,
+  "final_core_selection_declared": false,
+  "stage_2_transition_declared": false
+}
