@@ -1,0 +1,17 @@
+{
+  "task_id": "editor-backend-candidate-comparison-007",
+  "generated_at": "2026-07-04T12:14:51.817Z",
+  "recommendation": "node_xml_thin_interim_editor",
+  "final_core_selection_declared": false,
+  "stage_2_transition_declared": false,
+  "rationale": [
+    "python-hwpx is not fully verified for current offline/local environment.",
+    "Node XML thin backend has Task 006 paragraph/table/style outputs and evidence compatibility.",
+    "This is not a final HWPX core selection."
+  ],
+  "next_required_evidence": [
+    "offline-reviewed python-hwpx artifact",
+    "python-hwpx license record",
+    "python-hwpx paragraph/table/style HWPX output proof"
+  ]
+}

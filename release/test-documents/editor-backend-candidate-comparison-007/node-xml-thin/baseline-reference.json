@@ -1,0 +1,57 @@
+{
+  "task_id": "editor-backend-candidate-comparison-007",
+  "candidate_id": "node_xml_thin",
+  "already_verified": true,
+  "source_task": "hwpcoreadapter-backend-proof-006",
+  "task006_summary": {
+    "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task007-editor-backend-candidate-comparison-20260704145500\\release\\test-documents\\hwpcoreadapter-backend-proof-006\\tests\\backend-proof-summary.json",
+    "exists": true,
+    "size": 2885,
+    "sha256": "0864809a5557b08ed96c219f369f9db446a9d175429c0532358d45b0388e4b18",
+    "hash_algorithm": "sha256"
+  },
+  "outputs": {
+    "paragraph": {
+      "reference": {
+        "path": "C:/Users/USER/Desktop/로컬 open claw 만들기/.tmp/task006-hwpcoreadapter-backend-proof-20260704141000/release/test-documents/hwpcoreadapter-backend-proof-006/outputs/editor-paragraph-output.hwpx",
+        "size": 1842613,
+        "sha256": "1681ec4d8fc0d2e81f514e8c44e9a96140caa154bf8ece1e918764d0204041a5"
+      },
+      "exists": true,
+      "sha256": "1681ec4d8fc0d2e81f514e8c44e9a96140caa154bf8ece1e918764d0204041a5",
+      "size": 1842613
+    },
+    "table": {
+      "reference": {
+        "path": "C:/Users/USER/Desktop/로컬 open claw 만들기/.tmp/task006-hwpcoreadapter-backend-proof-20260704141000/release/test-documents/hwpcoreadapter-backend-proof-006/outputs/editor-table-output.hwpx",
+        "size": 1842659,
+        "sha256": "ddb524562e2b47b878100fc035f2280c1fe50be9b6c2659ff4518cd00f6f74c8"
+      },
+      "exists": true,
+      "sha256": "ddb524562e2b47b878100fc035f2280c1fe50be9b6c2659ff4518cd00f6f74c8",
+      "size": 1842659
+    },
+    "style": {
+      "reference": {
+        "path": "C:/Users/USER/Desktop/로컬 open claw 만들기/.tmp/task006-hwpcoreadapter-backend-proof-20260704141000/release/test-documents/hwpcoreadapter-backend-proof-006/outputs/editor-style-output.hwpx",
+        "size": 1842612,
+        "sha256": "5d8ab8241b3763fb120d15edfd72fcacc4001fb7272b71b7293aeca81152def2"
+      },
+      "exists": true,
+      "sha256": "5d8ab8241b3763fb120d15edfd72fcacc4001fb7272b71b7293aeca81152def2",
+      "size": 1842612
+    }
+  },
+  "strength": [
+    "offline/local proof already generated",
+    "paragraph/table/style HWPX outputs exist",
+    "transaction/promote/evidence model compatible",
+    "non-target preservation proof exists"
+  ],
+  "limitation": [
+    "thin XML proof, not production-grade semantic editor",
+    "layout quality not guaranteed without native authority",
+    "not final HWPX core selection"
+  ],
+  "interim_suitability": "suitable_as_interim_editor_candidate"
+}

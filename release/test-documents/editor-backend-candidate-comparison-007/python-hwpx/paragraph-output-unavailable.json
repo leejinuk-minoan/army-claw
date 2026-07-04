@@ -1,0 +1,9 @@
+{
+  "candidate_id": "python_hwpx",
+  "output_kind": "paragraph",
+  "output_unavailable": true,
+  "reason": "python_hwpx_dependency_not_importable",
+  "missing_dependency": "hwpx/python_hwpx/pyhwpx",
+  "required_next_action": "Provide an offline-reviewed python-hwpx package, license record, and importable module in the local environment.",
+  "no_install_attempted": true
+}

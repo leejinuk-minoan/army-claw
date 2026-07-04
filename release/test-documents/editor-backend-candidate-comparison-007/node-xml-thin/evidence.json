@@ -1,0 +1,11 @@
+{
+  "task_id": "editor-backend-candidate-comparison-007",
+  "candidate_id": "node_xml_thin",
+  "baseline_reference_path": "release/test-documents/editor-backend-candidate-comparison-007/node-xml-thin/baseline-reference.json",
+  "output_fidelity_probe_path": "release/test-documents/editor-backend-candidate-comparison-007/node-xml-thin/output-fidelity-probe.json",
+  "already_verified": true,
+  "evidence_compatibility": "pass",
+  "transaction_promote_compatibility": "pass",
+  "preservation_friendliness": "pass",
+  "interim_suitability": "suitable_as_interim_editor_candidate"
+}

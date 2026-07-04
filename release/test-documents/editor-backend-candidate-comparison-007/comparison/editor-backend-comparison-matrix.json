@@ -1,0 +1,80 @@
+{
+  "task_id": "editor-backend-candidate-comparison-007",
+  "generated_at": "2026-07-04T12:14:51.817Z",
+  "criteria": [
+    {
+      "criterion": "offline_availability",
+      "python_hwpx": "fail",
+      "node_xml_thin": "pass"
+    },
+    {
+      "criterion": "windows_local_compatibility",
+      "python_hwpx": "partial",
+      "node_xml_thin": "pass"
+    },
+    {
+      "criterion": "dependency_footprint",
+      "python_hwpx": "fail",
+      "node_xml_thin": "partial"
+    },
+    {
+      "criterion": "license_clarity",
+      "python_hwpx": "not_verified",
+      "node_xml_thin": "partial"
+    },
+    {
+      "criterion": "paragraph_output_capability",
+      "python_hwpx": "fail",
+      "node_xml_thin": "pass"
+    },
+    {
+      "criterion": "table_output_capability",
+      "python_hwpx": "fail",
+      "node_xml_thin": "pass"
+    },
+    {
+      "criterion": "style_output_capability",
+      "python_hwpx": "fail",
+      "node_xml_thin": "pass"
+    },
+    {
+      "criterion": "preservation_friendliness",
+      "python_hwpx": "not_verified",
+      "node_xml_thin": "pass"
+    },
+    {
+      "criterion": "evidence_compatibility",
+      "python_hwpx": "not_verified",
+      "node_xml_thin": "pass"
+    },
+    {
+      "criterion": "transaction_promote_compatibility",
+      "python_hwpx": "not_verified",
+      "node_xml_thin": "pass"
+    },
+    {
+      "criterion": "validation_compatibility",
+      "python_hwpx": "not_verified",
+      "node_xml_thin": "pass"
+    },
+    {
+      "criterion": "native_layout_authority_compatibility",
+      "python_hwpx": "partial",
+      "node_xml_thin": "partial"
+    },
+    {
+      "criterion": "implementation_risk",
+      "python_hwpx": "fail",
+      "node_xml_thin": "partial"
+    },
+    {
+      "criterion": "operational_risk",
+      "python_hwpx": "fail",
+      "node_xml_thin": "partial"
+    }
+  ],
+  "recommended_roles": {
+    "python_hwpx": "future_candidate_requires_offline_install_and_license_review",
+    "node_xml_thin": "interim_editor_backend_candidate"
+  }
+}

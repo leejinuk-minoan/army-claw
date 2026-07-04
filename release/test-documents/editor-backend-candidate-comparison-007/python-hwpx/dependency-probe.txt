@@ -1,0 +1,10 @@
+Task 007 dependency probe
+No online install attempted.
+No pip install attempted.
+No dependency vendoring attempted.
+python_available=true
+selected_python=python
+import_available=false
+selected_module=none
+offline_artifact_count=0
+probe_sha256=ff08920887775aa48e132854a3b7f6059128b01ea841e41475da53985d67b9be

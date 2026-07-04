@@ -1,0 +1,31 @@
+Task 007 license probe
+license_status=license not verified in current repo
+license_verified=false
+No external license lookup performed.
+No package download performed.
+{
+  "checked_repo_records": true,
+  "license_verified": false,
+  "status": "license not verified in current repo",
+  "license_like_records": [
+    {
+      "path": "backend/pyproject.toml",
+      "matched_patterns": [
+        "/pyproject/iu"
+      ]
+    },
+    {
+      "path": "docs/hwp-reference-profiles/manifests/official-action-plan.json",
+      "matched_patterns": [
+        "/hwpx/iu"
+      ]
+    },
+    {
+      "path": "docs/hwp-reference-profiles/manifests/qualification-review-booklet.json",
+      "matched_patterns": [
+        "/hwpx/iu"
+      ]
+    }
+  ],
+  "python_hwpx_specific_records": []
+}
