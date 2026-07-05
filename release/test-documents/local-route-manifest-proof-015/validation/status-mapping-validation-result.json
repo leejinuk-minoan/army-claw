@@ -1,0 +1,8 @@
+{
+  "valid": true,
+  "checked": [
+    "not_ready",
+    "not_found",
+    "validation_error"
+  ]
+}

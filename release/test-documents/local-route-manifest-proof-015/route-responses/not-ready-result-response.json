@@ -1,0 +1,34 @@
+{
+  "route_request_id": "route-not-ready-result",
+  "mock_method": "GET",
+  "mock_path": "/mock/jobs/job-pending/result",
+  "service_operation": "getResult",
+  "http_like_status": 409,
+  "ok": false,
+  "status": "not_ready",
+  "job_id": "job-pending",
+  "job_status": null,
+  "data": {
+    "route_id": "get_result",
+    "job_id": "job-pending",
+    "status": "not_ready"
+  },
+  "error": {
+    "code": "not_ready",
+    "type": "not_ready",
+    "message": "not_ready fixture",
+    "category": "state",
+    "retryable": true,
+    "user_visible": true,
+    "expected_status": "not_ready"
+  },
+  "artifacts": {
+    "output_path": null,
+    "report_path": null,
+    "evidence_paths": []
+  },
+  "contract_version": "service-contract-schema-error-taxonomy-013.v1",
+  "real_com_executed": false,
+  "final_core_selection_declared": false,
+  "stage_2_transition_declared": false
+}

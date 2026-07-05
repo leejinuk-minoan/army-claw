@@ -1,0 +1,103 @@
+{
+  "task_id": "local-route-manifest-proof-015",
+  "generated_at": "2026-07-05T03:21:35.509Z",
+  "manifest_version": "local-route-manifest-proof-015.v1",
+  "contract_version": "service-contract-schema-error-taxonomy-013.v1",
+  "completion_candidate": true,
+  "route_count": 6,
+  "request_fixture_count": 10,
+  "response_fixture_count": 10,
+  "proof_case_count": 20,
+  "proof_cases_passed": 20,
+  "previous_tasks_read_only": true,
+  "real_http_server_started": false,
+  "web_server_dependency_introduced": false,
+  "ui_implemented": false,
+  "real_com_executed": false,
+  "python_hwpx_dependency_introduced": false,
+  "install_or_vendor_action": false,
+  "final_core_selection_declared": false,
+  "stage_2_transition_declared": false,
+  "proof_cases": [
+    {
+      "case_name": "manifest has exactly six route entries",
+      "passed": true
+    },
+    {
+      "case_name": "each route has required core fields",
+      "passed": true
+    },
+    {
+      "case_name": "each service operation belongs to Task 013 enum",
+      "passed": true
+    },
+    {
+      "case_name": "each expected status belongs to Task 013 enum",
+      "passed": true
+    },
+    {
+      "case_name": "each expected error code belongs to Task 013 taxonomy",
+      "passed": true
+    },
+    {
+      "case_name": "submit route fixture matches manifest",
+      "passed": true
+    },
+    {
+      "case_name": "run route fixture matches manifest",
+      "passed": true
+    },
+    {
+      "case_name": "getJob route fixture matches manifest",
+      "passed": true
+    },
+    {
+      "case_name": "getStatus route fixture matches manifest",
+      "passed": true
+    },
+    {
+      "case_name": "getResult route fixture matches manifest",
+      "passed": true
+    },
+    {
+      "case_name": "listEvents route fixture matches manifest",
+      "passed": true
+    },
+    {
+      "case_name": "all response fixtures validate against Task 014 route contract",
+      "passed": true
+    },
+    {
+      "case_name": "not_ready fixture maps to 409",
+      "passed": true
+    },
+    {
+      "case_name": "not_found fixture maps to 404",
+      "passed": true
+    },
+    {
+      "case_name": "validation_error fixture maps to 422",
+      "passed": true
+    },
+    {
+      "case_name": "Task 014 route facade still passes by separate regression command",
+      "passed": true
+    },
+    {
+      "case_name": "Task 013 contract still passes by separate regression command",
+      "passed": true
+    },
+    {
+      "case_name": "previous Task 012/013/014 summaries remain read-only",
+      "passed": true
+    },
+    {
+      "case_name": "no actual HTTP server is started",
+      "passed": true
+    },
+    {
+      "case_name": "final_core_selection_declared=false and stage_2_transition_declared=false",
+      "passed": true
+    }
+  ]
+}

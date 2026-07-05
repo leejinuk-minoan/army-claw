@@ -1,0 +1,34 @@
+{
+  "route_request_id": "route-fixture-list_events",
+  "mock_method": "GET",
+  "mock_path": "/mock/jobs/job-route-manifest/events",
+  "service_operation": "listEvents",
+  "http_like_status": 200,
+  "ok": true,
+  "status": "completed",
+  "job_id": "job-route-manifest",
+  "job_status": "completed",
+  "data": {
+    "events": [
+      {
+        "to_status": "pending"
+      },
+      {
+        "to_status": "running"
+      },
+      {
+        "to_status": "completed"
+      }
+    ]
+  },
+  "error": null,
+  "artifacts": {
+    "output_path": null,
+    "report_path": null,
+    "evidence_paths": []
+  },
+  "contract_version": "service-contract-schema-error-taxonomy-013.v1",
+  "real_com_executed": false,
+  "final_core_selection_declared": false,
+  "stage_2_transition_declared": false
+}

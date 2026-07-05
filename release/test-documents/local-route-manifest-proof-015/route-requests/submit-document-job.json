@@ -1,0 +1,23 @@
+{
+  "route_request_id": "route-fixture-submit_document_job",
+  "route_id": "submit_document_job",
+  "mock_method": "POST",
+  "mock_path": "/mock/jobs",
+  "service_operation": "submit",
+  "params": {},
+  "body": {
+    "service_request_id": "svc-fixture-submit_document_job",
+    "api_request_id": "api-fixture-submit_document_job",
+    "request_id": "req-fixture-submit_document_job",
+    "task_id": "local-route-manifest-proof-015",
+    "document_intent": "create_document",
+    "content": {
+      "text": "Task 015 route manifest fixture"
+    },
+    "constraints": {
+      "backend_role": "editor",
+      "backend_id": "NodeXmlThinInterimEditorAdapter",
+      "no_real_com": true
+    }
+  }
+}

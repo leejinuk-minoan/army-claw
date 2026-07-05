@@ -1,0 +1,15 @@
+{
+  "accepted": 202,
+  "pending": 202,
+  "running": 202,
+  "completed": 200,
+  "rejected": 400,
+  "policy_error": 400,
+  "validation_error": 422,
+  "not_found": 404,
+  "not_ready": 409,
+  "failed": 500,
+  "execution_error": 500,
+  "artifact_missing": 500,
+  "contract_violation": 500
+}

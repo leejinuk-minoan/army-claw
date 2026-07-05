@@ -1,0 +1,11 @@
+{
+  "route_request_id": "route-fixture-get_result",
+  "route_id": "get_result",
+  "mock_method": "GET",
+  "mock_path": "/mock/jobs/job-route-manifest/result",
+  "service_operation": "getResult",
+  "params": {
+    "job_id": "job-route-manifest"
+  },
+  "body": {}
+}

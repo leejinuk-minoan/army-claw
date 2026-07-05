@@ -1,0 +1,26 @@
+{
+  "route_request_id": "route-fixture-get_job",
+  "mock_method": "GET",
+  "mock_path": "/mock/jobs/job-route-manifest",
+  "service_operation": "getJob",
+  "http_like_status": 200,
+  "ok": true,
+  "status": "completed",
+  "job_id": "job-route-manifest",
+  "job_status": "completed",
+  "data": {
+    "route_id": "get_job",
+    "job_id": "job-route-manifest",
+    "status": "completed"
+  },
+  "error": null,
+  "artifacts": {
+    "output_path": null,
+    "report_path": null,
+    "evidence_paths": []
+  },
+  "contract_version": "service-contract-schema-error-taxonomy-013.v1",
+  "real_com_executed": false,
+  "final_core_selection_declared": false,
+  "stage_2_transition_declared": false
+}

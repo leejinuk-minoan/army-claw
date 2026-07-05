@@ -1,0 +1,11 @@
+{
+  "route_request_id": "route-fixture-list_events",
+  "route_id": "list_events",
+  "mock_method": "GET",
+  "mock_path": "/mock/jobs/job-route-manifest/events",
+  "service_operation": "listEvents",
+  "params": {
+    "job_id": "job-route-manifest"
+  },
+  "body": {}
+}

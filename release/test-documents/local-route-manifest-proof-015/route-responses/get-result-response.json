@@ -1,0 +1,28 @@
+{
+  "route_request_id": "route-fixture-get_result",
+  "mock_method": "GET",
+  "mock_path": "/mock/jobs/job-route-manifest/result",
+  "service_operation": "getResult",
+  "http_like_status": 200,
+  "ok": true,
+  "status": "completed",
+  "job_id": "job-route-manifest",
+  "job_status": "completed",
+  "data": {
+    "route_id": "get_result",
+    "job_id": "job-route-manifest",
+    "status": "completed"
+  },
+  "error": null,
+  "artifacts": {
+    "output_path": "release/test-documents/local-route-manifest-proof-015/outputs/job-route-manifest-output.hwpx",
+    "report_path": "release/test-documents/local-route-manifest-proof-015/reports/job-route-manifest-report.json",
+    "evidence_paths": [
+      "release/test-documents/local-route-manifest-proof-015/evidence/job-route-manifest-evidence.json"
+    ]
+  },
+  "contract_version": "service-contract-schema-error-taxonomy-013.v1",
+  "real_com_executed": false,
+  "final_core_selection_declared": false,
+  "stage_2_transition_declared": false
+}

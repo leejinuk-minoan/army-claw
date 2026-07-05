@@ -1,0 +1,17 @@
+{
+  "task_id": "local-route-manifest-proof-015",
+  "purpose": "Shared local manifest for future UI/backend route consumers before production HTTP route selection.",
+  "consumer_rules": [
+    "Use route_id and service_operation as the stable local contract.",
+    "Treat mock_path as proof fixture path, not production endpoint commitment.",
+    "Use status and error.code from Task 013 for user messaging.",
+    "Only completed getResult responses may expose a non-null output_path."
+  ],
+  "non_goals": [
+    "No real HTTP server.",
+    "No Express/Fastify/Koa/Hono dependency.",
+    "No React UI implementation.",
+    "No production API framework selection.",
+    "No Model Gateway or Offline Skill Runtime implementation."
+  ]
+}
