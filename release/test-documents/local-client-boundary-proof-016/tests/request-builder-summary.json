@@ -1,0 +1,10 @@
+{
+  "task_id": "local-client-boundary-proof-016",
+  "generated_at": "2026-07-05T07:48:53.520Z",
+  "manifest_version": "local-route-manifest-proof-015.v1",
+  "request_count": 6,
+  "controlled_error_count": 2,
+  "all_six_route_requests_built": true,
+  "invalid_route_controlled": true,
+  "missing_job_id_controlled": true
+}

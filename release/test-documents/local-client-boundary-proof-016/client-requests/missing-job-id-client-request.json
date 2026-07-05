@@ -1,0 +1,6 @@
+{
+  "code": "invalid_request",
+  "status": "validation_error",
+  "message": "job_id is required for get_result",
+  "controlled": true
+}

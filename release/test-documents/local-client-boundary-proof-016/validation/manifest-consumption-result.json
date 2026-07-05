@@ -1,0 +1,10 @@
+{
+  "valid": true,
+  "manifest_version": "local-route-manifest-proof-015.v1",
+  "route_count": 6,
+  "validation": {
+    "valid": true,
+    "errors": [],
+    "contract_version": "service-contract-schema-error-taxonomy-013.v1"
+  }
+}

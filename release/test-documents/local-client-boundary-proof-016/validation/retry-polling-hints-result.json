@@ -1,0 +1,6 @@
+{
+  "valid": true,
+  "pending_should_poll": true,
+  "not_ready_retryable": true,
+  "completed_should_poll": false
+}

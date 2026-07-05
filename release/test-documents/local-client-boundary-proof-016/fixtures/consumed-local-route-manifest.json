@@ -1,0 +1,240 @@
+{
+  "manifest_version": "local-route-manifest-proof-015.v1",
+  "task_id": "local-route-manifest-proof-015",
+  "generated_at": "2026-07-05T03:21:35.484Z",
+  "contract_version": "service-contract-schema-error-taxonomy-013.v1",
+  "source_contract_task": "service-contract-schema-error-taxonomy-013",
+  "source_route_facade_task": "inprocess-route-facade-proof-014",
+  "routes": [
+    {
+      "route_id": "submit_document_job",
+      "mock_method": "POST",
+      "mock_path": "/mock/jobs",
+      "service_operation": "submit",
+      "requires_body": true,
+      "requires_job_id": false,
+      "expected_statuses": [
+        "accepted",
+        "validation_error",
+        "policy_error"
+      ],
+      "expected_http_like_statuses": [
+        202,
+        422,
+        400
+      ]
+    },
+    {
+      "route_id": "run_job",
+      "mock_method": "POST",
+      "mock_path": "/mock/jobs/:job_id/run",
+      "service_operation": "runJob",
+      "requires_body": false,
+      "requires_job_id": true,
+      "expected_statuses": [
+        "completed",
+        "failed",
+        "rejected",
+        "not_found"
+      ],
+      "expected_http_like_statuses": [
+        200,
+        500,
+        400,
+        404
+      ]
+    },
+    {
+      "route_id": "get_job",
+      "mock_method": "GET",
+      "mock_path": "/mock/jobs/:job_id",
+      "service_operation": "getJob",
+      "requires_body": false,
+      "requires_job_id": true,
+      "expected_statuses": [
+        "pending",
+        "running",
+        "completed",
+        "failed",
+        "rejected",
+        "not_found"
+      ],
+      "expected_http_like_statuses": [
+        202,
+        200,
+        500,
+        400,
+        404
+      ]
+    },
+    {
+      "route_id": "get_status",
+      "mock_method": "GET",
+      "mock_path": "/mock/jobs/:job_id/status",
+      "service_operation": "getStatus",
+      "requires_body": false,
+      "requires_job_id": true,
+      "expected_statuses": [
+        "pending",
+        "running",
+        "completed",
+        "failed",
+        "rejected",
+        "not_found"
+      ],
+      "expected_http_like_statuses": [
+        202,
+        200,
+        500,
+        400,
+        404
+      ]
+    },
+    {
+      "route_id": "get_result",
+      "mock_method": "GET",
+      "mock_path": "/mock/jobs/:job_id/result",
+      "service_operation": "getResult",
+      "requires_body": false,
+      "requires_job_id": true,
+      "expected_statuses": [
+        "completed",
+        "failed",
+        "rejected",
+        "not_ready",
+        "not_found"
+      ],
+      "expected_http_like_statuses": [
+        200,
+        500,
+        400,
+        409,
+        404
+      ]
+    },
+    {
+      "route_id": "list_events",
+      "mock_method": "GET",
+      "mock_path": "/mock/jobs/:job_id/events",
+      "service_operation": "listEvents",
+      "requires_body": false,
+      "requires_job_id": true,
+      "expected_statuses": [
+        "completed",
+        "failed",
+        "rejected",
+        "pending",
+        "running",
+        "not_found"
+      ],
+      "expected_http_like_statuses": [
+        200,
+        500,
+        400,
+        202,
+        404
+      ]
+    }
+  ],
+  "status_mapping": {
+    "accepted": 202,
+    "pending": 202,
+    "running": 202,
+    "completed": 200,
+    "rejected": 400,
+    "policy_error": 400,
+    "validation_error": 422,
+    "not_found": 404,
+    "not_ready": 409,
+    "failed": 500,
+    "execution_error": 500,
+    "artifact_missing": 500,
+    "contract_violation": 500
+  },
+  "error_taxonomy_reference": {
+    "contract_version": "service-contract-schema-error-taxonomy-013.v1",
+    "codes": {
+      "invalid_request": {
+        "code": "invalid_request",
+        "category": "request",
+        "retryable": false,
+        "user_visible": true,
+        "description": "The request shape is missing required service fields or contains invalid field types.",
+        "expected_status": "validation_error"
+      },
+      "unsupported_intent": {
+        "code": "unsupported_intent",
+        "category": "request",
+        "retryable": false,
+        "user_visible": true,
+        "description": "The document intent is outside the currently supported Army Claw operation set.",
+        "expected_status": "policy_error"
+      },
+      "not_found": {
+        "code": "not_found",
+        "category": "lookup",
+        "retryable": false,
+        "user_visible": true,
+        "description": "The requested job, response, or artifact was not found in the local service store.",
+        "expected_status": "not_found"
+      },
+      "not_ready": {
+        "code": "not_ready",
+        "category": "state",
+        "retryable": true,
+        "user_visible": true,
+        "description": "The requested result exists but the job has not reached a terminal state.",
+        "expected_status": "not_ready"
+      },
+      "policy_error": {
+        "code": "policy_error",
+        "category": "policy",
+        "retryable": false,
+        "user_visible": true,
+        "description": "The request violates an offline, path, backend, or safety policy.",
+        "expected_status": "policy_error"
+      },
+      "validation_error": {
+        "code": "validation_error",
+        "category": "validation",
+        "retryable": false,
+        "user_visible": true,
+        "description": "The request, job, artifact, or generated output failed contract validation.",
+        "expected_status": "validation_error"
+      },
+      "execution_error": {
+        "code": "execution_error",
+        "category": "execution",
+        "retryable": true,
+        "user_visible": true,
+        "description": "The local execution boundary failed after accepting the request.",
+        "expected_status": "failed"
+      },
+      "artifact_missing": {
+        "code": "artifact_missing",
+        "category": "artifact",
+        "retryable": false,
+        "user_visible": false,
+        "description": "A required service artifact path was null, outside the task root, or unavailable.",
+        "expected_status": "failed"
+      },
+      "contract_violation": {
+        "code": "contract_violation",
+        "category": "contract",
+        "retryable": false,
+        "user_visible": false,
+        "description": "The producer returned a shape that does not match the Task 013 service contract.",
+        "expected_status": "failed"
+      }
+    }
+  },
+  "non_goals": [
+    "No real HTTP server.",
+    "No Express/Fastify/Koa/Hono dependency.",
+    "No React UI implementation.",
+    "No production API framework selection.",
+    "No Model Gateway or Offline Skill Runtime implementation."
+  ],
+  "final_core_selection_declared": false,
+  "stage_2_transition_declared": false
+}
