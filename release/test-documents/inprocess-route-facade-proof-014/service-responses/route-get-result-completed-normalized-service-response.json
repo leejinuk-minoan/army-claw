@@ -1,0 +1,16 @@
+{
+  "route_request_id": "route-get-result-completed",
+  "service_operation": "getResult",
+  "status": "completed",
+  "error": null,
+  "artifacts": {
+    "response_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task014-inprocess-route-facade-proof-20260705\\release\\test-documents\\inprocess-route-facade-proof-014\\responses\\job-api-route-create-document-response.json",
+    "report_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task014-inprocess-route-facade-proof-20260705\\release\\test-documents\\inprocess-route-facade-proof-014\\reports\\job-api-route-create-document-agent-report.json",
+    "output_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task014-inprocess-route-facade-proof-20260705\\release\\test-documents\\inprocess-route-facade-proof-014\\outputs\\job-api-route-create-document-output.hwpx",
+    "evidence_paths": [
+      "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task014-inprocess-route-facade-proof-20260705\\release\\test-documents\\inprocess-route-facade-proof-014\\evidence\\job-api-route-create-document-evidence-1.json"
+    ],
+    "service_response_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task014-inprocess-route-facade-proof-20260705\\release\\test-documents\\inprocess-route-facade-proof-014\\internal-execution-workspace\\release\\test-documents\\service-adapter-boundary-proof-012\\service-responses\\get-result-completed-response.json"
+  },
+  "contract_version": "service-contract-schema-error-taxonomy-013.v1"
+}

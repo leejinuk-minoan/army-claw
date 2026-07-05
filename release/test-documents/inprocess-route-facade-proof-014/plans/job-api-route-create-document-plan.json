@@ -1,0 +1,58 @@
+{
+  "plan_id": "plan-req-route-create-document",
+  "request_id": "req-route-create-document",
+  "api_request_id": "api-route-create-document",
+  "task_id": "local-job-boundary-proof-011",
+  "created_at": "2026-07-05T03:05:05.362Z",
+  "planner_id": "AgentApiBoundaryPlanner",
+  "steps": [
+    {
+      "step_id": "step-create-document",
+      "operation_id": "create-document",
+      "intent": "create_document",
+      "backend_role": "editor",
+      "input_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task014-inprocess-route-facade-proof-20260705\\release\\test-documents\\inprocess-route-facade-proof-014\\internal-execution-workspace\\release\\test-documents\\service-adapter-boundary-proof-012\\execution-workspaces\\svc-submit-create-1783220705321\\release\\test-documents\\local-job-boundary-proof-011\\api-workspaces\\job-api-route-create-document\\release\\test-documents\\agent-api-boundary-proof-010\\fixtures\\source.hwpx",
+      "output_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task014-inprocess-route-facade-proof-20260705\\release\\test-documents\\inprocess-route-facade-proof-014\\internal-execution-workspace\\release\\test-documents\\service-adapter-boundary-proof-012\\execution-workspaces\\svc-submit-create-1783220705321\\release\\test-documents\\local-job-boundary-proof-011\\api-workspaces\\job-api-route-create-document\\release\\test-documents\\agent-api-boundary-proof-010\\outputs\\create-document-output.hwpx",
+      "options": {
+        "title": "Task 014 route proof"
+      },
+      "evidence_tag": "create-document-editor",
+      "expected_evidence_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task014-inprocess-route-facade-proof-20260705\\release\\test-documents\\inprocess-route-facade-proof-014\\internal-execution-workspace\\release\\test-documents\\service-adapter-boundary-proof-012\\execution-workspaces\\svc-submit-create-1783220705321\\release\\test-documents\\local-job-boundary-proof-011\\api-workspaces\\job-api-route-create-document\\release\\test-documents\\agent-api-boundary-proof-010\\evidence\\create-document-editor.json"
+    }
+  ],
+  "constraints": {
+    "backend_role": "editor",
+    "backend_id": "NodeXmlThinInterimEditorAdapter",
+    "no_real_com": true,
+    "no_final_core_selection": true,
+    "force_validation_failure": false
+  },
+  "source_request": {
+    "service_request_id": "svc-route-submit-create-document",
+    "service_operation": "submit",
+    "api_request_id": "api-route-create-document",
+    "request_id": "req-route-create-document",
+    "task_id": "local-job-boundary-proof-011",
+    "document_intent": "create_document",
+    "content": {
+      "text": "Task 014 route proof",
+      "table": [
+        [
+          "A",
+          "B"
+        ],
+        [
+          "1",
+          "2"
+        ]
+      ],
+      "style": "emphasis"
+    },
+    "constraints": {
+      "backend_role": "editor",
+      "backend_id": "NodeXmlThinInterimEditorAdapter",
+      "no_real_com": true,
+      "no_final_core_selection": true
+    }
+  }
+}

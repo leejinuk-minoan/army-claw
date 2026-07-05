@@ -1,0 +1,10 @@
+{
+  "route_request_id": "route-validation-failure",
+  "mock_method": "GET",
+  "mock_path": "/mock/jobs/job-api-route-validation-failure/result",
+  "service_operation": "getResult",
+  "params": {
+    "job_id": "job-api-route-validation-failure"
+  },
+  "body": {}
+}

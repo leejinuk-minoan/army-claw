@@ -1,0 +1,19 @@
+{
+  "route_request_id": "route-invalid",
+  "service_operation": "unknown",
+  "status": "validation_error",
+  "error": {
+    "code": "invalid_request",
+    "type": "invalid_request",
+    "message": "service_operation_required_or_unsupported",
+    "category": "request",
+    "retryable": false,
+    "user_visible": true,
+    "expected_status": "validation_error"
+  },
+  "artifacts": {
+    "output_path": null,
+    "evidence_paths": []
+  },
+  "contract_version": "service-contract-schema-error-taxonomy-013.v1"
+}

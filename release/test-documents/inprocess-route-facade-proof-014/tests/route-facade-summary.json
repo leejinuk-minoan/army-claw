@@ -1,0 +1,140 @@
+{
+  "task_id": "inprocess-route-facade-proof-014",
+  "generated_at": "2026-07-05T03:05:05.744Z",
+  "completion_candidate": true,
+  "proof_case_count": 10,
+  "proof_cases_passed": 10,
+  "route_responses_use_task013_status_enum": true,
+  "route_errors_use_task013_error_taxonomy": true,
+  "previous_tasks_read_only": true,
+  "real_http_server_started": false,
+  "express_fastify_dependency_introduced": false,
+  "ui_implemented": false,
+  "real_com_executed": false,
+  "python_hwpx_dependency_introduced": false,
+  "install_or_vendor_action": false,
+  "final_core_selection_declared": false,
+  "stage_2_transition_declared": false,
+  "proof_cases": [
+    {
+      "case_name": "submit create_document route",
+      "passed": true,
+      "status": "accepted",
+      "http_like_status": 202,
+      "validation": {
+        "valid": true,
+        "errors": [],
+        "warnings": [],
+        "contract_version": "service-contract-schema-error-taxonomy-013.v1"
+      }
+    },
+    {
+      "case_name": "getStatus pending route",
+      "passed": true,
+      "status": "pending",
+      "http_like_status": 202,
+      "validation": {
+        "valid": true,
+        "errors": [],
+        "warnings": [],
+        "contract_version": "service-contract-schema-error-taxonomy-013.v1"
+      }
+    },
+    {
+      "case_name": "getResult before terminal route",
+      "passed": true,
+      "status": "not_ready",
+      "http_like_status": 409,
+      "validation": {
+        "valid": true,
+        "errors": [],
+        "warnings": [],
+        "contract_version": "service-contract-schema-error-taxonomy-013.v1"
+      }
+    },
+    {
+      "case_name": "run create_document route",
+      "passed": true,
+      "status": "completed",
+      "http_like_status": 200,
+      "validation": {
+        "valid": true,
+        "errors": [],
+        "warnings": [],
+        "contract_version": "service-contract-schema-error-taxonomy-013.v1"
+      }
+    },
+    {
+      "case_name": "getStatus completed route",
+      "passed": true,
+      "status": "completed",
+      "http_like_status": 200,
+      "validation": {
+        "valid": true,
+        "errors": [],
+        "warnings": [],
+        "contract_version": "service-contract-schema-error-taxonomy-013.v1"
+      }
+    },
+    {
+      "case_name": "getResult completed route",
+      "passed": true,
+      "status": "completed",
+      "http_like_status": 200,
+      "validation": {
+        "valid": true,
+        "errors": [],
+        "warnings": [],
+        "contract_version": "service-contract-schema-error-taxonomy-013.v1"
+      }
+    },
+    {
+      "case_name": "listEvents completed route",
+      "passed": true,
+      "status": "completed",
+      "http_like_status": 200,
+      "validation": {
+        "valid": true,
+        "errors": [],
+        "warnings": [],
+        "contract_version": "service-contract-schema-error-taxonomy-013.v1"
+      }
+    },
+    {
+      "case_name": "invalid route request",
+      "passed": true,
+      "status": "validation_error",
+      "http_like_status": 422,
+      "validation": {
+        "valid": true,
+        "errors": [],
+        "warnings": [],
+        "contract_version": "service-contract-schema-error-taxonomy-013.v1"
+      }
+    },
+    {
+      "case_name": "unknown job route",
+      "passed": true,
+      "status": "not_found",
+      "http_like_status": 404,
+      "validation": {
+        "valid": true,
+        "errors": [],
+        "warnings": [],
+        "contract_version": "service-contract-schema-error-taxonomy-013.v1"
+      }
+    },
+    {
+      "case_name": "validation failure route",
+      "passed": true,
+      "status": "failed",
+      "http_like_status": 500,
+      "validation": {
+        "valid": true,
+        "errors": [],
+        "warnings": [],
+        "contract_version": "service-contract-schema-error-taxonomy-013.v1"
+      }
+    }
+  ]
+}

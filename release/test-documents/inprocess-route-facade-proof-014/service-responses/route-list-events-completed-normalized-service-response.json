@@ -1,0 +1,12 @@
+{
+  "route_request_id": "route-list-events-completed",
+  "service_operation": "listEvents",
+  "status": "completed",
+  "error": null,
+  "artifacts": {
+    "events_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task014-inprocess-route-facade-proof-20260705\\release\\test-documents\\inprocess-route-facade-proof-014\\jobs\\job-api-route-create-document-events.json",
+    "service_response_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task014-inprocess-route-facade-proof-20260705\\release\\test-documents\\inprocess-route-facade-proof-014\\internal-execution-workspace\\release\\test-documents\\service-adapter-boundary-proof-012\\service-responses\\list-events-completed-response.json",
+    "output_path": null
+  },
+  "contract_version": "service-contract-schema-error-taxonomy-013.v1"
+}

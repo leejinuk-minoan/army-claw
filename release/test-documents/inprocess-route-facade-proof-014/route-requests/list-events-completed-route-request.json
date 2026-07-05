@@ -1,0 +1,10 @@
+{
+  "route_request_id": "route-list-events-completed",
+  "mock_method": "GET",
+  "mock_path": "/mock/jobs/job-api-route-create-document/events",
+  "service_operation": "listEvents",
+  "params": {
+    "job_id": "job-api-route-create-document"
+  },
+  "body": {}
+}
