@@ -1,0 +1,159 @@
+{
+  "task_id": "multi-app-capability-architecture-proof-018",
+  "generated_at": "2026-07-05T14:32:56.381Z",
+  "architecture_version": "army-claw-multi-app-capability-architecture-018.v1",
+  "official_system_name": "Army Claw",
+  "hwp_only": false,
+  "public_internet_required": false,
+  "offline_or_closed_network_required": true,
+  "app_targets": [
+    "local_workspace",
+    "hwp_hwpx",
+    "hancell",
+    "hanshow"
+  ],
+  "all_app_targets_first_class": true,
+  "template_preservation_required_targets": [
+    "hwp_hwpx",
+    "hancell",
+    "hanshow"
+  ],
+  "llm_structured_plan_only": true,
+  "deterministic_adapter_execution_required": true,
+  "model_gateway_adapters": [
+    "MockModelAdapter",
+    "LocalLlmAdapter",
+    "ClosedOpenAICompatibleAdapter"
+  ],
+  "local_workspace_policy_required": true,
+  "master_plan_dependency_used": true,
+  "proof_case_count": 28,
+  "proof_cases_passed": 28,
+  "previous_task_read_only": true,
+  "real_http_server_started": false,
+  "ui_implemented": false,
+  "production_api_framework_selected": false,
+  "llm_planner_connected": false,
+  "model_gateway_implemented": false,
+  "hancell_actual_adapter_implemented": false,
+  "hanshow_actual_adapter_implemented": false,
+  "actual_pc_automation_implemented": false,
+  "public_internet_dependency_introduced": false,
+  "final_core_selection_declared": false,
+  "stage_2_transition_declared": false,
+  "completion_candidate": true,
+  "proof_cases": [
+    {
+      "case_name": "official system name is Army Claw",
+      "passed": true
+    },
+    {
+      "case_name": "architecture declares hwp_only=false",
+      "passed": true
+    },
+    {
+      "case_name": "local_workspace is first-class target",
+      "passed": true
+    },
+    {
+      "case_name": "hwp_hwpx is first-class target",
+      "passed": true
+    },
+    {
+      "case_name": "hancell is first-class target",
+      "passed": true
+    },
+    {
+      "case_name": "hanshow is first-class target",
+      "passed": true
+    },
+    {
+      "case_name": "HWP/HWPX template preservation is required",
+      "passed": true
+    },
+    {
+      "case_name": "HanCell template preservation is required",
+      "passed": true
+    },
+    {
+      "case_name": "HanShow template preservation is required",
+      "passed": true
+    },
+    {
+      "case_name": "HWP/HWPX preservation fields are present",
+      "passed": true
+    },
+    {
+      "case_name": "HanCell preservation fields are present",
+      "passed": true
+    },
+    {
+      "case_name": "HanShow preservation fields are present",
+      "passed": true
+    },
+    {
+      "case_name": "LLM direct document package edit is disallowed",
+      "passed": true
+    },
+    {
+      "case_name": "LLM direct native app state modification is disallowed",
+      "passed": true
+    },
+    {
+      "case_name": "LLM structured-plan-only boundary is required",
+      "passed": true
+    },
+    {
+      "case_name": "adapter deterministic execution boundary is required",
+      "passed": true
+    },
+    {
+      "case_name": "MockModelAdapter is declared",
+      "passed": true
+    },
+    {
+      "case_name": "LocalLlmAdapter is declared",
+      "passed": true
+    },
+    {
+      "case_name": "ClosedOpenAICompatibleAdapter is declared",
+      "passed": true
+    },
+    {
+      "case_name": "public internet required is false",
+      "passed": true
+    },
+    {
+      "case_name": "local workspace policy exists",
+      "passed": true
+    },
+    {
+      "case_name": "final_core_selection_declared=false",
+      "passed": true
+    },
+    {
+      "case_name": "stage_2_transition_declared=false",
+      "passed": true
+    },
+    {
+      "case_name": "Task 017 summary remains read-only",
+      "passed": true
+    },
+    {
+      "case_name": "Task 017 transport-agnostic proof still passes",
+      "passed": true
+    },
+    {
+      "case_name": "no HanCell/HanShow actual adapter is implemented in Task 018",
+      "passed": true
+    },
+    {
+      "case_name": "no Model Gateway actual adapter is implemented in Task 018",
+      "passed": true
+    },
+    {
+      "case_name": "master plan roadmap aligns Task 018 and Task 019",
+      "passed": true
+    }
+  ]
+}

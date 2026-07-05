@@ -1,0 +1,9 @@
+{
+  "approved_workspace_required": true,
+  "protect_source_templates_from_overwrite": true,
+  "validate_paths_before_writes": true,
+  "log_operations": true,
+  "dry_run_or_preview_recommended": true,
+  "public_internet_access_required": false,
+  "actual_pc_automation_implemented_in_task018": false
+}
