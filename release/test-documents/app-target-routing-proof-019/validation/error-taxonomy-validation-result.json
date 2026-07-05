@@ -1,0 +1,15 @@
+{
+  "task_id": "app-target-routing-proof-019",
+  "valid": true,
+  "error_codes": [
+    "unsupported_plan_type",
+    "unsupported_target",
+    "target_plan_mismatch",
+    "missing_subplans",
+    "invalid_subplan_type",
+    "llm_direct_file_edit_disallowed",
+    "public_internet_dependency_disallowed",
+    "adapter_not_implemented_in_this_task",
+    "contract_violation"
+  ]
+}

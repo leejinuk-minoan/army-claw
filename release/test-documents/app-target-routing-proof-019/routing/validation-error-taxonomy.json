@@ -1,0 +1,65 @@
+[
+  {
+    "error_code": "unsupported_plan_type",
+    "status": "validation_error",
+    "error_category": "routing_validation",
+    "user_visible_state": "request_fix_required",
+    "controlled": true
+  },
+  {
+    "error_code": "unsupported_target",
+    "status": "validation_error",
+    "error_category": "routing_validation",
+    "user_visible_state": "request_fix_required",
+    "controlled": true
+  },
+  {
+    "error_code": "target_plan_mismatch",
+    "status": "validation_error",
+    "error_category": "routing_validation",
+    "user_visible_state": "request_fix_required",
+    "controlled": true
+  },
+  {
+    "error_code": "missing_subplans",
+    "status": "validation_error",
+    "error_category": "routing_validation",
+    "user_visible_state": "request_fix_required",
+    "controlled": true
+  },
+  {
+    "error_code": "invalid_subplan_type",
+    "status": "validation_error",
+    "error_category": "routing_validation",
+    "user_visible_state": "request_fix_required",
+    "controlled": true
+  },
+  {
+    "error_code": "llm_direct_file_edit_disallowed",
+    "status": "validation_error",
+    "error_category": "routing_validation",
+    "user_visible_state": "request_fix_required",
+    "controlled": true
+  },
+  {
+    "error_code": "public_internet_dependency_disallowed",
+    "status": "validation_error",
+    "error_category": "routing_validation",
+    "user_visible_state": "request_fix_required",
+    "controlled": true
+  },
+  {
+    "error_code": "adapter_not_implemented_in_this_task",
+    "status": "validation_error",
+    "error_category": "routing_validation",
+    "user_visible_state": "request_fix_required",
+    "controlled": true
+  },
+  {
+    "error_code": "contract_violation",
+    "status": "validation_error",
+    "error_category": "routing_validation",
+    "user_visible_state": "request_fix_required",
+    "controlled": true
+  }
+]

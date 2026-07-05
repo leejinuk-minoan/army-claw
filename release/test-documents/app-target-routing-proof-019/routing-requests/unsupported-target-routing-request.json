@@ -1,0 +1,14 @@
+{
+  "routing_request_id": "routing-hwp-hwpx-fill-plan-unknown-target",
+  "plan_type": "hwp_hwpx_fill_plan",
+  "target_hint": "unknown_target",
+  "plan": {},
+  "request_context": {
+    "caller": "task019_proof",
+    "offline_or_closed_network_required": true
+  },
+  "created_at": "2026-07-05T14:48:11.329Z",
+  "llm_generated": true,
+  "llm_direct_file_edit_requested": false,
+  "public_internet_required": false
+}

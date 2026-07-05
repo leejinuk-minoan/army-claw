@@ -1,0 +1,20 @@
+{
+  "routing_result_id": "result-routing-hanshow-fill-plan-no-hint",
+  "routing_request_id": "routing-hanshow-fill-plan-no-hint",
+  "ok": true,
+  "status": "routed",
+  "plan_type": "hanshow_fill_plan",
+  "resolved_target_id": "hanshow",
+  "adapter_slot_id": "hanshow_adapter_slot",
+  "route_action": "route_to_single_adapter_slot",
+  "subplan_routes": [],
+  "validation_errors": [],
+  "user_visible_state": "routed",
+  "error_code": null,
+  "error_category": null,
+  "final_core_selection_declared": false,
+  "stage_2_transition_declared": false,
+  "real_adapter_execution_performed": false,
+  "model_gateway_implemented": false,
+  "llm_planner_connected": false
+}

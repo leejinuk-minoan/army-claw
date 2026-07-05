@@ -1,0 +1,57 @@
+{
+  "routing_result_id": "result-routing-multi-app-execution-plan-no-hint",
+  "routing_request_id": "routing-multi-app-execution-plan-no-hint",
+  "ok": true,
+  "status": "decomposed",
+  "plan_type": "multi_app_execution_plan",
+  "resolved_target_id": "multi_target",
+  "adapter_slot_id": null,
+  "route_action": "decompose_multi_app_plan",
+  "subplan_routes": [
+    {
+      "subplan_index": 0,
+      "plan_type": "local_workspace_action_plan",
+      "resolved_target_id": "local_workspace",
+      "adapter_slot_id": "local_workspace_adapter_slot",
+      "route_action": "route_to_single_adapter_slot",
+      "actual_adapter_implemented_in_task019": false,
+      "real_adapter_execution_performed": false
+    },
+    {
+      "subplan_index": 1,
+      "plan_type": "hwp_hwpx_fill_plan",
+      "resolved_target_id": "hwp_hwpx",
+      "adapter_slot_id": "hwp_hwpx_adapter_slot",
+      "route_action": "route_to_single_adapter_slot",
+      "actual_adapter_implemented_in_task019": false,
+      "real_adapter_execution_performed": false
+    },
+    {
+      "subplan_index": 2,
+      "plan_type": "hancell_fill_plan",
+      "resolved_target_id": "hancell",
+      "adapter_slot_id": "hancell_adapter_slot",
+      "route_action": "route_to_single_adapter_slot",
+      "actual_adapter_implemented_in_task019": false,
+      "real_adapter_execution_performed": false
+    },
+    {
+      "subplan_index": 3,
+      "plan_type": "hanshow_fill_plan",
+      "resolved_target_id": "hanshow",
+      "adapter_slot_id": "hanshow_adapter_slot",
+      "route_action": "route_to_single_adapter_slot",
+      "actual_adapter_implemented_in_task019": false,
+      "real_adapter_execution_performed": false
+    }
+  ],
+  "validation_errors": [],
+  "user_visible_state": "routed",
+  "error_code": null,
+  "error_category": null,
+  "final_core_selection_declared": false,
+  "stage_2_transition_declared": false,
+  "real_adapter_execution_performed": false,
+  "model_gateway_implemented": false,
+  "llm_planner_connected": false
+}

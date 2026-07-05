@@ -1,0 +1,254 @@
+{
+  "task_id": "app-target-routing-proof-019",
+  "routing_contract_version": "army-claw-app-target-routing-019.v1",
+  "official_system_name": "Army Claw",
+  "hwp_only": false,
+  "supported_app_targets": [
+    {
+      "target_id": "local_workspace",
+      "first_class_target": true,
+      "adapter_slot_id": "local_workspace_adapter_slot",
+      "actual_adapter_implemented_in_task019": false,
+      "template_preservation_required": false,
+      "allowed_plan_types": [
+        "local_workspace_action_plan"
+      ]
+    },
+    {
+      "target_id": "hwp_hwpx",
+      "first_class_target": true,
+      "adapter_slot_id": "hwp_hwpx_adapter_slot",
+      "actual_adapter_implemented_in_task019": false,
+      "template_preservation_required": true,
+      "allowed_plan_types": [
+        "hwp_hwpx_fill_plan"
+      ]
+    },
+    {
+      "target_id": "hancell",
+      "first_class_target": true,
+      "adapter_slot_id": "hancell_adapter_slot",
+      "actual_adapter_implemented_in_task019": false,
+      "template_preservation_required": true,
+      "allowed_plan_types": [
+        "hancell_fill_plan"
+      ]
+    },
+    {
+      "target_id": "hanshow",
+      "first_class_target": true,
+      "adapter_slot_id": "hanshow_adapter_slot",
+      "actual_adapter_implemented_in_task019": false,
+      "template_preservation_required": true,
+      "allowed_plan_types": [
+        "hanshow_fill_plan"
+      ]
+    }
+  ],
+  "supported_plan_types": [
+    "local_workspace_action_plan",
+    "hwp_hwpx_fill_plan",
+    "hancell_fill_plan",
+    "hanshow_fill_plan",
+    "multi_app_execution_plan"
+  ],
+  "plan_type_target_mapping": {
+    "local_workspace_action_plan": "local_workspace",
+    "hwp_hwpx_fill_plan": "hwp_hwpx",
+    "hancell_fill_plan": "hancell",
+    "hanshow_fill_plan": "hanshow",
+    "multi_app_execution_plan": "multi_target"
+  },
+  "adapter_slots": [
+    {
+      "adapter_slot_id": "local_workspace_adapter_slot",
+      "target_id": "local_workspace",
+      "accepts_plan_types": [
+        "local_workspace_action_plan"
+      ],
+      "deterministic_execution_required": true,
+      "actual_adapter_implemented_in_task019": false,
+      "real_adapter_execution_performed": false,
+      "implemented_later_stage": "Stage 5 workspace and file safety proof"
+    },
+    {
+      "adapter_slot_id": "hwp_hwpx_adapter_slot",
+      "target_id": "hwp_hwpx",
+      "accepts_plan_types": [
+        "hwp_hwpx_fill_plan"
+      ],
+      "deterministic_execution_required": true,
+      "actual_adapter_implemented_in_task019": false,
+      "real_adapter_execution_performed": false,
+      "implemented_later_stage": "Stage 2 HWP/HWPX template-aware proof"
+    },
+    {
+      "adapter_slot_id": "hancell_adapter_slot",
+      "target_id": "hancell",
+      "accepts_plan_types": [
+        "hancell_fill_plan"
+      ],
+      "deterministic_execution_required": true,
+      "actual_adapter_implemented_in_task019": false,
+      "real_adapter_execution_performed": false,
+      "implemented_later_stage": "Stage 2 HanCell template preservation contract proof"
+    },
+    {
+      "adapter_slot_id": "hanshow_adapter_slot",
+      "target_id": "hanshow",
+      "accepts_plan_types": [
+        "hanshow_fill_plan"
+      ],
+      "deterministic_execution_required": true,
+      "actual_adapter_implemented_in_task019": false,
+      "real_adapter_execution_performed": false,
+      "implemented_later_stage": "Stage 2 HanShow template preservation contract proof"
+    }
+  ],
+  "multi_app_decomposition_rules": {
+    "multi_app_execution_plan_requires_subplans_array": true,
+    "allowed_subplan_types": [
+      "local_workspace_action_plan",
+      "hwp_hwpx_fill_plan",
+      "hancell_fill_plan",
+      "hanshow_fill_plan"
+    ],
+    "each_subplan_routes_as_single_target_plan": true,
+    "nested_multi_app_execution_plan_allowed": false,
+    "actual_adapter_execution_performed": false
+  },
+  "validation_error_taxonomy": [
+    {
+      "error_code": "unsupported_plan_type",
+      "status": "validation_error",
+      "error_category": "routing_validation",
+      "user_visible_state": "request_fix_required",
+      "controlled": true
+    },
+    {
+      "error_code": "unsupported_target",
+      "status": "validation_error",
+      "error_category": "routing_validation",
+      "user_visible_state": "request_fix_required",
+      "controlled": true
+    },
+    {
+      "error_code": "target_plan_mismatch",
+      "status": "validation_error",
+      "error_category": "routing_validation",
+      "user_visible_state": "request_fix_required",
+      "controlled": true
+    },
+    {
+      "error_code": "missing_subplans",
+      "status": "validation_error",
+      "error_category": "routing_validation",
+      "user_visible_state": "request_fix_required",
+      "controlled": true
+    },
+    {
+      "error_code": "invalid_subplan_type",
+      "status": "validation_error",
+      "error_category": "routing_validation",
+      "user_visible_state": "request_fix_required",
+      "controlled": true
+    },
+    {
+      "error_code": "llm_direct_file_edit_disallowed",
+      "status": "validation_error",
+      "error_category": "routing_validation",
+      "user_visible_state": "request_fix_required",
+      "controlled": true
+    },
+    {
+      "error_code": "public_internet_dependency_disallowed",
+      "status": "validation_error",
+      "error_category": "routing_validation",
+      "user_visible_state": "request_fix_required",
+      "controlled": true
+    },
+    {
+      "error_code": "adapter_not_implemented_in_this_task",
+      "status": "validation_error",
+      "error_category": "routing_validation",
+      "user_visible_state": "request_fix_required",
+      "controlled": true
+    },
+    {
+      "error_code": "contract_violation",
+      "status": "validation_error",
+      "error_category": "routing_validation",
+      "user_visible_state": "request_fix_required",
+      "controlled": true
+    }
+  ],
+  "routing_policy": {
+    "plan_type_is_primary_routing_key": true,
+    "target_hint_optional": true,
+    "target_hint_must_match_plan_type_mapping": true,
+    "unsupported_target_or_plan_rejected_before_execution": true,
+    "controlled_validation_error_required": true
+  },
+  "non_execution_guards": {
+    "actual_adapter_execution_performed": false,
+    "actual_hancell_adapter_implemented": false,
+    "actual_hanshow_adapter_implemented": false,
+    "actual_pc_automation_implemented": false,
+    "model_gateway_implemented": false,
+    "llm_planner_connected": false,
+    "real_http_server_started": false,
+    "public_internet_dependency_introduced": false
+  },
+  "template_preservation_requirements": {
+    "hwp_hwpx": {
+      "target_id": "hwp_hwpx",
+      "template_preservation_required": true,
+      "required_fields": [
+        "paragraph_styles",
+        "character_styles",
+        "page_settings",
+        "margins",
+        "headers_footers",
+        "tables",
+        "numbering",
+        "section_structure",
+        "placeholders",
+        "approval_or_signature_blocks"
+      ]
+    },
+    "hancell": {
+      "target_id": "hancell",
+      "template_preservation_required": true,
+      "required_fields": [
+        "sheets",
+        "cell_styles",
+        "merged_cells",
+        "row_column_sizes",
+        "formulas",
+        "named_ranges",
+        "tables",
+        "charts",
+        "print_settings",
+        "placeholder_cells_or_ranges"
+      ]
+    },
+    "hanshow": {
+      "target_id": "hanshow",
+      "template_preservation_required": true,
+      "required_fields": [
+        "slide_size",
+        "slide_layouts",
+        "theme_styles",
+        "placeholders",
+        "text_boxes",
+        "shapes",
+        "tables",
+        "image_frames",
+        "chart_placeholders",
+        "briefing_structure"
+      ]
+    }
+  },
+  "final_core_selection_declared": false,
+  "stage_2_transition_declared": false
+}
