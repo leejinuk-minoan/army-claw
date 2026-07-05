@@ -1,0 +1,22 @@
+{
+  "service_request_id": "svc-rejected-001",
+  "service_operation": "getResult",
+  "ok": true,
+  "status": "rejected",
+  "job_id": "job-rejected",
+  "job_status": "rejected",
+  "data": {
+    "status": "rejected"
+  },
+  "error": {
+    "code": "policy_error",
+    "message": "policy_error proof"
+  },
+  "artifacts": {
+    "output_path": null,
+    "evidence_paths": []
+  },
+  "real_com_executed": false,
+  "final_core_selection_declared": false,
+  "stage_2_transition_declared": false
+}

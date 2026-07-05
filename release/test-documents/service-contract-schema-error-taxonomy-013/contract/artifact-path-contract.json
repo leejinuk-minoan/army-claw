@@ -1,0 +1,19 @@
+{
+  "roles": [
+    "service_request_path",
+    "service_response_path",
+    "job_path",
+    "event_path",
+    "snapshot_path",
+    "request_path",
+    "response_path",
+    "plan_path",
+    "report_path",
+    "output_path",
+    "evidence_path"
+  ],
+  "nullable": true,
+  "task_artifact_root": "release/test-documents/service-contract-schema-error-taxonomy-013",
+  "output_path_rule": "output_path is non-null only for terminal successful completed responses or completed job records.",
+  "evidence_paths_rule": "evidence_paths is always an array when present."
+}

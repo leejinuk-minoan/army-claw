@@ -1,0 +1,16 @@
+{
+  "case_name": "invalidUnknownResponseStatus",
+  "expected_valid": false,
+  "actual_valid": false,
+  "passed": true,
+  "validation": {
+    "valid": false,
+    "errors": [
+      "unknown_response_status:mystery",
+      "output_path_requires_terminal_success"
+    ],
+    "warnings": [],
+    "normalized": null,
+    "contract_version": "service-contract-schema-error-taxonomy-013.v1"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "values": [
+    "create_document",
+    "edit_paragraph",
+    "edit_table",
+    "apply_style"
+  ]
+}

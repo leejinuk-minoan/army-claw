@@ -1,0 +1,15 @@
+{
+  "case_name": "invalidMissingServiceRequestId",
+  "expected_valid": false,
+  "actual_valid": false,
+  "passed": true,
+  "validation": {
+    "valid": false,
+    "errors": [
+      "service_request_id_required"
+    ],
+    "warnings": [],
+    "normalized": null,
+    "contract_version": "service-contract-schema-error-taxonomy-013.v1"
+  }
+}

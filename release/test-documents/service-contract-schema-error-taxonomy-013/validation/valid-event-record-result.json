@@ -1,0 +1,21 @@
+{
+  "case_name": "validEventRecord",
+  "expected_valid": true,
+  "actual_valid": true,
+  "passed": true,
+  "validation": {
+    "valid": true,
+    "errors": [],
+    "warnings": [],
+    "normalized": {
+      "event_id": "event-001",
+      "job_id": "job-create",
+      "from_status": "running",
+      "to_status": "completed",
+      "timestamp": "2026-07-05T00:00:00.000Z",
+      "reason": "api_response_completed",
+      "artifact_path": "release/test-documents/service-contract-schema-error-taxonomy-013/fixtures/valid/completed-response.json"
+    },
+    "contract_version": "service-contract-schema-error-taxonomy-013.v1"
+  }
+}

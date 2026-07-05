@@ -1,0 +1,6 @@
+{
+  "case_name": "artifactPathContract",
+  "expected_valid": true,
+  "actual_valid": true,
+  "passed": true
+}

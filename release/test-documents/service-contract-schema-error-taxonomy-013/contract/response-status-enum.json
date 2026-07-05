@@ -1,0 +1,14 @@
+{
+  "values": [
+    "accepted",
+    "pending",
+    "running",
+    "completed",
+    "failed",
+    "rejected",
+    "not_found",
+    "not_ready",
+    "validation_error",
+    "policy_error"
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "case_name": "previousTask012ServiceSummaryReadOnly",
+  "expected_read_only": true,
+  "actual_read_only": true,
+  "passed": true
+}
