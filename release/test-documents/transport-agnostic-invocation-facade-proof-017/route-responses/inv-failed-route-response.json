@@ -1,0 +1,49 @@
+{
+  "route_request_id": "client-get-result-job-api-submit-document-job",
+  "mock_method": "GET",
+  "mock_path": "/mock/jobs/job-api-submit-document-job/result",
+  "service_operation": "getResult",
+  "http_like_status": 500,
+  "ok": true,
+  "status": "failed",
+  "job_id": "job-api-submit-document-job",
+  "job_status": "failed",
+  "data": {
+    "job_id": "job-api-submit-document-job",
+    "status": "failed",
+    "response_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task017-transport-agnostic-invocation-facade-proof-20260705\\release\\test-documents\\inprocess-route-facade-proof-014\\responses\\job-api-submit-document-job-response.json",
+    "report_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task017-transport-agnostic-invocation-facade-proof-20260705\\release\\test-documents\\inprocess-route-facade-proof-014\\reports\\job-api-submit-document-job-agent-report.json",
+    "output_path": null,
+    "evidence_paths": [
+      "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task017-transport-agnostic-invocation-facade-proof-20260705\\release\\test-documents\\inprocess-route-facade-proof-014\\evidence\\job-api-submit-document-job-evidence-1.json"
+    ],
+    "failure": {
+      "type": "validation_error",
+      "message": "interim_editor_output_invalid",
+      "last_successful_step": "validate_output",
+      "quarantine_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task017-transport-agnostic-invocation-facade-proof-20260705\\release\\test-documents\\inprocess-route-facade-proof-014\\internal-execution-workspace\\release\\test-documents\\service-adapter-boundary-proof-012\\execution-workspaces\\svc-submit-validation-1783238674262\\release\\test-documents\\local-job-boundary-proof-011\\api-workspaces\\job-api-submit-document-job\\release\\test-documents\\agent-api-boundary-proof-010\\outputs\\validation-failure-output.hwpx.quarantine-edit-paragraph"
+    }
+  },
+  "error": {
+    "code": "validation_error",
+    "type": "validation_error",
+    "message": "route facade mapped failed service response:validation_error",
+    "category": "validation",
+    "retryable": false,
+    "user_visible": true,
+    "expected_status": "validation_error"
+  },
+  "artifacts": {
+    "response_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task017-transport-agnostic-invocation-facade-proof-20260705\\release\\test-documents\\inprocess-route-facade-proof-014\\responses\\job-api-submit-document-job-response.json",
+    "report_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task017-transport-agnostic-invocation-facade-proof-20260705\\release\\test-documents\\inprocess-route-facade-proof-014\\reports\\job-api-submit-document-job-agent-report.json",
+    "output_path": null,
+    "evidence_paths": [
+      "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task017-transport-agnostic-invocation-facade-proof-20260705\\release\\test-documents\\inprocess-route-facade-proof-014\\evidence\\job-api-submit-document-job-evidence-1.json"
+    ],
+    "service_response_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task017-transport-agnostic-invocation-facade-proof-20260705\\release\\test-documents\\inprocess-route-facade-proof-014\\internal-execution-workspace\\release\\test-documents\\service-adapter-boundary-proof-012\\service-responses\\validation-failure-failed-response.json"
+  },
+  "contract_version": "service-contract-schema-error-taxonomy-013.v1",
+  "real_com_executed": false,
+  "final_core_selection_declared": false,
+  "stage_2_transition_declared": false
+}

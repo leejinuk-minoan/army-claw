@@ -1,0 +1,142 @@
+{
+  "task_id": "transport-agnostic-invocation-facade-proof-017",
+  "generated_at": "2026-07-05T08:04:34.451Z",
+  "manifest_version": "local-route-manifest-proof-015.v1",
+  "contract_version": "service-contract-schema-error-taxonomy-013.v1",
+  "completion_candidate": true,
+  "proof_case_count": 28,
+  "proof_cases_passed": 28,
+  "invocation_result_count": 17,
+  "transport_profiles": [
+    "local_function",
+    "mock_http_like",
+    "cli_like",
+    "ui_like"
+  ],
+  "transport_profiles_metadata_only": true,
+  "previous_tasks_read_only": true,
+  "real_http_server_started": false,
+  "web_server_dependency_introduced": false,
+  "ui_implemented": false,
+  "production_api_framework_selected": false,
+  "llm_planner_connected": false,
+  "real_com_executed": false,
+  "python_hwpx_dependency_introduced": false,
+  "install_or_vendor_action": false,
+  "final_core_selection_declared": false,
+  "stage_2_transition_declared": false,
+  "proof_cases": [
+    {
+      "case_name": "facade loads Task 016 local client boundary",
+      "passed": true
+    },
+    {
+      "case_name": "facade loads Task 015 route manifest version local-route-manifest-proof-015.v1",
+      "passed": true
+    },
+    {
+      "case_name": "valid local_function submit invocation",
+      "passed": true
+    },
+    {
+      "case_name": "valid local_function run invocation",
+      "passed": true
+    },
+    {
+      "case_name": "valid local_function get_status invocation",
+      "passed": true
+    },
+    {
+      "case_name": "valid local_function get_result invocation",
+      "passed": true
+    },
+    {
+      "case_name": "valid local_function list_events invocation",
+      "passed": true
+    },
+    {
+      "case_name": "mock_http_like profile is accepted as metadata only",
+      "passed": true
+    },
+    {
+      "case_name": "cli_like profile is accepted as metadata only",
+      "passed": true
+    },
+    {
+      "case_name": "ui_like profile is accepted as metadata only",
+      "passed": true
+    },
+    {
+      "case_name": "unknown transport_profile is rejected with controlled validation_error",
+      "passed": true
+    },
+    {
+      "case_name": "unknown route_id is rejected with controlled validation_error",
+      "passed": true
+    },
+    {
+      "case_name": "missing required job_id is rejected",
+      "passed": true
+    },
+    {
+      "case_name": "completed result interprets as terminal success",
+      "passed": true
+    },
+    {
+      "case_name": "pending result interprets as should_poll=true",
+      "passed": true
+    },
+    {
+      "case_name": "not_ready result interprets as retryable and should_poll=true",
+      "passed": true
+    },
+    {
+      "case_name": "not_found result interprets as terminal missing",
+      "passed": true
+    },
+    {
+      "case_name": "validation_error result interprets as request_fix_required",
+      "passed": true
+    },
+    {
+      "case_name": "failed result interprets as terminal failed",
+      "passed": true
+    },
+    {
+      "case_name": "output artifact availability passes only for completed output",
+      "passed": true
+    },
+    {
+      "case_name": "all invocation results preserve final_core_selection_declared=false",
+      "passed": true
+    },
+    {
+      "case_name": "all invocation results preserve stage_2_transition_declared=false",
+      "passed": true
+    },
+    {
+      "case_name": "previous Task 012/013/014/015/016 summary files remain read-only",
+      "passed": true
+    },
+    {
+      "case_name": "no actual HTTP server is started",
+      "passed": true
+    },
+    {
+      "case_name": "Task 016 local client boundary still passes by separate regression command",
+      "passed": true
+    },
+    {
+      "case_name": "Task 015 route manifest still passes by separate regression command",
+      "passed": true
+    },
+    {
+      "case_name": "Task 014 route facade still passes by separate regression command",
+      "passed": true
+    },
+    {
+      "case_name": "Task 013 contract still passes by separate regression command",
+      "passed": true
+    }
+  ]
+}

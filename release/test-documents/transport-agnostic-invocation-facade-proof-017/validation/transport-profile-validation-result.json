@@ -1,0 +1,10 @@
+{
+  "valid": true,
+  "profiles": [
+    "local_function",
+    "mock_http_like",
+    "cli_like",
+    "ui_like"
+  ],
+  "metadata_only": true
+}

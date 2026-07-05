@@ -1,0 +1,36 @@
+{
+  "route_request_id": "client-get-result-job-api-submit-document-job",
+  "mock_method": "GET",
+  "mock_path": "/mock/jobs/job-api-submit-document-job/result",
+  "service_operation": "getResult",
+  "http_like_status": 200,
+  "ok": true,
+  "status": "completed",
+  "job_id": "job-api-submit-document-job",
+  "job_status": "completed",
+  "data": {
+    "job_id": "job-api-submit-document-job",
+    "status": "completed",
+    "response_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task017-transport-agnostic-invocation-facade-proof-20260705\\release\\test-documents\\inprocess-route-facade-proof-014\\responses\\job-api-submit-document-job-response.json",
+    "report_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task017-transport-agnostic-invocation-facade-proof-20260705\\release\\test-documents\\inprocess-route-facade-proof-014\\reports\\job-api-submit-document-job-agent-report.json",
+    "output_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task017-transport-agnostic-invocation-facade-proof-20260705\\release\\test-documents\\inprocess-route-facade-proof-014\\outputs\\job-api-submit-document-job-output.hwpx",
+    "evidence_paths": [
+      "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task017-transport-agnostic-invocation-facade-proof-20260705\\release\\test-documents\\inprocess-route-facade-proof-014\\evidence\\job-api-submit-document-job-evidence-1.json"
+    ],
+    "failure": null
+  },
+  "error": null,
+  "artifacts": {
+    "response_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task017-transport-agnostic-invocation-facade-proof-20260705\\release\\test-documents\\inprocess-route-facade-proof-014\\responses\\job-api-submit-document-job-response.json",
+    "report_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task017-transport-agnostic-invocation-facade-proof-20260705\\release\\test-documents\\inprocess-route-facade-proof-014\\reports\\job-api-submit-document-job-agent-report.json",
+    "output_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task017-transport-agnostic-invocation-facade-proof-20260705\\release\\test-documents\\inprocess-route-facade-proof-014\\outputs\\job-api-submit-document-job-output.hwpx",
+    "evidence_paths": [
+      "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task017-transport-agnostic-invocation-facade-proof-20260705\\release\\test-documents\\inprocess-route-facade-proof-014\\evidence\\job-api-submit-document-job-evidence-1.json"
+    ],
+    "service_response_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task017-transport-agnostic-invocation-facade-proof-20260705\\release\\test-documents\\inprocess-route-facade-proof-014\\internal-execution-workspace\\release\\test-documents\\service-adapter-boundary-proof-012\\service-responses\\get-result-completed-response.json"
+  },
+  "contract_version": "service-contract-schema-error-taxonomy-013.v1",
+  "real_com_executed": false,
+  "final_core_selection_declared": false,
+  "stage_2_transition_declared": false
+}
