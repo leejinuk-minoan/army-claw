@@ -1,0 +1,67 @@
+{
+  "adapter_slot_input_id": "slot-input-hancell-fill-plan",
+  "adapter_slot_id": "hancell_adapter_slot",
+  "target_id": "hancell",
+  "plan_type": "hancell_fill_plan",
+  "validated_plan": {
+    "plan_id": "plan-hancell-fill-plan-valid",
+    "plan_type": "hancell_fill_plan",
+    "target_id": "hancell",
+    "source": "task020_sample",
+    "user_goal": "Validate hancell_fill_plan payload shape.",
+    "template_reference": {
+      "template_id": "template-hancell",
+      "template_artifact_type": "cell",
+      "template_path": "templates/hancell",
+      "template_fingerprint": "sha256-hancell",
+      "template_origin": "user_provided_template",
+      "preserve_template_required": true,
+      "protect_source_template_from_overwrite": true
+    },
+    "fill_operations": [
+      {
+        "operation_id": "op-hancell-fill-plan-1",
+        "operation_type": "set_cell_value",
+        "target_locator": "placeholder/title",
+        "value": "Task 020 validation value",
+        "preserve_style": true,
+        "validation_rules": [
+          "target_locator_required"
+        ]
+      }
+    ],
+    "constraints": {
+      "preserve_original_style": true,
+      "preserve_layout": false,
+      "preserve_formulas": true,
+      "preserve_charts": true,
+      "preserve_slide_layouts": false,
+      "prevent_source_overwrite": true,
+      "require_offline_operation": true,
+      "allow_public_internet": false,
+      "require_validation_report": true
+    },
+    "evidence_request": {
+      "validation_report_required": true,
+      "include_plan_schema_version": true
+    },
+    "created_at": "2026-07-06T00:00:00.000Z",
+    "llm_generated": true,
+    "llm_direct_file_edit_requested": false,
+    "llm_direct_native_app_state_modification_requested": false,
+    "public_internet_required": false
+  },
+  "validation_result": {
+    "valid": true,
+    "status": "valid",
+    "error_code": null,
+    "error_category": null,
+    "user_visible_state": "valid",
+    "validation_errors": []
+  },
+  "execution_allowed": false,
+  "actual_adapter_invoked": false,
+  "deterministic_execution_required": true,
+  "final_core_selection_declared": false,
+  "stage_2_transition_declared": false
+}

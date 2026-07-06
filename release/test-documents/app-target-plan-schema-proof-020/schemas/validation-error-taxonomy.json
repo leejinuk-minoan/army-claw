@@ -1,0 +1,107 @@
+[
+  {
+    "error_code": "missing_required_field",
+    "status": "validation_error",
+    "error_category": "plan_schema_validation",
+    "user_visible_state": "request_fix_required",
+    "controlled": true
+  },
+  {
+    "error_code": "invalid_plan_type",
+    "status": "validation_error",
+    "error_category": "plan_schema_validation",
+    "user_visible_state": "request_fix_required",
+    "controlled": true
+  },
+  {
+    "error_code": "invalid_target_id",
+    "status": "validation_error",
+    "error_category": "plan_schema_validation",
+    "user_visible_state": "request_fix_required",
+    "controlled": true
+  },
+  {
+    "error_code": "target_plan_mismatch",
+    "status": "validation_error",
+    "error_category": "plan_schema_validation",
+    "user_visible_state": "request_fix_required",
+    "controlled": true
+  },
+  {
+    "error_code": "invalid_template_artifact_type",
+    "status": "validation_error",
+    "error_category": "plan_schema_validation",
+    "user_visible_state": "request_fix_required",
+    "controlled": true
+  },
+  {
+    "error_code": "missing_template_reference",
+    "status": "validation_error",
+    "error_category": "plan_schema_validation",
+    "user_visible_state": "request_fix_required",
+    "controlled": true
+  },
+  {
+    "error_code": "missing_fill_operations",
+    "status": "validation_error",
+    "error_category": "plan_schema_validation",
+    "user_visible_state": "request_fix_required",
+    "controlled": true
+  },
+  {
+    "error_code": "invalid_fill_operation_type",
+    "status": "validation_error",
+    "error_category": "plan_schema_validation",
+    "user_visible_state": "request_fix_required",
+    "controlled": true
+  },
+  {
+    "error_code": "invalid_target_locator",
+    "status": "validation_error",
+    "error_category": "plan_schema_validation",
+    "user_visible_state": "request_fix_required",
+    "controlled": true
+  },
+  {
+    "error_code": "source_template_overwrite_risk",
+    "status": "validation_error",
+    "error_category": "plan_schema_validation",
+    "user_visible_state": "request_fix_required",
+    "controlled": true
+  },
+  {
+    "error_code": "public_internet_dependency_disallowed",
+    "status": "validation_error",
+    "error_category": "plan_schema_validation",
+    "user_visible_state": "request_fix_required",
+    "controlled": true
+  },
+  {
+    "error_code": "llm_direct_file_edit_disallowed",
+    "status": "validation_error",
+    "error_category": "plan_schema_validation",
+    "user_visible_state": "request_fix_required",
+    "controlled": true
+  },
+  {
+    "error_code": "llm_direct_native_app_state_modification_disallowed",
+    "status": "validation_error",
+    "error_category": "plan_schema_validation",
+    "user_visible_state": "request_fix_required",
+    "controlled": true
+  },
+  {
+    "error_code": "adapter_execution_not_allowed_in_this_task",
+    "status": "validation_error",
+    "error_category": "plan_schema_validation",
+    "user_visible_state": "request_fix_required",
+    "controlled": true
+  },
+  {
+    "error_code": "contract_violation",
+    "status": "validation_error",
+    "error_category": "plan_schema_validation",
+    "user_visible_state": "request_fix_required",
+    "controlled": true
+  }
+]

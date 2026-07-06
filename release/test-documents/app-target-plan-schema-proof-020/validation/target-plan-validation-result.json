@@ -1,0 +1,67 @@
+{
+  "task_id": "app-target-plan-schema-proof-020",
+  "valid": true,
+  "invalid_cases_controlled": [
+    {
+      "valid": false,
+      "status": "validation_error",
+      "error_code": "missing_template_reference",
+      "error_category": "plan_schema_validation",
+      "user_visible_state": "request_fix_required",
+      "validation_errors": [
+        {
+          "error_code": "missing_template_reference"
+        }
+      ]
+    },
+    {
+      "valid": false,
+      "status": "validation_error",
+      "error_code": "invalid_template_artifact_type",
+      "error_category": "plan_schema_validation",
+      "user_visible_state": "request_fix_required",
+      "validation_errors": [
+        {
+          "error_code": "invalid_template_artifact_type"
+        }
+      ]
+    },
+    {
+      "valid": false,
+      "status": "validation_error",
+      "error_code": "invalid_fill_operation_type",
+      "error_category": "plan_schema_validation",
+      "user_visible_state": "request_fix_required",
+      "validation_errors": [
+        {
+          "error_code": "invalid_fill_operation_type",
+          "operation_index": 0
+        }
+      ]
+    },
+    {
+      "valid": false,
+      "status": "validation_error",
+      "error_code": "llm_direct_file_edit_disallowed",
+      "error_category": "plan_schema_validation",
+      "user_visible_state": "request_fix_required",
+      "validation_errors": [
+        {
+          "error_code": "llm_direct_file_edit_disallowed"
+        }
+      ]
+    },
+    {
+      "valid": false,
+      "status": "validation_error",
+      "error_code": "public_internet_dependency_disallowed",
+      "error_category": "plan_schema_validation",
+      "user_visible_state": "request_fix_required",
+      "validation_errors": [
+        {
+          "error_code": "public_internet_dependency_disallowed"
+        }
+      ]
+    }
+  ]
+}

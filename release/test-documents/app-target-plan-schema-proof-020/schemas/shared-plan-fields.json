@@ -1,0 +1,23 @@
+{
+  "required_fields": [
+    "plan_id",
+    "plan_type",
+    "target_id",
+    "source",
+    "user_goal",
+    "template_reference",
+    "fill_operations",
+    "constraints",
+    "evidence_request",
+    "created_at",
+    "llm_generated",
+    "llm_direct_file_edit_requested",
+    "llm_direct_native_app_state_modification_requested",
+    "public_internet_required"
+  ],
+  "defaults": {
+    "llm_direct_file_edit_requested": false,
+    "llm_direct_native_app_state_modification_requested": false,
+    "public_internet_required": false
+  }
+}

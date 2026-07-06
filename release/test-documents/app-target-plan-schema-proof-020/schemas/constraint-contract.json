@@ -1,0 +1,59 @@
+{
+  "required_fields": [
+    "preserve_original_style",
+    "preserve_layout",
+    "preserve_formulas",
+    "preserve_charts",
+    "preserve_slide_layouts",
+    "prevent_source_overwrite",
+    "require_offline_operation",
+    "allow_public_internet",
+    "require_validation_report"
+  ],
+  "target_defaults": {
+    "hwp_hwpx": {
+      "preserve_original_style": true,
+      "preserve_layout": true,
+      "preserve_formulas": false,
+      "preserve_charts": false,
+      "preserve_slide_layouts": false,
+      "prevent_source_overwrite": true,
+      "require_offline_operation": true,
+      "allow_public_internet": false,
+      "require_validation_report": true
+    },
+    "hancell": {
+      "preserve_original_style": true,
+      "preserve_layout": false,
+      "preserve_formulas": true,
+      "preserve_charts": true,
+      "preserve_slide_layouts": false,
+      "prevent_source_overwrite": true,
+      "require_offline_operation": true,
+      "allow_public_internet": false,
+      "require_validation_report": true
+    },
+    "hanshow": {
+      "preserve_original_style": true,
+      "preserve_layout": true,
+      "preserve_formulas": false,
+      "preserve_charts": false,
+      "preserve_slide_layouts": true,
+      "prevent_source_overwrite": true,
+      "require_offline_operation": true,
+      "allow_public_internet": false,
+      "require_validation_report": true
+    },
+    "local_workspace": {
+      "preserve_original_style": false,
+      "preserve_layout": false,
+      "preserve_formulas": false,
+      "preserve_charts": false,
+      "preserve_slide_layouts": false,
+      "prevent_source_overwrite": true,
+      "require_offline_operation": true,
+      "allow_public_internet": false,
+      "require_validation_report": true
+    }
+  }
+}
