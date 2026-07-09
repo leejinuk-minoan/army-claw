@@ -72,6 +72,13 @@
       "file": "docs/research-notes/task-notes/RN-025B-task025b-adapter-interface-validator-local-verification.md",
       "research_axis": "Local validator execution evidence and cloud-first local-verify result",
       "status": "verified"
+    },
+    "RN-026": {
+      "task": "Task 026",
+      "title": "Adapter Validator Integration Contract Proof",
+      "file": "docs/research-notes/task-notes/RN-026-task026-adapter-validator-integration-contract.md",
+      "research_axis": "Adapter validator integration gate, evidence, and completion contract",
+      "status": "verified"
     }
   }
 }
