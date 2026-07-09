@@ -1,0 +1,141 @@
+{
+  "schema_version": "army-claw-adapter-interface-validator-contract-024.v1",
+  "contract_id": "adapter-interface-validator-contract",
+  "task_id": "task024-adapter-interface-validator-contract-proof",
+  "validates_contract": "docs/gpt-communication/contracts/common-office-adapter-interface-contract.json",
+  "uses_error_taxonomy": "docs/gpt-communication/contracts/common-office-adapter-error-taxonomy.json",
+  "supported_targets": [
+    "local_workspace",
+    "hwp_hwpx",
+    "hancell",
+    "hanshow"
+  ],
+  "supported_plan_types": [
+    "local_workspace_action_plan",
+    "hwp_hwpx_fill_plan",
+    "hancell_fill_plan",
+    "hanshow_fill_plan",
+    "multi_app_execution_plan"
+  ],
+  "adapter_slots": {
+    "local_workspace": "local_workspace_adapter_slot",
+    "hwp_hwpx": "hwp_hwpx_adapter_slot",
+    "hancell": "hancell_adapter_slot",
+    "hanshow": "hanshow_adapter_slot"
+  },
+  "validation_result_status_enum": [
+    "valid",
+    "invalid",
+    "blocked",
+    "not_evaluated",
+    "not_applicable"
+  ],
+  "request_validation_rules": [
+    "required_fields_present",
+    "request_id_present",
+    "contract_version_matches",
+    "target_id_supported",
+    "adapter_slot_id_matches_target_id",
+    "plan_type_matches_target_id",
+    "validated_plan_present",
+    "template_reference_present",
+    "prevent_source_overwrite_true",
+    "allow_public_internet_false",
+    "proof_or_dry_run_context_explicit",
+    "llm_direct_file_edit_absent",
+    "llm_direct_native_app_state_modification_absent"
+  ],
+  "response_validation_rules": [
+    "required_fields_present",
+    "request_id_links_to_request",
+    "response_id_present",
+    "status_enum_valid",
+    "proof_mode_actual_adapter_invoked_false",
+    "proof_mode_execution_allowed_false",
+    "proof_mode_no_real_output_artifact_claim",
+    "validation_result_present",
+    "evidence_present",
+    "warnings_present"
+  ],
+  "error_validation_rules": [
+    "error_id_present",
+    "error_code_exists_in_taxonomy",
+    "error_category_matches_taxonomy",
+    "recoverable_present",
+    "blocking_present_in_taxonomy",
+    "user_visible_state_present",
+    "blocked_reason_present",
+    "evidence_present"
+  ],
+  "mapping_validation_rules": [
+    {
+      "target_id": "local_workspace",
+      "adapter_slot_id": "local_workspace_adapter_slot",
+      "plan_type": "local_workspace_action_plan"
+    },
+    {
+      "target_id": "hwp_hwpx",
+      "adapter_slot_id": "hwp_hwpx_adapter_slot",
+      "plan_type": "hwp_hwpx_fill_plan"
+    },
+    {
+      "target_id": "hancell",
+      "adapter_slot_id": "hancell_adapter_slot",
+      "plan_type": "hancell_fill_plan"
+    },
+    {
+      "target_id": "hanshow",
+      "adapter_slot_id": "hanshow_adapter_slot",
+      "plan_type": "hanshow_fill_plan"
+    }
+  ],
+  "multi_app_execution_plan_rule": {
+    "direct_adapter_invocation_allowed": false,
+    "decomposed_steps_must_match_single_target_mapping": true
+  },
+  "proof_mode_validation_rules": [
+    "actual_adapter_invoked_false",
+    "execution_allowed_false",
+    "no_real_output_artifact_claim",
+    "no_local_execution_evidence_claim",
+    "no_hancom_com_execution_claim",
+    "no_gui_verification_claim"
+  ],
+  "forbidden_action_validation_rules": [
+    "source_template_overwrite_blocked",
+    "public_internet_dependency_blocked",
+    "llm_direct_file_edit_blocked",
+    "llm_direct_native_app_state_modification_blocked",
+    "actual_adapter_invocation_in_proof_blocked",
+    "unsupported_template_artifact_type_blocked",
+    "target_plan_mismatch_blocked",
+    "adapter_slot_mismatch_blocked",
+    "evidence_missing_blocked"
+  ],
+  "negative_sample_validation_rules": [
+    {
+      "sample": "negative-llm-direct-file-edit-request.sample.json",
+      "expected_status": "blocked",
+      "expected_error_category": "llm_direct_file_edit_blocked"
+    },
+    {
+      "sample": "negative-source-overwrite-request.sample.json",
+      "expected_status": "blocked",
+      "expected_error_category": "source_overwrite_blocked"
+    },
+    {
+      "sample": "negative-public-internet-required.sample.json",
+      "expected_status": "blocked",
+      "expected_error_category": "public_internet_dependency_blocked"
+    },
+    {
+      "sample": "negative-target-plan-mismatch.sample.json",
+      "expected_status": "blocked",
+      "expected_error_category": "target_plan_mismatch"
+    }
+  ],
+  "actual_validator_implementation_included": false,
+  "actual_adapter_invocation_allowed_in_task024": false,
+  "stage_2_transition_declared": false,
+  "final_hwp_hwpx_core_selected": false
+}
