@@ -1,6 +1,6 @@
 # Army Claw 에이전트 운영 모델
 
-작성일: 2026-07-03
+작성일: 2026-07-09
 
 ## 1. 채팅별 역할
 
@@ -13,6 +13,7 @@
 - 1시간 조건 감시를 통한 GitHub 원격 점검
 - 에이전트의 계획 이탈·위험 감지
 - `CURRENT.md`, `PROJECT_STATE.json`, 로드맵 갱신
+- 논문화용 Research Note 구조와 index 기준 관리
 
 마스터 에이전트는 긴 로컬 Codex 실행 프롬프트를 직접 작성하지 않는다. 정상 중간 진행에는 알리지 않고 계획 이탈, 테스트 실패, 라이선스·보안 위험, 중요 milestone과 단계 전환 가능성을 사용자에게 알린다.
 
@@ -25,6 +26,7 @@
 - 로컬 Codex가 읽을 실행 프롬프트를 `CODEX_EXECUTION_BRIEF.md` 중심으로 압축
 - 실행 결과 후 `CODEX_LATEST.json` 갱신
 - 아키텍처나 단계 변경 필요 시 마스터 검토 요청
+- Task 완료 후 Research Note 생성 여부와 index 갱신 여부 확인
 
 독자적으로 변경하지 않는 항목:
 
@@ -34,6 +36,7 @@
 - 제품 범위
 - 공식 단계 완료 상태
 - 사용자 승인 없는 main merge
+- Research Note 구조 원칙
 
 ### C. Codex 대행 엔진 채팅
 
@@ -44,6 +47,7 @@
 - delegation package 생성
 - 허용 브랜치에 클라우드 안전 변경 commit·push
 - 로컬 미검증 사항과 실행 브리프 기록
+- 허용된 경우 Task별 Research Note 초안과 index 갱신
 
 대행 엔진은 로컬 PC, 한글 COM, 패키지 설치, 실제 회귀 테스트와 성능 측정을 수행했다고 주장하지 않는다.
 
@@ -77,13 +81,18 @@
 5. 최신 마스터 검토 의견
 6. `docs/gpt-communication/CLOUD_LOCAL_EXECUTION_ROUTING.md`
 7. `docs/gpt-communication/MASTER_MONITORING_POLICY.md`
-8. 현재 `TASK_CONTRACT.md`
-9. 현재 delegation package
-10. `docs/gpt-communication/handoffs/CODEX_LATEST.json`
-11. 최신 opinion·report
-12. 실제 원격 branch·commit·산출물
+8. `docs/research-notes/research-note-index.md`
+9. `docs/research-notes/research-note-index.json`
+10. 현재 `TASK_CONTRACT.md`
+11. 현재 delegation package
+12. `docs/gpt-communication/handoffs/CODEX_LATEST.json`
+13. 최신 opinion·report
+14. 최신 Research Note
+15. 실제 원격 branch·commit·산출물
 
 충돌 시 실제 원격 commit과 산출물을 확인한다. 단계·로드맵·아키텍처 변경은 마스터 승인 기록이 있어야 한다.
+
+Research Note는 Task report를 대체하지 않는다. Task report는 개발·검증 기록이고, Research Note는 논문 활용을 위한 연구 메모 계층이다.
 
 ## 3. 정보 전달 흐름
 
@@ -91,6 +100,7 @@
 마스터 에이전트
 → 현재 단계·아키텍처·Gate 확정
 → PROJECT_STATE.json / CURRENT.md 갱신
+→ Research Note 구조와 index 기준 확정
 
 사용자
 → 결과와 실제 화면을 프롬프트 작성 에이전트에 공유
@@ -98,14 +108,17 @@
 프롬프트 작성 에이전트
 → 결과 분석
 → Task Contract와 routing class 확정
+→ Research Note 산출 필요 여부 명시
 → 클라우드 가능 작업을 대행 엔진에 전달
 
 Codex 대행 엔진
 → 분석·설계·클라우드 안전 변경
 → delegation package와 commit push
+→ 허용된 경우 Research Note 초안 생성
 
 프롬프트 작성 에이전트
 → 원격 commit과 패키지 검증
+→ Research Note 및 index 갱신 여부 확인
 → 로컬 실행 브리프 중심의 짧은 Codex 프롬프트 작성
 
 로컬 Codex
@@ -119,6 +132,7 @@ Codex 대행 엔진
 마스터 에이전트
 → 1시간 GitHub 조건 감시
 → 계획·계약·실제 결과 정합성 판정
+→ Research Note 구조 위반 여부 확인
 ```
 
 ## 4. 단계별 쓰기 잠금
@@ -144,10 +158,12 @@ cloud_preparation
 4. `CLOUD_LOCAL_EXECUTION_ROUTING.md`
 5. 마스터 로드맵과 아키텍처 결정문
 6. 최신 마스터 검토 의견
-7. `CODEX_LATEST.json`
-8. 최신 Task Contract
-9. 현재 delegation package
-10. 현재 원격 HEAD와 관련 opinion·report
+7. `docs/research-notes/research-note-index.md`
+8. `docs/research-notes/research-note-index.json`
+9. `CODEX_LATEST.json`
+10. 최신 Task Contract
+11. 현재 delegation package
+12. 현재 원격 HEAD와 관련 opinion·report·Research Note
 
 다음 작업을 먼저 분류한다.
 
@@ -157,6 +173,8 @@ cloud_scope
 local_scope
 local_validation_required
 delegation_package_path
+research_note_required
+research_note_target_path
 ```
 
 ## 6. 로컬 Codex 프롬프트 필수 구성
@@ -172,6 +190,7 @@ delegation_package_path
 - 실행 명령과 기대 결과
 - 회귀 테스트
 - 산출물·로그
+- Research Note 필요 여부
 - 완료 Gate
 - 금지사항
 - commit·push와 최종 보고
@@ -192,6 +211,8 @@ push 결과
 실행 명령
 테스트 결과
 산출물·로그 경로
+Research Note 경로
+Research Note index 갱신 여부
 미완료 항목
 사용자 확인 항목
 다음 재개 지점
@@ -206,6 +227,8 @@ start SHA
 delegation commit SHA
 변경 파일
 클라우드 정적 검증
+Research Note 초안 경로
+Research Note index 갱신 여부
 로컬 검증 필요 항목
 execution brief 경로
 위험
@@ -232,6 +255,9 @@ delegation/<task-id>/**
 
 opinions/
 → 마스터 또는 명시된 검토 에이전트
+
+docs/research-notes/**
+→ Task Contract에서 허용된 에이전트. 구조 원칙 변경은 마스터 승인 필요
 ```
 
 ## 9. 공통 금지
@@ -244,6 +270,8 @@ opinions/
 - 에이전트 간 동일 파일 동시 수정
 - 마스터 승인 없는 단계·아키텍처 변경
 - 사용자 시각검증 전 엔진 완료 선언
+- Research Note를 Task report의 대체물로 사용하는 것
+- `research-note-index.md` 또는 `research-note-index.json`에 장문 연구 내용을 누적하는 것
 
 ## 10. 단계 표기
 
