@@ -44,6 +44,13 @@
       "file": "docs/research-notes/task-notes/RN-022-task022-ai-worker-handoff-contract.md",
       "research_axis": "AI worker handoff contract and receiver validation",
       "status": "verified"
+    },
+    "RN-023": {
+      "task": "Task 023",
+      "title": "Common Office Adapter Interface Contract Proof",
+      "file": "docs/research-notes/task-notes/RN-023-task023-common-office-adapter-interface-contract.md",
+      "research_axis": "Common office adapter interface and evidence envelope",
+      "status": "verified"
     }
   }
 }
