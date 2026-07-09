@@ -23,6 +23,7 @@
 - 대행 엔진 원격 commit과 package 검증
 - 로컬 Codex 실행 프롬프트 작성
 - Research Note 생성 여부와 index 갱신 확인
+- adapter 관련 작업의 validator gate required 여부 확인
 
 ### C. Codex 대행 엔진 채팅
 
@@ -38,6 +39,7 @@
 - 로컬 파일·프로그램·패키지·한글 COM 작업은 승인 범위 내에서만 수행
 - 실제 테스트·측정·로그·산출물 생성
 - stdout/stderr/exit code와 실행 증거 기록
+- adapter validator gate가 필요한 작업에서는 evidence schema에 맞춰 결과 기록
 - commit·push 및 실행 보고
 
 ### E. 사용자
@@ -61,25 +63,28 @@
 8. `docs/architecture/army-claw-ai-worker-handoff-contract.md`
 9. `docs/architecture/army-claw-common-office-adapter-interface-contract.md`
 10. `docs/architecture/army-claw-adapter-interface-validator-contract.md`
-11. `docs/gpt-communication/contracts/common-office-adapter-interface-contract.json`
-12. `docs/gpt-communication/contracts/common-office-adapter-error-taxonomy.json`
-13. `docs/gpt-communication/contracts/adapter-interface-validator-contract.json`
-14. `docs/gpt-communication/contracts/adapter-interface-validation-matrix.md`
-15. `docs/gpt-communication/contracts/adapter-interface-validation-matrix.json`
-16. `docs/gpt-communication/contracts/ADAPTER_INTERFACE_VALIDATOR_CHECKLIST.md`
-17. `tools/validators/adapter_interface_validator.py`
-18. `tests/adapter_interface_validator/test_adapter_interface_validator.py`
-19. `docs/gpt-communication/delegation/task025-adapter-interface-validator-implementation/ROUTING_DECISION.json`
-20. `docs/gpt-communication/delegation/task025-adapter-interface-validator-implementation/LOCAL_EXECUTION_BRIEF.md`
-21. `docs/gpt-communication/handoffs/ai-worker-handoff-contract.json`
-22. `docs/gpt-communication/handoffs/AI_WORKER_HANDOFF_TEMPLATE.md`
-23. `docs/gpt-communication/CLOUD_LOCAL_EXECUTION_ROUTING.md`
-24. `docs/research-notes/research-note-index.md`
-25. `docs/research-notes/research-note-index.json`
-26. 현재 Task Contract
-27. 현재 delegation package 또는 handoff packet
-28. 최신 Task report와 Research Note
-29. 실제 원격 branch·commit·산출물
+11. `docs/architecture/army-claw-adapter-validator-integration-contract.md`
+12. `docs/gpt-communication/contracts/common-office-adapter-interface-contract.json`
+13. `docs/gpt-communication/contracts/common-office-adapter-error-taxonomy.json`
+14. `docs/gpt-communication/contracts/adapter-interface-validator-contract.json`
+15. `docs/gpt-communication/contracts/adapter-interface-validation-matrix.md`
+16. `docs/gpt-communication/contracts/adapter-interface-validation-matrix.json`
+17. `docs/gpt-communication/contracts/ADAPTER_INTERFACE_VALIDATOR_CHECKLIST.md`
+18. `docs/gpt-communication/contracts/adapter-validator-integration-contract.json`
+19. `docs/gpt-communication/contracts/adapter-validator-gate-policy.json`
+20. `docs/gpt-communication/contracts/adapter-validator-evidence-schema.json`
+21. `tools/validators/adapter_interface_validator.py`
+22. `tests/adapter_interface_validator/test_adapter_interface_validator.py`
+23. `docs/gpt-communication/delegation/task025-adapter-interface-validator-implementation/LOCAL_EXECUTION_RESULT.json`
+24. `docs/gpt-communication/reports/2026-07-09-task025b-adapter-interface-validator-local-verification.md`
+25. `docs/gpt-communication/handoffs/ai-worker-handoff-contract.json`
+26. `docs/gpt-communication/handoffs/AI_WORKER_HANDOFF_TEMPLATE.md`
+27. `docs/research-notes/research-note-index.md`
+28. `docs/research-notes/research-note-index.json`
+29. 현재 Task Contract
+30. 현재 delegation package 또는 handoff packet
+31. 최신 Task report와 Research Note
+32. 실제 원격 branch·commit·산출물
 
 충돌 시 실제 원격 commit과 산출물을 확인한다. 단계·로드맵·아키텍처 변경은 마스터 승인 기록이 있어야 한다.
 
@@ -98,6 +103,7 @@ Research Note는 Task report를 대체하지 않는다.
 프롬프트 작성 에이전트
 -> routing class 확정
 -> Task Contract 또는 handoff/delegation 요구사항 확정
+-> adapter validator gate decision 확인
 
 Codex 대행 엔진
 -> cloud-safe 변경 또는 cloud implementation package 작성
@@ -106,6 +112,7 @@ Codex 대행 엔진
 
 프롬프트 작성 에이전트 또는 master review
 -> 원격 commit과 package read-only 검증
+-> validator gate status 확인
 -> local_execution_base_sha 승인 여부 판단
 
 로컬 Codex 또는 다음 worker
@@ -135,13 +142,7 @@ Task 022 이후 handoff packet은 worker 간 공식 정보 전달 단위다.
 - Task 완료 후 다음 worker에게 넘길 때 handoff packet을 사용한다.
 - handoff packet은 Task report와 Research Note를 대체하지 않는다.
 - handoff packet은 receiver가 accept/reject/blocked를 판단할 수 있는 최소 계약이다.
-- handoff packet에는 branch, commit SHA, changed files, validation summary, commands run/not run, stop conditions, next worker scope가 포함되어야 한다.
-
-공식 handoff source of truth:
-
-- `docs/architecture/army-claw-ai-worker-handoff-contract.md`
-- `docs/gpt-communication/handoffs/AI_WORKER_HANDOFF_TEMPLATE.md`
-- `docs/gpt-communication/handoffs/ai-worker-handoff-contract.json`
+- adapter-related handoff packet은 validator gate status와 evidence path를 포함해야 한다.
 
 ## 6. Common Office Adapter Interface Contract
 
@@ -152,8 +153,6 @@ Task 023 이후 adapter 구현, adapter slot 변경, plan-to-adapter 연결, sam
 - `docs/architecture/army-claw-common-office-adapter-interface-contract.md`
 - `docs/gpt-communication/contracts/common-office-adapter-interface-contract.json`
 - `docs/gpt-communication/contracts/common-office-adapter-error-taxonomy.json`
-
-Interface 변경은 구현 Task에 섞지 않고 별도 contract Task로 분리한다.
 
 Adapter 관련 proof mode에서는 실제 adapter 실행을 주장하지 않는다. 실제 HWP/HWPX, HanCell, HanShow, local_workspace 실행 evidence는 별도 local execution Task에서만 생성한다.
 
@@ -169,30 +168,34 @@ Task 024 이후 adapter interface 변경, sample 변경, validator 구현, adapt
 - `docs/gpt-communication/contracts/adapter-interface-validation-matrix.json`
 - `docs/gpt-communication/contracts/ADAPTER_INTERFACE_VALIDATOR_CHECKLIST.md`
 
-## 8. Task 025-A Cloud Implementation Package
+## 8. Adapter Validator Integration Contract
 
-Task 025-A는 validator source와 unittest source를 작성하지만 실행하지 않는다.
+Task 026 이후 adapter 관련 작업은 validator gate policy를 확인해야 한다.
 
-공식 구현 패키지 source of truth:
+공식 integration source of truth:
 
-- `tools/validators/adapter_interface_validator.py`
-- `tests/adapter_interface_validator/test_adapter_interface_validator.py`
-- `docs/gpt-communication/delegation/task025-adapter-interface-validator-implementation/`
+- `docs/architecture/army-claw-adapter-validator-integration-contract.md`
+- `docs/gpt-communication/contracts/adapter-validator-integration-contract.json`
+- `docs/gpt-communication/contracts/adapter-validator-gate-policy.json`
+- `docs/gpt-communication/contracts/adapter-validator-evidence-schema.json`
 
-Task 025-B 로컬 검증은 마스터가 원격 HEAD를 read-only로 확인하고 `local_execution_base_sha`를 지정한 뒤에만 시작한다.
+Gate decision flow:
 
-Task 025-A에서 금지되는 주장:
+```text
+changed files 확인
+-> adapter 관련 변경 여부 판단
+-> gate_required / not_required 결정
+-> gate_required이면 validator evidence 요구
+-> gate passed 또는 not_required일 때만 completion 가능
+```
 
-- validator CLI 실행 완료
-- unittest passed
-- local stdout/stderr/exit code 생성
-- actual adapter invocation
-- Hancom COM execution
-- Task 025 전체 완료
+Task 026은 integration contract proof이며 CI 구현이 아니다. GitHub Actions workflow, 자동 실행 파이프라인, 실제 adapter 구현, 실제 validator 실행을 포함하지 않는다.
 
-## 8.1 Task 025-B Local Verification Result
+## 9. Task 025-A/B 상태
 
-Task 025-B는 마스터가 승인한 `local_execution_base_sha`에서 Task 025-A validator package를 로컬 clean worktree로 실행하는 단계다.
+Task 025-A는 validator source와 unittest source를 작성했다.
+
+Task 025-B는 마스터가 승인한 `local_execution_base_sha`에서 Task 025-A validator package를 로컬 clean worktree로 실행했다.
 
 Task 025-B 기준 실행 결과:
 
@@ -209,9 +212,7 @@ Task 025-B 기준 실행 결과:
 - Hancom COM executed: `false`
 - completion_gate_passed: `true`
 
-이 결과는 Adapter Interface Validator의 cloud-first/local-verify 경계가 실제 로컬 실행 evidence로 검증되었음을 의미한다. 다만 실제 adapter 구현, 실제 문서 생성, Hancom COM 검증은 포함하지 않는다.
-
-## 9. Handoff receiver 원칙
+## 10. Handoff receiver 원칙
 
 Receiver는 handoff 또는 delegation package 수신 후 바로 수정하지 않는다. 먼저 다음을 확인한다.
 
@@ -225,11 +226,12 @@ Receiver는 handoff 또는 delegation package 수신 후 바로 수정하지 않
 8. stop conditions
 9. adapter 관련 작업이면 common office adapter interface contract 준수 여부
 10. adapter validator 또는 sample 관련 작업이면 validator contract와 matrix 준수 여부
-11. cloud-first/local-verify 작업이면 `local_execution_base_sha` 승인 여부
+11. adapter validator gate required 여부와 evidence 상태
+12. cloud-first/local-verify 작업이면 `local_execution_base_sha` 승인 여부
 
 검증 결과는 `accepted`, `rejected`, `blocked` 중 하나로 판단한다.
 
-## 10. 공식 Worker Roster
+## 11. 공식 Worker Roster
 
 공식 worker:
 
@@ -245,7 +247,7 @@ Receiver는 handoff 또는 delegation package 수신 후 바로 수정하지 않
 
 인원 A/B 협업은 취소 상태로 유지한다.
 
-## 11. 공통 금지
+## 12. 공통 금지
 
 - 사용자 승인 없는 main merge
 - main 직접 push
@@ -259,7 +261,7 @@ Receiver는 handoff 또는 delegation package 수신 후 바로 수정하지 않
 - Research Note를 Task report 대체물로 사용하는 것
 - Research Note index에 장문 내용을 누적하는 것
 
-## 12. 단계 표기
+## 13. 단계 표기
 
 Army Claw 관련 답변은 필요한 경우 처음에 전체 프로젝트 단계표를 표시한다.
 
