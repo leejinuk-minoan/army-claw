@@ -2,7 +2,9 @@
 
 ## Summary
 
-This preparation step records the planned human collaboration governance before Task 021 is finalized.
+This preparation step originally recorded a planned human collaboration governance model before Task 021 was finalized.
+
+That human collaboration plan has been canceled. The current model is now a solo-owner project with task-based sequential handoff among approved local AI workers.
 
 This is not Task 021 execution. It does not implement HanShow, HanCell, HWP/HWPX, Model Gateway, LLM planner, HTTP, UI, or Stage 2 work.
 
@@ -16,32 +18,56 @@ This is not Task 021 execution. It does not implement HanShow, HanCell, HWP/HWPX
 - Master plan research evidence update commit SHA: `baa31b44aeeba5a7a83de8b48c7d2c0726d2041a`
 - Collaboration addendum research evidence update commit SHA: `9de79c7f32c8f854de9fc9ea1008d3f056533329`
 - Standalone research evidence discipline commit SHA: `8a6377d22e4aeca77cbb21ad25bfeec4103d8864`
+- Human collaboration cancellation addendum commit SHA: `af722f5a06d3498da74c91f807bfed173e22bedc`
 
 ## Added / Updated Documents
 
 - `docs/architecture/army-claw-master-plan-collaboration-addendum.md`
 - `docs/research/papers/army-claw-research-evidence-discipline.md`
 
-## Human Collaboration Plan
+## Human Collaboration Status
 
-Planned human collaborators:
+Canceled.
 
-- Project owner: HWP/HWPX engine, local LLM / Model Gateway direction, master integration, master review
+The following previous plan is no longer active:
+
 - Person A: Park Gyumin / 박규민 — HanShow engine
 - Person B: Kim Youngsu / 김영수 — HanCell engine
 
-## Branches Created for Human Collaborators
+The current human work model is:
 
-- `feature/hanshow-engine-person-a` — Person A / 박규민
-- `feature/hancell-engine-person-b` — Person B / 김영수
+- Human project owner: the user only
+- No active external human collaborators
+- No active collaborator-operated AI branch ownership
+- No active human-assigned HanShow or HanCell feature branch ownership
 
-These branches were created from the addendum commit SHA `055b431c51b7ec269b9c6e38d2f1d0db910d3c9a` and later fast-forwarded to the latest pre-Task 021 preparation head.
+## Inactive Human Collaborator Branches
+
+The following branches are inactive and must not be used for new human collaborator work unless a later user-approved task explicitly reactivates them:
+
+- `feature/hanshow-engine-person-a`
+- `feature/hancell-engine-person-b`
+
+These branches may remain in GitHub for historical traceability.
+
+## Active Local AI Worker Model
+
+The active AI worker model is task-based sequential handoff among:
+
+- Codex A — `worker_id=codex_a`
+- Codex B — `worker_id=codex_b`
+- Claude Code A — `worker_id=claude_code_a`
+
+Gemini Antigravity is excluded.
+
+Only one AI worker should perform a task at a time. Handoff must be based on GitHub-verified commit SHA, task report, evidence bundle, and test result.
 
 ## Governance Added
 
 The addendum fixes the following rules:
 
-- Each collaborator and collaborator-operated AI may only modify explicitly assigned branches.
+- The project is now solo-owner for human work.
+- Local AI workers may only modify explicitly assigned task branches.
 - Direct push to `main` is forbidden.
 - Force push and history rewrite are forbidden without explicit approval.
 - HanShow and HanCell engines must follow the fixed Army Claw contracts.
@@ -86,4 +112,6 @@ release/test-documents/<task-id>/research-evidence-manifest.json
 
 ## Next Step
 
-After human collaboration participation is confirmed, revise Task 021 to reflect the confirmed collaborator status and continue with AI worker operating rules, collaboration governance, and research evidence discipline.
+Revise Task 021 for the solo-owner and local-agent sequential handoff model.
+
+Task 021 should define AI worker operating rules for Codex A, Codex B, and Claude Code A, while preserving research evidence discipline.
