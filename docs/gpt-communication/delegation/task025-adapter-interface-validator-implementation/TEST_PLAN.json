@@ -1,0 +1,48 @@
+{
+  "task_id": "task025-adapter-interface-validator-implementation",
+  "phase": "task025a-cloud-implementation-package",
+  "cloud_tests_executed": false,
+  "cloud_execution_claims": {
+    "validator_cli_executed": false,
+    "unittest_executed": false,
+    "json_parser_executed": false,
+    "hancom_com_executed": false,
+    "actual_adapter_invoked": false
+  },
+  "required_local_commands": [
+    {
+      "name": "validator_cli_json",
+      "command": "python tools/validators/adapter_interface_validator.py --repo-root . --format json",
+      "expected_exit_code": 0,
+      "record_stdout": true,
+      "record_stderr": true
+    },
+    {
+      "name": "unittest_discover",
+      "command": "python -m unittest discover -s tests/adapter_interface_validator -p \"test_*.py\"",
+      "expected_exit_code": 0,
+      "record_stdout": true,
+      "record_stderr": true
+    }
+  ],
+  "required_test_coverage": [
+    "common contract JSON load",
+    "error taxonomy JSON load",
+    "validator contract JSON load",
+    "validation matrix JSON load",
+    "positive request samples valid",
+    "positive response samples valid",
+    "proof-mode response actual_adapter_invoked false",
+    "proof-mode response execution_allowed false",
+    "negative direct file edit sample blocked",
+    "negative source overwrite sample blocked",
+    "negative public internet sample blocked",
+    "negative target-plan mismatch sample blocked",
+    "target/slot/plan mapping valid",
+    "unknown target invalid",
+    "mismatched adapter slot invalid",
+    "mismatched plan type invalid"
+  ],
+  "completion_gate_passed": false,
+  "requires_local_verification": true
+}
