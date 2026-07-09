@@ -12,7 +12,7 @@
     "local_codex_role": "local_execution_only",
     "execution_routing": {
       "enabled": true,
-      "classes": ["cloud_delegable", "local_codex_required", "hybrid"],
+      "classes": ["cloud_delegable", "local_codex_required", "hybrid", "cloud_first_local_verify"],
       "same_task_concurrent_writes": false
     },
     "handoff_contract": {
@@ -60,6 +60,10 @@
       "docs/gpt-communication/contracts/adapter-interface-validation-matrix.md",
       "docs/gpt-communication/contracts/adapter-interface-validation-matrix.json",
       "docs/gpt-communication/contracts/ADAPTER_INTERFACE_VALIDATOR_CHECKLIST.md",
+      "tools/validators/adapter_interface_validator.py",
+      "tests/adapter_interface_validator/test_adapter_interface_validator.py",
+      "docs/gpt-communication/delegation/task025-adapter-interface-validator-implementation/ROUTING_DECISION.json",
+      "docs/gpt-communication/delegation/task025-adapter-interface-validator-implementation/LOCAL_EXECUTION_BRIEF.md",
       "docs/gpt-communication/handoffs/AI_WORKER_HANDOFF_TEMPLATE.md",
       "docs/gpt-communication/handoffs/ai-worker-handoff-contract.json",
       "docs/research-notes/research-note-index.md",
@@ -73,7 +77,7 @@
     "substage": "1-3",
     "substage_name": "선행 HWPX 엔진 비교·코어 선정",
     "status": "in_progress",
-    "current_task": "Task 024 Adapter Interface Validator Contract Proof"
+    "current_task": "Task 025-A Adapter Interface Validator Cloud Implementation Package"
   },
   "architecture": {
     "orchestrator": "OpenClaw / Army Claw Node.js·TypeScript",
@@ -90,25 +94,40 @@
       "machine_contract_path": "docs/gpt-communication/contracts/adapter-interface-validator-contract.json",
       "validation_matrix_markdown_path": "docs/gpt-communication/contracts/adapter-interface-validation-matrix.md",
       "validation_matrix_json_path": "docs/gpt-communication/contracts/adapter-interface-validation-matrix.json",
-      "checklist_path": "docs/gpt-communication/contracts/ADAPTER_INTERFACE_VALIDATOR_CHECKLIST.md",
-      "actual_validator_implementation_included": false,
-      "actual_adapter_invocation_allowed_in_task024": false,
+      "checklist_path": "docs/gpt-communication/contracts/ADAPTER_INTERFACE_VALIDATOR_CHECKLIST.md"
+    },
+    "adapter_validator_implementation_package": {
+      "enabled": true,
+      "phase": "task025a-cloud-implementation-package",
+      "routing_class": "cloud_first_local_verify",
+      "validator_source_path": "tools/validators/adapter_interface_validator.py",
+      "unittest_source_path": "tests/adapter_interface_validator/test_adapter_interface_validator.py",
+      "delegation_package_path": "docs/gpt-communication/delegation/task025-adapter-interface-validator-implementation/",
+      "local_agent_required_now": false,
+      "local_execution_allowed": false,
+      "local_execution_base_sha": null,
+      "requires_master_read_only_verification": true,
+      "actual_validator_executed": false,
+      "unittest_executed": false,
+      "actual_adapter_invoked": false,
       "stage_2_transition_declared": false,
-      "final_hwp_hwpx_core_selected": false
+      "final_hwp_hwpx_core_selected": false,
+      "completion_gate_passed": false,
+      "requires_local_verification": true
     }
   },
-  "current_branch": "agent/task024-adapter-interface-validator-contract",
-  "latest_common_adapter_interface_commit": "df7367c33b0aa8e7e33b2bef3e819c057350caf0",
+  "current_branch": "agent/task025a-adapter-interface-validator-cloud-implementation",
+  "latest_adapter_validator_contract_commit": "335bd17bef3fb07c5bad9e365d31d25122cef6f1",
   "benchmark_003": {
     "completion_gate_passed": false,
     "proceed_to_task_004": false,
     "scorecard_valid_for_selection": false
   },
   "next_work": {
-    "task_id": "task025-adapter-interface-validator-implementation-proof",
-    "routing_class": "cloud_delegable_or_hybrid_pending_scope",
-    "phase": "planned",
-    "title": "Task 025 Adapter Interface Validator Implementation Proof"
+    "task_id": "task025b-adapter-interface-validator-local-verification",
+    "routing_class": "local_codex_required",
+    "phase": "planned_after_master_read_only_verification",
+    "title": "Task 025-B Adapter Interface Validator Local Verification"
   },
   "restrictions": [
     "사용자 승인 없이 main merge 금지",
