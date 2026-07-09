@@ -9,6 +9,8 @@ substage:
 title:
 owner: Codex prompt-author agent
 status: draft
+routing_class:
+phase:
 ```
 
 ## 2. Approved source of truth
@@ -28,6 +30,9 @@ adapter error taxonomy:
 adapter validator contract:
 adapter validation matrix:
 adapter validator checklist:
+validator implementation source:
+validator unittest source:
+delegation package:
 ```
 
 ## 3. Repository state
@@ -38,6 +43,7 @@ local_root:
 base_branch:
 base_commit:
 work_branch:
+local_execution_base_sha:
 ```
 
 ## 4. Objective
@@ -132,7 +138,33 @@ When `adapter_validator_contract_required` is true, the Task must check:
 - validator implementation is not claimed unless executable code and evidence exist
 ```
 
-## 12. TDD and validation
+## 12. Cloud-first local-verify contract
+
+Use this section when cloud writes implementation files but local verification is required before completion.
+
+```text
+cloud_first_local_verify:
+cloud_phase:
+local_phase:
+local_agent_required_now:
+local_execution_allowed:
+local_execution_base_sha:
+requires_master_read_only_verification:
+completion_gate_passed:
+requires_local_verification:
+```
+
+Rules:
+
+```text
+- cloud may write approved implementation and test source
+- cloud must not claim execution or passed tests unless actually run
+- local execution must wait for master read-only verification
+- local execution must start from assigned local_execution_base_sha
+- Task overall completion remains false until local verification passes
+```
+
+## 13. TDD and validation
 
 ```text
 RED tests:
@@ -145,9 +177,10 @@ research note structure checks:
 handoff packet checks:
 adapter interface contract checks:
 adapter validator contract checks:
+local execution evidence checks:
 ```
 
-## 13. Required outputs
+## 14. Required outputs
 
 ```text
 code:
@@ -160,9 +193,10 @@ user-review artifacts:
 handoff_packet:
 adapter_contract_artifacts:
 adapter_validator_contract_artifacts:
+local_execution_package:
 ```
 
-## 14. Research Note contract
+## 15. Research Note contract
 
 When `research_note_allowed` or `research_note_required` is true, the Task must create or update one Task-level Research Note under:
 
@@ -192,7 +226,7 @@ docs/research-notes/research-note-index.md
 docs/research-notes/research-note-index.json
 ```
 
-## 15. Handoff contract
+## 16. Handoff contract
 
 Use this section when a Task hands work to another worker.
 
@@ -217,7 +251,7 @@ docs/gpt-communication/handoffs/AI_WORKER_HANDOFF_TEMPLATE.md
 
 The handoff packet does not replace the Task report or Research Note.
 
-## 16. Completion gate
+## 17. Completion gate
 
 State measurable conditions. User visual confirmation must remain pending when required.
 
@@ -242,6 +276,17 @@ If adapter validator or sample files are changed, completion requires:
 - validator implementation is not claimed unless executable code and evidence exist
 ```
 
+If cloud-first/local-verify is used, completion requires:
+
+```text
+- cloud implementation package exists
+- local execution package exists
+- local_execution_base_sha is assigned by master before local run
+- validator CLI stdout/stderr/exit code are recorded in local phase
+- unittest stdout/stderr/exit code are recorded in local phase
+- completion_gate_passed remains false until local verification passes
+```
+
 If the Task requires a Research Note, completion requires:
 
 ```text
@@ -262,7 +307,7 @@ If `handoff_required` is true, completion also requires:
 - receiver can determine accept/reject/blocked from packet
 ```
 
-## 17. Reporting contract
+## 18. Reporting contract
 
 Codex must report:
 
@@ -278,14 +323,17 @@ research note index update result
 handoff packet path
 adapter contract artifact paths
 adapter validator contract artifact paths
-diff/diagnostic summary
+local execution package path
+actual execution performed or not performed
+completion gate status
+requires local verification
 limitations
 user verification items
 next resume point
 ```
 
-## 18. Handoff update
+## 19. Handoff update
 
-After Codex pushes, update or create the handoff packet when required.
+After Codex pushes, update or create the handoff/delegation package when required.
 
-The handoff must match the actual remote commit and artifacts.
+The package must match the actual remote commit and artifacts.
