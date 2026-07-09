@@ -65,6 +65,13 @@
       "file": "docs/research-notes/task-notes/RN-025A-task025a-adapter-interface-validator-cloud-implementation.md",
       "research_axis": "Cloud-first validator implementation package and local verification handoff",
       "status": "draft"
+    },
+    "RN-025B": {
+      "task": "Task 025-B",
+      "title": "Adapter Interface Validator Local Verification",
+      "file": "docs/research-notes/task-notes/RN-025B-task025b-adapter-interface-validator-local-verification.md",
+      "research_axis": "Local validator execution evidence and cloud-first local-verify result",
+      "status": "verified"
     }
   }
 }

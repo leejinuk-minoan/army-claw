@@ -12,6 +12,7 @@
 | RN-023 | Task 023 | `task-notes/RN-023-task023-common-office-adapter-interface-contract.md` | Common office adapter interface and evidence envelope | verified |
 | RN-024 | Task 024 | `task-notes/RN-024-task024-adapter-interface-validator-contract.md` | Adapter interface validator contract and validation matrix | verified |
 | RN-025A | Task 025-A | `task-notes/RN-025A-task025a-adapter-interface-validator-cloud-implementation.md` | Cloud-first validator implementation package and local verification handoff | draft |
+| RN-025B | Task 025-B | `task-notes/RN-025B-task025b-adapter-interface-validator-local-verification.md` | Local validator execution evidence and cloud-first local-verify result | verified |
 
 ## Index Maintenance Rule
 

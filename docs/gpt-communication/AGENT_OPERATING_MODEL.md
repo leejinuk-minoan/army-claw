@@ -190,6 +190,27 @@ Task 025-A에서 금지되는 주장:
 - Hancom COM execution
 - Task 025 전체 완료
 
+## 8.1 Task 025-B Local Verification Result
+
+Task 025-B는 마스터가 승인한 `local_execution_base_sha`에서 Task 025-A validator package를 로컬 clean worktree로 실행하는 단계다.
+
+Task 025-B 기준 실행 결과:
+
+- local_execution_base_sha: `e6ec7a30f19a1efddb04234d4e8fd805218fed2a`
+- validator CLI executed: `true`
+- validator CLI exit code: `0`
+- validator summary: `valid`
+- validator checks: `200/200 passed`
+- unittest executed: `true`
+- unittest exit code: `0`
+- unittest result: `16 tests OK`
+- evidence path: `docs/gpt-communication/evidence/task025b-adapter-interface-validator-local-verification/`
+- actual adapter invoked: `false`
+- Hancom COM executed: `false`
+- completion_gate_passed: `true`
+
+이 결과는 Adapter Interface Validator의 cloud-first/local-verify 경계가 실제 로컬 실행 evidence로 검증되었음을 의미한다. 다만 실제 adapter 구현, 실제 문서 생성, Hancom COM 검증은 포함하지 않는다.
+
 ## 9. Handoff receiver 원칙
 
 Receiver는 handoff 또는 delegation package 수신 후 바로 수정하지 않는다. 먼저 다음을 확인한다.

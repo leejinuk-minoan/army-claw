@@ -64,6 +64,9 @@
       "tests/adapter_interface_validator/test_adapter_interface_validator.py",
       "docs/gpt-communication/delegation/task025-adapter-interface-validator-implementation/ROUTING_DECISION.json",
       "docs/gpt-communication/delegation/task025-adapter-interface-validator-implementation/LOCAL_EXECUTION_BRIEF.md",
+      "docs/gpt-communication/delegation/task025-adapter-interface-validator-implementation/LOCAL_EXECUTION_RESULT.json",
+      "docs/gpt-communication/reports/2026-07-09-task025b-adapter-interface-validator-local-verification.md",
+      "docs/gpt-communication/evidence/task025b-adapter-interface-validator-local-verification/",
       "docs/gpt-communication/handoffs/AI_WORKER_HANDOFF_TEMPLATE.md",
       "docs/gpt-communication/handoffs/ai-worker-handoff-contract.json",
       "docs/research-notes/research-note-index.md",
@@ -77,7 +80,7 @@
     "substage": "1-3",
     "substage_name": "선행 HWPX 엔진 비교·코어 선정",
     "status": "in_progress",
-    "current_task": "Task 025-A Adapter Interface Validator Cloud Implementation Package"
+    "current_task": "Task 025-B Adapter Interface Validator Local Verification"
   },
   "architecture": {
     "orchestrator": "OpenClaw / Army Claw Node.js·TypeScript",
@@ -98,25 +101,38 @@
     },
     "adapter_validator_implementation_package": {
       "enabled": true,
-      "phase": "task025a-cloud-implementation-package",
+      "phase": "task025b-local_verification",
       "routing_class": "cloud_first_local_verify",
       "validator_source_path": "tools/validators/adapter_interface_validator.py",
       "unittest_source_path": "tests/adapter_interface_validator/test_adapter_interface_validator.py",
       "delegation_package_path": "docs/gpt-communication/delegation/task025-adapter-interface-validator-implementation/",
-      "local_agent_required_now": false,
-      "local_execution_allowed": false,
-      "local_execution_base_sha": null,
-      "requires_master_read_only_verification": true,
-      "actual_validator_executed": false,
-      "unittest_executed": false,
+      "local_agent_required_now": true,
+      "local_execution_allowed": true,
+      "local_execution_base_sha": "e6ec7a30f19a1efddb04234d4e8fd805218fed2a",
+      "requires_master_read_only_verification": false,
+      "actual_validator_executed": true,
+      "unittest_executed": true,
+      "validator_local_verification": {
+        "evidence_path": "docs/gpt-communication/evidence/task025b-adapter-interface-validator-local-verification/",
+        "validator_cli_exit_code": 0,
+        "validator_cli_summary_status": "valid",
+        "validator_cli_total_checks": 200,
+        "validator_cli_passed_checks": 200,
+        "validator_cli_failed_checks": 0,
+        "validator_cli_blocked_checks": 0,
+        "unittest_exit_code": 0,
+        "unittest_tests_run": 16,
+        "local_execution_result_json": "docs/gpt-communication/delegation/task025-adapter-interface-validator-implementation/LOCAL_EXECUTION_RESULT.json",
+        "report": "docs/gpt-communication/reports/2026-07-09-task025b-adapter-interface-validator-local-verification.md"
+      },
       "actual_adapter_invoked": false,
       "stage_2_transition_declared": false,
       "final_hwp_hwpx_core_selected": false,
-      "completion_gate_passed": false,
-      "requires_local_verification": true
+      "completion_gate_passed": true,
+      "requires_local_verification": false
     }
   },
-  "current_branch": "agent/task025a-adapter-interface-validator-cloud-implementation",
+  "current_branch": "agent/task025b-adapter-interface-validator-local-verification",
   "latest_adapter_validator_contract_commit": "335bd17bef3fb07c5bad9e365d31d25122cef6f1",
   "benchmark_003": {
     "completion_gate_passed": false,
@@ -124,10 +140,10 @@
     "scorecard_valid_for_selection": false
   },
   "next_work": {
-    "task_id": "task025b-adapter-interface-validator-local-verification",
-    "routing_class": "local_codex_required",
-    "phase": "planned_after_master_read_only_verification",
-    "title": "Task 025-B Adapter Interface Validator Local Verification"
+    "task_id": "task026-adapter-validator-integration-contract-proof",
+    "routing_class": "cloud_first_local_verify",
+    "phase": "recommended_next",
+    "title": "Task 026 Adapter Validator Integration Contract Proof"
   },
   "restrictions": [
     "사용자 승인 없이 main merge 금지",
