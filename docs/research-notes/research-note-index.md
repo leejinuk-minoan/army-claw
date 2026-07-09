@@ -10,6 +10,7 @@
 | RN-021 | Task 021 | `task-notes/RN-021-task021-solo-ai-worker-governance.md` | Solo AI worker governance and handoff rules | verified |
 | RN-022 | Task 022 | `task-notes/RN-022-task022-ai-worker-handoff-contract.md` | AI worker handoff contract and receiver validation | verified |
 | RN-023 | Task 023 | `task-notes/RN-023-task023-common-office-adapter-interface-contract.md` | Common office adapter interface and evidence envelope | verified |
+| RN-024 | Task 024 | `task-notes/RN-024-task024-adapter-interface-validator-contract.md` | Adapter interface validator contract and validation matrix | verified |
 
 ## Index Maintenance Rule
 
