@@ -19,11 +19,14 @@ Codex A/B/Claude Code는 작업 시작 전에 다음을 확인한다.
 - `docs/architecture/army-claw-branch-ownership-map.md`
 - `docs/architecture/army-claw-worker-setup-guide.md`
 - `docs/architecture/army-claw-ai-worker-handoff-contract.md`
+- `docs/architecture/army-claw-common-office-adapter-interface-contract.md`
 - `docs/gpt-communication/PROJECT_STATE.json`
 - `docs/gpt-communication/AGENT_OPERATING_MODEL.md`
 - `docs/gpt-communication/tasks/TASK_CONTRACT_TEMPLATE.md`
 - `docs/gpt-communication/handoffs/AI_WORKER_HANDOFF_TEMPLATE.md`
 - `docs/gpt-communication/handoffs/ai-worker-handoff-contract.json`
+- `docs/gpt-communication/contracts/common-office-adapter-interface-contract.json`
+- `docs/gpt-communication/contracts/common-office-adapter-error-taxonomy.json`
 - `docs/research-notes/README.md`
 - `docs/research-notes/research-note-index.md`
 - `docs/research-notes/research-note-index.json`
@@ -129,3 +132,17 @@ Rejected 또는 blocked 조건은 다음과 같다.
 - 동일 Task concurrent write 위험
 - main direct push, force push, history rewrite 요구
 - Stage transition 또는 final HWPX core selection 요구
+
+## 12. Adapter interface contract 확인 절차
+
+Task 023 이후 adapter 관련 작업을 시작하거나 인계할 때 worker는 다음을 먼저 확인한다.
+
+1. `docs/architecture/army-claw-common-office-adapter-interface-contract.md`를 읽는다.
+2. `docs/gpt-communication/contracts/common-office-adapter-interface-contract.json`을 확인한다.
+3. `docs/gpt-communication/contracts/common-office-adapter-error-taxonomy.json`을 확인한다.
+4. target_id, adapter_slot_id, plan_type mapping이 맞는지 확인한다.
+5. source overwrite prevention이 보존되는지 확인한다.
+6. public internet dependency가 차단되는지 확인한다.
+7. proof mode에서 실제 adapter 실행을 주장하지 않는지 확인한다.
+
+Adapter 구현 Task를 시작하기 전 common interface contract 확인은 필수다. Handoff packet에는 adapter interface contract 준수 여부를 포함할 수 있다.
