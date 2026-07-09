@@ -1,0 +1,16 @@
+{
+  "request_id": "req-negative-target-plan-mismatch-001",
+  "contract_version": "army-claw-common-office-adapter-interface-023.v1",
+  "target_id": "hanshow",
+  "adapter_slot_id": "hanshow_adapter_slot",
+  "plan_type": "hwp_hwpx_fill_plan",
+  "validated_plan": {
+    "plan_id": "negative-target-plan-mismatch",
+    "llm_direct_file_edit_requested": false,
+    "llm_direct_native_app_state_modification_requested": false
+  },
+  "template_reference": {"artifact_type": "show", "path": "templates/source.show", "overwrite_source": false},
+  "constraints": {"prevent_source_overwrite": true, "allow_public_internet": false},
+  "expected_error_code": "target_plan_mismatch",
+  "proof_mode": true
+}
