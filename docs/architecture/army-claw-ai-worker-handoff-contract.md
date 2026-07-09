@@ -142,6 +142,10 @@ When the next work is adapter-related, the next worker must also read:
 - `docs/architecture/army-claw-common-office-adapter-interface-contract.md`
 - `docs/gpt-communication/contracts/common-office-adapter-interface-contract.json`
 - `docs/gpt-communication/contracts/common-office-adapter-error-taxonomy.json`
+- `docs/architecture/army-claw-adapter-interface-validator-contract.md`
+- `docs/gpt-communication/contracts/adapter-interface-validator-contract.json`
+- `docs/gpt-communication/contracts/adapter-interface-validation-matrix.json`
+- `docs/gpt-communication/contracts/ADAPTER_INTERFACE_VALIDATOR_CHECKLIST.md`
 
 ## 11. Required receiver checks
 
@@ -157,7 +161,8 @@ The receiver must check:
 - forbidden path diff;
 - dirty worktree status;
 - stop conditions;
-- adapter interface contract compliance when adapter work is being handed off.
+- adapter interface contract compliance when adapter work is being handed off;
+- adapter validator contract and validation matrix compliance when validator or sample work is being handed off.
 
 ## 12. Stop conditions
 
@@ -175,6 +180,7 @@ The receiver must stop and report if:
 - another worker is already writing to the same Task;
 - requested work requires local execution but the receiver is cloud-only;
 - requested adapter work does not cite the common office adapter interface contract;
+- requested adapter validator work does not cite the validator contract or validation matrix;
 - requested work would modify main, force push, rewrite history, change Stage, or select final HWPX core without approval.
 
 ## 13. Allowed and forbidden receiver actions
@@ -207,10 +213,14 @@ For adapter-related work, the packet may include:
 adapter_interface_contract_checked:
 adapter_interface_contract_path:
 adapter_error_taxonomy_path:
+adapter_validator_contract_checked:
+adapter_validator_contract_path:
+adapter_validation_matrix_path:
+adapter_validator_checklist_path:
 target_adapter_slot:
 target_plan_type:
 actual_adapter_invocation_allowed:
 proof_mode:
 ```
 
-If `proof_mode=true`, the sender and receiver must not claim actual adapter invocation.
+If `proof_mode=true`, the sender and receiver must not claim actual adapter invocation. If `actual_validator_implementation_allowed=false`, the sender and receiver must not claim executable validator implementation.
