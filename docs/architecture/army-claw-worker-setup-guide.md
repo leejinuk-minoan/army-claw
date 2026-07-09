@@ -20,6 +20,7 @@ Codex A/B/Claude Code는 작업 시작 전에 다음을 확인한다.
 - `docs/architecture/army-claw-worker-setup-guide.md`
 - `docs/architecture/army-claw-ai-worker-handoff-contract.md`
 - `docs/architecture/army-claw-common-office-adapter-interface-contract.md`
+- `docs/architecture/army-claw-adapter-interface-validator-contract.md`
 - `docs/gpt-communication/PROJECT_STATE.json`
 - `docs/gpt-communication/AGENT_OPERATING_MODEL.md`
 - `docs/gpt-communication/tasks/TASK_CONTRACT_TEMPLATE.md`
@@ -27,6 +28,10 @@ Codex A/B/Claude Code는 작업 시작 전에 다음을 확인한다.
 - `docs/gpt-communication/handoffs/ai-worker-handoff-contract.json`
 - `docs/gpt-communication/contracts/common-office-adapter-interface-contract.json`
 - `docs/gpt-communication/contracts/common-office-adapter-error-taxonomy.json`
+- `docs/gpt-communication/contracts/adapter-interface-validator-contract.json`
+- `docs/gpt-communication/contracts/adapter-interface-validation-matrix.md`
+- `docs/gpt-communication/contracts/adapter-interface-validation-matrix.json`
+- `docs/gpt-communication/contracts/ADAPTER_INTERFACE_VALIDATOR_CHECKLIST.md`
 - `docs/research-notes/README.md`
 - `docs/research-notes/research-note-index.md`
 - `docs/research-notes/research-note-index.json`
@@ -146,3 +151,17 @@ Task 023 이후 adapter 관련 작업을 시작하거나 인계할 때 worker는
 7. proof mode에서 실제 adapter 실행을 주장하지 않는지 확인한다.
 
 Adapter 구현 Task를 시작하기 전 common interface contract 확인은 필수다. Handoff packet에는 adapter interface contract 준수 여부를 포함할 수 있다.
+
+## 13. Adapter validator contract 확인 절차
+
+Task 024 이후 adapter interface 변경, sample 변경, validator 구현 또는 adapter 구현 Task를 시작할 때 worker는 다음을 먼저 확인한다.
+
+1. `docs/architecture/army-claw-adapter-interface-validator-contract.md`를 읽는다.
+2. `docs/gpt-communication/contracts/adapter-interface-validator-contract.json`을 확인한다.
+3. `docs/gpt-communication/contracts/adapter-interface-validation-matrix.md`를 확인한다.
+4. `docs/gpt-communication/contracts/adapter-interface-validation-matrix.json`을 확인한다.
+5. `docs/gpt-communication/contracts/ADAPTER_INTERFACE_VALIDATOR_CHECKLIST.md`를 확인한다.
+6. proof-mode sample이 실제 adapter 실행을 주장하지 않는지 확인한다.
+7. negative sample이 expected error category를 포함하는지 확인한다.
+
+실제 validator 구현은 별도 Task에서만 수행한다.
