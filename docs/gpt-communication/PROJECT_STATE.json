@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-03",
+  "updated_at": "2026-07-09",
   "project": {
     "name": "Army Claw",
     "repository": "leejinuk-minoan/army-claw",
@@ -26,6 +26,17 @@
       "mode": "condition_watch",
       "policy": "docs/gpt-communication/MASTER_MONITORING_POLICY.md"
     },
+    "research_notes": {
+      "enabled": true,
+      "one_file_per_task": true,
+      "root": "docs/research-notes/",
+      "human_index": "docs/research-notes/research-note-index.md",
+      "machine_index": "docs/research-notes/research-note-index.json",
+      "task_note_directory": "docs/research-notes/task-notes/",
+      "long_form_notes_in_index_allowed": false,
+      "required_after_task_completion": true,
+      "purpose": "paper-writing-ready research memo layer separated from development reports"
+    },
     "source_of_truth": [
       "docs/gpt-communication/PROJECT_STATE.json",
       "docs/gpt-communication/CURRENT.md",
@@ -34,6 +45,8 @@
       "docs/gpt-communication/opinions/2026-07-03-hwpx-core-benchmark-003-master-review.md",
       "docs/gpt-communication/CLOUD_LOCAL_EXECUTION_ROUTING.md",
       "docs/gpt-communication/AGENT_OPERATING_MODEL.md",
+      "docs/research-notes/research-note-index.md",
+      "docs/research-notes/research-note-index.json",
       "docs/gpt-communication/tasks/<task-id>/TASK_CONTRACT.md",
       "docs/gpt-communication/delegation/<task-id>/CODEX_EXECUTION_BRIEF.md",
       "docs/gpt-communication/handoffs/CODEX_LATEST.json"
@@ -110,6 +123,8 @@
     "아키텍처·단계 변경은 마스터 승인 필요",
     "Task 003 완료 전 Task 004와 Stage 1-4 진입 금지",
     "실제 실행 없는 passed/completed 금지",
-    "동일 Task에서 대행 엔진과 로컬 Codex 동시 수정 금지"
+    "동일 Task에서 대행 엔진과 로컬 Codex 동시 수정 금지",
+    "Research Note는 Task report 대체물로 사용 금지",
+    "Research Note index에 장문 연구 내용 누적 금지"
   ]
 }
