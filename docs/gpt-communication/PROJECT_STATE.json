@@ -37,9 +37,21 @@
       "required_after_task_completion": true,
       "purpose": "paper-writing-ready research memo layer separated from development reports"
     },
+    "ai_workers": {
+      "official_workers": ["codex_a", "codex_b", "claude_code"],
+      "gemini_antigravity_excluded": true,
+      "human_collaboration_person_a_b_status": "canceled",
+      "same_task_concurrent_writes": false,
+      "sequential_handoff_required": true,
+      "branch_ownership_required": true
+    },
     "source_of_truth": [
       "docs/gpt-communication/PROJECT_STATE.json",
       "docs/gpt-communication/CURRENT.md",
+      "docs/architecture/army-claw-ai-worker-operating-rules.md",
+      "docs/architecture/army-claw-solo-multi-agent-governance.md",
+      "docs/architecture/army-claw-branch-ownership-map.md",
+      "docs/architecture/army-claw-worker-setup-guide.md",
       "docs/gpt-communication/opinions/2026-07-02-army-claw-master-roadmap.md",
       "docs/gpt-communication/opinions/2026-07-02-hwpx-core-architecture-decision.md",
       "docs/gpt-communication/opinions/2026-07-03-hwpx-core-benchmark-003-master-review.md",
@@ -58,7 +70,7 @@
     "substage": "1-3",
     "substage_name": "선행 HWPX 엔진 비교·코어 선정",
     "status": "in_progress",
-    "current_task": "hwpx-core-benchmark-003-evidence-integrity corrective continuation"
+    "current_task": "Task 021 solo AI worker governance"
   },
   "architecture": {
     "orchestrator": "OpenClaw / Army Claw Node.js·TypeScript",

@@ -30,6 +30,13 @@
       "file": "docs/research-notes/task-notes/RN-020-task020-app-target-plan-schema.md",
       "research_axis": "Plan schema and adapter slot input contract",
       "status": "verified"
+    },
+    "RN-021": {
+      "task": "Task 021",
+      "title": "Solo AI Worker Operating Rules + Multi-Agent Governance",
+      "file": "docs/research-notes/task-notes/RN-021-task021-solo-ai-worker-governance.md",
+      "research_axis": "Solo AI worker governance and handoff rules",
+      "status": "verified"
     }
   }
 }

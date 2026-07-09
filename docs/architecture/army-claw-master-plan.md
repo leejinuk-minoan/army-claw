@@ -380,3 +380,26 @@ HWP/HWPX, HanCell, HanShow에 대해 사용자가 제공한 템플릿은 생성 
 LLM은 구조화된 계획만 생성할 수 있다.
 각 앱별 어댑터는 계획을 검증하고 결정론적으로 실행해야 한다.
 ```
+
+## 15. Task 021 공식 작업 체계 정정
+
+Task 021 이후 Army Claw의 공식 작업 체계는 사람 협업자 분업이 아니라 **Project Owner / User 1인이 복수 AI worker를 순차적으로 운용하는 구조**로 고정한다.
+
+공식 작업자는 다음과 같다.
+
+- Project Owner / User
+- Codex A
+- Codex B
+- Claude Code
+
+명시적으로 제외된 작업자는 다음과 같다.
+
+- 인원 A
+- 인원 B
+- Gemini Antigravity
+
+인원 A/B 협업은 취소되었으며, 인원 A/B용 PPT, 분업안, `feature/hanshow-engine-person-a`, `feature/hancell-engine-person-b` branch는 현재 공식 계획에서 제외한다. Task 021 이후 작업은 사용자 단독의 solo multi-agent governance를 따른다.
+
+Army Claw는 HWPX 전용 생성기가 아니다. Army Claw는 오프라인/폐쇄망 로컬 PC 지원 및 오피스 문서 생성 에이전트이며, HWP/HWPX, HanCell, HanShow, local_workspace는 모두 1급 대상이다.
+
+LLM은 문서 파일, 패키지 XML, 네이티브 앱 상태를 직접 수정하지 않는다. LLM은 구조화된 계획만 생성하고, 앱별 adapter가 해당 계획을 검증한 뒤 결정론적으로 실행한다.

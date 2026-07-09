@@ -273,7 +273,33 @@ docs/research-notes/**
 - Research Note를 Task report의 대체물로 사용하는 것
 - `research-note-index.md` 또는 `research-note-index.json`에 장문 연구 내용을 누적하는 것
 
-## 10. 단계 표기
+## 10. Solo Multi-Agent Governance
+
+Task 021 이후 공식 작업 체계는 Project Owner / User + Codex A + Codex B + Claude Code다.
+
+공식 AI worker는 다음과 같다.
+
+- Codex A: primary local execution worker / first-pass implementation / documentation and governance update
+- Codex B: secondary local execution or review worker / independent correction / regression-oriented review
+- Claude Code: local code assistant / alternative implementation review / code-level reasoning support
+
+Gemini Antigravity는 공식 worker에서 제외한다.
+
+인원 A/B 협업은 취소되었으며, 인원 A/B용 PPT, 분업안, branch 준비는 진행하지 않는다.
+
+worker 간 handoff는 다음 흐름을 따른다.
+
+```text
+Task Contract
+-> branch ownership 확인
+-> 단일 worker 실행
+-> report / changed files / commit SHA / test results / remaining risks
+-> 다음 worker 또는 master review
+```
+
+동일 Task에서 복수 worker가 동시에 write하지 않는다. 다른 worker의 branch를 수정하려면 사용자 또는 마스터 에이전트의 별도 승인이 필요하다.
+
+## 11. 단계 표기
 
 Army Claw 관련 답변은 처음에 전체 프로젝트 단계표를 표시한다.
 

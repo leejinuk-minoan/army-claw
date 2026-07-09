@@ -97,10 +97,17 @@ Research Note Index
 다음 순서는 다음과 같다.
 
 ```text
-Pre-Task 021-B: 협업 제안사항 / PPT / A·B branch 준비
-Task 021: AI Worker Operating Rules + Collaboration Governance
-Task 022: Human Collaborator Branch / PR / 권한 / 리뷰 Rules Proof
+Task 021: Solo AI Worker Operating Rules + Multi-Agent Governance
+Task 022: AI Worker Handoff Contract Proof
+Task 023: Common Office Adapter Interface Contract Proof
 ```
+
+정정 사항:
+
+- 인원 A/B 협업은 취소되었다.
+- A/B용 PPT와 branch 준비는 진행하지 않는다.
+- 공식 작업 체계는 사용자 + Codex A + Codex B + Claude Code다.
+- Task 021은 사람 협업 준비가 아니라 사용자 단독의 복수 AI worker 운용 규칙을 고정하는 문서 기준 작업이다.
 
 ## 완료 판단
 
