@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-09",
+  "updated_at": "2026-07-10",
   "project": {
     "name": "Army Claw",
     "repository": "leejinuk-minoan/army-claw",
@@ -54,6 +54,7 @@
       "docs/architecture/army-claw-common-office-adapter-interface-contract.md",
       "docs/architecture/army-claw-adapter-interface-validator-contract.md",
       "docs/architecture/army-claw-adapter-validator-integration-contract.md",
+      "docs/architecture/army-claw-local-workspace-adapter-contract.md",
       "docs/gpt-communication/AGENT_OPERATING_MODEL.md",
       "docs/gpt-communication/contracts/common-office-adapter-interface-contract.json",
       "docs/gpt-communication/contracts/common-office-adapter-error-taxonomy.json",
@@ -64,6 +65,7 @@
       "docs/gpt-communication/contracts/adapter-validator-integration-contract.json",
       "docs/gpt-communication/contracts/adapter-validator-gate-policy.json",
       "docs/gpt-communication/contracts/adapter-validator-evidence-schema.json",
+      "docs/gpt-communication/contracts/local-workspace-adapter-contract.json",
       "tools/validators/adapter_interface_validator.py",
       "tests/adapter_interface_validator/test_adapter_interface_validator.py",
       "docs/gpt-communication/delegation/task025-adapter-interface-validator-implementation/LOCAL_EXECUTION_RESULT.json",
@@ -82,7 +84,7 @@
     "substage": "1-3",
     "substage_name": "선행 HWPX 엔진 비교·코어 선정",
     "status": "in_progress",
-    "current_task": "Task 026 Adapter Validator Integration Contract Proof"
+    "current_task": "Task 027 Local Workspace Adapter Contract Proof"
   },
   "architecture": {
     "orchestrator": "OpenClaw / Army Claw Node.js·TypeScript",
@@ -115,6 +117,24 @@
       "stage_2_transition_declared": false,
       "final_hwp_hwpx_core_selected": false
     },
+    "local_workspace_adapter_contract": {
+      "enabled": true,
+      "phase": "task027-contract-proof",
+      "architecture_path": "docs/architecture/army-claw-local-workspace-adapter-contract.md",
+      "machine_contract_path": "docs/gpt-communication/contracts/local-workspace-adapter-contract.json",
+      "target_id": "local_workspace",
+      "adapter_slot_id": "local_workspace_adapter_slot",
+      "plan_type": "local_workspace_action_plan",
+      "contract_proof_only": true,
+      "production_adapter_code_included": false,
+      "actual_adapter_invoked": false,
+      "actual_file_system_mutation_performed": false,
+      "hancom_com_required": false,
+      "adapter_validator_gate_required_for_task027": false,
+      "adapter_validator_gate_status_for_task027": "not_required",
+      "future_implementation_gate_required": true,
+      "stage_2_transition_declared": false
+    },
     "adapter_validator_implementation_package": {
       "enabled": true,
       "phase": "task025b-local_verification",
@@ -145,12 +165,27 @@
       "requires_local_verification": false
     }
   },
-  "current_branch": "agent/task026-adapter-validator-integration-contract",
+  "current_branch": "agent/task027-local-workspace-adapter-contract-proof",
   "latest_adapter_validator_contract_commit": "335bd17bef3fb07c5bad9e365d31d25122cef6f1",
   "task025_status": {
     "task025a_cloud_implementation_package_complete": true,
     "task025b_local_verification_complete": true,
     "adapter_validator_implementation_proof_complete": true
+  },
+  "task026_status": {
+    "adapter_validator_integration_contract_complete": true,
+    "actual_validator_executed_in_task026": false,
+    "actual_adapter_invoked": false,
+    "completion_gate_passed": true
+  },
+  "task027_status": {
+    "local_workspace_adapter_contract_proof_complete": true,
+    "adapter_validator_gate_required": false,
+    "adapter_validator_gate_status": "not_required",
+    "production_adapter_code_included": false,
+    "actual_adapter_invoked": false,
+    "actual_file_system_mutation_performed": false,
+    "completion_gate_passed": true
   },
   "benchmark_003": {
     "completion_gate_passed": false,
@@ -158,10 +193,11 @@
     "scorecard_valid_for_selection": false
   },
   "next_work": {
-    "task_id": "task027-local-workspace-adapter-contract-proof",
-    "routing_class": "cloud_delegable",
+    "task_id": "task028-local-workspace-adapter-proof-mode-skeleton",
+    "routing_class": "cloud_first_local_verify",
     "phase": "recommended_next",
-    "title": "Task 027 Local Workspace Adapter Contract Proof"
+    "title": "Task 028 Local Workspace Adapter Proof-Mode Skeleton",
+    "adapter_validator_gate_required": true
   },
   "restrictions": [
     "사용자 승인 없이 main merge 금지",
@@ -171,6 +207,8 @@
     "실제 실행 없는 passed/completed 금지",
     "동일 Task에서 대행 엔진과 로컬 Codex 동시 수정 금지",
     "Research Note는 Task report 대체물로 사용 금지",
-    "Research Note index에 장문 연구 내용 누적 금지"
+    "Research Note index에 장문 연구 내용 누적 금지",
+    "Task 027은 local_workspace adapter contract proof이지 production implementation이 아님",
+    "future local_workspace implementation or execution tasks must apply the Task 026 adapter validator gate"
   ]
 }
