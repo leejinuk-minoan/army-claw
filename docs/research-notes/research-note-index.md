@@ -14,6 +14,7 @@
 | RN-025A | Task 025-A | `task-notes/RN-025A-task025a-adapter-interface-validator-cloud-implementation.md` | Cloud-first validator implementation package and local verification handoff | draft |
 | RN-025B | Task 025-B | `task-notes/RN-025B-task025b-adapter-interface-validator-local-verification.md` | Local validator execution evidence and cloud-first local-verify result | verified |
 | RN-026 | Task 026 | `task-notes/RN-026-task026-adapter-validator-integration-contract.md` | Adapter validator integration gate, evidence, and completion contract | verified |
+| RN-027 | Task 027 | `task-notes/RN-027-task027-local-workspace-adapter-contract.md` | Local workspace adapter contract and safe file-workspace execution boundary | verified |
 
 ## Index Maintenance Rule
 
