@@ -1,5 +1,5 @@
 {
-  "schema_version": "army-claw-ai-worker-handoff-contract-001.v1",
+  "schema_version": "army-claw-ai-worker-handoff-contract-001.v2",
   "task_id": "task022-ai-worker-handoff-contract",
   "contract_name": "AI Worker Handoff Contract",
   "allowed_workers": [
@@ -47,6 +47,22 @@
     "stop_conditions",
     "next_recommended_action"
   ],
+  "adapter_validator_gate_fields": [
+    "adapter_validator_gate_required",
+    "adapter_validator_gate_status",
+    "adapter_validator_evidence_path",
+    "validator_cli_exit_code",
+    "unittest_exit_code",
+    "gate_blocked_reason"
+  ],
+  "adapter_validator_gate_status_enum": [
+    "not_required",
+    "required_not_run",
+    "passed",
+    "failed",
+    "blocked",
+    "requires_followup"
+  ],
   "required_validation": [
     "source_commit_sha_exists",
     "source_branch_head_matches_packet_or_is_documented",
@@ -57,7 +73,17 @@
     "forbidden_path_changes_absent",
     "dirty_worktree_clean_or_cloud_not_applicable",
     "commands_claimed_passed_have_execution_evidence",
-    "receiver_allowed_scope_matches_task_contract"
+    "receiver_allowed_scope_matches_task_contract",
+    "adapter_validator_gate_status_checked_when_required"
+  ],
+  "adapter_validator_gate_receiver_rules": [
+    "missing_gate_status_when_required_blocks_receiver",
+    "required_not_run_when_required_blocks_completion",
+    "failed_gate_blocks_completion",
+    "blocked_gate_blocks_completion",
+    "nonzero_validator_cli_exit_code_blocks_completion",
+    "nonzero_unittest_exit_code_blocks_completion",
+    "passed_gate_requires_execution_evidence"
   ],
   "stop_conditions": [
     "source_commit_sha_missing_or_invalid",
@@ -71,7 +97,8 @@
     "unexecuted_test_claimed_passed",
     "same_task_concurrent_write_detected",
     "target_worker_not_allowed",
-    "scope_expansion_without_approval"
+    "scope_expansion_without_approval",
+    "adapter_validator_gate_required_but_missing_or_not_passed"
   ],
   "forbidden_actions": [
     "main_direct_push",
@@ -100,6 +127,10 @@
   "source_of_truth": [
     "docs/architecture/army-claw-ai-worker-handoff-contract.md",
     "docs/gpt-communication/handoffs/AI_WORKER_HANDOFF_TEMPLATE.md",
-    "docs/gpt-communication/handoffs/ai-worker-handoff-contract.json"
+    "docs/gpt-communication/handoffs/ai-worker-handoff-contract.json",
+    "docs/architecture/army-claw-adapter-validator-integration-contract.md",
+    "docs/gpt-communication/contracts/adapter-validator-integration-contract.json",
+    "docs/gpt-communication/contracts/adapter-validator-gate-policy.json",
+    "docs/gpt-communication/contracts/adapter-validator-evidence-schema.json"
   ]
 }
