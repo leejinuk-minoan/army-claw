@@ -52,10 +52,6 @@ class ValidationInputError(Exception):
     """Raised when an input file is missing or malformed."""
 
 
-class ValidationInternalError(Exception):
-    """Raised for unexpected internal validator failures."""
-
-
 def now_iso() -> str:
     return datetime.now(timezone.utc).isoformat()
 
@@ -200,13 +196,6 @@ def validate_proof_mode_response(sample: Mapping[str, Any]) -> List[Dict[str, An
     return findings
 
 
-def validate_error_taxonomy_code(error_code: str, error_taxonomy: Mapping[str, Any]) -> List[Dict[str, Any]]:
-    entry = get_error_taxonomy_entry(error_code, error_taxonomy)
-    if entry is None:
-        return [result("error_code_exists_in_taxonomy", ResultStatus.INVALID, "error_code is not in taxonomy", actual=error_code)]
-    return [result("error_code_exists_in_taxonomy", ResultStatus.VALID, "error_code exists in taxonomy", actual=error_code)]
-
-
 def get_error_taxonomy_entry(error_code: str, error_taxonomy: Mapping[str, Any]) -> Optional[Mapping[str, Any]]:
     errors = error_taxonomy.get("errors", [])
     if not isinstance(errors, Iterable):
@@ -215,6 +204,13 @@ def get_error_taxonomy_entry(error_code: str, error_taxonomy: Mapping[str, Any])
         if isinstance(item, Mapping) and item.get("error_code") == error_code:
             return item
     return None
+
+
+def validate_error_taxonomy_code(error_code: str, error_taxonomy: Mapping[str, Any]) -> List[Dict[str, Any]]:
+    entry = get_error_taxonomy_entry(error_code, error_taxonomy)
+    if entry is None:
+        return [result("error_code_exists_in_taxonomy", ResultStatus.INVALID, "error_code is not in taxonomy", actual=error_code)]
+    return [result("error_code_exists_in_taxonomy", ResultStatus.VALID, "error_code exists in taxonomy", actual=error_code)]
 
 
 def validate_request_sample(sample: Mapping[str, Any], contract: Mapping[str, Any], validator_contract: Mapping[str, Any]) -> List[Dict[str, Any]]:
@@ -235,6 +231,14 @@ def validate_request_sample(sample: Mapping[str, Any], contract: Mapping[str, An
     return findings
 
 
+def _response_plan_type_for_target(target_id: Any, contract: Mapping[str, Any]) -> Optional[str]:
+    mapping = contract.get("plan_type_to_target", {})
+    for plan_type, mapped_target in mapping.items():
+        if mapped_target == target_id:
+            return str(plan_type)
+    return None
+
+
 def validate_response_sample(sample: Mapping[str, Any], contract: Mapping[str, Any], validator_contract: Mapping[str, Any]) -> List[Dict[str, Any]]:
     required_fields = contract.get("response_envelope", {}).get("required_fields", [])
     status_enum = contract.get("response_envelope", {}).get("status_enum", [])
@@ -248,14 +252,6 @@ def validate_response_sample(sample: Mapping[str, Any], contract: Mapping[str, A
         findings.append(result("response_status_enum_valid", ResultStatus.INVALID, "response status is invalid", expected=status_enum, actual=response_status))
     findings.extend(validate_proof_mode_response(sample))
     return findings
-
-
-def _response_plan_type_for_target(target_id: Any, contract: Mapping[str, Any]) -> Optional[str]:
-    mapping = contract.get("plan_type_to_target", {})
-    for plan_type, mapped_target in mapping.items():
-        if mapped_target == target_id:
-            return str(plan_type)
-    return None
 
 
 def infer_negative_error_code(sample: Mapping[str, Any], contract: Optional[Mapping[str, Any]] = None) -> Optional[str]:
@@ -293,13 +289,22 @@ def validate_negative_sample(sample: Mapping[str, Any], matrix_entry: Mapping[st
         return findings
     actual_category = taxonomy_entry.get("category")
     if actual_category == expected_category:
-        findings.append(result("negative_expected_error_category", ResultStatus.BLOCKED, "negative sample is correctly blocked by expected category", expected=expected_category, actual=actual_category))
+        findings.append(result("negative_expected_error_category", ResultStatus.VALID, "negative sample is correctly expected to be blocked by category", expected=expected_category, actual=actual_category))
     else:
         findings.append(result("negative_expected_error_category", ResultStatus.INVALID, "negative sample category mismatch", expected=expected_category, actual=actual_category))
     return findings
 
 
-def validate_matrix_entries(matrix: Mapping[str, Any], samples_dir: Path) -> List[Dict[str, Any]]:
+def _matrix_sample_path(repo_root: Path, samples_dir: Path, sample: str) -> Path:
+    sample_path = Path(sample)
+    if sample_path.is_absolute():
+        return sample_path
+    if sample_path.parts and sample_path.parts[0] == "docs":
+        return repo_root / sample_path
+    return samples_dir / sample_path.name
+
+
+def validate_matrix_entries(repo_root: Path, matrix: Mapping[str, Any], samples_dir: Path) -> List[Dict[str, Any]]:
     findings: List[Dict[str, Any]] = []
     for section in ("positive_samples", "negative_samples"):
         entries = matrix.get(section, [])
@@ -314,14 +319,7 @@ def validate_matrix_entries(matrix: Mapping[str, Any], samples_dir: Path) -> Lis
             if not isinstance(sample, str):
                 findings.append(result(f"matrix.{section}.sample_path", ResultStatus.INVALID, "matrix entry must include sample path"))
                 continue
-            sample_path = Path(sample)
-            if not sample_path.is_absolute():
-                if sample_path.parts and sample_path.parts[0] == "docs":
-                    candidate = samples_dir.parents[3] / sample_path
-                else:
-                    candidate = samples_dir / sample_path.name
-            else:
-                candidate = sample_path
+            candidate = _matrix_sample_path(repo_root, samples_dir, sample)
             if candidate.exists():
                 findings.append(result(f"matrix.{section}.sample_exists", ResultStatus.VALID, "sample file exists", path=str(candidate)))
             else:
@@ -338,6 +336,14 @@ def overall_status(results: Sequence[Mapping[str, Any]]) -> str:
     if not results:
         return ResultStatus.NOT_EVALUATED.value
     return ResultStatus.VALID.value
+
+
+def expected_negative_actual_status(results: Sequence[Mapping[str, Any]]) -> str:
+    if any(item.get("status") == ResultStatus.INVALID.value for item in results):
+        return ResultStatus.INVALID.value
+    if any(item.get("check_id") == "negative_expected_error_category" and item.get("status") == ResultStatus.VALID.value for item in results):
+        return ResultStatus.BLOCKED.value
+    return overall_status(results)
 
 
 def _resolve_path(repo_root: Path, maybe_path: Optional[str], default: str) -> Path:
@@ -358,77 +364,10 @@ class RunOptions:
     strict: bool = False
 
 
-def run_all_validations(repo_root: Path, options: RunOptions) -> Dict[str, Any]:
-    repo_root = repo_root.resolve()
-    contract_path = _resolve_path(repo_root, options.contract_path, DEFAULT_CONTRACT_PATH)
-    error_taxonomy_path = _resolve_path(repo_root, options.error_taxonomy_path, DEFAULT_ERROR_TAXONOMY_PATH)
-    validator_contract_path = _resolve_path(repo_root, options.validator_contract_path, DEFAULT_VALIDATOR_CONTRACT_PATH)
-    matrix_path = _resolve_path(repo_root, options.matrix_path, DEFAULT_MATRIX_PATH)
-    samples_dir = _resolve_path(repo_root, options.samples_dir, DEFAULT_SAMPLES_DIR)
-
-    contract = load_json_file(contract_path)
-    error_taxonomy = load_json_file(error_taxonomy_path)
-    validator_contract = load_json_file(validator_contract_path)
-    matrix = load_json_file(matrix_path)
-
-    results: List[Dict[str, Any]] = []
-    results.extend(validate_matrix_entries(matrix, samples_dir))
-
-    for entry in matrix.get("positive_samples", []):
-        if not isinstance(entry, Mapping):
-            continue
-        sample_path = repo_root / str(entry.get("sample"))
-        sample = load_json_file(sample_path)
-        sample_type = entry.get("sample_type")
-        if sample_type == "request":
-            sample_results = validate_request_sample(sample, contract, validator_contract)
-        elif sample_type == "response":
-            sample_results = validate_response_sample(sample, contract, validator_contract)
-        else:
-            sample_results = [result("positive_sample_type", ResultStatus.INVALID, "positive sample_type must be request or response", path=str(sample_path), actual=sample_type)]
-        expected = entry.get("expected_validation_status")
-        actual = overall_status(sample_results)
-        if expected == ResultStatus.VALID.value and actual == ResultStatus.VALID.value:
-            results.append(result("positive_sample_expected_status", ResultStatus.VALID, "positive sample met expected status", path=str(sample_path), expected=expected, actual=actual))
-        else:
-            results.append(result("positive_sample_expected_status", ResultStatus.INVALID, "positive sample did not meet expected status", path=str(sample_path), expected=expected, actual=actual))
-        results.extend(_prefix_sample_results(sample_path, sample_results))
-
-    for entry in matrix.get("negative_samples", []):
-        if not isinstance(entry, Mapping):
-            continue
-        sample_path = repo_root / str(entry.get("sample"))
-        sample = load_json_file(sample_path)
-        sample_results = validate_negative_sample(sample, entry, error_taxonomy, contract)
-        actual = overall_status(sample_results)
-        expected = entry.get("expected_status")
-        if expected == ResultStatus.BLOCKED.value and actual == ResultStatus.BLOCKED.value:
-            results.append(result("negative_sample_expected_status", ResultStatus.VALID, "negative sample met expected blocked status", path=str(sample_path), expected=expected, actual=actual))
-        else:
-            results.append(result("negative_sample_expected_status", ResultStatus.INVALID, "negative sample did not meet expected blocked status", path=str(sample_path), expected=expected, actual=actual))
-        results.extend(_prefix_sample_results(sample_path, sample_results))
-
-    summary = summarize_results(results)
-    return {
-        "validator_id": VALIDATOR_ID,
-        "validator_version": VALIDATOR_VERSION,
-        "repo_root": str(repo_root),
-        "generated_at": now_iso(),
-        "summary": summary,
-        "results": results,
-        "limitations": [
-            "This validator reads JSON contracts and samples only.",
-            "It does not invoke adapters, Hancom COM, GUI, internet, or document generation.",
-            "Task 025-A cloud authoring did not execute this validator; local execution is Task 025-B."
-        ]
-    }
-
-
 def _prefix_sample_results(sample_path: Path, sample_results: Sequence[Dict[str, Any]]) -> List[Dict[str, Any]]:
     prefixed: List[Dict[str, Any]] = []
     for item in sample_results:
         copied = dict(item)
-        copied.setdefault("path", str(sample_path))
         if not copied.get("path"):
             copied["path"] = str(sample_path)
         prefixed.append(copied)
@@ -456,6 +395,72 @@ def summarize_results(results: Sequence[Mapping[str, Any]]) -> Dict[str, Any]:
         "failed_checks": failed,
         "blocked_checks": blocked,
         "not_evaluated_checks": not_evaluated
+    }
+
+
+def run_all_validations(repo_root: Path, options: RunOptions) -> Dict[str, Any]:
+    repo_root = repo_root.resolve()
+    contract_path = _resolve_path(repo_root, options.contract_path, DEFAULT_CONTRACT_PATH)
+    error_taxonomy_path = _resolve_path(repo_root, options.error_taxonomy_path, DEFAULT_ERROR_TAXONOMY_PATH)
+    validator_contract_path = _resolve_path(repo_root, options.validator_contract_path, DEFAULT_VALIDATOR_CONTRACT_PATH)
+    matrix_path = _resolve_path(repo_root, options.matrix_path, DEFAULT_MATRIX_PATH)
+    samples_dir = _resolve_path(repo_root, options.samples_dir, DEFAULT_SAMPLES_DIR)
+
+    contract = load_json_file(contract_path)
+    error_taxonomy = load_json_file(error_taxonomy_path)
+    validator_contract = load_json_file(validator_contract_path)
+    matrix = load_json_file(matrix_path)
+
+    results: List[Dict[str, Any]] = []
+    results.extend(validate_matrix_entries(repo_root, matrix, samples_dir))
+
+    for entry in matrix.get("positive_samples", []):
+        if not isinstance(entry, Mapping):
+            continue
+        sample_path = _matrix_sample_path(repo_root, samples_dir, str(entry.get("sample")))
+        sample = load_json_file(sample_path)
+        sample_type = entry.get("sample_type")
+        if sample_type == "request":
+            sample_results = validate_request_sample(sample, contract, validator_contract)
+        elif sample_type == "response":
+            sample_results = validate_response_sample(sample, contract, validator_contract)
+        else:
+            sample_results = [result("positive_sample_type", ResultStatus.INVALID, "positive sample_type must be request or response", path=str(sample_path), actual=sample_type)]
+        expected = entry.get("expected_validation_status")
+        actual = overall_status(sample_results)
+        if expected == ResultStatus.VALID.value and actual == ResultStatus.VALID.value:
+            results.append(result("positive_sample_expected_status", ResultStatus.VALID, "positive sample met expected status", path=str(sample_path), expected=expected, actual=actual))
+        else:
+            results.append(result("positive_sample_expected_status", ResultStatus.INVALID, "positive sample did not meet expected status", path=str(sample_path), expected=expected, actual=actual))
+        results.extend(_prefix_sample_results(sample_path, sample_results))
+
+    for entry in matrix.get("negative_samples", []):
+        if not isinstance(entry, Mapping):
+            continue
+        sample_path = _matrix_sample_path(repo_root, samples_dir, str(entry.get("sample")))
+        sample = load_json_file(sample_path)
+        sample_results = validate_negative_sample(sample, entry, error_taxonomy, contract)
+        actual = expected_negative_actual_status(sample_results)
+        expected = entry.get("expected_status")
+        if expected == ResultStatus.BLOCKED.value and actual == ResultStatus.BLOCKED.value:
+            results.append(result("negative_sample_expected_status", ResultStatus.VALID, "negative sample met expected blocked status", path=str(sample_path), expected=expected, actual=actual))
+        else:
+            results.append(result("negative_sample_expected_status", ResultStatus.INVALID, "negative sample did not meet expected blocked status", path=str(sample_path), expected=expected, actual=actual))
+        results.extend(_prefix_sample_results(sample_path, sample_results))
+
+    summary = summarize_results(results)
+    return {
+        "validator_id": VALIDATOR_ID,
+        "validator_version": VALIDATOR_VERSION,
+        "repo_root": str(repo_root),
+        "generated_at": now_iso(),
+        "summary": summary,
+        "results": results,
+        "limitations": [
+            "This validator reads JSON contracts and samples only.",
+            "It does not invoke adapters, Hancom COM, GUI, internet, or document generation.",
+            "Task 025-A cloud authoring did not execute this validator; local execution is Task 025-B."
+        ]
     }
 
 
