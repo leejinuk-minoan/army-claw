@@ -32,6 +32,8 @@ Codex A/B/Claude Code는 작업 시작 전에 다음을 확인한다.
 - `docs/gpt-communication/contracts/adapter-interface-validation-matrix.md`
 - `docs/gpt-communication/contracts/adapter-interface-validation-matrix.json`
 - `docs/gpt-communication/contracts/ADAPTER_INTERFACE_VALIDATOR_CHECKLIST.md`
+- `docs/gpt-communication/delegation/task025-adapter-interface-validator-implementation/ROUTING_DECISION.json`
+- `docs/gpt-communication/delegation/task025-adapter-interface-validator-implementation/LOCAL_EXECUTION_BRIEF.md`
 - `docs/research-notes/README.md`
 - `docs/research-notes/research-note-index.md`
 - `docs/research-notes/research-note-index.json`
@@ -159,9 +161,22 @@ Task 024 이후 adapter interface 변경, sample 변경, validator 구현 또는
 1. `docs/architecture/army-claw-adapter-interface-validator-contract.md`를 읽는다.
 2. `docs/gpt-communication/contracts/adapter-interface-validator-contract.json`을 확인한다.
 3. `docs/gpt-communication/contracts/adapter-interface-validation-matrix.md`를 확인한다.
-4. `docs/gpt-communication/contracts/adapter-interface-validation-matrix.json`을 확인한다.
+4. `docs/gpt-communication/contracts/adapter-interface-validation-matrix.json`를 확인한다.
 5. `docs/gpt-communication/contracts/ADAPTER_INTERFACE_VALIDATOR_CHECKLIST.md`를 확인한다.
 6. proof-mode sample이 실제 adapter 실행을 주장하지 않는지 확인한다.
 7. negative sample이 expected error category를 포함하는지 확인한다.
 
 실제 validator 구현은 별도 Task에서만 수행한다.
+
+## 14. Cloud-first local verification 절차
+
+Task 025-A 이후 로컬 worker는 바로 실행하지 않는다.
+
+1. 마스터가 원격 branch HEAD를 read-only로 검증한다.
+2. 마스터가 `local_execution_base_sha`를 지정한다.
+3. 로컬 worker는 지정 SHA에서 Task 025-B branch를 생성한다.
+4. 로컬 worker는 `LOCAL_EXECUTION_BRIEF.md`의 명령만 실행한다.
+5. stdout, stderr, exit code를 보고서에 기록한다.
+6. 실패 시 허용된 최소 파일만 수정한다.
+
+Task 025-A cloud package 상태에서 `completion_gate_passed`는 false로 유지한다.
