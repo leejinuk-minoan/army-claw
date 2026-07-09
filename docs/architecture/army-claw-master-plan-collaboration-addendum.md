@@ -44,8 +44,37 @@ All collaborators must follow the Army Claw contracts already fixed by prior tas
 - adapter slot input contract
 - validation error taxonomy
 - evidence and report expectations
+- research evidence discipline
 
 HanShow and HanCell engines must not define incompatible private input/output shapes. If the shared contract must change, the change must be proposed through a separate contract task before implementation branches rely on it.
+
+## Research Evidence Discipline
+
+All implementation, integration, E2E, adapter, model gateway, and template preservation work should preserve research-grade evidence for the selected paper:
+
+```text
+구조화 계획과 결정론적 어댑터를 활용한 폐쇄망 멀티 오피스 문서 생성 에이전트 설계 및 검증
+```
+
+When applicable, collaborator branches and collaborator-operated AI must produce or preserve the following evidence items, or mark them as `not_applicable` with reasons:
+
+1. input_user_request
+2. generated_structured_plan
+3. schema_validation_result
+4. policy_validation_result
+5. adapter_routing_result
+6. adapter_slot_input
+7. execution_log
+8. artifact_validation_report
+9. template_preservation_report
+10. source_template_overwrite_check
+11. offline_dependency_check
+12. public_internet_access_check
+13. repeated_run_reproducibility_report
+
+Future research-relevant tasks should include `release/test-documents/<task-id>/research-evidence-manifest.json` when feasible.
+
+No collaborator or collaborator-operated AI may claim production readiness, Stage 2 transition, final HWPX core selection, template preservation score, closed-network compliance, reproducibility, or manual correction time reduction without supporting evidence.
 
 ## Master Agent Oversight
 
@@ -54,6 +83,7 @@ The master agent may inspect official task, feature, and integration branches to
 - branch ownership compliance
 - contract compliance
 - report and evidence consistency
+- research evidence discipline compliance
 - forbidden operation violations
 - integration risk
 - roadmap alignment
@@ -62,7 +92,7 @@ Master agent review does not imply automatic modification authority. Corrections
 
 ## Human Collaborator AI Rule
 
-If a human collaborator uses an AI assistant, that AI must follow the same branch ownership and contract discipline rules as the collaborator.
+If a human collaborator uses an AI assistant, that AI must follow the same branch ownership, contract discipline, and research evidence discipline rules as the collaborator.
 
 The AI must not modify branches outside the collaborator's assigned branch and must not alter shared contracts unless the task explicitly authorizes that work.
 
