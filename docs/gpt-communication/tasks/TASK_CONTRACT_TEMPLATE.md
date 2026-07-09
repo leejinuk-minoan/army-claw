@@ -30,6 +30,9 @@ adapter error taxonomy:
 adapter validator contract:
 adapter validation matrix:
 adapter validator checklist:
+adapter validator integration contract:
+adapter validator gate policy:
+adapter validator evidence schema:
 validator implementation source:
 validator unittest source:
 delegation package:
@@ -138,7 +141,35 @@ When `adapter_validator_contract_required` is true, the Task must check:
 - validator implementation is not claimed unless executable code and evidence exist
 ```
 
-## 12. Cloud-first local-verify contract
+## 12. Adapter validator integration gate
+
+Use this section when a Task is adapter-related, changes adapter contracts/samples, prepares adapter implementation, or hands off local adapter execution.
+
+```text
+adapter_validator_gate_required:
+adapter_validator_gate_policy_path:
+adapter_validator_integration_contract_path:
+adapter_validator_evidence_schema_path:
+adapter_validator_gate_status:
+adapter_validator_evidence_path:
+validator_cli_exit_code:
+unittest_exit_code:
+validator_completion_gate_required:
+validator_completion_gate_passed:
+```
+
+Completion rules:
+
+```text
+- if adapter_validator_gate_required is true, validator evidence must exist
+- if adapter_validator_gate_required is true, validator CLI exit code must be 0
+- if adapter_validator_gate_required is true, unittest exit code must be 0
+- if adapter_validator_gate_required is true and evidence is missing, task cannot be completed
+- if validator gate failed or blocked, completion_gate_passed must be false
+- report must distinguish not_required from required_not_run
+```
+
+## 13. Cloud-first local-verify contract
 
 Use this section when cloud writes implementation files but local verification is required before completion.
 
@@ -164,7 +195,7 @@ Rules:
 - Task overall completion remains false until local verification passes
 ```
 
-## 13. TDD and validation
+## 14. TDD and validation
 
 ```text
 RED tests:
@@ -177,10 +208,11 @@ research note structure checks:
 handoff packet checks:
 adapter interface contract checks:
 adapter validator contract checks:
+adapter validator gate checks:
 local execution evidence checks:
 ```
 
-## 14. Required outputs
+## 15. Required outputs
 
 ```text
 code:
@@ -193,10 +225,11 @@ user-review artifacts:
 handoff_packet:
 adapter_contract_artifacts:
 adapter_validator_contract_artifacts:
+adapter_validator_integration_artifacts:
 local_execution_package:
 ```
 
-## 15. Research Note contract
+## 16. Research Note contract
 
 When `research_note_allowed` or `research_note_required` is true, the Task must create or update one Task-level Research Note under:
 
@@ -226,7 +259,7 @@ docs/research-notes/research-note-index.md
 docs/research-notes/research-note-index.json
 ```
 
-## 16. Handoff contract
+## 17. Handoff contract
 
 Use this section when a Task hands work to another worker.
 
@@ -251,7 +284,7 @@ docs/gpt-communication/handoffs/AI_WORKER_HANDOFF_TEMPLATE.md
 
 The handoff packet does not replace the Task report or Research Note.
 
-## 17. Completion gate
+## 18. Completion gate
 
 State measurable conditions. User visual confirmation must remain pending when required.
 
@@ -274,6 +307,16 @@ If adapter validator or sample files are changed, completion requires:
 - negative samples include expected error category
 - proof-mode samples do not claim real adapter invocation
 - validator implementation is not claimed unless executable code and evidence exist
+```
+
+If adapter validator gate is required, completion requires:
+
+```text
+- adapter_validator_gate_status is present
+- validator evidence path is present
+- validator CLI exit code is 0
+- unittest exit code is 0
+- completion_gate_passed is false for required_not_run, failed, or blocked
 ```
 
 If cloud-first/local-verify is used, completion requires:
@@ -307,7 +350,7 @@ If `handoff_required` is true, completion also requires:
 - receiver can determine accept/reject/blocked from packet
 ```
 
-## 18. Reporting contract
+## 19. Reporting contract
 
 Codex must report:
 
@@ -323,6 +366,7 @@ research note index update result
 handoff packet path
 adapter contract artifact paths
 adapter validator contract artifact paths
+adapter validator integration artifact paths
 local execution package path
 actual execution performed or not performed
 completion gate status
@@ -332,7 +376,7 @@ user verification items
 next resume point
 ```
 
-## 19. Handoff update
+## 20. Handoff update
 
 After Codex pushes, update or create the handoff/delegation package when required.
 
