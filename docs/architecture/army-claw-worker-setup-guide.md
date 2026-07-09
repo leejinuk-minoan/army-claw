@@ -17,9 +17,13 @@ Codex A/B/Claude Code는 작업 시작 전에 다음을 확인한다.
 - `docs/architecture/army-claw-ai-worker-operating-rules.md`
 - `docs/architecture/army-claw-solo-multi-agent-governance.md`
 - `docs/architecture/army-claw-branch-ownership-map.md`
+- `docs/architecture/army-claw-worker-setup-guide.md`
+- `docs/architecture/army-claw-ai-worker-handoff-contract.md`
 - `docs/gpt-communication/PROJECT_STATE.json`
 - `docs/gpt-communication/AGENT_OPERATING_MODEL.md`
 - `docs/gpt-communication/tasks/TASK_CONTRACT_TEMPLATE.md`
+- `docs/gpt-communication/handoffs/AI_WORKER_HANDOFF_TEMPLATE.md`
+- `docs/gpt-communication/handoffs/ai-worker-handoff-contract.json`
 - `docs/research-notes/README.md`
 - `docs/research-notes/research-note-index.md`
 - `docs/research-notes/research-note-index.json`
@@ -40,6 +44,8 @@ read-only reference 문서는 분석과 인용 기준으로만 사용한다. Tas
 - 변경 파일
 - 실행 명령
 - 테스트 결과
+- 산출물 또는 evidence 경로
+- Research Note 경로
 - 제한사항
 - 다음 작업 제안
 
@@ -61,3 +67,65 @@ Research Note index는 다음 두 파일에 짧게 반영한다.
 push 후 보고는 GitHub 원격 branch에 올라간 commit SHA를 기준으로 한다.
 
 main 직접 push, force push, history rewrite는 금지한다.
+
+## 8. Handoff Packet 확인 절차
+
+handoff를 수신한 worker는 바로 수정하지 않는다. 먼저 다음을 확인한다.
+
+1. handoff packet이 존재하는지 확인한다.
+2. `source_commit_sha`, `source_branch`, `base_commit_sha`, `target_branch`를 확인한다.
+3. 원격 branch HEAD가 packet의 SHA와 일치하는지 또는 차이가 문서화되어 있는지 확인한다.
+4. changed files가 packet과 실제 diff에서 일치하는지 확인한다.
+5. Task report와 Research Note 경로가 존재하는지 확인한다.
+6. forbidden path 변경이 없는지 확인한다.
+7. dirty worktree가 clean인지 확인한다.
+8. 실제 실행하지 않은 test가 passed로 기록되지 않았는지 확인한다.
+9. stop condition이 하나라도 발생하면 작업을 중단하고 보고한다.
+
+## 9. Sender checklist
+
+Sender는 다음을 handoff packet에 기록한다.
+
+- task_id와 handoff_id
+- from_worker와 to_worker
+- source branch와 source commit SHA
+- base commit SHA
+- target branch
+- changed files
+- task report path
+- Research Note path
+- commands run / commands not run
+- validation summary
+- forbidden changes check
+- dirty worktree status
+- known limitations
+- remaining risks
+- next allowed scope and forbidden scope
+- stop conditions
+
+## 10. Receiver checklist
+
+Receiver는 다음 상태 중 하나로 판정한다.
+
+- `accepted`: 모든 기준을 만족하여 allowed scope 안에서 진행 가능
+- `rejected`: packet이 요청 작업과 맞지 않거나 필수 정보가 불충분함
+- `blocked`: stop condition이 발생하여 사용자 또는 master review가 필요함
+
+Receiver가 `accepted`를 기록하기 전에는 파일을 수정하지 않는다.
+
+## 11. Rejected / blocked 조건
+
+Rejected 또는 blocked 조건은 다음과 같다.
+
+- branch HEAD 불일치
+- source commit SHA 없음 또는 malformed
+- dirty worktree 발견
+- forbidden path 변경 발견
+- Task report 누락
+- required Research Note 누락
+- changed files mismatch
+- unexecuted test pass claim
+- target worker가 공식 worker가 아님
+- 동일 Task concurrent write 위험
+- main direct push, force push, history rewrite 요구
+- Stage transition 또는 final HWPX core selection 요구
