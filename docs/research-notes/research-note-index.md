@@ -11,6 +11,7 @@
 | RN-022 | Task 022 | `task-notes/RN-022-task022-ai-worker-handoff-contract.md` | AI worker handoff contract and receiver validation | verified |
 | RN-023 | Task 023 | `task-notes/RN-023-task023-common-office-adapter-interface-contract.md` | Common office adapter interface and evidence envelope | verified |
 | RN-024 | Task 024 | `task-notes/RN-024-task024-adapter-interface-validator-contract.md` | Adapter interface validator contract and validation matrix | verified |
+| RN-025A | Task 025-A | `task-notes/RN-025A-task025a-adapter-interface-validator-cloud-implementation.md` | Cloud-first validator implementation package and local verification handoff | draft |
 
 ## Index Maintenance Rule
 
