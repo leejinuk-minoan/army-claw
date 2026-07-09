@@ -13,7 +13,6 @@
     "execution_routing": {
       "enabled": true,
       "classes": ["cloud_delegable", "local_codex_required", "hybrid"],
-      "policy": "docs/gpt-communication/CLOUD_LOCAL_EXECUTION_ROUTING.md",
       "same_task_concurrent_writes": false
     },
     "handoff_contract": {
@@ -21,8 +20,6 @@
       "architecture_path": "docs/architecture/army-claw-ai-worker-handoff-contract.md",
       "template_path": "docs/gpt-communication/handoffs/AI_WORKER_HANDOFF_TEMPLATE.md",
       "machine_contract_path": "docs/gpt-communication/handoffs/ai-worker-handoff-contract.json",
-      "sample_task021_markdown": "docs/gpt-communication/handoffs/samples/task021-codex-a-to-codex-b-handoff.md",
-      "sample_task021_json": "docs/gpt-communication/handoffs/samples/task021-codex-a-to-codex-b-handoff.json",
       "handoff_packet_required_for_next_worker": true,
       "task_report_replaced_by_handoff": false,
       "research_note_replaced_by_handoff": false
@@ -54,14 +51,15 @@
       "docs/architecture/army-claw-branch-ownership-map.md",
       "docs/architecture/army-claw-worker-setup-guide.md",
       "docs/architecture/army-claw-ai-worker-handoff-contract.md",
+      "docs/architecture/army-claw-common-office-adapter-interface-contract.md",
       "docs/gpt-communication/AGENT_OPERATING_MODEL.md",
+      "docs/gpt-communication/contracts/common-office-adapter-interface-contract.json",
+      "docs/gpt-communication/contracts/common-office-adapter-error-taxonomy.json",
       "docs/gpt-communication/handoffs/AI_WORKER_HANDOFF_TEMPLATE.md",
       "docs/gpt-communication/handoffs/ai-worker-handoff-contract.json",
       "docs/research-notes/research-note-index.md",
       "docs/research-notes/research-note-index.json",
-      "docs/gpt-communication/tasks/<task-id>/TASK_CONTRACT.md",
-      "docs/gpt-communication/delegation/<task-id>/CODEX_EXECUTION_BRIEF.md",
-      "docs/gpt-communication/handoffs/CODEX_LATEST.json"
+      "docs/gpt-communication/tasks/<task-id>/TASK_CONTRACT.md"
     ]
   },
   "current_stage": {
@@ -70,30 +68,33 @@
     "substage": "1-3",
     "substage_name": "선행 HWPX 엔진 비교·코어 선정",
     "status": "in_progress",
-    "current_task": "Task 022 AI Worker Handoff Contract Proof"
+    "current_task": "Task 023 Common Office Adapter Interface Contract Proof"
   },
   "architecture": {
     "orchestrator": "OpenClaw / Army Claw Node.js·TypeScript",
-    "decision_status": "accepted_for_benchmark_implementation_not_core_selection"
+    "decision_status": "accepted_for_benchmark_implementation_not_core_selection",
+    "common_office_adapter_interface_contract": {
+      "enabled": true,
+      "architecture_path": "docs/architecture/army-claw-common-office-adapter-interface-contract.md",
+      "machine_contract_path": "docs/gpt-communication/contracts/common-office-adapter-interface-contract.json",
+      "error_taxonomy_path": "docs/gpt-communication/contracts/common-office-adapter-error-taxonomy.json",
+      "actual_adapter_invocation_allowed_in_task023": false,
+      "stage_2_transition_declared": false,
+      "final_hwp_hwpx_core_selected": false
+    }
   },
-  "current_branch": "agent/task022-ai-worker-handoff-contract",
-  "latest_governance_commit": "4a8fec59f3fbfbb097ed3b3b539eee32d316a7e9",
+  "current_branch": "agent/task023-common-office-adapter-interface-contract",
+  "latest_handoff_contract_commit": "6b8bbfdf455217bba966d1afb0b9d20e6e50f1d6",
   "benchmark_003": {
     "completion_gate_passed": false,
     "proceed_to_task_004": false,
     "scorecard_valid_for_selection": false
   },
   "next_work": {
-    "task_id": "task023-common-office-adapter-interface-contract-proof",
+    "task_id": "task024-adapter-interface-validator-contract-proof",
     "routing_class": "cloud_delegable",
     "phase": "planned",
-    "title": "Task 023 Common Office Adapter Interface Contract Proof"
-  },
-  "handoff": {
-    "contract_enabled": true,
-    "contract": "docs/gpt-communication/handoffs/ai-worker-handoff-contract.json",
-    "template": "docs/gpt-communication/handoffs/AI_WORKER_HANDOFF_TEMPLATE.md",
-    "latest": "docs/gpt-communication/handoffs/CODEX_LATEST.json"
+    "title": "Task 024 Adapter Interface Validator Contract Proof"
   },
   "restrictions": [
     "사용자 승인 없이 main merge 금지",
