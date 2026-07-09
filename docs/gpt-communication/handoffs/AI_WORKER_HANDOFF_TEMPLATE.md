@@ -27,6 +27,12 @@ next_worker_allowed_scope:
 next_worker_forbidden_scope:
 stop_conditions:
 next_recommended_action:
+adapter_validator_gate_required:
+adapter_validator_gate_status:
+adapter_validator_evidence_path:
+validator_cli_exit_code:
+unittest_exit_code:
+gate_blocked_reason:
 ```
 
 ## Field guide
@@ -57,6 +63,12 @@ next_recommended_action:
 - `next_worker_forbidden_scope`: forbidden receiver changes.
 - `stop_conditions`: conditions that force receiver to stop.
 - `next_recommended_action`: exact next action if accepted.
+- `adapter_validator_gate_required`: whether this handoff requires validator gate evidence.
+- `adapter_validator_gate_status`: one of `not_required`, `required_not_run`, `passed`, `failed`, `blocked`, `requires_followup`.
+- `adapter_validator_evidence_path`: validator evidence path or `none`.
+- `validator_cli_exit_code`: integer exit code or `not_run`.
+- `unittest_exit_code`: integer exit code or `not_run`.
+- `gate_blocked_reason`: reason when gate is blocked, failed, or required_not_run.
 
 ## Receiver decision block
 
@@ -71,3 +83,7 @@ receiver_start_sha:
 receiver_may_write:
 true | false
 ```
+
+## Adapter validator gate receiver rule
+
+If `adapter_validator_gate_required=true`, the receiver must check gate status and evidence before writing. Missing gate status, `required_not_run`, `failed`, `blocked`, nonzero validator CLI exit code, or nonzero unittest exit code must be treated as blocked or validation-required.
