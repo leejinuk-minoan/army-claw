@@ -1,0 +1,17 @@
+{
+  "request_id": "req-negative-public-internet-001",
+  "contract_version": "army-claw-common-office-adapter-interface-023.v1",
+  "target_id": "local_workspace",
+  "adapter_slot_id": "local_workspace_adapter_slot",
+  "plan_type": "local_workspace_action_plan",
+  "validated_plan": {
+    "plan_id": "negative-public-internet",
+    "actions": ["download_remote_asset"],
+    "llm_direct_file_edit_requested": false,
+    "llm_direct_native_app_state_modification_requested": false
+  },
+  "template_reference": {"artifact_type": "folder", "path": "templates/workspace-source/", "overwrite_source": false},
+  "constraints": {"prevent_source_overwrite": true, "allow_public_internet": true},
+  "expected_error_code": "public_internet_dependency_blocked",
+  "proof_mode": true
+}
