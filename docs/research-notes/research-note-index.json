@@ -1,6 +1,6 @@
 {
   "schema_version": "army-claw-research-note-index-001.v1",
-  "updated_at": "2026-07-09",
+  "updated_at": "2026-07-10",
   "purpose": "Index task-level research notes for later paper writing without accumulating all notes in one large file.",
   "index_rule": {
     "task_note_directory": "docs/research-notes/task-notes/",
@@ -78,6 +78,13 @@
       "title": "Adapter Validator Integration Contract Proof",
       "file": "docs/research-notes/task-notes/RN-026-task026-adapter-validator-integration-contract.md",
       "research_axis": "Adapter validator integration gate, evidence, and completion contract",
+      "status": "verified"
+    },
+    "RN-027": {
+      "task": "Task 027",
+      "title": "Local Workspace Adapter Contract Proof",
+      "file": "docs/research-notes/task-notes/RN-027-task027-local-workspace-adapter-contract.md",
+      "research_axis": "Local workspace adapter contract and safe file-workspace execution boundary",
       "status": "verified"
     }
   }
