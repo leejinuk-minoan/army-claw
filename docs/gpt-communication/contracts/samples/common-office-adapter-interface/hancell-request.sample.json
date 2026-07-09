@@ -1,0 +1,22 @@
+{
+  "request_id": "req-hancell-proof-001",
+  "contract_version": "army-claw-common-office-adapter-interface-023.v1",
+  "target_id": "hancell",
+  "adapter_slot_id": "hancell_adapter_slot",
+  "plan_type": "hancell_fill_plan",
+  "validated_plan": {
+    "plan_id": "plan-hancell-proof-001",
+    "fill_operations": [{"sheet": "Sheet1", "cell": "A1", "value": "Proof value"}],
+    "preserve_formulas": true,
+    "preserve_charts": true,
+    "llm_direct_file_edit_requested": false,
+    "llm_direct_native_app_state_modification_requested": false
+  },
+  "source_plan_schema_version": "army-claw-app-target-plan-schema-020.v1",
+  "execution_context": {"proof_mode": true, "actual_adapter_invocation_allowed": false},
+  "template_reference": {"artifact_type": "cell", "path": "templates/sample.cell", "overwrite_source": false},
+  "constraints": {"prevent_source_overwrite": true, "allow_public_internet": false, "preserve_template": true},
+  "evidence_request": {"level": "cloud_contract_proof_only"},
+  "dry_run": true,
+  "created_at": "2026-07-09T00:00:00Z"
+}
