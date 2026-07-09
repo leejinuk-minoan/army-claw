@@ -1,0 +1,66 @@
+{
+  "request_id": "req-local-workspace-task028-proof-001",
+  "contract_version": "army-claw-common-office-adapter-interface-023.v1",
+  "target_id": "local_workspace",
+  "adapter_slot_id": "local_workspace_adapter_slot",
+  "plan_type": "local_workspace_action_plan",
+  "validated_plan": {
+    "plan_id": "plan-local-workspace-task028-proof-001",
+    "target_id": "local_workspace",
+    "plan_type": "local_workspace_action_plan",
+    "workspace_root_reference": "approved_workspace://task028-fixture",
+    "operation_batch": [
+      {
+        "operation_id": "op-001",
+        "operation_class": "validate_relative_path",
+        "relative_input_path": "inputs/source.md",
+        "overwrite_existing": false,
+        "requires_public_internet": false,
+        "expected_artifact_type": "md"
+      },
+      {
+        "operation_id": "op-002",
+        "operation_class": "write_generated_text_artifact",
+        "relative_output_path": "outputs/report.md",
+        "overwrite_existing": false,
+        "requires_public_internet": false,
+        "expected_artifact_type": "md"
+      }
+    ],
+    "path_policy": {
+      "absolute_paths_allowed": false,
+      "path_traversal_allowed": false,
+      "symlink_escape_allowed": false
+    },
+    "artifact_policy": {
+      "source_overwrite_allowed": false,
+      "output_collision_policy": "block_until_future_versioning_policy"
+    },
+    "evidence_policy": {
+      "record_operation_proofs": true,
+      "claim_generated_artifacts": false
+    },
+    "llm_direct_file_edit_requested": false,
+    "llm_direct_native_app_state_modification_requested": false
+  },
+  "source_plan_schema_version": "army-claw-app-target-plan-schema-020.v1",
+  "execution_context": {
+    "proof_mode": true,
+    "actual_adapter_invocation_allowed": false
+  },
+  "template_reference": {
+    "artifact_type": "folder",
+    "path": "approved_workspace://task028-fixture",
+    "overwrite_source": false
+  },
+  "constraints": {
+    "prevent_source_overwrite": true,
+    "allow_public_internet": false,
+    "preserve_template": true
+  },
+  "evidence_request": {
+    "level": "proof_mode_skeleton_only"
+  },
+  "dry_run": true,
+  "created_at": "2026-07-10T00:00:00Z"
+}
