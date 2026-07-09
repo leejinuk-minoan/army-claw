@@ -52,9 +52,14 @@
       "docs/architecture/army-claw-worker-setup-guide.md",
       "docs/architecture/army-claw-ai-worker-handoff-contract.md",
       "docs/architecture/army-claw-common-office-adapter-interface-contract.md",
+      "docs/architecture/army-claw-adapter-interface-validator-contract.md",
       "docs/gpt-communication/AGENT_OPERATING_MODEL.md",
       "docs/gpt-communication/contracts/common-office-adapter-interface-contract.json",
       "docs/gpt-communication/contracts/common-office-adapter-error-taxonomy.json",
+      "docs/gpt-communication/contracts/adapter-interface-validator-contract.json",
+      "docs/gpt-communication/contracts/adapter-interface-validation-matrix.md",
+      "docs/gpt-communication/contracts/adapter-interface-validation-matrix.json",
+      "docs/gpt-communication/contracts/ADAPTER_INTERFACE_VALIDATOR_CHECKLIST.md",
       "docs/gpt-communication/handoffs/AI_WORKER_HANDOFF_TEMPLATE.md",
       "docs/gpt-communication/handoffs/ai-worker-handoff-contract.json",
       "docs/research-notes/research-note-index.md",
@@ -68,7 +73,7 @@
     "substage": "1-3",
     "substage_name": "선행 HWPX 엔진 비교·코어 선정",
     "status": "in_progress",
-    "current_task": "Task 023 Common Office Adapter Interface Contract Proof"
+    "current_task": "Task 024 Adapter Interface Validator Contract Proof"
   },
   "architecture": {
     "orchestrator": "OpenClaw / Army Claw Node.js·TypeScript",
@@ -77,24 +82,33 @@
       "enabled": true,
       "architecture_path": "docs/architecture/army-claw-common-office-adapter-interface-contract.md",
       "machine_contract_path": "docs/gpt-communication/contracts/common-office-adapter-interface-contract.json",
-      "error_taxonomy_path": "docs/gpt-communication/contracts/common-office-adapter-error-taxonomy.json",
-      "actual_adapter_invocation_allowed_in_task023": false,
+      "error_taxonomy_path": "docs/gpt-communication/contracts/common-office-adapter-error-taxonomy.json"
+    },
+    "adapter_validator_contract": {
+      "enabled": true,
+      "architecture_path": "docs/architecture/army-claw-adapter-interface-validator-contract.md",
+      "machine_contract_path": "docs/gpt-communication/contracts/adapter-interface-validator-contract.json",
+      "validation_matrix_markdown_path": "docs/gpt-communication/contracts/adapter-interface-validation-matrix.md",
+      "validation_matrix_json_path": "docs/gpt-communication/contracts/adapter-interface-validation-matrix.json",
+      "checklist_path": "docs/gpt-communication/contracts/ADAPTER_INTERFACE_VALIDATOR_CHECKLIST.md",
+      "actual_validator_implementation_included": false,
+      "actual_adapter_invocation_allowed_in_task024": false,
       "stage_2_transition_declared": false,
       "final_hwp_hwpx_core_selected": false
     }
   },
-  "current_branch": "agent/task023-common-office-adapter-interface-contract",
-  "latest_handoff_contract_commit": "6b8bbfdf455217bba966d1afb0b9d20e6e50f1d6",
+  "current_branch": "agent/task024-adapter-interface-validator-contract",
+  "latest_common_adapter_interface_commit": "df7367c33b0aa8e7e33b2bef3e819c057350caf0",
   "benchmark_003": {
     "completion_gate_passed": false,
     "proceed_to_task_004": false,
     "scorecard_valid_for_selection": false
   },
   "next_work": {
-    "task_id": "task024-adapter-interface-validator-contract-proof",
-    "routing_class": "cloud_delegable",
+    "task_id": "task025-adapter-interface-validator-implementation-proof",
+    "routing_class": "cloud_delegable_or_hybrid_pending_scope",
     "phase": "planned",
-    "title": "Task 024 Adapter Interface Validator Contract Proof"
+    "title": "Task 025 Adapter Interface Validator Implementation Proof"
   },
   "restrictions": [
     "사용자 승인 없이 main merge 금지",
