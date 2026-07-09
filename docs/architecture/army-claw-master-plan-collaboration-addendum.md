@@ -11,8 +11,8 @@ Army Claw remains the official system name. Army Claw is not an HWPX-only docume
 Planned human collaboration roles:
 
 - Project owner: HWP/HWPX engine, local LLM / Model Gateway direction, master integration, master review
-- Person A: HanShow engine
-- Person B: HanCell engine
+- Person A: Park Gyumin / 박규민 — HanShow engine
+- Person B: Kim Youngsu / 김영수 — HanCell engine
 
 Person A and Person B must work in their own feature branches. Local folder outputs must not be manually copied into the final build. Final integration must happen through GitHub branches, reviewed commits, and contract tests.
 
@@ -31,8 +31,8 @@ Forbidden without explicit approval:
 
 Recommended initial branches:
 
-- feature/hanshow-engine-person-a
-- feature/hancell-engine-person-b
+- feature/hanshow-engine-person-a — Person A / 박규민
+- feature/hancell-engine-person-b — Person B / 김영수
 
 ## Contract Discipline
 
