@@ -1,0 +1,105 @@
+{
+  "schema_version": "army-claw-ai-worker-handoff-contract-001.v1",
+  "task_id": "task022-ai-worker-handoff-contract",
+  "contract_name": "AI Worker Handoff Contract",
+  "allowed_workers": [
+    "codex_a",
+    "codex_b",
+    "claude_code"
+  ],
+  "excluded_workers": [
+    "gemini_antigravity",
+    "person_a",
+    "person_b"
+  ],
+  "handoff_status_enum": [
+    "draft",
+    "ready_for_receiver",
+    "receiver_validating",
+    "accepted",
+    "rejected",
+    "blocked"
+  ],
+  "required_fields": [
+    "handoff_id",
+    "task_id",
+    "from_worker",
+    "to_worker",
+    "handoff_type",
+    "repository",
+    "source_branch",
+    "source_commit_sha",
+    "base_commit_sha",
+    "target_branch",
+    "task_report_path",
+    "research_note_path",
+    "changed_files",
+    "validation_summary",
+    "commands_run",
+    "commands_not_run",
+    "forbidden_changes_check",
+    "dirty_worktree_status",
+    "known_limitations",
+    "remaining_risks",
+    "next_worker_required_reads",
+    "next_worker_allowed_scope",
+    "next_worker_forbidden_scope",
+    "stop_conditions",
+    "next_recommended_action"
+  ],
+  "required_validation": [
+    "source_commit_sha_exists",
+    "source_branch_head_matches_packet_or_is_documented",
+    "changed_files_match_packet",
+    "task_report_exists",
+    "research_note_exists_when_required",
+    "json_packet_valid",
+    "forbidden_path_changes_absent",
+    "dirty_worktree_clean_or_cloud_not_applicable",
+    "commands_claimed_passed_have_execution_evidence",
+    "receiver_allowed_scope_matches_task_contract"
+  ],
+  "stop_conditions": [
+    "source_commit_sha_missing_or_invalid",
+    "source_branch_head_mismatch",
+    "dirty_worktree_detected",
+    "forbidden_path_changed",
+    "task_report_missing",
+    "required_research_note_missing",
+    "handoff_json_invalid",
+    "changed_files_mismatch",
+    "unexecuted_test_claimed_passed",
+    "same_task_concurrent_write_detected",
+    "target_worker_not_allowed",
+    "scope_expansion_without_approval"
+  ],
+  "forbidden_actions": [
+    "main_direct_push",
+    "force_push",
+    "history_rewrite",
+    "unauthorized_merge",
+    "stage_transition_without_master_approval",
+    "final_hwpx_core_selection_without_approval",
+    "production_code_change_without_task_contract",
+    "person_a_branch_creation",
+    "person_b_branch_creation",
+    "gemini_antigravity_worker_assignment",
+    "claiming_unrun_tests_passed"
+  ],
+  "handoff_type_examples": [
+    "cloud_to_local",
+    "local_to_review",
+    "review_to_local",
+    "worker_to_master_review"
+  ],
+  "receiver_decisions": {
+    "accepted": "receiver verified packet and may proceed within allowed scope",
+    "rejected": "packet is inconsistent or not the requested work",
+    "blocked": "stop condition triggered and user or master review is required"
+  },
+  "source_of_truth": [
+    "docs/architecture/army-claw-ai-worker-handoff-contract.md",
+    "docs/gpt-communication/handoffs/AI_WORKER_HANDOFF_TEMPLATE.md",
+    "docs/gpt-communication/handoffs/ai-worker-handoff-contract.json"
+  ]
+}
