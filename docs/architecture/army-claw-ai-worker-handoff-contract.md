@@ -137,6 +137,12 @@ The next worker must read at minimum:
 - the current Research Note when present
 - the handoff packet and machine-readable handoff JSON
 
+When the next work is adapter-related, the next worker must also read:
+
+- `docs/architecture/army-claw-common-office-adapter-interface-contract.md`
+- `docs/gpt-communication/contracts/common-office-adapter-interface-contract.json`
+- `docs/gpt-communication/contracts/common-office-adapter-error-taxonomy.json`
+
 ## 11. Required receiver checks
 
 The receiver must check:
@@ -150,7 +156,8 @@ The receiver must check:
 - commands run and commands not run;
 - forbidden path diff;
 - dirty worktree status;
-- stop conditions.
+- stop conditions;
+- adapter interface contract compliance when adapter work is being handed off.
 
 ## 12. Stop conditions
 
@@ -167,6 +174,7 @@ The receiver must stop and report if:
 - unexecuted tests are claimed as passed;
 - another worker is already writing to the same Task;
 - requested work requires local execution but the receiver is cloud-only;
+- requested adapter work does not cite the common office adapter interface contract;
 - requested work would modify main, force push, rewrite history, change Stage, or select final HWPX core without approval.
 
 ## 13. Allowed and forbidden receiver actions
@@ -190,3 +198,19 @@ Forbidden without explicit approval:
 - Stage transition;
 - final HWPX core selection;
 - creating person A/B collaboration artifacts or branches.
+
+## 14. Adapter-related handoff field
+
+For adapter-related work, the packet may include:
+
+```text
+adapter_interface_contract_checked:
+adapter_interface_contract_path:
+adapter_error_taxonomy_path:
+target_adapter_slot:
+target_plan_type:
+actual_adapter_invocation_allowed:
+proof_mode:
+```
+
+If `proof_mode=true`, the sender and receiver must not claim actual adapter invocation.
