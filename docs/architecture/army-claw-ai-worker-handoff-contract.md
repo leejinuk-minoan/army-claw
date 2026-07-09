@@ -12,6 +12,7 @@ Handoff is required when:
 
 - a Task is completed and another worker may continue review or execution;
 - a cloud-delegable proof must be followed by local execution;
+- a cloud-first implementation package must be followed by local verification;
 - a local execution result must be reviewed by another worker;
 - a worker stops before completion and leaves known limitations or risks;
 - the Project Owner asks Codex A, Codex B, or Claude Code to continue from a verified commit.
@@ -96,7 +97,7 @@ A receiver may only work within the next worker allowed scope.
 
 The Project Owner / User is the approval authority for worker assignment, Task continuation, branch use, scope expansion, Stage transition, and final core selection.
 
-Master review may verify consistency but does not replace explicit user approval for restricted actions.
+Master review may verify consistency but does not replace explicit user approval for restricted actions. Cloud-first/local-verify local execution requires master read-only verification and assignment of `local_execution_base_sha`.
 
 ## 8. Sequential worker flow
 
@@ -109,9 +110,20 @@ Task Contract approved
 -> single worker writes
 -> report / Research Note / evidence created
 -> commit and push
--> handoff packet created
+-> handoff or delegation package created
 -> next worker validates packet
 -> next worker accepts, rejects, or blocks
+```
+
+Cloud-first/local-verify flow:
+
+```text
+cloud implementation package
+-> master read-only verification
+-> local_execution_base_sha assignment
+-> local verification branch
+-> stdout/stderr/exit-code evidence
+-> result review
 ```
 
 Codex A, Codex B, and Claude Code may be used sequentially, not as simultaneous writers for the same Task.
@@ -135,7 +147,7 @@ The next worker must read at minimum:
 - `docs/architecture/army-claw-worker-setup-guide.md`
 - the current Task report
 - the current Research Note when present
-- the handoff packet and machine-readable handoff JSON
+- the handoff/delegation packet and machine-readable JSON
 
 When the next work is adapter-related, the next worker must also read:
 
@@ -146,6 +158,13 @@ When the next work is adapter-related, the next worker must also read:
 - `docs/gpt-communication/contracts/adapter-interface-validator-contract.json`
 - `docs/gpt-communication/contracts/adapter-interface-validation-matrix.json`
 - `docs/gpt-communication/contracts/ADAPTER_INTERFACE_VALIDATOR_CHECKLIST.md`
+
+When the next work is Task 025-B local verification, the next worker must also read:
+
+- `tools/validators/adapter_interface_validator.py`
+- `tests/adapter_interface_validator/test_adapter_interface_validator.py`
+- `docs/gpt-communication/delegation/task025-adapter-interface-validator-implementation/LOCAL_EXECUTION_BRIEF.md`
+- `docs/gpt-communication/delegation/task025-adapter-interface-validator-implementation/TEST_PLAN.json`
 
 ## 11. Required receiver checks
 
@@ -162,7 +181,8 @@ The receiver must check:
 - dirty worktree status;
 - stop conditions;
 - adapter interface contract compliance when adapter work is being handed off;
-- adapter validator contract and validation matrix compliance when validator or sample work is being handed off.
+- adapter validator contract and validation matrix compliance when validator or sample work is being handed off;
+- `local_execution_base_sha` assignment when local execution is required.
 
 ## 12. Stop conditions
 
@@ -178,7 +198,7 @@ The receiver must stop and report if:
 - changed files do not match the packet;
 - unexecuted tests are claimed as passed;
 - another worker is already writing to the same Task;
-- requested work requires local execution but the receiver is cloud-only;
+- requested work requires local execution but `local_execution_base_sha` is null;
 - requested adapter work does not cite the common office adapter interface contract;
 - requested adapter validator work does not cite the validator contract or validation matrix;
 - requested work would modify main, force push, rewrite history, change Stage, or select final HWPX core without approval.
@@ -217,10 +237,14 @@ adapter_validator_contract_checked:
 adapter_validator_contract_path:
 adapter_validation_matrix_path:
 adapter_validator_checklist_path:
+validator_source_path:
+validator_unittest_path:
 target_adapter_slot:
 target_plan_type:
+actual_validator_implementation_allowed:
 actual_adapter_invocation_allowed:
 proof_mode:
+local_execution_base_sha:
 ```
 
-If `proof_mode=true`, the sender and receiver must not claim actual adapter invocation. If `actual_validator_implementation_allowed=false`, the sender and receiver must not claim executable validator implementation.
+If `proof_mode=true`, the sender and receiver must not claim actual adapter invocation. If `actual_validator_implementation_allowed=false`, the sender and receiver must not claim executable validator implementation. If `local_execution_base_sha=null`, local execution is not allowed yet.
