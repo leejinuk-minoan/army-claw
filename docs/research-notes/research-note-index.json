@@ -58,6 +58,13 @@
       "file": "docs/research-notes/task-notes/RN-024-task024-adapter-interface-validator-contract.md",
       "research_axis": "Adapter interface validator contract and validation matrix",
       "status": "verified"
+    },
+    "RN-025A": {
+      "task": "Task 025-A",
+      "title": "Adapter Interface Validator Cloud Implementation Package",
+      "file": "docs/research-notes/task-notes/RN-025A-task025a-adapter-interface-validator-cloud-implementation.md",
+      "research_axis": "Cloud-first validator implementation package and local verification handoff",
+      "status": "draft"
     }
   }
 }
