@@ -37,6 +37,13 @@
       "file": "docs/research-notes/task-notes/RN-021-task021-solo-ai-worker-governance.md",
       "research_axis": "Solo AI worker governance and handoff rules",
       "status": "verified"
+    },
+    "RN-022": {
+      "task": "Task 022",
+      "title": "AI Worker Handoff Contract Proof",
+      "file": "docs/research-notes/task-notes/RN-022-task022-ai-worker-handoff-contract.md",
+      "research_axis": "AI worker handoff contract and receiver validation",
+      "status": "verified"
     }
   }
 }
