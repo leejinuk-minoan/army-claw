@@ -11,8 +11,9 @@ This is not Task 021 execution. It does not implement HanShow, HanCell, HWP/HWPX
 - Branch: `agent/pre-task021-collaboration-prep`
 - Base SHA: `c93e3fec627bfa493eaefefd974b04adc012ac41`
 - Addendum commit SHA: `055b431c51b7ec269b9c6e38d2f1d0db910d3c9a`
+- Collaborator name update commit SHA: `81ee875de09debd0e84cd0a9133b867a5e1a6b76`
 
-## Added Document
+## Added / Updated Document
 
 - `docs/architecture/army-claw-master-plan-collaboration-addendum.md`
 
@@ -21,13 +22,13 @@ This is not Task 021 execution. It does not implement HanShow, HanCell, HWP/HWPX
 Planned human collaborators:
 
 - Project owner: HWP/HWPX engine, local LLM / Model Gateway direction, master integration, master review
-- Person A: HanShow engine
-- Person B: HanCell engine
+- Person A: Park Gyumin / 박규민 — HanShow engine
+- Person B: Kim Youngsu / 김영수 — HanCell engine
 
 ## Branches Created for Human Collaborators
 
-- `feature/hanshow-engine-person-a`
-- `feature/hancell-engine-person-b`
+- `feature/hanshow-engine-person-a` — Person A / 박규민
+- `feature/hancell-engine-person-b` — Person B / 김영수
 
 These branches were created from the addendum commit SHA `055b431c51b7ec269b9c6e38d2f1d0db910d3c9a`.
 
