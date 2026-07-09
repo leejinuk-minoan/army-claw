@@ -25,6 +25,9 @@ handoff contract:
 handoff template:
 adapter interface contract:
 adapter error taxonomy:
+adapter validator contract:
+adapter validation matrix:
+adapter validator checklist:
 ```
 
 ## 3. Repository state
@@ -105,7 +108,31 @@ When `adapter_interface_contract_required` is true, the Task must check:
 - proof mode versus real local execution evidence
 ```
 
-## 11. TDD and validation
+## 11. Adapter validator contract
+
+Use this section when the Task modifies adapter validator rules, adapter samples, validation matrix, request/response/error validation, or negative sample expected errors.
+
+```text
+adapter_validator_contract_required:
+adapter_validator_contract_path:
+adapter_validation_matrix_required:
+adapter_validation_matrix_path:
+adapter_validator_checklist_path:
+actual_validator_implementation_allowed:
+actual_adapter_invocation_allowed:
+```
+
+When `adapter_validator_contract_required` is true, the Task must check:
+
+```text
+- adapter validator contract exists when adapter interface changes
+- validation matrix exists when samples are added or modified
+- negative samples include expected error category
+- proof-mode samples do not claim real adapter invocation
+- validator implementation is not claimed unless executable code and evidence exist
+```
+
+## 12. TDD and validation
 
 ```text
 RED tests:
@@ -117,9 +144,10 @@ offline deployment checks:
 research note structure checks:
 handoff packet checks:
 adapter interface contract checks:
+adapter validator contract checks:
 ```
 
-## 12. Required outputs
+## 13. Required outputs
 
 ```text
 code:
@@ -131,9 +159,10 @@ benchmark results:
 user-review artifacts:
 handoff_packet:
 adapter_contract_artifacts:
+adapter_validator_contract_artifacts:
 ```
 
-## 13. Research Note contract
+## 14. Research Note contract
 
 When `research_note_allowed` or `research_note_required` is true, the Task must create or update one Task-level Research Note under:
 
@@ -163,7 +192,7 @@ docs/research-notes/research-note-index.md
 docs/research-notes/research-note-index.json
 ```
 
-## 14. Handoff contract
+## 15. Handoff contract
 
 Use this section when a Task hands work to another worker.
 
@@ -188,7 +217,7 @@ docs/gpt-communication/handoffs/AI_WORKER_HANDOFF_TEMPLATE.md
 
 The handoff packet does not replace the Task report or Research Note.
 
-## 15. Completion gate
+## 16. Completion gate
 
 State measurable conditions. User visual confirmation must remain pending when required.
 
@@ -201,6 +230,16 @@ If adapter-related files are changed, completion requires:
 - public internet dependency is blocked unless explicitly approved
 - actual adapter invocation is not claimed unless locally executed and evidenced
 - proof mode output does not claim real adapter execution
+```
+
+If adapter validator or sample files are changed, completion requires:
+
+```text
+- adapter validator contract exists when adapter interface changes
+- validation matrix exists when samples are added or modified
+- negative samples include expected error category
+- proof-mode samples do not claim real adapter invocation
+- validator implementation is not claimed unless executable code and evidence exist
 ```
 
 If the Task requires a Research Note, completion requires:
@@ -223,7 +262,7 @@ If `handoff_required` is true, completion also requires:
 - receiver can determine accept/reject/blocked from packet
 ```
 
-## 16. Reporting contract
+## 17. Reporting contract
 
 Codex must report:
 
@@ -238,13 +277,14 @@ research note path
 research note index update result
 handoff packet path
 adapter contract artifact paths
+adapter validator contract artifact paths
 diff/diagnostic summary
 limitations
 user verification items
 next resume point
 ```
 
-## 17. Handoff update
+## 18. Handoff update
 
 After Codex pushes, update or create the handoff packet when required.
 
