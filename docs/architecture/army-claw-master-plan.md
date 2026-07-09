@@ -353,6 +353,7 @@ Audit Log and Evidence Bundle Proof
 9. 오프라인 또는 폐쇄망 동작을 전제한다.
 10. 공개 인터넷 의존성을 도입하지 않는다.
 11. 명시적 승인 없이 최종 HWPX core 선택이나 Stage 2 전환을 선언하지 않는다.
+12. 구현 또는 검증 task는 가능한 경우 연구 증거 산출 규칙을 따라야 한다.
 
 ## 13. 현재 비결정 사항
 
@@ -380,3 +381,77 @@ HWP/HWPX, HanCell, HanShow에 대해 사용자가 제공한 템플릿은 생성 
 LLM은 구조화된 계획만 생성할 수 있다.
 각 앱별 어댑터는 계획을 검증하고 결정론적으로 실행해야 한다.
 ```
+
+## 15. 연구 증거 산출 규칙
+
+Army Claw의 최종 논문 주제는 다음으로 고정한다.
+
+```text
+구조화 계획과 결정론적 어댑터를 활용한 폐쇄망 멀티 오피스 문서 생성 에이전트 설계 및 검증
+```
+
+이 논문의 핵심 주장을 검증하려면 향후 구현, 통합, E2E, adapter, model gateway, template preservation 관련 task가 연구 증거를 누락하지 않아야 한다.
+
+따라서 향후 task prompt, completion report, validation summary, evidence bundle은 task 범위에서 적용 가능한 경우 다음 항목을 산출하거나, 아직 해당 단계가 아니면 `not_applicable`과 사유를 명시해야 한다.
+
+1. `input_user_request`
+2. `generated_structured_plan`
+3. `schema_validation_result`
+4. `policy_validation_result`
+5. `adapter_routing_result`
+6. `adapter_slot_input`
+7. `execution_log`
+8. `artifact_validation_report`
+9. `template_preservation_report`
+10. `source_template_overwrite_check`
+11. `offline_dependency_check`
+12. `public_internet_access_check`
+13. `repeated_run_reproducibility_report`
+
+### 15.1 Task 유형별 적용 원칙
+
+- contract/schema/routing proof task는 최소한 `generated_structured_plan`, `schema_validation_result`, `policy_validation_result`, `adapter_routing_result`, `adapter_slot_input`의 mock 또는 proof evidence를 남겨야 한다.
+- adapter skeleton task는 adapter가 실제 실행되지 않더라도 `adapter_slot_input`, `execution_log`, `artifact_validation_report`의 placeholder 또는 controlled no-op evidence를 남겨야 한다.
+- 실제 adapter execution task는 13개 항목 중 적용 가능한 모든 항목을 산출해야 한다.
+- template preservation task는 반드시 `template_preservation_report`와 `source_template_overwrite_check`를 산출해야 한다.
+- offline/model gateway task는 반드시 `offline_dependency_check`와 `public_internet_access_check`를 산출해야 한다.
+- reproducibility 관련 task는 반드시 `repeated_run_reproducibility_report`를 산출해야 한다.
+- 문서 생성이 없는 순수 운영규칙 task는 13개 항목을 직접 산출하지 않아도 되지만, 향후 task가 이를 산출하도록 하는 policy evidence를 남겨야 한다.
+
+### 15.2 Evidence Manifest 요구사항
+
+향후 연구 관련 task는 가능한 경우 다음 manifest를 생성해야 한다.
+
+```text
+release/test-documents/<task-id>/research-evidence-manifest.json
+```
+
+manifest에는 다음을 포함한다.
+
+- task_id
+- task_type
+- generated_at
+- evidence_items_present
+- evidence_items_not_applicable
+- not_applicable_reasons
+- source_template_overwrite_incident_count
+- public_internet_access_attempt_count
+- unvalidated_plan_execution_count
+- repeated_run_count
+- normalized_reproducibility_available
+- template_preservation_report_available
+- completion_candidate
+
+### 15.3 금지되는 연구 주장
+
+향후 task는 실제 측정 없이 다음을 주장해서는 안 된다.
+
+- adapter가 production-ready라는 주장
+- Stage 2 전환 완료 주장
+- final HWPX core selection 주장
+- template preservation score 달성 주장
+- closed-network compliance 완료 주장
+- reproducibility 확보 주장
+- manual correction time 감소 주장
+
+해당 주장은 반드시 evidence bundle, validation report, 반복 실행 결과, 또는 사용자 평가 기록으로 뒷받침되어야 한다.
