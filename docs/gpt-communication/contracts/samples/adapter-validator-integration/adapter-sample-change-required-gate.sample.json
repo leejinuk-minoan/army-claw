@@ -1,0 +1,24 @@
+{
+  "schema_version": "army-claw-adapter-validator-gate-decision-sample-026.v1",
+  "sample_id": "adapter-sample-change-required-gate",
+  "task_type": "adapter_sample_change",
+  "changed_files": [
+    "docs/gpt-communication/contracts/samples/common-office-adapter-interface/hwp_hwpx-request.sample.json"
+  ],
+  "gate_decision": {
+    "gate_required": true,
+    "reason": "adapter interface sample JSON changed",
+    "required_command": [
+      "python tools/validators/adapter_interface_validator.py --repo-root . --format json",
+      "python -m unittest discover -s tests/adapter_interface_validator -p \"test_*.py\""
+    ],
+    "required_evidence": "adapter-validator-evidence-schema",
+    "allowed_to_complete": false
+  },
+  "completion": {
+    "gate_status": "required_not_run",
+    "completion_gate_passed": false,
+    "blocked": true,
+    "requires_followup": false
+  }
+}
