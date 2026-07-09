@@ -21,13 +21,15 @@ architecture decision:
 latest related opinion/report:
 research note index md:
 research note index json:
+handoff contract:
+handoff template:
 ```
 
 ## 3. Repository state
 
 ```text
 repository: leejinuk-minoan/army-claw
-local_root: C:\Users\USER\Desktop\로컬 open claw 만들기
+local_root:
 base_branch:
 base_commit:
 work_branch:
@@ -84,6 +86,7 @@ Hancom COM tests:
 license checks:
 offline deployment checks:
 research note structure checks:
+handoff packet checks:
 ```
 
 ## 11. Required outputs
@@ -96,6 +99,7 @@ research_note_index_update:
 diagnostics:
 benchmark results:
 user-review artifacts:
+handoff_packet:
 ```
 
 ## 12. Research Note contract
@@ -128,7 +132,32 @@ docs/research-notes/research-note-index.md
 docs/research-notes/research-note-index.json
 ```
 
-## 13. Completion gate
+## 13. Handoff contract
+
+Use this section when a Task hands work to another worker.
+
+```text
+handoff_required:
+handoff_sender:
+handoff_receiver:
+handoff_packet_path:
+handoff_contract_path:
+receiver_validation_required:
+stop_conditions:
+next_worker_allowed_scope:
+next_worker_forbidden_scope:
+```
+
+If `handoff_required` is true, the packet must follow:
+
+```text
+docs/gpt-communication/handoffs/ai-worker-handoff-contract.json
+docs/gpt-communication/handoffs/AI_WORKER_HANDOFF_TEMPLATE.md
+```
+
+The handoff packet does not replace the Task report or Research Note.
+
+## 14. Completion gate
 
 State measurable conditions. User visual confirmation must remain pending when required.
 
@@ -141,7 +170,18 @@ If the Task requires a Research Note, completion requires:
 - Task report and Research Note remain separate documents
 ```
 
-## 14. Reporting contract
+If `handoff_required` is true, completion also requires:
+
+```text
+- handoff packet exists
+- handoff packet includes source commit SHA
+- handoff packet includes changed files
+- handoff packet includes validation summary
+- handoff packet includes stop conditions
+- receiver can determine accept/reject/blocked from packet
+```
+
+## 15. Reporting contract
 
 Codex must report:
 
@@ -154,18 +194,15 @@ test results
 artifact paths
 research note path
 research note index update result
+handoff packet path
 diff/diagnostic summary
 limitations
 user verification items
 next resume point
 ```
 
-## 15. Handoff update
+## 16. Handoff update
 
-After Codex pushes, update:
-
-```text
-docs/gpt-communication/handoffs/CODEX_LATEST.json
-```
+After Codex pushes, update or create the handoff packet when required.
 
 The handoff must match the actual remote commit and artifacts.
