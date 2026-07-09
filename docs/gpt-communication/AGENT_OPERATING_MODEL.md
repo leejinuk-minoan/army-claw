@@ -10,65 +10,39 @@
 - 현재 단계와 세부 단계 판정
 - 제품 아키텍처와 우선순위 결정
 - 완료 Gate와 사용자 검증 기준 관리
-- 1시간 조건 감시를 통한 GitHub 원격 점검
-- 에이전트의 계획 이탈·위험 감지
-- `CURRENT.md`, `PROJECT_STATE.json`, 로드맵 갱신
-- 논문화용 Research Note 구조와 index 기준 관리
-
-마스터 에이전트는 긴 로컬 Codex 실행 프롬프트를 직접 작성하지 않는다. 정상 중간 진행에는 알리지 않고 계획 이탈, 테스트 실패, 라이선스·보안 위험, 중요 milestone과 단계 전환 가능성을 사용자에게 알린다.
+- GitHub 원격 상태 검토
+- 계획 이탈, 테스트 실패, 라이선스·보안 위험, 단계 전환 가능성 경고
+- `PROJECT_STATE.json`, `CURRENT.md`, Research Note 구조와 index 기준 관리
 
 ### B. Codex 프롬프트 작성 에이전트 채팅
 
-- 사용자가 공유한 Codex 결과와 한컴오피스 화면 분석
+- 사용자가 공유한 Codex 결과와 화면/로그 분석
 - 다음 작업을 `cloud_delegable`, `local_codex_required`, `hybrid`로 분류
-- 작업 전 `TASK_CONTRACT.md` 작성·갱신
-- Codex 대행 엔진의 원격 commit과 delegation package 검증
-- 로컬 Codex가 읽을 실행 프롬프트를 `CODEX_EXECUTION_BRIEF.md` 중심으로 압축
-- 실행 결과 후 `CODEX_LATEST.json` 갱신
-- 아키텍처나 단계 변경 필요 시 마스터 검토 요청
-- Task 완료 후 Research Note 생성 여부와 index 갱신 여부 확인
-
-독자적으로 변경하지 않는 항목:
-
-- 전체 8단계 순서
-- 현재 단계와 완료 Gate
-- 채택된 HWPX 아키텍처 가설
-- 제품 범위
-- 공식 단계 완료 상태
-- 사용자 승인 없는 main merge
-- Research Note 구조 원칙
+- Task Contract와 handoff packet 기준 확인
+- 대행 엔진 원격 commit과 delegation/handoff package 검증
+- 로컬 Codex 실행 프롬프트 작성
+- Research Note 생성 여부와 index 갱신 확인
 
 ### C. Codex 대행 엔진 채팅
 
 - GitHub 원격 코드·문서·commit 정적 분석
-- 설계·인터페이스·Schema·데이터 모델 작성
-- RED/positive test와 파일 변경 계획 작성
-- 로컬 실행이 필요 없는 문서·순수 함수·Schema·테스트 코드 변경
-- delegation package 생성
-- 허용 브랜치에 클라우드 안전 변경 commit·push
-- 로컬 미검증 사항과 실행 브리프 기록
-- 허용된 경우 Task별 Research Note 초안과 index 갱신
-
-대행 엔진은 로컬 PC, 한글 COM, 패키지 설치, 실제 회귀 테스트와 성능 측정을 수행했다고 주장하지 않는다.
+- 문서, JSON 계약, Schema, 순수 함수, 테스트 코드 등 cloud-safe 변경
+- 허용 브랜치에 commit/push
+- 실제 로컬 실행, 한글 COM, GUI 확인, dependency install을 수행했다고 주장하지 않음
 
 ### D. 로컬 Codex 실행 에이전트
 
-- 지정 브랜치와 delegation commit에서 시작
-- `CODEX_EXECUTION_BRIEF.md` 우선 확인
+- 지정 branch와 handoff 또는 delegation commit에서 시작
 - 로컬 파일·프로그램·패키지·한글 COM 작업
 - 실제 테스트·측정·로그·산출물 생성
-- 원본 보호
-- commit·push
-- 실제 원격 결과에 맞춘 실행 보고
-
-로컬 Codex는 대행 엔진이 완료한 분석과 설계를 처음부터 반복하지 않는다. 브리프의 지정 파일과 관련 코드만 읽는다.
+- commit·push 및 실행 보고
 
 ### E. 사용자
 
-- Codex 결과와 한컴오피스 화면을 프롬프트 작성 에이전트에 전달
+- Task 승인과 worker 지정
 - 제품 목표와 우선순위 승인
 - 실제 화면 시각 검증
-- 마스터 경고와 단계 전환 제안 승인
+- master review와 단계 전환 제안 승인
 
 ## 2. 단일 진실 공급원
 
@@ -76,63 +50,53 @@
 
 1. `docs/gpt-communication/PROJECT_STATE.json`
 2. `docs/gpt-communication/CURRENT.md`
-3. 마스터 로드맵
-4. HWPX 아키텍처 결정문
-5. 최신 마스터 검토 의견
-6. `docs/gpt-communication/CLOUD_LOCAL_EXECUTION_ROUTING.md`
-7. `docs/gpt-communication/MASTER_MONITORING_POLICY.md`
-8. `docs/research-notes/research-note-index.md`
-9. `docs/research-notes/research-note-index.json`
-10. 현재 `TASK_CONTRACT.md`
-11. 현재 delegation package
-12. `docs/gpt-communication/handoffs/CODEX_LATEST.json`
-13. 최신 opinion·report
-14. 최신 Research Note
-15. 실제 원격 branch·commit·산출물
+3. `docs/architecture/army-claw-master-plan.md`
+4. `docs/architecture/army-claw-ai-worker-operating-rules.md`
+5. `docs/architecture/army-claw-solo-multi-agent-governance.md`
+6. `docs/architecture/army-claw-branch-ownership-map.md`
+7. `docs/architecture/army-claw-worker-setup-guide.md`
+8. `docs/architecture/army-claw-ai-worker-handoff-contract.md`
+9. `docs/gpt-communication/handoffs/ai-worker-handoff-contract.json`
+10. `docs/gpt-communication/handoffs/AI_WORKER_HANDOFF_TEMPLATE.md`
+11. `docs/gpt-communication/CLOUD_LOCAL_EXECUTION_ROUTING.md`
+12. `docs/research-notes/research-note-index.md`
+13. `docs/research-notes/research-note-index.json`
+14. 현재 Task Contract
+15. 현재 delegation package 또는 handoff packet
+16. 최신 Task report와 Research Note
+17. 실제 원격 branch·commit·산출물
 
 충돌 시 실제 원격 commit과 산출물을 확인한다. 단계·로드맵·아키텍처 변경은 마스터 승인 기록이 있어야 한다.
 
-Research Note는 Task report를 대체하지 않는다. Task report는 개발·검증 기록이고, Research Note는 논문 활용을 위한 연구 메모 계층이다.
+Research Note는 Task report를 대체하지 않는다.
 
 ## 3. 정보 전달 흐름
 
 ```text
 마스터 에이전트
-→ 현재 단계·아키텍처·Gate 확정
-→ PROJECT_STATE.json / CURRENT.md 갱신
-→ Research Note 구조와 index 기준 확정
+-> 현재 단계·아키텍처·Gate 확정
+-> PROJECT_STATE.json / CURRENT.md 기준 관리
 
 사용자
-→ 결과와 실제 화면을 프롬프트 작성 에이전트에 공유
+-> Task 승인과 worker 지정
 
 프롬프트 작성 에이전트
-→ 결과 분석
-→ Task Contract와 routing class 확정
-→ Research Note 산출 필요 여부 명시
-→ 클라우드 가능 작업을 대행 엔진에 전달
+-> routing class 확정
+-> Task Contract 또는 handoff 요구사항 확정
 
 Codex 대행 엔진
-→ 분석·설계·클라우드 안전 변경
-→ delegation package와 commit push
-→ 허용된 경우 Research Note 초안 생성
+-> cloud-safe 변경
+-> report / Research Note / handoff packet 생성
+-> commit / push
 
-프롬프트 작성 에이전트
-→ 원격 commit과 패키지 검증
-→ Research Note 및 index 갱신 여부 확인
-→ 로컬 실행 브리프 중심의 짧은 Codex 프롬프트 작성
+프롬프트 작성 에이전트 또는 master review
+-> 원격 commit과 package 검증
+-> 다음 worker 승인 여부 판단
 
-로컬 Codex
-→ delegation commit fetch
-→ 로컬 전용 실행·테스트·산출물
-→ commit·push
-
-프롬프트 작성 에이전트
-→ CODEX_LATEST.json 갱신
-
-마스터 에이전트
-→ 1시간 GitHub 조건 감시
-→ 계획·계약·실제 결과 정합성 판정
-→ Research Note 구조 위반 여부 확인
+로컬 Codex 또는 다음 worker
+-> handoff packet 검증
+-> accepted / rejected / blocked 판정
+-> allowed scope 안에서만 실행
 ```
 
 ## 4. 단계별 쓰기 잠금
@@ -141,167 +105,77 @@ Codex 대행 엔진
 
 ```text
 cloud_preparation
-→ delegation push
-→ prompt-agent verification
-→ local_execution
-→ local Codex push
-→ result_review
+-> delegation or handoff push
+-> verification
+-> local_execution or next_worker_execution
+-> result_review
 ```
 
-`local_execution` 시작 후 대행 엔진은 같은 Task 파일을 수정하지 않는다. 추가 클라우드 수정이 필요하면 프롬프트 작성 에이전트가 phase를 다시 `cloud_preparation`으로 전환한다.
+`local_execution` 시작 후 대행 엔진은 같은 Task 파일을 수정하지 않는다. 추가 클라우드 수정이 필요하면 phase를 다시 명시적으로 전환해야 한다.
 
-## 5. 프롬프트 작성 에이전트의 필수 시작 절차
+## 5. Handoff Packet 공식화
 
-1. `PROJECT_STATE.json`
-2. `CURRENT.md`
-3. `AGENT_OPERATING_MODEL.md`
-4. `CLOUD_LOCAL_EXECUTION_ROUTING.md`
-5. 마스터 로드맵과 아키텍처 결정문
-6. 최신 마스터 검토 의견
-7. `docs/research-notes/research-note-index.md`
-8. `docs/research-notes/research-note-index.json`
-9. `CODEX_LATEST.json`
-10. 최신 Task Contract
-11. 현재 delegation package
-12. 현재 원격 HEAD와 관련 opinion·report·Research Note
+Task 022 이후 handoff packet은 worker 간 공식 정보 전달 단위다.
 
-다음 작업을 먼저 분류한다.
+- Task 완료 후 다음 worker에게 넘길 때 handoff packet을 사용한다.
+- handoff packet은 Task report와 Research Note를 대체하지 않는다.
+- handoff packet은 receiver가 accept/reject/blocked를 판단할 수 있는 최소 계약이다.
+- handoff packet에는 branch, commit SHA, changed files, validation summary, commands run/not run, stop conditions, next worker scope가 포함되어야 한다.
 
-```text
-routing_class
-cloud_scope
-local_scope
-local_validation_required
-delegation_package_path
-research_note_required
-research_note_target_path
-```
+공식 handoff source of truth:
 
-## 6. 로컬 Codex 프롬프트 필수 구성
+- `docs/architecture/army-claw-ai-worker-handoff-contract.md`
+- `docs/gpt-communication/handoffs/AI_WORKER_HANDOFF_TEMPLATE.md`
+- `docs/gpt-communication/handoffs/ai-worker-handoff-contract.json`
 
-- task ID와 current phase
-- 기준 branch
-- 필수 delegation commit SHA
-- `CODEX_EXECUTION_BRIEF.md` 경로
-- 읽을 파일 최소 목록
-- 이미 완료된 클라우드 변경
-- 로컬 전용 작업
-- 수정 허용 파일
-- 실행 명령과 기대 결과
-- 회귀 테스트
-- 산출물·로그
-- Research Note 필요 여부
-- 완료 Gate
-- 금지사항
-- commit·push와 최종 보고
+## 6. Handoff receiver 원칙
 
-전체 과거 문서를 매번 다시 읽게 하지 않는다.
+Receiver는 handoff 수신 후 바로 수정하지 않는다. 먼저 다음을 확인한다.
 
-## 7. 결과 회수 규칙
+1. source branch와 commit SHA
+2. base commit SHA
+3. changed files
+4. Task report와 Research Note
+5. dirty worktree status
+6. forbidden path 변경 여부
+7. unexecuted tests가 passed로 보고되지 않았는지 여부
+8. stop conditions
 
-로컬 Codex 결과:
+검증 결과는 `accepted`, `rejected`, `blocked` 중 하나로 판단한다.
 
-```text
-branch
-start SHA
-delegation SHA
-final commit SHA
-push 결과
-변경 파일
-실행 명령
-테스트 결과
-산출물·로그 경로
-Research Note 경로
-Research Note index 갱신 여부
-미완료 항목
-사용자 확인 항목
-다음 재개 지점
-```
+## 7. 공식 Worker Roster
 
-대행 엔진 결과:
+공식 worker:
 
-```text
-delegation task ID
-branch
-start SHA
-delegation commit SHA
-변경 파일
-클라우드 정적 검증
-Research Note 초안 경로
-Research Note index 갱신 여부
-로컬 검증 필요 항목
-execution brief 경로
-위험
-master review 필요 여부
-```
+- `codex_a`
+- `codex_b`
+- `claude_code`
 
-## 8. 상태 파일 쓰기 권한
+명시적 제외:
 
-```text
-PROJECT_STATE.json / CURRENT.md
-→ 마스터 에이전트
+- `gemini_antigravity`
+- `person_a`
+- `person_b`
 
-TASK_CONTRACT.md / CODEX_LATEST.json
-→ 프롬프트 작성 에이전트
+인원 A/B 협업은 취소 상태로 유지한다.
 
-delegation/<task-id>/**
-→ Codex 대행 엔진
-
-클라우드 설계·정적 변경
-→ Codex 대행 엔진, Task Contract 허용 범위 내
-
-로컬 실행 코드·산출물·실행 보고서
-→ 로컬 Codex
-
-opinions/
-→ 마스터 또는 명시된 검토 에이전트
-
-docs/research-notes/**
-→ Task Contract에서 허용된 에이전트. 구조 원칙 변경은 마스터 승인 필요
-```
-
-## 9. 공통 금지
+## 8. 공통 금지
 
 - 사용자 승인 없는 main merge
+- main 직접 push
+- force push
+- history rewrite
 - 원본 HWP/HWPX 덮어쓰기
-- force push·history rewrite
-- 여러 HWPX 코어의 연속 재저장
-- 실제 실행 없는 passed/completed
-- 에이전트 간 동일 파일 동시 수정
+- 실제 실행 없는 passed/completed 보고
+- 동일 Task 복수 worker 동시 수정
 - 마스터 승인 없는 단계·아키텍처 변경
-- 사용자 시각검증 전 엔진 완료 선언
-- Research Note를 Task report의 대체물로 사용하는 것
-- `research-note-index.md` 또는 `research-note-index.json`에 장문 연구 내용을 누적하는 것
+- 사용자 승인 없는 final HWPX core selection
+- Research Note를 Task report 대체물로 사용하는 것
+- Research Note index에 장문 내용을 누적하는 것
 
-## 10. Solo Multi-Agent Governance
+## 9. 단계 표기
 
-Task 021 이후 공식 작업 체계는 Project Owner / User + Codex A + Codex B + Claude Code다.
-
-공식 AI worker는 다음과 같다.
-
-- Codex A: primary local execution worker / first-pass implementation / documentation and governance update
-- Codex B: secondary local execution or review worker / independent correction / regression-oriented review
-- Claude Code: local code assistant / alternative implementation review / code-level reasoning support
-
-Gemini Antigravity는 공식 worker에서 제외한다.
-
-인원 A/B 협업은 취소되었으며, 인원 A/B용 PPT, 분업안, branch 준비는 진행하지 않는다.
-
-worker 간 handoff는 다음 흐름을 따른다.
-
-```text
-Task Contract
--> branch ownership 확인
--> 단일 worker 실행
--> report / changed files / commit SHA / test results / remaining risks
--> 다음 worker 또는 master review
-```
-
-동일 Task에서 복수 worker가 동시에 write하지 않는다. 다른 worker의 branch를 수정하려면 사용자 또는 마스터 에이전트의 별도 승인이 필요하다.
-
-## 11. 단계 표기
-
-Army Claw 관련 답변은 처음에 전체 프로젝트 단계표를 표시한다.
+Army Claw 관련 답변은 필요한 경우 처음에 전체 프로젝트 단계표를 표시한다.
 
 ```text
 ✅ 완료
