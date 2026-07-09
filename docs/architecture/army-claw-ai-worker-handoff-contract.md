@@ -14,6 +14,7 @@ Handoff is required when:
 - a cloud-delegable proof must be followed by local execution;
 - a cloud-first implementation package must be followed by local verification;
 - a local execution result must be reviewed by another worker;
+- adapter validator gate evidence must be transferred to another worker;
 - a worker stops before completion and leaves known limitations or risks;
 - the Project Owner asks Codex A, Codex B, or Claude Code to continue from a verified commit.
 
@@ -25,6 +26,7 @@ Handoff is prohibited when:
 - the sender branch has uncommitted or dirty worktree state;
 - changed files include forbidden paths not approved by the Task Contract;
 - the sender claims tests passed without actual execution evidence;
+- an adapter validator gate is required but status/evidence is missing;
 - the handoff would create same-Task concurrent writes;
 - the target worker is not an official worker;
 - the action would imply main direct modification, force push, history rewrite, Stage transition, or final HWPX core selection without approval.
@@ -62,6 +64,8 @@ The handoff sender must provide:
 - Task report path;
 - Research Note path when applicable;
 - validation summary with commands run and commands not run;
+- adapter validator gate status when adapter-related;
+- adapter validator evidence path when required;
 - forbidden change check;
 - dirty worktree status;
 - known limitations and remaining risks;
@@ -69,7 +73,7 @@ The handoff sender must provide:
 - allowed scope, forbidden scope, and stop conditions;
 - next recommended action.
 
-The sender must not claim local execution, GUI verification, COM execution, dependency install, or test pass status unless actually performed.
+The sender must not claim local execution, GUI verification, COM execution, dependency install, validator pass status, or adapter execution unless actually performed and evidenced.
 
 ## 6. Receiver responsibilities
 
@@ -83,7 +87,8 @@ The handoff receiver must not start editing immediately. It must first verify:
 6. Task report and Research Note paths exist;
 7. forbidden path changes are absent;
 8. commands listed as passed have real evidence;
-9. stop conditions are not triggered.
+9. adapter validator gate status is present and acceptable when required;
+10. stop conditions are not triggered.
 
 The receiver must set handoff status to one of:
 
@@ -126,6 +131,17 @@ cloud implementation package
 -> result review
 ```
 
+Adapter validator gate flow:
+
+```text
+adapter-related change detected
+-> gate policy decision
+-> validator evidence required when gate_required=true
+-> validator CLI and unittest evidence recorded
+-> handoff packet includes gate status
+-> receiver blocks if evidence is missing or failed
+```
+
 Codex A, Codex B, and Claude Code may be used sequentially, not as simultaneous writers for the same Task.
 
 ## 9. Branch ownership principles
@@ -158,13 +174,10 @@ When the next work is adapter-related, the next worker must also read:
 - `docs/gpt-communication/contracts/adapter-interface-validator-contract.json`
 - `docs/gpt-communication/contracts/adapter-interface-validation-matrix.json`
 - `docs/gpt-communication/contracts/ADAPTER_INTERFACE_VALIDATOR_CHECKLIST.md`
-
-When the next work is Task 025-B local verification, the next worker must also read:
-
-- `tools/validators/adapter_interface_validator.py`
-- `tests/adapter_interface_validator/test_adapter_interface_validator.py`
-- `docs/gpt-communication/delegation/task025-adapter-interface-validator-implementation/LOCAL_EXECUTION_BRIEF.md`
-- `docs/gpt-communication/delegation/task025-adapter-interface-validator-implementation/TEST_PLAN.json`
+- `docs/architecture/army-claw-adapter-validator-integration-contract.md`
+- `docs/gpt-communication/contracts/adapter-validator-integration-contract.json`
+- `docs/gpt-communication/contracts/adapter-validator-gate-policy.json`
+- `docs/gpt-communication/contracts/adapter-validator-evidence-schema.json`
 
 ## 11. Required receiver checks
 
@@ -182,6 +195,7 @@ The receiver must check:
 - stop conditions;
 - adapter interface contract compliance when adapter work is being handed off;
 - adapter validator contract and validation matrix compliance when validator or sample work is being handed off;
+- adapter validator gate status and evidence when required;
 - `local_execution_base_sha` assignment when local execution is required.
 
 ## 12. Stop conditions
@@ -201,6 +215,7 @@ The receiver must stop and report if:
 - requested work requires local execution but `local_execution_base_sha` is null;
 - requested adapter work does not cite the common office adapter interface contract;
 - requested adapter validator work does not cite the validator contract or validation matrix;
+- adapter validator gate is required but status is missing, `required_not_run`, `failed`, or `blocked`;
 - requested work would modify main, force push, rewrite history, change Stage, or select final HWPX core without approval.
 
 ## 13. Allowed and forbidden receiver actions
@@ -225,7 +240,7 @@ Forbidden without explicit approval:
 - final HWPX core selection;
 - creating person A/B collaboration artifacts or branches.
 
-## 14. Adapter-related handoff field
+## 14. Adapter-related handoff fields
 
 For adapter-related work, the packet may include:
 
@@ -237,6 +252,12 @@ adapter_validator_contract_checked:
 adapter_validator_contract_path:
 adapter_validation_matrix_path:
 adapter_validator_checklist_path:
+adapter_validator_gate_required:
+adapter_validator_gate_status:
+adapter_validator_evidence_path:
+validator_cli_exit_code:
+unittest_exit_code:
+gate_blocked_reason:
 validator_source_path:
 validator_unittest_path:
 target_adapter_slot:
