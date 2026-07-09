@@ -1,0 +1,35 @@
+{
+  "schema_version": "army-claw-research-note-index-001.v1",
+  "updated_at": "2026-07-09",
+  "purpose": "Index task-level research notes for later paper writing without accumulating all notes in one large file.",
+  "index_rule": {
+    "task_note_directory": "docs/research-notes/task-notes/",
+    "human_index": "docs/research-notes/research-note-index.md",
+    "machine_index": "docs/research-notes/research-note-index.json",
+    "one_file_per_task": true,
+    "long_form_notes_in_index_allowed": false
+  },
+  "notes": {
+    "RN-018": {
+      "task": "Task 018",
+      "title": "Multi-App Capability Architecture Proof",
+      "file": "docs/research-notes/task-notes/RN-018-task018-multi-app-capability-architecture.md",
+      "research_axis": "Multi-app capability architecture",
+      "status": "verified"
+    },
+    "RN-019": {
+      "task": "Task 019",
+      "title": "App Target Routing Proof",
+      "file": "docs/research-notes/task-notes/RN-019-task019-app-target-routing.md",
+      "research_axis": "Plan type to target adapter routing contract",
+      "status": "verified"
+    },
+    "RN-020": {
+      "task": "Task 020",
+      "title": "App Target Plan Schema Proof",
+      "file": "docs/research-notes/task-notes/RN-020-task020-app-target-plan-schema.md",
+      "research_axis": "Plan schema and adapter slot input contract",
+      "status": "verified"
+    }
+  }
+}
