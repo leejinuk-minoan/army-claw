@@ -1,0 +1,157 @@
+{
+  "schema_version": "army-claw-local-workspace-adapter-contract-027.v1",
+  "contract_id": "local-workspace-adapter-contract",
+  "task_id": "task027-local-workspace-adapter-contract-proof",
+  "contract_scope": "target_specific_contract_supplement",
+  "depends_on": [
+    "docs/gpt-communication/contracts/common-office-adapter-interface-contract.json",
+    "docs/gpt-communication/contracts/common-office-adapter-error-taxonomy.json",
+    "docs/gpt-communication/contracts/adapter-validator-integration-contract.json",
+    "docs/architecture/army-claw-local-workspace-adapter-contract.md"
+  ],
+  "target": {
+    "target_id": "local_workspace",
+    "adapter_slot_id": "local_workspace_adapter_slot",
+    "plan_type": "local_workspace_action_plan",
+    "template_artifact_type": "folder",
+    "hancom_com_required": false
+  },
+  "task027_boundary": {
+    "contract_proof_only": true,
+    "common_interface_contract_changed": false,
+    "adapter_validator_source_changed": false,
+    "validation_matrix_changed": false,
+    "proof_mode_sample_changed": false,
+    "negative_sample_changed": false,
+    "production_adapter_code_included": false,
+    "actual_adapter_invocation_allowed": false,
+    "actual_file_system_mutation_allowed": false,
+    "ci_implementation_included": false,
+    "github_actions_created": false,
+    "stage_2_transition_declared": false,
+    "final_hwp_hwpx_core_selected": false
+  },
+  "adapter_validator_gate": {
+    "gate_required_for_task027": false,
+    "gate_status_for_task027": "not_required",
+    "reason": "Task 027 creates a target-specific contract supplement only. It does not change the common adapter interface contract, validator source, validation matrix, proof-mode samples, negative samples, or adapter implementation code, and it does not invoke the adapter.",
+    "future_gate_required_when": [
+      "local_workspace_adapter_implementation_code_is_added_or_changed",
+      "common_interface_contract_is_changed",
+      "adapter_interface_sample_is_changed",
+      "validation_matrix_is_changed",
+      "local_workspace_adapter_is_invoked",
+      "actual_workspace_filesystem_mutation_is_authorized"
+    ]
+  },
+  "workspace_boundary": {
+    "approved_workspace_required": true,
+    "workspace_root_must_be_reference": true,
+    "llm_may_emit_freeform_absolute_workspace_path": false,
+    "adapter_must_canonicalize_paths_before_execution": true,
+    "path_traversal_blocked": true,
+    "symlink_escape_blocked": true,
+    "source_overwrite_blocked": true,
+    "public_internet_dependency_blocked": true,
+    "direct_llm_file_edit_blocked": true,
+    "native_app_state_modification_blocked": true
+  },
+  "allowed_operation_classes": [
+    {
+      "operation_class": "inspect_workspace_manifest",
+      "purpose": "Read declared workspace metadata or a future approved manifest.",
+      "implemented_in_task027": false
+    },
+    {
+      "operation_class": "validate_relative_path",
+      "purpose": "Validate that an input or output path remains inside the approved workspace.",
+      "implemented_in_task027": false
+    },
+    {
+      "operation_class": "create_output_directory",
+      "purpose": "Prepare a new output directory under an approved output root.",
+      "implemented_in_task027": false
+    },
+    {
+      "operation_class": "write_generated_text_artifact",
+      "purpose": "Write generated Markdown, JSON, TXT, or similar text artifacts to a new output path.",
+      "implemented_in_task027": false
+    },
+    {
+      "operation_class": "copy_source_to_output",
+      "purpose": "Copy a source artifact into an output location without overwriting the original source.",
+      "implemented_in_task027": false
+    },
+    {
+      "operation_class": "record_evidence_manifest",
+      "purpose": "Record proof, dry-run, or execution evidence for future audit.",
+      "implemented_in_task027": false
+    }
+  ],
+  "validated_plan_supplement": {
+    "required_fields": [
+      "plan_id",
+      "target_id",
+      "plan_type",
+      "workspace_root_reference",
+      "operation_batch",
+      "path_policy",
+      "artifact_policy",
+      "evidence_policy",
+      "llm_direct_file_edit_requested",
+      "llm_direct_native_app_state_modification_requested"
+    ],
+    "required_values": {
+      "target_id": "local_workspace",
+      "plan_type": "local_workspace_action_plan",
+      "llm_direct_file_edit_requested": false,
+      "llm_direct_native_app_state_modification_requested": false
+    },
+    "operation_required_fields": [
+      "operation_id",
+      "operation_class",
+      "overwrite_existing",
+      "requires_public_internet",
+      "expected_artifact_type"
+    ],
+    "operation_required_values": {
+      "overwrite_existing": false,
+      "requires_public_internet": false
+    }
+  },
+  "response_supplement": {
+    "proof_or_dry_run_required_values": {
+      "execution_allowed": false,
+      "actual_adapter_invoked": false,
+      "output_artifacts": [],
+      "evidence.proof_mode": true
+    },
+    "future_execution_artifacts_allowed_only_with": [
+      "explicit_task_authorization",
+      "adapter_validator_gate_passed",
+      "local_or_authorized_execution_evidence",
+      "source_overwrite_prevention_evidence"
+    ]
+  },
+  "error_mapping": {
+    "schema_or_required_field_violation": "schema_validation_error",
+    "target_plan_mismatch": "target_plan_mismatch",
+    "adapter_slot_mismatch": "adapter_slot_mismatch",
+    "workspace_or_template_reference_error": "template_reference_error",
+    "unsupported_artifact_type": "unsupported_template_artifact_type",
+    "source_overwrite_attempt": "source_overwrite_blocked",
+    "public_internet_dependency": "public_internet_dependency_blocked",
+    "llm_direct_file_edit_request": "llm_direct_file_edit_blocked",
+    "unsupported_operation_class": "unsupported_operation",
+    "evidence_missing_for_claimed_execution": "evidence_missing",
+    "implementation_failure_after_validation": "internal_adapter_error"
+  },
+  "completion_claims": {
+    "task027_contract_proof_complete": true,
+    "local_workspace_adapter_implemented": false,
+    "actual_workspace_filesystem_execution_performed": false,
+    "actual_adapter_invoked": false,
+    "hancom_com_executed": false,
+    "stage_2_ready": false
+  }
+}
