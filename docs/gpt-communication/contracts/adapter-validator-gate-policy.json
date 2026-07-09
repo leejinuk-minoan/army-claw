@@ -1,0 +1,108 @@
+{
+  "schema_version": "army-claw-adapter-validator-gate-policy-026.v1",
+  "policy_id": "adapter-validator-gate-policy",
+  "task_id": "task026-adapter-validator-integration-contract-proof",
+  "gate_decision_inputs": [
+    "changed_files",
+    "changed_contracts",
+    "changed_samples",
+    "changed_adapter_code",
+    "changed_error_taxonomy",
+    "changed_mapping",
+    "task_type",
+    "target_id",
+    "plan_type",
+    "adapter_slot_id"
+  ],
+  "gate_decision_outputs": [
+    "gate_required",
+    "reason",
+    "required_command",
+    "required_evidence",
+    "allowed_to_complete"
+  ],
+  "required_command": [
+    "python tools/validators/adapter_interface_validator.py --repo-root . --format json",
+    "python -m unittest discover -s tests/adapter_interface_validator -p \"test_*.py\""
+  ],
+  "required_evidence": [
+    "validator_cli_stdout_path",
+    "validator_cli_stderr_path",
+    "validator_cli_exit_code_path",
+    "unittest_stdout_path",
+    "unittest_stderr_path",
+    "unittest_exit_code_path",
+    "execution_branch",
+    "execution_commit_sha",
+    "local_execution_base_sha",
+    "repo_status_before",
+    "repo_status_after",
+    "python_version"
+  ],
+  "policy_rules": [
+    {
+      "id": "adapter_sample_json_changed",
+      "condition": "changed_files include docs/gpt-communication/contracts/samples/common-office-adapter-interface/*.json",
+      "gate_required": true,
+      "reason": "adapter interface sample changed"
+    },
+    {
+      "id": "research_note_only_changed",
+      "condition": "changed_files only include docs/research-notes/**",
+      "gate_required": false,
+      "reason": "research note only change"
+    },
+    {
+      "id": "adapter_implementation_code_changed",
+      "condition": "changed_adapter_code is true",
+      "gate_required": true,
+      "reason": "adapter implementation code changed or is planned"
+    },
+    {
+      "id": "error_taxonomy_changed",
+      "condition": "changed_files include docs/gpt-communication/contracts/common-office-adapter-error-taxonomy.json",
+      "gate_required": true,
+      "reason": "adapter error taxonomy changed"
+    },
+    {
+      "id": "report_only_changed",
+      "condition": "changed_files only include docs/gpt-communication/reports/**",
+      "gate_required": false,
+      "reason": "report formatting or narrative only"
+    },
+    {
+      "id": "unclear_case",
+      "condition": "relationship to adapter interface or execution is unclear",
+      "gate_required": true,
+      "reason": "unclear cases are treated as gate required"
+    }
+  ],
+  "completion_rules": {
+    "not_required": {
+      "allowed_to_complete": true,
+      "evidence_required": false
+    },
+    "required_not_run": {
+      "allowed_to_complete": false,
+      "evidence_required": true
+    },
+    "passed": {
+      "allowed_to_complete": true,
+      "evidence_required": true
+    },
+    "failed": {
+      "allowed_to_complete": false,
+      "evidence_required": true
+    },
+    "blocked": {
+      "allowed_to_complete": false,
+      "evidence_required": true
+    },
+    "requires_followup": {
+      "allowed_to_complete": false,
+      "evidence_required": true
+    }
+  },
+  "actual_ci_integration_included": false,
+  "github_actions_created": false
+}
