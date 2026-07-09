@@ -1,0 +1,16 @@
+{
+  "request_id": "req-negative-llm-direct-file-edit-001",
+  "contract_version": "army-claw-common-office-adapter-interface-023.v1",
+  "target_id": "hwp_hwpx",
+  "adapter_slot_id": "hwp_hwpx_adapter_slot",
+  "plan_type": "hwp_hwpx_fill_plan",
+  "validated_plan": {
+    "plan_id": "negative-direct-edit",
+    "llm_direct_file_edit_requested": true,
+    "direct_edit_instruction": "LLM should directly modify package XML."
+  },
+  "template_reference": {"artifact_type": "hwpx", "path": "templates/source.hwpx", "overwrite_source": false},
+  "constraints": {"prevent_source_overwrite": true, "allow_public_internet": false},
+  "expected_error_code": "llm_direct_file_edit_blocked",
+  "proof_mode": true
+}
