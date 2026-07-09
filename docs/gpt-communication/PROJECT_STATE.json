@@ -14,17 +14,18 @@
       "enabled": true,
       "classes": ["cloud_delegable", "local_codex_required", "hybrid"],
       "policy": "docs/gpt-communication/CLOUD_LOCAL_EXECUTION_ROUTING.md",
-      "delegation_bootstrap": "docs/gpt-communication/CODEX_DELEGATION_AGENT_BOOTSTRAP.md",
-      "package_template": "docs/gpt-communication/delegation/DELEGATION_PACKAGE_TEMPLATE.md",
-      "delegation_results_delivered_by_git_push": true,
-      "local_codex_reads_execution_brief_first": true,
       "same_task_concurrent_writes": false
     },
-    "master_monitoring": {
+    "handoff_contract": {
       "enabled": true,
-      "cadence": "hourly",
-      "mode": "condition_watch",
-      "policy": "docs/gpt-communication/MASTER_MONITORING_POLICY.md"
+      "architecture_path": "docs/architecture/army-claw-ai-worker-handoff-contract.md",
+      "template_path": "docs/gpt-communication/handoffs/AI_WORKER_HANDOFF_TEMPLATE.md",
+      "machine_contract_path": "docs/gpt-communication/handoffs/ai-worker-handoff-contract.json",
+      "sample_task021_markdown": "docs/gpt-communication/handoffs/samples/task021-codex-a-to-codex-b-handoff.md",
+      "sample_task021_json": "docs/gpt-communication/handoffs/samples/task021-codex-a-to-codex-b-handoff.json",
+      "handoff_packet_required_for_next_worker": true,
+      "task_report_replaced_by_handoff": false,
+      "research_note_replaced_by_handoff": false
     },
     "research_notes": {
       "enabled": true,
@@ -34,8 +35,7 @@
       "machine_index": "docs/research-notes/research-note-index.json",
       "task_note_directory": "docs/research-notes/task-notes/",
       "long_form_notes_in_index_allowed": false,
-      "required_after_task_completion": true,
-      "purpose": "paper-writing-ready research memo layer separated from development reports"
+      "required_after_task_completion": true
     },
     "ai_workers": {
       "official_workers": ["codex_a", "codex_b", "claude_code"],
@@ -48,15 +48,15 @@
     "source_of_truth": [
       "docs/gpt-communication/PROJECT_STATE.json",
       "docs/gpt-communication/CURRENT.md",
+      "docs/architecture/army-claw-master-plan.md",
       "docs/architecture/army-claw-ai-worker-operating-rules.md",
       "docs/architecture/army-claw-solo-multi-agent-governance.md",
       "docs/architecture/army-claw-branch-ownership-map.md",
       "docs/architecture/army-claw-worker-setup-guide.md",
-      "docs/gpt-communication/opinions/2026-07-02-army-claw-master-roadmap.md",
-      "docs/gpt-communication/opinions/2026-07-02-hwpx-core-architecture-decision.md",
-      "docs/gpt-communication/opinions/2026-07-03-hwpx-core-benchmark-003-master-review.md",
-      "docs/gpt-communication/CLOUD_LOCAL_EXECUTION_ROUTING.md",
+      "docs/architecture/army-claw-ai-worker-handoff-contract.md",
       "docs/gpt-communication/AGENT_OPERATING_MODEL.md",
+      "docs/gpt-communication/handoffs/AI_WORKER_HANDOFF_TEMPLATE.md",
+      "docs/gpt-communication/handoffs/ai-worker-handoff-contract.json",
       "docs/research-notes/research-note-index.md",
       "docs/research-notes/research-note-index.json",
       "docs/gpt-communication/tasks/<task-id>/TASK_CONTRACT.md",
@@ -70,64 +70,30 @@
     "substage": "1-3",
     "substage_name": "선행 HWPX 엔진 비교·코어 선정",
     "status": "in_progress",
-    "current_task": "Task 021 solo AI worker governance"
+    "current_task": "Task 022 AI Worker Handoff Contract Proof"
   },
   "architecture": {
     "orchestrator": "OpenClaw / Army Claw Node.js·TypeScript",
-    "hwp_adapter": {
-      "primary_editing_candidate": "python-hwpx",
-      "surgical_patcher": "ArmyClawSurgicalHwpxPatcher",
-      "layout_authority": "Hancom 2024 COM",
-      "independent_validator": "hwpxlib",
-      "future_benchmark_candidate": "HwpForge"
-    },
     "decision_status": "accepted_for_benchmark_implementation_not_core_selection"
   },
-  "current_branch": "feature/hwpx-core-benchmark",
-  "latest_implementation_commit": "534df85b74c7c3cb6fc749e24ae1633927d72a3e",
-  "latest_prompt_agent_review_commit": "14d151f6898e64eb0ba0b397b566209b49956d82",
-  "latest_master_review_commit": "e3b6ccd327da0a6c4d1bb878a00d6601501cfb8c",
-  "latest_operating_model_commits": [
-    "ff777bd7a4878e713236805f8e3f62e5bae0a9de",
-    "9907c1c754221f0803d598738f731ce4d9e95f60",
-    "5aaef0ef8db817569059a2fc2a4304995b573f41",
-    "70fdc0a73f0b0a33b725315478cf0cc5ecbdd286",
-    "8f6234305fd169b6561ffff4c2e01cda961d25c4"
-  ],
+  "current_branch": "agent/task022-ai-worker-handoff-contract",
+  "latest_governance_commit": "4a8fec59f3fbfbb097ed3b3b539eee32d316a7e9",
   "benchmark_003": {
-    "status": "partial_meaningful_progress",
     "completion_gate_passed": false,
     "proceed_to_task_004": false,
-    "scorecard_valid_for_selection": false,
-    "full_hancom_regression": "failed_18_missing_jszip_environment",
-    "user_visual_review_required_now": false
+    "scorecard_valid_for_selection": false
   },
   "next_work": {
-    "task_id": "hwpx-core-benchmark-003-evidence-integrity",
-    "routing_class": "hybrid",
-    "phase": "cloud_preparation",
-    "branch": "feature/hwpx-core-benchmark",
-    "cloud_scope": [
-      "evidence/probe 기반 status 구조",
-      "S06-S08 semantic validator",
-      "S12-S14 complete evidence gate와 schema",
-      "filesystem JSON inventory",
-      "invalid-pass와 score validator tests",
-      "delegation package와 local execution brief"
-    ],
-    "local_scope": [
-      "pinned jszip 환경 복구",
-      "표준 Draft 2020-12 validator 반입과 설치",
-      "LICENSE·SHA256·offline replay 수집",
-      "baseline/current 전체 Hancom tests",
-      "실제 산출물·로그·보고서와 commit·push"
-    ]
+    "task_id": "task023-common-office-adapter-interface-contract-proof",
+    "routing_class": "cloud_delegable",
+    "phase": "planned",
+    "title": "Task 023 Common Office Adapter Interface Contract Proof"
   },
   "handoff": {
-    "latest": "docs/gpt-communication/handoffs/CODEX_LATEST.json",
-    "prompt_agent_bootstrap": "docs/gpt-communication/CODEX_PROMPT_AGENT_BOOTSTRAP.md",
-    "delegation_agent_bootstrap": "docs/gpt-communication/CODEX_DELEGATION_AGENT_BOOTSTRAP.md",
-    "delegation_package_template": "docs/gpt-communication/delegation/DELEGATION_PACKAGE_TEMPLATE.md"
+    "contract_enabled": true,
+    "contract": "docs/gpt-communication/handoffs/ai-worker-handoff-contract.json",
+    "template": "docs/gpt-communication/handoffs/AI_WORKER_HANDOFF_TEMPLATE.md",
+    "latest": "docs/gpt-communication/handoffs/CODEX_LATEST.json"
   },
   "restrictions": [
     "사용자 승인 없이 main merge 금지",
