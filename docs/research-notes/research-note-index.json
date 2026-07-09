@@ -51,6 +51,13 @@
       "file": "docs/research-notes/task-notes/RN-023-task023-common-office-adapter-interface-contract.md",
       "research_axis": "Common office adapter interface and evidence envelope",
       "status": "verified"
+    },
+    "RN-024": {
+      "task": "Task 024",
+      "title": "Adapter Interface Validator Contract Proof",
+      "file": "docs/research-notes/task-notes/RN-024-task024-adapter-interface-validator-contract.md",
+      "research_axis": "Adapter interface validator contract and validation matrix",
+      "status": "verified"
     }
   }
 }
