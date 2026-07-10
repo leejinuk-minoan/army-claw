@@ -8,22 +8,24 @@
 전체 8단계 중 1단계
 현재 단계: HwpAdapter 및 HWP/HWPX 엔진 안정화
 현재 세부 단계: 1-3 선행 HWPX 엔진 비교·코어 선정
-현재 작업: Task 028 Local Workspace Adapter Proof-Mode Skeleton
+현재 작업: Task 029-A Local Workspace Adapter Controlled Dry-Run Boundary Cloud Package
 ```
 
 ## 현재 브랜치와 판정
 
 ```text
-work_branch: agent/task028-final-state-sync
-base_sha: 7547a9bf425eeb88e4057db462263bd695eecde8
-routing_class: cloud_delegable
-local_agent_required: false
-Task 028 final completion gate: passed
+work_branch: agent/task029-local-workspace-adapter-controlled-dry-run-boundary
+base_sha: 431c4fa28a5268d60c57d26d0e2e2f547e562452
+routing_class: cloud_first_local_verify
+local_agent_required_now: false
+local_verification_required_later: true
+Task 029-A cloud package complete: true
+Task 029 final completion gate: false
 adapter_validator_gate_required: true
-adapter_validator_gate_status: passed
-validator_cli_exit_code: 0
-adapter_validator_unittest_exit_code: 0
-local_workspace_adapter_unittest_exit_code: 0
+adapter_validator_gate_status: required_not_run
+validator_cli_exit_code: not_run
+adapter_validator_unittest_exit_code: not_run
+local_workspace_adapter_unittest_exit_code: not_run
 stage_transition: prohibited
 core_selection: prohibited
 ```
@@ -38,14 +40,17 @@ docs/architecture/army-claw-common-office-adapter-interface-contract.md
 docs/architecture/army-claw-adapter-interface-validator-contract.md
 docs/architecture/army-claw-adapter-validator-integration-contract.md
 docs/architecture/army-claw-local-workspace-adapter-contract.md
+docs/architecture/army-claw-local-workspace-controlled-dry-run-boundary.md
 docs/gpt-communication/contracts/common-office-adapter-interface-contract.json
 docs/gpt-communication/contracts/adapter-validator-integration-contract.json
 docs/gpt-communication/contracts/local-workspace-adapter-contract.json
+docs/gpt-communication/contracts/local-workspace-controlled-dry-run-boundary.json
 tools/adapters/local_workspace_adapter.py
 tests/local_workspace_adapter/test_local_workspace_adapter.py
-docs/gpt-communication/delegation/task028-local-workspace-adapter-proof-mode-skeleton/LOCAL_EXECUTION_RESULT.json
-docs/gpt-communication/evidence/task028-local-workspace-adapter-proof-mode-skeleton/
-docs/gpt-communication/reports/2026-07-10-task028-final-master-review.md
+docs/gpt-communication/delegation/task029-local-workspace-adapter-controlled-dry-run-boundary/CODEX_EXECUTION_BRIEF.md
+docs/gpt-communication/delegation/task029-local-workspace-adapter-controlled-dry-run-boundary/LOCAL_EXECUTION_RESULT_TEMPLATE.json
+docs/gpt-communication/evidence/task029-local-workspace-adapter-controlled-dry-run-boundary/
+docs/gpt-communication/reports/2026-07-10-task029a-local-workspace-adapter-controlled-dry-run-boundary-cloud-package.md
 docs/research-notes/research-note-index.md
 docs/research-notes/research-note-index.json
 ```
@@ -61,38 +66,47 @@ Task 028 final completion gate: passed
 adapter_validator_gate_status: passed
 ```
 
-## Local verification result
+## Task 029-A 현재 상태
+
+Task 029-A는 Task 028 proof-mode skeleton 다음 단계로 controlled dry-run boundary를 cloud package로 작성했다.
 
 ```text
-validator CLI: exit code 0
-validator summary: valid
-validator total checks: 200
-validator passed checks: 200
-validator failed checks: 0
-validator blocked checks: 0
-
-adapter validator unittest: exit code 0 / 16 tests OK
-local workspace adapter unittest: exit code 0 / 9 tests OK
+Task 029-A cloud package complete: true
+Task 029-B local verification complete: false
+adapter_validator_gate_required: true
+adapter_validator_gate_status: required_not_run
+completion_gate_passed: false
+requires_local_verification: true
 ```
 
-## Safety confirmation
+## Controlled dry-run boundary
+
+```text
+execution_context.execution_mode: controlled_dry_run
+execution_context.controlled_dry_run: true
+dry_run: true
+```
+
+Controlled dry-run may evaluate the adapter boundary in memory and return planned descriptors and receipts, but it must not mutate real files.
 
 ```text
 actual_adapter_invoked: false
 actual_file_system_mutation_performed: false
 local_hancom_com_executed: false
 real_hwp_hwpx_hancell_hanshow_artifact_generated: false
-CI created: false
-main merge: false
-force push: false
 ```
 
-## 다음 권장 작업
+## Required next work
 
 ```text
-Task 029: Local Workspace Adapter Controlled Dry-Run Boundary
-routing_class: cloud_first_local_verify
-adapter_validator_gate_required: true
+Task 029-B: Local Workspace Adapter Controlled Dry-Run Boundary Local Verification
+routing_class: local_codex_required
+```
+
+Required commands are recorded in:
+
+```text
+docs/gpt-communication/delegation/task029-local-workspace-adapter-controlled-dry-run-boundary/CODEX_EXECUTION_BRIEF.md
 ```
 
 ## 금지
@@ -103,8 +117,10 @@ adapter_validator_gate_required: true
 - 실제 실행 없는 passed/completed 금지
 - 원본 HWP/HWPX/HanCell/HanShow 덮어쓰기 금지
 - LLM 직접 파일 편집 또는 native app state 변경 금지
-- Task 028 proof-mode skeleton을 production local workspace mutation 완료로 해석 금지
+- Task 029-A를 final Task 029 completion으로 해석 금지
+- local verification evidence 없이 adapter validator gate passed 주장 금지
 - actual adapter invocation 주장 금지
+- real file-system mutation 주장 금지
 - real office artifact generation 주장 금지
 - Stage 2 전환 금지
 - 최종 HWPX core 선정 금지
