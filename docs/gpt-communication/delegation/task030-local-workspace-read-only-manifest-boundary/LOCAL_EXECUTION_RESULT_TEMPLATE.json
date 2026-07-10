@@ -1,0 +1,23 @@
+{
+  "task_id": "task030-local-workspace-read-only-manifest-boundary",
+  "phase": "task030b-local-verification",
+  "execution_branch": "agent/task030-local-workspace-read-only-manifest-boundary",
+  "cloud_package_base_sha": "090e8b0411a9ed72b0dabb4d850b84603183edc8",
+  "cloud_package_commit_sha": null,
+  "local_execution_commit_sha": null,
+  "validator_cli_exit_code": null,
+  "adapter_validator_unittest_exit_code": null,
+  "local_workspace_adapter_unittest_exit_code": null,
+  "validator_summary_status": null,
+  "validator_total_checks": null,
+  "validator_passed_checks": null,
+  "validator_failed_checks": null,
+  "validator_blocked_checks": null,
+  "read_only_manifest_boundary_evaluated": null,
+  "actual_adapter_invoked": null,
+  "actual_file_system_mutation_performed": null,
+  "file_content_read_performed": null,
+  "local_hancom_com_executed": null,
+  "real_hwp_hwpx_hancell_hanshow_artifact_generated": null,
+  "completion_gate_passed": false
+}
