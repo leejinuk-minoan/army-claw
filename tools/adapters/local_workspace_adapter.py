@@ -1,13 +1,15 @@
 #!/usr/bin/env python3
 """Army Claw local workspace adapter boundary.
 
-Task 028 introduced proof-mode validation. Task 029 adds a controlled dry-run
-boundary that evaluates a validated local_workspace_action_plan in memory and
-returns deterministic dry-run receipts and planned artifact descriptors.
+Task 028 introduced proof-mode validation. Task 029 added a controlled dry-run
+boundary. Task 030 adds a read-only manifest boundary that evaluates declared
+workspace metadata fixtures in memory and returns deterministic metadata-only
+manifest descriptors.
 
 This module is intentionally side-effect free. It does not create, modify,
-copy, delete, inspect, or mutate real workspace files. It does not invoke
-Hancom COM, native applications, internet access, or real document generation.
+copy, delete, move, inspect, or mutate real workspace files. It does not read
+real file contents. It does not follow symlinks, invoke Hancom COM, invoke
+native applications, access public internet, or generate real documents.
 """
 
 from __future__ import annotations
@@ -16,7 +18,8 @@ from dataclasses import dataclass, field
 from pathlib import PurePosixPath
 from typing import Any, Dict, List, Mapping, Optional, Sequence
 
-CONTRACT_VERSION = "army-claw-local-workspace-adapter-controlled-dry-run-029.v1"
+CONTRACT_VERSION = "army-claw-local-workspace-adapter-read-only-manifest-030.v1"
+CONTROLLED_DRY_RUN_CONTRACT_VERSION = "army-claw-local-workspace-adapter-controlled-dry-run-029.v1"
 PROOF_MODE_CONTRACT_VERSION = "army-claw-local-workspace-adapter-proof-mode-028.v1"
 COMMON_CONTRACT_VERSION = "army-claw-common-office-adapter-interface-023.v1"
 TARGET_ID = "local_workspace"
@@ -32,6 +35,7 @@ ALLOWED_OPERATION_CLASSES = {
     "copy_source_to_output",
     "record_evidence_manifest",
 }
+READ_ONLY_MANIFEST_OPERATION_CLASSES = {"inspect_workspace_manifest", "validate_relative_path"}
 
 TEXT_ARTIFACT_TYPES = {"md", "markdown", "json", "txt", "csv", "yaml", "yml"}
 FOLDER_ARTIFACT_TYPES = {"folder"}
@@ -41,6 +45,15 @@ MUTATING_OPERATION_CLASSES = {
     "write_generated_text_artifact",
     "copy_source_to_output",
     "record_evidence_manifest",
+}
+FORBIDDEN_MANIFEST_METADATA_KEYS = {
+    "raw_content",
+    "content",
+    "extracted_text",
+    "content_hash",
+    "sha256",
+    "native_app_state",
+    "preview_text",
 }
 
 
@@ -126,6 +139,28 @@ class PlannedOutputArtifact:
         }
 
 
+@dataclass(frozen=True)
+class ManifestReceipt:
+    operation_id: str
+    operation_class: str
+    status: str
+    manifest_entry_count: int
+    file_content_read_performed: bool = False
+    actual_file_system_mutation_performed: bool = False
+    actual_adapter_invoked: bool = False
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "operation_id": self.operation_id,
+            "operation_class": self.operation_class,
+            "status": self.status,
+            "manifest_entry_count": self.manifest_entry_count,
+            "file_content_read_performed": self.file_content_read_performed,
+            "actual_file_system_mutation_performed": self.actual_file_system_mutation_performed,
+            "actual_adapter_invoked": self.actual_adapter_invoked,
+        }
+
+
 def _created_at(request: Mapping[str, Any]) -> str:
     value = request.get("created_at")
     return value if isinstance(value, str) and value else FIXED_CREATED_AT
@@ -186,7 +221,7 @@ def _validate_request_mapping(request: Mapping[str, Any]) -> tuple[Mapping[str, 
     validated_plan = _mapping(request.get("validated_plan"), "validated_plan")
 
     if context.get("actual_adapter_invocation_allowed") is True:
-        raise LocalWorkspaceAdapterError("actual_adapter_invocation_forbidden_in_proof", "actual adapter invocation is forbidden in proof or controlled dry-run boundary", recoverable=False)
+        raise LocalWorkspaceAdapterError("actual_adapter_invocation_forbidden_in_proof", "actual adapter invocation is forbidden in proof, controlled dry-run, and read-only manifest boundaries", recoverable=False)
     if constraints.get("prevent_source_overwrite") is not True:
         raise LocalWorkspaceAdapterError("source_overwrite_blocked", "prevent_source_overwrite must be true")
     if constraints.get("allow_public_internet") is not False:
@@ -230,6 +265,10 @@ def _validate_path_policy(validated_plan: Mapping[str, Any]) -> None:
         raise LocalWorkspaceAdapterError("constraint_violation", "symlink escape must be blocked")
     if path_policy.get("symlink_escape_claimed_safe_without_local_probe") is True:
         raise LocalWorkspaceAdapterError("evidence_missing", "symlink escape safety cannot be claimed without local proof")
+    if path_policy.get("follow_symlinks") is True:
+        raise LocalWorkspaceAdapterError("constraint_violation", "read-only manifest must not follow symlinks")
+    if path_policy.get("content_read_allowed") is True:
+        raise LocalWorkspaceAdapterError("llm_direct_file_edit_blocked", "file content read is prohibited in read-only manifest boundary")
 
 
 def _validate_artifact_policy(validated_plan: Mapping[str, Any]) -> None:
@@ -237,10 +276,22 @@ def _validate_artifact_policy(validated_plan: Mapping[str, Any]) -> None:
     if artifact_policy.get("source_overwrite_allowed") is not False:
         raise LocalWorkspaceAdapterError("source_overwrite_blocked", "source overwrite must be blocked")
     if artifact_policy.get("claim_real_output_artifacts") is True:
-        raise LocalWorkspaceAdapterError("evidence_missing", "controlled dry-run cannot claim real output artifacts")
+        raise LocalWorkspaceAdapterError("evidence_missing", "controlled dry-run or read-only manifest cannot claim real output artifacts")
+    if artifact_policy.get("read_file_contents") is True:
+        raise LocalWorkspaceAdapterError("llm_direct_file_edit_blocked", "file content read request is prohibited")
 
 
 def _determine_execution_mode(request: Mapping[str, Any], context: Mapping[str, Any]) -> str:
+    read_only_marker_present = context.get("execution_mode") == "read_only_manifest" or context.get("read_only_manifest") is True
+    if read_only_marker_present:
+        if context.get("execution_mode") != "read_only_manifest":
+            raise LocalWorkspaceAdapterError("constraint_violation", "execution_context.execution_mode must be read_only_manifest")
+        if context.get("read_only_manifest") is not True:
+            raise LocalWorkspaceAdapterError("constraint_violation", "execution_context.read_only_manifest must be true")
+        if request.get("read_only") is not True:
+            raise LocalWorkspaceAdapterError("constraint_violation", "read_only must be true for read-only manifest")
+        return "read_only_manifest"
+
     controlled_marker_present = context.get("execution_mode") == "controlled_dry_run" or context.get("controlled_dry_run") is True
     if controlled_marker_present:
         if context.get("execution_mode") != "controlled_dry_run":
@@ -252,7 +303,7 @@ def _determine_execution_mode(request: Mapping[str, Any], context: Mapping[str, 
         return "controlled_dry_run"
     if context.get("proof_mode") is True:
         return "proof_mode"
-    raise LocalWorkspaceAdapterError("constraint_violation", "proof_mode or controlled dry-run markers must be explicit")
+    raise LocalWorkspaceAdapterError("constraint_violation", "proof_mode, controlled dry-run, or read-only manifest markers must be explicit")
 
 
 def _validate_operation(operation: Mapping[str, Any]) -> tuple[OperationProof, DryRunReceipt, Optional[PlannedOutputArtifact]]:
@@ -267,6 +318,10 @@ def _validate_operation(operation: Mapping[str, Any]) -> tuple[OperationProof, D
         raise LocalWorkspaceAdapterError("source_overwrite_blocked", f"operation {operation_id} attempts overwrite")
     if requires_public_internet:
         raise LocalWorkspaceAdapterError("public_internet_dependency_blocked", f"operation {operation_id} requires public internet")
+    if operation.get("read_file_contents") is True:
+        raise LocalWorkspaceAdapterError("llm_direct_file_edit_blocked", f"operation {operation_id} requests file content read")
+    if operation.get("follow_symlinks") is True:
+        raise LocalWorkspaceAdapterError("constraint_violation", f"operation {operation_id} requests symlink following")
 
     relative_input_path = _canonicalize_relative_path(operation.get("relative_input_path"), f"operation {operation_id} relative_input_path")
     relative_output_path = _canonicalize_relative_path(operation.get("relative_output_path"), f"operation {operation_id} relative_output_path")
@@ -308,6 +363,91 @@ def _validate_operation(operation: Mapping[str, Any]) -> tuple[OperationProof, D
     return proof, receipt, planned_artifact
 
 
+def _validate_read_only_manifest_operation(operation: Mapping[str, Any]) -> ManifestReceipt:
+    operation_id = _string(operation.get("operation_id"), "operation_id")
+    operation_class = _string(operation.get("operation_class"), "operation_class")
+    if operation_class not in READ_ONLY_MANIFEST_OPERATION_CLASSES:
+        raise LocalWorkspaceAdapterError("unsupported_operation", f"unsupported read-only manifest operation_class: {operation_class}")
+    if _bool(operation.get("overwrite_existing"), "overwrite_existing"):
+        raise LocalWorkspaceAdapterError("source_overwrite_blocked", f"operation {operation_id} attempts overwrite")
+    if _bool(operation.get("requires_public_internet"), "requires_public_internet"):
+        raise LocalWorkspaceAdapterError("public_internet_dependency_blocked", f"operation {operation_id} requires public internet")
+    if operation.get("read_file_contents") is True:
+        raise LocalWorkspaceAdapterError("llm_direct_file_edit_blocked", f"operation {operation_id} requests file content read")
+    if operation.get("follow_symlinks") is True:
+        raise LocalWorkspaceAdapterError("constraint_violation", f"operation {operation_id} requests symlink following")
+    _canonicalize_relative_path(operation.get("relative_input_path"), f"operation {operation_id} relative_input_path")
+    _canonicalize_relative_path(operation.get("relative_output_path"), f"operation {operation_id} relative_output_path")
+    return ManifestReceipt(
+        operation_id=operation_id,
+        operation_class=operation_class,
+        status="read_only_manifest_validated",
+        manifest_entry_count=0,
+    )
+
+
+def _manifest_entries_from_fixture(validated_plan: Mapping[str, Any]) -> List[Dict[str, Any]]:
+    fixture = _mapping(validated_plan.get("manifest_fixture"), "validated_plan.manifest_fixture")
+    raw_entries = fixture.get("entries")
+    if not isinstance(raw_entries, list):
+        raise LocalWorkspaceAdapterError("schema_validation_error", "manifest_fixture.entries must be a list")
+    entries = [_normalize_manifest_entry(item) for item in raw_entries]
+    return sorted(entries, key=lambda item: item["relative_path"])
+
+
+def _normalize_manifest_entry(raw: Any) -> Dict[str, Any]:
+    entry = _mapping(raw, "manifest entry")
+    forbidden_keys = sorted(FORBIDDEN_MANIFEST_METADATA_KEYS.intersection(entry.keys()))
+    if forbidden_keys:
+        raise LocalWorkspaceAdapterError("llm_direct_file_edit_blocked", f"manifest entry contains forbidden content metadata: {', '.join(forbidden_keys)}")
+
+    relative_path = _canonicalize_relative_path(entry.get("relative_path"), "manifest entry relative_path")
+    entry_type = entry.get("entry_type")
+    if entry_type not in {"file", "directory", "denied"}:
+        raise LocalWorkspaceAdapterError("unsupported_template_artifact_type", "manifest entry_type must be file, directory, or denied")
+
+    path_parts = relative_path.split("/") if relative_path else []
+    extension = entry.get("extension")
+    if extension is None and entry_type == "file":
+        name = path_parts[-1] if path_parts else ""
+        extension = name.rsplit(".", 1)[1] if "." in name else ""
+    if extension is not None and not isinstance(extension, str):
+        raise LocalWorkspaceAdapterError("schema_validation_error", "manifest entry extension must be string when provided")
+
+    size_value = entry.get("size_bytes")
+    if size_value is not None and (not isinstance(size_value, int) or size_value < 0):
+        raise LocalWorkspaceAdapterError("schema_validation_error", "manifest entry size_bytes must be non-negative integer when provided")
+
+    denied_reason = entry.get("denied_reason")
+    if denied_reason is not None and not isinstance(denied_reason, str):
+        raise LocalWorkspaceAdapterError("schema_validation_error", "manifest entry denied_reason must be string when provided")
+
+    normalized: Dict[str, Any] = {
+        "relative_path": relative_path,
+        "entry_type": entry_type,
+        "extension": extension if extension is not None else "",
+        "depth": max(len(path_parts) - 1, 0),
+    }
+    if size_value is not None:
+        normalized["size_bytes"] = size_value
+    if denied_reason is not None:
+        normalized["denied_reason"] = denied_reason
+    return normalized
+
+
+def _build_manifest(entries: Sequence[Mapping[str, Any]]) -> Dict[str, Any]:
+    file_count = sum(1 for item in entries if item.get("entry_type") == "file" and "denied_reason" not in item)
+    directory_count = sum(1 for item in entries if item.get("entry_type") == "directory" and "denied_reason" not in item)
+    denied_count = sum(1 for item in entries if item.get("entry_type") == "denied" or "denied_reason" in item)
+    return {
+        "entries": [dict(item) for item in entries],
+        "total_entries": len(entries),
+        "file_count": file_count,
+        "directory_count": directory_count,
+        "denied_count": denied_count,
+    }
+
+
 def build_error_response(request: Mapping[str, Any], error: LocalWorkspaceAdapterError) -> Dict[str, Any]:
     request_id = request.get("request_id") if isinstance(request.get("request_id"), str) else "unknown-request"
     return {
@@ -324,9 +464,12 @@ def build_error_response(request: Mapping[str, Any], error: LocalWorkspaceAdapte
         "evidence": {
             "proof_mode": True,
             "controlled_dry_run": False,
+            "read_only_manifest": False,
             "dry_run_adapter_boundary_evaluated": False,
+            "read_only_manifest_boundary_evaluated": False,
             "actual_adapter_invoked": False,
             "actual_file_system_mutation_performed": False,
+            "file_content_read_performed": False,
             "local_hancom_com_executed": False,
             "real_hwp_hwpx_hancell_hanshow_artifact_generated": False,
             "contract_version": CONTRACT_VERSION,
@@ -348,6 +491,8 @@ def build_proof_response(request: Mapping[str, Any], operation_proofs: Sequence[
         "actual_adapter_invoked": False,
         "actual_file_system_mutation_performed": False,
         "dry_run_adapter_boundary_evaluated": False,
+        "read_only_manifest_boundary_evaluated": False,
+        "file_content_read_performed": False,
         "output_artifacts": [],
         "validation_result": {
             "valid": True,
@@ -358,8 +503,10 @@ def build_proof_response(request: Mapping[str, Any], operation_proofs: Sequence[
         "evidence": {
             "proof_mode": True,
             "controlled_dry_run": False,
+            "read_only_manifest": False,
             "actual_execution_evidence": False,
             "actual_file_system_mutation_performed": False,
+            "file_content_read_performed": False,
             "adapter_contract_path": "docs/gpt-communication/contracts/local-workspace-adapter-contract.json",
             "adapter_module": "tools/adapters/local_workspace_adapter.py",
             "operation_proofs": [item.to_dict() for item in operation_proofs],
@@ -389,7 +536,9 @@ def build_controlled_dry_run_response(
         "execution_allowed": False,
         "actual_adapter_invoked": False,
         "dry_run_adapter_boundary_evaluated": True,
+        "read_only_manifest_boundary_evaluated": False,
         "actual_file_system_mutation_performed": False,
+        "file_content_read_performed": False,
         "output_artifacts": [],
         "planned_output_artifacts": [item.to_dict() for item in planned_artifacts],
         "dry_run_operation_receipts": [item.to_dict() for item in receipts],
@@ -403,10 +552,13 @@ def build_controlled_dry_run_response(
         "evidence": {
             "proof_mode": False,
             "controlled_dry_run": True,
+            "read_only_manifest": False,
             "dry_run_adapter_boundary_evaluated": True,
+            "read_only_manifest_boundary_evaluated": False,
             "actual_execution_evidence": False,
             "actual_adapter_invoked": False,
             "actual_file_system_mutation_performed": False,
+            "file_content_read_performed": False,
             "local_hancom_com_executed": False,
             "real_hwp_hwpx_hancell_hanshow_artifact_generated": False,
             "adapter_contract_path": "docs/gpt-communication/contracts/local-workspace-adapter-contract.json",
@@ -422,8 +574,61 @@ def build_controlled_dry_run_response(
     }
 
 
+def build_read_only_manifest_response(
+    request: Mapping[str, Any],
+    manifest: Mapping[str, Any],
+    manifest_receipts: Sequence[ManifestReceipt],
+) -> Dict[str, Any]:
+    request_id = _string(request.get("request_id"), "request_id")
+    return {
+        "request_id": request_id,
+        "response_id": f"res-{request_id}",
+        "contract_version": COMMON_CONTRACT_VERSION,
+        "target_id": TARGET_ID,
+        "adapter_slot_id": ADAPTER_SLOT_ID,
+        "status": "read_only_manifest_completed",
+        "execution_allowed": False,
+        "actual_adapter_invoked": False,
+        "dry_run_adapter_boundary_evaluated": False,
+        "read_only_manifest_boundary_evaluated": True,
+        "actual_file_system_mutation_performed": False,
+        "file_content_read_performed": False,
+        "local_hancom_com_executed": False,
+        "real_hwp_hwpx_hancell_hanshow_artifact_generated": False,
+        "output_artifacts": [],
+        "manifest": dict(manifest),
+        "manifest_receipts": [item.to_dict() for item in manifest_receipts],
+        "validation_result": {
+            "valid": True,
+            "read_only_manifest": True,
+            "manifest_total_entries": manifest.get("total_entries"),
+            "reason": "Read-only manifest boundary evaluated metadata-only fixture entries in memory.",
+        },
+        "evidence": {
+            "proof_mode": False,
+            "controlled_dry_run": False,
+            "read_only_manifest": True,
+            "read_only_manifest_boundary_evaluated": True,
+            "actual_execution_evidence": False,
+            "actual_adapter_invoked": False,
+            "actual_file_system_mutation_performed": False,
+            "file_content_read_performed": False,
+            "local_hancom_com_executed": False,
+            "real_hwp_hwpx_hancell_hanshow_artifact_generated": False,
+            "adapter_contract_path": "docs/gpt-communication/contracts/local-workspace-adapter-contract.json",
+            "read_only_manifest_contract_path": "docs/gpt-communication/contracts/local-workspace-read-only-manifest-boundary.json",
+            "adapter_module": "tools/adapters/local_workspace_adapter.py",
+        },
+        "warnings": [
+            "read-only manifest boundary only; no real local workspace files were inspected or mutated",
+            "manifest entries are metadata-only deterministic descriptors",
+        ],
+        "created_at": _created_at(request),
+    }
+
+
 def handle_request(request: Mapping[str, Any]) -> Dict[str, Any]:
-    """Validate a local_workspace request and return proof or controlled dry-run response.
+    """Validate a local_workspace request and return proof, dry-run, or manifest response.
 
     This function is deterministic and side-effect free.
     """
@@ -432,6 +637,21 @@ def handle_request(request: Mapping[str, Any]) -> Dict[str, Any]:
         context, _constraints, _template_reference, validated_plan = _validate_request_mapping(request)
         execution_mode = _determine_execution_mode(request, context)
         operations = _operation_batch(validated_plan.get("operation_batch"))
+        if execution_mode == "read_only_manifest":
+            receipts = [_validate_read_only_manifest_operation(item) for item in operations]
+            entries = _manifest_entries_from_fixture(validated_plan)
+            manifest = _build_manifest(entries)
+            receipts = [
+                ManifestReceipt(
+                    operation_id=item.operation_id,
+                    operation_class=item.operation_class,
+                    status=item.status,
+                    manifest_entry_count=manifest["total_entries"],
+                )
+                for item in receipts
+            ]
+            return build_read_only_manifest_response(request, manifest, receipts)
+
         operation_items = [_validate_operation(item) for item in operations]
         operation_proofs = [item[0] for item in operation_items]
         receipts = [item[1] for item in operation_items]
@@ -448,7 +668,7 @@ def _base_validated_plan(plan_id: str, operation_batch: Sequence[Mapping[str, An
         "plan_id": plan_id,
         "target_id": TARGET_ID,
         "plan_type": PLAN_TYPE,
-        "workspace_root_reference": "approved_workspace://task029-fixture",
+        "workspace_root_reference": "approved_workspace://task030-fixture",
         "operation_batch": [dict(item) for item in operation_batch],
         "path_policy": {
             "absolute_paths_allowed": False,
@@ -457,15 +677,19 @@ def _base_validated_plan(plan_id: str, operation_batch: Sequence[Mapping[str, An
             "empty_path_segments_allowed": False,
             "symlink_escape_allowed": False,
             "symlink_escape_claimed_safe_without_local_probe": False,
+            "follow_symlinks": False,
+            "content_read_allowed": False,
         },
         "artifact_policy": {
             "source_overwrite_allowed": False,
             "output_collision_policy": "block_until_future_versioning_policy",
             "claim_real_output_artifacts": False,
+            "read_file_contents": False,
         },
         "evidence_policy": {
             "record_operation_proofs": True,
             "record_dry_run_receipts": True,
+            "record_manifest_receipts": True,
             "claim_generated_artifacts": False,
         },
         "llm_direct_file_edit_requested": False,
@@ -510,7 +734,7 @@ def build_sample_request() -> Dict[str, Any]:
         },
         "template_reference": {
             "artifact_type": "folder",
-            "path": "approved_workspace://task029-fixture",
+            "path": "approved_workspace://task030-fixture",
             "overwrite_source": False,
         },
         "constraints": {
@@ -582,6 +806,65 @@ def build_controlled_dry_run_sample_request() -> Dict[str, Any]:
     return request
 
 
+def build_read_only_manifest_sample_request() -> Dict[str, Any]:
+    """Return an in-memory positive read-only manifest sample."""
+
+    request = build_sample_request()
+    request["request_id"] = "req-local-workspace-task030-read-only-manifest-001"
+    request["validated_plan"] = _base_validated_plan(
+        "plan-local-workspace-task030-read-only-manifest-001",
+        [
+            {
+                "operation_id": "op-001",
+                "operation_class": "inspect_workspace_manifest",
+                "relative_input_path": "workspace",
+                "overwrite_existing": False,
+                "requires_public_internet": False,
+                "read_file_contents": False,
+                "follow_symlinks": False,
+                "expected_artifact_type": "json",
+            }
+        ],
+    )
+    request["validated_plan"]["manifest_fixture"] = {
+        "fixture_id": "task030-read-only-manifest-fixture-001",
+        "entries": [
+            {
+                "relative_path": "docs",
+                "entry_type": "directory",
+            },
+            {
+                "relative_path": "docs/README.md",
+                "entry_type": "file",
+                "size_bytes": 1200,
+            },
+            {
+                "relative_path": "outputs/private",
+                "entry_type": "denied",
+                "denied_reason": "outside approved manifest scope",
+            },
+            {
+                "relative_path": "src/app.py",
+                "entry_type": "file",
+                "size_bytes": 4096,
+            },
+        ],
+    }
+    request["execution_context"] = {
+        "proof_mode": False,
+        "execution_mode": "read_only_manifest",
+        "read_only_manifest": True,
+        "actual_adapter_invocation_allowed": False,
+    }
+    request["evidence_request"] = {
+        "level": "read_only_manifest_receipts_only",
+    }
+    request["dry_run"] = False
+    request["read_only"] = True
+    request["created_at"] = FIXED_CREATED_AT
+    return request
+
+
 __all__ = [
     "ADAPTER_SLOT_ID",
     "CONTRACT_VERSION",
@@ -589,6 +872,7 @@ __all__ = [
     "TARGET_ID",
     "LocalWorkspaceAdapterError",
     "build_controlled_dry_run_sample_request",
+    "build_read_only_manifest_sample_request",
     "build_sample_request",
     "handle_request",
 ]
