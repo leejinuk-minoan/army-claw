@@ -92,7 +92,7 @@
       "title": "Local Workspace Adapter Proof-Mode Skeleton",
       "file": "docs/research-notes/task-notes/RN-028-task028-local-workspace-adapter-proof-mode-skeleton.md",
       "research_axis": "Local workspace proof-mode adapter skeleton and local verification gate",
-      "status": "draft_pending_local_verification"
+      "status": "verified"
     }
   }
 }
