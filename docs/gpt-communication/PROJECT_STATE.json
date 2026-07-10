@@ -65,6 +65,7 @@
       "docs/architecture/army-claw-adapter-validator-integration-contract.md",
       "docs/architecture/army-claw-local-workspace-adapter-contract.md",
       "docs/architecture/army-claw-local-workspace-controlled-dry-run-boundary.md",
+      "docs/architecture/army-claw-local-workspace-read-only-manifest-boundary.md",
       "docs/gpt-communication/AGENT_OPERATING_MODEL.md",
       "docs/gpt-communication/contracts/common-office-adapter-interface-contract.json",
       "docs/gpt-communication/contracts/common-office-adapter-error-taxonomy.json",
@@ -77,6 +78,7 @@
       "docs/gpt-communication/contracts/adapter-validator-evidence-schema.json",
       "docs/gpt-communication/contracts/local-workspace-adapter-contract.json",
       "docs/gpt-communication/contracts/local-workspace-controlled-dry-run-boundary.json",
+      "docs/gpt-communication/contracts/local-workspace-read-only-manifest-boundary.json",
       "tools/validators/adapter_interface_validator.py",
       "tests/adapter_interface_validator/test_adapter_interface_validator.py",
       "tools/adapters/local_workspace_adapter.py",
@@ -84,14 +86,14 @@
       "docs/gpt-communication/delegation/task028-local-workspace-adapter-proof-mode-skeleton/LOCAL_EXECUTION_RESULT.json",
       "docs/gpt-communication/evidence/task028-local-workspace-adapter-proof-mode-skeleton/",
       "docs/gpt-communication/reports/2026-07-10-task028-final-master-review.md",
-      "docs/gpt-communication/delegation/task029-local-workspace-adapter-controlled-dry-run-boundary/CODEX_EXECUTION_BRIEF.md",
-      "docs/gpt-communication/delegation/task029-local-workspace-adapter-controlled-dry-run-boundary/LOCAL_EXECUTION_RESULT_TEMPLATE.json",
       "docs/gpt-communication/delegation/task029-local-workspace-adapter-controlled-dry-run-boundary/LOCAL_EXECUTION_RESULT.json",
       "docs/gpt-communication/evidence/task029-local-workspace-adapter-controlled-dry-run-boundary/",
-      "docs/gpt-communication/reports/2026-07-10-task029a-local-workspace-adapter-controlled-dry-run-boundary-cloud-package.md",
-      "docs/gpt-communication/reports/2026-07-10-task029b-local-workspace-adapter-controlled-dry-run-boundary-local-verification.md",
       "docs/gpt-communication/reports/2026-07-10-task029-final-master-review.md",
-      "docs/gpt-communication/tasks/task029-local-workspace-adapter-controlled-dry-run-boundary/TASK_CONTRACT.md",
+      "docs/gpt-communication/delegation/task030-local-workspace-read-only-manifest-boundary/CODEX_EXECUTION_BRIEF.md",
+      "docs/gpt-communication/delegation/task030-local-workspace-read-only-manifest-boundary/LOCAL_EXECUTION_RESULT_TEMPLATE.json",
+      "docs/gpt-communication/evidence/task030-local-workspace-read-only-manifest-boundary/",
+      "docs/gpt-communication/reports/2026-07-10-task030a-local-workspace-read-only-manifest-boundary-cloud-package.md",
+      "docs/gpt-communication/tasks/task030-local-workspace-read-only-manifest-boundary/TASK_CONTRACT.md",
       "docs/gpt-communication/handoffs/AI_WORKER_HANDOFF_TEMPLATE.md",
       "docs/gpt-communication/handoffs/ai-worker-handoff-contract.json",
       "docs/research-notes/research-note-index.md",
@@ -105,7 +107,7 @@
     "substage": "1-3",
     "substage_name": "선행 HWPX 엔진 비교·코어 선정",
     "status": "in_progress",
-    "current_task": "Task 029 Local Workspace Adapter Controlled Dry-Run Boundary"
+    "current_task": "Task 030 Local Workspace Read-Only Manifest Boundary"
   },
   "architecture": {
     "orchestrator": "OpenClaw / Army Claw Node.js·TypeScript",
@@ -161,11 +163,6 @@
       "phase": "task028-final-verified",
       "adapter_module_path": "tools/adapters/local_workspace_adapter.py",
       "unittest_path": "tests/local_workspace_adapter/test_local_workspace_adapter.py",
-      "sample_request_path": "docs/gpt-communication/contracts/samples/local-workspace-adapter/proof-mode-request.sample.json",
-      "sample_response_path": "docs/gpt-communication/contracts/samples/local-workspace-adapter/proof-mode-response.sample.json",
-      "delegation_brief_path": "docs/gpt-communication/delegation/task028-local-workspace-adapter-proof-mode-skeleton/CODEX_EXECUTION_BRIEF.md",
-      "local_execution_result_path": "docs/gpt-communication/delegation/task028-local-workspace-adapter-proof-mode-skeleton/LOCAL_EXECUTION_RESULT.json",
-      "evidence_path": "docs/gpt-communication/evidence/task028-local-workspace-adapter-proof-mode-skeleton/",
       "adapter_validator_gate_required": true,
       "adapter_validator_gate_status": "passed",
       "validator_cli_exit_code": 0,
@@ -180,10 +177,9 @@
       "actual_file_system_mutation_performed": false,
       "local_hancom_com_executed": false,
       "real_hwp_hwpx_hancell_hanshow_artifact_generated": false,
-      "cloud_package_complete": true,
       "requires_local_verification": false,
-      "final_task028_completion_gate_passed": true,
-      "stage_2_transition_declared": false
+      "completion_gate_passed": true,
+      "final_task028_completion_gate_passed": true
     },
     "local_workspace_adapter_controlled_dry_run_boundary": {
       "enabled": true,
@@ -192,10 +188,6 @@
       "machine_contract_path": "docs/gpt-communication/contracts/local-workspace-controlled-dry-run-boundary.json",
       "adapter_module_path": "tools/adapters/local_workspace_adapter.py",
       "unittest_path": "tests/local_workspace_adapter/test_local_workspace_adapter.py",
-      "sample_request_path": "docs/gpt-communication/contracts/samples/local-workspace-adapter/controlled-dry-run-request.sample.json",
-      "sample_response_path": "docs/gpt-communication/contracts/samples/local-workspace-adapter/controlled-dry-run-response.sample.json",
-      "delegation_brief_path": "docs/gpt-communication/delegation/task029-local-workspace-adapter-controlled-dry-run-boundary/CODEX_EXECUTION_BRIEF.md",
-      "evidence_path": "docs/gpt-communication/evidence/task029-local-workspace-adapter-controlled-dry-run-boundary/",
       "adapter_validator_gate_required": true,
       "adapter_validator_gate_status": "passed",
       "validator_cli_exit_code": 0,
@@ -211,10 +203,35 @@
       "actual_file_system_mutation_performed": false,
       "local_hancom_com_executed": false,
       "real_hwp_hwpx_hancell_hanshow_artifact_generated": false,
-      "cloud_package_complete": true,
       "requires_local_verification": false,
-      "final_task029_completion_gate_passed": true,
       "completion_gate_passed": true,
+      "final_task029_completion_gate_passed": true
+    },
+    "local_workspace_adapter_read_only_manifest_boundary": {
+      "enabled": true,
+      "phase": "task030a-cloud_package_pending_local_verification",
+      "architecture_path": "docs/architecture/army-claw-local-workspace-read-only-manifest-boundary.md",
+      "machine_contract_path": "docs/gpt-communication/contracts/local-workspace-read-only-manifest-boundary.json",
+      "adapter_module_path": "tools/adapters/local_workspace_adapter.py",
+      "unittest_path": "tests/local_workspace_adapter/test_local_workspace_adapter.py",
+      "sample_request_path": "docs/gpt-communication/contracts/samples/local-workspace-adapter/read-only-manifest-request.sample.json",
+      "sample_response_path": "docs/gpt-communication/contracts/samples/local-workspace-adapter/read-only-manifest-response.sample.json",
+      "delegation_brief_path": "docs/gpt-communication/delegation/task030-local-workspace-read-only-manifest-boundary/CODEX_EXECUTION_BRIEF.md",
+      "evidence_path": "docs/gpt-communication/evidence/task030-local-workspace-read-only-manifest-boundary/",
+      "adapter_validator_gate_required": true,
+      "adapter_validator_gate_status": "required_not_run",
+      "validator_cli_exit_code": "not_run",
+      "adapter_validator_unittest_exit_code": "not_run",
+      "local_workspace_adapter_unittest_exit_code": "not_run",
+      "read_only_manifest_boundary_evaluated": false,
+      "actual_adapter_invoked": false,
+      "actual_file_system_mutation_performed": false,
+      "file_content_read_performed": false,
+      "local_hancom_com_executed": false,
+      "real_hwp_hwpx_hancell_hanshow_artifact_generated": false,
+      "cloud_package_complete": true,
+      "requires_local_verification": true,
+      "final_task030_completion_gate_passed": false,
       "stage_2_transition_declared": false
     },
     "adapter_validator_implementation_package": {
@@ -234,7 +251,7 @@
       "requires_local_verification": false
     }
   },
-  "current_branch": "agent/task029-final-state-sync",
+  "current_branch": "agent/task030-local-workspace-read-only-manifest-boundary",
   "latest_adapter_validator_contract_commit": "335bd17bef3fb07c5bad9e365d31d25122cef6f1",
   "task025_status": {
     "task025a_cloud_implementation_package_complete": true,
@@ -273,7 +290,6 @@
     "actual_file_system_mutation_performed": false,
     "local_hancom_com_executed": false,
     "real_hwp_hwpx_hancell_hanshow_artifact_generated": false,
-    "final_task028_completion_gate_passed": true,
     "completion_gate_passed": true
   },
   "task029_status": {
@@ -299,16 +315,34 @@
     "requires_local_verification": false,
     "master_review_complete": true
   },
+  "task030_status": {
+    "task030a_cloud_package_complete": true,
+    "task030b_local_verification_complete": false,
+    "adapter_validator_gate_required": true,
+    "adapter_validator_gate_status": "required_not_run",
+    "validator_cli_exit_code": "not_run",
+    "adapter_validator_unittest_exit_code": "not_run",
+    "local_workspace_adapter_unittest_exit_code": "not_run",
+    "read_only_manifest_boundary_evaluated": false,
+    "actual_adapter_invoked": false,
+    "actual_file_system_mutation_performed": false,
+    "file_content_read_performed": false,
+    "local_hancom_com_executed": false,
+    "real_hwp_hwpx_hancell_hanshow_artifact_generated": false,
+    "final_task030_completion_gate_passed": false,
+    "completion_gate_passed": false,
+    "requires_local_verification": true
+  },
   "benchmark_003": {
     "completion_gate_passed": false,
     "proceed_to_task_004": false,
     "scorecard_valid_for_selection": false
   },
   "next_work": {
-    "task_id": "task030-local-workspace-read-only-manifest-boundary",
-    "routing_class": "cloud_first_local_verify",
-    "phase": "recommended_next",
-    "title": "Task 030 Local Workspace Read-Only Manifest Boundary",
+    "task_id": "task030b-local-workspace-read-only-manifest-boundary-local-verification",
+    "routing_class": "local_codex_required",
+    "phase": "required_next",
+    "title": "Task 030-B Local Workspace Read-Only Manifest Boundary Local Verification",
     "adapter_validator_gate_required": true
   },
   "restrictions": [
@@ -320,8 +354,8 @@
     "동일 Task에서 대행 엔진과 로컬 Codex 동시 수정 금지",
     "Research Note는 Task report 대체물로 사용 금지",
     "Research Note index에 장문 연구 내용 누적 금지",
-    "Task 030 must not claim actual file-system mutation or actual adapter invocation before local evidence",
-    "Stage 2 전환 금지",
-    "최종 HWPX core 선정 금지"
+    "Task 030-A는 cloud package이지 final Task 030 completion이 아님",
+    "Task 030 final completion requires local validator and unittest evidence",
+    "Task 030 must not claim actual file-system mutation, file content read, or actual adapter invocation"
   ]
 }
