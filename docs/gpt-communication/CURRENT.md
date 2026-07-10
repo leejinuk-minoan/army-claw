@@ -8,20 +8,22 @@
 전체 8단계 중 1단계
 현재 단계: HwpAdapter 및 HWP/HWPX 엔진 안정화
 현재 세부 단계: 1-3 선행 HWPX 엔진 비교·코어 선정
-현재 작업: Task 028-A Local Workspace Adapter Proof-Mode Skeleton Cloud Package
+현재 작업: Task 028 Local Workspace Adapter Proof-Mode Skeleton
 ```
 
 ## 현재 브랜치와 판정
 
 ```text
-work_branch: agent/task028-local-workspace-adapter-proof-mode-skeleton
-base_sha: 10f95ef7a8f62d371d08aff8f0332fc30ee6384c
-routing_class: cloud_first_local_verify
-local_agent_required: true
-cloud_package_complete: true
-final_task028_completion_gate_passed: false
+work_branch: agent/task028-final-state-sync
+base_sha: 7547a9bf425eeb88e4057db462263bd695eecde8
+routing_class: cloud_delegable
+local_agent_required: false
+Task 028 final completion gate: passed
 adapter_validator_gate_required: true
-adapter_validator_gate_status: required_not_run
+adapter_validator_gate_status: passed
+validator_cli_exit_code: 0
+adapter_validator_unittest_exit_code: 0
+local_workspace_adapter_unittest_exit_code: 0
 stage_transition: prohibited
 core_selection: prohibited
 ```
@@ -30,6 +32,7 @@ core_selection: prohibited
 
 ```text
 docs/gpt-communication/PROJECT_STATE.json
+docs/gpt-communication/CURRENT.md
 docs/architecture/army-claw-master-plan.md
 docs/architecture/army-claw-common-office-adapter-interface-contract.md
 docs/architecture/army-claw-adapter-interface-validator-contract.md
@@ -40,65 +43,56 @@ docs/gpt-communication/contracts/adapter-validator-integration-contract.json
 docs/gpt-communication/contracts/local-workspace-adapter-contract.json
 tools/adapters/local_workspace_adapter.py
 tests/local_workspace_adapter/test_local_workspace_adapter.py
-docs/gpt-communication/delegation/task028-local-workspace-adapter-proof-mode-skeleton/CODEX_EXECUTION_BRIEF.md
+docs/gpt-communication/delegation/task028-local-workspace-adapter-proof-mode-skeleton/LOCAL_EXECUTION_RESULT.json
+docs/gpt-communication/evidence/task028-local-workspace-adapter-proof-mode-skeleton/
+docs/gpt-communication/reports/2026-07-10-task028-final-master-review.md
 docs/research-notes/research-note-index.md
 docs/research-notes/research-note-index.json
 ```
 
-## Task 028-A 범위
+## Task 028 최종 상태
 
-Task 028-A는 `local_workspace` adapter proof-mode skeleton cloud package다.
-
-포함:
-
-- proof-mode adapter module
-- local workspace adapter unittest source
-- target-specific proof request/response samples
-- local verification delegation package
-- local verification evidence directory marker
-- RN-028 research note
-- research note index update
-- project state update
-
-미포함:
-
-- final Task 028 completion
-- validator CLI execution
-- unittest execution
-- actual file-system mutation
-- actual adapter invocation
-- production adapter implementation
-- CI / GitHub Actions implementation
-- Hancom COM execution
-- Stage 2 transition
-- final HWP/HWPX core selection
-
-## Adapter validator gate
-
-Task 028 adds adapter proof-mode code and tests. Therefore Task 026 gate policy applies.
+Task 028은 `local_workspace` adapter proof-mode skeleton을 cloud package로 작성하고, Task 028-B local verification에서 validator와 unittest evidence를 확보했다.
 
 ```text
+Task 028-A cloud package complete: true
+Task 028-B local verification complete: true
+Task 028 final completion gate: passed
+adapter_validator_gate_status: passed
+```
+
+## Local verification result
+
+```text
+validator CLI: exit code 0
+validator summary: valid
+validator total checks: 200
+validator passed checks: 200
+validator failed checks: 0
+validator blocked checks: 0
+
+adapter validator unittest: exit code 0 / 16 tests OK
+local workspace adapter unittest: exit code 0 / 9 tests OK
+```
+
+## Safety confirmation
+
+```text
+actual_adapter_invoked: false
+actual_file_system_mutation_performed: false
+local_hancom_com_executed: false
+real_hwp_hwpx_hancell_hanshow_artifact_generated: false
+CI created: false
+main merge: false
+force push: false
+```
+
+## 다음 권장 작업
+
+```text
+Task 029: Local Workspace Adapter Controlled Dry-Run Boundary
+routing_class: cloud_first_local_verify
 adapter_validator_gate_required: true
-adapter_validator_gate_status: required_not_run
-validator_cli_exit_code: not_run
-adapter_validator_unittest_exit_code: not_run
-local_workspace_adapter_unittest_exit_code: not_run
-final_task028_completion_gate_passed: false
-```
-
-Final completion is blocked until local verification evidence exists.
-
-## Required next work
-
-```text
-Task 028-B: Local Workspace Adapter Proof-Mode Skeleton Local Verification
-routing_class: local_codex_required
-```
-
-Required commands are recorded in:
-
-```text
-docs/gpt-communication/delegation/task028-local-workspace-adapter-proof-mode-skeleton/CODEX_EXECUTION_BRIEF.md
 ```
 
 ## 금지
@@ -109,8 +103,9 @@ docs/gpt-communication/delegation/task028-local-workspace-adapter-proof-mode-ske
 - 실제 실행 없는 passed/completed 금지
 - 원본 HWP/HWPX/HanCell/HanShow 덮어쓰기 금지
 - LLM 직접 파일 편집 또는 native app state 변경 금지
-- Task 028-A를 final Task 028 completion으로 해석 금지
-- local verification evidence 없이 adapter validator gate passed 주장 금지
+- Task 028 proof-mode skeleton을 production local workspace mutation 완료로 해석 금지
+- actual adapter invocation 주장 금지
+- real office artifact generation 주장 금지
 - Stage 2 전환 금지
 - 최종 HWPX core 선정 금지
 ```
