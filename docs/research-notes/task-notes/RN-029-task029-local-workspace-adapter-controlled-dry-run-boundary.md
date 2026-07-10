@@ -1,6 +1,6 @@
 # RN-029 — Task 029 Local Workspace Adapter Controlled Dry-Run Boundary
 
-Status: `draft_pending_local_verification`
+Status: `verified`
 
 ## 1. Research question
 
@@ -22,7 +22,7 @@ contract proof
 
 ## 3. Method
 
-Task 029-A cloud phase adds or updates:
+Task 029-A cloud phase added or updated:
 
 - controlled dry-run behavior in `tools/adapters/local_workspace_adapter.py`;
 - controlled dry-run unit tests in `tests/local_workspace_adapter/test_local_workspace_adapter.py`;
@@ -33,49 +33,76 @@ Task 029-A cloud phase adds or updates:
 - evidence directory marker;
 - project state and current state updates.
 
-The cloud phase does not run validator CLI, unittest, actual adapter invocation, local file-system mutation, Hancom COM, CI, or GitHub Actions.
+The cloud phase did not run validator CLI, unittest, actual adapter invocation, local file-system mutation, Hancom COM, CI, or GitHub Actions.
 
 ## 4. Gate decision
 
-Task 029-A changes adapter code and tests. Therefore Task 026 integration policy requires the adapter validator gate.
+Task 029-A changed adapter code and tests. Therefore Task 026 integration policy required the adapter validator gate.
 
-Current cloud phase status:
+Final Task 029 status:
 
 ```text
 adapter_validator_gate_required=true
-adapter_validator_gate_status=required_not_run
-completion_gate_passed=false
-requires_local_verification=true
+adapter_validator_gate_status=passed
+completion_gate_passed=true
+final_task029_completion_gate_passed=true
+requires_local_verification=false
 ```
 
-Final Task 029 completion must not pass until Task 029-B local verification evidence exists.
+## 5. Local Verification Result
 
-## 5. Expected local verification
-
-The local agent must run:
+Task 029-B local verification evidence:
 
 ```text
-python tools/validators/adapter_interface_validator.py --repo-root . --format json
-python -m unittest discover -s tests/adapter_interface_validator -p "test_*.py"
-python -m unittest discover -s tests/local_workspace_adapter -p "test_*.py"
-python --version
-git status --short
+validator_cli_exit_code=0
+validator_summary_status=valid
+validator_total_checks=200
+validator_passed_checks=200
+validator_failed_checks=0
+validator_blocked_checks=0
+adapter_validator_unittest_exit_code=0
+adapter_validator_unittest_result=Ran 16 tests, OK
+local_workspace_adapter_unittest_exit_code=0
+local_workspace_adapter_unittest_result=Ran 21 tests, OK
+dry_run_adapter_boundary_evaluated=true
+actual_adapter_invoked=false
+actual_file_system_mutation_performed=false
+local_hancom_com_executed=false
+real_hwp_hwpx_hancell_hanshow_artifact_generated=false
 ```
 
-## 6. Paper-ready interpretation
+## 6. Master Review Decision
+
+Task 029-C master review decision:
+
+```text
+Task 029 final completion gate passed.
+adapter_validator_gate_status=passed
+completion_gate_passed=true
+master_review_complete=true
+```
+
+Known metadata note:
+
+```text
+LOCAL_EXECUTION_RESULT.json has local_execution_commit_sha=null because it was written before the local verification commit was created.
+Final Task 029-B commit SHA: e9b2b36ff737ef56d764bafaceca20a641b93324
+```
+
+The evidence and `LOCAL_EXECUTION_RESULT.json` were not rewritten during Task 029-C.
+
+## 7. Paper-ready interpretation
 
 The Task 029 controlled dry-run boundary demonstrates a staged safety model for local workspace automation. Army Claw can evaluate a deterministic adapter boundary and return receipts for planned operations without immediately granting permission to create, inspect, copy, modify, or delete real workspace files.
 
 This separates the concept of adapter-boundary evaluation from production filesystem mutation. The LLM remains restricted to structured plans, while the adapter enforces path, overwrite, internet, and evidence policies.
 
-## 7. Limitations
+## 8. Limitations
 
-Task 029-A is a cloud package only.
+Task 029 verifies controlled dry-run boundary behavior only.
 
 It does not:
 
-- execute validator CLI;
-- execute unittest;
 - create, inspect, modify, copy, or delete local files;
 - perform production local workspace mutation;
 - invoke an actual adapter for real execution;
@@ -83,15 +110,17 @@ It does not:
 - generate real HWP/HWPX/HanCell/HanShow artifacts;
 - create CI or GitHub Actions;
 - declare Stage 2;
-- select final HWPX core;
-- pass final Task 029 completion gate.
+- select final HWPX core.
 
-## 8. Follow-up
+Planned output artifacts are descriptors only, and dry-run receipts are deterministic boundary evidence rather than real execution evidence.
 
-Task 029-B — Local Workspace Adapter Controlled Dry-Run Boundary Local Verification is required.
+## 9. Follow-up
 
-Evidence path:
+Task 030 — Local Workspace Read-Only Manifest Boundary is recommended.
+
+Recommended routing:
 
 ```text
-docs/gpt-communication/evidence/task029-local-workspace-adapter-controlled-dry-run-boundary/
+cloud_first_local_verify
+adapter_validator_gate_required=true
 ```
