@@ -1,0 +1,13 @@
+﻿?? docs/gpt-communication/evidence/task029-local-workspace-adapter-controlled-dry-run-boundary/adapter_validator_unittest_exit_code.txt
+?? docs/gpt-communication/evidence/task029-local-workspace-adapter-controlled-dry-run-boundary/adapter_validator_unittest_stderr.txt
+?? docs/gpt-communication/evidence/task029-local-workspace-adapter-controlled-dry-run-boundary/adapter_validator_unittest_stdout.txt
+?? docs/gpt-communication/evidence/task029-local-workspace-adapter-controlled-dry-run-boundary/local_workspace_adapter_unittest_exit_code.txt
+?? docs/gpt-communication/evidence/task029-local-workspace-adapter-controlled-dry-run-boundary/local_workspace_adapter_unittest_stderr.txt
+?? docs/gpt-communication/evidence/task029-local-workspace-adapter-controlled-dry-run-boundary/local_workspace_adapter_unittest_stdout.txt
+?? docs/gpt-communication/evidence/task029-local-workspace-adapter-controlled-dry-run-boundary/python_version.txt
+?? docs/gpt-communication/evidence/task029-local-workspace-adapter-controlled-dry-run-boundary/python_version_stderr.txt
+?? docs/gpt-communication/evidence/task029-local-workspace-adapter-controlled-dry-run-boundary/repo_status_after.txt
+?? docs/gpt-communication/evidence/task029-local-workspace-adapter-controlled-dry-run-boundary/repo_status_after_stderr.txt
+?? docs/gpt-communication/evidence/task029-local-workspace-adapter-controlled-dry-run-boundary/validator_cli_exit_code.txt
+?? docs/gpt-communication/evidence/task029-local-workspace-adapter-controlled-dry-run-boundary/validator_cli_stderr.txt
+?? docs/gpt-communication/evidence/task029-local-workspace-adapter-controlled-dry-run-boundary/validator_cli_stdout.json

@@ -8,24 +8,23 @@
 전체 8단계 중 1단계
 현재 단계: HwpAdapter 및 HWP/HWPX 엔진 안정화
 현재 세부 단계: 1-3 선행 HWPX 엔진 비교·코어 선정
-현재 작업: Task 029-A Local Workspace Adapter Controlled Dry-Run Boundary Cloud Package
+현재 작업: Task 029-B Local Workspace Adapter Controlled Dry-Run Boundary Local Verification
 ```
 
 ## 현재 브랜치와 판정
 
 ```text
 work_branch: agent/task029-local-workspace-adapter-controlled-dry-run-boundary
-base_sha: 431c4fa28a5268d60c57d26d0e2e2f547e562452
+cloud_package_commit_sha: c3132d42ed7634a8f61aff395f878675055ae7d5
 routing_class: cloud_first_local_verify
-local_agent_required_now: false
-local_verification_required_later: true
 Task 029-A cloud package complete: true
-Task 029 final completion gate: false
+Task 029-B local verification complete: true
+Task 029 final completion gate: true
 adapter_validator_gate_required: true
-adapter_validator_gate_status: required_not_run
-validator_cli_exit_code: not_run
-adapter_validator_unittest_exit_code: not_run
-local_workspace_adapter_unittest_exit_code: not_run
+adapter_validator_gate_status: passed
+validator_cli_exit_code: 0
+adapter_validator_unittest_exit_code: 0
+local_workspace_adapter_unittest_exit_code: 0
 stage_transition: prohibited
 core_selection: prohibited
 ```
@@ -49,8 +48,10 @@ tools/adapters/local_workspace_adapter.py
 tests/local_workspace_adapter/test_local_workspace_adapter.py
 docs/gpt-communication/delegation/task029-local-workspace-adapter-controlled-dry-run-boundary/CODEX_EXECUTION_BRIEF.md
 docs/gpt-communication/delegation/task029-local-workspace-adapter-controlled-dry-run-boundary/LOCAL_EXECUTION_RESULT_TEMPLATE.json
+docs/gpt-communication/delegation/task029-local-workspace-adapter-controlled-dry-run-boundary/LOCAL_EXECUTION_RESULT.json
 docs/gpt-communication/evidence/task029-local-workspace-adapter-controlled-dry-run-boundary/
 docs/gpt-communication/reports/2026-07-10-task029a-local-workspace-adapter-controlled-dry-run-boundary-cloud-package.md
+docs/gpt-communication/reports/2026-07-10-task029b-local-workspace-adapter-controlled-dry-run-boundary-local-verification.md
 docs/research-notes/research-note-index.md
 docs/research-notes/research-note-index.json
 ```
@@ -66,17 +67,19 @@ Task 028 final completion gate: passed
 adapter_validator_gate_status: passed
 ```
 
-## Task 029-A 현재 상태
+## Task 029 현재 상태
 
-Task 029-A는 Task 028 proof-mode skeleton 다음 단계로 controlled dry-run boundary를 cloud package로 작성했다.
+Task 029-A는 Task 028 proof-mode skeleton 다음 단계로 controlled dry-run boundary를 cloud package로 작성했다. Task 029-B는 로컬에서 validator CLI와 unittest를 실행해 evidence를 생성했다.
 
 ```text
 Task 029-A cloud package complete: true
-Task 029-B local verification complete: false
+Task 029-B local verification complete: true
 adapter_validator_gate_required: true
-adapter_validator_gate_status: required_not_run
-completion_gate_passed: false
-requires_local_verification: true
+adapter_validator_gate_status: passed
+validator_cli_exit_code: 0
+adapter_validator_unittest_exit_code: 0
+local_workspace_adapter_unittest_exit_code: 0
+completion_gate_passed: true
 ```
 
 ## Controlled dry-run boundary
@@ -90,6 +93,7 @@ dry_run: true
 Controlled dry-run may evaluate the adapter boundary in memory and return planned descriptors and receipts, but it must not mutate real files.
 
 ```text
+dry_run_adapter_boundary_evaluated: true
 actual_adapter_invoked: false
 actual_file_system_mutation_performed: false
 local_hancom_com_executed: false
@@ -99,14 +103,8 @@ real_hwp_hwpx_hancell_hanshow_artifact_generated: false
 ## Required next work
 
 ```text
-Task 029-B: Local Workspace Adapter Controlled Dry-Run Boundary Local Verification
-routing_class: local_codex_required
-```
-
-Required commands are recorded in:
-
-```text
-docs/gpt-communication/delegation/task029-local-workspace-adapter-controlled-dry-run-boundary/CODEX_EXECUTION_BRIEF.md
+Task 029-B local verification complete; next task requires master review direction.
+routing_class: pending_master_review
 ```
 
 ## 금지
@@ -117,8 +115,6 @@ docs/gpt-communication/delegation/task029-local-workspace-adapter-controlled-dry
 - 실제 실행 없는 passed/completed 금지
 - 원본 HWP/HWPX/HanCell/HanShow 덮어쓰기 금지
 - LLM 직접 파일 편집 또는 native app state 변경 금지
-- Task 029-A를 final Task 029 completion으로 해석 금지
-- local verification evidence 없이 adapter validator gate passed 주장 금지
 - actual adapter invocation 주장 금지
 - real file-system mutation 주장 금지
 - real office artifact generation 주장 금지
