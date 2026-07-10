@@ -8,25 +8,28 @@
 전체 8단계 중 1단계
 현재 단계: HwpAdapter 및 HWP/HWPX 엔진 안정화
 현재 세부 단계: 1-3 선행 HWPX 엔진 비교·코어 선정
-현재 작업: Task 029 Local Workspace Adapter Controlled Dry-Run Boundary
+현재 작업: Task 030 Local Workspace Read-Only Manifest Boundary
 ```
 
 ## 현재 브랜치와 판정
 
 ```text
-work_branch: agent/task029-final-state-sync
-base_sha: e9b2b36ff737ef56d764bafaceca20a641b93324
-routing_class: cloud_delegable
-local_agent_required: false
-Task 029 final completion gate: passed
+work_branch: agent/task030-local-workspace-read-only-manifest-boundary
+base_sha: 090e8b0411a9ed72b0dabb4d850b84603183edc8
+routing_class: cloud_first_local_verify
+local_agent_required_now: false
+local_verification_required_later: true
+Task 030-A cloud package complete: true
+Task 030 final completion gate: not passed
 adapter_validator_gate_required: true
-adapter_validator_gate_status: passed
-validator_cli_exit_code: 0
-validator_summary_status: valid
-validator_total_checks: 200
-validator_passed_checks: 200
-adapter_validator_unittest_exit_code: 0 / Ran 16 tests OK
-local_workspace_adapter_unittest_exit_code: 0 / Ran 21 tests OK
+adapter_validator_gate_status: required_not_run
+validator_cli_exit_code: not_run
+adapter_validator_unittest_exit_code: not_run
+local_workspace_adapter_unittest_exit_code: not_run
+read_only_manifest_boundary_evaluated: false
+actual_adapter_invoked: false
+actual_file_system_mutation_performed: false
+file_content_read_performed: false
 stage_transition: prohibited
 core_selection: prohibited
 ```
@@ -42,18 +45,18 @@ docs/architecture/army-claw-adapter-interface-validator-contract.md
 docs/architecture/army-claw-adapter-validator-integration-contract.md
 docs/architecture/army-claw-local-workspace-adapter-contract.md
 docs/architecture/army-claw-local-workspace-controlled-dry-run-boundary.md
+docs/architecture/army-claw-local-workspace-read-only-manifest-boundary.md
 docs/gpt-communication/contracts/common-office-adapter-interface-contract.json
 docs/gpt-communication/contracts/adapter-validator-integration-contract.json
 docs/gpt-communication/contracts/local-workspace-adapter-contract.json
 docs/gpt-communication/contracts/local-workspace-controlled-dry-run-boundary.json
+docs/gpt-communication/contracts/local-workspace-read-only-manifest-boundary.json
 tools/adapters/local_workspace_adapter.py
 tests/local_workspace_adapter/test_local_workspace_adapter.py
-docs/gpt-communication/delegation/task029-local-workspace-adapter-controlled-dry-run-boundary/CODEX_EXECUTION_BRIEF.md
-docs/gpt-communication/delegation/task029-local-workspace-adapter-controlled-dry-run-boundary/LOCAL_EXECUTION_RESULT.json
-docs/gpt-communication/evidence/task029-local-workspace-adapter-controlled-dry-run-boundary/
-docs/gpt-communication/reports/2026-07-10-task029a-local-workspace-adapter-controlled-dry-run-boundary-cloud-package.md
-docs/gpt-communication/reports/2026-07-10-task029b-local-workspace-adapter-controlled-dry-run-boundary-local-verification.md
-docs/gpt-communication/reports/2026-07-10-task029-final-master-review.md
+docs/gpt-communication/delegation/task030-local-workspace-read-only-manifest-boundary/CODEX_EXECUTION_BRIEF.md
+docs/gpt-communication/delegation/task030-local-workspace-read-only-manifest-boundary/LOCAL_EXECUTION_RESULT_TEMPLATE.json
+docs/gpt-communication/evidence/task030-local-workspace-read-only-manifest-boundary/
+docs/gpt-communication/reports/2026-07-10-task030a-local-workspace-read-only-manifest-boundary-cloud-package.md
 docs/research-notes/research-note-index.md
 docs/research-notes/research-note-index.json
 ```
@@ -89,29 +92,44 @@ local_workspace_adapter_unittest: 0 / Ran 21 tests OK
 completion_gate_passed: true
 ```
 
-## Controlled dry-run boundary
+## Task 030-A cloud package 상태
+
+Task 030-A는 controlled dry-run 다음 단계로 read-only manifest boundary를 cloud package로 작성한다.
 
 ```text
-execution_context.execution_mode: controlled_dry_run
-execution_context.controlled_dry_run: true
-dry_run: true
+Task 030-A cloud package complete: true
+Task 030-B local verification complete: false
+Task 030 final completion gate: not passed
+adapter_validator_gate_required: true
+adapter_validator_gate_status: required_not_run
+completion_gate_passed: false
+requires_local_verification: true
 ```
 
-Controlled dry-run may evaluate the adapter boundary in memory and return planned descriptors and receipts, but it must not mutate real files.
+## Read-only manifest boundary
 
 ```text
-dry_run_adapter_boundary_evaluated: true
+execution_context.execution_mode: read_only_manifest
+execution_context.read_only_manifest: true
+read_only: true
+```
+
+Read-only manifest boundary may evaluate metadata-only in-memory fixtures or safe test doubles and return deterministic manifest descriptors and receipts. It must not inspect real user workspace contents or mutate real files.
+
+```text
+read_only_manifest_boundary_evaluated: true only after local tests prove it
 actual_adapter_invoked: false
 actual_file_system_mutation_performed: false
+file_content_read_performed: false
 local_hancom_com_executed: false
 real_hwp_hwpx_hancell_hanshow_artifact_generated: false
 ```
 
-## 다음 권장 작업
+## 다음 필요 작업
 
 ```text
-Task 030: Local Workspace Read-Only Manifest Boundary
-routing_class: cloud_first_local_verify
+Task 030-B: Local Workspace Read-Only Manifest Boundary Local Verification
+routing_class: local_codex_required
 adapter_validator_gate_required: true
 ```
 
@@ -125,7 +143,9 @@ adapter_validator_gate_required: true
 - LLM 직접 파일 편집 또는 native app state 변경 금지
 - actual adapter invocation 주장 금지
 - real file-system mutation 주장 금지
+- real user workspace file content read 주장 금지
 - real office artifact generation 주장 금지
+- Task 030-A를 final Task 030 completion으로 해석 금지
 - Stage 2 전환 금지
 - 최종 HWPX core 선정 금지
 ```
