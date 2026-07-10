@@ -1,0 +1,127 @@
+{
+  "schema_version": "army-claw-local-workspace-read-only-manifest-boundary-030.v1",
+  "contract_id": "local-workspace-read-only-manifest-boundary",
+  "task_id": "task030-local-workspace-read-only-manifest-boundary",
+  "depends_on": [
+    "docs/gpt-communication/contracts/local-workspace-adapter-contract.json",
+    "docs/gpt-communication/contracts/local-workspace-controlled-dry-run-boundary.json",
+    "docs/gpt-communication/contracts/common-office-adapter-interface-contract.json",
+    "docs/gpt-communication/contracts/common-office-adapter-error-taxonomy.json",
+    "docs/gpt-communication/contracts/adapter-validator-gate-policy.json"
+  ],
+  "execution_mode": "read_only_manifest",
+  "required_markers": {
+    "execution_context.execution_mode": "read_only_manifest",
+    "execution_context.read_only_manifest": true,
+    "read_only": true
+  },
+  "allowed_behavior": [
+    "validate_request_envelope",
+    "validate_approved_workspace_reference",
+    "validate_relative_manifest_paths",
+    "evaluate_metadata_only_fixture_entries_in_memory",
+    "produce_deterministic_manifest_descriptor",
+    "produce_manifest_receipts"
+  ],
+  "forbidden_behavior": [
+    "create_file",
+    "modify_file",
+    "copy_file",
+    "delete_file",
+    "move_file",
+    "mutate_filesystem",
+    "read_real_user_workspace_file_contents",
+    "follow_symlink_outside_approved_scope",
+    "access_public_internet",
+    "invoke_native_application",
+    "invoke_hancom_com",
+    "generate_real_hwp_hwpx_hancell_hanshow_artifact"
+  ],
+  "path_safety": {
+    "absolute_path_allowed": false,
+    "path_traversal_allowed": false,
+    "backslash_path_allowed": false,
+    "empty_path_segment_allowed": false,
+    "source_overwrite_allowed": false,
+    "public_internet_allowed": false,
+    "symlink_follow_allowed": false,
+    "content_read_allowed": false
+  },
+  "allowed_manifest_metadata": [
+    "relative_path",
+    "entry_type",
+    "size_bytes",
+    "extension",
+    "depth",
+    "denied_reason"
+  ],
+  "forbidden_manifest_metadata": [
+    "raw_content",
+    "content",
+    "extracted_text",
+    "content_hash",
+    "sha256",
+    "native_app_state",
+    "preview_text"
+  ],
+  "determinism_rules": [
+    "entries_sorted_by_relative_path",
+    "stable_total_entries",
+    "stable_file_count",
+    "stable_directory_count",
+    "stable_denied_count",
+    "stable_denied_entry_representation",
+    "no_dynamic_timestamp_in_tests"
+  ],
+  "positive_response_required_fields": {
+    "status": "read_only_manifest_completed",
+    "execution_allowed": false,
+    "actual_adapter_invoked": false,
+    "read_only_manifest_boundary_evaluated": true,
+    "actual_file_system_mutation_performed": false,
+    "file_content_read_performed": false,
+    "local_hancom_com_executed": false,
+    "real_hwp_hwpx_hancell_hanshow_artifact_generated": false,
+    "output_artifacts": [],
+    "manifest_required": true,
+    "manifest_receipts_required": true,
+    "validation_result.valid": true
+  },
+  "negative_cases": [
+    "missing_read_only_manifest_mode_marker",
+    "missing_read_only_flag",
+    "absolute_path",
+    "path_traversal",
+    "backslash_path",
+    "empty_segment",
+    "public_internet_requirement",
+    "file_content_read_request",
+    "symlink_follow_request",
+    "unsupported_operation_class",
+    "wrong_target_adapter_slot_plan_type_mapping"
+  ],
+  "cloud_phase": {
+    "cloud_package_only": true,
+    "validator_cli_executed": false,
+    "unittest_executed": false,
+    "real_workspace_inspection_executed": false,
+    "actual_adapter_invoked": false,
+    "actual_file_system_mutation_performed": false,
+    "file_content_read_performed": false,
+    "local_hancom_com_executed": false,
+    "real_hwp_hwpx_hancell_hanshow_artifact_generated": false
+  },
+  "adapter_validator_gate": {
+    "gate_required": true,
+    "gate_status_for_task030a": "required_not_run",
+    "requires_local_verification": true
+  },
+  "completion_claims": {
+    "task030a_cloud_package_complete": true,
+    "task030_final_completion": false,
+    "production_filesystem_execution_performed": false,
+    "real_workspace_inspection_performed": false,
+    "stage_2_ready": false,
+    "final_hwp_hwpx_core_selected": false
+  }
+}
