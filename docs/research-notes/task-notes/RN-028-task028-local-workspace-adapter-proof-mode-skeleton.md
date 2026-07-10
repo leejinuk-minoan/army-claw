@@ -1,5 +1,7 @@
 # RN-028 — Task 028 Local Workspace Adapter Proof-Mode Skeleton
 
+Status: `verified`
+
 ## 1. Research question
 
 Can Army Claw introduce a `local_workspace` adapter skeleton while preserving the architecture rule that the LLM only creates structured plans and adapters execute deterministically under evidence gates?
@@ -27,50 +29,78 @@ Task 028 cloud phase adds:
 - local verification delegation package;
 - local verification evidence directory marker.
 
-The cloud phase does not run validator CLI, unittest, actual adapter invocation, or local file-system mutation.
+Task 028-B locally verified the proof-mode skeleton package using validator CLI, adapter validator unittest, and local workspace adapter unittest evidence.
 
 ## 4. Gate decision
 
 Task 028 changes adapter proof-mode code and tests. Therefore Task 026 integration policy requires the adapter validator gate.
 
-Current cloud phase status:
+Final Task 028 status:
 
 ```text
 adapter_validator_gate_required=true
-adapter_validator_gate_status=required_not_run
-completion_gate_passed=false
+adapter_validator_gate_status=passed
+completion_gate_passed=true
 ```
 
-The final Task 028 completion gate must not pass until local verification evidence exists.
+## 5. Local Verification Result
 
-## 5. Expected local verification
-
-The local agent must run:
+Task 028-B local verification result:
 
 ```text
-python tools/validators/adapter_interface_validator.py --repo-root . --format json
-python -m unittest discover -s tests/adapter_interface_validator -p "test_*.py"
-python -m unittest discover -s tests/local_workspace_adapter -p "test_*.py"
+validator CLI exit code: 0
+validator summary: valid
+validator total checks: 200
+validator passed checks: 200
+validator failed checks: 0
+validator blocked checks: 0
+
+adapter validator unittest exit code: 0
+adapter validator unittest result: 16 tests OK
+
+local workspace adapter unittest exit code: 0
+local workspace adapter unittest result: 9 tests OK
 ```
+
+The proof-mode skeleton behavior is verified for the tested boundary conditions.
+
+The local verification confirmed:
+
+- validator CLI passed;
+- adapter validator unittest passed;
+- local workspace adapter unittest passed;
+- proof-mode skeleton did not perform actual adapter invocation;
+- proof-mode skeleton did not perform real file-system mutation;
+- proof-mode skeleton did not create real office artifacts.
+
+Evidence:
+
+- `docs/gpt-communication/evidence/task028-local-workspace-adapter-proof-mode-skeleton/`
+- `docs/gpt-communication/delegation/task028-local-workspace-adapter-proof-mode-skeleton/LOCAL_EXECUTION_RESULT.json`
+- `docs/gpt-communication/reports/2026-07-10-task028b-local-workspace-adapter-proof-mode-local-verification.md`
+- `docs/gpt-communication/reports/2026-07-10-task028-final-master-review.md`
 
 ## 6. Paper-ready interpretation
 
 The Task 028 proof-mode adapter skeleton demonstrates a staged adapter development pattern. Army Claw can introduce executable boundaries without immediately granting file-system mutation authority. The proof-mode adapter validates the shape and safety of planned operations, but blocks execution and returns evidence that no real artifact was created.
 
+The verified proof-mode skeleton creates a bridge between contract-only adapter design and later controlled local workspace execution.
+
 ## 7. Limitations
 
-Task 028 cloud phase does not prove runtime correctness.
+Task 028 verifies proof-mode skeleton behavior only.
 
 It does not:
 
-- execute validator CLI;
-- execute unittest;
-- create, modify, copy, or delete local files;
+- perform production local workspace mutation;
+- invoke an actual adapter for real execution;
+- create, modify, copy, or delete local files as a production operation;
 - invoke Hancom COM;
-- generate office artifacts;
-- implement production adapter execution;
-- pass final Task 028 completion gate.
+- generate real HWP/HWPX/HanCell/HanShow artifacts;
+- prove controlled dry-run boundary behavior for Task 029;
+- declare Stage 2;
+- select final HWPX core.
 
 ## 8. Follow-up
 
-Task 028-B local verification is required. After local evidence is pushed, master review can determine whether Task 028 completion gate passes.
+Task 029 — Local Workspace Adapter Controlled Dry-Run Boundary is the recommended next task.
