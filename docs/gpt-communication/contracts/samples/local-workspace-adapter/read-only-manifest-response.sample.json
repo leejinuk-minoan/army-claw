@@ -1,0 +1,89 @@
+{
+  "request_id": "req-local-workspace-task030-read-only-manifest-001",
+  "response_id": "res-req-local-workspace-task030-read-only-manifest-001",
+  "contract_version": "army-claw-common-office-adapter-interface-023.v1",
+  "target_id": "local_workspace",
+  "adapter_slot_id": "local_workspace_adapter_slot",
+  "status": "read_only_manifest_completed",
+  "execution_allowed": false,
+  "actual_adapter_invoked": false,
+  "dry_run_adapter_boundary_evaluated": false,
+  "read_only_manifest_boundary_evaluated": true,
+  "actual_file_system_mutation_performed": false,
+  "file_content_read_performed": false,
+  "local_hancom_com_executed": false,
+  "real_hwp_hwpx_hancell_hanshow_artifact_generated": false,
+  "output_artifacts": [],
+  "manifest": {
+    "entries": [
+      {
+        "relative_path": "docs",
+        "entry_type": "directory",
+        "extension": "",
+        "depth": 0
+      },
+      {
+        "relative_path": "docs/README.md",
+        "entry_type": "file",
+        "extension": "md",
+        "depth": 1,
+        "size_bytes": 1200
+      },
+      {
+        "relative_path": "outputs/private",
+        "entry_type": "denied",
+        "extension": "",
+        "depth": 1,
+        "denied_reason": "outside approved manifest scope"
+      },
+      {
+        "relative_path": "src/app.py",
+        "entry_type": "file",
+        "extension": "py",
+        "depth": 1,
+        "size_bytes": 4096
+      }
+    ],
+    "total_entries": 4,
+    "file_count": 2,
+    "directory_count": 1,
+    "denied_count": 1
+  },
+  "manifest_receipts": [
+    {
+      "operation_id": "op-001",
+      "operation_class": "inspect_workspace_manifest",
+      "status": "read_only_manifest_validated",
+      "manifest_entry_count": 4,
+      "file_content_read_performed": false,
+      "actual_file_system_mutation_performed": false,
+      "actual_adapter_invoked": false
+    }
+  ],
+  "validation_result": {
+    "valid": true,
+    "read_only_manifest": true,
+    "manifest_total_entries": 4,
+    "reason": "Read-only manifest boundary evaluated metadata-only fixture entries in memory."
+  },
+  "evidence": {
+    "proof_mode": false,
+    "controlled_dry_run": false,
+    "read_only_manifest": true,
+    "read_only_manifest_boundary_evaluated": true,
+    "actual_execution_evidence": false,
+    "actual_adapter_invoked": false,
+    "actual_file_system_mutation_performed": false,
+    "file_content_read_performed": false,
+    "local_hancom_com_executed": false,
+    "real_hwp_hwpx_hancell_hanshow_artifact_generated": false,
+    "adapter_contract_path": "docs/gpt-communication/contracts/local-workspace-adapter-contract.json",
+    "read_only_manifest_contract_path": "docs/gpt-communication/contracts/local-workspace-read-only-manifest-boundary.json",
+    "adapter_module": "tools/adapters/local_workspace_adapter.py"
+  },
+  "warnings": [
+    "read-only manifest boundary only; no real local workspace files were inspected or mutated",
+    "manifest entries are metadata-only deterministic descriptors"
+  ],
+  "created_at": "2026-07-10T00:00:00Z"
+}
