@@ -93,6 +93,13 @@
       "file": "docs/research-notes/task-notes/RN-028-task028-local-workspace-adapter-proof-mode-skeleton.md",
       "research_axis": "Local workspace proof-mode adapter skeleton and local verification gate",
       "status": "verified"
+    },
+    "RN-029": {
+      "task": "Task 029",
+      "title": "Local Workspace Adapter Controlled Dry-Run Boundary",
+      "file": "docs/research-notes/task-notes/RN-029-task029-local-workspace-adapter-controlled-dry-run-boundary.md",
+      "research_axis": "Local workspace controlled dry-run boundary and deterministic receipts",
+      "status": "draft_pending_local_verification"
     }
   }
 }
