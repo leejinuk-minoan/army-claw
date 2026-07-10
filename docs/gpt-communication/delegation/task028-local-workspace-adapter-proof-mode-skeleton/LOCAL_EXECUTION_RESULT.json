@@ -1,0 +1,25 @@
+{
+  "task_id": "task028-local-workspace-adapter-proof-mode-skeleton",
+  "phase": "task028b-local-verification",
+  "branch": "agent/task028-local-workspace-adapter-proof-mode-skeleton",
+  "cloud_package_base_sha": "10f95ef7a8f62d371d08aff8f0332fc30ee6384c",
+  "local_verification_head_sha": "b038ac3c7782533b49f6616188276cd45a940004",
+  "validator_cli_exit_code": 0,
+  "adapter_validator_unittest_exit_code": 0,
+  "local_workspace_adapter_unittest_exit_code": 0,
+  "validator_summary_status": "valid",
+  "validator_total_checks": 200,
+  "validator_passed_checks": 200,
+  "validator_failed_checks": 0,
+  "validator_blocked_checks": 0,
+  "actual_adapter_invoked": false,
+  "actual_file_system_mutation_performed": false,
+  "local_hancom_com_executed": false,
+  "real_hwp_hwpx_hancell_hanshow_artifact_generated": false,
+  "completion_gate_passed": true,
+  "evidence_dir": "docs/gpt-communication/evidence/task028-local-workspace-adapter-proof-mode-skeleton/",
+  "notes": [
+    "Python unittest progress and OK summaries were emitted on stderr by the test runner, while process exit codes were 0.",
+    "No Hancom COM, GUI, real office document generation, CI creation, main merge, or force push was performed."
+  ]
+}
