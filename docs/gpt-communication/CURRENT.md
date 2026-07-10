@@ -8,23 +8,25 @@
 전체 8단계 중 1단계
 현재 단계: HwpAdapter 및 HWP/HWPX 엔진 안정화
 현재 세부 단계: 1-3 선행 HWPX 엔진 비교·코어 선정
-현재 작업: Task 029-B Local Workspace Adapter Controlled Dry-Run Boundary Local Verification
+현재 작업: Task 029 Local Workspace Adapter Controlled Dry-Run Boundary
 ```
 
 ## 현재 브랜치와 판정
 
 ```text
-work_branch: agent/task029-local-workspace-adapter-controlled-dry-run-boundary
-cloud_package_commit_sha: c3132d42ed7634a8f61aff395f878675055ae7d5
-routing_class: cloud_first_local_verify
-Task 029-A cloud package complete: true
-Task 029-B local verification complete: true
-Task 029 final completion gate: true
+work_branch: agent/task029-final-state-sync
+base_sha: e9b2b36ff737ef56d764bafaceca20a641b93324
+routing_class: cloud_delegable
+local_agent_required: false
+Task 029 final completion gate: passed
 adapter_validator_gate_required: true
 adapter_validator_gate_status: passed
 validator_cli_exit_code: 0
-adapter_validator_unittest_exit_code: 0
-local_workspace_adapter_unittest_exit_code: 0
+validator_summary_status: valid
+validator_total_checks: 200
+validator_passed_checks: 200
+adapter_validator_unittest_exit_code: 0 / Ran 16 tests OK
+local_workspace_adapter_unittest_exit_code: 0 / Ran 21 tests OK
 stage_transition: prohibited
 core_selection: prohibited
 ```
@@ -47,11 +49,11 @@ docs/gpt-communication/contracts/local-workspace-controlled-dry-run-boundary.jso
 tools/adapters/local_workspace_adapter.py
 tests/local_workspace_adapter/test_local_workspace_adapter.py
 docs/gpt-communication/delegation/task029-local-workspace-adapter-controlled-dry-run-boundary/CODEX_EXECUTION_BRIEF.md
-docs/gpt-communication/delegation/task029-local-workspace-adapter-controlled-dry-run-boundary/LOCAL_EXECUTION_RESULT_TEMPLATE.json
 docs/gpt-communication/delegation/task029-local-workspace-adapter-controlled-dry-run-boundary/LOCAL_EXECUTION_RESULT.json
 docs/gpt-communication/evidence/task029-local-workspace-adapter-controlled-dry-run-boundary/
 docs/gpt-communication/reports/2026-07-10-task029a-local-workspace-adapter-controlled-dry-run-boundary-cloud-package.md
 docs/gpt-communication/reports/2026-07-10-task029b-local-workspace-adapter-controlled-dry-run-boundary-local-verification.md
+docs/gpt-communication/reports/2026-07-10-task029-final-master-review.md
 docs/research-notes/research-note-index.md
 docs/research-notes/research-note-index.json
 ```
@@ -67,18 +69,23 @@ Task 028 final completion gate: passed
 adapter_validator_gate_status: passed
 ```
 
-## Task 029 현재 상태
+## Task 029 최종 상태
 
-Task 029-A는 Task 028 proof-mode skeleton 다음 단계로 controlled dry-run boundary를 cloud package로 작성했다. Task 029-B는 로컬에서 validator CLI와 unittest를 실행해 evidence를 생성했다.
+Task 029-A는 Task 028 proof-mode skeleton 다음 단계로 controlled dry-run boundary를 cloud package로 작성했다. Task 029-B는 로컬에서 validator CLI와 unittest를 실행해 evidence를 생성했다. Task 029-C는 마스터 검토 결과를 문서와 상태 파일에 동기화했다.
 
 ```text
 Task 029-A cloud package complete: true
 Task 029-B local verification complete: true
+Task 029-C master review complete: true
+Task 029 final completion gate: passed
 adapter_validator_gate_required: true
 adapter_validator_gate_status: passed
 validator_cli_exit_code: 0
-adapter_validator_unittest_exit_code: 0
-local_workspace_adapter_unittest_exit_code: 0
+validator_summary_status: valid
+validator_total_checks: 200
+validator_passed_checks: 200
+adapter_validator_unittest: 0 / Ran 16 tests OK
+local_workspace_adapter_unittest: 0 / Ran 21 tests OK
 completion_gate_passed: true
 ```
 
@@ -100,11 +107,12 @@ local_hancom_com_executed: false
 real_hwp_hwpx_hancell_hanshow_artifact_generated: false
 ```
 
-## Required next work
+## 다음 권장 작업
 
 ```text
-Task 029-B local verification complete; next task requires master review direction.
-routing_class: pending_master_review
+Task 030: Local Workspace Read-Only Manifest Boundary
+routing_class: cloud_first_local_verify
+adapter_validator_gate_required: true
 ```
 
 ## 금지
