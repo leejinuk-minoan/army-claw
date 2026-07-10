@@ -55,6 +55,7 @@
       "docs/architecture/army-claw-adapter-interface-validator-contract.md",
       "docs/architecture/army-claw-adapter-validator-integration-contract.md",
       "docs/architecture/army-claw-local-workspace-adapter-contract.md",
+      "docs/architecture/army-claw-local-workspace-controlled-dry-run-boundary.md",
       "docs/gpt-communication/AGENT_OPERATING_MODEL.md",
       "docs/gpt-communication/contracts/common-office-adapter-interface-contract.json",
       "docs/gpt-communication/contracts/common-office-adapter-error-taxonomy.json",
@@ -66,19 +67,19 @@
       "docs/gpt-communication/contracts/adapter-validator-gate-policy.json",
       "docs/gpt-communication/contracts/adapter-validator-evidence-schema.json",
       "docs/gpt-communication/contracts/local-workspace-adapter-contract.json",
+      "docs/gpt-communication/contracts/local-workspace-controlled-dry-run-boundary.json",
       "tools/validators/adapter_interface_validator.py",
       "tests/adapter_interface_validator/test_adapter_interface_validator.py",
       "tools/adapters/local_workspace_adapter.py",
       "tests/local_workspace_adapter/test_local_workspace_adapter.py",
-      "docs/gpt-communication/delegation/task025-adapter-interface-validator-implementation/LOCAL_EXECUTION_RESULT.json",
-      "docs/gpt-communication/reports/2026-07-09-task025b-adapter-interface-validator-local-verification.md",
-      "docs/gpt-communication/evidence/task025b-adapter-interface-validator-local-verification/",
-      "docs/gpt-communication/delegation/task028-local-workspace-adapter-proof-mode-skeleton/CODEX_EXECUTION_BRIEF.md",
       "docs/gpt-communication/delegation/task028-local-workspace-adapter-proof-mode-skeleton/LOCAL_EXECUTION_RESULT.json",
       "docs/gpt-communication/evidence/task028-local-workspace-adapter-proof-mode-skeleton/",
-      "docs/gpt-communication/reports/2026-07-10-task028a-local-workspace-adapter-proof-mode-cloud-package.md",
-      "docs/gpt-communication/reports/2026-07-10-task028b-local-workspace-adapter-proof-mode-local-verification.md",
       "docs/gpt-communication/reports/2026-07-10-task028-final-master-review.md",
+      "docs/gpt-communication/delegation/task029-local-workspace-adapter-controlled-dry-run-boundary/CODEX_EXECUTION_BRIEF.md",
+      "docs/gpt-communication/delegation/task029-local-workspace-adapter-controlled-dry-run-boundary/LOCAL_EXECUTION_RESULT_TEMPLATE.json",
+      "docs/gpt-communication/evidence/task029-local-workspace-adapter-controlled-dry-run-boundary/",
+      "docs/gpt-communication/reports/2026-07-10-task029a-local-workspace-adapter-controlled-dry-run-boundary-cloud-package.md",
+      "docs/gpt-communication/tasks/task029-local-workspace-adapter-controlled-dry-run-boundary/TASK_CONTRACT.md",
       "docs/gpt-communication/handoffs/AI_WORKER_HANDOFF_TEMPLATE.md",
       "docs/gpt-communication/handoffs/ai-worker-handoff-contract.json",
       "docs/research-notes/research-note-index.md",
@@ -92,7 +93,7 @@
     "substage": "1-3",
     "substage_name": "선행 HWPX 엔진 비교·코어 선정",
     "status": "in_progress",
-    "current_task": "Task 028 Local Workspace Adapter Proof-Mode Skeleton"
+    "current_task": "Task 029-A Local Workspace Adapter Controlled Dry-Run Boundary Cloud Package"
   },
   "architecture": {
     "orchestrator": "OpenClaw / Army Claw Node.js·TypeScript",
@@ -172,6 +173,32 @@
       "final_task028_completion_gate_passed": true,
       "stage_2_transition_declared": false
     },
+    "local_workspace_adapter_controlled_dry_run_boundary": {
+      "enabled": true,
+      "phase": "task029a-cloud_package_pending_local_verification",
+      "architecture_path": "docs/architecture/army-claw-local-workspace-controlled-dry-run-boundary.md",
+      "machine_contract_path": "docs/gpt-communication/contracts/local-workspace-controlled-dry-run-boundary.json",
+      "adapter_module_path": "tools/adapters/local_workspace_adapter.py",
+      "unittest_path": "tests/local_workspace_adapter/test_local_workspace_adapter.py",
+      "sample_request_path": "docs/gpt-communication/contracts/samples/local-workspace-adapter/controlled-dry-run-request.sample.json",
+      "sample_response_path": "docs/gpt-communication/contracts/samples/local-workspace-adapter/controlled-dry-run-response.sample.json",
+      "delegation_brief_path": "docs/gpt-communication/delegation/task029-local-workspace-adapter-controlled-dry-run-boundary/CODEX_EXECUTION_BRIEF.md",
+      "evidence_path": "docs/gpt-communication/evidence/task029-local-workspace-adapter-controlled-dry-run-boundary/",
+      "adapter_validator_gate_required": true,
+      "adapter_validator_gate_status": "required_not_run",
+      "validator_cli_exit_code": "not_run",
+      "adapter_validator_unittest_exit_code": "not_run",
+      "local_workspace_adapter_unittest_exit_code": "not_run",
+      "dry_run_adapter_boundary_evaluated": false,
+      "actual_adapter_invoked": false,
+      "actual_file_system_mutation_performed": false,
+      "local_hancom_com_executed": false,
+      "real_hwp_hwpx_hancell_hanshow_artifact_generated": false,
+      "cloud_package_complete": true,
+      "requires_local_verification": true,
+      "final_task029_completion_gate_passed": false,
+      "stage_2_transition_declared": false
+    },
     "adapter_validator_implementation_package": {
       "enabled": true,
       "phase": "task025b-local_verification",
@@ -182,19 +209,6 @@
       "local_execution_base_sha": "e6ec7a30f19a1efddb04234d4e8fd805218fed2a",
       "actual_validator_executed": true,
       "unittest_executed": true,
-      "validator_local_verification": {
-        "evidence_path": "docs/gpt-communication/evidence/task025b-adapter-interface-validator-local-verification/",
-        "validator_cli_exit_code": 0,
-        "validator_cli_summary_status": "valid",
-        "validator_cli_total_checks": 200,
-        "validator_cli_passed_checks": 200,
-        "validator_cli_failed_checks": 0,
-        "validator_cli_blocked_checks": 0,
-        "unittest_exit_code": 0,
-        "unittest_tests_run": 16,
-        "local_execution_result_json": "docs/gpt-communication/delegation/task025-adapter-interface-validator-implementation/LOCAL_EXECUTION_RESULT.json",
-        "report": "docs/gpt-communication/reports/2026-07-09-task025b-adapter-interface-validator-local-verification.md"
-      },
       "actual_adapter_invoked": false,
       "stage_2_transition_declared": false,
       "final_hwp_hwpx_core_selected": false,
@@ -202,7 +216,7 @@
       "requires_local_verification": false
     }
   },
-  "current_branch": "agent/task028-final-state-sync",
+  "current_branch": "agent/task029-local-workspace-adapter-controlled-dry-run-boundary",
   "latest_adapter_validator_contract_commit": "335bd17bef3fb07c5bad9e365d31d25122cef6f1",
   "task025_status": {
     "task025a_cloud_implementation_package_complete": true,
@@ -244,16 +258,33 @@
     "final_task028_completion_gate_passed": true,
     "completion_gate_passed": true
   },
+  "task029_status": {
+    "task029a_cloud_package_complete": true,
+    "task029b_local_verification_complete": false,
+    "adapter_validator_gate_required": true,
+    "adapter_validator_gate_status": "required_not_run",
+    "validator_cli_exit_code": "not_run",
+    "adapter_validator_unittest_exit_code": "not_run",
+    "local_workspace_adapter_unittest_exit_code": "not_run",
+    "dry_run_adapter_boundary_evaluated": false,
+    "actual_adapter_invoked": false,
+    "actual_file_system_mutation_performed": false,
+    "local_hancom_com_executed": false,
+    "real_hwp_hwpx_hancell_hanshow_artifact_generated": false,
+    "final_task029_completion_gate_passed": false,
+    "completion_gate_passed": false,
+    "requires_local_verification": true
+  },
   "benchmark_003": {
     "completion_gate_passed": false,
     "proceed_to_task_004": false,
     "scorecard_valid_for_selection": false
   },
   "next_work": {
-    "task_id": "task029-local-workspace-adapter-controlled-dry-run-boundary",
-    "routing_class": "cloud_first_local_verify",
-    "phase": "recommended_next",
-    "title": "Task 029 Local Workspace Adapter Controlled Dry-Run Boundary",
+    "task_id": "task029b-local-workspace-adapter-controlled-dry-run-boundary-local-verification",
+    "routing_class": "local_codex_required",
+    "phase": "required_next",
+    "title": "Task 029-B Local Workspace Adapter Controlled Dry-Run Boundary Local Verification",
     "adapter_validator_gate_required": true
   },
   "restrictions": [
@@ -265,7 +296,8 @@
     "동일 Task에서 대행 엔진과 로컬 Codex 동시 수정 금지",
     "Research Note는 Task report 대체물로 사용 금지",
     "Research Note index에 장문 연구 내용 누적 금지",
-    "Task 028 proof-mode skeleton completion does not imply production local workspace mutation",
-    "Task 028 must not claim actual adapter invocation or real office artifact generation"
+    "Task 029-A는 cloud package이지 final Task 029 completion이 아님",
+    "Task 029 final completion requires local validator and unittest evidence",
+    "Task 029 must not claim actual file-system mutation or actual adapter invocation"
   ]
 }
