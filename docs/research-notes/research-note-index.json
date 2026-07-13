@@ -106,7 +106,7 @@
       "title": "Local Workspace Read-Only Manifest Boundary",
       "file": "docs/research-notes/task-notes/RN-030-task030-local-workspace-read-only-manifest-boundary.md",
       "research_axis": "Local workspace read-only manifest boundary and metadata-only descriptors",
-      "status": "draft_pending_local_verification"
+      "status": "verified"
     }
   }
 }
