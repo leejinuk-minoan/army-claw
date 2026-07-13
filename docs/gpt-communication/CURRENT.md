@@ -27,6 +27,7 @@ Task 032 completion gate: passed locally, master review pending
 Task 033 status: blocked_pending_task032_master_review
 canonical_branch: agent/task032-repository-baseline-governance-state-reconciliation
 canonical_content_baseline_sha: d631d5574a27952640f66988a9baebeca6e22050
+corrective_state_content_commit_sha: d20862fe93fd7dc335169f45398d68a5d661b512
 corrective_state_sync_commit_sha: reported externally by Codex final report
 main_directly_modified: false
 main_only_commit_net_file_change: zero
@@ -84,6 +85,7 @@ Task 032 status: local_completion_gate_passed_pending_master_review
 Task 033 status: blocked_pending_task032_master_review
 canonical branch: agent/task032-repository-baseline-governance-state-reconciliation
 canonical content baseline SHA: d631d5574a27952640f66988a9baebeca6e22050
+corrective state content commit SHA: d20862fe93fd7dc335169f45398d68a5d661b512
 final corrective commit SHA: Codex 최종 보고에서 제공
 Stage 2 transition: prohibited
 final HWPX core selection: prohibited

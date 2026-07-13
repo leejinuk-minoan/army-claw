@@ -30,7 +30,7 @@
   "canonical_development_baseline": {
     "branch": "agent/task032-repository-baseline-governance-state-reconciliation",
     "content_baseline_sha": "d631d5574a27952640f66988a9baebeca6e22050",
-    "state_sync_content_commit_sha": null,
+    "state_sync_content_commit_sha": "d20862fe93fd7dc335169f45398d68a5d661b512",
     "state_sync_commit_sha": "reported_externally_by_codex_final_report",
     "state_sync_commit_sha_embedded": false
   },
