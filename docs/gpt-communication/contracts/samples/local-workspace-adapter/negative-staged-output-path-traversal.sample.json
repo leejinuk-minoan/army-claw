@@ -1,0 +1,9 @@
+{
+  "sample_id": "negative-staged-output-path-traversal",
+  "expected_error_code": "template_reference_error",
+  "expected_user_visible_state": "blocked",
+  "request_patch": {
+    "validated_plan.operation_batch[0].relative_staging_path": "staged/../secret/report.md"
+  },
+  "reason": "Staged output paths must be relative to the approved staging root and must not contain path traversal."
+}
