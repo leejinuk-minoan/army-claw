@@ -2,23 +2,26 @@
 """Army Claw local workspace adapter boundary.
 
 Task 028 introduced proof-mode validation. Task 029 added a controlled dry-run
-boundary. Task 030 adds a read-only manifest boundary that evaluates declared
-workspace metadata fixtures in memory and returns deterministic metadata-only
-manifest descriptors.
+boundary. Task 030 added a read-only manifest boundary. Task 031 adds a staged
+output boundary that can write request-provided generated content only into a
+controlled temporary staging sandbox during local unit tests.
 
-This module is intentionally side-effect free. It does not create, modify,
-copy, delete, move, inspect, or mutate real workspace files. It does not read
-real file contents. It does not follow symlinks, invoke Hancom COM, invoke
-native applications, access public internet, or generate real documents.
+This module must not mutate a real user workspace. It does not inspect real
+user workspace contents, read real user file contents, invoke Hancom COM,
+invoke native applications, access public internet, or generate real office
+documents. Any staged output write is limited to an explicit test sandbox root
+provided by the local unit-test harness and is reported separately from
+production/user workspace mutation.
 """
 
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from pathlib import PurePosixPath
+from pathlib import Path, PurePosixPath
 from typing import Any, Dict, List, Mapping, Optional, Sequence
 
-CONTRACT_VERSION = "army-claw-local-workspace-adapter-read-only-manifest-030.v1"
+CONTRACT_VERSION = "army-claw-local-workspace-adapter-staged-output-031.v1"
+READ_ONLY_MANIFEST_CONTRACT_VERSION = "army-claw-local-workspace-adapter-read-only-manifest-030.v1"
 CONTROLLED_DRY_RUN_CONTRACT_VERSION = "army-claw-local-workspace-adapter-controlled-dry-run-029.v1"
 PROOF_MODE_CONTRACT_VERSION = "army-claw-local-workspace-adapter-proof-mode-028.v1"
 COMMON_CONTRACT_VERSION = "army-claw-common-office-adapter-interface-023.v1"
@@ -36,6 +39,7 @@ ALLOWED_OPERATION_CLASSES = {
     "record_evidence_manifest",
 }
 READ_ONLY_MANIFEST_OPERATION_CLASSES = {"inspect_workspace_manifest", "validate_relative_path"}
+STAGED_OUTPUT_OPERATION_CLASSES = {"write_generated_text_artifact", "record_evidence_manifest"}
 
 TEXT_ARTIFACT_TYPES = {"md", "markdown", "json", "txt", "csv", "yaml", "yml"}
 FOLDER_ARTIFACT_TYPES = {"folder"}
@@ -161,6 +165,58 @@ class ManifestReceipt:
         }
 
 
+@dataclass(frozen=True)
+class StagedOutputArtifact:
+    operation_id: str
+    artifact_type: str
+    staging_root_reference: str
+    relative_staging_path: str
+    generated_content_source: str = "request_provided_generated_content"
+    status: str = "staged_in_test_sandbox"
+    actual_file_system_mutation_performed: bool = False
+    user_workspace_file_system_mutation_performed: bool = False
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "operation_id": self.operation_id,
+            "artifact_type": self.artifact_type,
+            "staging_root_reference": self.staging_root_reference,
+            "relative_staging_path": self.relative_staging_path,
+            "generated_content_source": self.generated_content_source,
+            "status": self.status,
+            "actual_file_system_mutation_performed": self.actual_file_system_mutation_performed,
+            "user_workspace_file_system_mutation_performed": self.user_workspace_file_system_mutation_performed,
+        }
+
+
+@dataclass(frozen=True)
+class StagedOutputReceipt:
+    operation_id: str
+    operation_class: str
+    status: str
+    canonical_relative_staging_path: str
+    expected_artifact_type: str
+    staged_output_sandbox_write_performed: bool
+    actual_file_system_mutation_performed: bool = False
+    user_workspace_file_system_mutation_performed: bool = False
+    actual_adapter_invoked: bool = False
+    file_content_read_performed: bool = False
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "operation_id": self.operation_id,
+            "operation_class": self.operation_class,
+            "status": self.status,
+            "canonical_relative_staging_path": self.canonical_relative_staging_path,
+            "expected_artifact_type": self.expected_artifact_type,
+            "staged_output_sandbox_write_performed": self.staged_output_sandbox_write_performed,
+            "actual_file_system_mutation_performed": self.actual_file_system_mutation_performed,
+            "user_workspace_file_system_mutation_performed": self.user_workspace_file_system_mutation_performed,
+            "actual_adapter_invoked": self.actual_adapter_invoked,
+            "file_content_read_performed": self.file_content_read_performed,
+        }
+
+
 def _created_at(request: Mapping[str, Any]) -> str:
     value = request.get("created_at")
     return value if isinstance(value, str) and value else FIXED_CREATED_AT
@@ -221,7 +277,7 @@ def _validate_request_mapping(request: Mapping[str, Any]) -> tuple[Mapping[str, 
     validated_plan = _mapping(request.get("validated_plan"), "validated_plan")
 
     if context.get("actual_adapter_invocation_allowed") is True:
-        raise LocalWorkspaceAdapterError("actual_adapter_invocation_forbidden_in_proof", "actual adapter invocation is forbidden in proof, controlled dry-run, and read-only manifest boundaries", recoverable=False)
+        raise LocalWorkspaceAdapterError("actual_adapter_invocation_forbidden_in_proof", "actual adapter invocation is forbidden in proof, controlled dry-run, read-only manifest, and staged output boundaries", recoverable=False)
     if constraints.get("prevent_source_overwrite") is not True:
         raise LocalWorkspaceAdapterError("source_overwrite_blocked", "prevent_source_overwrite must be true")
     if constraints.get("allow_public_internet") is not False:
@@ -266,9 +322,13 @@ def _validate_path_policy(validated_plan: Mapping[str, Any]) -> None:
     if path_policy.get("symlink_escape_claimed_safe_without_local_probe") is True:
         raise LocalWorkspaceAdapterError("evidence_missing", "symlink escape safety cannot be claimed without local proof")
     if path_policy.get("follow_symlinks") is True:
-        raise LocalWorkspaceAdapterError("constraint_violation", "read-only manifest must not follow symlinks")
+        raise LocalWorkspaceAdapterError("constraint_violation", "boundary must not follow symlinks")
     if path_policy.get("content_read_allowed") is True:
-        raise LocalWorkspaceAdapterError("llm_direct_file_edit_blocked", "file content read is prohibited in read-only manifest boundary")
+        raise LocalWorkspaceAdapterError("llm_direct_file_edit_blocked", "file content read is prohibited")
+    if path_policy.get("source_workspace_writable") is True:
+        raise LocalWorkspaceAdapterError("source_overwrite_blocked", "source workspace must not be writable")
+    if path_policy.get("staging_paths_relative_to_staging_root") is False:
+        raise LocalWorkspaceAdapterError("constraint_violation", "staged output paths must be relative to staging root")
 
 
 def _validate_artifact_policy(validated_plan: Mapping[str, Any]) -> None:
@@ -276,12 +336,26 @@ def _validate_artifact_policy(validated_plan: Mapping[str, Any]) -> None:
     if artifact_policy.get("source_overwrite_allowed") is not False:
         raise LocalWorkspaceAdapterError("source_overwrite_blocked", "source overwrite must be blocked")
     if artifact_policy.get("claim_real_output_artifacts") is True:
-        raise LocalWorkspaceAdapterError("evidence_missing", "controlled dry-run or read-only manifest cannot claim real output artifacts")
+        raise LocalWorkspaceAdapterError("evidence_missing", "boundary cannot claim real output artifacts")
     if artifact_policy.get("read_file_contents") is True:
         raise LocalWorkspaceAdapterError("llm_direct_file_edit_blocked", "file content read request is prohibited")
+    if artifact_policy.get("promote_to_user_workspace") is True:
+        raise LocalWorkspaceAdapterError("source_overwrite_blocked", "staged output must not be promoted to user workspace")
+    if artifact_policy.get("staging_path_collision_policy") not in (None, "block_if_exists"):
+        raise LocalWorkspaceAdapterError("source_overwrite_blocked", "staging path collision policy must block existing targets")
 
 
 def _determine_execution_mode(request: Mapping[str, Any], context: Mapping[str, Any]) -> str:
+    staged_marker_present = context.get("execution_mode") == "staged_output" or context.get("staged_output") is True
+    if staged_marker_present:
+        if context.get("execution_mode") != "staged_output":
+            raise LocalWorkspaceAdapterError("constraint_violation", "execution_context.execution_mode must be staged_output")
+        if context.get("staged_output") is not True:
+            raise LocalWorkspaceAdapterError("constraint_violation", "execution_context.staged_output must be true")
+        if request.get("staged_output") is not True:
+            raise LocalWorkspaceAdapterError("constraint_violation", "staged_output must be true for staged output boundary")
+        return "staged_output"
+
     read_only_marker_present = context.get("execution_mode") == "read_only_manifest" or context.get("read_only_manifest") is True
     if read_only_marker_present:
         if context.get("execution_mode") != "read_only_manifest":
@@ -303,7 +377,7 @@ def _determine_execution_mode(request: Mapping[str, Any], context: Mapping[str, 
         return "controlled_dry_run"
     if context.get("proof_mode") is True:
         return "proof_mode"
-    raise LocalWorkspaceAdapterError("constraint_violation", "proof_mode, controlled dry-run, or read-only manifest markers must be explicit")
+    raise LocalWorkspaceAdapterError("constraint_violation", "proof_mode, controlled dry-run, read-only manifest, or staged output markers must be explicit")
 
 
 def _validate_operation(operation: Mapping[str, Any]) -> tuple[OperationProof, DryRunReceipt, Optional[PlannedOutputArtifact]]:
@@ -448,6 +522,108 @@ def _build_manifest(entries: Sequence[Mapping[str, Any]]) -> Dict[str, Any]:
     }
 
 
+def _validate_staged_output_context(context: Mapping[str, Any], validated_plan: Mapping[str, Any]) -> tuple[str, Optional[Path]]:
+    staging_ref = validated_plan.get("staging_root_reference")
+    if not isinstance(staging_ref, str) or not staging_ref:
+        raise LocalWorkspaceAdapterError("template_reference_error", "staging_root_reference must be a non-empty approved staging reference")
+    if not staging_ref.startswith("approved_staging://"):
+        raise LocalWorkspaceAdapterError("template_reference_error", "staging_root_reference must use approved_staging:// reference")
+    if staging_ref.startswith(("/", "C:", "D:", "~")):
+        raise LocalWorkspaceAdapterError("template_reference_error", "staging_root_reference must not be a free-form absolute path")
+
+    sandbox_root_value = context.get("test_sandbox_staging_root_path")
+    sandbox_write_enabled = context.get("test_sandbox_write_enabled") is True
+    if not sandbox_write_enabled:
+        return staging_ref, None
+    if not isinstance(sandbox_root_value, str) or not sandbox_root_value:
+        raise LocalWorkspaceAdapterError("template_reference_error", "test_sandbox_staging_root_path is required for staged output unit-test writes")
+    sandbox_root = Path(sandbox_root_value).resolve()
+    sandbox_root.mkdir(parents=True, exist_ok=True)
+    return staging_ref, sandbox_root
+
+
+def _validate_staged_output_operation(operation: Mapping[str, Any], seen_paths: set[str]) -> tuple[str, str, str, str]:
+    operation_id = _string(operation.get("operation_id"), "operation_id")
+    operation_class = _string(operation.get("operation_class"), "operation_class")
+    if operation_class not in STAGED_OUTPUT_OPERATION_CLASSES:
+        raise LocalWorkspaceAdapterError("unsupported_operation", f"unsupported staged output operation_class: {operation_class}")
+    if _bool(operation.get("overwrite_existing"), "overwrite_existing"):
+        raise LocalWorkspaceAdapterError("source_overwrite_blocked", f"operation {operation_id} attempts overwrite")
+    if _bool(operation.get("requires_public_internet"), "requires_public_internet"):
+        raise LocalWorkspaceAdapterError("public_internet_dependency_blocked", f"operation {operation_id} requires public internet")
+    if operation.get("read_file_contents") is True:
+        raise LocalWorkspaceAdapterError("llm_direct_file_edit_blocked", f"operation {operation_id} requests file content read")
+    if operation.get("follow_symlinks") is True:
+        raise LocalWorkspaceAdapterError("constraint_violation", f"operation {operation_id} requests symlink following")
+    if operation.get("modify_native_app_state") is True:
+        raise LocalWorkspaceAdapterError("llm_direct_native_app_state_modification_blocked", f"operation {operation_id} requests native app state modification")
+
+    relative_input_path = _canonicalize_relative_path(operation.get("relative_input_path"), f"operation {operation_id} relative_input_path")
+    relative_staging_path = _canonicalize_relative_path(operation.get("relative_staging_path") or operation.get("relative_output_path"), f"operation {operation_id} relative_staging_path")
+    if relative_staging_path is None:
+        raise LocalWorkspaceAdapterError("template_reference_error", f"operation {operation_id} requires relative_staging_path")
+    if relative_input_path is not None and relative_input_path == relative_staging_path:
+        raise LocalWorkspaceAdapterError("source_overwrite_blocked", f"operation {operation_id} attempts to stage over source path")
+    if relative_staging_path in seen_paths:
+        raise LocalWorkspaceAdapterError("source_overwrite_blocked", f"operation {operation_id} collides with an existing staged output path")
+    seen_paths.add(relative_staging_path)
+
+    expected_artifact_type = _string(operation.get("expected_artifact_type"), "expected_artifact_type")
+    if expected_artifact_type not in TEXT_ARTIFACT_TYPES:
+        raise LocalWorkspaceAdapterError("unsupported_template_artifact_type", f"staged output artifact type must be text-like: {expected_artifact_type}")
+    generated_content = operation.get("generated_content")
+    if not isinstance(generated_content, str):
+        raise LocalWorkspaceAdapterError("schema_validation_error", f"operation {operation_id} requires request-provided generated_content string")
+    return operation_id, operation_class, relative_staging_path, expected_artifact_type
+
+
+def _write_staged_output_to_test_sandbox(sandbox_root: Optional[Path], relative_staging_path: str, generated_content: str) -> bool:
+    if sandbox_root is None:
+        return False
+    target = (sandbox_root / relative_staging_path).resolve()
+    try:
+        target.relative_to(sandbox_root)
+    except ValueError as exc:
+        raise LocalWorkspaceAdapterError("template_reference_error", "staged output path escaped the test sandbox") from exc
+    if target.exists():
+        raise LocalWorkspaceAdapterError("source_overwrite_blocked", "staged output target already exists in test sandbox")
+    target.parent.mkdir(parents=True, exist_ok=True)
+    target.write_text(generated_content, encoding="utf-8")
+    return True
+
+
+def _evaluate_staged_output(validated_plan: Mapping[str, Any], context: Mapping[str, Any], operations: Sequence[Mapping[str, Any]]) -> tuple[List[StagedOutputArtifact], List[StagedOutputReceipt], bool]:
+    staging_ref, sandbox_root = _validate_staged_output_context(context, validated_plan)
+    artifacts: List[StagedOutputArtifact] = []
+    receipts: List[StagedOutputReceipt] = []
+    seen_paths: set[str] = set()
+    sandbox_write_any = False
+    for operation in operations:
+        operation_id, operation_class, relative_staging_path, expected_artifact_type = _validate_staged_output_operation(operation, seen_paths)
+        generated_content = _string(operation.get("generated_content"), f"operation {operation_id} generated_content")
+        sandbox_write = _write_staged_output_to_test_sandbox(sandbox_root, relative_staging_path, generated_content)
+        sandbox_write_any = sandbox_write_any or sandbox_write
+        artifacts.append(
+            StagedOutputArtifact(
+                operation_id=operation_id,
+                artifact_type=expected_artifact_type,
+                staging_root_reference=staging_ref,
+                relative_staging_path=relative_staging_path,
+            )
+        )
+        receipts.append(
+            StagedOutputReceipt(
+                operation_id=operation_id,
+                operation_class=operation_class,
+                status="staged_output_sandbox_written" if sandbox_write else "staged_output_planned_only",
+                canonical_relative_staging_path=relative_staging_path,
+                expected_artifact_type=expected_artifact_type,
+                staged_output_sandbox_write_performed=sandbox_write,
+            )
+        )
+    return artifacts, receipts, sandbox_write_any
+
+
 def build_error_response(request: Mapping[str, Any], error: LocalWorkspaceAdapterError) -> Dict[str, Any]:
     request_id = request.get("request_id") if isinstance(request.get("request_id"), str) else "unknown-request"
     return {
@@ -465,10 +641,14 @@ def build_error_response(request: Mapping[str, Any], error: LocalWorkspaceAdapte
             "proof_mode": True,
             "controlled_dry_run": False,
             "read_only_manifest": False,
+            "staged_output": False,
             "dry_run_adapter_boundary_evaluated": False,
             "read_only_manifest_boundary_evaluated": False,
+            "staged_output_boundary_evaluated": False,
+            "staged_output_sandbox_write_performed": False,
             "actual_adapter_invoked": False,
             "actual_file_system_mutation_performed": False,
+            "user_workspace_file_system_mutation_performed": False,
             "file_content_read_performed": False,
             "local_hancom_com_executed": False,
             "real_hwp_hwpx_hancell_hanshow_artifact_generated": False,
@@ -490,8 +670,11 @@ def build_proof_response(request: Mapping[str, Any], operation_proofs: Sequence[
         "execution_allowed": False,
         "actual_adapter_invoked": False,
         "actual_file_system_mutation_performed": False,
+        "user_workspace_file_system_mutation_performed": False,
         "dry_run_adapter_boundary_evaluated": False,
         "read_only_manifest_boundary_evaluated": False,
+        "staged_output_boundary_evaluated": False,
+        "staged_output_sandbox_write_performed": False,
         "file_content_read_performed": False,
         "output_artifacts": [],
         "validation_result": {
@@ -504,8 +687,10 @@ def build_proof_response(request: Mapping[str, Any], operation_proofs: Sequence[
             "proof_mode": True,
             "controlled_dry_run": False,
             "read_only_manifest": False,
+            "staged_output": False,
             "actual_execution_evidence": False,
             "actual_file_system_mutation_performed": False,
+            "user_workspace_file_system_mutation_performed": False,
             "file_content_read_performed": False,
             "adapter_contract_path": "docs/gpt-communication/contracts/local-workspace-adapter-contract.json",
             "adapter_module": "tools/adapters/local_workspace_adapter.py",
@@ -537,7 +722,10 @@ def build_controlled_dry_run_response(
         "actual_adapter_invoked": False,
         "dry_run_adapter_boundary_evaluated": True,
         "read_only_manifest_boundary_evaluated": False,
+        "staged_output_boundary_evaluated": False,
+        "staged_output_sandbox_write_performed": False,
         "actual_file_system_mutation_performed": False,
+        "user_workspace_file_system_mutation_performed": False,
         "file_content_read_performed": False,
         "output_artifacts": [],
         "planned_output_artifacts": [item.to_dict() for item in planned_artifacts],
@@ -553,11 +741,15 @@ def build_controlled_dry_run_response(
             "proof_mode": False,
             "controlled_dry_run": True,
             "read_only_manifest": False,
+            "staged_output": False,
             "dry_run_adapter_boundary_evaluated": True,
             "read_only_manifest_boundary_evaluated": False,
+            "staged_output_boundary_evaluated": False,
+            "staged_output_sandbox_write_performed": False,
             "actual_execution_evidence": False,
             "actual_adapter_invoked": False,
             "actual_file_system_mutation_performed": False,
+            "user_workspace_file_system_mutation_performed": False,
             "file_content_read_performed": False,
             "local_hancom_com_executed": False,
             "real_hwp_hwpx_hancell_hanshow_artifact_generated": False,
@@ -591,7 +783,10 @@ def build_read_only_manifest_response(
         "actual_adapter_invoked": False,
         "dry_run_adapter_boundary_evaluated": False,
         "read_only_manifest_boundary_evaluated": True,
+        "staged_output_boundary_evaluated": False,
+        "staged_output_sandbox_write_performed": False,
         "actual_file_system_mutation_performed": False,
+        "user_workspace_file_system_mutation_performed": False,
         "file_content_read_performed": False,
         "local_hancom_com_executed": False,
         "real_hwp_hwpx_hancell_hanshow_artifact_generated": False,
@@ -608,10 +803,14 @@ def build_read_only_manifest_response(
             "proof_mode": False,
             "controlled_dry_run": False,
             "read_only_manifest": True,
+            "staged_output": False,
             "read_only_manifest_boundary_evaluated": True,
+            "staged_output_boundary_evaluated": False,
+            "staged_output_sandbox_write_performed": False,
             "actual_execution_evidence": False,
             "actual_adapter_invoked": False,
             "actual_file_system_mutation_performed": False,
+            "user_workspace_file_system_mutation_performed": False,
             "file_content_read_performed": False,
             "local_hancom_com_executed": False,
             "real_hwp_hwpx_hancell_hanshow_artifact_generated": False,
@@ -627,16 +826,78 @@ def build_read_only_manifest_response(
     }
 
 
-def handle_request(request: Mapping[str, Any]) -> Dict[str, Any]:
-    """Validate a local_workspace request and return proof, dry-run, or manifest response.
+def build_staged_output_response(
+    request: Mapping[str, Any],
+    staged_artifacts: Sequence[StagedOutputArtifact],
+    staged_receipts: Sequence[StagedOutputReceipt],
+    sandbox_write_performed: bool,
+) -> Dict[str, Any]:
+    request_id = _string(request.get("request_id"), "request_id")
+    return {
+        "request_id": request_id,
+        "response_id": f"res-{request_id}",
+        "contract_version": COMMON_CONTRACT_VERSION,
+        "target_id": TARGET_ID,
+        "adapter_slot_id": ADAPTER_SLOT_ID,
+        "status": "staged_output_completed",
+        "execution_allowed": False,
+        "actual_adapter_invoked": False,
+        "dry_run_adapter_boundary_evaluated": False,
+        "read_only_manifest_boundary_evaluated": False,
+        "staged_output_boundary_evaluated": True,
+        "staged_output_sandbox_write_performed": sandbox_write_performed,
+        "actual_file_system_mutation_performed": False,
+        "user_workspace_file_system_mutation_performed": False,
+        "file_content_read_performed": False,
+        "local_hancom_com_executed": False,
+        "real_hwp_hwpx_hancell_hanshow_artifact_generated": False,
+        "output_artifacts": [],
+        "staged_output_artifacts": [item.to_dict() for item in staged_artifacts],
+        "staged_output_receipts": [item.to_dict() for item in staged_receipts],
+        "validation_result": {
+            "valid": True,
+            "staged_output": True,
+            "staged_output_artifact_count": len(staged_artifacts),
+            "reason": "Staged output boundary wrote request-provided content only to a controlled unit-test sandbox when enabled.",
+        },
+        "evidence": {
+            "proof_mode": False,
+            "controlled_dry_run": False,
+            "read_only_manifest": False,
+            "staged_output": True,
+            "staged_output_boundary_evaluated": True,
+            "staged_output_sandbox_write_performed": sandbox_write_performed,
+            "actual_execution_evidence": False,
+            "actual_adapter_invoked": False,
+            "actual_file_system_mutation_performed": False,
+            "user_workspace_file_system_mutation_performed": False,
+            "file_content_read_performed": False,
+            "local_hancom_com_executed": False,
+            "real_hwp_hwpx_hancell_hanshow_artifact_generated": False,
+            "adapter_contract_path": "docs/gpt-communication/contracts/local-workspace-adapter-contract.json",
+            "staged_output_contract_path": "docs/gpt-communication/contracts/local-workspace-staged-output-boundary.json",
+            "adapter_module": "tools/adapters/local_workspace_adapter.py",
+        },
+        "warnings": [
+            "staged output boundary only; no production/user workspace files were mutated",
+            "staged_output_sandbox_write_performed may be true only for controlled local unit-test sandbox writes",
+            "output_artifacts remain empty because no final user artifact is claimed",
+        ],
+        "created_at": _created_at(request),
+    }
 
-    This function is deterministic and side-effect free.
-    """
+
+def handle_request(request: Mapping[str, Any]) -> Dict[str, Any]:
+    """Validate a local_workspace request and return proof, dry-run, manifest, or staged response."""
 
     try:
         context, _constraints, _template_reference, validated_plan = _validate_request_mapping(request)
         execution_mode = _determine_execution_mode(request, context)
         operations = _operation_batch(validated_plan.get("operation_batch"))
+        if execution_mode == "staged_output":
+            staged_artifacts, staged_receipts, sandbox_write = _evaluate_staged_output(validated_plan, context, operations)
+            return build_staged_output_response(request, staged_artifacts, staged_receipts, sandbox_write)
+
         if execution_mode == "read_only_manifest":
             receipts = [_validate_read_only_manifest_operation(item) for item in operations]
             entries = _manifest_entries_from_fixture(validated_plan)
@@ -668,7 +929,7 @@ def _base_validated_plan(plan_id: str, operation_batch: Sequence[Mapping[str, An
         "plan_id": plan_id,
         "target_id": TARGET_ID,
         "plan_type": PLAN_TYPE,
-        "workspace_root_reference": "approved_workspace://task030-fixture",
+        "workspace_root_reference": "approved_workspace://task031-fixture",
         "operation_batch": [dict(item) for item in operation_batch],
         "path_policy": {
             "absolute_paths_allowed": False,
@@ -679,17 +940,22 @@ def _base_validated_plan(plan_id: str, operation_batch: Sequence[Mapping[str, An
             "symlink_escape_claimed_safe_without_local_probe": False,
             "follow_symlinks": False,
             "content_read_allowed": False,
+            "source_workspace_writable": False,
+            "staging_paths_relative_to_staging_root": True,
         },
         "artifact_policy": {
             "source_overwrite_allowed": False,
             "output_collision_policy": "block_until_future_versioning_policy",
+            "staging_path_collision_policy": "block_if_exists",
             "claim_real_output_artifacts": False,
             "read_file_contents": False,
+            "promote_to_user_workspace": False,
         },
         "evidence_policy": {
             "record_operation_proofs": True,
             "record_dry_run_receipts": True,
             "record_manifest_receipts": True,
+            "record_staged_output_receipts": True,
             "claim_generated_artifacts": False,
         },
         "llm_direct_file_edit_requested": False,
@@ -734,7 +1000,7 @@ def build_sample_request() -> Dict[str, Any]:
         },
         "template_reference": {
             "artifact_type": "folder",
-            "path": "approved_workspace://task030-fixture",
+            "path": "approved_workspace://task031-fixture",
             "overwrite_source": False,
         },
         "constraints": {
@@ -865,6 +1131,60 @@ def build_read_only_manifest_sample_request() -> Dict[str, Any]:
     return request
 
 
+def build_staged_output_sample_request(test_sandbox_staging_root_path: Optional[str] = None) -> Dict[str, Any]:
+    """Return an in-memory positive staged output sample for local unit tests."""
+
+    request = build_sample_request()
+    request["request_id"] = "req-local-workspace-task031-staged-output-001"
+    request["validated_plan"] = _base_validated_plan(
+        "plan-local-workspace-task031-staged-output-001",
+        [
+            {
+                "operation_id": "op-001",
+                "operation_class": "write_generated_text_artifact",
+                "relative_input_path": "source/analysis-plan.md",
+                "relative_staging_path": "staged/task031/report.md",
+                "overwrite_existing": False,
+                "requires_public_internet": False,
+                "read_file_contents": False,
+                "follow_symlinks": False,
+                "modify_native_app_state": False,
+                "expected_artifact_type": "md",
+                "generated_content": "# Task 031 staged output\n\nGenerated from request-provided content only.\n",
+            },
+            {
+                "operation_id": "op-002",
+                "operation_class": "record_evidence_manifest",
+                "relative_staging_path": "staged/task031/evidence.json",
+                "overwrite_existing": False,
+                "requires_public_internet": False,
+                "read_file_contents": False,
+                "follow_symlinks": False,
+                "modify_native_app_state": False,
+                "expected_artifact_type": "json",
+                "generated_content": "{\"task\":\"031\",\"mode\":\"staged_output\"}\n",
+            },
+        ],
+    )
+    request["validated_plan"]["staging_root_reference"] = "approved_staging://task031-staging-fixture"
+    request["execution_context"] = {
+        "proof_mode": False,
+        "execution_mode": "staged_output",
+        "staged_output": True,
+        "test_sandbox_write_enabled": test_sandbox_staging_root_path is not None,
+        "actual_adapter_invocation_allowed": False,
+    }
+    if test_sandbox_staging_root_path is not None:
+        request["execution_context"]["test_sandbox_staging_root_path"] = test_sandbox_staging_root_path
+    request["evidence_request"] = {
+        "level": "staged_output_receipts_only",
+    }
+    request["dry_run"] = False
+    request["staged_output"] = True
+    request["created_at"] = FIXED_CREATED_AT
+    return request
+
+
 __all__ = [
     "ADAPTER_SLOT_ID",
     "CONTRACT_VERSION",
@@ -874,5 +1194,6 @@ __all__ = [
     "build_controlled_dry_run_sample_request",
     "build_read_only_manifest_sample_request",
     "build_sample_request",
+    "build_staged_output_sample_request",
     "handle_request",
 ]
