@@ -117,3 +117,18 @@ Recommended routing:
 local_codex_required
 adapter_validator_gate_required=true
 ```
+
+## Task 031-B local verification result
+
+- validator CLI: exit code 0, status valid, 200/200 checks passed.
+- adapter validator unittest: exit code 0, Ran 16 tests, OK.
+- local workspace adapter unittest: exit code 0, Ran 59 tests, OK.
+- staged_output_boundary_evaluated=true.
+- staged_output_sandbox_write_performed=true in controlled temporary unittest sandbox only.
+- actual_adapter_invoked=false.
+- actual_file_system_mutation_performed=false.
+- user_workspace_file_system_mutation_performed=false.
+- file_content_read_performed=false.
+- local_hancom_com_executed=false.
+- real_hwp_hwpx_hancell_hanshow_artifact_generated=false.
+- completion_gate_passed=true pending master review.
