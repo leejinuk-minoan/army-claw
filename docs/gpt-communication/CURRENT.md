@@ -8,34 +8,32 @@
 전체 8단계 중 1단계
 현재 단계: HwpAdapter 및 HWP/HWPX 엔진 안정화
 현재 세부 단계: 1-3 선행 HWPX 엔진 비교·코어 선정
-현재 작업: Task 031-B Local Workspace Staged Output Boundary Local Verification
+현재 작업: Task 031 Local Workspace Staged Output Boundary
 ```
 
 ## 현재 브랜치와 판정
 
 ```text
-work_branch: agent/task031-local-workspace-staged-output-boundary
-cloud_package_commit_sha: 4cde40a3fa52c3317fe366e4cb568c4a3c9a772c
-routing_class: cloud_first_local_verify
+work_branch: agent/task031-final-state-sync
+base_sha: 544b165ea065a55597ab4242ff01db5b226fdab2
+routing_class: cloud_delegable
+local_agent_required: false
 Task 031-A cloud package complete: true
 Task 031-B local verification complete: true
-Task 031 final completion gate: true
+Task 031 final completion gate: passed
 adapter_validator_gate_required: true
 adapter_validator_gate_status: passed
-validator_cli_exit_code: 0
-validator_summary_status: valid
-validator_total_checks: 200
-validator_passed_checks: 200
-validator_failed_checks: 0
-validator_blocked_checks: 0
-adapter_validator_unittest_exit_code: 0
-local_workspace_adapter_unittest_exit_code: 0
+validator_cli: 0 / valid / 200 checks passed
+adapter_validator_unittest: 0 / Ran 16 tests OK
+local_workspace_adapter_unittest: 0 / Ran 59 tests OK
 staged_output_boundary_evaluated: true
 staged_output_sandbox_write_performed: true
 actual_adapter_invoked: false
 actual_file_system_mutation_performed: false
 user_workspace_file_system_mutation_performed: false
 file_content_read_performed: false
+local_hancom_com_executed: false
+real_hwp_hwpx_hancell_hanshow_artifact_generated: false
 stage_transition: prohibited
 core_selection: prohibited
 ```
@@ -56,6 +54,7 @@ docs/gpt-communication/delegation/task031-local-workspace-staged-output-boundary
 docs/gpt-communication/evidence/task031-local-workspace-staged-output-boundary/
 docs/gpt-communication/reports/2026-07-10-task031a-local-workspace-staged-output-boundary-cloud-package.md
 docs/gpt-communication/reports/2026-07-10-task031b-local-workspace-staged-output-boundary-local-verification.md
+docs/gpt-communication/reports/2026-07-10-task031-final-master-review.md
 docs/research-notes/task-notes/RN-031-task031-local-workspace-staged-output-boundary.md
 docs/research-notes/research-note-index.md
 docs/research-notes/research-note-index.json
@@ -65,21 +64,27 @@ docs/research-notes/research-note-index.json
 
 Task 030 final completion gate: passed.
 
-## Task 031 현재 상태
+## Task 031 최종 상태
 
-Task 031-A는 staged output boundary cloud package를 작성했다. Task 031-B는 로컬에서 validator CLI와 unittest를 실행해 evidence를 생성했다.
+Task 031-A는 staged output boundary cloud package를 작성했다. Task 031-B는 로컬에서 validator CLI와 unittest를 실행해 evidence를 생성했다. Task 031-C는 최종 master review 결과를 문서와 상태 파일에 동기화했다.
 
 ```text
 Task 031-A cloud package complete: true
 Task 031-B local verification complete: true
+Task 031-C master review complete: true
+Task 031 final completion gate: passed
 adapter_validator_gate_required: true
 adapter_validator_gate_status: passed
 validator_cli_exit_code: 0
 validator_summary_status: valid
 validator_total_checks: 200
 validator_passed_checks: 200
+validator_failed_checks: 0
+validator_blocked_checks: 0
 adapter_validator_unittest: 0 / Ran 16 tests OK
 local_workspace_adapter_unittest: 0 / Ran 59 tests OK
+staged_output_boundary_evaluated: true
+staged_output_sandbox_write_performed: true
 completion_gate_passed: true
 ```
 
@@ -104,11 +109,12 @@ local_hancom_com_executed: false
 real_hwp_hwpx_hancell_hanshow_artifact_generated: false
 ```
 
-## 다음 필요 작업
+## 다음 권장 작업
 
 ```text
-Task 031-B local verification complete; next task requires master review direction.
-routing_class: pending_master_review
+Task 032: Local Workspace Staged Output Evidence Manifest Boundary
+routing_class: cloud_first_local_verify
+adapter_validator_gate_required: true
 ```
 
 ## 금지
