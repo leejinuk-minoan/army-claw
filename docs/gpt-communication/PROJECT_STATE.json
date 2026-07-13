@@ -1,10 +1,64 @@
 {
-  "updated_at": "2026-07-10",
+  "updated_at": "2026-07-14",
   "project": {
     "name": "Army Claw",
     "repository": "leejinuk-minoan/army-claw",
     "total_stages": 8
   },
+  "latest_completed_task": {
+    "task_id": "task031-local-workspace-staged-output-boundary",
+    "name": "Task 031 Local Workspace Staged Output Boundary",
+    "completion_gate_passed": true,
+    "master_review": "docs/gpt-communication/reports/2026-07-10-task031-final-master-review.md"
+  },
+  "active_task": {
+    "task_id": "task032-repository-baseline-governance-state-reconciliation",
+    "name": "Task 032 Repository Baseline Governance State Reconciliation",
+    "routing_class": "local_codex_required",
+    "completion_gate_passed": true
+  },
+  "next_planned_task": {
+    "task_id": "task033-local-workspace-staged-output-evidence-manifest-boundary",
+    "name": "Task 033 Local Workspace Staged Output Evidence Manifest Boundary",
+    "routing_class": "cloud_first_local_verify",
+    "status": "blocked_until_task032_passes",
+    "adapter_validator_gate_required": true
+  },
+  "canonical_development_branch": "agent/task032-repository-baseline-governance-state-reconciliation",
+  "canonical_development_sha": "650127595693eb101c1d21cd9bc758fc9490a0e7",
+  "main_status": {
+    "origin_main_sha": "9ef11d9e000610681023b021b83f5994a57f2dcb",
+    "main_directly_modified_by_task032": false,
+    "main_only_commits_merged_into_task_branch": [
+      "18a579f68d4f8350d2d4fc673e72302babd3b415",
+      "9ef11d9e000610681023b021b83f5994a57f2dcb"
+    ],
+    "main_only_commit_net_file_change": "zero"
+  },
+  "task_routing_class": "local_codex_required",
+  "phase_routing_class": {
+    "task031_overall": "cloud_first_local_verify",
+    "task031c_final_state_sync": "cloud_delegable",
+    "task032": "local_codex_required",
+    "task033": "cloud_first_local_verify"
+  },
+  "historical_restriction_status": {
+    "task003_initial_review_completion_gate_passed": false,
+    "task003_initial_review_proceed_to_task004": false,
+    "task003_v6_native_completion_evidence_later_recorded": true,
+    "task004_was_review_only_not_final_core_selection": true,
+    "tasks005_to031_are_boundary_architecture_and_adapter_contract_work": true,
+    "stage_2_transition_remains_prohibited": true,
+    "final_hwp_hwpx_core_selection_remains_prohibited": true,
+    "old_task003_no_task004_restriction_status": "historical_superseded_for_review_and_boundary_work_only"
+  },
+  "superseding_master_decision_reference": [
+    "docs/gpt-communication/reports/2026-07-04-hwpx-core-selection-review-004.md",
+    "docs/gpt-communication/reports/2026-07-10-task028-final-master-review.md",
+    "docs/gpt-communication/reports/2026-07-10-task030-final-master-review.md",
+    "docs/gpt-communication/reports/2026-07-10-task031-final-master-review.md",
+    "docs/architecture/army-claw-master-plan.md"
+  ],
   "governance": {
     "master_agent_chat": "current_chat",
     "codex_prompt_author_chat": "separate_project_chat",
@@ -116,7 +170,7 @@
     "substage": "1-3",
     "substage_name": "선행 HWPX 엔진 비교·코어 선정",
     "status": "in_progress",
-    "current_task": "Task 031 Local Workspace Staged Output Boundary"
+      "current_task": "Task 032 Repository Baseline Governance State Reconciliation"
   },
   "architecture": {
     "orchestrator": "OpenClaw / Army Claw Node.js·TypeScript",
@@ -215,7 +269,7 @@
       "stage_2_transition_declared": false
     }
   },
-  "current_branch": "agent/task031-final-state-sync",
+  "current_branch": "agent/task032-repository-baseline-governance-state-reconciliation",
   "latest_adapter_validator_contract_commit": "335bd17bef3fb07c5bad9e365d31d25122cef6f1",
   "task028_status": {
     "task028a_cloud_package_complete": true,
@@ -286,10 +340,10 @@
     "scorecard_valid_for_selection": false
   },
   "next_work": {
-    "task_id": "task032-local-workspace-staged-output-evidence-manifest-boundary",
+    "task_id": "task033-local-workspace-staged-output-evidence-manifest-boundary",
     "routing_class": "cloud_first_local_verify",
-    "phase": "recommended_next",
-    "title": "Task 032 Local Workspace Staged Output Evidence Manifest Boundary",
+    "phase": "blocked_until_task032_passes",
+    "title": "Task 033 Local Workspace Staged Output Evidence Manifest Boundary",
     "adapter_validator_gate_required": true
   },
   "restrictions": [

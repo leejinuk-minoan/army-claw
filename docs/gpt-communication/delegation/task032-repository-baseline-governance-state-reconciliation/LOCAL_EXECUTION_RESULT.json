@@ -1,0 +1,43 @@
+{
+  "task_id": "task032-repository-baseline-governance-state-reconciliation",
+  "repository": "leejinuk-minoan/army-claw",
+  "routing_class": "local_codex_required",
+  "work_branch": "agent/task032-repository-baseline-governance-state-reconciliation",
+  "start_sha": "f03f8172142b43b9d721d657f2694bcd49cb6df5",
+  "origin_main_sha": "9ef11d9e000610681023b021b83f5994a57f2dcb",
+  "merge_commit_sha": "650127595693eb101c1d21cd9bc758fc9490a0e7",
+  "local_execution_commit_sha": null,
+  "main_directly_modified": false,
+  "main_only_commits_in_ancestry": true,
+  "main_only_net_file_change": "zero",
+  "governance_reconciliation": {
+    "task003_initial_completion_gate_passed": false,
+    "task003_initial_proceed_to_task004": false,
+    "task004_review_only_not_final_core_selection": true,
+    "tasks005_to031_boundary_architecture_work_allowed": true,
+    "stage_2_transition_declared": false,
+    "final_hwp_hwpx_core_selected": false,
+    "task033_status": "blocked_until_task032_passes"
+  },
+  "execution_scope": {
+    "feature_development_performed": false,
+    "adapter_behavior_changed": false,
+    "validator_behavior_changed": false,
+    "adapter_invoked": false,
+    "hancom_com_executed": false,
+    "office_artifact_generated": false,
+    "user_workspace_mutated": false
+  },
+  "validation": {
+    "json_parse_exit_code": 0,
+    "adapter_validator_cli_exit_code": 0,
+    "adapter_validator_summary_status": "valid",
+    "adapter_validator_total_checks": 200,
+    "adapter_validator_passed_checks": 200,
+    "adapter_validator_failed_checks": 0,
+    "adapter_validator_unittest_exit_code": 0,
+    "local_workspace_adapter_unittest_exit_code": 0,
+    "completion_gate_passed": true
+  },
+  "evidence_directory": "docs/gpt-communication/evidence/task032-repository-baseline-governance-state-reconciliation/"
+}
