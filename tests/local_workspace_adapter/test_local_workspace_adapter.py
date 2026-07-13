@@ -1,5 +1,7 @@
 import copy
+import tempfile
 import unittest
+from pathlib import Path
 
 from tools.adapters.local_workspace_adapter import (
     ADAPTER_SLOT_ID,
@@ -8,6 +10,7 @@ from tools.adapters.local_workspace_adapter import (
     build_controlled_dry_run_sample_request,
     build_read_only_manifest_sample_request,
     build_sample_request,
+    build_staged_output_sample_request,
     handle_request,
 )
 
@@ -26,6 +29,8 @@ class LocalWorkspaceAdapterProofModeTests(unittest.TestCase):
         self.assertFalse(response["actual_file_system_mutation_performed"])
         self.assertFalse(response["dry_run_adapter_boundary_evaluated"])
         self.assertFalse(response["read_only_manifest_boundary_evaluated"])
+        self.assertFalse(response["staged_output_boundary_evaluated"])
+        self.assertFalse(response["staged_output_sandbox_write_performed"])
         self.assertFalse(response["file_content_read_performed"])
         self.assertEqual(response["output_artifacts"], [])
         self.assertTrue(response["validation_result"]["valid"])
@@ -117,7 +122,10 @@ class LocalWorkspaceAdapterControlledDryRunTests(unittest.TestCase):
         self.assertFalse(response["actual_adapter_invoked"])
         self.assertTrue(response["dry_run_adapter_boundary_evaluated"])
         self.assertFalse(response["read_only_manifest_boundary_evaluated"])
+        self.assertFalse(response["staged_output_boundary_evaluated"])
+        self.assertFalse(response["staged_output_sandbox_write_performed"])
         self.assertFalse(response["actual_file_system_mutation_performed"])
+        self.assertFalse(response["user_workspace_file_system_mutation_performed"])
         self.assertFalse(response["file_content_read_performed"])
         self.assertEqual(response["output_artifacts"], [])
         self.assertTrue(response["validation_result"]["valid"])
@@ -253,7 +261,10 @@ class LocalWorkspaceAdapterReadOnlyManifestTests(unittest.TestCase):
         self.assertFalse(response["actual_adapter_invoked"])
         self.assertTrue(response["read_only_manifest_boundary_evaluated"])
         self.assertFalse(response["dry_run_adapter_boundary_evaluated"])
+        self.assertFalse(response["staged_output_boundary_evaluated"])
+        self.assertFalse(response["staged_output_sandbox_write_performed"])
         self.assertFalse(response["actual_file_system_mutation_performed"])
+        self.assertFalse(response["user_workspace_file_system_mutation_performed"])
         self.assertFalse(response["file_content_read_performed"])
         self.assertFalse(response["local_hancom_com_executed"])
         self.assertFalse(response["real_hwp_hwpx_hancell_hanshow_artifact_generated"])
@@ -409,6 +420,206 @@ class LocalWorkspaceAdapterReadOnlyManifestTests(unittest.TestCase):
     def test_read_only_manifest_rejects_unsupported_operation_class(self):
         request = copy.deepcopy(build_read_only_manifest_sample_request())
         request["validated_plan"]["operation_batch"][0]["operation_class"] = "write_generated_text_artifact"
+
+        response = handle_request(request)
+
+        self.assertEqual(response["error_code"], "unsupported_operation")
+
+
+class LocalWorkspaceAdapterStagedOutputTests(unittest.TestCase):
+    def test_positive_staged_output_writes_only_to_temporary_sandbox(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            request = build_staged_output_sample_request(temp_dir)
+            response = handle_request(request)
+
+            self.assertEqual(response["status"], "staged_output_completed")
+            self.assertFalse(response["execution_allowed"])
+            self.assertFalse(response["actual_adapter_invoked"])
+            self.assertTrue(response["staged_output_boundary_evaluated"])
+            self.assertTrue(response["staged_output_sandbox_write_performed"])
+            self.assertFalse(response["actual_file_system_mutation_performed"])
+            self.assertFalse(response["user_workspace_file_system_mutation_performed"])
+            self.assertFalse(response["file_content_read_performed"])
+            self.assertEqual(response["output_artifacts"], [])
+            self.assertTrue((Path(temp_dir) / "staged/task031/report.md").exists())
+            self.assertTrue((Path(temp_dir) / "staged/task031/evidence.json").exists())
+            self.assertFalse((Path(temp_dir) / "source/analysis-plan.md").exists())
+
+    def test_staged_output_artifacts_and_receipts_are_deterministic(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            response = handle_request(build_staged_output_sample_request(temp_dir))
+
+        self.assertEqual(
+            response["staged_output_artifacts"],
+            [
+                {
+                    "operation_id": "op-001",
+                    "artifact_type": "md",
+                    "staging_root_reference": "approved_staging://task031-staging-fixture",
+                    "relative_staging_path": "staged/task031/report.md",
+                    "generated_content_source": "request_provided_generated_content",
+                    "status": "staged_in_test_sandbox",
+                    "actual_file_system_mutation_performed": False,
+                    "user_workspace_file_system_mutation_performed": False,
+                },
+                {
+                    "operation_id": "op-002",
+                    "artifact_type": "json",
+                    "staging_root_reference": "approved_staging://task031-staging-fixture",
+                    "relative_staging_path": "staged/task031/evidence.json",
+                    "generated_content_source": "request_provided_generated_content",
+                    "status": "staged_in_test_sandbox",
+                    "actual_file_system_mutation_performed": False,
+                    "user_workspace_file_system_mutation_performed": False,
+                },
+            ],
+        )
+        self.assertEqual([item["operation_id"] for item in response["staged_output_receipts"]], ["op-001", "op-002"])
+        self.assertEqual(response["created_at"], "2026-07-10T00:00:00Z")
+
+    def test_staged_output_never_claims_final_output_artifacts(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            response = handle_request(build_staged_output_sample_request(temp_dir))
+
+        self.assertEqual(response["output_artifacts"], [])
+        self.assertFalse(response["actual_file_system_mutation_performed"])
+        self.assertFalse(response["user_workspace_file_system_mutation_performed"])
+        self.assertFalse(response["file_content_read_performed"])
+
+    def test_staged_output_rejects_path_traversal(self):
+        request = copy.deepcopy(build_staged_output_sample_request())
+        request["validated_plan"]["operation_batch"][0]["relative_staging_path"] = "safe/../secret.md"
+
+        response = handle_request(request)
+
+        self.assertEqual(response["error_code"], "template_reference_error")
+        self.assertFalse(response["evidence"]["staged_output_boundary_evaluated"])
+
+    def test_staged_output_rejects_absolute_output_path(self):
+        request = copy.deepcopy(build_staged_output_sample_request())
+        request["validated_plan"]["operation_batch"][0]["relative_staging_path"] = "/tmp/report.md"
+
+        response = handle_request(request)
+
+        self.assertEqual(response["error_code"], "template_reference_error")
+
+    def test_staged_output_rejects_backslash_path(self):
+        request = copy.deepcopy(build_staged_output_sample_request())
+        request["validated_plan"]["operation_batch"][0]["relative_staging_path"] = "staged\\report.md"
+
+        response = handle_request(request)
+
+        self.assertEqual(response["error_code"], "template_reference_error")
+
+    def test_staged_output_rejects_empty_path_segment(self):
+        request = copy.deepcopy(build_staged_output_sample_request())
+        request["validated_plan"]["operation_batch"][0]["relative_staging_path"] = "staged//report.md"
+
+        response = handle_request(request)
+
+        self.assertEqual(response["error_code"], "template_reference_error")
+
+    def test_staged_output_rejects_source_overwrite_path(self):
+        request = copy.deepcopy(build_staged_output_sample_request())
+        request["validated_plan"]["operation_batch"][0]["relative_staging_path"] = "source/analysis-plan.md"
+
+        response = handle_request(request)
+
+        self.assertEqual(response["error_code"], "source_overwrite_blocked")
+
+    def test_staged_output_rejects_collision_without_safe_policy(self):
+        request = copy.deepcopy(build_staged_output_sample_request())
+        request["validated_plan"]["operation_batch"][1]["relative_staging_path"] = "staged/task031/report.md"
+
+        response = handle_request(request)
+
+        self.assertEqual(response["error_code"], "source_overwrite_blocked")
+
+    def test_staged_output_rejects_existing_sandbox_target(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            existing = Path(temp_dir) / "staged/task031/report.md"
+            existing.parent.mkdir(parents=True, exist_ok=True)
+            existing.write_text("already exists", encoding="utf-8")
+            response = handle_request(build_staged_output_sample_request(temp_dir))
+
+        self.assertEqual(response["error_code"], "source_overwrite_blocked")
+
+    def test_staged_output_rejects_public_internet_requirement(self):
+        request = copy.deepcopy(build_staged_output_sample_request())
+        request["validated_plan"]["operation_batch"][0]["requires_public_internet"] = True
+
+        response = handle_request(request)
+
+        self.assertEqual(response["error_code"], "public_internet_dependency_blocked")
+
+    def test_staged_output_rejects_file_content_read_request(self):
+        request = copy.deepcopy(build_staged_output_sample_request())
+        request["validated_plan"]["operation_batch"][0]["read_file_contents"] = True
+
+        response = handle_request(request)
+
+        self.assertEqual(response["error_code"], "llm_direct_file_edit_blocked")
+        self.assertFalse(response["evidence"]["file_content_read_performed"])
+
+    def test_staged_output_rejects_symlink_follow_request(self):
+        request = copy.deepcopy(build_staged_output_sample_request())
+        request["validated_plan"]["operation_batch"][0]["follow_symlinks"] = True
+
+        response = handle_request(request)
+
+        self.assertEqual(response["error_code"], "constraint_violation")
+
+    def test_staged_output_rejects_native_app_state_modification(self):
+        request = copy.deepcopy(build_staged_output_sample_request())
+        request["validated_plan"]["operation_batch"][0]["modify_native_app_state"] = True
+
+        response = handle_request(request)
+
+        self.assertEqual(response["error_code"], "llm_direct_native_app_state_modification_blocked")
+
+    def test_staged_output_rejects_missing_staged_output_mode_marker(self):
+        request = copy.deepcopy(build_staged_output_sample_request())
+        del request["execution_context"]["execution_mode"]
+
+        response = handle_request(request)
+
+        self.assertEqual(response["error_code"], "constraint_violation")
+
+    def test_staged_output_rejects_missing_staged_output_flag(self):
+        request = copy.deepcopy(build_staged_output_sample_request())
+        request["staged_output"] = False
+
+        response = handle_request(request)
+
+        self.assertEqual(response["error_code"], "constraint_violation")
+
+    def test_staged_output_rejects_missing_approved_staging_root_reference(self):
+        request = copy.deepcopy(build_staged_output_sample_request())
+        del request["validated_plan"]["staging_root_reference"]
+
+        response = handle_request(request)
+
+        self.assertEqual(response["error_code"], "template_reference_error")
+
+    def test_staged_output_rejects_freeform_staging_root_path(self):
+        request = copy.deepcopy(build_staged_output_sample_request())
+        request["validated_plan"]["staging_root_reference"] = "/tmp/staging"
+
+        response = handle_request(request)
+
+        self.assertEqual(response["error_code"], "template_reference_error")
+
+    def test_staged_output_rejects_wrong_target_slot_plan_mapping(self):
+        request = copy.deepcopy(build_staged_output_sample_request())
+        request["plan_type"] = "hwp_hwpx_fill_plan"
+
+        response = handle_request(request)
+
+        self.assertEqual(response["error_code"], "target_plan_mismatch")
+
+    def test_staged_output_rejects_unsupported_operation_class(self):
+        request = copy.deepcopy(build_staged_output_sample_request())
+        request["validated_plan"]["operation_batch"][0]["operation_class"] = "copy_source_to_output"
 
         response = handle_request(request)
 
