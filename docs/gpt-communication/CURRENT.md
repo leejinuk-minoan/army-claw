@@ -8,25 +8,30 @@
 전체 8단계 중 1단계
 현재 단계: HwpAdapter 및 HWP/HWPX 엔진 안정화
 현재 세부 단계: 1-3 선행 HWPX 엔진 비교·코어 선정
-현재 작업: Task 030 Local Workspace Read-Only Manifest Boundary
+현재 작업: Task 031-A Local Workspace Staged Output Boundary Cloud Package
 ```
 
 ## 현재 브랜치와 판정
 
 ```text
-work_branch: agent/task030-final-state-sync
-base_sha: 832a6bda8d051264bcf956ad99e4076a9bca5c5b
-routing_class: cloud_delegable
-local_agent_required: false
-Task 030 final completion gate: passed
+work_branch: agent/task031-local-workspace-staged-output-boundary
+base_sha: b3b4c4155645f4740fac0b042611eeb5a814eb9c
+routing_class: cloud_first_local_verify
+local_agent_required_now: false
+local_verification_required_later: true
+Task 031-A cloud package complete: true
+Task 031-B local verification complete: false
+Task 031 final completion gate: not passed
 adapter_validator_gate_required: true
-adapter_validator_gate_status: passed
-validator_cli: 0 / valid / 200 checks passed
-adapter_validator_unittest: 0 / Ran 16 tests OK
-local_workspace_adapter_unittest: 0 / Ran 39 tests OK
-read_only_manifest_boundary_evaluated: true
+adapter_validator_gate_status: required_not_run
+validator_cli_exit_code: not_run
+adapter_validator_unittest_exit_code: not_run
+local_workspace_adapter_unittest_exit_code: not_run
+staged_output_boundary_evaluated: false
+staged_output_sandbox_write_performed: false
 actual_adapter_invoked: false
 actual_file_system_mutation_performed: false
+user_workspace_file_system_mutation_performed: false
 file_content_read_performed: false
 local_hancom_com_executed: false
 real_hwp_hwpx_hancell_hanshow_artifact_generated: false
@@ -46,21 +51,20 @@ docs/architecture/army-claw-adapter-validator-integration-contract.md
 docs/architecture/army-claw-local-workspace-adapter-contract.md
 docs/architecture/army-claw-local-workspace-controlled-dry-run-boundary.md
 docs/architecture/army-claw-local-workspace-read-only-manifest-boundary.md
+docs/architecture/army-claw-local-workspace-staged-output-boundary.md
 docs/gpt-communication/contracts/common-office-adapter-interface-contract.json
 docs/gpt-communication/contracts/adapter-validator-integration-contract.json
 docs/gpt-communication/contracts/local-workspace-adapter-contract.json
 docs/gpt-communication/contracts/local-workspace-controlled-dry-run-boundary.json
 docs/gpt-communication/contracts/local-workspace-read-only-manifest-boundary.json
+docs/gpt-communication/contracts/local-workspace-staged-output-boundary.json
 tools/adapters/local_workspace_adapter.py
 tests/local_workspace_adapter/test_local_workspace_adapter.py
-docs/gpt-communication/delegation/task030-local-workspace-read-only-manifest-boundary/CODEX_EXECUTION_BRIEF.md
-docs/gpt-communication/delegation/task030-local-workspace-read-only-manifest-boundary/LOCAL_EXECUTION_RESULT_TEMPLATE.json
-docs/gpt-communication/delegation/task030-local-workspace-read-only-manifest-boundary/LOCAL_EXECUTION_RESULT.json
-docs/gpt-communication/evidence/task030-local-workspace-read-only-manifest-boundary/
-docs/gpt-communication/reports/2026-07-10-task030a-local-workspace-read-only-manifest-boundary-cloud-package.md
-docs/gpt-communication/reports/2026-07-10-task030b-local-workspace-read-only-manifest-boundary-local-verification.md
-docs/gpt-communication/reports/2026-07-10-task030-final-master-review.md
-docs/research-notes/task-notes/RN-030-task030-local-workspace-read-only-manifest-boundary.md
+docs/gpt-communication/delegation/task031-local-workspace-staged-output-boundary/CODEX_EXECUTION_BRIEF.md
+docs/gpt-communication/delegation/task031-local-workspace-staged-output-boundary/LOCAL_EXECUTION_RESULT_TEMPLATE.json
+docs/gpt-communication/evidence/task031-local-workspace-staged-output-boundary/
+docs/gpt-communication/reports/2026-07-10-task031a-local-workspace-staged-output-boundary-cloud-package.md
+docs/research-notes/task-notes/RN-031-task031-local-workspace-staged-output-boundary.md
 docs/research-notes/research-note-index.md
 docs/research-notes/research-note-index.json
 ```
@@ -89,48 +93,51 @@ completion_gate_passed: true
 Task 030-A는 read-only manifest boundary cloud package를 작성했다. Task 030-B는 로컬에서 validator CLI와 unittest를 실행해 evidence를 생성했다. Task 030-C는 최종 master review 결과를 문서와 상태 파일에 동기화했다.
 
 ```text
-Task 030-A cloud package complete: true
-Task 030-B local verification complete: true
-Task 030-C master review complete: true
 Task 030 final completion gate: passed
-adapter_validator_gate_required: true
 adapter_validator_gate_status: passed
-validator_cli_exit_code: 0
-validator_summary_status: valid
-validator_total_checks: 200
-validator_passed_checks: 200
-validator_failed_checks: 0
-validator_blocked_checks: 0
-adapter_validator_unittest: 0 / Ran 16 tests OK
-local_workspace_adapter_unittest: 0 / Ran 39 tests OK
-read_only_manifest_boundary_evaluated: true
 completion_gate_passed: true
 ```
 
-## Read-only manifest boundary
+## Task 031-A cloud package 상태
+
+Task 031-A는 read-only manifest 다음 단계로 staged output boundary를 cloud package로 작성한다.
 
 ```text
-execution_context.execution_mode: read_only_manifest
-execution_context.read_only_manifest: true
-read_only: true
+Task 031-A cloud package complete: true
+Task 031-B local verification complete: false
+Task 031 final completion gate: not passed
+adapter_validator_gate_required: true
+adapter_validator_gate_status: required_not_run
+completion_gate_passed: false
+requires_local_verification: true
 ```
 
-Read-only manifest boundary may evaluate metadata-only in-memory fixtures or safe test doubles and return deterministic manifest descriptors and receipts. It must not inspect real user workspace contents or mutate real files.
+## Staged output boundary
 
 ```text
-read_only_manifest_boundary_evaluated: true
+execution_context.execution_mode: staged_output
+execution_context.staged_output: true
+staged_output: true
+```
+
+Staged output boundary may write request-provided generated content only to a controlled temporary unit-test staging sandbox. It must not mutate production or real user workspace files, read real user file contents, invoke native apps, invoke Hancom COM, or generate real office artifacts.
+
+```text
+staged_output_boundary_evaluated: true only after local tests prove it
+staged_output_sandbox_write_performed: true only in controlled temporary unit-test sandbox
 actual_adapter_invoked: false
 actual_file_system_mutation_performed: false
+user_workspace_file_system_mutation_performed: false
 file_content_read_performed: false
 local_hancom_com_executed: false
 real_hwp_hwpx_hancell_hanshow_artifact_generated: false
 ```
 
-## 다음 권장 작업
+## 다음 필요 작업
 
 ```text
-Task 031: Local Workspace Staged Output Boundary
-routing_class: cloud_first_local_verify
+Task 031-B: Local Workspace Staged Output Boundary Local Verification
+routing_class: local_codex_required
 adapter_validator_gate_required: true
 ```
 
@@ -143,9 +150,11 @@ adapter_validator_gate_required: true
 - 원본 HWP/HWPX/HanCell/HanShow 덮어쓰기 금지
 - LLM 직접 파일 편집 또는 native app state 변경 금지
 - actual adapter invocation 주장 금지
-- real file-system mutation 주장 금지
+- production file-system mutation 주장 금지
+- real user workspace mutation 주장 금지
 - real user workspace file content read 주장 금지
 - real office artifact generation 주장 금지
+- Task 031-A를 final Task 031 completion으로 해석 금지
 - Stage 2 전환 금지
 - 최종 HWPX core 선정 금지
 ```
