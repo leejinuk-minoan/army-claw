@@ -17,7 +17,7 @@
 | RN-027 | Task 027 | `task-notes/RN-027-task027-local-workspace-adapter-contract.md` | Local workspace adapter contract and safe file-workspace execution boundary | verified |
 | RN-028 | Task 028 | `task-notes/RN-028-task028-local-workspace-adapter-proof-mode-skeleton.md` | Local workspace proof-mode adapter skeleton and local verification gate | verified |
 | RN-029 | Task 029 | `task-notes/RN-029-task029-local-workspace-adapter-controlled-dry-run-boundary.md` | Local workspace controlled dry-run boundary and deterministic receipts | verified |
-| RN-030 | Task 030 | `task-notes/RN-030-task030-local-workspace-read-only-manifest-boundary.md` | Local workspace read-only manifest boundary and metadata-only descriptors | draft_pending_local_verification |
+| RN-030 | Task 030 | `task-notes/RN-030-task030-local-workspace-read-only-manifest-boundary.md` | Local workspace read-only manifest boundary and metadata-only descriptors | verified |
 
 ## Index Maintenance Rule
 
