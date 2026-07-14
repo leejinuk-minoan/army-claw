@@ -1,0 +1,66 @@
+{
+  "contract_format": "machine-readable-contract",
+  "contract_version": "army-claw-hwp-template-fidelity-plan-001.v1",
+  "task_id": "task036-hwp-hwpx-template-fidelity-selector-execution-bridge",
+  "identity": {
+    "army_claw_scope": "offline_local_pc_office_document_agent",
+    "first_class_targets": ["hwp", "hwpx", "hancell", "hanshow", "local_workspace"],
+    "llm_role": "structured_plan_only",
+    "adapter_role": "deterministic_file_and_native_state_execution"
+  },
+  "plan_envelope": {
+    "required": ["contract_version", "plan_id", "target_id", "plan_type", "execution_mode", "template_reference", "output", "operations", "constraints", "evidence_policy"],
+    "target_id": ["hwp", "hwpx"],
+    "plan_type": "hwp_hwpx_template_fidelity_fill_plan",
+    "execution_mode": "deterministic_template_fidelity"
+  },
+  "template_reference": {
+    "required": ["artifact_id", "artifact_type", "source_role", "source_digest", "overwrite_source", "conversion_required"],
+    "artifact_type": ["hwp", "hwpx"],
+    "source_role": ["approved_hwp_template", "native_converted_template"],
+    "digest_algorithm": "sha256",
+    "overwrite_source": false,
+    "hwp_rule": "approved_local_hancom_conversion_to_native_hwpx_required",
+    "hwpx_rule": "direct_template_fidelity_input"
+  },
+  "selector_common": {
+    "selector_id_unique": true,
+    "expected_match_count_default": 1,
+    "occurrence_base": 1,
+    "unknown_fields": "block",
+    "resolve_before_mutation": true
+  },
+  "selectors": {
+    "paragraph_text": {"required": ["selector_id", "type", "source_text"], "match": "exact_joined_paragraph_runs", "case_sensitive": true, "whitespace_normalization_default": false},
+    "contains_text": {"required": ["selector_id", "type", "contains"], "match": "case_sensitive_substring", "empty_contains": "block"},
+    "nth_paragraph": {"required": ["selector_id", "type", "section_index", "paragraph_index"], "index_base": 0, "scope": "top_level_paragraphs", "table_internal_paragraphs_included": false},
+    "table_cell_text": {"required": ["selector_id", "type", "table_selector", "cell"], "index_base": 0, "merged_cell_policy": "anchor_only", "source_text_when_present": "must_match_joined_cell_text"}
+  },
+  "operation": {
+    "required": ["operation_id", "selector", "replacement", "preservation_policy"],
+    "replacement_types": ["text"],
+    "ordering": "plan_order_after_complete_pre_resolution",
+    "duplicate_operation_id": "block",
+    "target_conflict": "block"
+  },
+  "preservation_policy_required_true": ["preserve_first_run_style", "preserve_paragraph_properties", "preserve_cell_properties", "preserve_table_structure", "preserve_bindata", "update_preview_text"],
+  "determinism": {
+    "claim": "same_template_bytes_plus_canonical_plan_plus_engine_version_yields_same_target_set",
+    "whole_hwpx_byte_identity_claimed": false,
+    "required_evidence": ["canonical_plan_serialization", "selector_resolution_result", "matched_coordinates", "match_count", "before_text_digest", "after_text_digest", "changed_package_entries", "unchanged_package_entries", "unexpected_changed_entries"]
+  },
+  "preview_sync": {"required_when_entry_exists": true, "entry": "Preview/PrvText.txt", "failure_error": "hwp_preview_sync_failed", "structurally_absent_must_be_recorded": true},
+  "execution_bridge": {
+    "sequence": ["validated_plan", "hwp_adapter_slot", "hwpx_template_fidelity_fill", "task031_staged_output", "task033_evidence_manifest", "task035_controlled_promotion"],
+    "required_links": ["plan_id", "operation_id", "template_artifact_id", "template_digest", "staged_artifact_id", "staged_receipt_id", "evidence_manifest_id", "promotion_authorization_id"],
+    "llm_must_not_emit": ["xml_fragment", "cli_arguments", "native_app_command"]
+  },
+  "errors": [
+    "hwp_template_plan_schema_invalid", "hwp_template_reference_invalid", "hwp_template_source_overwrite_blocked", "hwp_selector_type_unsupported", "hwp_selector_missing", "hwp_selector_no_match", "hwp_selector_ambiguous", "hwp_selector_occurrence_out_of_range", "hwp_selector_source_text_mismatch", "hwp_selector_duplicate_id", "hwp_operation_duplicate_id", "hwp_operation_target_conflict", "hwp_paragraph_index_out_of_range", "hwp_section_index_out_of_range", "hwp_table_index_out_of_range", "hwp_table_cell_out_of_range", "hwp_table_cell_non_anchor", "hwp_replacement_type_unsupported", "hwp_preservation_policy_violation", "hwp_preview_sync_failed", "hwp_unexpected_package_entry_change", "hwp_template_fidelity_execution_failed", "hwp_staging_output_collision"
+  ],
+  "sample_registry": {
+    "positive_profiles": ["paragraph_text", "contains_text", "nth_paragraph", "table_cell_text", "multi_selector", "execution_bridge_request", "execution_bridge_response"],
+    "negative_profiles": ["ambiguous_paragraph", "contains_no_match", "nth_out_of_range", "table_out_of_range", "table_non_anchor", "source_mismatch", "duplicate_selector", "duplicate_operation", "target_conflict", "source_overwrite", "output_collision", "unsupported_replacement", "preview_sync_impossible"]
+  },
+  "cloud_phase": {"implementation_changed": false, "document_execution_performed": false, "adapter_validator_gate_status": "required_not_run"}
+}
