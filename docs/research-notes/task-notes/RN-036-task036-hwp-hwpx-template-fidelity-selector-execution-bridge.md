@@ -12,5 +12,8 @@ Template fidelity is treated as deterministic constrained editing rather than do
 ## Execution-chain contribution
 The bridge reconnects HWP/HWPX generation to the verified local-workspace chain: Task 031 staged output, Task 033 evidence manifest, and Task 035 controlled promotion. It also preserves Army Claw's broader identity as an offline office-document agent with HWP/HWPX, HanCell, HanShow, and local_workspace as first-class targets.
 
+## Task 036-A2 corrective sync
+Task 036-A2 corrected error metadata, bridge cardinality, preview-absent evidence semantics, mandatory official validator integration, exact baseline recording rules, and the separation between B1 implementation and B2 formal evidence.
+
 ## Current status
-`cloud_contract_package_complete_pending_local_implementation`. No implementation, Node execution, HWPX generation, Hancom COM invocation, filesystem mutation, or production promotion is claimed. Task 036-B local implementation and verification are required.
+`cloud_contract_package_corrected_pending_local_implementation`. No implementation, Node execution, HWPX generation, Hancom COM invocation, filesystem mutation, or production promotion is claimed. Task 036-B1/B2 local implementation and formal verification are required.
