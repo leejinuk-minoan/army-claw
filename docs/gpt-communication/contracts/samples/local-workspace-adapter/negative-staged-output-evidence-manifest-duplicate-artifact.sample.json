@@ -1,0 +1,12 @@
+{
+  "case": "duplicate_artifact_id",
+  "artifacts": [
+    {"artifact_id": "artifact-001", "normalized_relative_path": "outputs/a.txt"},
+    {"artifact_id": "artifact-001", "normalized_relative_path": "outputs/b.txt"}
+  ],
+  "expected_error": {
+    "error_code": "duplicate_artifact_id",
+    "category": "schema_validation_error",
+    "blocking": true
+  }
+}
