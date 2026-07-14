@@ -1,0 +1,1 @@
+{"case":"symlink_not_allowed","runtime_fixture":{"destination_component_type":"symlink"},"constraints":{"allow_symlink":false,"allow_hardlink":false,"allow_reparse_point":false},"expected":{"valid":false,"error_code":"symlink_not_allowed"}}
