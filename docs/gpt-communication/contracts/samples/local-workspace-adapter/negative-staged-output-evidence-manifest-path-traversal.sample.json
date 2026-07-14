@@ -1,0 +1,12 @@
+{
+  "case": "path_traversal",
+  "artifact": {
+    "artifact_id": "artifact-001",
+    "normalized_relative_path": "outputs/../secret.txt"
+  },
+  "expected_error": {
+    "error_code": "path_traversal",
+    "category": "template_reference_error",
+    "blocking": true
+  }
+}
