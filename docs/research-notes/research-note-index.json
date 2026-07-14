@@ -1,6 +1,6 @@
 {
   "schema_version": "army-claw-research-note-index-001.v1",
-  "updated_at": "2026-07-10",
+  "updated_at": "2026-07-14",
   "purpose": "Index task-level research notes for later paper writing without accumulating all notes in one large file.",
   "index_rule": {
     "task_note_directory": "docs/research-notes/task-notes/",
@@ -114,6 +114,14 @@
       "file": "docs/research-notes/task-notes/RN-031-task031-local-workspace-staged-output-boundary.md",
       "research_axis": "Local workspace staged output boundary and temporary sandbox receipts",
       "status": "verified"
+    },
+    "RN-033": {
+      "task": "Task 033",
+      "task_id": "task033-local-workspace-staged-output-evidence-manifest-boundary",
+      "title": "Local Workspace Staged Output Evidence Manifest Boundary",
+      "file": "docs/research-notes/task-notes/RN-033-task033-local-workspace-staged-output-evidence-manifest-boundary.md",
+      "research_axis": "Deterministic staged output evidence manifest boundary",
+      "status": "cloud_package_complete_pending_local_verification"
     }
   }
 }
