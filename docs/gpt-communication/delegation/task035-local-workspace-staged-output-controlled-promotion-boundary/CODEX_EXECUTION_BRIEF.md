@@ -15,6 +15,10 @@ git status --short
 ## Required local behavior
 Use only `tempfile` or an equivalent isolated test staged root and approved destination root. Positive promotion must report `controlled_test_promotion_performed=true`, `actual_file_system_mutation_performed=true`, `user_workspace_file_system_mutation_performed=false`, and `production_promotion_performed=false`. Verify authorization binding, manifest linkage, source/temporary/final SHA-256, byte size, exclusive create, no-overwrite placement, source retention, and cleanup.
 
+Task 035-A2L implementation uses an operation-owned temporary file in the destination parent and a no-overwrite hard-link commit. External or pre-existing hardlinked staged sources are prohibited. The operation-owned transient link is conditionally permitted only as the exclusive commit primitive; unsupported platforms or unobservable safety checks must fail closed with `unsupported_safety_check`.
+
+The positive local test is an isolated temporary-root promotion. It performs actual filesystem mutation and file-content reads only inside the controlled test roots. It is not a user workspace promotion, production promotion, Hancom COM operation, or real office artifact generation.
+
 ## Required evidence
 Store stdout, stderr, exit codes, Python version, repository status, promotion test evidence, and safety assertions under `docs/gpt-communication/evidence/task035-local-workspace-staged-output-controlled-promotion-boundary/`. Create `LOCAL_EXECUTION_RESULT.json` from the template and a Task 035-B local verification report.
 

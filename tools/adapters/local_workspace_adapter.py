@@ -16,15 +16,24 @@ production/user workspace mutation.
 
 from __future__ import annotations
 
+import errno
+import hashlib
+import os
+import secrets
+import stat
+import unicodedata
 from dataclasses import dataclass, field
 from pathlib import Path, PurePosixPath
-from typing import Any, Dict, List, Mapping, Optional, Sequence
+from typing import Any, Dict, List, Mapping, Optional, Sequence, Set
 
 CONTRACT_VERSION = "army-claw-local-workspace-adapter-staged-output-031.v1"
 READ_ONLY_MANIFEST_CONTRACT_VERSION = "army-claw-local-workspace-adapter-read-only-manifest-030.v1"
 CONTROLLED_DRY_RUN_CONTRACT_VERSION = "army-claw-local-workspace-adapter-controlled-dry-run-029.v1"
 PROOF_MODE_CONTRACT_VERSION = "army-claw-local-workspace-adapter-proof-mode-028.v1"
 COMMON_CONTRACT_VERSION = "army-claw-common-office-adapter-interface-023.v1"
+CONTROLLED_PROMOTION_CONTRACT_VERSION = "army-claw-local-workspace-controlled-promotion-035.v1"
+CONTROLLED_PROMOTION_OPERATION = "promote_staged_output"
+CONTROLLED_PROMOTION_EXECUTION_MODE = "controlled_promotion"
 TARGET_ID = "local_workspace"
 ADAPTER_SLOT_ID = "local_workspace_adapter_slot"
 PLAN_TYPE = "local_workspace_action_plan"
@@ -58,6 +67,26 @@ FORBIDDEN_MANIFEST_METADATA_KEYS = {
     "sha256",
     "native_app_state",
     "preview_text",
+}
+
+WINDOWS_RESERVED_DEVICE_NAMES = {
+    "CON",
+    "PRN",
+    "AUX",
+    "NUL",
+    *(f"COM{index}" for index in range(1, 10)),
+    *(f"LPT{index}" for index in range(1, 10)),
+}
+
+CONTROLLED_PROMOTION_REQUIRED_CONSTRAINTS = {
+    "retain_staged_source": True,
+    "require_digest_match": True,
+    "require_exclusive_create": True,
+    "allow_cross_volume_copy": False,
+    "allow_symlink": False,
+    "allow_hardlink": False,
+    "allow_reparse_point": False,
+    "allow_public_internet": False,
 }
 
 
@@ -217,6 +246,157 @@ class StagedOutputReceipt:
         }
 
 
+@dataclass(frozen=True)
+class PromotionAuthorization:
+    authorization_id: str
+    artifact_id: str
+    manifest_id: str
+    destination_root_id: str
+    destination_relative_path: str
+    request_id: str
+    single_use: bool = True
+
+
+@dataclass(frozen=True)
+class PromotionArtifactReference:
+    artifact_id: str
+    manifest_id: str
+    normalized_relative_path: str
+    byte_size: int
+    digest_algorithm: str
+    digest: str
+
+
+@dataclass(frozen=True)
+class PromotionDestination:
+    approved_root_id: str
+    normalized_relative_path: str
+    overwrite_allowed: bool = False
+
+
+@dataclass(frozen=True)
+class PromotionVerification:
+    source_sha256: str
+    source_size: int
+    destination_sha256: str
+    destination_size: int
+    source_retained: bool
+    destination_inside_approved_root: bool
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "source_sha256": self.source_sha256,
+            "source_size": self.source_size,
+            "destination_sha256": self.destination_sha256,
+            "destination_size": self.destination_size,
+            "source_retained": self.source_retained,
+            "destination_inside_approved_root": self.destination_inside_approved_root,
+        }
+
+
+@dataclass(frozen=True)
+class PromotionSafetyAssertions:
+    controlled_promotion_boundary_evaluated: bool = True
+    controlled_promotion_boundary_invoked: bool = True
+    promotion_authorization_verified: bool = True
+    approved_root_verified: bool = True
+    manifest_link_verified: bool = True
+    source_digest_verified: bool = True
+    destination_digest_verified: bool = True
+    exclusive_create_verified: bool = True
+    source_retained: bool = True
+    staged_output_sandbox_write_performed: bool = False
+    controlled_test_promotion_performed: bool = True
+    production_promotion_performed: bool = False
+    actual_adapter_invoked: bool = False
+    actual_file_system_mutation_performed: bool = True
+    user_workspace_file_system_mutation_performed: bool = False
+    file_content_read_performed: bool = True
+    local_hancom_com_executed: bool = False
+    real_hwp_hwpx_hancell_hanshow_artifact_generated: bool = False
+    public_internet_access_performed: bool = False
+    dependency_install_performed: bool = False
+
+    def to_dict(self) -> Dict[str, Any]:
+        return dict(self.__dict__)
+
+
+@dataclass(frozen=True)
+class PromotionReceipt:
+    request_id: str
+    operation: str
+    execution_mode: str
+    contract_version: str
+    status: str
+    authorization: PromotionAuthorization
+    source: PromotionArtifactReference
+    destination: PromotionDestination
+    verification: PromotionVerification
+    safety_assertions: PromotionSafetyAssertions
+
+    def to_dict(self) -> Dict[str, Any]:
+        safety = self.safety_assertions.to_dict()
+        return {
+            "request_id": self.request_id,
+            "operation": self.operation,
+            "execution_mode": self.execution_mode,
+            "contract_version": self.contract_version,
+            "status": self.status,
+            "authorization": dict(self.authorization.__dict__),
+            "source": dict(self.source.__dict__),
+            "destination": dict(self.destination.__dict__),
+            "verification": self.verification.to_dict(),
+            "safety_assertions": safety,
+        }
+
+
+@dataclass
+class FilesystemProbe:
+    """Test-controllable filesystem probe for fail-closed promotion checks."""
+
+    device_identity_overrides: Mapping[str, Any] = field(default_factory=dict)
+    reparse_paths: Set[str] = field(default_factory=set)
+    fail_exclusive_commit: bool = False
+    unsupported_link: bool = False
+    cleanup_failure: bool = False
+    source_changed_after_validation: bool = False
+
+    def _key(self, path: Path) -> str:
+        return str(path.resolve(strict=False)).casefold()
+
+    def device_identity(self, path: Path) -> Any:
+        key = self._key(path)
+        for raw_path, value in self.device_identity_overrides.items():
+            if str(raw_path).casefold() == key:
+                return value
+        try:
+            return path.stat().st_dev
+        except OSError as exc:
+            raise LocalWorkspaceAdapterError("unsupported_safety_check", f"cannot determine device identity for {path}") from exc
+
+    def is_reparse_point(self, path: Path) -> bool:
+        key = self._key(path)
+        if key in {item.casefold() for item in self.reparse_paths}:
+            return True
+        try:
+            attrs = getattr(path.lstat(), "st_file_attributes", 0)
+        except OSError:
+            return False
+        return bool(attrs & getattr(stat, "FILE_ATTRIBUTE_REPARSE_POINT", 0))
+
+    def link(self, temp_path: Path, final_path: Path) -> None:
+        if self.unsupported_link:
+            raise LocalWorkspaceAdapterError("unsupported_safety_check", "exclusive link commit is unsupported")
+        if self.fail_exclusive_commit:
+            raise FileExistsError(errno.EEXIST, "simulated exclusive commit failure", str(final_path))
+        os.link(temp_path, final_path, follow_symlinks=False)
+
+    def unlink_temp(self, temp_path: Path) -> None:
+        if self.cleanup_failure:
+            raise LocalWorkspaceAdapterError("temporary_cleanup_failed", f"failed to cleanup temporary file: {temp_path}")
+        temp_path.unlink(missing_ok=True)
+
+
 def _created_at(request: Mapping[str, Any]) -> str:
     value = request.get("created_at")
     return value if isinstance(value, str) and value else FIXED_CREATED_AT
@@ -261,6 +441,359 @@ def _canonicalize_relative_path(path_value: Optional[str], name: str) -> Optiona
     if any(part in ("", ".", "..") for part in parts):
         raise LocalWorkspaceAdapterError("template_reference_error", f"{name} contains unsafe path segment")
     return "/".join(parts)
+
+
+def _promotion_error(error_code: str, message: str) -> Dict[str, Any]:
+    return {
+        "status": "blocked",
+        "error_code": error_code,
+        "error_category": error_code,
+        "blocking": True,
+        "message": message,
+        "safety_assertions": {
+            "controlled_promotion_boundary_evaluated": True,
+            "controlled_promotion_boundary_invoked": True,
+            "actual_adapter_invoked": False,
+            "actual_file_system_mutation_performed": False,
+            "user_workspace_file_system_mutation_performed": False,
+            "file_content_read_performed": False,
+            "local_hancom_com_executed": False,
+            "real_hwp_hwpx_hancell_hanshow_artifact_generated": False,
+            "public_internet_access_performed": False,
+            "dependency_install_performed": False,
+        },
+    }
+
+
+def _sha256_file(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def _validate_controlled_promotion_relative_path(value: Any, *, role: str) -> str:
+    if not isinstance(value, str) or not value:
+        raise LocalWorkspaceAdapterError(f"{role}_path_traversal", f"{role} path must be a non-empty string")
+    if value != unicodedata.normalize("NFC", value):
+        raise LocalWorkspaceAdapterError(f"{role}_path_traversal", f"{role} path must be NFC normalized")
+    if "\x00" in value or any(ord(ch) < 32 or 127 <= ord(ch) <= 159 for ch in value):
+        raise LocalWorkspaceAdapterError(f"{role}_path_traversal", f"{role} path contains control characters")
+    if "\\" in value:
+        raise LocalWorkspaceAdapterError(f"{role}_path_traversal", f"{role} path must use POSIX separators")
+    if value.startswith(("/", "//", "~")) or (len(value) >= 2 and value[1] == ":"):
+        raise LocalWorkspaceAdapterError(f"{role}_absolute_path_not_allowed", f"{role} path must be relative")
+    parts = value.split("/")
+    if any(part in ("", ".", "..") for part in parts):
+        raise LocalWorkspaceAdapterError(f"{role}_path_traversal", f"{role} path contains unsafe segment")
+    for part in parts:
+        if part.rstrip(" .") != part:
+            raise LocalWorkspaceAdapterError(f"{role}_reserved_name", f"{role} path segment has trailing dot or space")
+        if part.split(".", 1)[0].upper() in WINDOWS_RESERVED_DEVICE_NAMES:
+            raise LocalWorkspaceAdapterError(f"{role}_reserved_name", f"{role} path segment uses a reserved device name")
+    casefolded = [part.casefold() for part in parts]
+    if len(casefolded) != len(set(casefolded)):
+        raise LocalWorkspaceAdapterError(f"{role}_case_collision", f"{role} path contains casefold collision")
+    return str(PurePosixPath(*parts))
+
+
+def _safe_join(root: Path, relative_path: str, error_code: str) -> Path:
+    candidate = (root / relative_path).resolve(strict=False)
+    try:
+        candidate.relative_to(root.resolve(strict=False))
+    except ValueError as exc:
+        raise LocalWorkspaceAdapterError(error_code, f"path escapes root: {relative_path}") from exc
+    return candidate
+
+
+def _assert_no_reparse_or_symlink(path: Path, probe: FilesystemProbe, error_code: str) -> None:
+    try:
+        stat_result = path.lstat()
+    except OSError as exc:
+        raise LocalWorkspaceAdapterError("unsupported_safety_check", f"cannot lstat {path}") from exc
+    if stat.S_ISLNK(stat_result.st_mode):
+        raise LocalWorkspaceAdapterError("symlink_not_allowed", f"symlink not allowed: {path}")
+    if probe.is_reparse_point(path):
+        raise LocalWorkspaceAdapterError(error_code, f"reparse point not allowed: {path}")
+
+
+def _assert_path_components_safe(root: Path, path: Path, probe: FilesystemProbe, final_must_exist: bool = True) -> None:
+    current = root.resolve(strict=False)
+    _assert_no_reparse_or_symlink(current, probe, "reparse_point_not_allowed")
+    relative_parts = path.relative_to(current).parts
+    last_index = len(relative_parts) - 1
+    for index, part in enumerate(relative_parts):
+        current = current / part
+        if not current.exists():
+            if index == last_index and not final_must_exist:
+                return
+            raise LocalWorkspaceAdapterError("manifest_reference_mismatch", f"path component missing: {current}")
+        _assert_no_reparse_or_symlink(current, probe, "reparse_point_not_allowed")
+
+
+def _validate_promotion_source(value: Any) -> PromotionArtifactReference:
+    source = _mapping(value, "source")
+    artifact_id = _string(source.get("artifact_id"), "source.artifact_id")
+    manifest_id = _string(source.get("manifest_id"), "source.manifest_id")
+    relative_path = _validate_controlled_promotion_relative_path(source.get("normalized_relative_path"), role="source")
+    byte_size = source.get("byte_size")
+    if not isinstance(byte_size, int) or byte_size < 0:
+        raise LocalWorkspaceAdapterError("source_size_mismatch", "source.byte_size must be a non-negative integer")
+    digest = _mapping(source.get("digest"), "source.digest")
+    algorithm = _string(digest.get("algorithm"), "source.digest.algorithm")
+    value_digest = _string(digest.get("value"), "source.digest.value")
+    if algorithm != "sha256":
+        raise LocalWorkspaceAdapterError("digest_algorithm_not_allowed", "only sha256 digest is allowed")
+    if len(value_digest) != 64 or value_digest.lower() != value_digest or any(ch not in "0123456789abcdef" for ch in value_digest):
+        raise LocalWorkspaceAdapterError("source_digest_mismatch", "source digest must be 64 lowercase hex characters")
+    return PromotionArtifactReference(artifact_id, manifest_id, relative_path, byte_size, algorithm, value_digest)
+
+
+def _validate_promotion_destination(value: Any) -> PromotionDestination:
+    destination = _mapping(value, "destination")
+    root_id = _string(destination.get("approved_root_id"), "destination.approved_root_id")
+    relative_path = _validate_controlled_promotion_relative_path(destination.get("normalized_relative_path"), role="destination")
+    if destination.get("overwrite_allowed") is not False:
+        raise LocalWorkspaceAdapterError("destination_exists", "controlled promotion requires overwrite_allowed=false")
+    return PromotionDestination(root_id, relative_path, False)
+
+
+def _validate_promotion_authorization(value: Any, request_id: str, source: PromotionArtifactReference, destination: PromotionDestination) -> PromotionAuthorization:
+    if not isinstance(value, Mapping):
+        raise LocalWorkspaceAdapterError("promotion_authorization_missing", "authorization is required")
+    authorization = _mapping(value, "authorization")
+    authorization_id = _string(authorization.get("authorization_id"), "authorization.authorization_id")
+    if authorization_id in {"*", "all"}:
+        raise LocalWorkspaceAdapterError("promotion_authorization_invalid", "wildcard authorization is not allowed")
+    bindings = authorization.get("bindings")
+    if not isinstance(bindings, list) or len(bindings) != 1 or not isinstance(bindings[0], Mapping):
+        raise LocalWorkspaceAdapterError("promotion_authorization_missing", "exactly one authorization binding is required")
+    binding = bindings[0]
+    expected = {
+        "request_id": request_id,
+        "artifact_id": source.artifact_id,
+        "manifest_id": source.manifest_id,
+        "destination_root_id": destination.approved_root_id,
+        "destination_relative_path": destination.normalized_relative_path,
+    }
+    actual = {key: binding.get(key) for key in expected}
+    if actual != expected:
+        raise LocalWorkspaceAdapterError("authorization_binding_mismatch", "authorization binding does not match source and destination")
+    if authorization.get("single_use") is not True:
+        raise LocalWorkspaceAdapterError("promotion_authorization_invalid", "authorization must be single-use")
+    if authorization.get("used") is True:
+        raise LocalWorkspaceAdapterError("authorization_reuse_conflict", "authorization has already been used")
+    return PromotionAuthorization(authorization_id, source.artifact_id, source.manifest_id, destination.approved_root_id, destination.normalized_relative_path, request_id)
+
+
+def _validate_promotion_constraints(value: Any) -> None:
+    constraints = _mapping(value, "constraints")
+    for key, expected in CONTROLLED_PROMOTION_REQUIRED_CONSTRAINTS.items():
+        if constraints.get(key) is not expected:
+            raise LocalWorkspaceAdapterError("constraint_violation", f"controlled promotion constraint {key} must be {expected}")
+
+
+def _manifest_artifacts(manifest: Mapping[str, Any]) -> Sequence[Mapping[str, Any]]:
+    artifacts = manifest.get("artifacts")
+    if isinstance(artifacts, list):
+        return [item for item in artifacts if isinstance(item, Mapping)]
+    if isinstance(manifest.get("staged_output_artifacts"), list):
+        return [item for item in manifest["staged_output_artifacts"] if isinstance(item, Mapping)]
+    return []
+
+
+def _validate_manifest_link(manifest: Mapping[str, Any], source: PromotionArtifactReference) -> None:
+    if manifest.get("manifest_id") != source.manifest_id:
+        raise LocalWorkspaceAdapterError("manifest_missing", "manifest_id mismatch")
+    validation = manifest.get("validation")
+    if isinstance(validation, Mapping) and any(value is not True for value in validation.values() if isinstance(value, bool)):
+        raise LocalWorkspaceAdapterError("manifest_reference_mismatch", "manifest validation flags must be true")
+    matches = [item for item in _manifest_artifacts(manifest) if item.get("artifact_id") == source.artifact_id]
+    if len(matches) != 1:
+        raise LocalWorkspaceAdapterError("manifest_artifact_missing", "manifest must contain exactly one matching artifact")
+    artifact = matches[0]
+    path = artifact.get("normalized_relative_path") or artifact.get("relative_path")
+    digest = artifact.get("sha256") or artifact.get("digest")
+    if isinstance(digest, Mapping):
+        digest = digest.get("value")
+    if path != source.normalized_relative_path or artifact.get("byte_size") != source.byte_size or digest != source.digest:
+        raise LocalWorkspaceAdapterError("manifest_reference_mismatch", "manifest artifact reference mismatch")
+    if artifact.get("status") not in {"staged", "staged_in_test_sandbox", "staged_output_sandbox_written"}:
+        raise LocalWorkspaceAdapterError("manifest_reference_mismatch", "manifest artifact status is not staged")
+    if not (artifact.get("sandbox") or artifact.get("sandbox_id")):
+        raise LocalWorkspaceAdapterError("manifest_reference_mismatch", "manifest artifact sandbox linkage is missing")
+    relationships = manifest.get("relationships", [])
+    if isinstance(relationships, list) and relationships and not any(isinstance(item, Mapping) and item.get("artifact_id") == source.artifact_id for item in relationships):
+        raise LocalWorkspaceAdapterError("manifest_reference_mismatch", "manifest relationship is missing")
+    receipts = manifest.get("receipts", [])
+    if isinstance(receipts, list) and receipts and not any(isinstance(item, Mapping) and item.get("artifact_id") == source.artifact_id for item in receipts):
+        raise LocalWorkspaceAdapterError("manifest_reference_mismatch", "manifest receipt is missing")
+
+
+def _same_device_or_block(source_path: Path, destination_parent: Path, probe: FilesystemProbe) -> None:
+    if probe.device_identity(source_path) != probe.device_identity(destination_parent):
+        raise LocalWorkspaceAdapterError("cross_volume_promotion_not_allowed", "cross-volume controlled promotion is not allowed")
+
+
+def _trusted_receipt_matches(receipt: Mapping[str, Any], request_id: str, source: PromotionArtifactReference, destination: PromotionDestination, destination_path: Path) -> bool:
+    if receipt.get("status") not in {"promoted", "already_promoted"}:
+        return False
+    if receipt.get("request_id") != request_id or receipt.get("operation") != CONTROLLED_PROMOTION_OPERATION:
+        return False
+    receipt_source = receipt.get("source") if isinstance(receipt.get("source"), Mapping) else {}
+    receipt_destination = receipt.get("destination") if isinstance(receipt.get("destination"), Mapping) else {}
+    verification = receipt.get("verification") if isinstance(receipt.get("verification"), Mapping) else {}
+    return (
+        receipt_source.get("artifact_id") == source.artifact_id
+        and receipt_source.get("manifest_id") == source.manifest_id
+        and receipt_source.get("normalized_relative_path") == source.normalized_relative_path
+        and receipt_source.get("byte_size") == source.byte_size
+        and receipt_source.get("digest") == source.digest
+        and receipt_destination.get("approved_root_id") == destination.approved_root_id
+        and receipt_destination.get("normalized_relative_path") == destination.normalized_relative_path
+        and verification.get("destination_sha256") == _sha256_file(destination_path)
+        and verification.get("destination_size") == destination_path.stat().st_size
+    )
+
+
+def _write_exclusive_temp(destination_parent: Path, data: bytes) -> Path:
+    destination_parent.mkdir(parents=True, exist_ok=True)
+    temp_path = destination_parent / f".army-claw-promotion-{secrets.token_hex(16)}.tmp"
+    fd = os.open(temp_path, os.O_CREAT | os.O_EXCL | os.O_WRONLY, 0o600)
+    try:
+        with os.fdopen(fd, "wb") as handle:
+            handle.write(data)
+            handle.flush()
+            os.fsync(handle.fileno())
+    except Exception:
+        try:
+            os.close(fd)
+        except OSError:
+            pass
+        temp_path.unlink(missing_ok=True)
+        raise
+    return temp_path
+
+
+def promote_staged_output(
+    request: Mapping[str, Any],
+    *,
+    staged_root: Path,
+    approved_roots: Mapping[str, Path],
+    manifest_document: Mapping[str, Any],
+    trusted_receipt: Optional[Mapping[str, Any]] = None,
+    filesystem_probe: Optional[FilesystemProbe] = None,
+) -> Dict[str, Any]:
+    """Promote one staged artifact into one approved destination root."""
+
+    probe = filesystem_probe or FilesystemProbe()
+    temp_path: Optional[Path] = None
+    final_created = False
+    try:
+        request_id = _string(request.get("request_id"), "request_id")
+        if request.get("operation") != CONTROLLED_PROMOTION_OPERATION:
+            raise LocalWorkspaceAdapterError("unsupported_operation", "operation must be promote_staged_output")
+        if request.get("execution_mode") != CONTROLLED_PROMOTION_EXECUTION_MODE:
+            raise LocalWorkspaceAdapterError("constraint_violation", "execution_mode must be controlled_promotion")
+
+        source = _validate_promotion_source(request.get("source"))
+        destination = _validate_promotion_destination(request.get("destination"))
+        authorization = _validate_promotion_authorization(request.get("authorization"), request_id, source, destination)
+        _validate_promotion_constraints(request.get("constraints"))
+        _validate_manifest_link(manifest_document, source)
+
+        staged_root = staged_root.resolve(strict=False)
+        approved_root = approved_roots.get(destination.approved_root_id)
+        if approved_root is None:
+            raise LocalWorkspaceAdapterError("approved_root_not_allowed", "destination approved root is not allowed")
+        approved_root = approved_root.resolve(strict=False)
+        source_path = _safe_join(staged_root, source.normalized_relative_path, "source_outside_staged_root")
+        destination_path = _safe_join(approved_root, destination.normalized_relative_path, "destination_outside_approved_root")
+        if source_path == destination_path:
+            raise LocalWorkspaceAdapterError("source_destination_collision", "source and destination must differ")
+        if not source_path.exists() or not source_path.is_file():
+            raise LocalWorkspaceAdapterError("manifest_reference_mismatch", "source artifact file is missing")
+        _assert_path_components_safe(staged_root, source_path, probe, final_must_exist=True)
+        if getattr(source_path.lstat(), "st_nlink", 1) > 1:
+            raise LocalWorkspaceAdapterError("hardlink_not_allowed", "pre-existing hardlinked source is not allowed")
+
+        source_data = source_path.read_bytes()
+        if probe.source_changed_after_validation:
+            source_path.write_bytes(source_data + b"changed")
+        actual_source_size = source_path.stat().st_size
+        actual_source_digest = _sha256_file(source_path)
+        if actual_source_size != source.byte_size:
+            raise LocalWorkspaceAdapterError("source_size_mismatch", "source size does not match request and manifest")
+        if actual_source_digest != source.digest:
+            raise LocalWorkspaceAdapterError("source_digest_mismatch", "source digest does not match request and manifest")
+
+        if destination_path.exists():
+            if trusted_receipt and _trusted_receipt_matches(trusted_receipt, request_id, source, destination, destination_path):
+                receipt = dict(trusted_receipt)
+                receipt["status"] = "already_promoted"
+                return {"status": "already_promoted", "receipt": receipt, "safety_assertions": receipt.get("safety_assertions", {})}
+            raise LocalWorkspaceAdapterError("destination_exists", "destination already exists")
+
+        destination_parent = destination_path.parent
+        destination_parent.mkdir(parents=True, exist_ok=True)
+        _assert_path_components_safe(approved_root, destination_parent, probe, final_must_exist=True)
+        _same_device_or_block(source_path, destination_parent, probe)
+        temp_path = _write_exclusive_temp(destination_parent, source_data)
+        if temp_path.stat().st_size != source.byte_size or _sha256_file(temp_path) != source.digest:
+            raise LocalWorkspaceAdapterError("destination_digest_mismatch", "temporary promotion digest mismatch")
+        try:
+            probe.link(temp_path, destination_path)
+            final_created = True
+        except FileExistsError as exc:
+            raise LocalWorkspaceAdapterError("destination_exists", "destination was created before exclusive commit") from exc
+        except OSError as exc:
+            raise LocalWorkspaceAdapterError("exclusive_create_failed", f"exclusive commit failed: {exc}") from exc
+        probe.unlink_temp(temp_path)
+        temp_path = None
+
+        destination_digest = _sha256_file(destination_path)
+        destination_size = destination_path.stat().st_size
+        if destination_digest != source.digest or destination_size != source.byte_size:
+            raise LocalWorkspaceAdapterError("destination_digest_mismatch", "destination digest/size mismatch")
+        if not source_path.exists() or _sha256_file(source_path) != source.digest:
+            raise LocalWorkspaceAdapterError("source_changed_after_validation", "source changed after promotion validation")
+
+        safety = PromotionSafetyAssertions()
+        verification = PromotionVerification(source.digest, source.byte_size, destination_digest, destination_size, True, True)
+        receipt = PromotionReceipt(
+            request_id=request_id,
+            operation=CONTROLLED_PROMOTION_OPERATION,
+            execution_mode=CONTROLLED_PROMOTION_EXECUTION_MODE,
+            contract_version=CONTROLLED_PROMOTION_CONTRACT_VERSION,
+            status="promoted",
+            authorization=authorization,
+            source=source,
+            destination=destination,
+            verification=verification,
+            safety_assertions=safety,
+        ).to_dict()
+        return {
+            "request_id": request_id,
+            "status": "promoted",
+            "execution_allowed": False,
+            "receipt": receipt,
+            "safety_assertions": safety.to_dict(),
+            "verification": verification.to_dict(),
+            "output_artifacts": [],
+        }
+    except LocalWorkspaceAdapterError as exc:
+        if temp_path is not None:
+            try:
+                probe.unlink_temp(temp_path)
+            except LocalWorkspaceAdapterError as cleanup_exc:
+                return _promotion_error(cleanup_exc.error_code, cleanup_exc.message)
+        if final_created and "destination_path" in locals():
+            try:
+                destination_path.unlink(missing_ok=True)
+            except OSError:
+                return _promotion_error("temporary_cleanup_failed", "failed to remove operation-created final artifact after error")
+        return _promotion_error(exc.error_code, exc.message)
 
 
 def _validate_request_mapping(request: Mapping[str, Any]) -> tuple[Mapping[str, Any], Mapping[str, Any], Mapping[str, Any], Mapping[str, Any]]:
@@ -1188,7 +1721,17 @@ def build_staged_output_sample_request(test_sandbox_staging_root_path: Optional[
 __all__ = [
     "ADAPTER_SLOT_ID",
     "CONTRACT_VERSION",
+    "CONTROLLED_PROMOTION_CONTRACT_VERSION",
+    "CONTROLLED_PROMOTION_EXECUTION_MODE",
+    "CONTROLLED_PROMOTION_OPERATION",
+    "FilesystemProbe",
     "PLAN_TYPE",
+    "PromotionArtifactReference",
+    "PromotionAuthorization",
+    "PromotionDestination",
+    "PromotionReceipt",
+    "PromotionSafetyAssertions",
+    "PromotionVerification",
     "TARGET_ID",
     "LocalWorkspaceAdapterError",
     "build_controlled_dry_run_sample_request",
@@ -1196,4 +1739,5 @@ __all__ = [
     "build_sample_request",
     "build_staged_output_sample_request",
     "handle_request",
+    "promote_staged_output",
 ]

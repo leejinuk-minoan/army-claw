@@ -1,10 +1,15 @@
 import copy
+import hashlib
+import os
 import tempfile
 import unittest
 from pathlib import Path
 
 from tools.adapters.local_workspace_adapter import (
     ADAPTER_SLOT_ID,
+    CONTROLLED_PROMOTION_EXECUTION_MODE,
+    CONTROLLED_PROMOTION_OPERATION,
+    FilesystemProbe,
     PLAN_TYPE,
     TARGET_ID,
     build_controlled_dry_run_sample_request,
@@ -12,6 +17,7 @@ from tools.adapters.local_workspace_adapter import (
     build_sample_request,
     build_staged_output_sample_request,
     handle_request,
+    promote_staged_output,
 )
 
 
@@ -624,6 +630,260 @@ class LocalWorkspaceAdapterStagedOutputTests(unittest.TestCase):
         response = handle_request(request)
 
         self.assertEqual(response["error_code"], "unsupported_operation")
+
+
+class LocalWorkspaceAdapterControlledPromotionTests(unittest.TestCase):
+    def _fixture(self):
+        temp = tempfile.TemporaryDirectory()
+        root = Path(temp.name)
+        staged_root = root / "staged"
+        approved_root = root / "approved"
+        source_path = staged_root / "artifacts/report.md"
+        source_path.parent.mkdir(parents=True)
+        source_path.write_bytes(b"# promoted artifact\n")
+        approved_root.mkdir()
+        digest = hashlib.sha256(source_path.read_bytes()).hexdigest()
+        request = {
+            "request_id": "req-task035-positive",
+            "operation": CONTROLLED_PROMOTION_OPERATION,
+            "execution_mode": CONTROLLED_PROMOTION_EXECUTION_MODE,
+            "source": {
+                "artifact_id": "artifact-001",
+                "manifest_id": "manifest-001",
+                "normalized_relative_path": "artifacts/report.md",
+                "byte_size": source_path.stat().st_size,
+                "digest": {"algorithm": "sha256", "value": digest},
+            },
+            "destination": {
+                "approved_root_id": "approved-output",
+                "normalized_relative_path": "reports/report.md",
+                "overwrite_allowed": False,
+            },
+            "authorization": {
+                "authorization_id": "auth-001",
+                "single_use": True,
+                "bindings": [
+                    {
+                        "request_id": "req-task035-positive",
+                        "artifact_id": "artifact-001",
+                        "manifest_id": "manifest-001",
+                        "destination_root_id": "approved-output",
+                        "destination_relative_path": "reports/report.md",
+                    }
+                ],
+            },
+            "constraints": {
+                "retain_staged_source": True,
+                "require_digest_match": True,
+                "require_exclusive_create": True,
+                "allow_cross_volume_copy": False,
+                "allow_symlink": False,
+                "allow_hardlink": False,
+                "allow_reparse_point": False,
+                "allow_public_internet": False,
+            },
+        }
+        manifest = {
+            "manifest_id": "manifest-001",
+            "validation": {"valid": True, "single_artifact": True, "relationships_valid": True},
+            "artifacts": [
+                {
+                    "artifact_id": "artifact-001",
+                    "normalized_relative_path": "artifacts/report.md",
+                    "byte_size": source_path.stat().st_size,
+                    "digest": {"algorithm": "sha256", "value": digest},
+                    "status": "staged",
+                    "sandbox": "task035-temp-root",
+                }
+            ],
+            "relationships": [{"artifact_id": "artifact-001", "relationship": "generated_by_staged_output"}],
+            "receipts": [{"artifact_id": "artifact-001", "receipt_id": "receipt-001"}],
+        }
+        return temp, staged_root, approved_root, request, manifest, source_path, digest
+
+    def _promote(self, request_mutator=None, manifest_mutator=None, probe=None, trusted_receipt=None):
+        temp, staged_root, approved_root, request, manifest, source_path, digest = self._fixture()
+        self.addCleanup(temp.cleanup)
+        if request_mutator:
+            request_mutator(request)
+        if manifest_mutator:
+            manifest_mutator(manifest)
+        response = promote_staged_output(
+            request,
+            staged_root=staged_root,
+            approved_roots={"approved-output": approved_root},
+            manifest_document=manifest,
+            trusted_receipt=trusted_receipt,
+            filesystem_probe=probe,
+        )
+        return response, staged_root, approved_root, source_path, digest
+
+    def test_positive_promotes_single_artifact_with_receipt_and_source_retained(self):
+        response, _staged_root, approved_root, source_path, digest = self._promote()
+
+        destination = approved_root / "reports/report.md"
+        self.assertEqual("promoted", response["status"])
+        self.assertTrue(destination.exists())
+        self.assertEqual(source_path.read_bytes(), destination.read_bytes())
+        self.assertEqual(digest, response["receipt"]["verification"]["destination_sha256"])
+        self.assertTrue(response["receipt"]["safety_assertions"]["promotion_authorization_verified"])
+        self.assertTrue(response["receipt"]["safety_assertions"]["manifest_link_verified"])
+        self.assertTrue(response["receipt"]["safety_assertions"]["file_content_read_performed"])
+        self.assertTrue(response["receipt"]["safety_assertions"]["actual_file_system_mutation_performed"])
+        self.assertFalse(response["receipt"]["safety_assertions"]["actual_adapter_invoked"])
+        self.assertFalse(response["receipt"]["safety_assertions"]["user_workspace_file_system_mutation_performed"])
+        self.assertFalse(response["receipt"]["safety_assertions"]["local_hancom_com_executed"])
+        self.assertFalse(response["receipt"]["safety_assertions"]["real_hwp_hwpx_hancell_hanshow_artifact_generated"])
+        self.assertFalse(response["receipt"]["safety_assertions"]["public_internet_access_performed"])
+        self.assertFalse(response["receipt"]["safety_assertions"]["dependency_install_performed"])
+        self.assertEqual(response["safety_assertions"], response["receipt"]["safety_assertions"])
+        self.assertEqual(1, getattr(destination.stat(), "st_nlink", 1))
+
+    def test_trusted_receipt_exact_match_returns_already_promoted(self):
+        first, staged_root, approved_root, _source_path, _digest = self._promote()
+        temp, _staged_root_2, _approved_root_2, request, manifest, _source_path_2, _digest_2 = self._fixture()
+        self.addCleanup(temp.cleanup)
+        response = promote_staged_output(
+            request,
+            staged_root=staged_root,
+            approved_roots={"approved-output": approved_root},
+            manifest_document=manifest,
+            trusted_receipt=first["receipt"],
+        )
+
+        self.assertEqual("already_promoted", response["status"])
+
+    def test_conflicting_trusted_receipt_does_not_infer_success(self):
+        first, staged_root, approved_root, _source_path, _digest = self._promote()
+        first["receipt"]["source"]["digest"] = "0" * 64
+        temp, _staged_root_2, _approved_root_2, request, manifest, _source_path_2, _digest_2 = self._fixture()
+        self.addCleanup(temp.cleanup)
+        response = promote_staged_output(request, staged_root=staged_root, approved_roots={"approved-output": approved_root}, manifest_document=manifest, trusted_receipt=first["receipt"])
+
+        self.assertEqual("destination_exists", response["error_code"])
+
+    def test_blocks_missing_authorization(self):
+        response, *_ = self._promote(lambda request: request.pop("authorization"))
+        self.assertEqual("promotion_authorization_missing", response["error_code"])
+
+    def test_blocks_authorization_mismatch(self):
+        response, *_ = self._promote(lambda request: request["authorization"]["bindings"][0].__setitem__("artifact_id", "other"))
+        self.assertEqual("authorization_binding_mismatch", response["error_code"])
+
+    def test_blocks_authorization_reuse(self):
+        response, *_ = self._promote(lambda request: request["authorization"].__setitem__("used", True))
+        self.assertEqual("authorization_reuse_conflict", response["error_code"])
+
+    def test_blocks_destination_exists_without_overwrite(self):
+        temp, staged_root, approved_root, request, manifest, _source_path, _digest = self._fixture()
+        self.addCleanup(temp.cleanup)
+        existing = approved_root / "reports/report.md"
+        existing.parent.mkdir(parents=True)
+        existing.write_text("existing", encoding="utf-8")
+        response = promote_staged_output(request, staged_root=staged_root, approved_roots={"approved-output": approved_root}, manifest_document=manifest)
+        self.assertEqual("destination_exists", response["error_code"])
+        self.assertEqual("existing", existing.read_text(encoding="utf-8"))
+
+    def test_blocks_destination_traversal_absolute_drive_reserved_and_case_collision(self):
+        cases = [
+            ("../x.md", "destination_path_traversal"),
+            ("/tmp/x.md", "destination_absolute_path_not_allowed"),
+            ("C:/tmp/x.md", "destination_absolute_path_not_allowed"),
+            ("CON/report.md", "destination_reserved_name"),
+            ("AA/aa/report.md", "destination_case_collision"),
+        ]
+        for path, code in cases:
+            with self.subTest(path=path):
+                response, *_ = self._promote(lambda request, p=path: request["destination"].__setitem__("normalized_relative_path", p))
+                self.assertEqual(code, response["error_code"])
+
+    def test_blocks_source_digest_mismatch(self):
+        response, *_ = self._promote(lambda request: request["source"]["digest"].__setitem__("value", "0" * 64))
+        self.assertEqual("manifest_reference_mismatch", response["error_code"])
+
+    def test_blocks_manifest_id_artifact_path_size_and_digest_mismatch(self):
+        mutations = [
+            (lambda manifest: manifest.__setitem__("manifest_id", "other"), "manifest_missing"),
+            (lambda manifest: manifest["artifacts"][0].__setitem__("artifact_id", "other"), "manifest_artifact_missing"),
+            (lambda manifest: manifest["artifacts"][0].__setitem__("normalized_relative_path", "other.md"), "manifest_reference_mismatch"),
+            (lambda manifest: manifest["artifacts"][0].__setitem__("byte_size", 999), "manifest_reference_mismatch"),
+            (lambda manifest: manifest["artifacts"][0]["digest"].__setitem__("value", "0" * 64), "manifest_reference_mismatch"),
+        ]
+        for mutation, code in mutations:
+            with self.subTest(code=code):
+                response, *_ = self._promote(manifest_mutator=mutation)
+                self.assertEqual(code, response["error_code"])
+
+    def test_blocks_symlink_source_when_supported(self):
+        if not hasattr(os, "symlink"):
+            self.skipTest("symlink unavailable")
+        temp, staged_root, approved_root, request, manifest, source_path, digest = self._fixture()
+        self.addCleanup(temp.cleanup)
+        source_path.unlink()
+        real = staged_root / "artifacts/real.md"
+        real.write_bytes(b"# promoted artifact\n")
+        try:
+            os.symlink(real, source_path)
+        except OSError as exc:
+            if getattr(exc, "winerror", None) == 1314:
+                self.skipTest("symlink creation requires elevated Windows privilege")
+            raise
+        response = promote_staged_output(request, staged_root=staged_root, approved_roots={"approved-output": approved_root}, manifest_document=manifest)
+        self.assertEqual("symlink_not_allowed", response["error_code"])
+        self.assertEqual(digest, hashlib.sha256(real.read_bytes()).hexdigest())
+
+    def test_blocks_destination_parent_symlink_when_supported(self):
+        if not hasattr(os, "symlink"):
+            self.skipTest("symlink unavailable")
+        temp, staged_root, approved_root, request, manifest, _source_path, _digest = self._fixture()
+        self.addCleanup(temp.cleanup)
+        outside = Path(temp.name) / "outside"
+        outside.mkdir()
+        try:
+            os.symlink(outside, approved_root / "reports", target_is_directory=True)
+        except OSError as exc:
+            if getattr(exc, "winerror", None) == 1314:
+                self.skipTest("symlink creation requires elevated Windows privilege")
+            raise
+        response = promote_staged_output(request, staged_root=staged_root, approved_roots={"approved-output": approved_root}, manifest_document=manifest)
+        self.assertEqual("symlink_not_allowed", response["error_code"])
+
+    def test_blocks_hardlinked_source(self):
+        temp, staged_root, approved_root, request, manifest, source_path, _digest = self._fixture()
+        self.addCleanup(temp.cleanup)
+        os.link(source_path, staged_root / "artifacts/linked.md")
+        response = promote_staged_output(request, staged_root=staged_root, approved_roots={"approved-output": approved_root}, manifest_document=manifest)
+        self.assertEqual("hardlink_not_allowed", response["error_code"])
+
+    def test_blocks_reparse_point_probe(self):
+        temp, staged_root, approved_root, request, manifest, _source_path, _digest = self._fixture()
+        self.addCleanup(temp.cleanup)
+        probe = FilesystemProbe(reparse_paths={str(staged_root.resolve())})
+        response = promote_staged_output(request, staged_root=staged_root, approved_roots={"approved-output": approved_root}, manifest_document=manifest, filesystem_probe=probe)
+        self.assertEqual("reparse_point_not_allowed", response["error_code"])
+
+    def test_blocks_cross_volume_probe(self):
+        temp, staged_root, approved_root, request, manifest, source_path, _digest = self._fixture()
+        self.addCleanup(temp.cleanup)
+        destination_parent = (approved_root / "reports").resolve(strict=False)
+        destination_parent.mkdir(parents=True)
+        probe = FilesystemProbe(device_identity_overrides={str(source_path.resolve()): "dev-a", str(destination_parent): "dev-b"})
+        response = promote_staged_output(request, staged_root=staged_root, approved_roots={"approved-output": approved_root}, manifest_document=manifest, filesystem_probe=probe)
+        self.assertEqual("cross_volume_promotion_not_allowed", response["error_code"])
+
+    def test_blocks_source_changed_after_validation(self):
+        response, *_ = self._promote(probe=FilesystemProbe(source_changed_after_validation=True))
+        self.assertEqual("source_size_mismatch", response["error_code"])
+
+    def test_blocks_unsupported_link_and_exclusive_commit_failure(self):
+        response, *_ = self._promote(probe=FilesystemProbe(unsupported_link=True))
+        self.assertEqual("unsupported_safety_check", response["error_code"])
+        response, *_ = self._promote(probe=FilesystemProbe(fail_exclusive_commit=True))
+        self.assertEqual("destination_exists", response["error_code"])
+
+    def test_blocks_temporary_cleanup_failure(self):
+        response, *_ = self._promote(probe=FilesystemProbe(unsupported_link=True, cleanup_failure=True))
+        self.assertEqual("temporary_cleanup_failed", response["error_code"])
 
 
 if __name__ == "__main__":

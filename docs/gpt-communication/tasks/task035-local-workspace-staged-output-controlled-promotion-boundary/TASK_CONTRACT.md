@@ -16,6 +16,11 @@ Bound authorization, approved-root mapping, normalized relative paths, manifest/
 ## Cloud phase claims
 Cloud package may create contracts, samples, implementation/test package, validator registration, documentation, delegation records, state, and Research Note. It must not claim local validation, actual promotion, production mutation, user workspace mutation, or final Task completion.
 
+## Task 035-A2L implementation status
+The adapter implementation package, official validator integration, controlled-promotion sample profiles, error taxonomy, validation matrix/checklist, and state/index synchronization are complete. Task 035 remains incomplete until Task 035-B formal local verification records the validator CLI, adapter validator unittest, local workspace adapter unittest, evidence files, and completion gate result.
+
+Task 035-A2L permits actual filesystem mutation only in isolated temporary test roots. It prohibits user workspace mutation, production promotion, external/pre-existing hardlinked staged sources, symlink/reparse paths, unsupported safety checks, public internet, dependency installation, Hancom COM, native app execution, and real office artifact generation.
+
 ## Local phase boundary
 Only isolated temporary roots are allowed. Any test write must be reported as actual filesystem mutation while remaining non-production and outside the user workspace.
 

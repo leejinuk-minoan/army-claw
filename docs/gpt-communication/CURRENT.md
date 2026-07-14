@@ -8,8 +8,8 @@
 전체 8단계 중 1단계
 현재 단계: HwpAdapter 및 HWP/HWPX 엔진 안정화
 현재 세부 단계: 1-3 선행 HWPX 엔진 비교·코어 선정
-현재 active task: 없음
-다음 Task: Task 035 Local Workspace Staged Output Controlled Promotion Boundary
+현재 active task: Task 035 Local Workspace Staged Output Controlled Promotion Boundary
+다음 Task: Task 035-B Formal Local Verification
 ```
 
 ## Canonical 기준선
@@ -83,10 +83,13 @@ Task ID: task035-local-workspace-staged-output-controlled-promotion-boundary
 routing_class: cloud_first_local_verify
 first phase: Task 035-A cloud package
 adapter_validator_gate_required: true
-status: ready_for_master_execution_prompt
+status: implementation_complete_pending_formal_local_verification
+subphase: task035a2l_local_implementation_complete
+adapter_validator_gate_status: required_not_run
+completion_gate_passed: false
 ```
 
-Task 035는 staged sandbox artifact를 승인된 대상 경계로 승격하는 controlled promotion 계약과 검증 경계를 정의한다. Task 035-A cloud phase에서는 실제 사용자 작업공간 변경을 수행하지 않는다.
+Task 035는 staged sandbox artifact를 승인된 대상 경계로 승격하는 controlled promotion 계약과 검증 경계를 정의한다. Task 035-A2L에서는 adapter 구현, validator integration, sample profile, taxonomy, matrix, checklist, 상태 문서 동기화를 완료했지만, formal local verification인 Task 035-B는 아직 수행하지 않았다.
 
 ## 유지되는 금지사항
 

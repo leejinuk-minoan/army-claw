@@ -3,12 +3,14 @@
   "operation": "promote_staged_output",
   "execution_mode": "controlled_promotion",
   "source": {
-    "staged_artifact_id": "artifact-001",
+    "artifact_id": "artifact-001",
     "manifest_id": "manifest-001",
     "normalized_relative_path": "staged/report.bin",
     "byte_size": 45,
-    "digest_algorithm": "sha256",
-    "digest_value": "6cc03375a40e5c9eb2b317686103112c3f2f1d265589f2018e23cb83ddddfd69"
+    "digest": {
+      "algorithm": "sha256",
+      "value": "6cc03375a40e5c9eb2b317686103112c3f2f1d265589f2018e23cb83ddddfd69"
+    }
   },
   "destination": {
     "approved_root_id": "approved-output-root",
@@ -17,12 +19,16 @@
   },
   "authorization": {
     "authorization_id": "auth-035-001",
-    "scope": "single_artifact_single_destination",
-    "artifact_id": "artifact-001",
-    "manifest_id": "manifest-001",
-    "approved_root_id": "approved-output-root",
-    "destination_relative_path": "reports/report.bin",
-    "status": "valid"
+    "single_use": true,
+    "bindings": [
+      {
+        "request_id": "req-035-001",
+        "artifact_id": "artifact-001",
+        "manifest_id": "manifest-001",
+        "destination_root_id": "approved-output-root",
+        "destination_relative_path": "reports/report.bin"
+      }
+    ]
   },
   "constraints": {
     "retain_staged_source": true,

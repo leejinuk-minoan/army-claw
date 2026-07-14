@@ -15,12 +15,28 @@
     "task033_integration_merge_sha": "a136cb2629a7fac660255da1318119ada4e56a1d",
     "task034_state_sync_commit_sha": "reported_externally_by_master_agent"
   },
-  "active_task": null,
-  "next_planned_task": {
+  "active_task": {
     "task_id": "task035-local-workspace-staged-output-controlled-promotion-boundary",
     "name": "Task 035 Local Workspace Staged Output Controlled Promotion Boundary",
-    "routing_class": "cloud_first_local_verify",
-    "status": "ready_for_master_execution_prompt",
+    "phase": "task035a_cloud_package",
+    "subphase": "task035a2l_local_implementation_complete",
+    "status": "implementation_complete_pending_formal_local_verification",
+    "cloud_package_complete": true,
+    "adapter_implementation_package_complete": true,
+    "official_validator_integration_complete": true,
+    "state_index_synchronization_complete": true,
+    "local_verification_required": true,
+    "local_verification_complete": false,
+    "master_review_complete": false,
+    "completion_gate_passed": false,
+    "adapter_validator_gate_required": true,
+    "adapter_validator_gate_status": "required_not_run"
+  },
+  "next_planned_task": {
+    "task_id": "task035b-local-formal-verification",
+    "name": "Task 035-B Formal Local Verification",
+    "routing_class": "local_codex_required",
+    "status": "ready_for_formal_local_verification_prompt",
     "adapter_validator_gate_required": true
   },
   "canonical_development_branch": "main",
@@ -154,7 +170,10 @@
       "docs/gpt-communication/tasks/task034-main-integration-governance-sync/TASK_CONTRACT.md",
       "docs/research-notes/task-notes/RN-034-task034-main-integration-governance-sync.md",
       "docs/research-notes/research-note-index.md",
-      "docs/research-notes/research-note-index.json"
+      "docs/research-notes/research-note-index.json",
+      "docs/gpt-communication/contracts/local-workspace-controlled-promotion-boundary.json",
+      "docs/gpt-communication/tasks/task035-local-workspace-staged-output-controlled-promotion-boundary/TASK_CONTRACT.md",
+      "docs/research-notes/task-notes/RN-035-task035-local-workspace-staged-output-controlled-promotion-boundary.md"
     ]
   },
   "current_stage": {
@@ -163,8 +182,8 @@
     "substage": "1-3",
     "substage_name": "선행 HWPX 엔진 비교·코어 선정",
     "status": "in_progress",
-    "current_task": null,
-    "next_task": "Task 035 Local Workspace Staged Output Controlled Promotion Boundary"
+    "current_task": "Task 035 Local Workspace Staged Output Controlled Promotion Boundary",
+    "next_task": "Task 035-B Formal Local Verification"
   },
   "architecture": {
     "orchestrator": "OpenClaw / Army Claw Node.js·TypeScript",
@@ -188,7 +207,7 @@
       "task030_read_only_manifest": "final_verified",
       "task031_staged_output": "final_verified",
       "task033_staged_output_evidence_manifest": "final_verified",
-      "task035_controlled_promotion": "planned"
+      "task035_controlled_promotion": "implementation_complete_pending_formal_local_verification"
     }
   },
   "current_branch": "main",
@@ -244,11 +263,11 @@
     "final_hwp_hwpx_core_selection_allowed": false
   },
   "next_work": {
-    "task_id": "task035-local-workspace-staged-output-controlled-promotion-boundary",
-    "routing_class": "cloud_first_local_verify",
-    "phase": "ready_for_cloud_package",
-    "title": "Task 035 Local Workspace Staged Output Controlled Promotion Boundary",
-    "status": "ready_for_master_execution_prompt",
+    "task_id": "task035b-local-formal-verification",
+    "routing_class": "local_codex_required",
+    "phase": "ready_for_formal_local_verification_prompt",
+    "title": "Task 035-B Formal Local Verification",
+    "status": "ready_for_formal_local_verification_prompt",
     "adapter_validator_gate_required": true
   },
   "restrictions": [
@@ -265,5 +284,25 @@
     "Research Note index에 장문 연구 내용 누적 금지",
     "Stage 2 transition remains prohibited",
     "final HWPX core selection remains prohibited"
-  ]
+  ],
+  "task035_status": {
+    "task_id": "task035-local-workspace-staged-output-controlled-promotion-boundary",
+    "name": "Task 035 Local Workspace Staged Output Controlled Promotion Boundary",
+    "phase": "task035a_cloud_package",
+    "subphase": "task035a2l_local_implementation_complete",
+    "status": "implementation_complete_pending_formal_local_verification",
+    "cloud_package_complete": true,
+    "adapter_implementation_package_complete": true,
+    "official_validator_integration_complete": true,
+    "state_index_synchronization_complete": true,
+    "local_verification_required": true,
+    "local_verification_complete": false,
+    "master_review_complete": false,
+    "completion_gate_passed": false,
+    "adapter_validator_gate_required": true,
+    "adapter_validator_gate_status": "required_not_run",
+    "validator_total_checks_before_minimum": 200,
+    "validator_total_checks_after": "to_be_recorded_by_task035b",
+    "validator_check_count_non_decreasing": "to_be_verified_by_task035b"
+  }
 }

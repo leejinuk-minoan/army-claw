@@ -47,7 +47,23 @@ Use this checklist before implementing or accepting adapter-related validation w
 - [ ] expected error code present for negative sample
 - [ ] expected error category present for negative sample
 
-## 6. Scope safety
+## 6. Controlled promotion validation
+
+- [ ] controlled_promotion_request sample profile exists
+- [ ] controlled_promotion_response sample profile exists
+- [ ] controlled_promotion_negative sample profile exists
+- [ ] receipt.safety_assertions is the canonical safety source of truth
+- [ ] top-level safety_assertions mirror receipt.safety_assertions exactly when present
+- [ ] authorization is bound to exactly one artifact and one destination
+- [ ] manifest linkage is verified before promotion
+- [ ] source/destination SHA-256 and byte size are re-verified
+- [ ] destination overwrite is blocked
+- [ ] cross-volume promotion is blocked
+- [ ] symlink, external hardlink, and reparse point paths are blocked
+- [ ] unsupported filesystem safety checks fail closed
+- [ ] validator total checks remain greater than 200 after Task 035 integration
+
+## 7. Scope safety
 
 - [ ] no production code changed
 - [ ] no release/test-documents changed

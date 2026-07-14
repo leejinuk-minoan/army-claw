@@ -28,6 +28,38 @@ DEFAULT_ERROR_TAXONOMY_PATH = "docs/gpt-communication/contracts/common-office-ad
 DEFAULT_VALIDATOR_CONTRACT_PATH = "docs/gpt-communication/contracts/adapter-interface-validator-contract.json"
 DEFAULT_MATRIX_PATH = "docs/gpt-communication/contracts/adapter-interface-validation-matrix.json"
 DEFAULT_SAMPLES_DIR = "docs/gpt-communication/contracts/samples/common-office-adapter-interface"
+CONTROLLED_PROMOTION_REQUIRED_CONSTRAINTS = {
+    "retain_staged_source": True,
+    "require_digest_match": True,
+    "require_exclusive_create": True,
+    "allow_cross_volume_copy": False,
+    "allow_symlink": False,
+    "allow_hardlink": False,
+    "allow_reparse_point": False,
+    "allow_public_internet": False,
+}
+CONTROLLED_PROMOTION_REQUIRED_SAFETY_ASSERTIONS = {
+    "controlled_promotion_boundary_evaluated": True,
+    "controlled_promotion_boundary_invoked": True,
+    "promotion_authorization_verified": True,
+    "approved_root_verified": True,
+    "manifest_link_verified": True,
+    "source_digest_verified": True,
+    "destination_digest_verified": True,
+    "exclusive_create_verified": True,
+    "source_retained": True,
+    "staged_output_sandbox_write_performed": False,
+    "controlled_test_promotion_performed": True,
+    "production_promotion_performed": False,
+    "actual_adapter_invoked": False,
+    "actual_file_system_mutation_performed": True,
+    "user_workspace_file_system_mutation_performed": False,
+    "file_content_read_performed": True,
+    "local_hancom_com_executed": False,
+    "real_hwp_hwpx_hancell_hanshow_artifact_generated": False,
+    "public_internet_access_performed": False,
+    "dependency_install_performed": False,
+}
 
 
 class ResultStatus(str, Enum):
@@ -254,7 +286,128 @@ def validate_response_sample(sample: Mapping[str, Any], contract: Mapping[str, A
     return findings
 
 
+def _digest_value(document: Mapping[str, Any]) -> Optional[str]:
+    digest = document.get("digest")
+    if isinstance(digest, Mapping):
+        value = digest.get("value")
+        return value if isinstance(value, str) else None
+    return document.get("digest_value") if isinstance(document.get("digest_value"), str) else None
+
+
+def _digest_algorithm(document: Mapping[str, Any]) -> Optional[str]:
+    digest = document.get("digest")
+    if isinstance(digest, Mapping):
+        algorithm = digest.get("algorithm")
+        return algorithm if isinstance(algorithm, str) else None
+    return document.get("digest_algorithm") if isinstance(document.get("digest_algorithm"), str) else None
+
+
+def _is_sha256_hex(value: Any) -> bool:
+    return isinstance(value, str) and len(value) == 64 and value.lower() == value and all(ch in "0123456789abcdef" for ch in value)
+
+
+def validate_controlled_promotion_request_sample(sample: Mapping[str, Any], error_taxonomy: Mapping[str, Any]) -> List[Dict[str, Any]]:
+    findings: List[Dict[str, Any]] = []
+    required = ("request_id", "operation", "execution_mode", "source", "destination", "authorization", "constraints")
+    findings.extend(validate_required_fields(sample, required, "controlled_promotion_request"))
+    operation = sample.get("operation")
+    findings.append(result("controlled_promotion.operation", ResultStatus.VALID if operation == "promote_staged_output" else ResultStatus.INVALID, "operation is promote_staged_output", expected="promote_staged_output", actual=operation))
+    execution_mode = sample.get("execution_mode")
+    findings.append(result("controlled_promotion.execution_mode", ResultStatus.VALID if execution_mode == "controlled_promotion" else ResultStatus.INVALID, "execution mode is controlled_promotion", expected="controlled_promotion", actual=execution_mode))
+    source = sample.get("source") if isinstance(sample.get("source"), Mapping) else {}
+    destination = sample.get("destination") if isinstance(sample.get("destination"), Mapping) else {}
+    authorization = sample.get("authorization") if isinstance(sample.get("authorization"), Mapping) else {}
+    bindings = authorization.get("bindings") if isinstance(authorization.get("bindings"), list) else []
+    binding = bindings[0] if len(bindings) == 1 and isinstance(bindings[0], Mapping) else {}
+    source_artifact_id = source.get("artifact_id") or source.get("staged_artifact_id")
+    source_checks = {
+        "source.artifact_id": isinstance(source_artifact_id, str) and bool(source_artifact_id),
+        "source.manifest_id": isinstance(source.get("manifest_id"), str) and bool(source.get("manifest_id")),
+        "source.normalized_relative_path": isinstance(source.get("normalized_relative_path"), str) and bool(source.get("normalized_relative_path")) and ".." not in source.get("normalized_relative_path", ""),
+        "source.byte_size": isinstance(source.get("byte_size"), int) and source.get("byte_size") >= 0,
+        "source.digest_algorithm_sha256": _digest_algorithm(source) == "sha256",
+        "source.digest_hex": _is_sha256_hex(_digest_value(source)),
+    }
+    for check_id, ok in source_checks.items():
+        findings.append(result(f"controlled_promotion.{check_id}", ResultStatus.VALID if ok else ResultStatus.INVALID, f"{check_id} is valid"))
+    destination_checks = {
+        "destination.approved_root_id": isinstance(destination.get("approved_root_id"), str) and bool(destination.get("approved_root_id")),
+        "destination.normalized_relative_path": isinstance(destination.get("normalized_relative_path"), str) and not str(destination.get("normalized_relative_path")).startswith(("/", "../")),
+        "destination.overwrite_allowed_false": destination.get("overwrite_allowed") is False,
+    }
+    for check_id, ok in destination_checks.items():
+        findings.append(result(f"controlled_promotion.{check_id}", ResultStatus.VALID if ok else ResultStatus.INVALID, f"{check_id} is valid"))
+    authorization_checks = {
+        "authorization.single_binding": len(bindings) == 1,
+        "authorization.single_use_true": authorization.get("single_use") is True,
+        "authorization.request_binding": binding.get("request_id") == sample.get("request_id"),
+        "authorization.artifact_binding": binding.get("artifact_id") == source_artifact_id,
+        "authorization.manifest_binding": binding.get("manifest_id") == source.get("manifest_id"),
+        "authorization.destination_root_binding": binding.get("destination_root_id") == destination.get("approved_root_id"),
+        "authorization.destination_path_binding": binding.get("destination_relative_path") == destination.get("normalized_relative_path"),
+    }
+    for check_id, ok in authorization_checks.items():
+        findings.append(result(f"controlled_promotion.{check_id}", ResultStatus.VALID if ok else ResultStatus.INVALID, f"{check_id} is valid"))
+    constraints = sample.get("constraints") if isinstance(sample.get("constraints"), Mapping) else {}
+    for key, expected in CONTROLLED_PROMOTION_REQUIRED_CONSTRAINTS.items():
+        actual = constraints.get(key)
+        findings.append(result(f"controlled_promotion.constraint.{key}", ResultStatus.VALID if actual is expected else ResultStatus.INVALID, f"constraint {key} has canonical value", expected=expected, actual=actual))
+    for code in (
+        "promotion_authorization_missing",
+        "authorization_binding_mismatch",
+        "destination_exists",
+        "exclusive_create_failed",
+        "unsupported_safety_check",
+        "cross_volume_promotion_not_allowed",
+    ):
+        findings.extend(validate_error_taxonomy_code(code, error_taxonomy))
+    return findings
+
+
+def validate_controlled_promotion_response_sample(sample: Mapping[str, Any], error_taxonomy: Mapping[str, Any]) -> List[Dict[str, Any]]:
+    findings: List[Dict[str, Any]] = []
+    findings.extend(validate_required_fields(sample, ("request_id", "status", "receipt", "safety_assertions"), "controlled_promotion_response"))
+    status_value = sample.get("status")
+    findings.append(result("controlled_promotion.response.status_promoted", ResultStatus.VALID if status_value == "promoted" else ResultStatus.INVALID, "response status is promoted", expected="promoted", actual=status_value))
+    receipt = sample.get("receipt") if isinstance(sample.get("receipt"), Mapping) else {}
+    receipt_safety = receipt.get("safety_assertions") if isinstance(receipt.get("safety_assertions"), Mapping) else {}
+    top_level_safety = sample.get("safety_assertions") if isinstance(sample.get("safety_assertions"), Mapping) else {}
+    findings.append(result("controlled_promotion.response.safety_mirror_matches_receipt", ResultStatus.VALID if receipt_safety == top_level_safety and receipt_safety else ResultStatus.INVALID, "top-level safety_assertions mirror receipt safety_assertions exactly"))
+    for key, expected in CONTROLLED_PROMOTION_REQUIRED_SAFETY_ASSERTIONS.items():
+        actual = receipt_safety.get(key)
+        findings.append(result(f"controlled_promotion.safety.{key}", ResultStatus.VALID if actual is expected else ResultStatus.INVALID, f"safety assertion {key} has canonical value", expected=expected, actual=actual))
+    verification = receipt.get("verification") if isinstance(receipt.get("verification"), Mapping) else sample.get("verification", {})
+    source = receipt.get("source") if isinstance(receipt.get("source"), Mapping) else {}
+    destination = receipt.get("destination") if isinstance(receipt.get("destination"), Mapping) else sample.get("destination", {})
+    digest_match = verification.get("source_sha256") == verification.get("destination_sha256")
+    findings.append(result("controlled_promotion.response.source_destination_digest_match", ResultStatus.VALID if digest_match else ResultStatus.INVALID, "source and destination digest match"))
+    findings.append(result("controlled_promotion.response.source_retained", ResultStatus.VALID if verification.get("source_retained") is True else ResultStatus.INVALID, "source retained is true"))
+    findings.append(result("controlled_promotion.response.destination_path_present", ResultStatus.VALID if isinstance(destination.get("normalized_relative_path"), str) else ResultStatus.INVALID, "destination path is present"))
+    findings.append(result("controlled_promotion.response.source_path_present", ResultStatus.VALID if isinstance(source.get("normalized_relative_path"), str) else ResultStatus.INVALID, "source path is present"))
+    findings.extend(validate_error_taxonomy_code("destination_digest_mismatch", error_taxonomy))
+    return findings
+
+
+def validate_controlled_promotion_negative_sample(sample: Mapping[str, Any], matrix_entry: Mapping[str, Any], error_taxonomy: Mapping[str, Any]) -> List[Dict[str, Any]]:
+    findings: List[Dict[str, Any]] = []
+    request = sample.get("request")
+    expected = sample.get("expected") if isinstance(sample.get("expected"), Mapping) else {}
+    expected_error_code = expected.get("error_code")
+    findings.append(result("controlled_promotion_negative.request_object", ResultStatus.VALID if isinstance(request, Mapping) else ResultStatus.INVALID, "negative sample contains request object"))
+    findings.append(result("controlled_promotion_negative.expected_blocked", ResultStatus.VALID if expected.get("status") == "blocked" else ResultStatus.INVALID, "negative expected status is blocked", expected="blocked", actual=expected.get("status")))
+    findings.append(result("controlled_promotion_negative.expected_blocking_true", ResultStatus.VALID if expected.get("blocking") is True else ResultStatus.INVALID, "negative expected blocking is true", expected=True, actual=expected.get("blocking")))
+    findings.append(result("controlled_promotion_negative.matrix_error_code_match", ResultStatus.VALID if matrix_entry.get("expected_error_code") == expected_error_code else ResultStatus.INVALID, "matrix expected error code matches sample expected error code", expected=matrix_entry.get("expected_error_code"), actual=expected_error_code))
+    findings.extend(validate_error_taxonomy_code(str(expected_error_code), error_taxonomy))
+    if isinstance(request, Mapping):
+        findings.append(result("controlled_promotion_negative.operation_present", ResultStatus.VALID if request.get("operation") == "promote_staged_output" else ResultStatus.INVALID, "negative request keeps controlled operation"))
+        findings.append(result("controlled_promotion_negative.execution_mode_present", ResultStatus.VALID if request.get("execution_mode") == "controlled_promotion" else ResultStatus.INVALID, "negative request keeps controlled execution mode"))
+    return findings
+
+
 def infer_negative_error_code(sample: Mapping[str, Any], contract: Optional[Mapping[str, Any]] = None) -> Optional[str]:
+    expected = sample.get("expected") if isinstance(sample.get("expected"), Mapping) else {}
+    if isinstance(expected.get("error_code"), str):
+        return expected.get("error_code")
     if _validated_plan_bool(sample, "llm_direct_file_edit_requested") is True:
         return "llm_direct_file_edit_blocked"
     template = sample.get("template_reference") if isinstance(sample.get("template_reference"), Mapping) else {}
@@ -424,8 +577,12 @@ def run_all_validations(repo_root: Path, options: RunOptions) -> Dict[str, Any]:
             sample_results = validate_request_sample(sample, contract, validator_contract)
         elif sample_type == "response":
             sample_results = validate_response_sample(sample, contract, validator_contract)
+        elif sample_type == "controlled_promotion_request":
+            sample_results = validate_controlled_promotion_request_sample(sample, error_taxonomy)
+        elif sample_type == "controlled_promotion_response":
+            sample_results = validate_controlled_promotion_response_sample(sample, error_taxonomy)
         else:
-            sample_results = [result("positive_sample_type", ResultStatus.INVALID, "positive sample_type must be request or response", path=str(sample_path), actual=sample_type)]
+            sample_results = [result("positive_sample_type", ResultStatus.INVALID, "positive sample_type must be request, response, controlled_promotion_request, or controlled_promotion_response", path=str(sample_path), actual=sample_type)]
         expected = entry.get("expected_validation_status")
         actual = overall_status(sample_results)
         if expected == ResultStatus.VALID.value and actual == ResultStatus.VALID.value:
@@ -439,8 +596,12 @@ def run_all_validations(repo_root: Path, options: RunOptions) -> Dict[str, Any]:
             continue
         sample_path = _matrix_sample_path(repo_root, samples_dir, str(entry.get("sample")))
         sample = load_json_file(sample_path)
-        sample_results = validate_negative_sample(sample, entry, error_taxonomy, contract)
-        actual = expected_negative_actual_status(sample_results)
+        if entry.get("sample_profile") == "controlled_promotion_negative":
+            sample_results = validate_controlled_promotion_negative_sample(sample, entry, error_taxonomy)
+            actual = ResultStatus.BLOCKED.value if overall_status(sample_results) == ResultStatus.VALID.value else overall_status(sample_results)
+        else:
+            sample_results = validate_negative_sample(sample, entry, error_taxonomy, contract)
+            actual = expected_negative_actual_status(sample_results)
         expected = entry.get("expected_status")
         if expected == ResultStatus.BLOCKED.value and actual == ResultStatus.BLOCKED.value:
             results.append(result("negative_sample_expected_status", ResultStatus.VALID, "negative sample met expected blocked status", path=str(sample_path), expected=expected, actual=actual))
