@@ -19,6 +19,8 @@ Task 035-A2L implementation uses an operation-owned temporary file in the destin
 
 The positive local test is an isolated temporary-root promotion. It performs actual filesystem mutation and file-content reads only inside the controlled test roots. It is not a user workspace promotion, production promotion, Hancom COM operation, or real office artifact generation.
 
+Task 035-A2L-C requires the Task 035-B verifier to include the canonical Task 033 staged-output evidence manifest sample. Both the whole response object and the inner `manifest` object must be accepted. Failure responses must preserve actual read/mutation facts from the execution audit.
+
 ## Required evidence
 Store stdout, stderr, exit codes, Python version, repository status, promotion test evidence, and safety assertions under `docs/gpt-communication/evidence/task035-local-workspace-staged-output-controlled-promotion-boundary/`. Create `LOCAL_EXECUTION_RESULT.json` from the template and a Task 035-B local verification report.
 

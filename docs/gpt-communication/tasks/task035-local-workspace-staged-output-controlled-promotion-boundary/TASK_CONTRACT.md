@@ -21,6 +21,9 @@ The adapter implementation package, official validator integration, controlled-p
 
 Task 035-A2L permits actual filesystem mutation only in isolated temporary test roots. It prohibits user workspace mutation, production promotion, external/pre-existing hardlinked staged sources, symlink/reparse paths, unsupported safety checks, public internet, dependency installation, Hancom COM, native app execution, and real office artifact generation.
 
+## Task 035-A2L-C corrective status
+Task 035-A2L-C corrects the implementation package before formal verification. It requires canonical Task 033 manifest compatibility, truthful failure read/mutation evidence, unconditional source immutability, lexical component inspection before resolve, fail-closed reparse inspection, and sibling-only casefold collision detection. It still does not create Task 035-B formal evidence or declare final completion.
+
 ## Local phase boundary
 Only isolated temporary roots are allowed. Any test write must be reported as actual filesystem mutation while remaining non-production and outside the user workspace.
 

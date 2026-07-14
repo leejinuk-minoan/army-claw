@@ -52,8 +52,13 @@ Use this checklist before implementing or accepting adapter-related validation w
 - [ ] controlled_promotion_request sample profile exists
 - [ ] controlled_promotion_response sample profile exists
 - [ ] controlled_promotion_negative sample profile exists
+- [ ] Task 035 request references Task 033 canonical manifest profile
+- [ ] Task 033 artifact field names are validated: artifact_id, normalized_relative_path, byte_size, digest_algorithm, digest_value, receipt_id, sandbox_only, promotion_status
+- [ ] Task 033 relationship field names are validated: relationship_type, source_id, target_id
+- [ ] Task 033 whole response and inner manifest input forms are both accepted
 - [ ] receipt.safety_assertions is the canonical safety source of truth
 - [ ] top-level safety_assertions mirror receipt.safety_assertions exactly when present
+- [ ] negative controlled promotion samples include expected failure read/mutation flags
 - [ ] authorization is bound to exactly one artifact and one destination
 - [ ] manifest linkage is verified before promotion
 - [ ] source/destination SHA-256 and byte size are re-verified

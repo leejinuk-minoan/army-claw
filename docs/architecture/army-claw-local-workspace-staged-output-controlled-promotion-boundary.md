@@ -10,19 +10,21 @@ Task 035 defines a controlled promotion boundary from a Task 031 staged artifact
 Authorization binds `authorization_id`, `artifact_id`, `manifest_id`, `approved_root_id`, destination relative path, and single-artifact/single-destination scope. Missing, wildcard, expired, conflicting, or reused authorization is blocked.
 
 ## Approved roots and paths
-Destinations use an allowlisted root ID mapped by the runtime/test harness. Free-form absolute, UNC, drive-qualified, traversal, NUL/control-character, empty-segment, reserved-name, trailing-dot/space, Unicode-normalization, and casefold-collision paths are blocked. Source must remain inside the injected staged root and destination inside the injected approved root.
+Destinations use an allowlisted root ID mapped by the runtime/test harness. Free-form absolute, UNC, drive-qualified, traversal, NUL/control-character, empty-segment, reserved-name, trailing-dot/space, and Unicode-normalization paths are blocked. Source must remain inside the injected staged root and destination inside the injected approved root. Lexical path components are inspected before resolving containment, so symlink and reparse components cannot be hidden by `resolve()`.
+
+Casefold collision is a sibling policy, not a repeated-segment policy. `AA/aa/report.md` is not blocked merely because two path segments have the same casefold value. `Reports/Report.md` followed by requested `Reports/report.md` is blocked as `destination_case_collision`.
 
 ## Link/object safety
 Symbolic links, junctions, reparse points, hardlinks, mount escape, and unsupported object-safety checks are blocking. Unsupported platforms fail closed with `unsupported_safety_check`.
 
 ## Manifest and digest linkage
-Promotion verifies manifest existence, artifact membership, normalized source path, byte size, and lowercase SHA-256 over actual staged bytes. Temporary and final destination bytes are re-hashed. Digest verification is byte integrity only, not semantic office-document validation.
+Promotion requires the canonical Task 033 staged-output evidence manifest, either as the whole response object or as its inner `manifest` object. It validates `execution_mode=staged_output_evidence_manifest`, `sandbox_scope=true`, validation flags, canonical artifact fields (`digest_algorithm`, `digest_value`, `receipt_id`, `sandbox_only`, `promotion_status`), receipt existence, and `artifact_evidenced_by_receipt` relationships (`source_id`/`target_id`). Temporary and final destination bytes are re-hashed. Digest verification is byte integrity only, not semantic office-document validation.
 
 ## Placement
-Default policy is `overwrite_allowed=false`, exclusive create, no cross-volume copy, temporary file creation under the approved root, flush/fsync where supported, destination digest verification, no-overwrite atomic rename, final digest verification, and receipt creation. Existing destinations are blocked unless a trusted prior receipt exactly matches all bindings and yields `already_promoted`.
+Default policy is `overwrite_allowed=false`, exclusive create, no cross-volume copy, operation-owned temporary file creation under the approved destination parent, flush/fsync where supported, destination digest verification, no-overwrite hard-link commit, final digest verification, and receipt creation. External or pre-existing hardlinked staged sources are prohibited. The operation-owned transient link is permitted only as the no-overwrite commit primitive. Existing destinations are blocked unless a trusted prior receipt exactly matches all bindings and yields `already_promoted`.
 
 ## Failure cleanup
-Final destination is not created on failure; temporary output is removed; staged source is retained; existing destination remains unchanged. Cleanup failures are reported explicitly.
+Final destination is not retained on failure; temporary output is removed when possible; staged source is retained unconditionally and never mutated by the executor. Cleanup failures are reported explicitly. Failure responses report actual read and mutation facts truthfully: validation-only failures report no read/mutation, source digest failures after read report read without mutation, and temp/commit/final failures report mutation when a temporary or final artifact was actually created.
 
 ## Safety claims
 Cloud phase performs no adapter invocation, sandbox write, promotion, filesystem mutation, user workspace mutation, file-content read, Hancom COM execution, native app execution, public internet access, dependency installation, or office artifact generation. Task 035-B may mutate only isolated temporary test roots and must report that mutation truthfully.

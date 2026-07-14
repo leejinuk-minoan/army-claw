@@ -317,6 +317,7 @@ def validate_controlled_promotion_request_sample(sample: Mapping[str, Any], erro
     source = sample.get("source") if isinstance(sample.get("source"), Mapping) else {}
     destination = sample.get("destination") if isinstance(sample.get("destination"), Mapping) else {}
     authorization = sample.get("authorization") if isinstance(sample.get("authorization"), Mapping) else {}
+    manifest_profile = sample.get("manifest_profile") if isinstance(sample.get("manifest_profile"), Mapping) else {}
     bindings = authorization.get("bindings") if isinstance(authorization.get("bindings"), list) else []
     binding = bindings[0] if len(bindings) == 1 and isinstance(bindings[0], Mapping) else {}
     source_artifact_id = source.get("artifact_id") or source.get("staged_artifact_id")
@@ -348,6 +349,16 @@ def validate_controlled_promotion_request_sample(sample: Mapping[str, Any], erro
     }
     for check_id, ok in authorization_checks.items():
         findings.append(result(f"controlled_promotion.{check_id}", ResultStatus.VALID if ok else ResultStatus.INVALID, f"{check_id} is valid"))
+    profile_ok = manifest_profile.get("profile") == "task033_staged_output_evidence_manifest" and isinstance(manifest_profile.get("sample"), str)
+    findings.append(result("controlled_promotion.task033_manifest_profile", ResultStatus.VALID if profile_ok else ResultStatus.INVALID, "Task 035 request references Task 033 canonical manifest profile"))
+    artifact_fields = set(manifest_profile.get("artifact_fields", [])) if isinstance(manifest_profile.get("artifact_fields"), list) else set()
+    required_artifact_fields = {"artifact_id", "normalized_relative_path", "byte_size", "digest_algorithm", "digest_value", "receipt_id", "sandbox_only", "promotion_status"}
+    findings.append(result("controlled_promotion.task033_artifact_field_names", ResultStatus.VALID if required_artifact_fields.issubset(artifact_fields) else ResultStatus.INVALID, "Task 033 canonical artifact field names are listed", expected=sorted(required_artifact_fields), actual=sorted(artifact_fields)))
+    relationship_fields = set(manifest_profile.get("relationship_fields", [])) if isinstance(manifest_profile.get("relationship_fields"), list) else set()
+    required_relationship_fields = {"relationship_type", "source_id", "target_id"}
+    findings.append(result("controlled_promotion.task033_relationship_field_names", ResultStatus.VALID if required_relationship_fields.issubset(relationship_fields) else ResultStatus.INVALID, "Task 033 canonical relationship field names are listed", expected=sorted(required_relationship_fields), actual=sorted(relationship_fields)))
+    accepted_inputs = set(manifest_profile.get("accepted_input_forms", [])) if isinstance(manifest_profile.get("accepted_input_forms"), list) else set()
+    findings.append(result("controlled_promotion.task033_whole_and_inner_manifest_inputs", ResultStatus.VALID if {"whole_response", "inner_manifest"}.issubset(accepted_inputs) else ResultStatus.INVALID, "Task 033 whole response and inner manifest input forms are declared"))
     constraints = sample.get("constraints") if isinstance(sample.get("constraints"), Mapping) else {}
     for key, expected in CONTROLLED_PROMOTION_REQUIRED_CONSTRAINTS.items():
         actual = constraints.get(key)
@@ -398,6 +409,10 @@ def validate_controlled_promotion_negative_sample(sample: Mapping[str, Any], mat
     findings.append(result("controlled_promotion_negative.expected_blocking_true", ResultStatus.VALID if expected.get("blocking") is True else ResultStatus.INVALID, "negative expected blocking is true", expected=True, actual=expected.get("blocking")))
     findings.append(result("controlled_promotion_negative.matrix_error_code_match", ResultStatus.VALID if matrix_entry.get("expected_error_code") == expected_error_code else ResultStatus.INVALID, "matrix expected error code matches sample expected error code", expected=matrix_entry.get("expected_error_code"), actual=expected_error_code))
     findings.extend(validate_error_taxonomy_code(str(expected_error_code), error_taxonomy))
+    safety = expected.get("safety_assertions") if isinstance(expected.get("safety_assertions"), Mapping) else {}
+    evidence_keys = ("file_content_read_performed", "actual_file_system_mutation_performed", "user_workspace_file_system_mutation_performed", "production_promotion_performed")
+    evidence_ok = all(isinstance(safety.get(key), bool) for key in evidence_keys)
+    findings.append(result("controlled_promotion_negative.expected_failure_evidence_flags", ResultStatus.VALID if evidence_ok else ResultStatus.INVALID, "negative sample declares truthful failure read/mutation flags"))
     if isinstance(request, Mapping):
         findings.append(result("controlled_promotion_negative.operation_present", ResultStatus.VALID if request.get("operation") == "promote_staged_output" else ResultStatus.INVALID, "negative request keeps controlled operation"))
         findings.append(result("controlled_promotion_negative.execution_mode_present", ResultStatus.VALID if request.get("execution_mode") == "controlled_promotion" else ResultStatus.INVALID, "negative request keeps controlled execution mode"))

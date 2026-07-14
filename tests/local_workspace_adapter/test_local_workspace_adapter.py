@@ -1,5 +1,6 @@
 import copy
 import hashlib
+import json
 import os
 import tempfile
 import unittest
@@ -633,6 +634,10 @@ class LocalWorkspaceAdapterStagedOutputTests(unittest.TestCase):
 
 
 class LocalWorkspaceAdapterControlledPromotionTests(unittest.TestCase):
+    TASK033_PAYLOAD = b"Army Claw Task 033 evidence manifest sample.\n"
+    TASK033_DIGEST = "6cc03375a40e5c9eb2b317686103112c3f2f1d265589f2018e23cb83ddddfd69"
+    TASK033_MANIFEST_SAMPLE = Path(__file__).resolve().parents[2] / "docs/gpt-communication/contracts/samples/local-workspace-adapter/staged-output-evidence-manifest-response.sample.json"
+
     def _fixture(self):
         temp = tempfile.TemporaryDirectory()
         root = Path(temp.name)
@@ -641,7 +646,7 @@ class LocalWorkspaceAdapterControlledPromotionTests(unittest.TestCase):
         source_path = staged_root / "artifacts/report.md"
         source_path.parent.mkdir(parents=True)
         source_path.write_bytes(b"# promoted artifact\n")
-        approved_root.mkdir()
+        (approved_root / "reports").mkdir(parents=True)
         digest = hashlib.sha256(source_path.read_bytes()).hexdigest()
         request = {
             "request_id": "req-task035-positive",
@@ -701,6 +706,78 @@ class LocalWorkspaceAdapterControlledPromotionTests(unittest.TestCase):
         }
         return temp, staged_root, approved_root, request, manifest, source_path, digest
 
+    def _task033_fixture(self, whole_response: bool = True):
+        temp = tempfile.TemporaryDirectory()
+        root = Path(temp.name)
+        staged_root = root / "staged"
+        approved_root = root / "approved"
+        destination_parent = approved_root / "reports"
+        source_path = staged_root / "outputs/task033/report.txt"
+        source_path.parent.mkdir(parents=True)
+        destination_parent.mkdir(parents=True)
+        source_path.write_bytes(self.TASK033_PAYLOAD)
+        sample = json.loads(self.TASK033_MANIFEST_SAMPLE.read_text(encoding="utf-8"))
+        manifest = sample if whole_response else sample["manifest"]
+        manifest_id = sample["manifest"]["manifest_id"]
+        request = {
+            "request_id": "req-task035-task033",
+            "operation": CONTROLLED_PROMOTION_OPERATION,
+            "execution_mode": CONTROLLED_PROMOTION_EXECUTION_MODE,
+            "source": {
+                "artifact_id": "artifact-001",
+                "manifest_id": manifest_id,
+                "normalized_relative_path": "outputs/task033/report.txt",
+                "byte_size": len(self.TASK033_PAYLOAD),
+                "digest": {"algorithm": "sha256", "value": self.TASK033_DIGEST},
+            },
+            "destination": {
+                "approved_root_id": "approved-output",
+                "normalized_relative_path": "reports/report.txt",
+                "overwrite_allowed": False,
+            },
+            "authorization": {
+                "authorization_id": "auth-task033",
+                "single_use": True,
+                "bindings": [
+                    {
+                        "request_id": "req-task035-task033",
+                        "artifact_id": "artifact-001",
+                        "manifest_id": manifest_id,
+                        "destination_root_id": "approved-output",
+                        "destination_relative_path": "reports/report.txt",
+                    }
+                ],
+            },
+            "constraints": {
+                "retain_staged_source": True,
+                "require_digest_match": True,
+                "require_exclusive_create": True,
+                "allow_cross_volume_copy": False,
+                "allow_symlink": False,
+                "allow_hardlink": False,
+                "allow_reparse_point": False,
+                "allow_public_internet": False,
+            },
+        }
+        return temp, staged_root, approved_root, request, manifest, source_path
+
+    def _promote_task033(self, whole_response: bool = True, request_mutator=None, manifest_mutator=None, probe=None):
+        temp, staged_root, approved_root, request, manifest, source_path = self._task033_fixture(whole_response)
+        self.addCleanup(temp.cleanup)
+        if request_mutator:
+            request_mutator(request)
+        if manifest_mutator:
+            inner = manifest.get("manifest") if isinstance(manifest.get("manifest"), dict) else manifest
+            manifest_mutator(inner)
+        response = promote_staged_output(
+            request,
+            staged_root=staged_root,
+            approved_roots={"approved-output": approved_root},
+            manifest_document=manifest,
+            filesystem_probe=probe,
+        )
+        return response, staged_root, approved_root, source_path
+
     def _promote(self, request_mutator=None, manifest_mutator=None, probe=None, trusted_receipt=None):
         temp, staged_root, approved_root, request, manifest, source_path, digest = self._fixture()
         self.addCleanup(temp.cleanup)
@@ -739,6 +816,35 @@ class LocalWorkspaceAdapterControlledPromotionTests(unittest.TestCase):
         self.assertEqual(response["safety_assertions"], response["receipt"]["safety_assertions"])
         self.assertEqual(1, getattr(destination.stat(), "st_nlink", 1))
 
+    def test_accepts_real_task033_whole_response_manifest_sample(self):
+        response, _staged_root, approved_root, source_path = self._promote_task033(whole_response=True)
+
+        destination = approved_root / "reports/report.txt"
+        self.assertEqual("promoted", response["status"])
+        self.assertEqual(self.TASK033_PAYLOAD, destination.read_bytes())
+        self.assertEqual(self.TASK033_PAYLOAD, source_path.read_bytes())
+        self.assertEqual(self.TASK033_DIGEST, response["receipt"]["verification"]["destination_sha256"])
+
+    def test_accepts_real_task033_inner_manifest_sample(self):
+        response, _staged_root, approved_root, _source_path = self._promote_task033(whole_response=False)
+
+        self.assertEqual("promoted", response["status"])
+        self.assertEqual(self.TASK033_PAYLOAD, (approved_root / "reports/report.txt").read_bytes())
+
+    def test_task033_canonical_manifest_linkage_is_validated(self):
+        mutations = [
+            (lambda manifest: manifest["artifacts"].append(copy.deepcopy(manifest["artifacts"][0])), "manifest_artifact_missing"),
+            (lambda manifest: manifest["receipts"].clear(), "manifest_reference_mismatch"),
+            (lambda manifest: manifest["relationships"].clear(), "manifest_reference_mismatch"),
+            (lambda manifest: manifest["artifacts"][0].__setitem__("sandbox_only", False), "manifest_reference_mismatch"),
+            (lambda manifest: manifest["artifacts"][0].__setitem__("promotion_status", "promoted"), "manifest_reference_mismatch"),
+            (lambda manifest: manifest["artifacts"][0].__setitem__("digest_algorithm", "sha1"), "digest_algorithm_not_allowed"),
+        ]
+        for mutation, code in mutations:
+            with self.subTest(code=code):
+                response, *_ = self._promote_task033(manifest_mutator=mutation)
+                self.assertEqual(code, response["error_code"])
+
     def test_trusted_receipt_exact_match_returns_already_promoted(self):
         first, staged_root, approved_root, _source_path, _digest = self._promote()
         temp, _staged_root_2, _approved_root_2, request, manifest, _source_path_2, _digest_2 = self._fixture()
@@ -769,6 +875,8 @@ class LocalWorkspaceAdapterControlledPromotionTests(unittest.TestCase):
     def test_blocks_authorization_mismatch(self):
         response, *_ = self._promote(lambda request: request["authorization"]["bindings"][0].__setitem__("artifact_id", "other"))
         self.assertEqual("authorization_binding_mismatch", response["error_code"])
+        self.assertFalse(response["safety_assertions"]["file_content_read_performed"])
+        self.assertFalse(response["safety_assertions"]["actual_file_system_mutation_performed"])
 
     def test_blocks_authorization_reuse(self):
         response, *_ = self._promote(lambda request: request["authorization"].__setitem__("used", True))
@@ -778,11 +886,12 @@ class LocalWorkspaceAdapterControlledPromotionTests(unittest.TestCase):
         temp, staged_root, approved_root, request, manifest, _source_path, _digest = self._fixture()
         self.addCleanup(temp.cleanup)
         existing = approved_root / "reports/report.md"
-        existing.parent.mkdir(parents=True)
+        existing.parent.mkdir(parents=True, exist_ok=True)
         existing.write_text("existing", encoding="utf-8")
         response = promote_staged_output(request, staged_root=staged_root, approved_roots={"approved-output": approved_root}, manifest_document=manifest)
         self.assertEqual("destination_exists", response["error_code"])
         self.assertEqual("existing", existing.read_text(encoding="utf-8"))
+        self.assertFalse(response["safety_assertions"]["actual_file_system_mutation_performed"])
 
     def test_blocks_destination_traversal_absolute_drive_reserved_and_case_collision(self):
         cases = [
@@ -790,16 +899,53 @@ class LocalWorkspaceAdapterControlledPromotionTests(unittest.TestCase):
             ("/tmp/x.md", "destination_absolute_path_not_allowed"),
             ("C:/tmp/x.md", "destination_absolute_path_not_allowed"),
             ("CON/report.md", "destination_reserved_name"),
-            ("AA/aa/report.md", "destination_case_collision"),
         ]
         for path, code in cases:
             with self.subTest(path=path):
                 response, *_ = self._promote(lambda request, p=path: request["destination"].__setitem__("normalized_relative_path", p))
                 self.assertEqual(code, response["error_code"])
 
+    def test_repeated_path_segment_is_not_false_case_collision(self):
+        temp, staged_root, approved_root, request, manifest, _source_path, _digest = self._fixture()
+        self.addCleanup(temp.cleanup)
+        (approved_root / "AA/aa").mkdir(parents=True)
+        request["destination"]["normalized_relative_path"] = "AA/aa/report.md"
+        request["authorization"]["bindings"][0]["destination_relative_path"] = "AA/aa/report.md"
+
+        response = promote_staged_output(request, staged_root=staged_root, approved_roots={"approved-output": approved_root}, manifest_document=manifest)
+
+        self.assertEqual("promoted", response["status"])
+
+    def test_existing_sibling_casefold_collision_is_blocked(self):
+        temp, staged_root, approved_root, request, manifest, _source_path, _digest = self._fixture()
+        self.addCleanup(temp.cleanup)
+        parent = approved_root / "CaseDir"
+        parent.mkdir(parents=True, exist_ok=True)
+        (parent / "Report.md").write_text("existing sibling", encoding="utf-8")
+        request["destination"]["normalized_relative_path"] = "CaseDir/report.md"
+        request["authorization"]["bindings"][0]["destination_relative_path"] = "CaseDir/report.md"
+
+        response = promote_staged_output(request, staged_root=staged_root, approved_roots={"approved-output": approved_root}, manifest_document=manifest)
+
+        self.assertEqual("destination_case_collision", response["error_code"])
+
     def test_blocks_source_digest_mismatch(self):
         response, *_ = self._promote(lambda request: request["source"]["digest"].__setitem__("value", "0" * 64))
         self.assertEqual("manifest_reference_mismatch", response["error_code"])
+
+    def test_actual_source_digest_mismatch_reports_read_without_mutation(self):
+        temp, staged_root, approved_root, request, manifest, source_path, _digest = self._fixture()
+        self.addCleanup(temp.cleanup)
+        bad_digest = hashlib.sha256(b"different request and manifest digest").hexdigest()
+        request["source"]["byte_size"] = source_path.stat().st_size
+        request["source"]["digest"]["value"] = bad_digest
+        manifest["artifacts"][0]["digest"]["value"] = bad_digest
+
+        response = promote_staged_output(request, staged_root=staged_root, approved_roots={"approved-output": approved_root}, manifest_document=manifest)
+
+        self.assertEqual("source_digest_mismatch", response["error_code"])
+        self.assertTrue(response["safety_assertions"]["file_content_read_performed"])
+        self.assertFalse(response["safety_assertions"]["actual_file_system_mutation_performed"])
 
     def test_blocks_manifest_id_artifact_path_size_and_digest_mismatch(self):
         mutations = [
@@ -839,6 +985,7 @@ class LocalWorkspaceAdapterControlledPromotionTests(unittest.TestCase):
         self.addCleanup(temp.cleanup)
         outside = Path(temp.name) / "outside"
         outside.mkdir()
+        (approved_root / "reports").rmdir()
         try:
             os.symlink(outside, approved_root / "reports", target_is_directory=True)
         except OSError as exc:
@@ -862,28 +1009,59 @@ class LocalWorkspaceAdapterControlledPromotionTests(unittest.TestCase):
         response = promote_staged_output(request, staged_root=staged_root, approved_roots={"approved-output": approved_root}, manifest_document=manifest, filesystem_probe=probe)
         self.assertEqual("reparse_point_not_allowed", response["error_code"])
 
+    def test_blocks_lexical_source_component_symlink_probe_without_skip(self):
+        temp, staged_root, approved_root, request, manifest, _source_path, _digest = self._fixture()
+        self.addCleanup(temp.cleanup)
+        probe = FilesystemProbe(symlink_paths={str((staged_root / "artifacts").resolve(strict=False))})
+        response = promote_staged_output(request, staged_root=staged_root, approved_roots={"approved-output": approved_root}, manifest_document=manifest, filesystem_probe=probe)
+        self.assertEqual("symlink_not_allowed", response["error_code"])
+
+    def test_blocks_lexical_destination_parent_symlink_probe_without_skip(self):
+        temp, staged_root, approved_root, request, manifest, _source_path, _digest = self._fixture()
+        self.addCleanup(temp.cleanup)
+        (approved_root / "reports").mkdir(parents=True, exist_ok=True)
+        probe = FilesystemProbe(symlink_paths={str((approved_root / "reports").resolve(strict=False))})
+        response = promote_staged_output(request, staged_root=staged_root, approved_roots={"approved-output": approved_root}, manifest_document=manifest, filesystem_probe=probe)
+        self.assertEqual("symlink_not_allowed", response["error_code"])
+
+    def test_reparse_inspection_failure_fails_closed(self):
+        temp, staged_root, approved_root, request, manifest, _source_path, _digest = self._fixture()
+        self.addCleanup(temp.cleanup)
+        probe = FilesystemProbe(reparse_inspection_error_paths={str(staged_root.resolve(strict=False))})
+        response = promote_staged_output(request, staged_root=staged_root, approved_roots={"approved-output": approved_root}, manifest_document=manifest, filesystem_probe=probe)
+        self.assertEqual("unsupported_safety_check", response["error_code"])
+
     def test_blocks_cross_volume_probe(self):
         temp, staged_root, approved_root, request, manifest, source_path, _digest = self._fixture()
         self.addCleanup(temp.cleanup)
         destination_parent = (approved_root / "reports").resolve(strict=False)
-        destination_parent.mkdir(parents=True)
+        destination_parent.mkdir(parents=True, exist_ok=True)
         probe = FilesystemProbe(device_identity_overrides={str(source_path.resolve()): "dev-a", str(destination_parent): "dev-b"})
         response = promote_staged_output(request, staged_root=staged_root, approved_roots={"approved-output": approved_root}, manifest_document=manifest, filesystem_probe=probe)
         self.assertEqual("cross_volume_promotion_not_allowed", response["error_code"])
 
     def test_blocks_source_changed_after_validation(self):
-        response, *_ = self._promote(probe=FilesystemProbe(source_changed_after_validation=True))
-        self.assertEqual("source_size_mismatch", response["error_code"])
+        temp, staged_root, approved_root, request, manifest, source_path, _digest = self._fixture()
+        self.addCleanup(temp.cleanup)
+        before = source_path.read_bytes()
+        response = promote_staged_output(request, staged_root=staged_root, approved_roots={"approved-output": approved_root}, manifest_document=manifest, filesystem_probe=FilesystemProbe(source_changed_after_validation=True))
+        self.assertEqual("source_changed_after_validation", response["error_code"])
+        self.assertEqual(before, source_path.read_bytes())
+        self.assertFalse(response["safety_assertions"]["source_mutated"])
 
     def test_blocks_unsupported_link_and_exclusive_commit_failure(self):
         response, *_ = self._promote(probe=FilesystemProbe(unsupported_link=True))
         self.assertEqual("unsupported_safety_check", response["error_code"])
         response, *_ = self._promote(probe=FilesystemProbe(fail_exclusive_commit=True))
         self.assertEqual("destination_exists", response["error_code"])
+        self.assertTrue(response["safety_assertions"]["file_content_read_performed"])
+        self.assertTrue(response["safety_assertions"]["actual_file_system_mutation_performed"])
 
     def test_blocks_temporary_cleanup_failure(self):
         response, *_ = self._promote(probe=FilesystemProbe(unsupported_link=True, cleanup_failure=True))
         self.assertEqual("temporary_cleanup_failed", response["error_code"])
+        self.assertTrue(response["safety_assertions"]["file_content_read_performed"])
+        self.assertTrue(response["safety_assertions"]["actual_file_system_mutation_performed"])
 
 
 if __name__ == "__main__":

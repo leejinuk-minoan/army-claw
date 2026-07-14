@@ -9,25 +9,25 @@
     "contract_version": "army-claw-local-workspace-controlled-promotion-035.v1",
     "status": "promoted",
     "authorization": {
-      "authorization_id": "auth-035-001",
+      "authorization_id": "auth-req-035-001",
       "artifact_id": "artifact-001",
-      "manifest_id": "manifest-001",
+      "manifest_id": "sha256:example-recomputed-from-canonical-content",
       "destination_root_id": "approved-output-root",
-      "destination_relative_path": "reports/report.bin",
+      "destination_relative_path": "reports/report.txt",
       "request_id": "req-035-001",
       "single_use": true
     },
     "source": {
       "artifact_id": "artifact-001",
-      "manifest_id": "manifest-001",
-      "normalized_relative_path": "staged/report.bin",
+      "manifest_id": "sha256:example-recomputed-from-canonical-content",
+      "normalized_relative_path": "outputs/task033/report.txt",
       "byte_size": 45,
       "digest_algorithm": "sha256",
       "digest": "6cc03375a40e5c9eb2b317686103112c3f2f1d265589f2018e23cb83ddddfd69"
     },
     "destination": {
       "approved_root_id": "approved-output-root",
-      "normalized_relative_path": "reports/report.bin",
+      "normalized_relative_path": "reports/report.txt",
       "overwrite_allowed": false
     },
     "verification": {
@@ -58,7 +58,9 @@
       "local_hancom_com_executed": false,
       "real_hwp_hwpx_hancell_hanshow_artifact_generated": false,
       "public_internet_access_performed": false,
-      "dependency_install_performed": false
+      "dependency_install_performed": false,
+      "source_mutated": false,
+      "temporary_path_cleaned": true
     }
   },
   "safety_assertions": {
@@ -81,7 +83,9 @@
     "local_hancom_com_executed": false,
     "real_hwp_hwpx_hancell_hanshow_artifact_generated": false,
     "public_internet_access_performed": false,
-    "dependency_install_performed": false
+    "dependency_install_performed": false,
+    "source_mutated": false,
+    "temporary_path_cleaned": true
   },
   "verification": {
     "source_sha256": "6cc03375a40e5c9eb2b317686103112c3f2f1d265589f2018e23cb83ddddfd69",

@@ -11,6 +11,10 @@ Task 035-B evidence must distinguish:
 - external or pre-existing hardlinked staged source prohibition
 - operation-owned transient link commit as the only conditionally permitted hard-link use
 - unsupported filesystem safety checks failing closed
+- canonical Task 033 whole-response and inner-manifest compatibility
+- failure response read/mutation flags matching the actual execution audit
+- lexical source/destination component checks before resolved containment checks
+- sibling-only casefold collision detection
 
 Expected evidence includes validator CLI stdout/stderr/exit code, adapter validator unittest stdout/stderr/exit code, local workspace adapter unittest stdout/stderr/exit code, Python version, final git status, isolated temporary-root promotion evidence, source/temporary/final digest results, authorization and manifest-link checks, exclusive-create result, cleanup result, and final safety assertions.
 

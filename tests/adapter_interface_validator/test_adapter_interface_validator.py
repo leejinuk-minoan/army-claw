@@ -59,6 +59,9 @@ class AdapterInterfaceValidatorTests(unittest.TestCase):
         sample = validator.load_json_file(self.repo_root / entry["sample"])
         results = validator.validate_controlled_promotion_request_sample(sample, self.error_taxonomy)
         self.assert_no_invalid(results)
+        self.assertTrue(any(item["check_id"] == "controlled_promotion.task033_manifest_profile" for item in results))
+        self.assertTrue(any(item["check_id"] == "controlled_promotion.task033_artifact_field_names" for item in results))
+        self.assertTrue(any(item["check_id"] == "controlled_promotion.task033_relationship_field_names" for item in results))
         self.assertGreaterEqual(len(results), 28)
 
     def test_controlled_promotion_response_sample_valid_and_safety_mirror_matches(self):
@@ -131,6 +134,17 @@ class AdapterInterfaceValidatorTests(unittest.TestCase):
                 self.assert_no_invalid(results)
                 self.assertTrue(any(item["check_id"] == "controlled_promotion_negative.matrix_error_code_match" for item in results))
 
+    def test_controlled_promotion_negative_samples_include_failure_evidence_flags(self):
+        entries = [item for item in self.matrix["negative_samples"] if item.get("sample_profile") == "controlled_promotion_negative"]
+        evidence_checked = False
+        for entry in entries:
+            sample = validator.load_json_file(self.repo_root / entry["sample"])
+            results = validator.validate_controlled_promotion_negative_sample(sample, entry, self.error_taxonomy)
+            if any(item["check_id"] == "controlled_promotion_negative.expected_failure_evidence_flags" for item in results):
+                evidence_checked = True
+            self.assert_no_invalid(results)
+        self.assertTrue(evidence_checked)
+
     def test_target_slot_plan_mapping_valid(self):
         for rule in self.validator_contract["mapping_validation_rules"]:
             results = validator.validate_target_slot_plan_mapping(rule["target_id"], rule["adapter_slot_id"], rule["plan_type"], self.contract)
@@ -154,7 +168,7 @@ class AdapterInterfaceValidatorTests(unittest.TestCase):
         self.assertEqual("valid", summary["status"])
         self.assertEqual(0, summary["failed_checks"])
         self.assertEqual(0, summary["blocked_checks"])
-        self.assertGreater(summary["total_checks"], 200)
+        self.assertGreaterEqual(summary["total_checks"], 364)
 
 
 if __name__ == "__main__":
