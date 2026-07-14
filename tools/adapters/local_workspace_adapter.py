@@ -360,14 +360,26 @@ class FilesystemProbe:
     reparse_paths: Set[str] = field(default_factory=set)
     symlink_paths: Set[str] = field(default_factory=set)
     reparse_inspection_error_paths: Set[str] = field(default_factory=set)
+    root_symlink_paths: Set[str] = field(default_factory=set)
+    root_reparse_paths: Set[str] = field(default_factory=set)
+    root_inspection_failure_paths: Set[str] = field(default_factory=set)
     directory_entries_overrides: Mapping[str, Sequence[str]] = field(default_factory=dict)
+    directory_listing_failure_paths: Set[str] = field(default_factory=set)
+    read_failure_paths: Set[str] = field(default_factory=set)
+    hash_failure_paths: Set[str] = field(default_factory=set)
     fail_exclusive_commit: bool = False
     unsupported_link: bool = False
     cleanup_failure: bool = False
+    temp_cleanup_failure_count: int = 0
+    final_cleanup_failure: bool = False
+    temp_creation_failure: bool = False
     source_changed_after_validation: bool = False
 
     def _key(self, path: Path) -> str:
         return str(path.absolute()).casefold()
+
+    def _contains_key(self, values: Set[str], path: Path) -> bool:
+        return self._key(path) in {item.casefold() for item in values}
 
     def device_identity(self, path: Path) -> Any:
         key = self._key(path)
@@ -381,9 +393,9 @@ class FilesystemProbe:
 
     def is_reparse_point(self, path: Path) -> bool:
         key = self._key(path)
-        if key in {item.casefold() for item in self.reparse_inspection_error_paths}:
+        if key in {item.casefold() for item in self.reparse_inspection_error_paths | self.root_inspection_failure_paths}:
             raise LocalWorkspaceAdapterError("unsupported_safety_check", f"cannot inspect reparse point status for {path}")
-        if key in {item.casefold() for item in self.reparse_paths}:
+        if key in {item.casefold() for item in self.reparse_paths | self.root_reparse_paths}:
             return True
         try:
             attrs = getattr(path.lstat(), "st_file_attributes", 0)
@@ -392,16 +404,43 @@ class FilesystemProbe:
         return bool(attrs & getattr(stat, "FILE_ATTRIBUTE_REPARSE_POINT", 0))
 
     def is_symlink(self, path: Path, stat_result: os.stat_result) -> bool:
-        if self._key(path) in {item.casefold() for item in self.symlink_paths}:
+        if self._key(path) in {item.casefold() for item in self.symlink_paths | self.root_symlink_paths}:
             return True
         return stat.S_ISLNK(stat_result.st_mode)
 
     def directory_entries(self, path: Path) -> Sequence[str]:
         key = self._key(path)
+        if key in {item.casefold() for item in self.directory_listing_failure_paths}:
+            raise LocalWorkspaceAdapterError("unsupported_safety_check", f"cannot list directory entries for {path}")
         for raw_path, entries in self.directory_entries_overrides.items():
             if str(raw_path).casefold() == key:
                 return list(entries)
-        return [item.name for item in path.iterdir()]
+        try:
+            return [item.name for item in path.iterdir()]
+        except OSError as exc:
+            raise LocalWorkspaceAdapterError("unsupported_safety_check", f"cannot list directory entries for {path}") from exc
+
+    def read_bytes(self, path: Path) -> bytes:
+        if self._contains_key(self.read_failure_paths, path):
+            raise LocalWorkspaceAdapterError("final_verification_failed", f"cannot read file: {path}")
+        try:
+            return path.read_bytes()
+        except OSError as exc:
+            raise LocalWorkspaceAdapterError("final_verification_failed", f"cannot read file: {path}") from exc
+
+    def stat_file(self, path: Path, error_code: str = "unsupported_safety_check") -> os.stat_result:
+        try:
+            return path.stat()
+        except OSError as exc:
+            raise LocalWorkspaceAdapterError(error_code, f"cannot stat file: {path}") from exc
+
+    def sha256_file(self, path: Path, error_code: str = "final_verification_failed") -> str:
+        if self._contains_key(self.hash_failure_paths, path):
+            raise LocalWorkspaceAdapterError(error_code, f"cannot hash file: {path}")
+        try:
+            return _sha256_file(path)
+        except OSError as exc:
+            raise LocalWorkspaceAdapterError(error_code, f"cannot hash file: {path}") from exc
 
     def link(self, temp_path: Path, final_path: Path) -> None:
         if self.unsupported_link:
@@ -411,9 +450,16 @@ class FilesystemProbe:
         os.link(temp_path, final_path, follow_symlinks=False)
 
     def unlink_temp(self, temp_path: Path) -> None:
-        if self.cleanup_failure:
+        if self.cleanup_failure or self.temp_cleanup_failure_count > 0:
+            if self.temp_cleanup_failure_count > 0:
+                self.temp_cleanup_failure_count -= 1
             raise LocalWorkspaceAdapterError("temporary_cleanup_failed", f"failed to cleanup temporary file: {temp_path}")
         temp_path.unlink(missing_ok=True)
+
+    def unlink_final(self, final_path: Path) -> None:
+        if self.final_cleanup_failure:
+            raise LocalWorkspaceAdapterError("temporary_cleanup_failed", f"failed to cleanup final file: {final_path}")
+        final_path.unlink(missing_ok=True)
 
 
 @dataclass
@@ -424,6 +470,20 @@ class PromotionExecutionAudit:
     final_created: bool = False
     cleanup_performed: bool = False
     source_mutated: bool = False
+    temp_cleanup_attempted: bool = False
+    temp_cleanup_succeeded: bool = True
+    final_cleanup_attempted: bool = False
+    final_cleanup_succeeded: bool = True
+    cleanup_errors: list[str] = field(default_factory=list)
+    original_error_code: str = "none"
+
+    @property
+    def cleanup_attempted(self) -> bool:
+        return self.temp_cleanup_attempted or self.final_cleanup_attempted
+
+    @property
+    def cleanup_complete(self) -> bool:
+        return not self.cleanup_errors and self.temp_cleanup_succeeded and self.final_cleanup_succeeded
 
 
 def _created_at(request: Mapping[str, Any]) -> str:
@@ -491,7 +551,12 @@ def _promotion_error(error_code: str, message: str, audit: Optional[PromotionExe
             "file_content_read_performed": audit.source_content_read,
             "source_retained": True,
             "source_mutated": audit.source_mutated,
-            "temporary_path_cleaned": audit.cleanup_performed,
+            "temporary_path_cleaned": audit.temp_cleanup_succeeded,
+            "final_path_cleaned": audit.final_cleanup_succeeded,
+            "cleanup_attempted": audit.cleanup_attempted,
+            "cleanup_complete": audit.cleanup_complete,
+            "cleanup_error_codes": list(audit.cleanup_errors),
+            "original_error_code": audit.original_error_code,
             "local_hancom_com_executed": False,
             "real_hwp_hwpx_hancell_hanshow_artifact_generated": False,
             "public_internet_access_performed": False,
@@ -549,6 +614,28 @@ def _assert_no_reparse_or_symlink(path: Path, probe: FilesystemProbe, error_code
         raise LocalWorkspaceAdapterError("symlink_not_allowed", f"symlink not allowed: {path}")
     if probe.is_reparse_point(path):
         raise LocalWorkspaceAdapterError(error_code, f"reparse point not allowed: {path}")
+
+
+def _validate_injected_root(raw_root: Path, *, probe: FilesystemProbe, role: str) -> Path:
+    try:
+        stat_result = raw_root.lstat()
+    except OSError as exc:
+        if probe._contains_key(probe.root_symlink_paths, raw_root):
+            raise LocalWorkspaceAdapterError("symlink_not_allowed", f"{role} root symlink not allowed: {raw_root}") from exc
+        if probe._contains_key(probe.root_reparse_paths, raw_root):
+            raise LocalWorkspaceAdapterError("reparse_point_not_allowed", f"{role} root reparse point not allowed: {raw_root}") from exc
+        if probe._contains_key(probe.root_inspection_failure_paths, raw_root):
+            raise LocalWorkspaceAdapterError("unsupported_safety_check", f"cannot inspect {role} root: {raw_root}") from exc
+        error_code = "source_outside_staged_root" if role == "staged" else "approved_root_not_allowed"
+        raise LocalWorkspaceAdapterError(error_code, f"{role} root is missing: {raw_root}") from exc
+    if probe.is_symlink(raw_root, stat_result):
+        raise LocalWorkspaceAdapterError("symlink_not_allowed", f"{role} root symlink not allowed: {raw_root}")
+    if probe.is_reparse_point(raw_root):
+        raise LocalWorkspaceAdapterError("reparse_point_not_allowed", f"{role} root reparse point not allowed: {raw_root}")
+    if not stat.S_ISDIR(stat_result.st_mode):
+        error_code = "source_outside_staged_root" if role == "staged" else "approved_root_not_allowed"
+        raise LocalWorkspaceAdapterError(error_code, f"{role} root is not a directory: {raw_root}")
+    return raw_root.resolve(strict=False)
 
 
 def _assert_path_components_safe(root: Path, path: Path, probe: FilesystemProbe, final_must_exist: bool = True) -> None:
@@ -773,10 +860,18 @@ def _trusted_receipt_matches(receipt: Mapping[str, Any], request_id: str, source
     )
 
 
-def _write_exclusive_temp(destination_parent: Path, data: bytes) -> Path:
-    destination_parent.mkdir(parents=True, exist_ok=True)
+def _write_exclusive_temp(destination_parent: Path, data: bytes, probe: FilesystemProbe) -> Path:
+    if probe.temp_creation_failure:
+        raise LocalWorkspaceAdapterError("exclusive_create_failed", f"failed to create temporary promotion file in {destination_parent}")
+    try:
+        destination_parent.mkdir(parents=True, exist_ok=True)
+    except OSError as exc:
+        raise LocalWorkspaceAdapterError("exclusive_create_failed", f"failed to prepare destination parent: {destination_parent}") from exc
     temp_path = destination_parent / f".army-claw-promotion-{secrets.token_hex(16)}.tmp"
-    fd = os.open(temp_path, os.O_CREAT | os.O_EXCL | os.O_WRONLY, 0o600)
+    try:
+        fd = os.open(temp_path, os.O_CREAT | os.O_EXCL | os.O_WRONLY, 0o600)
+    except OSError as exc:
+        raise LocalWorkspaceAdapterError("exclusive_create_failed", f"failed to create temporary promotion file: {temp_path}") from exc
     try:
         with os.fdopen(fd, "wb") as handle:
             handle.write(data)
@@ -788,7 +883,7 @@ def _write_exclusive_temp(destination_parent: Path, data: bytes) -> Path:
         except OSError:
             pass
         temp_path.unlink(missing_ok=True)
-        raise
+        raise LocalWorkspaceAdapterError("exclusive_create_failed", f"failed to write temporary promotion file: {temp_path}")
     return temp_path
 
 
@@ -807,6 +902,7 @@ def promote_staged_output(
     audit = PromotionExecutionAudit()
     temp_path: Optional[Path] = None
     final_created = False
+    destination_path: Optional[Path] = None
     try:
         request_id = _string(request.get("request_id"), "request_id")
         if request.get("operation") != CONTROLLED_PROMOTION_OPERATION:
@@ -820,11 +916,11 @@ def promote_staged_output(
         _validate_promotion_constraints(request.get("constraints"))
         _validate_manifest_link(manifest_document, source)
 
-        staged_root = staged_root.resolve(strict=False)
+        staged_root = _validate_injected_root(staged_root, probe=probe, role="staged")
         approved_root = approved_roots.get(destination.approved_root_id)
         if approved_root is None:
             raise LocalWorkspaceAdapterError("approved_root_not_allowed", "destination approved root is not allowed")
-        approved_root = approved_root.resolve(strict=False)
+        approved_root = _validate_injected_root(approved_root, probe=probe, role="approved")
         source_path = _safe_join(staged_root, source.normalized_relative_path, "source_outside_staged_root")
         destination_path = _safe_join(approved_root, destination.normalized_relative_path, "destination_outside_approved_root")
         if source_path == destination_path:
@@ -835,10 +931,10 @@ def promote_staged_output(
         if getattr(source_path.lstat(), "st_nlink", 1) > 1:
             raise LocalWorkspaceAdapterError("hardlink_not_allowed", "pre-existing hardlinked source is not allowed")
 
-        source_data = source_path.read_bytes()
+        source_data = probe.read_bytes(source_path)
         audit.source_content_read = True
-        actual_source_size = source_path.stat().st_size
-        actual_source_digest = _sha256_file(source_path)
+        actual_source_size = probe.stat_file(source_path, "final_verification_failed").st_size
+        actual_source_digest = probe.sha256_file(source_path, "final_verification_failed")
         if actual_source_size != source.byte_size:
             raise LocalWorkspaceAdapterError("source_size_mismatch", "source size does not match request and manifest")
         if actual_source_digest != source.digest:
@@ -855,27 +951,31 @@ def promote_staged_output(
 
         _assert_path_components_safe(approved_root, destination_parent, probe, final_must_exist=True)
         _same_device_or_block(source_path, destination_parent, probe)
-        temp_path = _write_exclusive_temp(destination_parent, source_data)
+        temp_path = _write_exclusive_temp(destination_parent, source_data, probe)
         audit.temp_created = True
-        if temp_path.stat().st_size != source.byte_size or _sha256_file(temp_path) != source.digest:
+        audit.temp_cleanup_succeeded = False
+        if probe.stat_file(temp_path, "final_verification_failed").st_size != source.byte_size or probe.sha256_file(temp_path, "final_verification_failed") != source.digest:
             raise LocalWorkspaceAdapterError("destination_digest_mismatch", "temporary promotion digest mismatch")
         try:
             probe.link(temp_path, destination_path)
             final_created = True
             audit.final_created = True
+            audit.final_cleanup_succeeded = False
         except FileExistsError as exc:
             raise LocalWorkspaceAdapterError("destination_exists", "destination was created before exclusive commit") from exc
         except OSError as exc:
             raise LocalWorkspaceAdapterError("exclusive_create_failed", f"exclusive commit failed: {exc}") from exc
         probe.unlink_temp(temp_path)
         audit.cleanup_performed = True
+        audit.temp_cleanup_attempted = True
+        audit.temp_cleanup_succeeded = True
         temp_path = None
 
-        destination_digest = _sha256_file(destination_path)
-        destination_size = destination_path.stat().st_size
+        destination_digest = probe.sha256_file(destination_path, "final_verification_failed")
+        destination_size = probe.stat_file(destination_path, "final_verification_failed").st_size
         if destination_digest != source.digest or destination_size != source.byte_size:
             raise LocalWorkspaceAdapterError("destination_digest_mismatch", "destination digest/size mismatch")
-        if probe.source_changed_after_validation or not source_path.exists() or _sha256_file(source_path) != source.digest:
+        if probe.source_changed_after_validation or not source_path.exists() or probe.sha256_file(source_path, "final_verification_failed") != source.digest:
             raise LocalWorkspaceAdapterError("source_changed_after_validation", "source changed after promotion validation")
 
         safety = PromotionSafetyAssertions()
@@ -902,18 +1002,33 @@ def promote_staged_output(
             "output_artifacts": [],
         }
     except LocalWorkspaceAdapterError as exc:
+        audit.original_error_code = exc.error_code
+        if final_created and destination_path is not None:
+            audit.final_cleanup_attempted = True
+            try:
+                probe.unlink_final(destination_path)
+                audit.cleanup_performed = True
+                audit.final_cleanup_succeeded = True
+            except LocalWorkspaceAdapterError:
+                audit.final_cleanup_succeeded = False
+                audit.cleanup_errors.append("final_cleanup_failed")
+            except OSError:
+                audit.final_cleanup_succeeded = False
+                audit.cleanup_errors.append("final_cleanup_failed")
         if temp_path is not None:
+            audit.temp_cleanup_attempted = True
             try:
                 probe.unlink_temp(temp_path)
                 audit.cleanup_performed = True
+                audit.temp_cleanup_succeeded = True
             except LocalWorkspaceAdapterError as cleanup_exc:
-                return _promotion_error(cleanup_exc.error_code, cleanup_exc.message, audit)
-        if final_created and "destination_path" in locals():
-            try:
-                destination_path.unlink(missing_ok=True)
-                audit.cleanup_performed = True
+                audit.temp_cleanup_succeeded = False
+                audit.cleanup_errors.append("temp_cleanup_failed")
             except OSError:
-                return _promotion_error("temporary_cleanup_failed", "failed to remove operation-created final artifact after error", audit)
+                audit.temp_cleanup_succeeded = False
+                audit.cleanup_errors.append("temp_cleanup_failed")
+        if audit.cleanup_errors:
+            return _promotion_error("temporary_cleanup_failed", f"cleanup failed after {exc.error_code}", audit)
         return _promotion_error(exc.error_code, exc.message, audit)
 
 

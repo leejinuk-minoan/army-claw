@@ -84,12 +84,12 @@ routing_class: cloud_first_local_verify
 first phase: Task 035-A cloud package
 adapter_validator_gate_required: true
 status: implementation_corrected_pending_formal_local_verification
-subphase: task035a2lc_corrective_complete
+subphase: task035a2lc2_root_cleanup_corrective_complete
 adapter_validator_gate_status: required_not_run
 completion_gate_passed: false
 ```
 
-Task 035는 staged sandbox artifact를 승인된 대상 경계로 승격하는 controlled promotion 계약과 검증 경계를 정의한다. Task 035-A2L-C에서는 Task 033 canonical manifest compatibility, failure evidence truthfulness, source immutability, lexical component safety, sibling casefold collision, validator sample profile을 보정했다. formal local verification인 Task 035-B는 아직 수행하지 않았다.
+Task 035는 staged sandbox artifact를 승인된 대상 경계로 승격하는 controlled promotion 계약과 검증 경계를 정의한다. Task 035-A2L-C에서는 Task 033 canonical manifest compatibility, failure evidence truthfulness, source immutability, lexical component safety, sibling casefold collision, validator sample profile을 보정했다. Task 035-A2L-C2에서는 raw injected root 검사, root symlink/reparse 차단, root inspection failure fail-closed, post-commit temp/final cleanup 독립 시도, pre-existing destination 보존, structured filesystem OSError response를 추가로 보정했다. formal local verification인 Task 035-B는 아직 수행하지 않았다.
 
 ## 유지되는 금지사항
 

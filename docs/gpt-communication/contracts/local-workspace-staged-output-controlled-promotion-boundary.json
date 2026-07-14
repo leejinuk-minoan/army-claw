@@ -38,7 +38,15 @@
     "casefold_collision_allowed": false,
     "casefold_collision_policy": "existing_sibling_only",
     "repeated_path_segment_casefold_collision_allowed": true,
-    "lexical_component_check_before_resolve": true
+    "lexical_component_check_before_resolve": true,
+    "raw_injected_root_checked_before_resolve": true,
+    "raw_staged_root_checked_before_resolve": true,
+    "raw_approved_root_checked_before_resolve": true,
+    "root_symlink_allowed": false,
+    "root_reparse_point_allowed": false,
+    "root_inspection_failure_policy": "unsupported_safety_check",
+    "missing_root_policy": "fail_closed",
+    "automatic_root_creation_allowed": false
   },
   "object_safety": {
     "symlink_allowed": false,
@@ -109,7 +117,13 @@
     "temporary_cleanup_required_on_failure": true,
     "exclusive_no_overwrite_link_commit_required": true,
     "destination_parent_must_preexist": true,
-    "source_immutability_unconditional": true
+    "source_immutability_unconditional": true,
+    "post_commit_failure_cleanup_policy": "best_effort_independent_temp_and_final_cleanup",
+    "cleanup_early_return_allowed": false,
+    "operation_created_final_removed_on_failed_promotion": true,
+    "operation_created_temp_removed_on_failed_promotion": true,
+    "pre_existing_destination_cleanup_allowed": false,
+    "pre_existing_destination_preserved_on_failure": true
   },
   "idempotency": {
     "existing_destination_is_success_by_default": false,
@@ -206,8 +220,37 @@
       "file_content_read_performed": true,
       "actual_file_system_mutation_performed": true
     },
+    "cleanup_evidence_fields": [
+      "temporary_path_cleaned",
+      "final_path_cleaned",
+      "cleanup_attempted",
+      "cleanup_complete",
+      "cleanup_error_codes",
+      "original_error_code"
+    ],
     "user_workspace_file_system_mutation_performed": false,
     "production_promotion_performed": false,
     "source_mutated": false
+  },
+  "structured_filesystem_error_policy": {
+    "expected_filesystem_oserror_returns_structured_response": true,
+    "traceback_escape_allowed": false,
+    "covered_failure_points": [
+      "directory_listing_failure",
+      "source_read_or_hash_failure",
+      "source_stat_failure",
+      "temp_create_write_failure",
+      "temp_stat_or_hash_failure",
+      "final_stat_or_hash_failure",
+      "hard_link_commit_failure",
+      "temp_unlink_failure",
+      "final_unlink_failure"
+    ],
+    "default_error_mapping": {
+      "directory_listing_failure": "unsupported_safety_check",
+      "source_read_or_hash_failure": "final_verification_failed",
+      "temp_create_write_failure": "exclusive_create_failed",
+      "cleanup_failure": "temporary_cleanup_failed"
+    }
   }
 }

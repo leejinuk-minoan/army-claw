@@ -13,6 +13,13 @@ The corrective pass aligns controlled promotion with the canonical Task 033 stag
 
 The correction also adds truthful failure execution audit flags, removes source mutation from source-change simulation, checks lexical components before resolve, makes reparse inspection fail closed, and changes casefold collision from repeated path segment matching to real sibling collision detection.
 
+## Task 035-A2L-C2 correction
+The second corrective pass closes the raw root boundary and post-commit cleanup gaps. Injected staged and approved roots are checked before `resolve()`, root symlink/reparse points are blocked, and root inspection failure returns structured `unsupported_safety_check` evidence.
+
+Cleanup now records temp and final paths independently. A failure after final creation attempts operation-created final cleanup and temp cleanup without early return, never treats a pre-existing destination as a cleanup target, preserves the source bytes, and reports cleanup evidence through `temporary_path_cleaned`, `final_path_cleaned`, `cleanup_attempted`, `cleanup_complete`, `cleanup_error_codes`, and `original_error_code`.
+
+Expected filesystem errors for directory listing, source read/hash/stat, temp creation/write/hash/stat, final hash/stat, commit, and unlink operations are converted to structured blocking responses in the covered unit tests.
+
 ## Claimable scope
 The package supports an implementation-readiness claim for controlled promotion policy, validator integration, and temporary-root unit-test behavior. Formal Task 035-B evidence is still required before final Task 035 completion.
 

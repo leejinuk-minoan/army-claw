@@ -64,6 +64,19 @@ class AdapterInterfaceValidatorTests(unittest.TestCase):
         self.assertTrue(any(item["check_id"] == "controlled_promotion.task033_relationship_field_names" for item in results))
         self.assertGreaterEqual(len(results), 28)
 
+    def test_controlled_promotion_contract_root_cleanup_policy_valid(self):
+        contract = validator.load_json_file(self.repo_root / validator.DEFAULT_CONTROLLED_PROMOTION_CONTRACT_PATH)
+        results = validator.validate_controlled_promotion_contract_policy(contract)
+        self.assert_no_invalid(results)
+        required = {
+            "controlled_promotion_contract.root_lexical_safety_policy",
+            "controlled_promotion_contract.post_commit_failure_cleanup_policy",
+            "controlled_promotion_contract.cleanup_evidence_fields",
+            "controlled_promotion_contract.pre_existing_destination_preservation",
+            "controlled_promotion_contract.structured_filesystem_errors",
+        }
+        self.assertTrue(required.issubset({item["check_id"] for item in results}))
+
     def test_controlled_promotion_response_sample_valid_and_safety_mirror_matches(self):
         entry = next(item for item in self.matrix["positive_samples"] if item["sample_type"] == "controlled_promotion_response")
         sample = validator.load_json_file(self.repo_root / entry["sample"])
@@ -168,7 +181,7 @@ class AdapterInterfaceValidatorTests(unittest.TestCase):
         self.assertEqual("valid", summary["status"])
         self.assertEqual(0, summary["failed_checks"])
         self.assertEqual(0, summary["blocked_checks"])
-        self.assertGreaterEqual(summary["total_checks"], 364)
+        self.assertGreaterEqual(summary["total_checks"], 378)
 
 
 if __name__ == "__main__":

@@ -1031,6 +1031,56 @@ class LocalWorkspaceAdapterControlledPromotionTests(unittest.TestCase):
         response = promote_staged_output(request, staged_root=staged_root, approved_roots={"approved-output": approved_root}, manifest_document=manifest, filesystem_probe=probe)
         self.assertEqual("unsupported_safety_check", response["error_code"])
 
+    def test_blocks_raw_staged_root_symlink_probe_without_skip(self):
+        temp, staged_root, approved_root, request, manifest, _source_path, _digest = self._fixture()
+        self.addCleanup(temp.cleanup)
+        raw_staged_root = Path(temp.name) / "raw-staged-root-link"
+        probe = FilesystemProbe(root_symlink_paths={str(raw_staged_root)})
+
+        response = promote_staged_output(request, staged_root=raw_staged_root, approved_roots={"approved-output": approved_root}, manifest_document=manifest, filesystem_probe=probe)
+
+        self.assertEqual("symlink_not_allowed", response["error_code"])
+        self.assertFalse(response["safety_assertions"]["file_content_read_performed"])
+
+    def test_blocks_raw_approved_root_symlink_probe_without_skip(self):
+        temp, staged_root, approved_root, request, manifest, _source_path, _digest = self._fixture()
+        self.addCleanup(temp.cleanup)
+        raw_approved_root = Path(temp.name) / "raw-approved-root-link"
+        probe = FilesystemProbe(root_symlink_paths={str(raw_approved_root)})
+
+        response = promote_staged_output(request, staged_root=staged_root, approved_roots={"approved-output": raw_approved_root}, manifest_document=manifest, filesystem_probe=probe)
+
+        self.assertEqual("symlink_not_allowed", response["error_code"])
+        self.assertFalse(response["safety_assertions"]["file_content_read_performed"])
+
+    def test_blocks_raw_root_reparse_probe_without_skip(self):
+        for role in ("staged", "approved"):
+            with self.subTest(role=role):
+                temp, staged_root, approved_root, request, manifest, _source_path, _digest = self._fixture()
+                self.addCleanup(temp.cleanup)
+                raw_root = Path(temp.name) / f"raw-{role}-root-reparse"
+                probe = FilesystemProbe(root_reparse_paths={str(raw_root)})
+                roots = {"approved-output": approved_root}
+                if role == "staged":
+                    staged_root = raw_root
+                else:
+                    roots = {"approved-output": raw_root}
+
+                response = promote_staged_output(request, staged_root=staged_root, approved_roots=roots, manifest_document=manifest, filesystem_probe=probe)
+
+                self.assertEqual("reparse_point_not_allowed", response["error_code"])
+                self.assertFalse(response["safety_assertions"]["file_content_read_performed"])
+
+    def test_blocks_raw_root_inspection_failure_without_skip(self):
+        temp, staged_root, approved_root, request, manifest, _source_path, _digest = self._fixture()
+        self.addCleanup(temp.cleanup)
+        probe = FilesystemProbe(root_inspection_failure_paths={str(staged_root)})
+
+        response = promote_staged_output(request, staged_root=staged_root, approved_roots={"approved-output": approved_root}, manifest_document=manifest, filesystem_probe=probe)
+
+        self.assertEqual("unsupported_safety_check", response["error_code"])
+        self.assertFalse(response["safety_assertions"]["file_content_read_performed"])
+
     def test_blocks_cross_volume_probe(self):
         temp, staged_root, approved_root, request, manifest, source_path, _digest = self._fixture()
         self.addCleanup(temp.cleanup)
@@ -1062,6 +1112,90 @@ class LocalWorkspaceAdapterControlledPromotionTests(unittest.TestCase):
         self.assertEqual("temporary_cleanup_failed", response["error_code"])
         self.assertTrue(response["safety_assertions"]["file_content_read_performed"])
         self.assertTrue(response["safety_assertions"]["actual_file_system_mutation_performed"])
+
+    def test_post_link_temp_cleanup_failure_removes_operation_created_final(self):
+        temp, staged_root, approved_root, request, manifest, source_path, _digest = self._fixture()
+        self.addCleanup(temp.cleanup)
+        destination = approved_root / "reports/report.md"
+        probe = FilesystemProbe(temp_cleanup_failure_count=2)
+
+        response = promote_staged_output(request, staged_root=staged_root, approved_roots={"approved-output": approved_root}, manifest_document=manifest, filesystem_probe=probe)
+
+        self.assertEqual("temporary_cleanup_failed", response["error_code"])
+        self.assertFalse(destination.exists())
+        self.assertEqual(b"# promoted artifact\n", source_path.read_bytes())
+        safety = response["safety_assertions"]
+        self.assertTrue(safety["actual_file_system_mutation_performed"])
+        self.assertTrue(safety["file_content_read_performed"])
+        self.assertTrue(safety["final_path_cleaned"])
+        self.assertFalse(safety["temporary_path_cleaned"])
+        self.assertFalse(safety["cleanup_complete"])
+        self.assertEqual("temporary_cleanup_failed", safety["original_error_code"])
+
+    def test_final_cleanup_failure_still_cleans_temp(self):
+        temp, staged_root, approved_root, request, manifest, _source_path, _digest = self._fixture()
+        self.addCleanup(temp.cleanup)
+        destination = approved_root / "reports/report.md"
+        probe = FilesystemProbe(source_changed_after_validation=True, final_cleanup_failure=True)
+
+        response = promote_staged_output(request, staged_root=staged_root, approved_roots={"approved-output": approved_root}, manifest_document=manifest, filesystem_probe=probe)
+
+        self.assertEqual("temporary_cleanup_failed", response["error_code"])
+        self.assertTrue(destination.exists())
+        self.assertFalse(any(path.name.startswith(".army-claw-promotion-") for path in destination.parent.iterdir()))
+        safety = response["safety_assertions"]
+        self.assertTrue(safety["cleanup_attempted"])
+        self.assertFalse(safety["final_path_cleaned"])
+        self.assertTrue(safety["temporary_path_cleaned"])
+        self.assertFalse(safety["cleanup_complete"])
+        self.assertIn("final_cleanup_failed", safety["cleanup_error_codes"])
+
+    def test_temp_and_final_cleanup_failures_are_both_attempted(self):
+        response, _staged_root, approved_root, _source_path, _digest = self._promote(probe=FilesystemProbe(temp_cleanup_failure_count=2, final_cleanup_failure=True))
+
+        self.assertEqual("temporary_cleanup_failed", response["error_code"])
+        safety = response["safety_assertions"]
+        self.assertTrue(safety["cleanup_attempted"])
+        self.assertFalse(safety["temporary_path_cleaned"])
+        self.assertFalse(safety["final_path_cleaned"])
+        self.assertIn("temp_cleanup_failed", safety["cleanup_error_codes"])
+        self.assertIn("final_cleanup_failed", safety["cleanup_error_codes"])
+
+    def test_pre_existing_destination_is_never_cleanup_target(self):
+        temp, staged_root, approved_root, request, manifest, _source_path, _digest = self._fixture()
+        self.addCleanup(temp.cleanup)
+        destination = approved_root / "reports/report.md"
+        destination.write_bytes(b"existing")
+        response = promote_staged_output(request, staged_root=staged_root, approved_roots={"approved-output": approved_root}, manifest_document=manifest, filesystem_probe=FilesystemProbe(final_cleanup_failure=True))
+
+        self.assertEqual("destination_exists", response["error_code"])
+        self.assertEqual(b"existing", destination.read_bytes())
+        self.assertFalse(response["safety_assertions"]["cleanup_attempted"])
+
+    def test_directory_listing_oserror_returns_structured_response(self):
+        temp, staged_root, approved_root, request, manifest, _source_path, _digest = self._fixture()
+        self.addCleanup(temp.cleanup)
+        probe = FilesystemProbe(directory_listing_failure_paths={str(approved_root)})
+
+        response = promote_staged_output(request, staged_root=staged_root, approved_roots={"approved-output": approved_root}, manifest_document=manifest, filesystem_probe=probe)
+
+        self.assertEqual("unsupported_safety_check", response["error_code"])
+
+    def test_source_read_oserror_returns_structured_response(self):
+        temp, staged_root, approved_root, request, manifest, source_path, _digest = self._fixture()
+        self.addCleanup(temp.cleanup)
+        probe = FilesystemProbe(read_failure_paths={str(source_path)})
+
+        response = promote_staged_output(request, staged_root=staged_root, approved_roots={"approved-output": approved_root}, manifest_document=manifest, filesystem_probe=probe)
+
+        self.assertEqual("final_verification_failed", response["error_code"])
+        self.assertFalse(response["safety_assertions"]["actual_file_system_mutation_performed"])
+
+    def test_temp_creation_oserror_returns_structured_response(self):
+        response, *_ = self._promote(probe=FilesystemProbe(temp_creation_failure=True))
+
+        self.assertEqual("exclusive_create_failed", response["error_code"])
+        self.assertFalse(response["safety_assertions"]["actual_file_system_mutation_performed"])
 
 
 if __name__ == "__main__":

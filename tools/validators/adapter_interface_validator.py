@@ -28,6 +28,7 @@ DEFAULT_ERROR_TAXONOMY_PATH = "docs/gpt-communication/contracts/common-office-ad
 DEFAULT_VALIDATOR_CONTRACT_PATH = "docs/gpt-communication/contracts/adapter-interface-validator-contract.json"
 DEFAULT_MATRIX_PATH = "docs/gpt-communication/contracts/adapter-interface-validation-matrix.json"
 DEFAULT_SAMPLES_DIR = "docs/gpt-communication/contracts/samples/common-office-adapter-interface"
+DEFAULT_CONTROLLED_PROMOTION_CONTRACT_PATH = "docs/gpt-communication/contracts/local-workspace-staged-output-controlled-promotion-boundary.json"
 CONTROLLED_PROMOTION_REQUIRED_CONSTRAINTS = {
     "retain_staged_source": True,
     "require_digest_match": True,
@@ -375,6 +376,46 @@ def validate_controlled_promotion_request_sample(sample: Mapping[str, Any], erro
     return findings
 
 
+def validate_controlled_promotion_contract_policy(contract: Mapping[str, Any]) -> List[Dict[str, Any]]:
+    findings: List[Dict[str, Any]] = []
+    approved_root_policy = contract.get("approved_root_policy") if isinstance(contract.get("approved_root_policy"), Mapping) else {}
+    placement_policy = contract.get("placement_policy") if isinstance(contract.get("placement_policy"), Mapping) else {}
+    failure_audit_policy = contract.get("failure_audit_policy") if isinstance(contract.get("failure_audit_policy"), Mapping) else {}
+    structured_error_policy = contract.get("structured_filesystem_error_policy") if isinstance(contract.get("structured_filesystem_error_policy"), Mapping) else {}
+
+    root_policy_ok = (
+        approved_root_policy.get("raw_injected_root_checked_before_resolve") is True
+        and approved_root_policy.get("raw_staged_root_checked_before_resolve") is True
+        and approved_root_policy.get("raw_approved_root_checked_before_resolve") is True
+        and approved_root_policy.get("root_symlink_allowed") is False
+        and approved_root_policy.get("root_reparse_point_allowed") is False
+        and approved_root_policy.get("root_inspection_failure_policy") == "unsupported_safety_check"
+    )
+    findings.append(result("controlled_promotion_contract.root_lexical_safety_policy", ResultStatus.VALID if root_policy_ok else ResultStatus.INVALID, "raw injected roots are checked before resolve and root symlink/reparse is prohibited"))
+
+    cleanup_policy_ok = (
+        placement_policy.get("post_commit_failure_cleanup_policy") == "best_effort_independent_temp_and_final_cleanup"
+        and placement_policy.get("operation_created_final_removed_on_failed_promotion") is True
+        and placement_policy.get("cleanup_early_return_allowed") is False
+    )
+    findings.append(result("controlled_promotion_contract.post_commit_failure_cleanup_policy", ResultStatus.VALID if cleanup_policy_ok else ResultStatus.INVALID, "post-commit failure cleanup is independent and best effort"))
+
+    evidence_fields = set(failure_audit_policy.get("cleanup_evidence_fields", [])) if isinstance(failure_audit_policy.get("cleanup_evidence_fields"), list) else set()
+    required_evidence_fields = {"temporary_path_cleaned", "final_path_cleaned", "cleanup_attempted", "cleanup_complete", "cleanup_error_codes", "original_error_code"}
+    findings.append(result("controlled_promotion_contract.cleanup_evidence_fields", ResultStatus.VALID if required_evidence_fields.issubset(evidence_fields) else ResultStatus.INVALID, "temp/final cleanup evidence fields are present", expected=sorted(required_evidence_fields), actual=sorted(evidence_fields)))
+
+    preexisting_ok = placement_policy.get("pre_existing_destination_cleanup_allowed") is False and placement_policy.get("pre_existing_destination_preserved_on_failure") is True
+    findings.append(result("controlled_promotion_contract.pre_existing_destination_preservation", ResultStatus.VALID if preexisting_ok else ResultStatus.INVALID, "pre-existing destination is preserved and never cleanup target"))
+
+    structured_ok = (
+        structured_error_policy.get("expected_filesystem_oserror_returns_structured_response") is True
+        and structured_error_policy.get("traceback_escape_allowed") is False
+        and {"directory_listing_failure", "source_read_or_hash_failure", "temp_create_write_failure"}.issubset(set(structured_error_policy.get("covered_failure_points", [])))
+    )
+    findings.append(result("controlled_promotion_contract.structured_filesystem_errors", ResultStatus.VALID if structured_ok else ResultStatus.INVALID, "expected filesystem OSError paths return structured blocking responses"))
+    return findings
+
+
 def validate_controlled_promotion_response_sample(sample: Mapping[str, Any], error_taxonomy: Mapping[str, Any]) -> List[Dict[str, Any]]:
     findings: List[Dict[str, Any]] = []
     findings.extend(validate_required_fields(sample, ("request_id", "status", "receipt", "safety_assertions"), "controlled_promotion_response"))
@@ -573,13 +614,16 @@ def run_all_validations(repo_root: Path, options: RunOptions) -> Dict[str, Any]:
     validator_contract_path = _resolve_path(repo_root, options.validator_contract_path, DEFAULT_VALIDATOR_CONTRACT_PATH)
     matrix_path = _resolve_path(repo_root, options.matrix_path, DEFAULT_MATRIX_PATH)
     samples_dir = _resolve_path(repo_root, options.samples_dir, DEFAULT_SAMPLES_DIR)
+    controlled_promotion_contract_path = repo_root / DEFAULT_CONTROLLED_PROMOTION_CONTRACT_PATH
 
     contract = load_json_file(contract_path)
     error_taxonomy = load_json_file(error_taxonomy_path)
     validator_contract = load_json_file(validator_contract_path)
     matrix = load_json_file(matrix_path)
+    controlled_promotion_contract = load_json_file(controlled_promotion_contract_path)
 
     results: List[Dict[str, Any]] = []
+    results.extend(validate_controlled_promotion_contract_policy(controlled_promotion_contract))
     results.extend(validate_matrix_entries(repo_root, matrix, samples_dir))
 
     for entry in matrix.get("positive_samples", []):

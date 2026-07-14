@@ -66,7 +66,16 @@ Use this checklist before implementing or accepting adapter-related validation w
 - [ ] cross-volume promotion is blocked
 - [ ] symlink, external hardlink, and reparse point paths are blocked
 - [ ] unsupported filesystem safety checks fail closed
-- [ ] validator total checks remain greater than 200 after Task 035 integration
+- [ ] injected raw staged root is checked before resolve
+- [ ] injected raw approved root is checked before resolve
+- [ ] root symlink and root reparse point are prohibited
+- [ ] root inspection failure fails closed with structured evidence
+- [ ] post-commit failure cleanup attempts temp and final cleanup independently
+- [ ] operation-created final is removed on failed promotion when cleanup succeeds
+- [ ] pre-existing destination is never treated as cleanup target
+- [ ] cleanup evidence fields include temp/final cleaned flags, cleanup_attempted, cleanup_complete, cleanup_error_codes, and original_error_code
+- [ ] expected filesystem OSError paths return structured blocking responses
+- [ ] validator total checks remain greater than or equal to 378 after Task 035-A2L-C2 integration
 
 ## 7. Scope safety
 

@@ -24,6 +24,9 @@ Task 035-A2L permits actual filesystem mutation only in isolated temporary test 
 ## Task 035-A2L-C corrective status
 Task 035-A2L-C corrects the implementation package before formal verification. It requires canonical Task 033 manifest compatibility, truthful failure read/mutation evidence, unconditional source immutability, lexical component inspection before resolve, fail-closed reparse inspection, and sibling-only casefold collision detection. It still does not create Task 035-B formal evidence or declare final completion.
 
+## Task 035-A2L-C2 corrective status
+Task 035-A2L-C2 corrects the remaining root-boundary and post-commit cleanup issues before formal verification. It requires raw injected staged and approved root inspection before `resolve()`, root symlink/reparse prohibition, root inspection failure fail-closed behavior, independent temp/final cleanup attempts after failure, operation-created final cleanup, pre-existing destination preservation, structured filesystem `OSError` responses, and explicit cleanup evidence fields. It still does not create Task 035-B formal evidence, `LOCAL_EXECUTION_RESULT.json`, or final completion claims.
+
 ## Local phase boundary
 Only isolated temporary roots are allowed. Any test write must be reported as actual filesystem mutation while remaining non-production and outside the user workspace.
 

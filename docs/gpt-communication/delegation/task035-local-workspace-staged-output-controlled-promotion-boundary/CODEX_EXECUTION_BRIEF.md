@@ -21,6 +21,8 @@ The positive local test is an isolated temporary-root promotion. It performs act
 
 Task 035-A2L-C requires the Task 035-B verifier to include the canonical Task 033 staged-output evidence manifest sample. Both the whole response object and the inner `manifest` object must be accepted. Failure responses must preserve actual read/mutation facts from the execution audit.
 
+Task 035-A2L-C2 additionally requires raw injected root validation before resolve. Staged and approved root symlink/reparse points are blocked, root inspection failure fails closed, post-commit failure cleanup attempts operation-created final and temp cleanup independently, pre-existing destinations are never cleanup targets, and expected filesystem `OSError` paths return structured blocking responses. Failure evidence must record `temporary_path_cleaned`, `final_path_cleaned`, `cleanup_attempted`, `cleanup_complete`, `cleanup_error_codes`, and `original_error_code`.
+
 ## Required evidence
 Store stdout, stderr, exit codes, Python version, repository status, promotion test evidence, and safety assertions under `docs/gpt-communication/evidence/task035-local-workspace-staged-output-controlled-promotion-boundary/`. Create `LOCAL_EXECUTION_RESULT.json` from the template and a Task 035-B local verification report.
 
