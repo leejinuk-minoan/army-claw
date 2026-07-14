@@ -16,8 +16,12 @@
 - main direct push 금지
 - force push 금지
 - history rewrite 금지
-- 승인 없는 merge 금지
 - destructive cleanup 금지
+
+## Main merge 정책
+
+- 검증과 마스터 리뷰가 완료된 branch는 마스터 에이전트가 PR을 통해 main에 merge할 수 있다.
+- 충돌, 미검증 결과, 금지 경로 변경 또는 completion gate 실패가 있으면 merge하지 않는다.
 
 ## Task Contract 우선
 
