@@ -1,0 +1,37 @@
+{
+  "task_id": "task033-local-workspace-staged-output-evidence-manifest-boundary",
+  "target_id": "local_workspace",
+  "adapter_slot_id": "local_workspace_adapter_slot",
+  "plan_type": "local_workspace_action_plan",
+  "execution_context": {
+    "execution_mode": "staged_output_evidence_manifest",
+    "staged_output_evidence_manifest": true,
+    "actual_adapter_invocation_allowed": false
+  },
+  "sandbox_scope": true,
+  "generated_artifacts": [
+    {
+      "artifact_id": "artifact-001",
+      "artifact_kind": "txt",
+      "normalized_relative_path": "outputs/task033/report.txt",
+      "content_source": "request_provided_generated_content",
+      "generated_content_utf8": "Army Claw Task 033 evidence manifest sample.\n",
+      "receipt_id": "receipt-001",
+      "sandbox_only": true,
+      "promotion_status": "not_promoted"
+    }
+  ],
+  "receipts": [
+    {
+      "receipt_id": "receipt-001",
+      "receipt_kind": "staged_output_sandbox_receipt",
+      "summary_only": false
+    }
+  ],
+  "constraints": {
+    "prevent_source_overwrite": true,
+    "allow_public_internet": false,
+    "allow_production_promotion": false,
+    "allow_user_workspace_mutation": false
+  }
+}
