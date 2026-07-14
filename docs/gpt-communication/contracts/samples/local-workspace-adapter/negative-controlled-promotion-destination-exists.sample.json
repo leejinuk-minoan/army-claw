@@ -1,0 +1,1 @@
+{"case":"destination_exists","destination":{"approved_root_id":"approved-output-root","normalized_relative_path":"reports/existing.bin","overwrite_allowed":false},"constraints":{"require_exclusive_create":true},"expected":{"valid":false,"error_code":"destination_exists"}}
