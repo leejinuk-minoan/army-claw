@@ -22,6 +22,7 @@
 | RN-033 | Task 033 | `task-notes/RN-033-task033-local-workspace-staged-output-evidence-manifest-boundary.md` | Deterministic staged output evidence manifest boundary | final verified |
 | RN-034 | Task 034 | `task-notes/RN-034-task034-main-integration-governance-sync.md` | PR-based main integration and governance baseline synchronization | final verified |
 | RN-035 | Task 035 | `task-notes/RN-035-task035-local-workspace-staged-output-controlled-promotion-boundary.md` | Controlled staged-output promotion boundary | final verified |
+| RN-036 | Task 036 | `task-notes/RN-036-task036-hwp-hwpx-template-fidelity-selector-execution-bridge.md` | Deterministic selector plans and execution bridging for template-preserving HWP/HWPX generation | cloud contract package complete / local implementation pending |
 
 ## Index Maintenance Rule
 
