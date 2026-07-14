@@ -9,7 +9,7 @@
 현재 단계: HwpAdapter 및 HWP/HWPX 엔진 안정화
 현재 세부 단계: 1-3 선행 HWPX 엔진 비교·코어 선정
 현재 active task: Task 036 HWP/HWPX Template Fidelity Selector Plan and Execution Bridge Boundary
-현재 phase: Task 036-A Cloud Contract Package
+현재 phase: Task 036-A2 Contract Corrective Sync
 ```
 
 ## Canonical 기준선
@@ -17,28 +17,21 @@
 ```text
 canonical branch: main
 Task 035 status: final_verified
-Task 035 integration PR: #3
 Task 035 main merge SHA: e5f782cdafbebd25697fc58a32c1fa0042857b12
-Task 035 post-merge state sync PR: #4
 Task 036 base SHA: 59fd64765a0fe50846ceb8cafa98d8c804a3088c
 Task 036 work branch: agent/task036-hwp-hwpx-template-fidelity-selector-execution-bridge
+Task 036-A2 content correction commit: 26904af4a668a6b121f883aa9c4ff549ae19206e
+Task 036-A2 state-sync commit: reported externally by cloud agent final report
 ```
 
-## Army Claw 정체성
+Git commit은 자신의 SHA를 같은 commit 내용에 포함할 수 없다. 따라서 Task 036-B required start HEAD는 cloud agent 최종 보고의 final state-sync SHA와 원격 branch HEAD가 동일한지 확인해 확정한다.
+
+## Task 036-A2 상태
 
 ```text
-Army Claw는 HWPX 전용 생성기가 아니다.
-Army Claw는 오프라인/폐쇄망 로컬 PC 지원 및 오피스 문서 생성 에이전트다.
-HWP/HWPX, HanCell, HanShow, local_workspace는 모두 1급 대상이다.
-LLM은 구조화된 계획만 생성한다.
-검증된 adapter가 파일과 native app state를 결정론적으로 처리한다.
-```
-
-## Task 036-A 상태
-
-```text
-status: cloud_contract_package_complete_pending_local_implementation
+status: cloud_contract_package_corrected_pending_local_implementation
 cloud_contract_package_complete: true
+contract_correction_complete: true
 implementation_required: true
 local_verification_required: true
 local_verification_complete: false
@@ -48,101 +41,99 @@ adapter_validator_gate_required: true
 adapter_validator_gate_status: required_not_run
 ```
 
-Task 036-A는 다음을 정의했다.
+## 계약 교정 결과
 
 ```text
-selector types:
-- paragraph_text
-- contains_text
-- nth_paragraph
-- table_cell_text
-
-index convention:
-- occurrence: 1-based
-- section/paragraph/table/row/column: 0-based
-- nth_paragraph scope: top_level_paragraphs
-- merged cell: anchor coordinate only
+Task 036 error code count: 23
+Task 036 error definition count: 23
+missing error definitions: 0
+extra error definitions: 0
+required error metadata:
+- category
+- blocking
+- recoverable
+- default_message
+- evidence_required
 ```
 
-모든 selector는 mutation 전에 원본 template에 대해 사전 해석한다. Duplicate ID, no match, ambiguity, occurrence/index overflow, source mismatch, non-anchor merged cell, overlapping target은 blocking error다.
+민감한 문서 전체 텍스트는 오류 evidence에 저장하지 않는다. 좌표, count, digest, 짧은 reason code 및 failure stage를 사용한다.
 
-## Preservation 및 Preview
+## Bridge와 Preview 교정
 
 ```text
-text replacement only
-source template overwrite: prohibited
-first-run style: preserve
-paragraph/cell/table properties: preserve
-BinData: preserve
-package entry set: preserve
-unselected content: preserve
-Preview/PrvText.txt sync: required when present
-preview mapping impossible: blocking
-whole HWPX byte-for-byte determinism: not claimed
+plan-level links:
+- plan_id
+- template_artifact_id
+- template_digest
+- staged_artifact_id
+- staged_receipt_id
+- evidence_manifest_id
+- promotion_authorization_id
+
+operation-level collection:
+- operation_id
+- selector_id
+- resolved_target
+- before_text_digest
+- after_text_digest
+
+Preview/PrvText.txt exists: sync required
+mapping impossible: hwp_preview_sync_failed
+Preview structurally absent: execution allowed with preview_status=structurally_absent
+structurally absent must not be reported as sync success
 ```
 
-## Execution bridge
+## Task 036-B 필수 구조
 
 ```text
-validated HWP Template Fidelity Plan
--> HWP adapter slot
--> hwpx-template-fidelity-fill
--> Task 031 staged output
--> Task 033 evidence manifest
--> Task 035 controlled promotion
+Task 036-B1:
+implementation + official adapter validator registration + validator tests
+fixed implementation baseline commit required
+final LOCAL_EXECUTION_RESULT 생성 금지
+
+Task 036-B2:
+fixed B1 SHA에서 formal verification
+immutable evidence와 LOCAL_EXECUTION_RESULT 생성
+implementation SHA와 evidence commit SHA 분리 기록
 ```
 
-Bridge link fields include `staged_artifact_id`, `staged_receipt_id`, `evidence_manifest_id`, and `promotion_authorization_id`. Task 036은 기존 계약을 복제하지 않고 링크한다.
+Official adapter validator integration과 validator tests는 선택 사항이 아니라 필수다. 성공한 Task 036-B 이후 adapter validator gate는 `required_not_run` 상태로 남아 있을 수 없다.
+
+## 다음 작업
+
+```text
+Task 036-B1/B2 Local Implementation and Formal Verification
+routing_class: local_codex_required
+status: ready_for_local_implementation
+required start HEAD: 이 문서를 기록한 final branch HEAD를 cloud agent 최종 보고에서 확인
+```
 
 ## Cloud 실행 사실
 
 ```text
 tools/hancom source modified: false
-existing Node tests modified: false
-adapter/validator implementation modified: false
+tests modified: false
+validator implementation modified: false
+JSON parser command executed: false
 Node tests executed: false
 actual HWP/HWPX generated: false
 Hancom COM/native app executed: false
-actual filesystem mutation: false
 user workspace mutation: false
 production promotion: false
 public internet access: false
 dependency installation: false
 ```
 
-## 다음 작업
-
-```text
-Task 036-B: Local Implementation and Verification
-routing_class: local_codex_required
-status: ready_for_local_implementation_prompt
-start point: final Task 036-A cloud commit reported externally
-```
-
-Task 036은 아직 `final_verified`가 아니다. Task 036-B 구현·로컬 검증, adapter-validator gate, final master review가 남아 있다.
-
-## 유지되는 금지사항
-
-```text
-- main 직접 push/merge 금지
-- force push/rebase/history rewrite 금지
-- 원본 HWP/HWPX 덮어쓰기 금지
-- Task 036-A에서 tools/hancom 및 validator implementation 수정 금지
-- 실제 실행 없는 passed/completed 주장 금지
-- Stage 2 전환 금지
-- final HWPX core 선정 금지
-```
+Task 036은 아직 `final_verified`가 아니다. Stage 2 전환과 final HWPX core 선정은 계속 금지된다.
 
 ## Source of truth
 
 ```text
 docs/gpt-communication/PROJECT_STATE.json
 docs/gpt-communication/CURRENT.md
-docs/architecture/army-claw-hwp-hwpx-template-fidelity-selector-execution-bridge.md
 docs/gpt-communication/contracts/hwp-hwpx-template-fidelity-selector-plan.json
-docs/gpt-communication/tasks/task036-hwp-hwpx-template-fidelity-selector-execution-bridge/TASK_CONTRACT.md
 docs/gpt-communication/delegation/task036-hwp-hwpx-template-fidelity-selector-execution-bridge/CODEX_EXECUTION_BRIEF.md
 docs/gpt-communication/delegation/task036-hwp-hwpx-template-fidelity-selector-execution-bridge/LOCAL_EXECUTION_RESULT_TEMPLATE.json
-docs/gpt-communication/reports/2026-07-14-task036a-hwp-hwpx-template-fidelity-selector-execution-bridge-cloud-package.md
+docs/gpt-communication/reports/2026-07-14-task036a2-template-fidelity-contract-corrective-sync.md
 docs/research-notes/task-notes/RN-036-task036-hwp-hwpx-template-fidelity-selector-execution-bridge.md
 ```
