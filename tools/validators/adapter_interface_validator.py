@@ -28,6 +28,39 @@ DEFAULT_ERROR_TAXONOMY_PATH = "docs/gpt-communication/contracts/common-office-ad
 DEFAULT_VALIDATOR_CONTRACT_PATH = "docs/gpt-communication/contracts/adapter-interface-validator-contract.json"
 DEFAULT_MATRIX_PATH = "docs/gpt-communication/contracts/adapter-interface-validation-matrix.json"
 DEFAULT_SAMPLES_DIR = "docs/gpt-communication/contracts/samples/common-office-adapter-interface"
+DEFAULT_CONTROLLED_PROMOTION_CONTRACT_PATH = "docs/gpt-communication/contracts/local-workspace-staged-output-controlled-promotion-boundary.json"
+CONTROLLED_PROMOTION_REQUIRED_CONSTRAINTS = {
+    "retain_staged_source": True,
+    "require_digest_match": True,
+    "require_exclusive_create": True,
+    "allow_cross_volume_copy": False,
+    "allow_symlink": False,
+    "allow_hardlink": False,
+    "allow_reparse_point": False,
+    "allow_public_internet": False,
+}
+CONTROLLED_PROMOTION_REQUIRED_SAFETY_ASSERTIONS = {
+    "controlled_promotion_boundary_evaluated": True,
+    "controlled_promotion_boundary_invoked": True,
+    "promotion_authorization_verified": True,
+    "approved_root_verified": True,
+    "manifest_link_verified": True,
+    "source_digest_verified": True,
+    "destination_digest_verified": True,
+    "exclusive_create_verified": True,
+    "source_retained": True,
+    "staged_output_sandbox_write_performed": False,
+    "controlled_test_promotion_performed": True,
+    "production_promotion_performed": False,
+    "actual_adapter_invoked": False,
+    "actual_file_system_mutation_performed": True,
+    "user_workspace_file_system_mutation_performed": False,
+    "file_content_read_performed": True,
+    "local_hancom_com_executed": False,
+    "real_hwp_hwpx_hancell_hanshow_artifact_generated": False,
+    "public_internet_access_performed": False,
+    "dependency_install_performed": False,
+}
 
 
 class ResultStatus(str, Enum):
@@ -254,7 +287,183 @@ def validate_response_sample(sample: Mapping[str, Any], contract: Mapping[str, A
     return findings
 
 
+def _digest_value(document: Mapping[str, Any]) -> Optional[str]:
+    digest = document.get("digest")
+    if isinstance(digest, Mapping):
+        value = digest.get("value")
+        return value if isinstance(value, str) else None
+    return document.get("digest_value") if isinstance(document.get("digest_value"), str) else None
+
+
+def _digest_algorithm(document: Mapping[str, Any]) -> Optional[str]:
+    digest = document.get("digest")
+    if isinstance(digest, Mapping):
+        algorithm = digest.get("algorithm")
+        return algorithm if isinstance(algorithm, str) else None
+    return document.get("digest_algorithm") if isinstance(document.get("digest_algorithm"), str) else None
+
+
+def _is_sha256_hex(value: Any) -> bool:
+    return isinstance(value, str) and len(value) == 64 and value.lower() == value and all(ch in "0123456789abcdef" for ch in value)
+
+
+def validate_controlled_promotion_request_sample(sample: Mapping[str, Any], error_taxonomy: Mapping[str, Any]) -> List[Dict[str, Any]]:
+    findings: List[Dict[str, Any]] = []
+    required = ("request_id", "operation", "execution_mode", "source", "destination", "authorization", "constraints")
+    findings.extend(validate_required_fields(sample, required, "controlled_promotion_request"))
+    operation = sample.get("operation")
+    findings.append(result("controlled_promotion.operation", ResultStatus.VALID if operation == "promote_staged_output" else ResultStatus.INVALID, "operation is promote_staged_output", expected="promote_staged_output", actual=operation))
+    execution_mode = sample.get("execution_mode")
+    findings.append(result("controlled_promotion.execution_mode", ResultStatus.VALID if execution_mode == "controlled_promotion" else ResultStatus.INVALID, "execution mode is controlled_promotion", expected="controlled_promotion", actual=execution_mode))
+    source = sample.get("source") if isinstance(sample.get("source"), Mapping) else {}
+    destination = sample.get("destination") if isinstance(sample.get("destination"), Mapping) else {}
+    authorization = sample.get("authorization") if isinstance(sample.get("authorization"), Mapping) else {}
+    manifest_profile = sample.get("manifest_profile") if isinstance(sample.get("manifest_profile"), Mapping) else {}
+    bindings = authorization.get("bindings") if isinstance(authorization.get("bindings"), list) else []
+    binding = bindings[0] if len(bindings) == 1 and isinstance(bindings[0], Mapping) else {}
+    source_artifact_id = source.get("artifact_id") or source.get("staged_artifact_id")
+    source_checks = {
+        "source.artifact_id": isinstance(source_artifact_id, str) and bool(source_artifact_id),
+        "source.manifest_id": isinstance(source.get("manifest_id"), str) and bool(source.get("manifest_id")),
+        "source.normalized_relative_path": isinstance(source.get("normalized_relative_path"), str) and bool(source.get("normalized_relative_path")) and ".." not in source.get("normalized_relative_path", ""),
+        "source.byte_size": isinstance(source.get("byte_size"), int) and source.get("byte_size") >= 0,
+        "source.digest_algorithm_sha256": _digest_algorithm(source) == "sha256",
+        "source.digest_hex": _is_sha256_hex(_digest_value(source)),
+    }
+    for check_id, ok in source_checks.items():
+        findings.append(result(f"controlled_promotion.{check_id}", ResultStatus.VALID if ok else ResultStatus.INVALID, f"{check_id} is valid"))
+    destination_checks = {
+        "destination.approved_root_id": isinstance(destination.get("approved_root_id"), str) and bool(destination.get("approved_root_id")),
+        "destination.normalized_relative_path": isinstance(destination.get("normalized_relative_path"), str) and not str(destination.get("normalized_relative_path")).startswith(("/", "../")),
+        "destination.overwrite_allowed_false": destination.get("overwrite_allowed") is False,
+    }
+    for check_id, ok in destination_checks.items():
+        findings.append(result(f"controlled_promotion.{check_id}", ResultStatus.VALID if ok else ResultStatus.INVALID, f"{check_id} is valid"))
+    authorization_checks = {
+        "authorization.single_binding": len(bindings) == 1,
+        "authorization.single_use_true": authorization.get("single_use") is True,
+        "authorization.request_binding": binding.get("request_id") == sample.get("request_id"),
+        "authorization.artifact_binding": binding.get("artifact_id") == source_artifact_id,
+        "authorization.manifest_binding": binding.get("manifest_id") == source.get("manifest_id"),
+        "authorization.destination_root_binding": binding.get("destination_root_id") == destination.get("approved_root_id"),
+        "authorization.destination_path_binding": binding.get("destination_relative_path") == destination.get("normalized_relative_path"),
+    }
+    for check_id, ok in authorization_checks.items():
+        findings.append(result(f"controlled_promotion.{check_id}", ResultStatus.VALID if ok else ResultStatus.INVALID, f"{check_id} is valid"))
+    profile_ok = manifest_profile.get("profile") == "task033_staged_output_evidence_manifest" and isinstance(manifest_profile.get("sample"), str)
+    findings.append(result("controlled_promotion.task033_manifest_profile", ResultStatus.VALID if profile_ok else ResultStatus.INVALID, "Task 035 request references Task 033 canonical manifest profile"))
+    artifact_fields = set(manifest_profile.get("artifact_fields", [])) if isinstance(manifest_profile.get("artifact_fields"), list) else set()
+    required_artifact_fields = {"artifact_id", "normalized_relative_path", "byte_size", "digest_algorithm", "digest_value", "receipt_id", "sandbox_only", "promotion_status"}
+    findings.append(result("controlled_promotion.task033_artifact_field_names", ResultStatus.VALID if required_artifact_fields.issubset(artifact_fields) else ResultStatus.INVALID, "Task 033 canonical artifact field names are listed", expected=sorted(required_artifact_fields), actual=sorted(artifact_fields)))
+    relationship_fields = set(manifest_profile.get("relationship_fields", [])) if isinstance(manifest_profile.get("relationship_fields"), list) else set()
+    required_relationship_fields = {"relationship_type", "source_id", "target_id"}
+    findings.append(result("controlled_promotion.task033_relationship_field_names", ResultStatus.VALID if required_relationship_fields.issubset(relationship_fields) else ResultStatus.INVALID, "Task 033 canonical relationship field names are listed", expected=sorted(required_relationship_fields), actual=sorted(relationship_fields)))
+    accepted_inputs = set(manifest_profile.get("accepted_input_forms", [])) if isinstance(manifest_profile.get("accepted_input_forms"), list) else set()
+    findings.append(result("controlled_promotion.task033_whole_and_inner_manifest_inputs", ResultStatus.VALID if {"whole_response", "inner_manifest"}.issubset(accepted_inputs) else ResultStatus.INVALID, "Task 033 whole response and inner manifest input forms are declared"))
+    constraints = sample.get("constraints") if isinstance(sample.get("constraints"), Mapping) else {}
+    for key, expected in CONTROLLED_PROMOTION_REQUIRED_CONSTRAINTS.items():
+        actual = constraints.get(key)
+        findings.append(result(f"controlled_promotion.constraint.{key}", ResultStatus.VALID if actual is expected else ResultStatus.INVALID, f"constraint {key} has canonical value", expected=expected, actual=actual))
+    for code in (
+        "promotion_authorization_missing",
+        "authorization_binding_mismatch",
+        "destination_exists",
+        "exclusive_create_failed",
+        "unsupported_safety_check",
+        "cross_volume_promotion_not_allowed",
+    ):
+        findings.extend(validate_error_taxonomy_code(code, error_taxonomy))
+    return findings
+
+
+def validate_controlled_promotion_contract_policy(contract: Mapping[str, Any]) -> List[Dict[str, Any]]:
+    findings: List[Dict[str, Any]] = []
+    approved_root_policy = contract.get("approved_root_policy") if isinstance(contract.get("approved_root_policy"), Mapping) else {}
+    placement_policy = contract.get("placement_policy") if isinstance(contract.get("placement_policy"), Mapping) else {}
+    failure_audit_policy = contract.get("failure_audit_policy") if isinstance(contract.get("failure_audit_policy"), Mapping) else {}
+    structured_error_policy = contract.get("structured_filesystem_error_policy") if isinstance(contract.get("structured_filesystem_error_policy"), Mapping) else {}
+
+    root_policy_ok = (
+        approved_root_policy.get("raw_injected_root_checked_before_resolve") is True
+        and approved_root_policy.get("raw_staged_root_checked_before_resolve") is True
+        and approved_root_policy.get("raw_approved_root_checked_before_resolve") is True
+        and approved_root_policy.get("root_symlink_allowed") is False
+        and approved_root_policy.get("root_reparse_point_allowed") is False
+        and approved_root_policy.get("root_inspection_failure_policy") == "unsupported_safety_check"
+    )
+    findings.append(result("controlled_promotion_contract.root_lexical_safety_policy", ResultStatus.VALID if root_policy_ok else ResultStatus.INVALID, "raw injected roots are checked before resolve and root symlink/reparse is prohibited"))
+
+    cleanup_policy_ok = (
+        placement_policy.get("post_commit_failure_cleanup_policy") == "best_effort_independent_temp_and_final_cleanup"
+        and placement_policy.get("operation_created_final_removed_on_failed_promotion") is True
+        and placement_policy.get("cleanup_early_return_allowed") is False
+    )
+    findings.append(result("controlled_promotion_contract.post_commit_failure_cleanup_policy", ResultStatus.VALID if cleanup_policy_ok else ResultStatus.INVALID, "post-commit failure cleanup is independent and best effort"))
+
+    evidence_fields = set(failure_audit_policy.get("cleanup_evidence_fields", [])) if isinstance(failure_audit_policy.get("cleanup_evidence_fields"), list) else set()
+    required_evidence_fields = {"temporary_path_cleaned", "final_path_cleaned", "cleanup_attempted", "cleanup_complete", "cleanup_error_codes", "original_error_code"}
+    findings.append(result("controlled_promotion_contract.cleanup_evidence_fields", ResultStatus.VALID if required_evidence_fields.issubset(evidence_fields) else ResultStatus.INVALID, "temp/final cleanup evidence fields are present", expected=sorted(required_evidence_fields), actual=sorted(evidence_fields)))
+
+    preexisting_ok = placement_policy.get("pre_existing_destination_cleanup_allowed") is False and placement_policy.get("pre_existing_destination_preserved_on_failure") is True
+    findings.append(result("controlled_promotion_contract.pre_existing_destination_preservation", ResultStatus.VALID if preexisting_ok else ResultStatus.INVALID, "pre-existing destination is preserved and never cleanup target"))
+
+    structured_ok = (
+        structured_error_policy.get("expected_filesystem_oserror_returns_structured_response") is True
+        and structured_error_policy.get("traceback_escape_allowed") is False
+        and {"directory_listing_failure", "source_read_or_hash_failure", "temp_create_write_failure"}.issubset(set(structured_error_policy.get("covered_failure_points", [])))
+    )
+    findings.append(result("controlled_promotion_contract.structured_filesystem_errors", ResultStatus.VALID if structured_ok else ResultStatus.INVALID, "expected filesystem OSError paths return structured blocking responses"))
+    return findings
+
+
+def validate_controlled_promotion_response_sample(sample: Mapping[str, Any], error_taxonomy: Mapping[str, Any]) -> List[Dict[str, Any]]:
+    findings: List[Dict[str, Any]] = []
+    findings.extend(validate_required_fields(sample, ("request_id", "status", "receipt", "safety_assertions"), "controlled_promotion_response"))
+    status_value = sample.get("status")
+    findings.append(result("controlled_promotion.response.status_promoted", ResultStatus.VALID if status_value == "promoted" else ResultStatus.INVALID, "response status is promoted", expected="promoted", actual=status_value))
+    receipt = sample.get("receipt") if isinstance(sample.get("receipt"), Mapping) else {}
+    receipt_safety = receipt.get("safety_assertions") if isinstance(receipt.get("safety_assertions"), Mapping) else {}
+    top_level_safety = sample.get("safety_assertions") if isinstance(sample.get("safety_assertions"), Mapping) else {}
+    findings.append(result("controlled_promotion.response.safety_mirror_matches_receipt", ResultStatus.VALID if receipt_safety == top_level_safety and receipt_safety else ResultStatus.INVALID, "top-level safety_assertions mirror receipt safety_assertions exactly"))
+    for key, expected in CONTROLLED_PROMOTION_REQUIRED_SAFETY_ASSERTIONS.items():
+        actual = receipt_safety.get(key)
+        findings.append(result(f"controlled_promotion.safety.{key}", ResultStatus.VALID if actual is expected else ResultStatus.INVALID, f"safety assertion {key} has canonical value", expected=expected, actual=actual))
+    verification = receipt.get("verification") if isinstance(receipt.get("verification"), Mapping) else sample.get("verification", {})
+    source = receipt.get("source") if isinstance(receipt.get("source"), Mapping) else {}
+    destination = receipt.get("destination") if isinstance(receipt.get("destination"), Mapping) else sample.get("destination", {})
+    digest_match = verification.get("source_sha256") == verification.get("destination_sha256")
+    findings.append(result("controlled_promotion.response.source_destination_digest_match", ResultStatus.VALID if digest_match else ResultStatus.INVALID, "source and destination digest match"))
+    findings.append(result("controlled_promotion.response.source_retained", ResultStatus.VALID if verification.get("source_retained") is True else ResultStatus.INVALID, "source retained is true"))
+    findings.append(result("controlled_promotion.response.destination_path_present", ResultStatus.VALID if isinstance(destination.get("normalized_relative_path"), str) else ResultStatus.INVALID, "destination path is present"))
+    findings.append(result("controlled_promotion.response.source_path_present", ResultStatus.VALID if isinstance(source.get("normalized_relative_path"), str) else ResultStatus.INVALID, "source path is present"))
+    findings.extend(validate_error_taxonomy_code("destination_digest_mismatch", error_taxonomy))
+    return findings
+
+
+def validate_controlled_promotion_negative_sample(sample: Mapping[str, Any], matrix_entry: Mapping[str, Any], error_taxonomy: Mapping[str, Any]) -> List[Dict[str, Any]]:
+    findings: List[Dict[str, Any]] = []
+    request = sample.get("request")
+    expected = sample.get("expected") if isinstance(sample.get("expected"), Mapping) else {}
+    expected_error_code = expected.get("error_code")
+    findings.append(result("controlled_promotion_negative.request_object", ResultStatus.VALID if isinstance(request, Mapping) else ResultStatus.INVALID, "negative sample contains request object"))
+    findings.append(result("controlled_promotion_negative.expected_blocked", ResultStatus.VALID if expected.get("status") == "blocked" else ResultStatus.INVALID, "negative expected status is blocked", expected="blocked", actual=expected.get("status")))
+    findings.append(result("controlled_promotion_negative.expected_blocking_true", ResultStatus.VALID if expected.get("blocking") is True else ResultStatus.INVALID, "negative expected blocking is true", expected=True, actual=expected.get("blocking")))
+    findings.append(result("controlled_promotion_negative.matrix_error_code_match", ResultStatus.VALID if matrix_entry.get("expected_error_code") == expected_error_code else ResultStatus.INVALID, "matrix expected error code matches sample expected error code", expected=matrix_entry.get("expected_error_code"), actual=expected_error_code))
+    findings.extend(validate_error_taxonomy_code(str(expected_error_code), error_taxonomy))
+    safety = expected.get("safety_assertions") if isinstance(expected.get("safety_assertions"), Mapping) else {}
+    evidence_keys = ("file_content_read_performed", "actual_file_system_mutation_performed", "user_workspace_file_system_mutation_performed", "production_promotion_performed")
+    evidence_ok = all(isinstance(safety.get(key), bool) for key in evidence_keys)
+    findings.append(result("controlled_promotion_negative.expected_failure_evidence_flags", ResultStatus.VALID if evidence_ok else ResultStatus.INVALID, "negative sample declares truthful failure read/mutation flags"))
+    if isinstance(request, Mapping):
+        findings.append(result("controlled_promotion_negative.operation_present", ResultStatus.VALID if request.get("operation") == "promote_staged_output" else ResultStatus.INVALID, "negative request keeps controlled operation"))
+        findings.append(result("controlled_promotion_negative.execution_mode_present", ResultStatus.VALID if request.get("execution_mode") == "controlled_promotion" else ResultStatus.INVALID, "negative request keeps controlled execution mode"))
+    return findings
+
+
 def infer_negative_error_code(sample: Mapping[str, Any], contract: Optional[Mapping[str, Any]] = None) -> Optional[str]:
+    expected = sample.get("expected") if isinstance(sample.get("expected"), Mapping) else {}
+    if isinstance(expected.get("error_code"), str):
+        return expected.get("error_code")
     if _validated_plan_bool(sample, "llm_direct_file_edit_requested") is True:
         return "llm_direct_file_edit_blocked"
     template = sample.get("template_reference") if isinstance(sample.get("template_reference"), Mapping) else {}
@@ -405,13 +614,16 @@ def run_all_validations(repo_root: Path, options: RunOptions) -> Dict[str, Any]:
     validator_contract_path = _resolve_path(repo_root, options.validator_contract_path, DEFAULT_VALIDATOR_CONTRACT_PATH)
     matrix_path = _resolve_path(repo_root, options.matrix_path, DEFAULT_MATRIX_PATH)
     samples_dir = _resolve_path(repo_root, options.samples_dir, DEFAULT_SAMPLES_DIR)
+    controlled_promotion_contract_path = repo_root / DEFAULT_CONTROLLED_PROMOTION_CONTRACT_PATH
 
     contract = load_json_file(contract_path)
     error_taxonomy = load_json_file(error_taxonomy_path)
     validator_contract = load_json_file(validator_contract_path)
     matrix = load_json_file(matrix_path)
+    controlled_promotion_contract = load_json_file(controlled_promotion_contract_path)
 
     results: List[Dict[str, Any]] = []
+    results.extend(validate_controlled_promotion_contract_policy(controlled_promotion_contract))
     results.extend(validate_matrix_entries(repo_root, matrix, samples_dir))
 
     for entry in matrix.get("positive_samples", []):
@@ -424,8 +636,12 @@ def run_all_validations(repo_root: Path, options: RunOptions) -> Dict[str, Any]:
             sample_results = validate_request_sample(sample, contract, validator_contract)
         elif sample_type == "response":
             sample_results = validate_response_sample(sample, contract, validator_contract)
+        elif sample_type == "controlled_promotion_request":
+            sample_results = validate_controlled_promotion_request_sample(sample, error_taxonomy)
+        elif sample_type == "controlled_promotion_response":
+            sample_results = validate_controlled_promotion_response_sample(sample, error_taxonomy)
         else:
-            sample_results = [result("positive_sample_type", ResultStatus.INVALID, "positive sample_type must be request or response", path=str(sample_path), actual=sample_type)]
+            sample_results = [result("positive_sample_type", ResultStatus.INVALID, "positive sample_type must be request, response, controlled_promotion_request, or controlled_promotion_response", path=str(sample_path), actual=sample_type)]
         expected = entry.get("expected_validation_status")
         actual = overall_status(sample_results)
         if expected == ResultStatus.VALID.value and actual == ResultStatus.VALID.value:
@@ -439,8 +655,12 @@ def run_all_validations(repo_root: Path, options: RunOptions) -> Dict[str, Any]:
             continue
         sample_path = _matrix_sample_path(repo_root, samples_dir, str(entry.get("sample")))
         sample = load_json_file(sample_path)
-        sample_results = validate_negative_sample(sample, entry, error_taxonomy, contract)
-        actual = expected_negative_actual_status(sample_results)
+        if entry.get("sample_profile") == "controlled_promotion_negative":
+            sample_results = validate_controlled_promotion_negative_sample(sample, entry, error_taxonomy)
+            actual = ResultStatus.BLOCKED.value if overall_status(sample_results) == ResultStatus.VALID.value else overall_status(sample_results)
+        else:
+            sample_results = validate_negative_sample(sample, entry, error_taxonomy, contract)
+            actual = expected_negative_actual_status(sample_results)
         expected = entry.get("expected_status")
         if expected == ResultStatus.BLOCKED.value and actual == ResultStatus.BLOCKED.value:
             results.append(result("negative_sample_expected_status", ResultStatus.VALID, "negative sample met expected blocked status", path=str(sample_path), expected=expected, actual=actual))

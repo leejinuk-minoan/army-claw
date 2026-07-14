@@ -58,6 +58,18 @@
       "proof_mode_sample": true,
       "expected_actual_adapter_invoked": false,
       "expected_execution_allowed": false
+    },
+    {
+      "sample": "docs/gpt-communication/contracts/samples/local-workspace-adapter/staged-output-controlled-promotion-request.sample.json",
+      "sample_type": "controlled_promotion_request",
+      "sample_profile": "controlled_promotion_request",
+      "expected_validation_status": "valid"
+    },
+    {
+      "sample": "docs/gpt-communication/contracts/samples/local-workspace-adapter/staged-output-controlled-promotion-response.sample.json",
+      "sample_type": "controlled_promotion_response",
+      "sample_profile": "controlled_promotion_response",
+      "expected_validation_status": "valid"
     }
   ],
   "negative_samples": [
@@ -80,12 +92,88 @@
       "sample": "docs/gpt-communication/contracts/samples/common-office-adapter-interface/negative-target-plan-mismatch.sample.json",
       "expected_status": "blocked",
       "expected_error_category": "target_plan_mismatch"
+    },
+    {
+      "sample": "docs/gpt-communication/contracts/samples/local-workspace-adapter/negative-controlled-promotion-authorization-mismatch.sample.json",
+      "sample_profile": "controlled_promotion_negative",
+      "expected_status": "blocked",
+      "expected_error_category": "authorization_binding_mismatch",
+      "expected_error_code": "authorization_binding_mismatch"
+    },
+    {
+      "sample": "docs/gpt-communication/contracts/samples/local-workspace-adapter/negative-controlled-promotion-destination-exists.sample.json",
+      "sample_profile": "controlled_promotion_negative",
+      "expected_status": "blocked",
+      "expected_error_category": "destination_exists",
+      "expected_error_code": "destination_exists"
+    },
+    {
+      "sample": "docs/gpt-communication/contracts/samples/local-workspace-adapter/negative-controlled-promotion-path-traversal.sample.json",
+      "sample_profile": "controlled_promotion_negative",
+      "expected_status": "blocked",
+      "expected_error_category": "destination_path_traversal",
+      "expected_error_code": "destination_path_traversal"
+    },
+    {
+      "sample": "docs/gpt-communication/contracts/samples/local-workspace-adapter/negative-controlled-promotion-source-digest-mismatch.sample.json",
+      "sample_profile": "controlled_promotion_negative",
+      "expected_status": "blocked",
+      "expected_error_category": "source_digest_mismatch",
+      "expected_error_code": "source_digest_mismatch"
+    },
+    {
+      "sample": "docs/gpt-communication/contracts/samples/local-workspace-adapter/negative-controlled-promotion-symlink.sample.json",
+      "sample_profile": "controlled_promotion_negative",
+      "expected_status": "blocked",
+      "expected_error_category": "symlink_not_allowed",
+      "expected_error_code": "symlink_not_allowed"
+    },
+    {
+      "sample": "docs/gpt-communication/contracts/samples/local-workspace-adapter/negative-controlled-promotion-cross-volume.sample.json",
+      "sample_profile": "controlled_promotion_negative",
+      "expected_status": "blocked",
+      "expected_error_category": "cross_volume_promotion_not_allowed",
+      "expected_error_code": "cross_volume_promotion_not_allowed"
+    },
+    {
+      "sample": "docs/gpt-communication/contracts/samples/local-workspace-adapter/negative-controlled-promotion-hardlink.sample.json",
+      "sample_profile": "controlled_promotion_negative",
+      "expected_status": "blocked",
+      "expected_error_category": "hardlink_not_allowed",
+      "expected_error_code": "hardlink_not_allowed"
+    },
+    {
+      "sample": "docs/gpt-communication/contracts/samples/local-workspace-adapter/negative-controlled-promotion-reparse-unsupported.sample.json",
+      "sample_profile": "controlled_promotion_negative",
+      "expected_status": "blocked",
+      "expected_error_category": "unsupported_safety_check",
+      "expected_error_code": "unsupported_safety_check"
+    },
+    {
+      "sample": "docs/gpt-communication/contracts/samples/local-workspace-adapter/negative-controlled-promotion-manifest-reference.sample.json",
+      "sample_profile": "controlled_promotion_negative",
+      "expected_status": "blocked",
+      "expected_error_category": "manifest_reference_mismatch",
+      "expected_error_code": "manifest_reference_mismatch"
+    },
+    {
+      "sample": "docs/gpt-communication/contracts/samples/local-workspace-adapter/negative-controlled-promotion-case-collision.sample.json",
+      "sample_profile": "controlled_promotion_negative",
+      "expected_status": "blocked",
+      "expected_error_category": "destination_case_collision",
+      "expected_error_code": "destination_case_collision"
     }
   ],
   "matrix_rules": {
     "positive_samples_claim_actual_adapter_invocation": false,
     "positive_samples_claim_real_document_generation": false,
     "negative_samples_must_include_expected_error_category": true,
-    "actual_validator_implementation_included": false
+    "actual_validator_implementation_included": false,
+    "controlled_promotion_profiles_supported": [
+      "controlled_promotion_request",
+      "controlled_promotion_response",
+      "controlled_promotion_negative"
+    ],
+    "validator_total_checks_before_minimum": 378
   }
 }

@@ -1,0 +1,81 @@
+{
+  "case": "destination_exists",
+  "sample_profile": "controlled_promotion_negative",
+  "request": {
+    "request_id": "req-035-neg-destination-exists",
+    "operation": "promote_staged_output",
+    "execution_mode": "controlled_promotion",
+    "manifest_profile": {
+      "profile": "task033_staged_output_evidence_manifest",
+      "sample": "docs/gpt-communication/contracts/samples/local-workspace-adapter/staged-output-evidence-manifest-response.sample.json",
+      "accepted_input_forms": [
+        "whole_response",
+        "inner_manifest"
+      ],
+      "artifact_fields": [
+        "artifact_id",
+        "normalized_relative_path",
+        "byte_size",
+        "digest_algorithm",
+        "digest_value",
+        "receipt_id",
+        "sandbox_only",
+        "promotion_status"
+      ],
+      "relationship_fields": [
+        "relationship_type",
+        "source_id",
+        "target_id"
+      ]
+    },
+    "source": {
+      "artifact_id": "artifact-001",
+      "manifest_id": "sha256:example-recomputed-from-canonical-content",
+      "normalized_relative_path": "outputs/task033/report.txt",
+      "byte_size": 45,
+      "digest": {
+        "algorithm": "sha256",
+        "value": "6cc03375a40e5c9eb2b317686103112c3f2f1d265589f2018e23cb83ddddfd69"
+      }
+    },
+    "destination": {
+      "approved_root_id": "approved-output-root",
+      "normalized_relative_path": "reports/existing.txt",
+      "overwrite_allowed": false
+    },
+    "authorization": {
+      "authorization_id": "auth-req-035-neg-destination-exists",
+      "single_use": true,
+      "bindings": [
+        {
+          "request_id": "req-035-neg-destination-exists",
+          "artifact_id": "artifact-001",
+          "manifest_id": "sha256:example-recomputed-from-canonical-content",
+          "destination_root_id": "approved-output-root",
+          "destination_relative_path": "reports/existing.txt"
+        }
+      ]
+    },
+    "constraints": {
+      "retain_staged_source": true,
+      "require_digest_match": true,
+      "require_exclusive_create": true,
+      "allow_cross_volume_copy": false,
+      "allow_symlink": false,
+      "allow_hardlink": false,
+      "allow_reparse_point": false,
+      "allow_public_internet": false
+    }
+  },
+  "expected": {
+    "status": "blocked",
+    "error_code": "destination_exists",
+    "blocking": true,
+    "safety_assertions": {
+      "file_content_read_performed": true,
+      "actual_file_system_mutation_performed": false,
+      "user_workspace_file_system_mutation_performed": false,
+      "production_promotion_performed": false
+    }
+  }
+}

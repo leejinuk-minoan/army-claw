@@ -114,6 +114,278 @@
       "recoverable": false,
       "default_message": "The adapter encountered an internal failure after request validation.",
       "blocking": true
+    },
+    {
+      "error_code": "promotion_authorization_missing",
+      "category": "promotion_authorization_missing",
+      "user_visible_state": "blocked",
+      "recoverable": true,
+      "default_message": "Controlled promotion blocked: promotion_authorization_missing.",
+      "blocking": true
+    },
+    {
+      "error_code": "promotion_authorization_invalid",
+      "category": "promotion_authorization_invalid",
+      "user_visible_state": "blocked",
+      "recoverable": true,
+      "default_message": "Controlled promotion blocked: promotion_authorization_invalid.",
+      "blocking": true
+    },
+    {
+      "error_code": "authorization_binding_mismatch",
+      "category": "authorization_binding_mismatch",
+      "user_visible_state": "blocked",
+      "recoverable": true,
+      "default_message": "Controlled promotion blocked: authorization_binding_mismatch.",
+      "blocking": true
+    },
+    {
+      "error_code": "authorization_reuse_conflict",
+      "category": "authorization_reuse_conflict",
+      "user_visible_state": "blocked",
+      "recoverable": true,
+      "default_message": "Controlled promotion blocked: authorization_reuse_conflict.",
+      "blocking": true
+    },
+    {
+      "error_code": "approved_root_not_allowed",
+      "category": "approved_root_not_allowed",
+      "user_visible_state": "blocked",
+      "recoverable": true,
+      "default_message": "Controlled promotion blocked: approved_root_not_allowed.",
+      "blocking": true
+    },
+    {
+      "error_code": "destination_absolute_path_not_allowed",
+      "category": "destination_absolute_path_not_allowed",
+      "user_visible_state": "blocked",
+      "recoverable": true,
+      "default_message": "Controlled promotion blocked: destination_absolute_path_not_allowed.",
+      "blocking": true
+    },
+    {
+      "error_code": "destination_path_traversal",
+      "category": "destination_path_traversal",
+      "user_visible_state": "blocked",
+      "recoverable": true,
+      "default_message": "Controlled promotion blocked: destination_path_traversal.",
+      "blocking": true
+    },
+    {
+      "error_code": "destination_reserved_name",
+      "category": "destination_reserved_name",
+      "user_visible_state": "blocked",
+      "recoverable": true,
+      "default_message": "Controlled promotion blocked: destination_reserved_name.",
+      "blocking": true
+    },
+    {
+      "error_code": "destination_case_collision",
+      "category": "destination_case_collision",
+      "user_visible_state": "blocked",
+      "recoverable": true,
+      "default_message": "Controlled promotion blocked: destination_case_collision.",
+      "blocking": true
+    },
+    {
+      "error_code": "source_outside_staged_root",
+      "category": "source_outside_staged_root",
+      "user_visible_state": "blocked",
+      "recoverable": true,
+      "default_message": "Controlled promotion blocked: source_outside_staged_root.",
+      "blocking": true
+    },
+    {
+      "error_code": "destination_outside_approved_root",
+      "category": "destination_outside_approved_root",
+      "user_visible_state": "blocked",
+      "recoverable": true,
+      "default_message": "Controlled promotion blocked: destination_outside_approved_root.",
+      "blocking": true
+    },
+    {
+      "error_code": "source_destination_collision",
+      "category": "source_destination_collision",
+      "user_visible_state": "blocked",
+      "recoverable": true,
+      "default_message": "Controlled promotion blocked: source_destination_collision.",
+      "blocking": true
+    },
+    {
+      "error_code": "symlink_not_allowed",
+      "category": "symlink_not_allowed",
+      "user_visible_state": "blocked",
+      "recoverable": true,
+      "default_message": "Controlled promotion blocked: symlink_not_allowed.",
+      "blocking": true
+    },
+    {
+      "error_code": "hardlink_not_allowed",
+      "category": "hardlink_not_allowed",
+      "user_visible_state": "blocked",
+      "recoverable": true,
+      "default_message": "Controlled promotion blocked: hardlink_not_allowed.",
+      "blocking": true
+    },
+    {
+      "error_code": "reparse_point_not_allowed",
+      "category": "reparse_point_not_allowed",
+      "user_visible_state": "blocked",
+      "recoverable": true,
+      "default_message": "Controlled promotion blocked: reparse_point_not_allowed.",
+      "blocking": true
+    },
+    {
+      "error_code": "unsupported_safety_check",
+      "category": "unsupported_safety_check",
+      "user_visible_state": "blocked",
+      "recoverable": true,
+      "default_message": "Controlled promotion blocked: unsupported_safety_check.",
+      "blocking": true
+    },
+    {
+      "error_code": "manifest_missing",
+      "category": "manifest_missing",
+      "user_visible_state": "blocked",
+      "recoverable": true,
+      "default_message": "Controlled promotion blocked: manifest_missing.",
+      "blocking": true
+    },
+    {
+      "error_code": "manifest_artifact_missing",
+      "category": "manifest_artifact_missing",
+      "user_visible_state": "blocked",
+      "recoverable": true,
+      "default_message": "Controlled promotion blocked: manifest_artifact_missing.",
+      "blocking": true
+    },
+    {
+      "error_code": "manifest_reference_mismatch",
+      "category": "manifest_reference_mismatch",
+      "user_visible_state": "blocked",
+      "recoverable": true,
+      "default_message": "Controlled promotion blocked: manifest_reference_mismatch.",
+      "blocking": true
+    },
+    {
+      "error_code": "source_size_mismatch",
+      "category": "source_size_mismatch",
+      "user_visible_state": "blocked",
+      "recoverable": true,
+      "default_message": "Controlled promotion blocked: source_size_mismatch.",
+      "blocking": true
+    },
+    {
+      "error_code": "source_digest_mismatch",
+      "category": "source_digest_mismatch",
+      "user_visible_state": "blocked",
+      "recoverable": true,
+      "default_message": "Controlled promotion blocked: source_digest_mismatch.",
+      "blocking": true
+    },
+    {
+      "error_code": "destination_digest_mismatch",
+      "category": "destination_digest_mismatch",
+      "user_visible_state": "blocked",
+      "recoverable": true,
+      "default_message": "Controlled promotion blocked: destination_digest_mismatch.",
+      "blocking": true
+    },
+    {
+      "error_code": "digest_algorithm_not_allowed",
+      "category": "digest_algorithm_not_allowed",
+      "user_visible_state": "blocked",
+      "recoverable": true,
+      "default_message": "Controlled promotion blocked: digest_algorithm_not_allowed.",
+      "blocking": true
+    },
+    {
+      "error_code": "destination_exists",
+      "category": "destination_exists",
+      "user_visible_state": "blocked",
+      "recoverable": true,
+      "default_message": "Controlled promotion blocked: destination_exists.",
+      "blocking": true
+    },
+    {
+      "error_code": "exclusive_create_failed",
+      "category": "exclusive_create_failed",
+      "user_visible_state": "blocked",
+      "recoverable": true,
+      "default_message": "Controlled promotion blocked: exclusive_create_failed.",
+      "blocking": true
+    },
+    {
+      "error_code": "cross_volume_promotion_not_allowed",
+      "category": "cross_volume_promotion_not_allowed",
+      "user_visible_state": "blocked",
+      "recoverable": true,
+      "default_message": "Controlled promotion blocked: cross_volume_promotion_not_allowed.",
+      "blocking": true
+    },
+    {
+      "error_code": "source_changed_after_validation",
+      "category": "source_changed_after_validation",
+      "user_visible_state": "blocked",
+      "recoverable": true,
+      "default_message": "Controlled promotion blocked: source_changed_after_validation.",
+      "blocking": true
+    },
+    {
+      "error_code": "promotion_request_conflict",
+      "category": "promotion_request_conflict",
+      "user_visible_state": "blocked",
+      "recoverable": true,
+      "default_message": "Controlled promotion blocked: promotion_request_conflict.",
+      "blocking": true
+    },
+    {
+      "error_code": "temporary_cleanup_failed",
+      "category": "temporary_cleanup_failed",
+      "user_visible_state": "blocked",
+      "recoverable": true,
+      "default_message": "Controlled promotion blocked: temporary_cleanup_failed.",
+      "blocking": true
+    },
+    {
+      "error_code": "final_verification_failed",
+      "category": "final_verification_failed",
+      "user_visible_state": "blocked",
+      "recoverable": true,
+      "default_message": "Controlled promotion blocked: final_verification_failed.",
+      "blocking": true
+    },
+    {
+      "error_code": "source_path_traversal",
+      "category": "source_path_traversal",
+      "user_visible_state": "blocked",
+      "recoverable": true,
+      "default_message": "Controlled promotion blocked: source_path_traversal.",
+      "blocking": true
+    },
+    {
+      "error_code": "source_reserved_name",
+      "category": "source_reserved_name",
+      "user_visible_state": "blocked",
+      "recoverable": true,
+      "default_message": "Controlled promotion blocked: source_reserved_name.",
+      "blocking": true
+    },
+    {
+      "error_code": "source_case_collision",
+      "category": "source_case_collision",
+      "user_visible_state": "blocked",
+      "recoverable": true,
+      "default_message": "Controlled promotion blocked: source_case_collision.",
+      "blocking": true
+    },
+    {
+      "error_code": "source_absolute_path_not_allowed",
+      "category": "source_absolute_path_not_allowed",
+      "user_visible_state": "blocked",
+      "recoverable": true,
+      "default_message": "Controlled promotion blocked: source_absolute_path_not_allowed.",
+      "blocking": true
     }
   ],
   "proof_mode": true,

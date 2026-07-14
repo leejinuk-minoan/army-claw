@@ -47,7 +47,37 @@ Use this checklist before implementing or accepting adapter-related validation w
 - [ ] expected error code present for negative sample
 - [ ] expected error category present for negative sample
 
-## 6. Scope safety
+## 6. Controlled promotion validation
+
+- [ ] controlled_promotion_request sample profile exists
+- [ ] controlled_promotion_response sample profile exists
+- [ ] controlled_promotion_negative sample profile exists
+- [ ] Task 035 request references Task 033 canonical manifest profile
+- [ ] Task 033 artifact field names are validated: artifact_id, normalized_relative_path, byte_size, digest_algorithm, digest_value, receipt_id, sandbox_only, promotion_status
+- [ ] Task 033 relationship field names are validated: relationship_type, source_id, target_id
+- [ ] Task 033 whole response and inner manifest input forms are both accepted
+- [ ] receipt.safety_assertions is the canonical safety source of truth
+- [ ] top-level safety_assertions mirror receipt.safety_assertions exactly when present
+- [ ] negative controlled promotion samples include expected failure read/mutation flags
+- [ ] authorization is bound to exactly one artifact and one destination
+- [ ] manifest linkage is verified before promotion
+- [ ] source/destination SHA-256 and byte size are re-verified
+- [ ] destination overwrite is blocked
+- [ ] cross-volume promotion is blocked
+- [ ] symlink, external hardlink, and reparse point paths are blocked
+- [ ] unsupported filesystem safety checks fail closed
+- [ ] injected raw staged root is checked before resolve
+- [ ] injected raw approved root is checked before resolve
+- [ ] root symlink and root reparse point are prohibited
+- [ ] root inspection failure fails closed with structured evidence
+- [ ] post-commit failure cleanup attempts temp and final cleanup independently
+- [ ] operation-created final is removed on failed promotion when cleanup succeeds
+- [ ] pre-existing destination is never treated as cleanup target
+- [ ] cleanup evidence fields include temp/final cleaned flags, cleanup_attempted, cleanup_complete, cleanup_error_codes, and original_error_code
+- [ ] expected filesystem OSError paths return structured blocking responses
+- [ ] validator total checks remain greater than or equal to 378 after Task 035-A2L-C2 integration
+
+## 7. Scope safety
 
 - [ ] no production code changed
 - [ ] no release/test-documents changed

@@ -130,6 +130,14 @@
       "file": "docs/research-notes/task-notes/RN-034-task034-main-integration-governance-sync.md",
       "research_axis": "PR-based main integration and governance baseline synchronization",
       "status": "final_verified"
+    },
+    "RN-035": {
+      "task": "Task 035",
+      "task_id": "task035-local-workspace-staged-output-controlled-promotion-boundary",
+      "title": "Local Workspace Staged Output Controlled Promotion Boundary",
+      "file": "docs/research-notes/task-notes/RN-035-task035-local-workspace-staged-output-controlled-promotion-boundary.md",
+      "research_axis": "Controlled staged-output promotion boundary",
+      "status": "final_verified"
     }
   }
 }

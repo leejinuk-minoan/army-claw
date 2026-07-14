@@ -1,0 +1,103 @@
+{
+  "total_files": 19,
+  "passed_files": 19,
+  "failed_files": [],
+  "results": [
+    {
+      "path": "docs/gpt-communication/PROJECT_STATE.json",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "path": "docs/gpt-communication/contracts/adapter-interface-validation-matrix.json",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "path": "docs/gpt-communication/contracts/common-office-adapter-error-taxonomy.json",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "path": "docs/gpt-communication/contracts/local-workspace-staged-output-controlled-promotion-boundary.json",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "path": "docs/gpt-communication/contracts/samples/local-workspace-adapter/negative-controlled-promotion-authorization-mismatch.sample.json",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "path": "docs/gpt-communication/contracts/samples/local-workspace-adapter/negative-controlled-promotion-case-collision.sample.json",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "path": "docs/gpt-communication/contracts/samples/local-workspace-adapter/negative-controlled-promotion-cross-volume.sample.json",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "path": "docs/gpt-communication/contracts/samples/local-workspace-adapter/negative-controlled-promotion-destination-exists.sample.json",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "path": "docs/gpt-communication/contracts/samples/local-workspace-adapter/negative-controlled-promotion-hardlink.sample.json",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "path": "docs/gpt-communication/contracts/samples/local-workspace-adapter/negative-controlled-promotion-manifest-reference.sample.json",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "path": "docs/gpt-communication/contracts/samples/local-workspace-adapter/negative-controlled-promotion-path-traversal.sample.json",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "path": "docs/gpt-communication/contracts/samples/local-workspace-adapter/negative-controlled-promotion-reparse-unsupported.sample.json",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "path": "docs/gpt-communication/contracts/samples/local-workspace-adapter/negative-controlled-promotion-source-digest-mismatch.sample.json",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "path": "docs/gpt-communication/contracts/samples/local-workspace-adapter/negative-controlled-promotion-symlink.sample.json",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "path": "docs/gpt-communication/contracts/samples/local-workspace-adapter/staged-output-controlled-promotion-request.sample.json",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "path": "docs/gpt-communication/contracts/samples/local-workspace-adapter/staged-output-controlled-promotion-response.sample.json",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "path": "docs/gpt-communication/contracts/samples/local-workspace-adapter/staged-output-evidence-manifest-response.sample.json",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "path": "docs/gpt-communication/delegation/task035-local-workspace-staged-output-controlled-promotion-boundary/LOCAL_EXECUTION_RESULT_TEMPLATE.json",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "path": "docs/research-notes/research-note-index.json",
+      "exit_code": 0,
+      "stderr": ""
+    }
+  ],
+  "all_passed": true
+}

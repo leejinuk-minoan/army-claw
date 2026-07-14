@@ -30,13 +30,20 @@ class AdapterInterfaceValidatorTests(unittest.TestCase):
         codes = {item["error_code"] for item in self.error_taxonomy["errors"]}
         self.assertIn("llm_direct_file_edit_blocked", codes)
         self.assertIn("target_plan_mismatch", codes)
+        self.assertIn("authorization_binding_mismatch", codes)
+        self.assertIn("destination_exists", codes)
+        self.assertIn("cross_volume_promotion_not_allowed", codes)
 
     def test_validator_contract_json_loads(self):
         self.assertEqual("adapter-interface-validator-contract", self.validator_contract["contract_id"])
 
     def test_validation_matrix_json_loads(self):
-        self.assertEqual(8, len(self.matrix["positive_samples"]))
-        self.assertEqual(4, len(self.matrix["negative_samples"]))
+        self.assertGreaterEqual(len(self.matrix["positive_samples"]), 10)
+        self.assertGreaterEqual(len(self.matrix["negative_samples"]), 14)
+        profiles = self.matrix["matrix_rules"]["controlled_promotion_profiles_supported"]
+        self.assertIn("controlled_promotion_request", profiles)
+        self.assertIn("controlled_promotion_response", profiles)
+        self.assertIn("controlled_promotion_negative", profiles)
 
     def test_positive_request_samples_valid(self):
         for entry in self.matrix["positive_samples"]:
@@ -46,6 +53,37 @@ class AdapterInterfaceValidatorTests(unittest.TestCase):
             results = validator.validate_request_sample(sample, self.contract, self.validator_contract)
             self.assert_no_invalid(results)
             self.assertNotIn(validator.ResultStatus.BLOCKED.value, {item["status"] for item in results})
+
+    def test_controlled_promotion_request_sample_valid(self):
+        entry = next(item for item in self.matrix["positive_samples"] if item["sample_type"] == "controlled_promotion_request")
+        sample = validator.load_json_file(self.repo_root / entry["sample"])
+        results = validator.validate_controlled_promotion_request_sample(sample, self.error_taxonomy)
+        self.assert_no_invalid(results)
+        self.assertTrue(any(item["check_id"] == "controlled_promotion.task033_manifest_profile" for item in results))
+        self.assertTrue(any(item["check_id"] == "controlled_promotion.task033_artifact_field_names" for item in results))
+        self.assertTrue(any(item["check_id"] == "controlled_promotion.task033_relationship_field_names" for item in results))
+        self.assertGreaterEqual(len(results), 28)
+
+    def test_controlled_promotion_contract_root_cleanup_policy_valid(self):
+        contract = validator.load_json_file(self.repo_root / validator.DEFAULT_CONTROLLED_PROMOTION_CONTRACT_PATH)
+        results = validator.validate_controlled_promotion_contract_policy(contract)
+        self.assert_no_invalid(results)
+        required = {
+            "controlled_promotion_contract.root_lexical_safety_policy",
+            "controlled_promotion_contract.post_commit_failure_cleanup_policy",
+            "controlled_promotion_contract.cleanup_evidence_fields",
+            "controlled_promotion_contract.pre_existing_destination_preservation",
+            "controlled_promotion_contract.structured_filesystem_errors",
+        }
+        self.assertTrue(required.issubset({item["check_id"] for item in results}))
+
+    def test_controlled_promotion_response_sample_valid_and_safety_mirror_matches(self):
+        entry = next(item for item in self.matrix["positive_samples"] if item["sample_type"] == "controlled_promotion_response")
+        sample = validator.load_json_file(self.repo_root / entry["sample"])
+        results = validator.validate_controlled_promotion_response_sample(sample, self.error_taxonomy)
+        self.assert_no_invalid(results)
+        self.assertTrue(any(item["check_id"] == "controlled_promotion.response.safety_mirror_matches_receipt" for item in results))
+        self.assertGreaterEqual(len(results), 28)
 
     def test_positive_response_samples_valid(self):
         for entry in self.matrix["positive_samples"]:
@@ -99,6 +137,27 @@ class AdapterInterfaceValidatorTests(unittest.TestCase):
         self.assert_no_invalid(results)
         self.assertTrue(any(item["actual"] == "target_plan_mismatch" for item in results))
 
+    def test_controlled_promotion_negative_samples_blocked_with_exact_codes(self):
+        entries = [item for item in self.matrix["negative_samples"] if item.get("sample_profile") == "controlled_promotion_negative"]
+        self.assertGreaterEqual(len(entries), 10)
+        for entry in entries:
+            with self.subTest(sample=entry["sample"]):
+                sample = validator.load_json_file(self.repo_root / entry["sample"])
+                results = validator.validate_controlled_promotion_negative_sample(sample, entry, self.error_taxonomy)
+                self.assert_no_invalid(results)
+                self.assertTrue(any(item["check_id"] == "controlled_promotion_negative.matrix_error_code_match" for item in results))
+
+    def test_controlled_promotion_negative_samples_include_failure_evidence_flags(self):
+        entries = [item for item in self.matrix["negative_samples"] if item.get("sample_profile") == "controlled_promotion_negative"]
+        evidence_checked = False
+        for entry in entries:
+            sample = validator.load_json_file(self.repo_root / entry["sample"])
+            results = validator.validate_controlled_promotion_negative_sample(sample, entry, self.error_taxonomy)
+            if any(item["check_id"] == "controlled_promotion_negative.expected_failure_evidence_flags" for item in results):
+                evidence_checked = True
+            self.assert_no_invalid(results)
+        self.assertTrue(evidence_checked)
+
     def test_target_slot_plan_mapping_valid(self):
         for rule in self.validator_contract["mapping_validation_rules"]:
             results = validator.validate_target_slot_plan_mapping(rule["target_id"], rule["adapter_slot_id"], rule["plan_type"], self.contract)
@@ -115,6 +174,14 @@ class AdapterInterfaceValidatorTests(unittest.TestCase):
     def test_mismatched_plan_type_invalid(self):
         results = validator.validate_plan_type("hwp_hwpx", "hancell_fill_plan", self.contract)
         self.assertEqual(validator.ResultStatus.INVALID.value, results[0]["status"])
+
+    def test_validator_run_total_checks_exceeds_task035_minimum(self):
+        payload = validator.run_all_validations(self.repo_root, validator.RunOptions())
+        summary = payload["summary"]
+        self.assertEqual("valid", summary["status"])
+        self.assertEqual(0, summary["failed_checks"])
+        self.assertEqual(0, summary["blocked_checks"])
+        self.assertGreaterEqual(summary["total_checks"], 378)
 
 
 if __name__ == "__main__":

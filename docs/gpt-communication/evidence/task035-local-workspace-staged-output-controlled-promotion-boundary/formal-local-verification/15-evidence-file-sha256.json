@@ -1,0 +1,175 @@
+{
+  "files": [
+    {
+      "relative_path": "docs/gpt-communication/evidence/task035-local-workspace-staged-output-controlled-promotion-boundary/formal-local-verification/00-command-manifest.json",
+      "byte_size": 8603,
+      "sha256": "54a9a31aec6e313711180cf03d6a15eee69568753a9c3c07d72949109bb732e9"
+    },
+    {
+      "relative_path": "docs/gpt-communication/evidence/task035-local-workspace-staged-output-controlled-promotion-boundary/formal-local-verification/01-git-fetch.exit-code.txt",
+      "byte_size": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+    },
+    {
+      "relative_path": "docs/gpt-communication/evidence/task035-local-workspace-staged-output-controlled-promotion-boundary/formal-local-verification/01-git-fetch.stderr.txt",
+      "byte_size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "relative_path": "docs/gpt-communication/evidence/task035-local-workspace-staged-output-controlled-promotion-boundary/formal-local-verification/01-git-fetch.stdout.txt",
+      "byte_size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "relative_path": "docs/gpt-communication/evidence/task035-local-workspace-staged-output-controlled-promotion-boundary/formal-local-verification/02-git-status-before.exit-code.txt",
+      "byte_size": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+    },
+    {
+      "relative_path": "docs/gpt-communication/evidence/task035-local-workspace-staged-output-controlled-promotion-boundary/formal-local-verification/02-git-status-before.stderr.txt",
+      "byte_size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "relative_path": "docs/gpt-communication/evidence/task035-local-workspace-staged-output-controlled-promotion-boundary/formal-local-verification/02-git-status-before.stdout.txt",
+      "byte_size": 131,
+      "sha256": "5c29b422814e6914cab55059ea851f87c6557d5ebf1b2588fe4c143ff550cd8e"
+    },
+    {
+      "relative_path": "docs/gpt-communication/evidence/task035-local-workspace-staged-output-controlled-promotion-boundary/formal-local-verification/03-branch-head-preflight.json",
+      "byte_size": 609,
+      "sha256": "c6bd08386c8e898b49c43fd39cefb3180abd916b64873f280e47f231c9ba1d5c"
+    },
+    {
+      "relative_path": "docs/gpt-communication/evidence/task035-local-workspace-staged-output-controlled-promotion-boundary/formal-local-verification/04-python-version.exit-code.txt",
+      "byte_size": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+    },
+    {
+      "relative_path": "docs/gpt-communication/evidence/task035-local-workspace-staged-output-controlled-promotion-boundary/formal-local-verification/04-python-version.stderr.txt",
+      "byte_size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "relative_path": "docs/gpt-communication/evidence/task035-local-workspace-staged-output-controlled-promotion-boundary/formal-local-verification/04-python-version.txt",
+      "byte_size": 15,
+      "sha256": "7c4c5588f4cfc8388240eff9d1c33bc7cfb24d52a440f4367b6c4199c558be80"
+    },
+    {
+      "relative_path": "docs/gpt-communication/evidence/task035-local-workspace-staged-output-controlled-promotion-boundary/formal-local-verification/05-json-parse-summary.json",
+      "byte_size": 5091,
+      "sha256": "eb71c0f4f3a1e429acfaf76cefb0b4916e9d5bd7feab1511d6e939f9e7dd395d"
+    },
+    {
+      "relative_path": "docs/gpt-communication/evidence/task035-local-workspace-staged-output-controlled-promotion-boundary/formal-local-verification/06-pycompile-summary.json",
+      "byte_size": 333,
+      "sha256": "48864e927bbc67a1304c0a023b1285f2ff949a3f261dfbb856b5a38b18553e83"
+    },
+    {
+      "relative_path": "docs/gpt-communication/evidence/task035-local-workspace-staged-output-controlled-promotion-boundary/formal-local-verification/07-adapter-validator-cli.exit-code.txt",
+      "byte_size": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+    },
+    {
+      "relative_path": "docs/gpt-communication/evidence/task035-local-workspace-staged-output-controlled-promotion-boundary/formal-local-verification/07-adapter-validator-cli.stderr.txt",
+      "byte_size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "relative_path": "docs/gpt-communication/evidence/task035-local-workspace-staged-output-controlled-promotion-boundary/formal-local-verification/07-adapter-validator-cli.stdout.json",
+      "byte_size": 186635,
+      "sha256": "9fd8ac9f8823328a2b6f0c53c01eed731a96a6b07dfd78251eb417891cda48b6"
+    },
+    {
+      "relative_path": "docs/gpt-communication/evidence/task035-local-workspace-staged-output-controlled-promotion-boundary/formal-local-verification/08-adapter-validator-unittest.exit-code.txt",
+      "byte_size": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+    },
+    {
+      "relative_path": "docs/gpt-communication/evidence/task035-local-workspace-staged-output-controlled-promotion-boundary/formal-local-verification/08-adapter-validator-unittest.stderr.txt",
+      "byte_size": 3752,
+      "sha256": "ff22445c6dd13fefd85730adc246a19e27c1681629ce0f86cc0377e1a8c6159f"
+    },
+    {
+      "relative_path": "docs/gpt-communication/evidence/task035-local-workspace-staged-output-controlled-promotion-boundary/formal-local-verification/08-adapter-validator-unittest.stdout.txt",
+      "byte_size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "relative_path": "docs/gpt-communication/evidence/task035-local-workspace-staged-output-controlled-promotion-boundary/formal-local-verification/09-local-workspace-adapter-unittest.exit-code.txt",
+      "byte_size": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+    },
+    {
+      "relative_path": "docs/gpt-communication/evidence/task035-local-workspace-staged-output-controlled-promotion-boundary/formal-local-verification/09-local-workspace-adapter-unittest.stderr.txt",
+      "byte_size": 18269,
+      "sha256": "9ca78de6b5c24b64a443bb4087b85bb02eab453ed98088d0b2cb55128cf0b3b8"
+    },
+    {
+      "relative_path": "docs/gpt-communication/evidence/task035-local-workspace-staged-output-controlled-promotion-boundary/formal-local-verification/09-local-workspace-adapter-unittest.stdout.txt",
+      "byte_size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "relative_path": "docs/gpt-communication/evidence/task035-local-workspace-staged-output-controlled-promotion-boundary/formal-local-verification/10-task035b-formal-verification-runner.exit-code.txt",
+      "byte_size": 3,
+      "sha256": "f1b2f662800122bed0ff255693df89c4487fbdcf453d3524a42d4ec20c3d9c04"
+    },
+    {
+      "relative_path": "docs/gpt-communication/evidence/task035-local-workspace-staged-output-controlled-promotion-boundary/formal-local-verification/10-task035b-formal-verification-runner.py",
+      "byte_size": 18960,
+      "sha256": "060dd526b22a9bc4479cbc8c0806c62f49340e27acacf57b36d258e3ef195e78"
+    },
+    {
+      "relative_path": "docs/gpt-communication/evidence/task035-local-workspace-staged-output-controlled-promotion-boundary/formal-local-verification/10-task035b-formal-verification-runner.stderr.txt",
+      "byte_size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "relative_path": "docs/gpt-communication/evidence/task035-local-workspace-staged-output-controlled-promotion-boundary/formal-local-verification/10-task035b-formal-verification-runner.stdout.txt",
+      "byte_size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "relative_path": "docs/gpt-communication/evidence/task035-local-workspace-staged-output-controlled-promotion-boundary/formal-local-verification/11-task035b-formal-scenarios.json",
+      "byte_size": 32332,
+      "sha256": "415594a84c962442fb0b295776a008b3b973260bd0cfa81c2d92474114206eaf"
+    },
+    {
+      "relative_path": "docs/gpt-communication/evidence/task035-local-workspace-staged-output-controlled-promotion-boundary/formal-local-verification/12-task035b-safety-summary.json",
+      "byte_size": 972,
+      "sha256": "85a3e100d61492ea3db6a0d49db03eaa7228fcfb1497cf0c5df4ed42f4d6942d"
+    },
+    {
+      "relative_path": "docs/gpt-communication/evidence/task035-local-workspace-staged-output-controlled-promotion-boundary/formal-local-verification/13-git-diff-check.exit-code.txt",
+      "byte_size": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+    },
+    {
+      "relative_path": "docs/gpt-communication/evidence/task035-local-workspace-staged-output-controlled-promotion-boundary/formal-local-verification/13-git-diff-check.stderr.txt",
+      "byte_size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "relative_path": "docs/gpt-communication/evidence/task035-local-workspace-staged-output-controlled-promotion-boundary/formal-local-verification/13-git-diff-check.stdout.txt",
+      "byte_size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "relative_path": "docs/gpt-communication/evidence/task035-local-workspace-staged-output-controlled-promotion-boundary/formal-local-verification/14-git-status-after.exit-code.txt",
+      "byte_size": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+    },
+    {
+      "relative_path": "docs/gpt-communication/evidence/task035-local-workspace-staged-output-controlled-promotion-boundary/formal-local-verification/14-git-status-after.stderr.txt",
+      "byte_size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "relative_path": "docs/gpt-communication/evidence/task035-local-workspace-staged-output-controlled-promotion-boundary/formal-local-verification/14-git-status-after.stdout.txt",
+      "byte_size": 131,
+      "sha256": "5c29b422814e6914cab55059ea851f87c6557d5ebf1b2588fe4c143ff550cd8e"
+    }
+  ],
+  "file_count": 34
+}

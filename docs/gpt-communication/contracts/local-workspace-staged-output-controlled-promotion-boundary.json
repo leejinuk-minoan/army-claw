@@ -1,0 +1,256 @@
+{
+  "schema_version": "army-claw-local-workspace-controlled-promotion-035.v1",
+  "contract_id": "local-workspace-staged-output-controlled-promotion-boundary",
+  "task_id": "task035-local-workspace-staged-output-controlled-promotion-boundary",
+  "depends_on": [
+    "local-workspace-staged-output-boundary",
+    "local-workspace-staged-output-evidence-manifest-boundary",
+    "common-office-adapter-error-taxonomy",
+    "adapter-validator-gate-policy"
+  ],
+  "execution_mode": "controlled_promotion",
+  "operation": "promote_staged_output",
+  "authorization": {
+    "required": true,
+    "scope": "single_artifact_single_destination",
+    "required_bindings": [
+      "authorization_id",
+      "artifact_id",
+      "manifest_id",
+      "approved_root_id",
+      "destination_relative_path"
+    ],
+    "wildcard_allowed": false,
+    "reuse_with_conflicting_binding_allowed": false
+  },
+  "approved_root_policy": {
+    "root_id_required": true,
+    "runtime_mapping_required": true,
+    "freeform_absolute_path_allowed": false,
+    "unc_allowed": false,
+    "drive_qualified_path_allowed": false,
+    "path_traversal_allowed": false,
+    "nul_or_control_character_allowed": false,
+    "empty_segment_allowed": false,
+    "reserved_device_name_allowed": false,
+    "trailing_dot_or_space_allowed": false,
+    "unicode_normalization": "NFC",
+    "casefold_collision_allowed": false,
+    "casefold_collision_policy": "existing_sibling_only",
+    "repeated_path_segment_casefold_collision_allowed": true,
+    "lexical_component_check_before_resolve": true,
+    "raw_injected_root_checked_before_resolve": true,
+    "raw_staged_root_checked_before_resolve": true,
+    "raw_approved_root_checked_before_resolve": true,
+    "root_symlink_allowed": false,
+    "root_reparse_point_allowed": false,
+    "root_inspection_failure_policy": "unsupported_safety_check",
+    "missing_root_policy": "fail_closed",
+    "automatic_root_creation_allowed": false
+  },
+  "object_safety": {
+    "symlink_allowed": false,
+    "hardlink_allowed": false,
+    "junction_allowed": false,
+    "reparse_point_allowed": false,
+    "mount_escape_allowed": false,
+    "unsupported_check_policy": "block",
+    "reparse_inspection_failure_policy": "unsupported_safety_check",
+    "external_or_preexisting_hardlinked_source_allowed": false,
+    "operation_owned_transient_link_commit_allowed": true
+  },
+  "manifest_linkage": {
+    "manifest_required": true,
+    "artifact_membership_required": true,
+    "path_match_required": true,
+    "byte_size_match_required": true,
+    "source_digest_match_required": true,
+    "canonical_task033_manifest_required": true,
+    "accepted_manifest_inputs": [
+      "task033_whole_response_object",
+      "task033_inner_manifest_object"
+    ],
+    "required_execution_mode": "staged_output_evidence_manifest",
+    "sandbox_scope_required": true,
+    "required_validation_flags": [
+      "valid",
+      "canonical_serialization_valid",
+      "digest_verification_valid",
+      "relationship_integrity_valid",
+      "path_policy_valid"
+    ],
+    "canonical_artifact_fields": [
+      "artifact_id",
+      "normalized_relative_path",
+      "byte_size",
+      "digest_algorithm",
+      "digest_value",
+      "receipt_id",
+      "sandbox_only",
+      "promotion_status"
+    ],
+    "canonical_relationship_fields": [
+      "relationship_type",
+      "source_id",
+      "target_id"
+    ],
+    "artifact_sandbox_only_required": true,
+    "artifact_promotion_status_required": "not_promoted",
+    "relationship_type_required": "artifact_evidenced_by_receipt"
+  },
+  "digest_policy": {
+    "allowlist": [
+      "sha256"
+    ],
+    "hex_case": "lowercase",
+    "hex_length": 64,
+    "source_bytes_verified": true,
+    "temporary_destination_bytes_verified": true,
+    "final_destination_bytes_verified": true
+  },
+  "placement_policy": {
+    "overwrite_allowed": false,
+    "exclusive_create_required": true,
+    "cross_volume_copy_allowed": false,
+    "atomic_no_overwrite_placement_required": false,
+    "source_retained": true,
+    "temporary_cleanup_required_on_failure": true,
+    "exclusive_no_overwrite_link_commit_required": true,
+    "destination_parent_must_preexist": true,
+    "source_immutability_unconditional": true,
+    "post_commit_failure_cleanup_policy": "best_effort_independent_temp_and_final_cleanup",
+    "cleanup_early_return_allowed": false,
+    "operation_created_final_removed_on_failed_promotion": true,
+    "operation_created_temp_removed_on_failed_promotion": true,
+    "pre_existing_destination_cleanup_allowed": false,
+    "pre_existing_destination_preserved_on_failure": true
+  },
+  "idempotency": {
+    "existing_destination_is_success_by_default": false,
+    "trusted_receipt_required_for_already_promoted": true,
+    "all_bindings_must_match": true
+  },
+  "required_receipt_fields": [
+    "receipt_version",
+    "receipt_id",
+    "promotion_id",
+    "request_id",
+    "authorization_id",
+    "source_artifact_id",
+    "source_manifest_id",
+    "source_normalized_relative_path",
+    "destination_root_id",
+    "destination_normalized_relative_path",
+    "byte_size",
+    "digest_algorithm",
+    "source_digest",
+    "destination_digest",
+    "placement_method",
+    "source_retained",
+    "overwrite_performed",
+    "temporary_path_cleaned",
+    "status",
+    "error_code",
+    "safety_assertions"
+  ],
+  "error_codes": [
+    "promotion_authorization_missing",
+    "promotion_authorization_invalid",
+    "authorization_binding_mismatch",
+    "authorization_reuse_conflict",
+    "approved_root_not_allowed",
+    "destination_absolute_path_not_allowed",
+    "destination_path_traversal",
+    "destination_reserved_name",
+    "destination_case_collision",
+    "source_outside_staged_root",
+    "destination_outside_approved_root",
+    "source_destination_collision",
+    "symlink_not_allowed",
+    "hardlink_not_allowed",
+    "reparse_point_not_allowed",
+    "unsupported_safety_check",
+    "manifest_missing",
+    "manifest_artifact_missing",
+    "manifest_reference_mismatch",
+    "source_size_mismatch",
+    "source_digest_mismatch",
+    "destination_digest_mismatch",
+    "digest_algorithm_not_allowed",
+    "destination_exists",
+    "exclusive_create_failed",
+    "cross_volume_promotion_not_allowed",
+    "source_changed_after_validation",
+    "promotion_request_conflict",
+    "temporary_cleanup_failed",
+    "final_verification_failed"
+  ],
+  "cloud_phase": {
+    "cloud_package_only": true,
+    "actual_adapter_invoked": false,
+    "controlled_test_promotion_performed": false,
+    "production_promotion_performed": false,
+    "actual_file_system_mutation_performed": false,
+    "user_workspace_file_system_mutation_performed": false,
+    "file_content_read_performed": false,
+    "local_hancom_com_executed": false,
+    "real_hwp_hwpx_hancell_hanshow_artifact_generated": false
+  },
+  "adapter_validator_gate": {
+    "required": true,
+    "status": "required_not_run",
+    "local_verification_required": true
+  },
+  "completion_claims": {
+    "task035_final_completion": false,
+    "stage_2_ready": false,
+    "final_hwp_hwpx_core_selected": false
+  },
+  "failure_audit_policy": {
+    "audit_required": true,
+    "validation_failure_before_read": {
+      "file_content_read_performed": false,
+      "actual_file_system_mutation_performed": false
+    },
+    "source_digest_failure_after_read": {
+      "file_content_read_performed": true,
+      "actual_file_system_mutation_performed": false
+    },
+    "temporary_or_commit_failure_after_temp_create": {
+      "file_content_read_performed": true,
+      "actual_file_system_mutation_performed": true
+    },
+    "cleanup_evidence_fields": [
+      "temporary_path_cleaned",
+      "final_path_cleaned",
+      "cleanup_attempted",
+      "cleanup_complete",
+      "cleanup_error_codes",
+      "original_error_code"
+    ],
+    "user_workspace_file_system_mutation_performed": false,
+    "production_promotion_performed": false,
+    "source_mutated": false
+  },
+  "structured_filesystem_error_policy": {
+    "expected_filesystem_oserror_returns_structured_response": true,
+    "traceback_escape_allowed": false,
+    "covered_failure_points": [
+      "directory_listing_failure",
+      "source_read_or_hash_failure",
+      "source_stat_failure",
+      "temp_create_write_failure",
+      "temp_stat_or_hash_failure",
+      "final_stat_or_hash_failure",
+      "hard_link_commit_failure",
+      "temp_unlink_failure",
+      "final_unlink_failure"
+    ],
+    "default_error_mapping": {
+      "directory_listing_failure": "unsupported_safety_check",
+      "source_read_or_hash_failure": "final_verification_failed",
+      "temp_create_write_failure": "exclusive_create_failed",
+      "cleanup_failure": "temporary_cleanup_failed"
+    }
+  }
+}

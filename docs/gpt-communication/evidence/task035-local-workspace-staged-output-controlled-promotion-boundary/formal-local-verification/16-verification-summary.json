@@ -1,0 +1,35 @@
+{
+  "verified_implementation_commit_sha": "e7c91119771ad9e75262ee946ad648b674157472",
+  "preflight_passed": false,
+  "json_parse_all_passed": true,
+  "pycompile_all_passed": true,
+  "validator_exit_code": 0,
+  "validator_summary": {
+    "status": "valid",
+    "total_checks": 383,
+    "passed_checks": 383,
+    "failed_checks": 0,
+    "blocked_checks": 0,
+    "not_evaluated_checks": 0
+  },
+  "adapter_validator_unittest_exit_code": 0,
+  "adapter_validator_unittest_count": 22,
+  "local_workspace_adapter_unittest_exit_code": 0,
+  "local_workspace_adapter_unittest_count": 97,
+  "local_workspace_skip_lines": [
+    "test_blocks_destination_parent_symlink_when_supported (test_local_workspace_adapter.LocalWorkspaceAdapterControlledPromotionTests.test_blocks_destination_parent_symlink_when_supported) ... skipped 'symlink creation requires elevated Windows privilege'",
+    "test_blocks_symlink_source_when_supported (test_local_workspace_adapter.LocalWorkspaceAdapterControlledPromotionTests.test_blocks_symlink_source_when_supported) ... skipped 'symlink creation requires elevated Windows privilege'",
+    "OK (skipped=2)"
+  ],
+  "formal_scenarios_all_passed": false,
+  "formal_scenario_count": 15,
+  "formal_scenario_passed_count": 1,
+  "formal_scenario_failed_count": 14,
+  "git_diff_check_exit_code": 0,
+  "local_verification_gate_passed": false,
+  "evidence_dir": "docs/gpt-communication/evidence/task035-local-workspace-staged-output-controlled-promotion-boundary/formal-local-verification",
+  "completion_gate_passed": false,
+  "completion_gate_scope": "task035b_local_gate_only",
+  "master_review_complete": false,
+  "final_task035_completion_gate_passed": false
+}
