@@ -1,0 +1,1 @@
+{"case":"destination_path_traversal","destination":{"approved_root_id":"approved-output-root","normalized_relative_path":"../escape/report.bin","overwrite_allowed":false},"expected":{"valid":false,"error_code":"destination_path_traversal"}}
