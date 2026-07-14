@@ -20,6 +20,7 @@
 | RN-030 | Task 030 | `task-notes/RN-030-task030-local-workspace-read-only-manifest-boundary.md` | Local workspace read-only manifest boundary and metadata-only descriptors | verified |
 | RN-031 | Task 031 | `task-notes/RN-031-task031-local-workspace-staged-output-boundary.md` | Local workspace staged output boundary and temporary sandbox receipts | verified |
 | RN-033 | Task 033 | `task-notes/RN-033-task033-local-workspace-staged-output-evidence-manifest-boundary.md` | Deterministic staged output evidence manifest boundary | final verified |
+| RN-034 | Task 034 | `task-notes/RN-034-task034-main-integration-governance-sync.md` | PR-based main integration and governance baseline synchronization | final verified |
 
 ## Index Maintenance Rule
 
