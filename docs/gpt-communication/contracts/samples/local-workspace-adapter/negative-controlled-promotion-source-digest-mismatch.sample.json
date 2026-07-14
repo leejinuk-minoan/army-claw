@@ -1,0 +1,1 @@
+{"case":"source_digest_mismatch","source":{"staged_artifact_id":"artifact-001","manifest_id":"manifest-001","normalized_relative_path":"staged/report.bin","byte_size":45,"digest_algorithm":"sha256","digest_value":"0000000000000000000000000000000000000000000000000000000000000000"},"expected":{"valid":false,"error_code":"source_digest_mismatch"}}
