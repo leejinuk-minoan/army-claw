@@ -1,0 +1,23 @@
+# Task 035 Contract — Controlled Staged-Output Promotion Boundary
+
+## Routing
+- overall: `cloud_first_local_verify`
+- Task 035-A: `cloud_delegable`
+- Task 035-B: `local_codex_required`
+- adapter validator gate: required
+- final master review: required
+
+## Objective
+Define and prepare validation of a controlled promotion boundary linking a Task 033 manifest artifact to an explicitly authorized destination under an injected allowlisted temporary root.
+
+## Required controls
+Bound authorization, approved-root mapping, normalized relative paths, manifest/artifact linkage, SHA-256 and byte-size re-verification, exclusive create, overwrite prohibition, symlink/hardlink/reparse blocking, cross-volume blocking, atomic no-overwrite placement, failure cleanup, idempotency through trusted receipt, and deterministic receipt schema.
+
+## Cloud phase claims
+Cloud package may create contracts, samples, implementation/test package, validator registration, documentation, delegation records, state, and Research Note. It must not claim local validation, actual promotion, production mutation, user workspace mutation, or final Task completion.
+
+## Local phase boundary
+Only isolated temporary roots are allowed. Any test write must be reported as actual filesystem mutation while remaining non-production and outside the user workspace.
+
+## Forbidden
+Main write/merge, force push, history rewrite, real user workspace access, existing user file overwrite, production destination, public internet, dependency installation, native apps, Hancom COM, real office artifacts, Stage 2 declaration, and final HWPX core selection.
