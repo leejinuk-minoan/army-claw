@@ -1,0 +1,111 @@
+{
+  "schema_version": "army-claw-local-workspace-controlled-promotion-035.v1",
+  "contract_id": "local-workspace-staged-output-controlled-promotion-boundary",
+  "task_id": "task035-local-workspace-staged-output-controlled-promotion-boundary",
+  "depends_on": [
+    "local-workspace-staged-output-boundary",
+    "local-workspace-staged-output-evidence-manifest-boundary",
+    "common-office-adapter-error-taxonomy",
+    "adapter-validator-gate-policy"
+  ],
+  "execution_mode": "controlled_promotion",
+  "operation": "promote_staged_output",
+  "authorization": {
+    "required": true,
+    "scope": "single_artifact_single_destination",
+    "required_bindings": ["authorization_id", "artifact_id", "manifest_id", "approved_root_id", "destination_relative_path"],
+    "wildcard_allowed": false,
+    "reuse_with_conflicting_binding_allowed": false
+  },
+  "approved_root_policy": {
+    "root_id_required": true,
+    "runtime_mapping_required": true,
+    "freeform_absolute_path_allowed": false,
+    "unc_allowed": false,
+    "drive_qualified_path_allowed": false,
+    "path_traversal_allowed": false,
+    "nul_or_control_character_allowed": false,
+    "empty_segment_allowed": false,
+    "reserved_device_name_allowed": false,
+    "trailing_dot_or_space_allowed": false,
+    "unicode_normalization": "NFC",
+    "casefold_collision_allowed": false
+  },
+  "object_safety": {
+    "symlink_allowed": false,
+    "hardlink_allowed": false,
+    "junction_allowed": false,
+    "reparse_point_allowed": false,
+    "mount_escape_allowed": false,
+    "unsupported_check_policy": "block"
+  },
+  "manifest_linkage": {
+    "manifest_required": true,
+    "artifact_membership_required": true,
+    "path_match_required": true,
+    "byte_size_match_required": true,
+    "source_digest_match_required": true
+  },
+  "digest_policy": {
+    "allowlist": ["sha256"],
+    "hex_case": "lowercase",
+    "hex_length": 64,
+    "source_bytes_verified": true,
+    "temporary_destination_bytes_verified": true,
+    "final_destination_bytes_verified": true
+  },
+  "placement_policy": {
+    "overwrite_allowed": false,
+    "exclusive_create_required": true,
+    "cross_volume_copy_allowed": false,
+    "atomic_no_overwrite_placement_required": true,
+    "source_retained": true,
+    "temporary_cleanup_required_on_failure": true
+  },
+  "idempotency": {
+    "existing_destination_is_success_by_default": false,
+    "trusted_receipt_required_for_already_promoted": true,
+    "all_bindings_must_match": true
+  },
+  "required_receipt_fields": [
+    "receipt_version", "receipt_id", "promotion_id", "request_id", "authorization_id",
+    "source_artifact_id", "source_manifest_id", "source_normalized_relative_path",
+    "destination_root_id", "destination_normalized_relative_path", "byte_size",
+    "digest_algorithm", "source_digest", "destination_digest", "placement_method",
+    "source_retained", "overwrite_performed", "temporary_path_cleaned", "status",
+    "error_code", "safety_assertions"
+  ],
+  "error_codes": [
+    "promotion_authorization_missing", "promotion_authorization_invalid", "authorization_binding_mismatch",
+    "authorization_reuse_conflict", "approved_root_not_allowed", "destination_absolute_path_not_allowed",
+    "destination_path_traversal", "destination_reserved_name", "destination_case_collision",
+    "source_outside_staged_root", "destination_outside_approved_root", "source_destination_collision",
+    "symlink_not_allowed", "hardlink_not_allowed", "reparse_point_not_allowed", "unsupported_safety_check",
+    "manifest_missing", "manifest_artifact_missing", "manifest_reference_mismatch", "source_size_mismatch",
+    "source_digest_mismatch", "destination_digest_mismatch", "digest_algorithm_not_allowed",
+    "destination_exists", "exclusive_create_failed", "cross_volume_promotion_not_allowed",
+    "source_changed_after_validation", "promotion_request_conflict", "temporary_cleanup_failed",
+    "final_verification_failed"
+  ],
+  "cloud_phase": {
+    "cloud_package_only": true,
+    "actual_adapter_invoked": false,
+    "controlled_test_promotion_performed": false,
+    "production_promotion_performed": false,
+    "actual_file_system_mutation_performed": false,
+    "user_workspace_file_system_mutation_performed": false,
+    "file_content_read_performed": false,
+    "local_hancom_com_executed": false,
+    "real_hwp_hwpx_hancell_hanshow_artifact_generated": false
+  },
+  "adapter_validator_gate": {
+    "required": true,
+    "status": "required_not_run",
+    "local_verification_required": true
+  },
+  "completion_claims": {
+    "task035_final_completion": false,
+    "stage_2_ready": false,
+    "final_hwp_hwpx_core_selected": false
+  }
+}
