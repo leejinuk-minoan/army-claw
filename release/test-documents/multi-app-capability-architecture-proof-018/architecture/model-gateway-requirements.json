@@ -1,0 +1,23 @@
+{
+  "implemented_in_task018": false,
+  "adapters": [
+    {
+      "adapter_id": "MockModelAdapter",
+      "required_for_stage": "Stage 1 deterministic testing",
+      "public_internet_required": false,
+      "implemented_in_task018": false
+    },
+    {
+      "adapter_id": "LocalLlmAdapter",
+      "required_for_stage": "Stage 3 model gateway boundary",
+      "public_internet_required": false,
+      "implemented_in_task018": false
+    },
+    {
+      "adapter_id": "ClosedOpenAICompatibleAdapter",
+      "required_for_stage": "Stage 3 model gateway boundary",
+      "public_internet_required": false,
+      "implemented_in_task018": false
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "request_id": "req-local-workspace-proof-001",
+  "response_id": "res-local-workspace-proof-001",
+  "contract_version": "army-claw-common-office-adapter-interface-023.v1",
+  "target_id": "local_workspace",
+  "adapter_slot_id": "local_workspace_adapter_slot",
+  "status": "blocked_in_proof",
+  "execution_allowed": false,
+  "actual_adapter_invoked": false,
+  "output_artifacts": [],
+  "validation_result": {
+    "valid": true,
+    "proof_blocked": true,
+    "reason": "actual adapter invocation is not allowed in Task 023"
+  },
+  "evidence": {
+    "proof_mode": true,
+    "actual_execution_evidence": false,
+    "contract_path": "docs/gpt-communication/contracts/common-office-adapter-interface-contract.json"
+  },
+  "warnings": ["cloud proof only; no local workspace automation executed"],
+  "created_at": "2026-07-09T00:00:00Z"
+}

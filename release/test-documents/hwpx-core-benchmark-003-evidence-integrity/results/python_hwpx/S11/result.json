@@ -1,0 +1,17 @@
+{
+  "task_id": "hwpx-core-benchmark-003-evidence-integrity",
+  "candidate_id": "python_hwpx",
+  "candidate_role": "editor",
+  "scenario_id": "S11",
+  "status_reason": "S11 is outside editor responsibility",
+  "evidence_completeness": "not_applicable",
+  "missing_evidence": [],
+  "planned_commands": [
+    "Task 003 python_hwpx S11 local evidence execution"
+  ],
+  "attempted_commands": [],
+  "validator_results": [],
+  "status": "not_applicable",
+  "rationale": "S11 is not assigned to editor in the v6 role matrix",
+  "governing_role_matrix_reference": "role-matrix:v6-canonical-output-alignment"
+}

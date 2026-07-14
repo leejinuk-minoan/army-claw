@@ -1,0 +1,87 @@
+{
+  "schema_version": "army-claw-local-workspace-controlled-dry-run-boundary-029.v1",
+  "contract_id": "local-workspace-controlled-dry-run-boundary",
+  "task_id": "task029-local-workspace-adapter-controlled-dry-run-boundary",
+  "depends_on": [
+    "docs/gpt-communication/contracts/common-office-adapter-interface-contract.json",
+    "docs/gpt-communication/contracts/common-office-adapter-error-taxonomy.json",
+    "docs/gpt-communication/contracts/local-workspace-adapter-contract.json",
+    "docs/architecture/army-claw-local-workspace-controlled-dry-run-boundary.md"
+  ],
+  "target": {
+    "target_id": "local_workspace",
+    "adapter_slot_id": "local_workspace_adapter_slot",
+    "plan_type": "local_workspace_action_plan"
+  },
+  "controlled_dry_run_required_markers": {
+    "execution_context.execution_mode": "controlled_dry_run",
+    "execution_context.controlled_dry_run": true,
+    "dry_run": true
+  },
+  "allowed_in_controlled_dry_run": [
+    "validate_request_envelope",
+    "validate_target_slot_plan_mapping",
+    "validate_approved_workspace_reference",
+    "canonicalize_relative_paths_in_memory",
+    "produce_planned_output_artifact_descriptors",
+    "produce_deterministic_dry_run_receipts"
+  ],
+  "forbidden_in_controlled_dry_run": [
+    "create_real_files",
+    "modify_real_files",
+    "copy_real_files",
+    "delete_real_files",
+    "inspect_real_workspace_files",
+    "mutate_real_workspace_files",
+    "invoke_hancom_com",
+    "generate_real_hwp_hwpx_hancell_hanshow_artifacts",
+    "access_public_internet",
+    "alter_native_application_state",
+    "claim_actual_adapter_invocation"
+  ],
+  "path_safety_rules": {
+    "absolute_paths_allowed": false,
+    "path_traversal_allowed": false,
+    "backslash_paths_allowed": false,
+    "empty_path_segments_allowed": false,
+    "source_overwrite_allowed": false,
+    "symlink_escape_claim_without_local_proof_allowed": false
+  },
+  "positive_response_required_values": {
+    "status": "controlled_dry_run_completed",
+    "execution_allowed": false,
+    "actual_adapter_invoked": false,
+    "dry_run_adapter_boundary_evaluated": true,
+    "actual_file_system_mutation_performed": false,
+    "output_artifacts": [],
+    "validation_result.valid": true
+  },
+  "positive_response_required_sections": [
+    "planned_output_artifacts",
+    "dry_run_operation_receipts"
+  ],
+  "error_mapping": {
+    "unsafe_path": "template_reference_error",
+    "source_overwrite": "source_overwrite_blocked",
+    "public_internet_requirement": "public_internet_dependency_blocked",
+    "llm_direct_file_edit": "llm_direct_file_edit_blocked",
+    "native_app_state_modification": "llm_direct_native_app_state_modification_blocked",
+    "missing_dry_run_marker": "constraint_violation",
+    "symlink_escape_claim_without_local_proof": "evidence_missing"
+  },
+  "task029a_status": {
+    "cloud_package_complete": true,
+    "local_verification_complete": false,
+    "adapter_validator_gate_required": true,
+    "adapter_validator_gate_status": "required_not_run",
+    "completion_gate_passed": false,
+    "requires_local_verification": true,
+    "actual_adapter_invoked": false,
+    "actual_file_system_mutation_performed": false,
+    "local_hancom_com_executed": false,
+    "real_hwp_hwpx_hancell_hanshow_artifact_generated": false,
+    "ci_created": false,
+    "stage_2_declared": false,
+    "final_hwp_hwpx_core_selected": false
+  }
+}

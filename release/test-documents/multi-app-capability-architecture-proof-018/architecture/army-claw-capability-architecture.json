@@ -1,0 +1,192 @@
+{
+  "task_id": "multi-app-capability-architecture-proof-018",
+  "architecture_version": "army-claw-multi-app-capability-architecture-018.v1",
+  "official_system_name": "Army Claw",
+  "hwp_only": false,
+  "offline_or_closed_network_required": true,
+  "public_internet_required": false,
+  "app_targets": [
+    {
+      "target_id": "local_workspace",
+      "display_name": "Local Workspace",
+      "first_class_target": true,
+      "current_status": "planned_first_class_target",
+      "template_preservation_required": false,
+      "actual_adapter_implemented_in_task018": false,
+      "stage": "Stage 1 boundary, Stage 5 workspace safety expansion"
+    },
+    {
+      "target_id": "hwp_hwpx",
+      "display_name": "HWP/HWPX",
+      "first_class_target": true,
+      "current_status": "first_stabilized_execution_path",
+      "template_preservation_required": true,
+      "actual_adapter_implemented_in_task018": false,
+      "stage": "Stage 1 stabilized path, Stage 2 template-aware expansion"
+    },
+    {
+      "target_id": "hancell",
+      "display_name": "HanCell",
+      "first_class_target": true,
+      "current_status": "planned_first_class_document_target",
+      "template_preservation_required": true,
+      "actual_adapter_implemented_in_task018": false,
+      "stage": "Stage 2 template preservation contract proof"
+    },
+    {
+      "target_id": "hanshow",
+      "display_name": "HanShow",
+      "first_class_target": true,
+      "current_status": "planned_first_class_document_target",
+      "template_preservation_required": true,
+      "actual_adapter_implemented_in_task018": false,
+      "stage": "Stage 2 template preservation contract proof"
+    }
+  ],
+  "operation_families": [
+    "create_document",
+    "edit_document",
+    "fill_template",
+    "extract_content",
+    "inspect_file",
+    "open_file",
+    "save_file",
+    "export_file",
+    "validate_artifact"
+  ],
+  "artifact_families": [
+    "hwp",
+    "hwpx",
+    "cell",
+    "show",
+    "pdf",
+    "image",
+    "folder",
+    "log",
+    "json_plan",
+    "validation_report"
+  ],
+  "template_preservation_requirements": {
+    "hwp_hwpx": {
+      "target_id": "hwp_hwpx",
+      "template_preservation_required": true,
+      "required_fields": [
+        "paragraph_styles",
+        "character_styles",
+        "page_settings",
+        "margins",
+        "headers_footers",
+        "tables",
+        "numbering",
+        "section_structure",
+        "placeholders",
+        "approval_or_signature_blocks"
+      ]
+    },
+    "hancell": {
+      "target_id": "hancell",
+      "template_preservation_required": true,
+      "required_fields": [
+        "sheets",
+        "cell_styles",
+        "merged_cells",
+        "row_column_sizes",
+        "formulas",
+        "named_ranges",
+        "tables",
+        "charts",
+        "print_settings",
+        "placeholder_cells_or_ranges"
+      ]
+    },
+    "hanshow": {
+      "target_id": "hanshow",
+      "template_preservation_required": true,
+      "required_fields": [
+        "slide_size",
+        "slide_layouts",
+        "theme_styles",
+        "placeholders",
+        "text_boxes",
+        "shapes",
+        "tables",
+        "image_frames",
+        "chart_placeholders",
+        "briefing_structure"
+      ]
+    }
+  },
+  "model_gateway_requirements": {
+    "implemented_in_task018": false,
+    "adapters": [
+      {
+        "adapter_id": "MockModelAdapter",
+        "required_for_stage": "Stage 1 deterministic testing",
+        "public_internet_required": false,
+        "implemented_in_task018": false
+      },
+      {
+        "adapter_id": "LocalLlmAdapter",
+        "required_for_stage": "Stage 3 model gateway boundary",
+        "public_internet_required": false,
+        "implemented_in_task018": false
+      },
+      {
+        "adapter_id": "ClosedOpenAICompatibleAdapter",
+        "required_for_stage": "Stage 3 model gateway boundary",
+        "public_internet_required": false,
+        "implemented_in_task018": false
+      }
+    ]
+  },
+  "llm_boundary": {
+    "llm_may_directly_edit_document_packages": false,
+    "llm_may_directly_modify_native_app_state": false,
+    "llm_must_output_structured_plan_only": true,
+    "allowed_plan_types": [
+      "local_workspace_action_plan",
+      "hwp_hwpx_fill_plan",
+      "hancell_fill_plan",
+      "hanshow_fill_plan",
+      "multi_app_execution_plan"
+    ],
+    "plan_validation_required_before_execution": true
+  },
+  "adapter_execution_boundary": {
+    "deterministic_execution_required": true,
+    "adapters_validate_plan_before_execution": true,
+    "native_app_state_changes_only_through_target_adapter": true,
+    "document_package_changes_only_through_target_adapter": true,
+    "actual_hancell_adapter_implemented_in_task018": false,
+    "actual_hanshow_adapter_implemented_in_task018": false,
+    "actual_pc_automation_implemented_in_task018": false
+  },
+  "local_workspace_policy": {
+    "approved_workspace_required": true,
+    "protect_source_templates_from_overwrite": true,
+    "validate_paths_before_writes": true,
+    "log_operations": true,
+    "dry_run_or_preview_recommended": true,
+    "public_internet_access_required": false,
+    "actual_pc_automation_implemented_in_task018": false
+  },
+  "stage_roadmap": {
+    "task017": "Transport-agnostic Invocation Facade Boundary Proof",
+    "task018": "Army Claw Multi-App Capability Architecture Proof",
+    "task019": "App Target Contract and Plan Routing Proof",
+    "stage_2_transition_declared": false
+  },
+  "non_decisions": [
+    "final_hwp_hwpx_core_selection",
+    "production_api_framework",
+    "production_ui_framework",
+    "exact_local_llm_runtime",
+    "exact_closed_network_openai_compatible_endpoint",
+    "hancell_execution_method",
+    "hanshow_execution_method",
+    "local_workspace_automation_toolchain",
+    "final_package_format"
+  ],
+  "final_core_selection_declared": false,
+  "stage_2_transition_declared": false
+}

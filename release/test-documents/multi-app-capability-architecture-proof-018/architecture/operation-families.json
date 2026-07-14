@@ -1,0 +1,11 @@
+[
+  "create_document",
+  "edit_document",
+  "fill_template",
+  "extract_content",
+  "inspect_file",
+  "open_file",
+  "save_file",
+  "export_file",
+  "validate_artifact"
+]

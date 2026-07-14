@@ -1,0 +1,9 @@
+{
+  "task_id": "transport-agnostic-invocation-facade-proof-017",
+  "generated_at": "2026-07-05T08:04:34.445Z",
+  "invocation_result_count": 17,
+  "all_results_keep_core_selection_false": true,
+  "all_results_keep_stage_2_false": true,
+  "completed_output_only": true,
+  "all_route_responses_validate": false
+}

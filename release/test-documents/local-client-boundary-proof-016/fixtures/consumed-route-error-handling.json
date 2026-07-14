@@ -1,0 +1,47 @@
+{
+  "invalid_request": {
+    "http_like_status": 422,
+    "route_status": "validation_error",
+    "source": "Task 013 error taxonomy"
+  },
+  "unsupported_intent": {
+    "http_like_status": 422,
+    "route_status": "validation_error",
+    "source": "Task 013 error taxonomy"
+  },
+  "not_found": {
+    "http_like_status": 404,
+    "route_status": "not_found",
+    "source": "Task 013 error taxonomy"
+  },
+  "not_ready": {
+    "http_like_status": 409,
+    "route_status": "not_ready",
+    "source": "Task 013 error taxonomy"
+  },
+  "policy_error": {
+    "http_like_status": 400,
+    "route_status": "policy_error",
+    "source": "Task 013 error taxonomy"
+  },
+  "validation_error": {
+    "http_like_status": 422,
+    "route_status": "validation_error",
+    "source": "Task 013 error taxonomy"
+  },
+  "execution_error": {
+    "http_like_status": 500,
+    "route_status": "failed",
+    "source": "Task 013 error taxonomy"
+  },
+  "artifact_missing": {
+    "http_like_status": 500,
+    "route_status": "failed",
+    "source": "Task 013 error taxonomy"
+  },
+  "contract_violation": {
+    "http_like_status": 500,
+    "route_status": "failed",
+    "source": "Task 013 error taxonomy"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "report_id": "report-req-unknown",
+  "request_id": "req-unknown",
+  "plan_id": "plan-req-unknown",
+  "task_id": "agent-operation-plan-e2e-proof-009",
+  "started_at": "2026-07-04T21:43:26.601Z",
+  "ended_at": "2026-07-04T21:43:26.602Z",
+  "success": false,
+  "final_output_path": null,
+  "steps": [],
+  "evidence_paths": [],
+  "failures": [
+    {
+      "type": "policy_error",
+      "message": "unsupported_document_intent:unknown_intent",
+      "last_successful_step": "plan_request"
+    }
+  ],
+  "promoted_outputs": [],
+  "real_com_executed": false,
+  "final_core_selection_declared": false,
+  "stage_2_transition_declared": false
+}

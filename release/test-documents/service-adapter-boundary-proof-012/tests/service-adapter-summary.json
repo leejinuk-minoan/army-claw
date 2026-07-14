@@ -1,0 +1,31 @@
+{
+  "task_id": "service-adapter-boundary-proof-012",
+  "generated_at": "2026-07-04T22:47:12.058Z",
+  "completion_candidate": true,
+  "service_operations": [
+    "submit",
+    "runJob",
+    "getJob",
+    "getStatus",
+    "getResult",
+    "listEvents"
+  ],
+  "completed_count": 1,
+  "rejected_count": 1,
+  "failed_count": 1,
+  "not_found_proof": true,
+  "not_ready_proof": true,
+  "real_com_executed": false,
+  "final_core_selection_declared": false,
+  "stage_2_transition_declared": false,
+  "completed_artifacts_modified": false,
+  "read_only_reference_roots": [
+    "release/test-documents/hwpx-core-benchmark-003-evidence-integrity",
+    "release/test-documents/hwpcoreadapter-backend-proof-006",
+    "release/test-documents/editor-backend-candidate-comparison-007",
+    "release/test-documents/node-xml-thin-interim-adapter-integration-008",
+    "release/test-documents/agent-operation-plan-e2e-proof-009",
+    "release/test-documents/agent-api-boundary-proof-010",
+    "release/test-documents/local-job-boundary-proof-011"
+  ]
+}

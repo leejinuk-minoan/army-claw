@@ -1,0 +1,26 @@
+{
+  "api_request_id": "api-create_document",
+  "request_id": "req-create_document",
+  "task_id": "agent-api-boundary-proof-010",
+  "document_intent": "create_document",
+  "content": {
+    "text": "Task 010 create_document content",
+    "table": [
+      [
+        "A",
+        "B"
+      ],
+      [
+        "1",
+        "2"
+      ]
+    ],
+    "style": "emphasis"
+  },
+  "constraints": {
+    "backend_role": "editor",
+    "backend_id": "NodeXmlThinInterimEditorAdapter",
+    "no_real_com": true,
+    "no_final_core_selection": true
+  }
+}

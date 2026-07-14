@@ -1,0 +1,36 @@
+{
+  "case_name": "validCompletedResponse",
+  "expected_valid": true,
+  "actual_valid": true,
+  "passed": true,
+  "validation": {
+    "valid": true,
+    "errors": [],
+    "warnings": [],
+    "normalized": {
+      "service_request_id": "svc-result-completed-001",
+      "service_operation": "getResult",
+      "ok": true,
+      "status": "completed",
+      "job_id": "job-create",
+      "job_status": "completed",
+      "data": {
+        "job_id": "job-create",
+        "status": "completed"
+      },
+      "error": null,
+      "artifacts": {
+        "response_path": "release/test-documents/service-contract-schema-error-taxonomy-013/fixtures/valid/completed-response.json",
+        "report_path": "release/test-documents/service-contract-schema-error-taxonomy-013/fixtures/valid/report.json",
+        "output_path": "release/test-documents/service-contract-schema-error-taxonomy-013/fixtures/valid/output.hwpx",
+        "evidence_paths": [
+          "release/test-documents/service-contract-schema-error-taxonomy-013/fixtures/valid/evidence.json"
+        ]
+      },
+      "real_com_executed": false,
+      "final_core_selection_declared": false,
+      "stage_2_transition_declared": false
+    },
+    "contract_version": "service-contract-schema-error-taxonomy-013.v1"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "variants": [
+    {
+      "name": "reflow-a-keep-linesegarray",
+      "status": "not_selected",
+      "reason": "v3 visual review showed stale line layout"
+    },
+    {
+      "name": "reflow-b-clear-target-linesegarray",
+      "status": "selected",
+      "path": "release/test-documents/army-claw-qualification-review-template-fidelity-v4-pre-normalize.hwpx"
+    },
+    {
+      "name": "reflow-c-native-normalized",
+      "status": "pending_or_not_run",
+      "path": "release/test-documents/army-claw-qualification-review-template-fidelity-v4.hwpx"
+    }
+  ],
+  "input_sha256": "14ee8f60e52efb8d35e2fc84a40d17310cef6aabb803cc00c76472d843298147",
+  "output_sha256": "b15433ba277c5937227604627378fad2a98d1df860a537190e4284763e0fe92d",
+  "linesegarray_before": 639,
+  "linesegarray_after": 626,
+  "binData_preserved": true,
+  "com_open_result": "not_run_by_node_generator",
+  "com_save_result": "not_run_by_node_generator",
+  "source_unchanged": true
+}

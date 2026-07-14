@@ -1,0 +1,32 @@
+{
+  "service_request_id": "svc-getResult-job-api-invalid-1783205231886",
+  "service_operation": "getResult",
+  "ok": true,
+  "status": "rejected",
+  "job_id": "job-api-invalid",
+  "job_status": "rejected",
+  "data": {
+    "job_id": "job-api-invalid",
+    "status": "rejected",
+    "response_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\t12\\release\\test-documents\\service-adapter-boundary-proof-012\\responses\\job-api-invalid-response.json",
+    "report_path": null,
+    "output_path": null,
+    "evidence_paths": [],
+    "failure": {
+      "type": "policy_error",
+      "message": "document_intent_required",
+      "last_successful_step": "validate_api_request",
+      "quarantine_path": null
+    }
+  },
+  "error": null,
+  "artifacts": {
+    "response_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\t12\\release\\test-documents\\service-adapter-boundary-proof-012\\responses\\job-api-invalid-response.json",
+    "report_path": null,
+    "output_path": null,
+    "evidence_paths": []
+  },
+  "real_com_executed": false,
+  "final_core_selection_declared": false,
+  "stage_2_transition_declared": false
+}

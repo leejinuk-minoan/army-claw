@@ -1,0 +1,28 @@
+{
+  "route_request_id": "client-submit-document-job-submit",
+  "mock_method": "POST",
+  "mock_path": "/mock/jobs",
+  "service_operation": "submit",
+  "http_like_status": 202,
+  "ok": true,
+  "status": "accepted",
+  "job_id": "job-api-submit-document-job",
+  "job_status": "pending",
+  "data": {
+    "job_id": "job-api-submit-document-job",
+    "status": "pending",
+    "request_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task017-transport-agnostic-invocation-facade-proof-20260705\\release\\test-documents\\inprocess-route-facade-proof-014\\requests\\job-api-submit-document-job-request.json",
+    "submitted_at": "2026-07-05T08:04:34.266Z"
+  },
+  "error": null,
+  "artifacts": {
+    "job_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task017-transport-agnostic-invocation-facade-proof-20260705\\release\\test-documents\\inprocess-route-facade-proof-014\\jobs\\job-api-submit-document-job-job.json",
+    "service_response_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task017-transport-agnostic-invocation-facade-proof-20260705\\release\\test-documents\\inprocess-route-facade-proof-014\\internal-execution-workspace\\release\\test-documents\\service-adapter-boundary-proof-012\\service-responses\\submit-validation-failure-response.json",
+    "request_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task017-transport-agnostic-invocation-facade-proof-20260705\\release\\test-documents\\inprocess-route-facade-proof-014\\requests\\job-api-submit-document-job-request.json",
+    "output_path": null
+  },
+  "contract_version": "service-contract-schema-error-taxonomy-013.v1",
+  "real_com_executed": false,
+  "final_core_selection_declared": false,
+  "stage_2_transition_declared": false
+}

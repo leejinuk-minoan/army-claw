@@ -1,0 +1,29 @@
+[
+  {
+    "event_id": "event-001",
+    "job_id": "job-api-validation-failure",
+    "from_status": null,
+    "to_status": "pending",
+    "timestamp": "2026-07-04T22:15:54.346Z",
+    "reason": "submitted",
+    "artifact_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\t11\\release\\test-documents\\local-job-boundary-proof-011\\requests\\validation-failure-request.json"
+  },
+  {
+    "event_id": "event-002",
+    "job_id": "job-api-validation-failure",
+    "from_status": "pending",
+    "to_status": "running",
+    "timestamp": "2026-07-04T22:15:54.353Z",
+    "reason": "execution_started",
+    "artifact_path": null
+  },
+  {
+    "event_id": "event-003",
+    "job_id": "job-api-validation-failure",
+    "from_status": "running",
+    "to_status": "failed",
+    "timestamp": "2026-07-04T22:15:54.490Z",
+    "reason": "api_response_failed",
+    "artifact_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\t11\\release\\test-documents\\local-job-boundary-proof-011\\responses\\job-api-validation-failure-response.json"
+  }
+]

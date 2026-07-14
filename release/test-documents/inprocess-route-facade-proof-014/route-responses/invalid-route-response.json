@@ -1,0 +1,36 @@
+{
+  "route_request_id": "route-invalid",
+  "mock_method": "POST",
+  "mock_path": "/mock/jobs",
+  "service_operation": "unknown",
+  "http_like_status": 422,
+  "ok": false,
+  "status": "validation_error",
+  "job_id": null,
+  "job_status": null,
+  "data": {
+    "validation": {
+      "valid": false,
+      "errors": [
+        "service_operation_required_or_unsupported"
+      ]
+    }
+  },
+  "error": {
+    "code": "invalid_request",
+    "type": "invalid_request",
+    "message": "service_operation_required_or_unsupported",
+    "category": "request",
+    "retryable": false,
+    "user_visible": true,
+    "expected_status": "validation_error"
+  },
+  "artifacts": {
+    "output_path": null,
+    "evidence_paths": []
+  },
+  "contract_version": "service-contract-schema-error-taxonomy-013.v1",
+  "real_com_executed": false,
+  "final_core_selection_declared": false,
+  "stage_2_transition_declared": false
+}

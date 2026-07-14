@@ -1,0 +1,34 @@
+{
+  "task_id": "task025b-adapter-interface-validator-local-verification",
+  "phase": "task025b-local_verification",
+  "local_execution_base_sha": "e6ec7a30f19a1efddb04234d4e8fd805218fed2a",
+  "branch": "agent/task025b-adapter-interface-validator-local-verification",
+  "validator_cli": {
+    "executed": true,
+    "exit_code": 0,
+    "stdout_path": "docs/gpt-communication/evidence/task025b-adapter-interface-validator-local-verification/validator-cli-stdout.json",
+    "stderr_path": "docs/gpt-communication/evidence/task025b-adapter-interface-validator-local-verification/validator-cli-stderr.txt",
+    "summary_status": "valid",
+    "total_checks": 200,
+    "passed_checks": 200,
+    "failed_checks": 0,
+    "blocked_checks": 0
+  },
+  "unittest": {
+    "executed": true,
+    "exit_code": 0,
+    "stdout_path": "docs/gpt-communication/evidence/task025b-adapter-interface-validator-local-verification/unittest-stdout.txt",
+    "stderr_path": "docs/gpt-communication/evidence/task025b-adapter-interface-validator-local-verification/unittest-stderr.txt",
+    "tests_run": 16,
+    "result": "OK"
+  },
+  "actual_adapter_invoked": false,
+  "local_hancom_com_executed": false,
+  "dependency_install": false,
+  "release_test_documents_modified": false,
+  "existing_tools_hancom_modified": false,
+  "package_or_lockfile_modified": false,
+  "completion_gate_passed": true,
+  "requires_followup": false
+}
+

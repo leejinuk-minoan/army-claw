@@ -1,0 +1,15 @@
+{
+  "request_id": "req-hanshow-proof-001",
+  "response_id": "res-hanshow-proof-001",
+  "contract_version": "army-claw-common-office-adapter-interface-023.v1",
+  "target_id": "hanshow",
+  "adapter_slot_id": "hanshow_adapter_slot",
+  "status": "blocked_in_proof",
+  "execution_allowed": false,
+  "actual_adapter_invoked": false,
+  "output_artifacts": [],
+  "validation_result": {"valid": true, "proof_blocked": true, "reason": "actual adapter invocation is not allowed in Task 023"},
+  "evidence": {"proof_mode": true, "actual_execution_evidence": false, "slide_layout_preservation_required": true},
+  "warnings": ["cloud proof only; no HanShow file created"],
+  "created_at": "2026-07-09T00:00:00Z"
+}

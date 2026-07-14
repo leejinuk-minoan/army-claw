@@ -1,0 +1,15 @@
+﻿gate=A
+worktree=C:\Users\USER\Desktop\로컬 open claw 만들기\.tmp\task003-local-rerun-v6-20260704073958
+branch=agent/task003-local-rerun-v6
+head=e182f2e0259ff2ac451c5a8a621516304015ac82
+start_utc=2026-07-03T22:40:57.3769562Z
+end_utc=2026-07-03T22:40:57.6103243Z
+exit_code=0
+tests=78
+pass=78
+fail=0
+cancelled=0
+skipped=0
+stdout_log=C:\Users\USER\Desktop\로컬 open claw 만들기\.tmp\task003-local-rerun-v6-20260704073958\release\test-documents\hwpx-core-benchmark-003-evidence-integrity\tests\logs\gate-a-task003-six-node-v6.stdout.log
+stderr_log=C:\Users\USER\Desktop\로컬 open claw 만들기\.tmp\task003-local-rerun-v6-20260704073958\release\test-documents\hwpx-core-benchmark-003-evidence-integrity\tests\logs\gate-a-task003-six-node-v6.stderr.log
+command=C:\Users\USER\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\bin\node.exe --test tools/hancom/hwpx-core-benchmark-task003-cloud-positive.test.mjs tools/hancom/hwpx-core-benchmark-task003-cloud-red.test.mjs tools/hancom/hwpx-core-benchmark-task003-filesystem-red.test.mjs tools/hancom/hwpx-core-benchmark-task003-schema-red.test.mjs tools/hancom/hwpx-core-benchmark-task003-semantic-red.test.mjs tools/hancom/hwpx-core-benchmark-task003-s06-identity-red.test.mjs

@@ -1,0 +1,78 @@
+{
+  "valid": true,
+  "errors": [],
+  "request_fixture_count": 10,
+  "response_fixture_count": 10,
+  "results": [
+    {
+      "valid": true,
+      "errors": [],
+      "route_id": "submit_document_job",
+      "request_path": "release/test-documents/local-route-manifest-proof-015/route-requests/submit-document-job.json",
+      "response_path": "release/test-documents/local-route-manifest-proof-015/route-responses/submit-document-job-response.json"
+    },
+    {
+      "valid": true,
+      "errors": [],
+      "route_id": "run_job",
+      "request_path": "release/test-documents/local-route-manifest-proof-015/route-requests/run-job.json",
+      "response_path": "release/test-documents/local-route-manifest-proof-015/route-responses/run-job-response.json"
+    },
+    {
+      "valid": true,
+      "errors": [],
+      "route_id": "get_job",
+      "request_path": "release/test-documents/local-route-manifest-proof-015/route-requests/get-job.json",
+      "response_path": "release/test-documents/local-route-manifest-proof-015/route-responses/get-job-response.json"
+    },
+    {
+      "valid": true,
+      "errors": [],
+      "route_id": "get_status",
+      "request_path": "release/test-documents/local-route-manifest-proof-015/route-requests/get-status.json",
+      "response_path": "release/test-documents/local-route-manifest-proof-015/route-responses/get-status-response.json"
+    },
+    {
+      "valid": true,
+      "errors": [],
+      "route_id": "get_result",
+      "request_path": "release/test-documents/local-route-manifest-proof-015/route-requests/get-result.json",
+      "response_path": "release/test-documents/local-route-manifest-proof-015/route-responses/get-result-response.json"
+    },
+    {
+      "valid": true,
+      "errors": [],
+      "route_id": "list_events",
+      "request_path": "release/test-documents/local-route-manifest-proof-015/route-requests/list-events.json",
+      "response_path": "release/test-documents/local-route-manifest-proof-015/route-responses/list-events-response.json"
+    },
+    {
+      "valid": true,
+      "errors": [],
+      "route_id": "submit_document_job",
+      "request_path": "release/test-documents/local-route-manifest-proof-015/route-requests/invalid-route-request.json",
+      "response_path": "release/test-documents/local-route-manifest-proof-015/route-responses/invalid-route-response.json"
+    },
+    {
+      "valid": true,
+      "errors": [],
+      "route_id": "get_job",
+      "request_path": "release/test-documents/local-route-manifest-proof-015/route-requests/unknown-job.json",
+      "response_path": "release/test-documents/local-route-manifest-proof-015/route-responses/unknown-job-response.json"
+    },
+    {
+      "valid": true,
+      "errors": [],
+      "route_id": "get_result",
+      "request_path": "release/test-documents/local-route-manifest-proof-015/route-requests/not-ready-result.json",
+      "response_path": "release/test-documents/local-route-manifest-proof-015/route-responses/not-ready-result-response.json"
+    },
+    {
+      "valid": true,
+      "errors": [],
+      "route_id": "get_result",
+      "request_path": "release/test-documents/local-route-manifest-proof-015/route-requests/validation-failure.json",
+      "response_path": "release/test-documents/local-route-manifest-proof-015/route-responses/validation-failure-response.json"
+    }
+  ]
+}

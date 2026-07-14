@@ -1,0 +1,15 @@
+{
+  "case_name": "invalidUnknownErrorCode",
+  "expected_valid": false,
+  "actual_valid": false,
+  "passed": true,
+  "validation": {
+    "valid": false,
+    "errors": [
+      "unknown_error_code:mystery"
+    ],
+    "warnings": [],
+    "normalized": null,
+    "contract_version": "service-contract-schema-error-taxonomy-013.v1"
+  }
+}

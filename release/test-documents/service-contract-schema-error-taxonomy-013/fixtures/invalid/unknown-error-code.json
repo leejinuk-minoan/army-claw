@@ -1,0 +1,20 @@
+{
+  "service_request_id": "svc-not_found-001",
+  "service_operation": "getJob",
+  "ok": false,
+  "status": "not_found",
+  "job_id": null,
+  "job_status": null,
+  "data": null,
+  "error": {
+    "code": "mystery",
+    "message": "unknown"
+  },
+  "artifacts": {
+    "output_path": null,
+    "evidence_paths": []
+  },
+  "real_com_executed": false,
+  "final_core_selection_declared": false,
+  "stage_2_transition_declared": false
+}

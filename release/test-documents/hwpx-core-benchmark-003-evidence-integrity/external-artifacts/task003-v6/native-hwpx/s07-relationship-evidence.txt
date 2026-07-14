@@ -1,0 +1,18 @@
+{
+  "images": [
+    {
+      "path": "BinData/image1.png",
+      "size": 70,
+      "sha256": "8a352df5dafe041f6e6ddf6a7016796c5f2b592bface920f281ce60789158739"
+    }
+  ],
+  "relationships": [
+    {
+      "relationship_source_path": "Contents/section0.xml",
+      "relationship_id": "image1",
+      "relationship_type": "image/png",
+      "relationship_target": "BinData/image1.png",
+      "reference_source_path": "Contents/content.hpf"
+    }
+  ]
+}

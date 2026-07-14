@@ -1,0 +1,41 @@
+{
+  "task_id": "task025-adapter-interface-validator-implementation",
+  "phase": "task025a-cloud-implementation-package",
+  "base_sha": "335bd17bef3fb07c5bad9e365d31d25122cef6f1",
+  "actual_changed_file_count": 17,
+  "actual_changed_files": [
+    "docs/architecture/army-claw-ai-worker-handoff-contract.md",
+    "docs/architecture/army-claw-worker-setup-guide.md",
+    "docs/gpt-communication/AGENT_OPERATING_MODEL.md",
+    "docs/gpt-communication/PROJECT_STATE.json",
+    "docs/gpt-communication/delegation/task025-adapter-interface-validator-implementation/CLOUD_IMPLEMENTATION_RESULT.md",
+    "docs/gpt-communication/delegation/task025-adapter-interface-validator-implementation/DELEGATION_PLAN.md",
+    "docs/gpt-communication/delegation/task025-adapter-interface-validator-implementation/FILE_CHANGE_PLAN.json",
+    "docs/gpt-communication/delegation/task025-adapter-interface-validator-implementation/LOCAL_EXECUTION_BRIEF.md",
+    "docs/gpt-communication/delegation/task025-adapter-interface-validator-implementation/ROUTING_DECISION.json",
+    "docs/gpt-communication/delegation/task025-adapter-interface-validator-implementation/TEST_PLAN.json",
+    "docs/gpt-communication/reports/2026-07-09-task025a-adapter-interface-validator-cloud-implementation.md",
+    "docs/gpt-communication/tasks/TASK_CONTRACT_TEMPLATE.md",
+    "docs/research-notes/research-note-index.json",
+    "docs/research-notes/research-note-index.md",
+    "docs/research-notes/task-notes/RN-025A-task025a-adapter-interface-validator-cloud-implementation.md",
+    "tests/adapter_interface_validator/test_adapter_interface_validator.py",
+    "tools/validators/adapter_interface_validator.py"
+  ],
+  "allowed_tool_source_files": ["tools/validators/adapter_interface_validator.py"],
+  "allowed_test_files": ["tests/adapter_interface_validator/test_adapter_interface_validator.py"],
+  "forbidden_paths_changed_actual": [],
+  "release_test_documents_changed_actual": false,
+  "dependency_files_changed_actual": false,
+  "existing_tools_hancom_changed_actual": false,
+  "production_core_changed_actual": false,
+  "local_execution_base_sha": null,
+  "local_execution_allowed": false,
+  "completion_gate_passed": false,
+  "requires_local_verification": true,
+  "local_codex_source_modify_allowlist": [
+    "tools/validators/adapter_interface_validator.py",
+    "tests/adapter_interface_validator/test_adapter_interface_validator.py",
+    "docs/gpt-communication/reports/2026-07-09-task025b-adapter-interface-validator-local-verification.md"
+  ]
+}

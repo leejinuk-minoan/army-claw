@@ -1,0 +1,55 @@
+{
+  "plan_id": "plan-req-validation-failure",
+  "request_id": "req-validation-failure",
+  "task_id": "agent-operation-plan-e2e-proof-009",
+  "created_at": "2026-07-04T21:43:26.603Z",
+  "planner_id": "AgentOperationPlanE2EPlanner",
+  "steps": [
+    {
+      "step_id": "step-edit-paragraph",
+      "operation_id": "edit-paragraph",
+      "intent": "edit_paragraph",
+      "backend_role": "editor",
+      "input_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\t9\\release\\test-documents\\agent-operation-plan-e2e-proof-009\\fixtures\\source.hwpx",
+      "output_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\t9\\release\\test-documents\\agent-operation-plan-e2e-proof-009\\outputs\\validation-failure-output.hwpx",
+      "options": {
+        "text": "Task 009 edit_paragraph content"
+      },
+      "evidence_tag": "edit-paragraph-editor",
+      "expected_evidence_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\t9\\release\\test-documents\\agent-operation-plan-e2e-proof-009\\evidence\\edit-paragraph-editor.json"
+    }
+  ],
+  "constraints": {
+    "backend_role": "editor",
+    "backend_id": "NodeXmlThinInterimEditorAdapter",
+    "no_real_com": true,
+    "no_final_core_selection": true,
+    "force_validation_failure": true
+  },
+  "source_request": {
+    "request_id": "req-validation-failure",
+    "task_id": "agent-operation-plan-e2e-proof-009",
+    "document_intent": "edit_paragraph",
+    "content": {
+      "text": "Task 009 edit_paragraph content",
+      "table": [
+        [
+          "A",
+          "B"
+        ],
+        [
+          "1",
+          "2"
+        ]
+      ],
+      "style": "emphasis"
+    },
+    "constraints": {
+      "backend_role": "editor",
+      "backend_id": "NodeXmlThinInterimEditorAdapter",
+      "no_real_com": true,
+      "no_final_core_selection": true,
+      "force_validation_failure": true
+    }
+  }
+}

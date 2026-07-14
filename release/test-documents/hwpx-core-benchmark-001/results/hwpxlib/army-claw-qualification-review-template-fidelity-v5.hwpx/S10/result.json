@@ -1,0 +1,82 @@
+{
+  "schema_version": "1.0.0",
+  "task_id": "hwpx-core-benchmark-001",
+  "run_id": "hwpx-core-benchmark-2026-07-02T12-30-40-023Z",
+  "generated_at": "2026-07-02T12:30:40.890Z",
+  "environment": {
+    "os": "Windows_NT 10.0.26200 x64",
+    "cpu": "AMD Ryzen 7 7800X3D 8-Core Processor           ",
+    "memory_bytes": 33397133312,
+    "node_version": "v24.14.0",
+    "python_version": "Python 3.12.8",
+    "java_version": null,
+    "rust_version": null,
+    "hancom_version": null,
+    "offline_mode": true
+  },
+  "candidate": {
+    "id": "hwpxlib",
+    "role": "validator",
+    "version": "blocked-no-offline-artifact",
+    "source": "not installed in workspace",
+    "immutable_ref": "unknown",
+    "runtime": "java"
+  },
+  "fixture": {
+    "fixture_id": "army-claw-qualification-review-template-fidelity-v5.hwpx",
+    "source_path": "release/test-documents/army-claw-qualification-review-template-fidelity-v5.hwpx",
+    "source_sha256": "33f5ec297ce6b6ab60c342a368800ff42ab0dc86a7ba79ec100ff2c7896bbe41",
+    "working_copy_sha256_before": "33f5ec297ce6b6ab60c342a368800ff42ab0dc86a7ba79ec100ff2c7896bbe41"
+  },
+  "scenario": {
+    "reason": "hwpxlib runtime artifact and LICENSE evidence are not installed in the offline workspace",
+    "scenario_id": "S10",
+    "name": "actual page count measurement",
+    "status": "not_applicable"
+  },
+  "execution": {
+    "started_at": "2026-07-02T12:30:40.890Z",
+    "ended_at": "2026-07-02T12:30:40.890Z",
+    "duration_ms": 0,
+    "peak_rss_bytes": 114122752,
+    "exit_code": 0,
+    "stdout_path": null,
+    "stderr_path": null
+  },
+  "preservation": {
+    "package_valid": null,
+    "non_target_hashes_preserved": null,
+    "merged_tables_preserved": null,
+    "images_preserved": null,
+    "bindata_preserved": null,
+    "fwspace_preserved": null,
+    "namespaces_preserved": null,
+    "details_path": null
+  },
+  "layout": {
+    "com_open_success": null,
+    "com_save_success": null,
+    "page_count": null,
+    "main_11_2_page": null,
+    "support_11_2_page": null,
+    "main_11_3_page": null,
+    "user_visual_status": "pending"
+  },
+  "deployment": {
+    "install_size_bytes": 0,
+    "network_required_at_runtime": false,
+    "offline_install_tested": false,
+    "offline_package_manifest_path": "release/test-documents/hwpx-core-benchmark-001/summary/dependency-license-offline-manifest.json"
+  },
+  "license": {
+    "license_file_path": null,
+    "license_sha256": null,
+    "spdx_expression": null,
+    "redistribution_assessment": "unknown",
+    "evidence_path": "release/test-documents/hwpx-core-benchmark-001/summary/dependency-license-offline-manifest.json"
+  },
+  "artifacts": [],
+  "errors": [
+    "hwpxlib runtime artifact and LICENSE evidence are not installed in the offline workspace"
+  ]
+}

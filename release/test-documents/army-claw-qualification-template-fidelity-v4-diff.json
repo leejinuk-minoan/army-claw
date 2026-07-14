@@ -1,0 +1,245 @@
+{
+  "validation_valid": true,
+  "layout_policies_requested": {
+    "preserve_exact": 5,
+    "allow_line_growth": 13,
+    "fit_or_fail": 0
+  },
+  "preserve_exact_count": 5,
+  "allow_line_growth_count": 13,
+  "fit_or_fail_count": 0,
+  "target_linesegarrays_invalidated": 13,
+  "non_target_linesegarrays_preserved": 626,
+  "native_normalize_attempted": true,
+  "native_normalize_status": "passed",
+  "native_normalize_output_valid": true,
+  "native_normalize_source_unchanged": true,
+  "native_normalize_notes": [
+    "Hancom COM save normalizes BinData filename case and may compact empty paragraphs."
+  ],
+  "page_count_before": null,
+  "page_count_after": null,
+  "board_spill_detected": false,
+  "paragraphs_replaced": 18,
+  "paragraphs_blanked": 0,
+  "blanked_originally_empty_paragraphs": 0,
+  "blanked_originally_nonempty_paragraphs": 0,
+  "paragraphs_inserted": 0,
+  "paragraphs_deleted": 0,
+  "structural_containers_skipped": 42,
+  "leaf_paragraphs_selected": 18,
+  "ancestor_descendant_conflicts": [],
+  "overlapping_selector_conflicts": [],
+  "inline_markers_removed": true,
+  "literal_hp_markers_in_text": 0,
+  "preview_inline_markers": false,
+  "character_style_preserved": true,
+  "abnormal_ratio_reduction": false,
+  "abnormal_spacing_reduction": false,
+  "font_height_reduction": false,
+  "binData_preserved": true,
+  "table_count_before": 43,
+  "table_count_after": 43,
+  "image_count_before": 12,
+  "image_count_after": 12,
+  "paragraph_count_before": 476,
+  "paragraph_count_pre_normalize": 476,
+  "paragraph_count_after": 474,
+  "non_target_scope_hashes_preserved": true,
+  "non_target_changed_paragraph_indexes": [],
+  "missing_entries_case_sensitive": [
+    "BinData/image1.jpg",
+    "BinData/image10.jpg",
+    "BinData/image11.emf",
+    "BinData/image12.png",
+    "BinData/image13.png",
+    "BinData/image2.jpg",
+    "BinData/image3.jpg",
+    "BinData/image4.jpg",
+    "BinData/image5.jpg",
+    "BinData/image6.jpg",
+    "BinData/image7.jpg",
+    "BinData/image8.jpg",
+    "BinData/image9.jpg"
+  ],
+  "added_entries_case_sensitive": [
+    "BinData/image1.JPG",
+    "BinData/image10.JPG",
+    "BinData/image11.EMF",
+    "BinData/image12.PNG",
+    "BinData/image13.PNG",
+    "BinData/image2.JPG",
+    "BinData/image3.JPG",
+    "BinData/image4.JPG",
+    "BinData/image5.JPG",
+    "BinData/image6.JPG",
+    "BinData/image7.JPG",
+    "BinData/image8.JPG",
+    "BinData/image9.JPG"
+  ],
+  "missing_entries": [],
+  "added_entries": [],
+  "changed_entries": [
+    "Contents/content.hpf",
+    "Contents/header.xml",
+    "Contents/section0.xml",
+    "Preview/PrvImage.png",
+    "Preview/PrvText.txt"
+  ],
+  "unexpected_changed_entries": [],
+  "boards": [
+    {
+      "board_id": "main-1",
+      "board_role": "main",
+      "board_number": 1,
+      "board_total": 11,
+      "support_board_id": "support-1"
+    },
+    {
+      "board_id": "support-1",
+      "board_role": "support",
+      "board_number": 1,
+      "board_total": 11,
+      "main_board_id": "main-1"
+    },
+    {
+      "board_id": "main-2",
+      "board_role": "main",
+      "board_number": 2,
+      "board_total": 11,
+      "support_board_id": "support-2"
+    },
+    {
+      "board_id": "main-3",
+      "board_role": "main",
+      "board_number": 3,
+      "board_total": 11,
+      "support_board_id": "support-3"
+    },
+    {
+      "board_id": "support-3",
+      "board_role": "support",
+      "board_number": 3,
+      "board_total": 11,
+      "main_board_id": "main-3"
+    },
+    {
+      "board_id": "main-4",
+      "board_role": "main",
+      "board_number": 4,
+      "board_total": 11,
+      "support_board_id": "support-4"
+    },
+    {
+      "board_id": "support-4",
+      "board_role": "support",
+      "board_number": 4,
+      "board_total": 11,
+      "main_board_id": "main-4"
+    },
+    {
+      "board_id": "main-5",
+      "board_role": "main",
+      "board_number": 5,
+      "board_total": 11,
+      "support_board_id": "support-5"
+    },
+    {
+      "board_id": "support-5",
+      "board_role": "support",
+      "board_number": 5,
+      "board_total": 11,
+      "main_board_id": "main-5"
+    },
+    {
+      "board_id": "main-6",
+      "board_role": "main",
+      "board_number": 6,
+      "board_total": 11,
+      "support_board_id": "support-6"
+    },
+    {
+      "board_id": "support-6",
+      "board_role": "support",
+      "board_number": 6,
+      "board_total": 11,
+      "main_board_id": "main-6"
+    },
+    {
+      "board_id": "main-7",
+      "board_role": "main",
+      "board_number": 7,
+      "board_total": 11,
+      "support_board_id": "support-7"
+    },
+    {
+      "board_id": "support-7",
+      "board_role": "support",
+      "board_number": 7,
+      "board_total": 11,
+      "main_board_id": "main-7"
+    },
+    {
+      "board_id": "main-8",
+      "board_role": "main",
+      "board_number": 8,
+      "board_total": 11,
+      "support_board_id": "support-8"
+    },
+    {
+      "board_id": "support-8",
+      "board_role": "support",
+      "board_number": 8,
+      "board_total": 11,
+      "main_board_id": "main-8"
+    },
+    {
+      "board_id": "main-9",
+      "board_role": "main",
+      "board_number": 9,
+      "board_total": 11,
+      "support_board_id": "support-9"
+    },
+    {
+      "board_id": "support-9",
+      "board_role": "support",
+      "board_number": 9,
+      "board_total": 11,
+      "main_board_id": "main-9"
+    },
+    {
+      "board_id": "main-10",
+      "board_role": "main",
+      "board_number": 10,
+      "board_total": 11,
+      "support_board_id": "support-10"
+    },
+    {
+      "board_id": "support-10",
+      "board_role": "support",
+      "board_number": 10,
+      "board_total": 11,
+      "main_board_id": "main-10"
+    },
+    {
+      "board_id": "main-11",
+      "board_role": "main",
+      "board_number": 11,
+      "board_total": 11,
+      "support_board_id": "support-11"
+    },
+    {
+      "board_id": "support-11",
+      "board_role": "support",
+      "board_number": 11,
+      "board_total": 11,
+      "main_board_id": "main-11"
+    }
+  ],
+  "v4_native_reflow_status": "implemented",
+  "v4_native_layout_normalize_status": "implemented",
+  "v4_container_leaf_selection_status": "implemented",
+  "v4_inline_serialization_status": "implemented",
+  "v4_visual_status": "user_confirmation_pending",
+  "hwpx_engine_completion_status": "blocked_by_v4_visual_confirmation"
+}

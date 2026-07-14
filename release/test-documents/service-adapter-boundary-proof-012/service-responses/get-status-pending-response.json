@@ -1,0 +1,22 @@
+{
+  "service_request_id": "svc-getStatus-pending-1783205231612",
+  "service_operation": "getStatus",
+  "ok": true,
+  "status": "pending",
+  "job_id": "job-api-create-document",
+  "job_status": "pending",
+  "data": {
+    "job_id": "job-api-create-document",
+    "status": "pending",
+    "terminal": false,
+    "snapshot_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\t12\\release\\test-documents\\service-adapter-boundary-proof-012\\jobs\\job-api-create-document\\snapshots\\pending.json",
+    "updated_at": "2026-07-04T22:47:11.592Z"
+  },
+  "error": null,
+  "artifacts": {
+    "snapshot_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\t12\\release\\test-documents\\service-adapter-boundary-proof-012\\jobs\\job-api-create-document\\snapshots\\pending.json"
+  },
+  "real_com_executed": false,
+  "final_core_selection_declared": false,
+  "stage_2_transition_declared": false
+}

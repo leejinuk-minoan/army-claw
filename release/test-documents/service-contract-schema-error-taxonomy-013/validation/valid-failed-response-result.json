@@ -1,0 +1,39 @@
+{
+  "case_name": "validFailedResponse",
+  "expected_valid": true,
+  "actual_valid": true,
+  "passed": true,
+  "validation": {
+    "valid": true,
+    "errors": [],
+    "warnings": [],
+    "normalized": {
+      "service_request_id": "svc-failed-001",
+      "service_operation": "getResult",
+      "ok": true,
+      "status": "failed",
+      "job_id": "job-failed",
+      "job_status": "failed",
+      "data": {
+        "status": "failed"
+      },
+      "error": {
+        "code": "validation_error",
+        "type": "validation_error",
+        "message": "validation_error proof",
+        "category": "validation",
+        "retryable": false,
+        "user_visible": true,
+        "expected_status": "validation_error"
+      },
+      "artifacts": {
+        "output_path": null,
+        "evidence_paths": []
+      },
+      "real_com_executed": false,
+      "final_core_selection_declared": false,
+      "stage_2_transition_declared": false
+    },
+    "contract_version": "service-contract-schema-error-taxonomy-013.v1"
+  }
+}

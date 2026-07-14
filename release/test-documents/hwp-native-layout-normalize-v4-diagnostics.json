@@ -1,0 +1,221 @@
+﻿{
+    "mode":  "native-layout-normalize",
+    "conversion_status":  "passed",
+    "last_successful_step":  "save_as_success",
+    "source_path":  "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\release\\test-documents\\army-claw-qualification-review-template-fidelity-v4-pre-normalize.hwpx",
+    "source_sha256_before":  "391F5DDE5F47C0561FCBBAE9F90AADF303A71958C4C9C4CD1F6DACBE86738B62",
+    "source_sha256_after":  "391F5DDE5F47C0561FCBBAE9F90AADF303A71958C4C9C4CD1F6DACBE86738B62",
+    "source_unchanged":  true,
+    "output":  {
+                   "path":  "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\release\\test-documents\\army-claw-qualification-review-template-fidelity-v4.hwpx",
+                   "exists":  true,
+                   "length":  2018082
+               },
+    "started_process_ids":  [
+                                29768
+                            ],
+    "warnings":  [
+
+                 ],
+    "errors":  [
+
+               ],
+    "events":  [
+                   {
+                       "timestamp":  "2026-07-02T15:19:30.0964558+09:00",
+                       "step":  "process_start",
+                       "status":  "ok",
+                       "data":  {
+                                    "visible":  false,
+                                    "mode":  "native-layout-normalize"
+                                }
+                   },
+                   {
+                       "timestamp":  "2026-07-02T15:19:30.1035465+09:00",
+                       "step":  "host_bitness_detected",
+                       "status":  "ok",
+                       "data":  {
+                                    "ps_home":  "C:\\Windows\\System32\\WindowsPowerShell\\v1.0",
+                                    "operating_system":  "64-bit",
+                                    "powershell_process":  "64-bit"
+                                }
+                   },
+                   {
+                       "timestamp":  "2026-07-02T15:19:30.1075470+09:00",
+                       "step":  "com_registration_probe",
+                       "status":  "ok",
+                       "data":  {
+                                    "HWPFrame_HwpObject":  [
+                                                               {
+                                                                   "path":  "Registry::HKEY_CLASSES_ROOT\\HWPFrame.HwpObject",
+                                                                   "exists":  true
+                                                               },
+                                                               {
+                                                                   "path":  "Registry::HKEY_CLASSES_ROOT\\WOW6432Node\\CLSID",
+                                                                   "exists":  true
+                                                               }
+                                                           ]
+                                }
+                   },
+                   {
+                       "timestamp":  "2026-07-02T15:19:30.1549117+09:00",
+                       "step":  "com_object_create_start",
+                       "status":  "ok",
+                       "data":  {
+
+                                }
+                   },
+                   {
+                       "timestamp":  "2026-07-02T15:19:33.3706663+09:00",
+                       "step":  "com_object_create_success",
+                       "status":  "ok",
+                       "data":  {
+
+                                }
+                   },
+                   {
+                       "timestamp":  "2026-07-02T15:19:33.3916639+09:00",
+                       "step":  "created_process_snapshot",
+                       "status":  "ok",
+                       "data":  {
+                                    "started_process_ids":  [
+                                                                29768
+                                                            ],
+                                    "processes":  [
+                                                      {
+                                                          "Id":  12380,
+                                                          "ProcessName":  "Hwp",
+                                                          "MainWindowTitle":  "",
+                                                          "Path":  "C:\\Program Files (x86)\\HNC\\Office 2024\\HOffice130\\Bin\\Hwp.exe"
+                                                      },
+                                                      {
+                                                          "Id":  26000,
+                                                          "ProcessName":  "Hwp",
+                                                          "MainWindowTitle":  "",
+                                                          "Path":  "C:\\Program Files (x86)\\HNC\\Office 2024\\HOffice130\\Bin\\Hwp.exe"
+                                                      },
+                                                      {
+                                                          "Id":  29768,
+                                                          "ProcessName":  "Hwp",
+                                                          "MainWindowTitle":  "",
+                                                          "Path":  "C:\\Program Files (x86)\\HNC\\Office 2024\\HOffice130\\Bin\\Hwp.exe"
+                                                      },
+                                                      {
+                                                          "Id":  36424,
+                                                          "ProcessName":  "Hwp",
+                                                          "MainWindowTitle":  "",
+                                                          "Path":  "C:\\Program Files (x86)\\HNC\\Office 2024\\HOffice130\\Bin\\Hwp.exe"
+                                                      }
+                                                  ]
+                                }
+                   },
+                   {
+                       "timestamp":  "2026-07-02T15:19:33.3916639+09:00",
+                       "step":  "window_access_start",
+                       "status":  "ok",
+                       "data":  {
+
+                                }
+                   },
+                   {
+                       "timestamp":  "2026-07-02T15:19:33.5682893+09:00",
+                       "step":  "window_access_success",
+                       "status":  "ok",
+                       "data":  {
+                                    "visible":  false
+                                }
+                   },
+                   {
+                       "timestamp":  "2026-07-02T15:19:33.5682893+09:00",
+                       "step":  "security_module_start",
+                       "status":  "ok",
+                       "data":  {
+
+                                }
+                   },
+                   {
+                       "timestamp":  "2026-07-02T15:19:33.5752904+09:00",
+                       "step":  "security_module_result",
+                       "status":  "ok",
+                       "data":  {
+                                    "result":  false
+                                }
+                   },
+                   {
+                       "timestamp":  "2026-07-02T15:19:33.5752904+09:00",
+                       "step":  "open_start",
+                       "status":  "ok",
+                       "data":  {
+                                    "format":  "HWPX",
+                                    "source_path":  "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\release\\test-documents\\army-claw-qualification-review-template-fidelity-v4-pre-normalize.hwpx"
+                                }
+                   },
+                   {
+                       "timestamp":  "2026-07-02T15:19:38.1852244+09:00",
+                       "step":  "open_success",
+                       "status":  "ok",
+                       "data":  {
+                                    "result":  true
+                                }
+                   },
+                   {
+                       "timestamp":  "2026-07-02T15:19:38.6877620+09:00",
+                       "step":  "save_as_start",
+                       "status":  "ok",
+                       "data":  {
+                                    "output_path":  "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\release\\test-documents\\army-claw-qualification-review-template-fidelity-v4.hwpx",
+                                    "format":  "HWPX"
+                                }
+                   },
+                   {
+                       "timestamp":  "2026-07-02T15:19:39.1158459+09:00",
+                       "step":  "save_as_success",
+                       "status":  "ok",
+                       "data":  {
+                                    "exists":  true,
+                                    "result":  true
+                                }
+                   },
+                   {
+                       "timestamp":  "2026-07-02T15:19:39.1188847+09:00",
+                       "step":  "close_start",
+                       "status":  "ok",
+                       "data":  {
+
+                                }
+                   },
+                   {
+                       "timestamp":  "2026-07-02T15:19:39.2125553+09:00",
+                       "step":  "close_success",
+                       "status":  "ok",
+                       "data":  {
+
+                                }
+                   },
+                   {
+                       "timestamp":  "2026-07-02T15:19:39.2125553+09:00",
+                       "step":  "quit_start",
+                       "status":  "ok",
+                       "data":  {
+
+                                }
+                   },
+                   {
+                       "timestamp":  "2026-07-02T15:19:39.2367484+09:00",
+                       "step":  "quit_success",
+                       "status":  "ok",
+                       "data":  {
+
+                                }
+                   },
+                   {
+                       "timestamp":  "2026-07-02T15:19:39.7700027+09:00",
+                       "step":  "process_end",
+                       "status":  "ok",
+                       "data":  {
+                                    "conversion_status":  "passed",
+                                    "last_successful_step":  "save_as_success"
+                                }
+                   }
+               ]
+}

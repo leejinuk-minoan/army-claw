@@ -1,0 +1,46 @@
+[
+  {
+    "adapter_slot_id": "local_workspace_adapter_slot",
+    "target_id": "local_workspace",
+    "accepts_plan_types": [
+      "local_workspace_action_plan"
+    ],
+    "deterministic_execution_required": true,
+    "actual_adapter_implemented_in_task019": false,
+    "real_adapter_execution_performed": false,
+    "implemented_later_stage": "Stage 5 workspace and file safety proof"
+  },
+  {
+    "adapter_slot_id": "hwp_hwpx_adapter_slot",
+    "target_id": "hwp_hwpx",
+    "accepts_plan_types": [
+      "hwp_hwpx_fill_plan"
+    ],
+    "deterministic_execution_required": true,
+    "actual_adapter_implemented_in_task019": false,
+    "real_adapter_execution_performed": false,
+    "implemented_later_stage": "Stage 2 HWP/HWPX template-aware proof"
+  },
+  {
+    "adapter_slot_id": "hancell_adapter_slot",
+    "target_id": "hancell",
+    "accepts_plan_types": [
+      "hancell_fill_plan"
+    ],
+    "deterministic_execution_required": true,
+    "actual_adapter_implemented_in_task019": false,
+    "real_adapter_execution_performed": false,
+    "implemented_later_stage": "Stage 2 HanCell template preservation contract proof"
+  },
+  {
+    "adapter_slot_id": "hanshow_adapter_slot",
+    "target_id": "hanshow",
+    "accepts_plan_types": [
+      "hanshow_fill_plan"
+    ],
+    "deterministic_execution_required": true,
+    "actual_adapter_implemented_in_task019": false,
+    "real_adapter_execution_performed": false,
+    "implemented_later_stage": "Stage 2 HanShow template preservation contract proof"
+  }
+]

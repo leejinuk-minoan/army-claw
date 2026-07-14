@@ -1,0 +1,44 @@
+{
+  "schema_version": "army-claw-adapter-validator-evidence-sample-026.v1",
+  "evidence_id": "task025b-passed-gate-sample",
+  "task_id": "task025b-adapter-interface-validator-local-verification",
+  "phase": "task025b-local_verification",
+  "execution_type": "local_verification",
+  "execution_branch": "agent/task025b-adapter-interface-validator-local-verification",
+  "execution_commit_sha": "e24e49a48188cc9cb37602ec2f49a703478dad28",
+  "local_execution_base_sha": "e6ec7a30f19a1efddb04234d4e8fd805218fed2a",
+  "validator_cli": {
+    "executed": true,
+    "command": "python tools/validators/adapter_interface_validator.py --repo-root . --format json",
+    "exit_code": 0,
+    "stdout_path": "docs/gpt-communication/evidence/task025b-adapter-interface-validator-local-verification/validator-cli-stdout.json",
+    "stderr_path": "docs/gpt-communication/evidence/task025b-adapter-interface-validator-local-verification/validator-cli-stderr.txt",
+    "result_status": "valid",
+    "total_checks": 200,
+    "passed_checks": 200,
+    "failed_checks": 0
+  },
+  "unittest": {
+    "executed": true,
+    "command": "python -m unittest discover -s tests/adapter_interface_validator -p \"test_*.py\"",
+    "exit_code": 0,
+    "stdout_path": "docs/gpt-communication/evidence/task025b-adapter-interface-validator-local-verification/unittest-stdout.txt",
+    "stderr_path": "docs/gpt-communication/evidence/task025b-adapter-interface-validator-local-verification/unittest-stderr.txt",
+    "tests_run": 16,
+    "result_status": "OK"
+  },
+  "safety": {
+    "actual_adapter_invoked": false,
+    "local_hancom_com_executed": false,
+    "dependency_install": false,
+    "release_test_documents_modified": false,
+    "stage_2_declared": false,
+    "final_hwp_hwpx_core_selected": false
+  },
+  "completion": {
+    "gate_status": "passed",
+    "completion_gate_passed": true,
+    "blocked": false,
+    "requires_followup": false
+  }
+}

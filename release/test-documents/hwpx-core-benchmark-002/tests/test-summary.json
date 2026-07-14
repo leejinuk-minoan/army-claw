@@ -1,0 +1,40 @@
+﻿{
+    "task_id":  "hwpx-core-benchmark-002",
+    "independent_ci_verification":  "unavailable",
+    "generated_at":  "2026-07-02T21:05:20.3513891Z",
+    "runs":  [
+                 {
+                     "failed":  0,
+                     "stdout_path":  "release\\test-documents\\hwpx-core-benchmark-002\\tests\\logs\\node-tools-hancom-tests.stdout.log",
+                     "skipped":  0,
+                     "started_at":  "2026-07-02T21:05:19.8023433Z",
+                     "passed":  56,
+                     "command":  "node --test tools\\hancom\\*.test.mjs",
+                     "working_directory":  "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기",
+                     "stderr_path":  "release\\test-documents\\hwpx-core-benchmark-002\\tests\\logs\\node-tools-hancom-tests.stderr.log",
+                     "test_files":  [
+                                        ".\\tools\\hancom\\army-claw-hancom-tools.test.mjs",
+                                        ".\\tools\\hancom\\hwp-reference-analyzer-nested-tables.test.mjs",
+                                        ".\\tools\\hancom\\hwp-reference-style-profiles.test.mjs",
+                                        ".\\tools\\hancom\\hwpx-adaptive-board-fit.test.mjs",
+                                        ".\\tools\\hancom\\hwpx-board-metadata.test.mjs",
+                                        ".\\tools\\hancom\\hwpx-core-benchmark-contract.test.mjs",
+                                        ".\\tools\\hancom\\hwpx-core-benchmark-corrective.test.mjs",
+                                        ".\\tools\\hancom\\hwpx-document-order-container-leaf.test.mjs",
+                                        ".\\tools\\hancom\\hwpx-inline-token-serialization.test.mjs",
+                                        ".\\tools\\hancom\\hwpx-merged-table-grid.test.mjs",
+                                        ".\\tools\\hancom\\hwpx-native-line-reflow.test.mjs",
+                                        ".\\tools\\hancom\\hwpx-native-structure-diff.test.mjs",
+                                        ".\\tools\\hancom\\hwpx-native-table-wrapper.test.mjs",
+                                        ".\\tools\\hancom\\hwpx-semantic-compression-contract.test.mjs",
+                                        ".\\tools\\hancom\\hwpx-template-fidelity.test.mjs",
+                                        ".\\tools\\hancom\\hwpx-template-fidelity-paragraph-blocks.test.mjs",
+                                        ".\\tools\\hancom\\hwpx-template-fidelity-scopes.test.mjs",
+                                        ".\\tools\\hancom\\hwpx-template-fidelity-selectors.test.mjs"
+                                    ],
+                     "runtime_version":  "v24.14.0",
+                     "exit_code":  0,
+                     "ended_at":  "2026-07-02T21:05:20.3513891Z"
+                 }
+             ]
+}

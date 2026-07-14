@@ -1,0 +1,312 @@
+{
+  "passed": true,
+  "fixture": {
+    "rows": 4,
+    "cols": 5,
+    "column_widths": [
+      1000,
+      1200,
+      1400,
+      1600,
+      1800
+    ],
+    "row_heights": [
+      400,
+      420,
+      440,
+      460
+    ],
+    "cells": [
+      {
+        "row": 0,
+        "col": 0,
+        "row_span": 2,
+        "col_span": 2,
+        "text": "병합 머리글",
+        "role": "header"
+      },
+      {
+        "row": 0,
+        "col": 2,
+        "row_span": 1,
+        "col_span": 3,
+        "text": "상단 그룹",
+        "role": "header"
+      },
+      {
+        "row": 1,
+        "col": 2,
+        "text": "A"
+      },
+      {
+        "row": 1,
+        "col": 3,
+        "text": "B"
+      },
+      {
+        "row": 1,
+        "col": 4,
+        "text": "C"
+      },
+      {
+        "row": 2,
+        "col": 0,
+        "row_span": 2,
+        "col_span": 1,
+        "text": "좌측"
+      },
+      {
+        "row": 2,
+        "col": 1,
+        "col_span": 4,
+        "text": "하단 병합"
+      },
+      {
+        "row": 3,
+        "col": 1,
+        "text": "D"
+      },
+      {
+        "row": 3,
+        "col": 2,
+        "text": "E"
+      },
+      {
+        "row": 3,
+        "col": 3,
+        "text": "F"
+      },
+      {
+        "row": 3,
+        "col": 4,
+        "text": "G"
+      }
+    ]
+  },
+  "grid": {
+    "row_count": 4,
+    "col_count": 5,
+    "column_widths": [
+      1000,
+      1200,
+      1400,
+      1600,
+      1800
+    ],
+    "row_heights": [
+      400,
+      420,
+      440,
+      460
+    ],
+    "table_width": 7000,
+    "anchor_cells": [
+      {
+        "row": 0,
+        "col": 0
+      },
+      {
+        "row": 0,
+        "col": 2
+      },
+      {
+        "row": 1,
+        "col": 2
+      },
+      {
+        "row": 1,
+        "col": 3
+      },
+      {
+        "row": 1,
+        "col": 4
+      },
+      {
+        "row": 2,
+        "col": 0
+      },
+      {
+        "row": 2,
+        "col": 1
+      },
+      {
+        "row": 3,
+        "col": 1
+      },
+      {
+        "row": 3,
+        "col": 2
+      },
+      {
+        "row": 3,
+        "col": 3
+      },
+      {
+        "row": 3,
+        "col": 4
+      }
+    ],
+    "occupied_coordinates": [
+      "0:0",
+      "0:1",
+      "1:0",
+      "1:1",
+      "0:2",
+      "0:3",
+      "0:4",
+      "1:2",
+      "1:3",
+      "1:4",
+      "2:0",
+      "3:0",
+      "2:1",
+      "2:2",
+      "2:3",
+      "2:4",
+      "3:1",
+      "3:2",
+      "3:3",
+      "3:4"
+    ],
+    "rendered_cells": [
+      {
+        "row": 0,
+        "col": 0,
+        "row_span": 2,
+        "col_span": 2,
+        "rowSpan": 2,
+        "colSpan": 2,
+        "text": "병합 머리글",
+        "role": "header",
+        "width": 2200,
+        "height": 820
+      },
+      {
+        "row": 0,
+        "col": 2,
+        "row_span": 1,
+        "col_span": 3,
+        "rowSpan": 1,
+        "colSpan": 3,
+        "text": "상단 그룹",
+        "role": "header",
+        "width": 4800,
+        "height": 400
+      },
+      {
+        "row": 1,
+        "col": 2,
+        "row_span": 1,
+        "col_span": 1,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "text": "A",
+        "role": "body",
+        "width": 1400,
+        "height": 420
+      },
+      {
+        "row": 1,
+        "col": 3,
+        "row_span": 1,
+        "col_span": 1,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "text": "B",
+        "role": "body",
+        "width": 1600,
+        "height": 420
+      },
+      {
+        "row": 1,
+        "col": 4,
+        "row_span": 1,
+        "col_span": 1,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "text": "C",
+        "role": "body",
+        "width": 1800,
+        "height": 420
+      },
+      {
+        "row": 2,
+        "col": 0,
+        "row_span": 2,
+        "col_span": 1,
+        "rowSpan": 2,
+        "colSpan": 1,
+        "text": "좌측",
+        "role": "body",
+        "width": 1000,
+        "height": 900
+      },
+      {
+        "row": 2,
+        "col": 1,
+        "row_span": 1,
+        "col_span": 4,
+        "rowSpan": 1,
+        "colSpan": 4,
+        "text": "하단 병합",
+        "role": "body",
+        "width": 6000,
+        "height": 440
+      },
+      {
+        "row": 3,
+        "col": 1,
+        "row_span": 1,
+        "col_span": 1,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "text": "D",
+        "role": "body",
+        "width": 1200,
+        "height": 460
+      },
+      {
+        "row": 3,
+        "col": 2,
+        "row_span": 1,
+        "col_span": 1,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "text": "E",
+        "role": "body",
+        "width": 1400,
+        "height": 460
+      },
+      {
+        "row": 3,
+        "col": 3,
+        "row_span": 1,
+        "col_span": 1,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "text": "F",
+        "role": "body",
+        "width": 1600,
+        "height": 460
+      },
+      {
+        "row": 3,
+        "col": 4,
+        "row_span": 1,
+        "col_span": 1,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "text": "G",
+        "role": "body",
+        "width": 1800,
+        "height": 460
+      }
+    ]
+  },
+  "checks": {
+    "anchor_only_rendered_cells": true,
+    "occupied_coordinate_count": true,
+    "table_width": 7000,
+    "duplicate_cell_addr": false
+  }
+}

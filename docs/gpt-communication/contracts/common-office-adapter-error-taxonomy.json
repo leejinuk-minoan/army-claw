@@ -1,0 +1,121 @@
+{
+  "schema_version": "army-claw-common-office-adapter-error-taxonomy-023.v1",
+  "contract_id": "common-office-adapter-error-taxonomy",
+  "task_id": "task023-common-office-adapter-interface-contract-proof",
+  "errors": [
+    {
+      "error_code": "schema_validation_error",
+      "category": "schema_validation_error",
+      "user_visible_state": "blocked",
+      "recoverable": true,
+      "default_message": "The adapter request does not satisfy the common interface schema.",
+      "blocking": true
+    },
+    {
+      "error_code": "target_plan_mismatch",
+      "category": "target_plan_mismatch",
+      "user_visible_state": "blocked",
+      "recoverable": true,
+      "default_message": "The plan type does not match the requested target.",
+      "blocking": true
+    },
+    {
+      "error_code": "adapter_slot_mismatch",
+      "category": "adapter_slot_mismatch",
+      "user_visible_state": "blocked",
+      "recoverable": true,
+      "default_message": "The adapter slot does not match the requested target.",
+      "blocking": true
+    },
+    {
+      "error_code": "template_reference_error",
+      "category": "template_reference_error",
+      "user_visible_state": "blocked",
+      "recoverable": true,
+      "default_message": "The template reference is missing, malformed, or not admissible for this target.",
+      "blocking": true
+    },
+    {
+      "error_code": "unsupported_template_artifact_type",
+      "category": "unsupported_template_artifact_type",
+      "user_visible_state": "blocked",
+      "recoverable": true,
+      "default_message": "The template artifact type is not supported by the target adapter.",
+      "blocking": true
+    },
+    {
+      "error_code": "source_overwrite_blocked",
+      "category": "source_overwrite_blocked",
+      "user_visible_state": "blocked",
+      "recoverable": true,
+      "default_message": "The request attempts to overwrite the source template or source workspace artifact.",
+      "blocking": true
+    },
+    {
+      "error_code": "public_internet_dependency_blocked",
+      "category": "public_internet_dependency_blocked",
+      "user_visible_state": "blocked",
+      "recoverable": true,
+      "default_message": "The request requires public internet access, which is prohibited by the contract.",
+      "blocking": true
+    },
+    {
+      "error_code": "llm_direct_file_edit_blocked",
+      "category": "llm_direct_file_edit_blocked",
+      "user_visible_state": "blocked",
+      "recoverable": true,
+      "default_message": "The request asks the LLM to directly edit files instead of producing a structured plan.",
+      "blocking": true
+    },
+    {
+      "error_code": "llm_direct_native_app_state_modification_blocked",
+      "category": "llm_direct_native_app_state_modification_blocked",
+      "user_visible_state": "blocked",
+      "recoverable": true,
+      "default_message": "The request asks the LLM to directly modify native application state.",
+      "blocking": true
+    },
+    {
+      "error_code": "constraint_violation",
+      "category": "constraint_violation",
+      "user_visible_state": "blocked",
+      "recoverable": true,
+      "default_message": "The request constraints violate the common adapter interface contract.",
+      "blocking": true
+    },
+    {
+      "error_code": "evidence_missing",
+      "category": "evidence_missing",
+      "user_visible_state": "blocked",
+      "recoverable": true,
+      "default_message": "Required evidence is missing for the claimed operation.",
+      "blocking": true
+    },
+    {
+      "error_code": "actual_adapter_invocation_forbidden_in_proof",
+      "category": "actual_adapter_invocation_forbidden_in_proof",
+      "user_visible_state": "blocked",
+      "recoverable": false,
+      "default_message": "Actual adapter invocation is forbidden in Task 023 proof mode.",
+      "blocking": true
+    },
+    {
+      "error_code": "unsupported_operation",
+      "category": "unsupported_operation",
+      "user_visible_state": "blocked",
+      "recoverable": true,
+      "default_message": "The requested operation is not supported by the target adapter contract.",
+      "blocking": true
+    },
+    {
+      "error_code": "internal_adapter_error",
+      "category": "internal_adapter_error",
+      "user_visible_state": "failed",
+      "recoverable": false,
+      "default_message": "The adapter encountered an internal failure after request validation.",
+      "blocking": true
+    }
+  ],
+  "proof_mode": true,
+  "actual_adapter_invocation_allowed_in_task023": false
+}

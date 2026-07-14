@@ -1,0 +1,29 @@
+{
+  "job_id": "job-api-route-validation-failure",
+  "api_request_id": "api-route-validation-failure",
+  "request_id": "req-route-validation-failure",
+  "task_id": "inprocess-route-facade-proof-014",
+  "status": "failed",
+  "created_at": "2026-07-05T03:05:05.587Z",
+  "updated_at": "2026-07-05T03:05:05.722Z",
+  "started_at": "2026-07-05T03:05:05.601Z",
+  "ended_at": "2026-07-05T03:05:05.722Z",
+  "request_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task014-inprocess-route-facade-proof-20260705\\release\\test-documents\\inprocess-route-facade-proof-014\\internal-execution-workspace\\release\\test-documents\\service-adapter-boundary-proof-012\\requests\\job-api-route-validation-failure-request.json",
+  "response_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task014-inprocess-route-facade-proof-20260705\\release\\test-documents\\inprocess-route-facade-proof-014\\internal-execution-workspace\\release\\test-documents\\service-adapter-boundary-proof-012\\responses\\job-api-route-validation-failure-response.json",
+  "plan_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task014-inprocess-route-facade-proof-20260705\\release\\test-documents\\inprocess-route-facade-proof-014\\internal-execution-workspace\\release\\test-documents\\service-adapter-boundary-proof-012\\plans\\job-api-route-validation-failure-plan.json",
+  "report_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task014-inprocess-route-facade-proof-20260705\\release\\test-documents\\inprocess-route-facade-proof-014\\internal-execution-workspace\\release\\test-documents\\service-adapter-boundary-proof-012\\reports\\job-api-route-validation-failure-agent-report.json",
+  "output_path": null,
+  "evidence_paths": [
+    "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task014-inprocess-route-facade-proof-20260705\\release\\test-documents\\inprocess-route-facade-proof-014\\internal-execution-workspace\\release\\test-documents\\service-adapter-boundary-proof-012\\evidence\\job-api-route-validation-failure-evidence-1.json"
+  ],
+  "failure": {
+    "type": "validation_error",
+    "message": "interim_editor_output_invalid",
+    "last_successful_step": "validate_output",
+    "quarantine_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task014-inprocess-route-facade-proof-20260705\\release\\test-documents\\inprocess-route-facade-proof-014\\internal-execution-workspace\\release\\test-documents\\service-adapter-boundary-proof-012\\execution-workspaces\\svc-submit-validation-1783220705584\\release\\test-documents\\local-job-boundary-proof-011\\api-workspaces\\job-api-route-validation-failure\\release\\test-documents\\agent-api-boundary-proof-010\\outputs\\validation-failure-output.hwpx.quarantine-edit-paragraph"
+  },
+  "attempts": 1,
+  "real_com_executed": false,
+  "final_core_selection_declared": false,
+  "stage_2_transition_declared": false
+}

@@ -1,0 +1,21 @@
+{
+  "schema_version": "army-claw-adapter-validator-gate-decision-sample-026.v1",
+  "sample_id": "research-note-only-not-required-gate",
+  "task_type": "research_note_format_update",
+  "changed_files": [
+    "docs/research-notes/task-notes/RN-026-task026-adapter-validator-integration-contract.md"
+  ],
+  "gate_decision": {
+    "gate_required": false,
+    "reason": "research note only change unrelated to adapter interface behavior",
+    "required_command": [],
+    "required_evidence": null,
+    "allowed_to_complete": true
+  },
+  "completion": {
+    "gate_status": "not_required",
+    "completion_gate_passed": true,
+    "blocked": false,
+    "requires_followup": false
+  }
+}

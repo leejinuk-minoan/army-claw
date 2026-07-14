@@ -1,0 +1,38 @@
+[
+  {
+    "target_id": "local_workspace",
+    "display_name": "Local Workspace",
+    "first_class_target": true,
+    "current_status": "planned_first_class_target",
+    "template_preservation_required": false,
+    "actual_adapter_implemented_in_task018": false,
+    "stage": "Stage 1 boundary, Stage 5 workspace safety expansion"
+  },
+  {
+    "target_id": "hwp_hwpx",
+    "display_name": "HWP/HWPX",
+    "first_class_target": true,
+    "current_status": "first_stabilized_execution_path",
+    "template_preservation_required": true,
+    "actual_adapter_implemented_in_task018": false,
+    "stage": "Stage 1 stabilized path, Stage 2 template-aware expansion"
+  },
+  {
+    "target_id": "hancell",
+    "display_name": "HanCell",
+    "first_class_target": true,
+    "current_status": "planned_first_class_document_target",
+    "template_preservation_required": true,
+    "actual_adapter_implemented_in_task018": false,
+    "stage": "Stage 2 template preservation contract proof"
+  },
+  {
+    "target_id": "hanshow",
+    "display_name": "HanShow",
+    "first_class_target": true,
+    "current_status": "planned_first_class_document_target",
+    "template_preservation_required": true,
+    "actual_adapter_implemented_in_task018": false,
+    "stage": "Stage 2 template preservation contract proof"
+  }
+]

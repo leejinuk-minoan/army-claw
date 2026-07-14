@@ -1,0 +1,15 @@
+{
+  "route_request_id": "client-run-job-job-api-submit-document-job",
+  "route_id": "run_job",
+  "mock_method": "POST",
+  "mock_path": "/mock/jobs/job-api-submit-document-job/run",
+  "service_operation": "runJob",
+  "params": {
+    "job_id": "job-api-submit-document-job"
+  },
+  "body": {},
+  "manifest_version": "local-route-manifest-proof-015.v1",
+  "real_http_server_started": false,
+  "final_core_selection_declared": false,
+  "stage_2_transition_declared": false
+}

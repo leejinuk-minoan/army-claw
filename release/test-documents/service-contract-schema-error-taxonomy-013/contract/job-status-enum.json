@@ -1,0 +1,9 @@
+{
+  "values": [
+    "pending",
+    "running",
+    "completed",
+    "failed",
+    "rejected"
+  ]
+}

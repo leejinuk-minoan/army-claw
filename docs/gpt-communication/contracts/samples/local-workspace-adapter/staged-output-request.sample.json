@@ -1,0 +1,92 @@
+{
+  "request_id": "req-local-workspace-task031-staged-output-001",
+  "contract_version": "army-claw-common-office-adapter-interface-023.v1",
+  "target_id": "local_workspace",
+  "adapter_slot_id": "local_workspace_adapter_slot",
+  "plan_type": "local_workspace_action_plan",
+  "validated_plan": {
+    "plan_id": "plan-local-workspace-task031-staged-output-001",
+    "target_id": "local_workspace",
+    "plan_type": "local_workspace_action_plan",
+    "workspace_root_reference": "approved_workspace://task031-fixture",
+    "staging_root_reference": "approved_staging://task031-staging-fixture",
+    "operation_batch": [
+      {
+        "operation_id": "op-001",
+        "operation_class": "write_generated_text_artifact",
+        "relative_input_path": "source/analysis-plan.md",
+        "relative_staging_path": "staged/task031/report.md",
+        "overwrite_existing": false,
+        "requires_public_internet": false,
+        "read_file_contents": false,
+        "follow_symlinks": false,
+        "modify_native_app_state": false,
+        "expected_artifact_type": "md",
+        "generated_content": "# Task 031 staged output\n\nGenerated from request-provided content only.\n"
+      },
+      {
+        "operation_id": "op-002",
+        "operation_class": "record_evidence_manifest",
+        "relative_staging_path": "staged/task031/evidence.json",
+        "overwrite_existing": false,
+        "requires_public_internet": false,
+        "read_file_contents": false,
+        "follow_symlinks": false,
+        "modify_native_app_state": false,
+        "expected_artifact_type": "json",
+        "generated_content": "{\"task\":\"031\",\"mode\":\"staged_output\"}\n"
+      }
+    ],
+    "path_policy": {
+      "absolute_paths_allowed": false,
+      "path_traversal_allowed": false,
+      "backslash_paths_allowed": false,
+      "empty_path_segments_allowed": false,
+      "symlink_escape_allowed": false,
+      "symlink_escape_claimed_safe_without_local_probe": false,
+      "follow_symlinks": false,
+      "content_read_allowed": false,
+      "source_workspace_writable": false,
+      "staging_paths_relative_to_staging_root": true
+    },
+    "artifact_policy": {
+      "source_overwrite_allowed": false,
+      "output_collision_policy": "block_until_future_versioning_policy",
+      "staging_path_collision_policy": "block_if_exists",
+      "claim_real_output_artifacts": false,
+      "read_file_contents": false,
+      "promote_to_user_workspace": false
+    },
+    "evidence_policy": {
+      "record_staged_output_receipts": true,
+      "claim_generated_artifacts": false
+    },
+    "llm_direct_file_edit_requested": false,
+    "llm_direct_native_app_state_modification_requested": false
+  },
+  "source_plan_schema_version": "army-claw-app-target-plan-schema-020.v1",
+  "execution_context": {
+    "proof_mode": false,
+    "execution_mode": "staged_output",
+    "staged_output": true,
+    "test_sandbox_write_enabled": true,
+    "test_sandbox_staging_root_path": "<LOCAL_UNIT_TEST_TEMP_DIR>",
+    "actual_adapter_invocation_allowed": false
+  },
+  "template_reference": {
+    "artifact_type": "folder",
+    "path": "approved_workspace://task031-fixture",
+    "overwrite_source": false
+  },
+  "constraints": {
+    "prevent_source_overwrite": true,
+    "allow_public_internet": false,
+    "preserve_template": true
+  },
+  "evidence_request": {
+    "level": "staged_output_receipts_only"
+  },
+  "dry_run": false,
+  "staged_output": true,
+  "created_at": "2026-07-10T00:00:00Z"
+}

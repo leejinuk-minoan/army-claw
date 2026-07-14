@@ -1,0 +1,81 @@
+{
+  "schema_version": "2.1.0",
+  "document_type": "scorecard",
+  "task_id": "hwpx-core-benchmark-003-evidence-integrity",
+  "generated_at": "2026-07-03T22:51:15.754Z",
+  "score_rubric": [
+    {
+      "rubric_id": "schema_parse_meta_compile",
+      "points": 1,
+      "awarded": 1,
+      "state": "awarded",
+      "validator_id": "ajv-8.20.0",
+      "validator_result": {
+        "valid": true
+      },
+      "failure_reasons": [],
+      "evidence_paths": [
+        "summary/ajv-meta-schema-validation-v6.json"
+      ]
+    },
+    {
+      "rubric_id": "scenario_native_execution",
+      "points": 1,
+      "awarded": 0,
+      "state": "pending",
+      "validator_id": "task003-local-rerun-v6",
+      "validator_result": null,
+      "failure_reasons": [
+        "native scenario execution not yet reached"
+      ],
+      "evidence_paths": []
+    }
+  ],
+  "invalid_pass_count": 0,
+  "evidence_linkage": [
+    {
+      "artifact_role": "task003-v6-evidence",
+      "path": "role-matrix.json",
+      "sha256": "7ead56370804820b5c4c2532f6808604b1485306be3e7bd2f7d0201c9ffdf242"
+    },
+    {
+      "artifact_role": "task003-v6-evidence",
+      "path": "tests/gate-a-task003-six-node-v6.result.txt",
+      "sha256": "0b677f74c7945297edf3f65d0ac7de30237c8cd3f00b36ab955c1958b3a752b1"
+    },
+    {
+      "artifact_role": "task003-v6-evidence",
+      "path": "tests/gate-b-current-full-hancom-v6.result.txt",
+      "sha256": "1af0aed57c1d03a984e2830dbc5210b6b373110985646383b0159c0e75f89272"
+    },
+    {
+      "artifact_role": "task003-v6-evidence",
+      "path": "summary/ajv-meta-schema-validation-v6.json",
+      "sha256": "1967d271b2ac26091d836c0a56c16f7369713de447e40cce492309f7d9770417"
+    },
+    {
+      "artifact_role": "task003-v6-evidence",
+      "path": "tests/pre-output-schema-inventory-v6.json",
+      "sha256": "fab85408bc1f7b868c63d0906aa4852b5ccf406a7c3ea33bb2607739af8a9f0c"
+    },
+    {
+      "artifact_role": "native_hwpx_gate",
+      "path": "tests/post-d2-scenario-gates-v6.result.txt",
+      "sha256": "7d3cdc2fd0f781fd19cbc7027d0ac35f92dfee5a68d5fa4c19b340cc7bfe27d1"
+    }
+  ],
+  "editor_gate": {
+    "passed": false,
+    "limitation": "native execution deferred until after final mapped JSON validation"
+  },
+  "validator_gate": {
+    "passed": false,
+    "limitation": "native validation deferred until after final mapped JSON validation"
+  },
+  "layout_gate": {
+    "passed": false,
+    "limitation": "Hancom visual/layout gate not executed in D-1"
+  },
+  "core_selection": "prohibited",
+  "stage_transition": "prohibited"
+}

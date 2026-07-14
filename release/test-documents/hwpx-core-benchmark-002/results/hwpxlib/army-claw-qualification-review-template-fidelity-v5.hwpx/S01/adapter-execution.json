@@ -1,0 +1,55 @@
+{
+  "candidate_id": "hwpxlib",
+  "method": "savePackage",
+  "status": "blocked",
+  "started_at": "2026-07-02T21:04:42.490Z",
+  "ended_at": "2026-07-02T21:04:42.490Z",
+  "duration_ms": 0,
+  "input": {},
+  "output": {
+    "reason": "hwpxlib pinned jar/source artifact, actual LICENSE, and offline Java validation command are not available in this workspace",
+    "attempted_commands": [
+      "java -version",
+      "java -jar <pinned-hwpxlib-jar> --validate <candidate.hwpx>"
+    ],
+    "checked_paths": [
+      "vendor/hwpxlib/",
+      "release/test-documents/hwpx-core-benchmark-002/external/hwpxlib/"
+    ],
+    "runtime_check": "Java runtime command must be recorded by benchmark execution",
+    "artifact_check": "missing pinned hwpxlib jar/source artifact",
+    "license_check": "missing actual LICENSE/COPYING/NOTICE file",
+    "missing_prerequisite": "pinned hwpxlib artifact and license evidence",
+    "required_boundary": "separate Java process",
+    "evidence_log_path": "candidate result adapter-execution.json"
+  },
+  "assertions": [
+    {
+      "id": "savePackage-blocked-prerequisite",
+      "expected": "runtime/artifact/license available",
+      "actual": "hwpxlib pinned jar/source artifact, actual LICENSE, and offline Java validation command are not available in this workspace",
+      "passed": false
+    }
+  ],
+  "artifacts": [],
+  "stdout_path": null,
+  "stderr_path": null,
+  "trace": [
+    {
+      "type": "blocked_prerequisite",
+      "method": "savePackage",
+      "reason": "hwpxlib pinned jar/source artifact, actual LICENSE, and offline Java validation command are not available in this workspace",
+      "attempted_commands": [
+        "java -version",
+        "java -jar <pinned-hwpxlib-jar> --validate <candidate.hwpx>"
+      ],
+      "checked_paths": [
+        "vendor/hwpxlib/",
+        "release/test-documents/hwpx-core-benchmark-002/external/hwpxlib/"
+      ]
+    }
+  ],
+  "errors": [
+    "hwpxlib pinned jar/source artifact, actual LICENSE, and offline Java validation command are not available in this workspace"
+  ]
+}

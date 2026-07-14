@@ -1,0 +1,78 @@
+{
+  "source_path": "release/test-documents/local-route-manifest-proof-015/route-responses/invalid-route-response.json",
+  "route_response": {
+    "route_request_id": "route-invalid-fixture",
+    "mock_method": "POST",
+    "mock_path": "/mock/jobs",
+    "service_operation": "submit",
+    "http_like_status": 422,
+    "ok": false,
+    "status": "validation_error",
+    "job_id": null,
+    "job_status": null,
+    "data": {
+      "route_id": "submit_document_job",
+      "job_id": "job-route-manifest",
+      "status": "validation_error"
+    },
+    "error": {
+      "code": "invalid_request",
+      "type": "invalid_request",
+      "message": "invalid_request fixture",
+      "category": "request",
+      "retryable": false,
+      "user_visible": true,
+      "expected_status": "validation_error"
+    },
+    "artifacts": {
+      "output_path": null,
+      "report_path": null,
+      "evidence_paths": []
+    },
+    "contract_version": "service-contract-schema-error-taxonomy-013.v1",
+    "real_com_executed": false,
+    "final_core_selection_declared": false,
+    "stage_2_transition_declared": false,
+    "raw_route_response_path": "release/test-documents/local-route-manifest-proof-015/route-responses/invalid-route-response.json"
+  },
+  "client_result": {
+    "client_result_id": "client-result-route-invalid-fixture",
+    "route_request_id": "route-invalid-fixture",
+    "route_id": "submit_document_job",
+    "service_operation": "submit",
+    "ok": false,
+    "status": "validation_error",
+    "http_like_status": 422,
+    "job_id": null,
+    "job_status": null,
+    "user_visible_state": "request_fix_required",
+    "user_message_key": "client.request_fix_required.invalid_request",
+    "retryable": false,
+    "should_poll": false,
+    "terminal": true,
+    "can_open_output": false,
+    "can_download_output": false,
+    "artifact_availability": {
+      "output_path": null,
+      "output_path_available": false,
+      "report_path_available": false,
+      "evidence_paths_available": false
+    },
+    "error_code": "invalid_request",
+    "error_category": "request",
+    "error_user_visible": true,
+    "raw_route_response_path": "release/test-documents/local-route-manifest-proof-015/route-responses/invalid-route-response.json",
+    "interpreted_at": "2026-07-05T07:48:53.517Z",
+    "client_action": "fix_request",
+    "real_http_server_started": false,
+    "final_core_selection_declared": false,
+    "stage_2_transition_declared": false,
+    "workspace_root": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task016-local-client-boundary-proof-20260705"
+  },
+  "route_validation": {
+    "valid": true,
+    "errors": [],
+    "warnings": [],
+    "contract_version": "service-contract-schema-error-taxonomy-013.v1"
+  }
+}

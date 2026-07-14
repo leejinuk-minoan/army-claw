@@ -1,0 +1,36 @@
+{
+  "route_request_id": "route-get-result-completed",
+  "mock_method": "GET",
+  "mock_path": "/mock/jobs/job-api-route-create-document/result",
+  "service_operation": "getResult",
+  "http_like_status": 200,
+  "ok": true,
+  "status": "completed",
+  "job_id": "job-api-route-create-document",
+  "job_status": "completed",
+  "data": {
+    "job_id": "job-api-route-create-document",
+    "status": "completed",
+    "response_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task014-inprocess-route-facade-proof-20260705\\release\\test-documents\\inprocess-route-facade-proof-014\\responses\\job-api-route-create-document-response.json",
+    "report_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task014-inprocess-route-facade-proof-20260705\\release\\test-documents\\inprocess-route-facade-proof-014\\reports\\job-api-route-create-document-agent-report.json",
+    "output_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task014-inprocess-route-facade-proof-20260705\\release\\test-documents\\inprocess-route-facade-proof-014\\outputs\\job-api-route-create-document-output.hwpx",
+    "evidence_paths": [
+      "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task014-inprocess-route-facade-proof-20260705\\release\\test-documents\\inprocess-route-facade-proof-014\\evidence\\job-api-route-create-document-evidence-1.json"
+    ],
+    "failure": null
+  },
+  "error": null,
+  "artifacts": {
+    "response_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task014-inprocess-route-facade-proof-20260705\\release\\test-documents\\inprocess-route-facade-proof-014\\responses\\job-api-route-create-document-response.json",
+    "report_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task014-inprocess-route-facade-proof-20260705\\release\\test-documents\\inprocess-route-facade-proof-014\\reports\\job-api-route-create-document-agent-report.json",
+    "output_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task014-inprocess-route-facade-proof-20260705\\release\\test-documents\\inprocess-route-facade-proof-014\\outputs\\job-api-route-create-document-output.hwpx",
+    "evidence_paths": [
+      "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task014-inprocess-route-facade-proof-20260705\\release\\test-documents\\inprocess-route-facade-proof-014\\evidence\\job-api-route-create-document-evidence-1.json"
+    ],
+    "service_response_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task014-inprocess-route-facade-proof-20260705\\release\\test-documents\\inprocess-route-facade-proof-014\\internal-execution-workspace\\release\\test-documents\\service-adapter-boundary-proof-012\\service-responses\\get-result-completed-response.json"
+  },
+  "contract_version": "service-contract-schema-error-taxonomy-013.v1",
+  "real_com_executed": false,
+  "final_core_selection_declared": false,
+  "stage_2_transition_declared": false
+}

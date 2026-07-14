@@ -1,0 +1,17 @@
+{
+  "service_request_id": "svc-getResult-job-api-create-document-1783205231613",
+  "service_operation": "getResult",
+  "ok": false,
+  "status": "not_ready",
+  "job_id": "job-api-create-document",
+  "job_status": "pending",
+  "data": null,
+  "error": {
+    "type": "not_ready",
+    "message": "job_not_terminal:pending"
+  },
+  "artifacts": {},
+  "real_com_executed": false,
+  "final_core_selection_declared": false,
+  "stage_2_transition_declared": false
+}

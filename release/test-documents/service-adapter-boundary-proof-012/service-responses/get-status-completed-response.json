@@ -1,0 +1,22 @@
+{
+  "service_request_id": "svc-getStatus-completed-1783205231846",
+  "service_operation": "getStatus",
+  "ok": true,
+  "status": "completed",
+  "job_id": "job-api-create-document",
+  "job_status": "completed",
+  "data": {
+    "job_id": "job-api-create-document",
+    "status": "completed",
+    "terminal": true,
+    "snapshot_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\t12\\release\\test-documents\\service-adapter-boundary-proof-012\\jobs\\job-api-create-document\\snapshots\\completed.json",
+    "updated_at": "2026-07-04T22:47:11.820Z"
+  },
+  "error": null,
+  "artifacts": {
+    "snapshot_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\t12\\release\\test-documents\\service-adapter-boundary-proof-012\\jobs\\job-api-create-document\\snapshots\\completed.json"
+  },
+  "real_com_executed": false,
+  "final_core_selection_declared": false,
+  "stage_2_transition_declared": false
+}

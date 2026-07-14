@@ -1,0 +1,12 @@
+{
+  "multi_app_execution_plan_requires_subplans_array": true,
+  "allowed_subplan_types": [
+    "local_workspace_action_plan",
+    "hwp_hwpx_fill_plan",
+    "hancell_fill_plan",
+    "hanshow_fill_plan"
+  ],
+  "each_subplan_routes_as_single_target_plan": true,
+  "nested_multi_app_execution_plan_allowed": false,
+  "actual_adapter_execution_performed": false
+}

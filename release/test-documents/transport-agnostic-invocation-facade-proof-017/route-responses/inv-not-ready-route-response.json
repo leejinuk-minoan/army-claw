@@ -1,0 +1,29 @@
+{
+  "route_request_id": "client-get-result-job-api-submit-document-job",
+  "mock_method": "GET",
+  "mock_path": "/mock/jobs/job-api-submit-document-job/result",
+  "service_operation": "getResult",
+  "http_like_status": 409,
+  "ok": false,
+  "status": "not_ready",
+  "job_id": "job-api-submit-document-job",
+  "job_status": "pending",
+  "data": null,
+  "error": {
+    "code": "not_ready",
+    "type": "not_ready",
+    "message": "job_not_terminal:pending",
+    "category": "state",
+    "retryable": true,
+    "user_visible": true,
+    "expected_status": "not_ready"
+  },
+  "artifacts": {
+    "service_response_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task017-transport-agnostic-invocation-facade-proof-20260705\\release\\test-documents\\inprocess-route-facade-proof-014\\internal-execution-workspace\\release\\test-documents\\service-adapter-boundary-proof-012\\service-responses\\not-ready-result-response.json",
+    "output_path": null
+  },
+  "contract_version": "service-contract-schema-error-taxonomy-013.v1",
+  "real_com_executed": false,
+  "final_core_selection_declared": false,
+  "stage_2_transition_declared": false
+}

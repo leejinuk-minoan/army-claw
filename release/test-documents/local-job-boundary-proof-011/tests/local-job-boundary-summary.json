@@ -1,0 +1,100 @@
+{
+  "task_id": "local-job-boundary-proof-011",
+  "generated_at": "2026-07-04T22:15:54.492Z",
+  "completion_candidate": true,
+  "job_count": 6,
+  "completed_count": 4,
+  "rejected_count": 1,
+  "failed_count": 1,
+  "jobs": [
+    {
+      "job_id": "job-api-create-document",
+      "status": "completed",
+      "request_path": "C:/Users/USER/Desktop/로컬 open claw 만들기/.tmp/t11/release/test-documents/local-job-boundary-proof-011/requests/create-document-request.json",
+      "response_path": "C:/Users/USER/Desktop/로컬 open claw 만들기/.tmp/t11/release/test-documents/local-job-boundary-proof-011/responses/job-api-create-document-response.json",
+      "plan_path": "C:/Users/USER/Desktop/로컬 open claw 만들기/.tmp/t11/release/test-documents/local-job-boundary-proof-011/plans/job-api-create-document-plan.json",
+      "report_path": "C:/Users/USER/Desktop/로컬 open claw 만들기/.tmp/t11/release/test-documents/local-job-boundary-proof-011/reports/job-api-create-document-agent-report.json",
+      "output_path": "C:/Users/USER/Desktop/로컬 open claw 만들기/.tmp/t11/release/test-documents/local-job-boundary-proof-011/outputs/job-api-create-document-output.hwpx",
+      "evidence_paths": [
+        "C:/Users/USER/Desktop/로컬 open claw 만들기/.tmp/t11/release/test-documents/local-job-boundary-proof-011/evidence/job-api-create-document-evidence-1.json"
+      ],
+      "failure_type": null
+    },
+    {
+      "job_id": "job-api-edit-paragraph",
+      "status": "completed",
+      "request_path": "C:/Users/USER/Desktop/로컬 open claw 만들기/.tmp/t11/release/test-documents/local-job-boundary-proof-011/requests/edit-paragraph-request.json",
+      "response_path": "C:/Users/USER/Desktop/로컬 open claw 만들기/.tmp/t11/release/test-documents/local-job-boundary-proof-011/responses/job-api-edit-paragraph-response.json",
+      "plan_path": "C:/Users/USER/Desktop/로컬 open claw 만들기/.tmp/t11/release/test-documents/local-job-boundary-proof-011/plans/job-api-edit-paragraph-plan.json",
+      "report_path": "C:/Users/USER/Desktop/로컬 open claw 만들기/.tmp/t11/release/test-documents/local-job-boundary-proof-011/reports/job-api-edit-paragraph-agent-report.json",
+      "output_path": "C:/Users/USER/Desktop/로컬 open claw 만들기/.tmp/t11/release/test-documents/local-job-boundary-proof-011/outputs/job-api-edit-paragraph-output.hwpx",
+      "evidence_paths": [
+        "C:/Users/USER/Desktop/로컬 open claw 만들기/.tmp/t11/release/test-documents/local-job-boundary-proof-011/evidence/job-api-edit-paragraph-evidence-1.json"
+      ],
+      "failure_type": null
+    },
+    {
+      "job_id": "job-api-edit-table",
+      "status": "completed",
+      "request_path": "C:/Users/USER/Desktop/로컬 open claw 만들기/.tmp/t11/release/test-documents/local-job-boundary-proof-011/requests/edit-table-request.json",
+      "response_path": "C:/Users/USER/Desktop/로컬 open claw 만들기/.tmp/t11/release/test-documents/local-job-boundary-proof-011/responses/job-api-edit-table-response.json",
+      "plan_path": "C:/Users/USER/Desktop/로컬 open claw 만들기/.tmp/t11/release/test-documents/local-job-boundary-proof-011/plans/job-api-edit-table-plan.json",
+      "report_path": "C:/Users/USER/Desktop/로컬 open claw 만들기/.tmp/t11/release/test-documents/local-job-boundary-proof-011/reports/job-api-edit-table-agent-report.json",
+      "output_path": "C:/Users/USER/Desktop/로컬 open claw 만들기/.tmp/t11/release/test-documents/local-job-boundary-proof-011/outputs/job-api-edit-table-output.hwpx",
+      "evidence_paths": [
+        "C:/Users/USER/Desktop/로컬 open claw 만들기/.tmp/t11/release/test-documents/local-job-boundary-proof-011/evidence/job-api-edit-table-evidence-1.json"
+      ],
+      "failure_type": null
+    },
+    {
+      "job_id": "job-api-apply-style",
+      "status": "completed",
+      "request_path": "C:/Users/USER/Desktop/로컬 open claw 만들기/.tmp/t11/release/test-documents/local-job-boundary-proof-011/requests/apply-style-request.json",
+      "response_path": "C:/Users/USER/Desktop/로컬 open claw 만들기/.tmp/t11/release/test-documents/local-job-boundary-proof-011/responses/job-api-apply-style-response.json",
+      "plan_path": "C:/Users/USER/Desktop/로컬 open claw 만들기/.tmp/t11/release/test-documents/local-job-boundary-proof-011/plans/job-api-apply-style-plan.json",
+      "report_path": "C:/Users/USER/Desktop/로컬 open claw 만들기/.tmp/t11/release/test-documents/local-job-boundary-proof-011/reports/job-api-apply-style-agent-report.json",
+      "output_path": "C:/Users/USER/Desktop/로컬 open claw 만들기/.tmp/t11/release/test-documents/local-job-boundary-proof-011/outputs/job-api-apply-style-output.hwpx",
+      "evidence_paths": [
+        "C:/Users/USER/Desktop/로컬 open claw 만들기/.tmp/t11/release/test-documents/local-job-boundary-proof-011/evidence/job-api-apply-style-evidence-1.json"
+      ],
+      "failure_type": null
+    },
+    {
+      "job_id": "job-api-invalid",
+      "status": "rejected",
+      "request_path": "C:/Users/USER/Desktop/로컬 open claw 만들기/.tmp/t11/release/test-documents/local-job-boundary-proof-011/requests/invalid-request.json",
+      "response_path": "C:/Users/USER/Desktop/로컬 open claw 만들기/.tmp/t11/release/test-documents/local-job-boundary-proof-011/responses/job-api-invalid-response.json",
+      "plan_path": null,
+      "report_path": null,
+      "output_path": null,
+      "evidence_paths": [],
+      "failure_type": "policy_error"
+    },
+    {
+      "job_id": "job-api-validation-failure",
+      "status": "failed",
+      "request_path": "C:/Users/USER/Desktop/로컬 open claw 만들기/.tmp/t11/release/test-documents/local-job-boundary-proof-011/requests/validation-failure-request.json",
+      "response_path": "C:/Users/USER/Desktop/로컬 open claw 만들기/.tmp/t11/release/test-documents/local-job-boundary-proof-011/responses/job-api-validation-failure-response.json",
+      "plan_path": "C:/Users/USER/Desktop/로컬 open claw 만들기/.tmp/t11/release/test-documents/local-job-boundary-proof-011/plans/job-api-validation-failure-plan.json",
+      "report_path": "C:/Users/USER/Desktop/로컬 open claw 만들기/.tmp/t11/release/test-documents/local-job-boundary-proof-011/reports/job-api-validation-failure-agent-report.json",
+      "output_path": null,
+      "evidence_paths": [
+        "C:/Users/USER/Desktop/로컬 open claw 만들기/.tmp/t11/release/test-documents/local-job-boundary-proof-011/evidence/job-api-validation-failure-evidence-1.json"
+      ],
+      "failure_type": "validation_error"
+    }
+  ],
+  "real_com_executed": false,
+  "final_core_selection_declared": false,
+  "stage_2_transition_declared": false,
+  "completed_artifacts_modified": false,
+  "retry_implemented": false,
+  "read_only_reference_roots": [
+    "release/test-documents/hwpx-core-benchmark-003-evidence-integrity",
+    "release/test-documents/hwpcoreadapter-backend-proof-006",
+    "release/test-documents/editor-backend-candidate-comparison-007",
+    "release/test-documents/node-xml-thin-interim-adapter-integration-008",
+    "release/test-documents/agent-operation-plan-e2e-proof-009",
+    "release/test-documents/agent-api-boundary-proof-010"
+  ]
+}

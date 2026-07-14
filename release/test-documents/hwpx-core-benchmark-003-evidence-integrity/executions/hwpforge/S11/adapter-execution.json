@@ -1,0 +1,17 @@
+{
+  "task_id": "hwpx-core-benchmark-003-evidence-integrity",
+  "candidate_id": "hwpforge",
+  "candidate_role": "validator",
+  "scenario_id": "S11",
+  "planned_commands": [
+    "Task 003 hwpforge S11 local evidence execution"
+  ],
+  "attempted_commands": [],
+  "validator_results": [],
+  "missing_evidence": [],
+  "evidence_completeness": "not_applicable",
+  "status": "not_applicable",
+  "status_reason": "S11 is outside validator responsibility",
+  "not_applicable_rationale": "S11 is not assigned to validator in the v6 role matrix",
+  "role_matrix_reference": "role-matrix:v6-canonical-output-alignment"
+}

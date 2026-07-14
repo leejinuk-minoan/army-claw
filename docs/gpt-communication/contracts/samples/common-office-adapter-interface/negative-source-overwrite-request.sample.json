@@ -1,0 +1,16 @@
+{
+  "request_id": "req-negative-source-overwrite-001",
+  "contract_version": "army-claw-common-office-adapter-interface-023.v1",
+  "target_id": "hancell",
+  "adapter_slot_id": "hancell_adapter_slot",
+  "plan_type": "hancell_fill_plan",
+  "validated_plan": {
+    "plan_id": "negative-source-overwrite",
+    "llm_direct_file_edit_requested": false,
+    "llm_direct_native_app_state_modification_requested": false
+  },
+  "template_reference": {"artifact_type": "cell", "path": "templates/source.cell", "overwrite_source": true},
+  "constraints": {"prevent_source_overwrite": false, "allow_public_internet": false},
+  "expected_error_code": "source_overwrite_blocked",
+  "proof_mode": true
+}

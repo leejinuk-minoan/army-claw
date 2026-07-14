@@ -1,0 +1,634 @@
+{
+  "task_id": "app-target-plan-schema-proof-020",
+  "plan_schema_contract_version": "army-claw-app-target-plan-schema-020.v1",
+  "official_system_name": "Army Claw",
+  "hwp_only": false,
+  "supported_plan_types": [
+    "local_workspace_action_plan",
+    "hwp_hwpx_fill_plan",
+    "hancell_fill_plan",
+    "hanshow_fill_plan",
+    "multi_app_execution_plan"
+  ],
+  "adapter_slot_input_contracts": [
+    {
+      "adapter_slot_id": "local_workspace_adapter_slot",
+      "target_id": "local_workspace",
+      "plan_type": "local_workspace_action_plan",
+      "required_fields": [
+        "adapter_slot_input_id",
+        "adapter_slot_id",
+        "target_id",
+        "plan_type",
+        "validated_plan",
+        "validation_result",
+        "execution_allowed",
+        "actual_adapter_invoked",
+        "deterministic_execution_required",
+        "final_core_selection_declared",
+        "stage_2_transition_declared"
+      ],
+      "execution_allowed": false,
+      "actual_adapter_invoked": false,
+      "deterministic_execution_required": true,
+      "final_core_selection_declared": false,
+      "stage_2_transition_declared": false
+    },
+    {
+      "adapter_slot_id": "hwp_hwpx_adapter_slot",
+      "target_id": "hwp_hwpx",
+      "plan_type": "hwp_hwpx_fill_plan",
+      "required_fields": [
+        "adapter_slot_input_id",
+        "adapter_slot_id",
+        "target_id",
+        "plan_type",
+        "validated_plan",
+        "validation_result",
+        "execution_allowed",
+        "actual_adapter_invoked",
+        "deterministic_execution_required",
+        "final_core_selection_declared",
+        "stage_2_transition_declared"
+      ],
+      "execution_allowed": false,
+      "actual_adapter_invoked": false,
+      "deterministic_execution_required": true,
+      "final_core_selection_declared": false,
+      "stage_2_transition_declared": false
+    },
+    {
+      "adapter_slot_id": "hancell_adapter_slot",
+      "target_id": "hancell",
+      "plan_type": "hancell_fill_plan",
+      "required_fields": [
+        "adapter_slot_input_id",
+        "adapter_slot_id",
+        "target_id",
+        "plan_type",
+        "validated_plan",
+        "validation_result",
+        "execution_allowed",
+        "actual_adapter_invoked",
+        "deterministic_execution_required",
+        "final_core_selection_declared",
+        "stage_2_transition_declared"
+      ],
+      "execution_allowed": false,
+      "actual_adapter_invoked": false,
+      "deterministic_execution_required": true,
+      "final_core_selection_declared": false,
+      "stage_2_transition_declared": false
+    },
+    {
+      "adapter_slot_id": "hanshow_adapter_slot",
+      "target_id": "hanshow",
+      "plan_type": "hanshow_fill_plan",
+      "required_fields": [
+        "adapter_slot_input_id",
+        "adapter_slot_id",
+        "target_id",
+        "plan_type",
+        "validated_plan",
+        "validation_result",
+        "execution_allowed",
+        "actual_adapter_invoked",
+        "deterministic_execution_required",
+        "final_core_selection_declared",
+        "stage_2_transition_declared"
+      ],
+      "execution_allowed": false,
+      "actual_adapter_invoked": false,
+      "deterministic_execution_required": true,
+      "final_core_selection_declared": false,
+      "stage_2_transition_declared": false
+    }
+  ],
+  "target_plan_schemas": {
+    "local_workspace_action_plan": {
+      "plan_type": "local_workspace_action_plan",
+      "target_id": "local_workspace",
+      "adapter_slot_id": "local_workspace_adapter_slot",
+      "required_fields": [
+        "plan_id",
+        "plan_type",
+        "target_id",
+        "source",
+        "user_goal",
+        "template_reference",
+        "fill_operations",
+        "constraints",
+        "evidence_request",
+        "created_at",
+        "llm_generated",
+        "llm_direct_file_edit_requested",
+        "llm_direct_native_app_state_modification_requested",
+        "public_internet_required"
+      ],
+      "allowed_template_artifact_types": [
+        "folder"
+      ],
+      "allowed_operation_types": [
+        "replace_text",
+        "insert_paragraph",
+        "append_table_rows",
+        "set_metadata",
+        "copy_template_block",
+        "no_op_validation_only",
+        "inspect_path",
+        "prepare_output_folder",
+        "copy_template_to_output",
+        "validate_output_path"
+      ],
+      "template_preservation_required": false
+    },
+    "hwp_hwpx_fill_plan": {
+      "plan_type": "hwp_hwpx_fill_plan",
+      "target_id": "hwp_hwpx",
+      "adapter_slot_id": "hwp_hwpx_adapter_slot",
+      "required_fields": [
+        "plan_id",
+        "plan_type",
+        "target_id",
+        "source",
+        "user_goal",
+        "template_reference",
+        "fill_operations",
+        "constraints",
+        "evidence_request",
+        "created_at",
+        "llm_generated",
+        "llm_direct_file_edit_requested",
+        "llm_direct_native_app_state_modification_requested",
+        "public_internet_required"
+      ],
+      "allowed_template_artifact_types": [
+        "hwp",
+        "hwpx"
+      ],
+      "allowed_operation_types": [
+        "replace_text",
+        "insert_paragraph",
+        "append_table_rows",
+        "set_metadata",
+        "copy_template_block",
+        "no_op_validation_only",
+        "replace_placeholder",
+        "insert_section_paragraph",
+        "append_hwp_table_rows"
+      ],
+      "template_preservation_required": true
+    },
+    "hancell_fill_plan": {
+      "plan_type": "hancell_fill_plan",
+      "target_id": "hancell",
+      "adapter_slot_id": "hancell_adapter_slot",
+      "required_fields": [
+        "plan_id",
+        "plan_type",
+        "target_id",
+        "source",
+        "user_goal",
+        "template_reference",
+        "fill_operations",
+        "constraints",
+        "evidence_request",
+        "created_at",
+        "llm_generated",
+        "llm_direct_file_edit_requested",
+        "llm_direct_native_app_state_modification_requested",
+        "public_internet_required"
+      ],
+      "allowed_template_artifact_types": [
+        "cell"
+      ],
+      "allowed_operation_types": [
+        "replace_text",
+        "insert_paragraph",
+        "append_table_rows",
+        "set_metadata",
+        "copy_template_block",
+        "no_op_validation_only",
+        "set_cell_value",
+        "fill_range",
+        "append_sheet_rows",
+        "preserve_formula_cells"
+      ],
+      "template_preservation_required": true
+    },
+    "hanshow_fill_plan": {
+      "plan_type": "hanshow_fill_plan",
+      "target_id": "hanshow",
+      "adapter_slot_id": "hanshow_adapter_slot",
+      "required_fields": [
+        "plan_id",
+        "plan_type",
+        "target_id",
+        "source",
+        "user_goal",
+        "template_reference",
+        "fill_operations",
+        "constraints",
+        "evidence_request",
+        "created_at",
+        "llm_generated",
+        "llm_direct_file_edit_requested",
+        "llm_direct_native_app_state_modification_requested",
+        "public_internet_required"
+      ],
+      "allowed_template_artifact_types": [
+        "show"
+      ],
+      "allowed_operation_types": [
+        "replace_text",
+        "insert_paragraph",
+        "append_table_rows",
+        "set_metadata",
+        "copy_template_block",
+        "no_op_validation_only",
+        "replace_slide_placeholder",
+        "set_textbox_text",
+        "duplicate_slide_from_layout",
+        "replace_image_placeholder"
+      ],
+      "template_preservation_required": true
+    },
+    "multi_app_execution_plan": {
+      "plan_type": "multi_app_execution_plan",
+      "target_id": "multi_target",
+      "required_fields": [
+        "plan_id",
+        "plan_type",
+        "user_goal",
+        "subplans",
+        "execution_order_policy",
+        "dependency_policy",
+        "rollback_policy_placeholder",
+        "constraints",
+        "created_at"
+      ],
+      "allowed_subplan_types": [
+        "local_workspace_action_plan",
+        "hwp_hwpx_fill_plan",
+        "hancell_fill_plan",
+        "hanshow_fill_plan"
+      ],
+      "parallel_execution_implemented": false,
+      "rollback_implemented": false
+    }
+  },
+  "shared_plan_fields": {
+    "required_fields": [
+      "plan_id",
+      "plan_type",
+      "target_id",
+      "source",
+      "user_goal",
+      "template_reference",
+      "fill_operations",
+      "constraints",
+      "evidence_request",
+      "created_at",
+      "llm_generated",
+      "llm_direct_file_edit_requested",
+      "llm_direct_native_app_state_modification_requested",
+      "public_internet_required"
+    ],
+    "defaults": {
+      "llm_direct_file_edit_requested": false,
+      "llm_direct_native_app_state_modification_requested": false,
+      "public_internet_required": false
+    }
+  },
+  "template_reference_contract": {
+    "required_fields": [
+      "template_id",
+      "template_artifact_type",
+      "template_path",
+      "template_fingerprint",
+      "template_origin",
+      "preserve_template_required",
+      "protect_source_template_from_overwrite"
+    ],
+    "allowed_template_artifact_types": [
+      "hwp",
+      "hwpx",
+      "cell",
+      "show",
+      "folder",
+      "unknown_for_validation_failure"
+    ],
+    "target_allowed_artifact_types": {
+      "hwp_hwpx": [
+        "hwp",
+        "hwpx"
+      ],
+      "hancell": [
+        "cell"
+      ],
+      "hanshow": [
+        "show"
+      ],
+      "local_workspace": [
+        "folder"
+      ]
+    },
+    "protect_source_template_from_overwrite_default": true
+  },
+  "fill_operation_contract": {
+    "required_fields": [
+      "operation_id",
+      "operation_type",
+      "target_locator",
+      "value",
+      "preserve_style",
+      "validation_rules"
+    ],
+    "common_allowed_operation_types": [
+      "replace_text",
+      "insert_paragraph",
+      "append_table_rows",
+      "set_metadata",
+      "copy_template_block",
+      "no_op_validation_only"
+    ],
+    "target_allowed_operation_types": {
+      "hwp_hwpx": [
+        "replace_text",
+        "insert_paragraph",
+        "append_table_rows",
+        "set_metadata",
+        "copy_template_block",
+        "no_op_validation_only",
+        "replace_placeholder",
+        "insert_section_paragraph",
+        "append_hwp_table_rows"
+      ],
+      "hancell": [
+        "replace_text",
+        "insert_paragraph",
+        "append_table_rows",
+        "set_metadata",
+        "copy_template_block",
+        "no_op_validation_only",
+        "set_cell_value",
+        "fill_range",
+        "append_sheet_rows",
+        "preserve_formula_cells"
+      ],
+      "hanshow": [
+        "replace_text",
+        "insert_paragraph",
+        "append_table_rows",
+        "set_metadata",
+        "copy_template_block",
+        "no_op_validation_only",
+        "replace_slide_placeholder",
+        "set_textbox_text",
+        "duplicate_slide_from_layout",
+        "replace_image_placeholder"
+      ],
+      "local_workspace": [
+        "replace_text",
+        "insert_paragraph",
+        "append_table_rows",
+        "set_metadata",
+        "copy_template_block",
+        "no_op_validation_only",
+        "inspect_path",
+        "prepare_output_folder",
+        "copy_template_to_output",
+        "validate_output_path"
+      ]
+    },
+    "actual_operation_execution_performed": false
+  },
+  "constraint_contract": {
+    "required_fields": [
+      "preserve_original_style",
+      "preserve_layout",
+      "preserve_formulas",
+      "preserve_charts",
+      "preserve_slide_layouts",
+      "prevent_source_overwrite",
+      "require_offline_operation",
+      "allow_public_internet",
+      "require_validation_report"
+    ],
+    "target_defaults": {
+      "hwp_hwpx": {
+        "preserve_original_style": true,
+        "preserve_layout": true,
+        "preserve_formulas": false,
+        "preserve_charts": false,
+        "preserve_slide_layouts": false,
+        "prevent_source_overwrite": true,
+        "require_offline_operation": true,
+        "allow_public_internet": false,
+        "require_validation_report": true
+      },
+      "hancell": {
+        "preserve_original_style": true,
+        "preserve_layout": false,
+        "preserve_formulas": true,
+        "preserve_charts": true,
+        "preserve_slide_layouts": false,
+        "prevent_source_overwrite": true,
+        "require_offline_operation": true,
+        "allow_public_internet": false,
+        "require_validation_report": true
+      },
+      "hanshow": {
+        "preserve_original_style": true,
+        "preserve_layout": true,
+        "preserve_formulas": false,
+        "preserve_charts": false,
+        "preserve_slide_layouts": true,
+        "prevent_source_overwrite": true,
+        "require_offline_operation": true,
+        "allow_public_internet": false,
+        "require_validation_report": true
+      },
+      "local_workspace": {
+        "preserve_original_style": false,
+        "preserve_layout": false,
+        "preserve_formulas": false,
+        "preserve_charts": false,
+        "preserve_slide_layouts": false,
+        "prevent_source_overwrite": true,
+        "require_offline_operation": true,
+        "allow_public_internet": false,
+        "require_validation_report": true
+      }
+    }
+  },
+  "validation_error_taxonomy": [
+    {
+      "error_code": "missing_required_field",
+      "status": "validation_error",
+      "error_category": "plan_schema_validation",
+      "user_visible_state": "request_fix_required",
+      "controlled": true
+    },
+    {
+      "error_code": "invalid_plan_type",
+      "status": "validation_error",
+      "error_category": "plan_schema_validation",
+      "user_visible_state": "request_fix_required",
+      "controlled": true
+    },
+    {
+      "error_code": "invalid_target_id",
+      "status": "validation_error",
+      "error_category": "plan_schema_validation",
+      "user_visible_state": "request_fix_required",
+      "controlled": true
+    },
+    {
+      "error_code": "target_plan_mismatch",
+      "status": "validation_error",
+      "error_category": "plan_schema_validation",
+      "user_visible_state": "request_fix_required",
+      "controlled": true
+    },
+    {
+      "error_code": "invalid_template_artifact_type",
+      "status": "validation_error",
+      "error_category": "plan_schema_validation",
+      "user_visible_state": "request_fix_required",
+      "controlled": true
+    },
+    {
+      "error_code": "missing_template_reference",
+      "status": "validation_error",
+      "error_category": "plan_schema_validation",
+      "user_visible_state": "request_fix_required",
+      "controlled": true
+    },
+    {
+      "error_code": "missing_fill_operations",
+      "status": "validation_error",
+      "error_category": "plan_schema_validation",
+      "user_visible_state": "request_fix_required",
+      "controlled": true
+    },
+    {
+      "error_code": "invalid_fill_operation_type",
+      "status": "validation_error",
+      "error_category": "plan_schema_validation",
+      "user_visible_state": "request_fix_required",
+      "controlled": true
+    },
+    {
+      "error_code": "invalid_target_locator",
+      "status": "validation_error",
+      "error_category": "plan_schema_validation",
+      "user_visible_state": "request_fix_required",
+      "controlled": true
+    },
+    {
+      "error_code": "source_template_overwrite_risk",
+      "status": "validation_error",
+      "error_category": "plan_schema_validation",
+      "user_visible_state": "request_fix_required",
+      "controlled": true
+    },
+    {
+      "error_code": "public_internet_dependency_disallowed",
+      "status": "validation_error",
+      "error_category": "plan_schema_validation",
+      "user_visible_state": "request_fix_required",
+      "controlled": true
+    },
+    {
+      "error_code": "llm_direct_file_edit_disallowed",
+      "status": "validation_error",
+      "error_category": "plan_schema_validation",
+      "user_visible_state": "request_fix_required",
+      "controlled": true
+    },
+    {
+      "error_code": "llm_direct_native_app_state_modification_disallowed",
+      "status": "validation_error",
+      "error_category": "plan_schema_validation",
+      "user_visible_state": "request_fix_required",
+      "controlled": true
+    },
+    {
+      "error_code": "adapter_execution_not_allowed_in_this_task",
+      "status": "validation_error",
+      "error_category": "plan_schema_validation",
+      "user_visible_state": "request_fix_required",
+      "controlled": true
+    },
+    {
+      "error_code": "contract_violation",
+      "status": "validation_error",
+      "error_category": "plan_schema_validation",
+      "user_visible_state": "request_fix_required",
+      "controlled": true
+    }
+  ],
+  "template_preservation_requirements": {
+    "hwp_hwpx": {
+      "target_id": "hwp_hwpx",
+      "template_preservation_required": true,
+      "required_fields": [
+        "paragraph_styles",
+        "character_styles",
+        "page_settings",
+        "margins",
+        "headers_footers",
+        "tables",
+        "numbering",
+        "section_structure",
+        "placeholders",
+        "approval_or_signature_blocks"
+      ]
+    },
+    "hancell": {
+      "target_id": "hancell",
+      "template_preservation_required": true,
+      "required_fields": [
+        "sheets",
+        "cell_styles",
+        "merged_cells",
+        "row_column_sizes",
+        "formulas",
+        "named_ranges",
+        "tables",
+        "charts",
+        "print_settings",
+        "placeholder_cells_or_ranges"
+      ]
+    },
+    "hanshow": {
+      "target_id": "hanshow",
+      "template_preservation_required": true,
+      "required_fields": [
+        "slide_size",
+        "slide_layouts",
+        "theme_styles",
+        "placeholders",
+        "text_boxes",
+        "shapes",
+        "tables",
+        "image_frames",
+        "chart_placeholders",
+        "briefing_structure"
+      ]
+    }
+  },
+  "non_execution_guards": {
+    "actual_adapter_execution_performed": false,
+    "actual_hancell_adapter_implemented": false,
+    "actual_hanshow_adapter_implemented": false,
+    "actual_pc_automation_implemented": false,
+    "model_gateway_implemented": false,
+    "llm_planner_connected": false,
+    "real_http_server_started": false,
+    "public_internet_dependency_introduced": false
+  },
+  "final_core_selection_declared": false,
+  "stage_2_transition_declared": false
+}

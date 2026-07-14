@@ -1,0 +1,16 @@
+{
+  "api_request_id": "api-validation-failure",
+  "request_id": "req-validation-failure",
+  "task_id": "service-adapter-boundary-proof-012",
+  "document_intent": "edit_paragraph",
+  "content": {
+    "text": "Task 012 validation failure"
+  },
+  "constraints": {
+    "backend_role": "editor",
+    "backend_id": "NodeXmlThinInterimEditorAdapter",
+    "no_real_com": true,
+    "no_final_core_selection": true,
+    "force_validation_failure": true
+  }
+}

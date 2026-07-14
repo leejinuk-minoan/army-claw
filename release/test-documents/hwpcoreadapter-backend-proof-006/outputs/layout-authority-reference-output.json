@@ -1,0 +1,11 @@
+{
+  "real_com_executed": false,
+  "task003_reference": {
+    "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task006-hwpcoreadapter-backend-proof-20260704141000\\release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\external-artifacts\\task003-v6\\native-hwpx\\hancom-open-save-output.hwpx",
+    "exists": true,
+    "size": 14468,
+    "sha256": "8c092794177aeca2c1630c06adc883c81e45d9d9ea97edb038449a46dae9e9dd",
+    "hash_algorithm": "sha256"
+  },
+  "note": "Task 006 reads existing native HWPX evidence only; it does not start Hancom COM."
+}

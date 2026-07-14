@@ -1,0 +1,38 @@
+{
+  "schema_version": "2.1.0",
+  "document_type": "capability_evidence_matrix",
+  "task_id": "hwpx-core-benchmark-003-evidence-integrity",
+  "generated_at": "2026-07-03T22:51:15.754Z",
+  "records": [
+    {
+      "path": "role-matrix.json",
+      "exists": true,
+      "sha256": "7ead56370804820b5c4c2532f6808604b1485306be3e7bd2f7d0201c9ffdf242",
+      "size": 8844
+    },
+    {
+      "path": "tests/gate-a-task003-six-node-v6.result.txt",
+      "exists": true,
+      "sha256": "0b677f74c7945297edf3f65d0ac7de30237c8cd3f00b36ab955c1958b3a752b1",
+      "size": 1263
+    },
+    {
+      "path": "tests/gate-b-current-full-hancom-v6.result.txt",
+      "exists": true,
+      "sha256": "1af0aed57c1d03a984e2830dbc5210b6b373110985646383b0159c0e75f89272",
+      "size": 2284
+    },
+    {
+      "path": "summary/ajv-meta-schema-validation-v6.json",
+      "exists": true,
+      "sha256": "1967d271b2ac26091d836c0a56c16f7369713de447e40cce492309f7d9770417",
+      "size": 3483
+    },
+    {
+      "path": "tests/pre-output-schema-inventory-v6.json",
+      "exists": true,
+      "sha256": "fab85408bc1f7b868c63d0906aa4852b5ccf406a7c3ea33bb2607739af8a9f0c",
+      "size": 7258
+    }
+  ]
+}

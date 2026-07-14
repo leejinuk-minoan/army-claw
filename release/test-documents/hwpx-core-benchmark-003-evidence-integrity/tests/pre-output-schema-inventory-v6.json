@@ -1,0 +1,174 @@
+{
+  "schema_version": "2.1.0",
+  "document_type": "schema_validation_summary",
+  "task_id": "hwpx-core-benchmark-003-evidence-integrity",
+  "root": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity",
+  "canonical_schema_root": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/schemas-v2",
+  "generated_at": "2026-07-03T22:43:11.543Z",
+  "records": [
+    {
+      "path": "schemas-v2/adapter-execution.schema.json",
+      "classification": "canonical_schema",
+      "schema_path": "draft2020-12-meta-schema",
+      "document_type": null,
+      "sha256": "3ccc764f6afaf9a87f1e50ae3c5fc2bd18e7e84bf9b5a8f2b9fd55c75282189c",
+      "size": 10315
+    },
+    {
+      "path": "schemas-v2/benchmark-result.schema.json",
+      "classification": "canonical_schema",
+      "schema_path": "draft2020-12-meta-schema",
+      "document_type": null,
+      "sha256": "0cfaf90a4e1e7927c6226df77fe0f103d4152257e63c221d909a5c13417485d3",
+      "size": 7941
+    },
+    {
+      "path": "schemas-v2/benchmark-summary.schema.json",
+      "classification": "canonical_schema",
+      "schema_path": "draft2020-12-meta-schema",
+      "document_type": null,
+      "sha256": "4545194d9421ac5eace7d72ce627d075c45cb625b11e2d12687c0ff70acbf6a9",
+      "size": 8533
+    },
+    {
+      "path": "schemas-v2/dependency-license-offline-manifest.schema.json",
+      "classification": "canonical_schema",
+      "schema_path": "draft2020-12-meta-schema",
+      "document_type": null,
+      "sha256": "a1d5ee2059b2955637ac9ecc3b2ad6ee8c630f8cc8f8edbbe365814f8177b202",
+      "size": 5688
+    },
+    {
+      "path": "schemas-v2/test-summary.schema.json",
+      "classification": "canonical_schema",
+      "schema_path": "draft2020-12-meta-schema",
+      "document_type": null,
+      "sha256": "ce4e9d5473de36b9fc9d7f6eb1c86572363479319603247b3a66e4e61ca9ea20",
+      "size": 3891
+    },
+    {
+      "path": "schemas/adapter-execution.schema.json",
+      "classification": "legacy_schema_inactive",
+      "schema_path": null,
+      "document_type": null,
+      "sha256": "d9f2f72aa8301a20337f85adce973830b4ed11b9c93fbeede319584e9bab86f0",
+      "size": 348
+    },
+    {
+      "path": "schemas/benchmark-result.schema.json",
+      "classification": "legacy_schema_inactive",
+      "schema_path": null,
+      "document_type": null,
+      "sha256": "40f3ea8b99ffacc235840cf60bbb7be0e14280d682d7673ace8225e380e395e7",
+      "size": 346
+    },
+    {
+      "path": "schemas/benchmark-summary.schema.json",
+      "classification": "legacy_schema_inactive",
+      "schema_path": null,
+      "document_type": null,
+      "sha256": "4bbbe17f1dede4e213be356ec51237f1fea534540cdcaa689ad6e119c89bc5eb",
+      "size": 348
+    },
+    {
+      "path": "schemas/dependency-license-offline-manifest.schema.json",
+      "classification": "legacy_schema_inactive",
+      "schema_path": null,
+      "document_type": null,
+      "sha256": "a66c0892d0c53381b66805365609b304366edd36bed57ef4a2a48f211bfe6a0f",
+      "size": 312
+    },
+    {
+      "path": "schemas/test-summary.schema.json",
+      "classification": "legacy_schema_inactive",
+      "schema_path": null,
+      "document_type": null,
+      "sha256": "9d1de14ef5d8306b7659616328d865a66475c8edef9d5a2fe7aea0d730f9d77f",
+      "size": 338
+    }
+  ],
+  "missing_json": [],
+  "duplicate_json": [],
+  "unclassified_json": [],
+  "schema_mapping_errors": [],
+  "canonical_schema_set_complete": true,
+  "validation_order_valid": true,
+  "validation_failures": 0,
+  "evidence_linkage": [
+    {
+      "artifact_role": "canonical_schema",
+      "path": "schemas-v2/adapter-execution.schema.json",
+      "sha256": "3ccc764f6afaf9a87f1e50ae3c5fc2bd18e7e84bf9b5a8f2b9fd55c75282189c"
+    },
+    {
+      "artifact_role": "canonical_schema",
+      "path": "schemas-v2/benchmark-result.schema.json",
+      "sha256": "0cfaf90a4e1e7927c6226df77fe0f103d4152257e63c221d909a5c13417485d3"
+    },
+    {
+      "artifact_role": "canonical_schema",
+      "path": "schemas-v2/benchmark-summary.schema.json",
+      "sha256": "4545194d9421ac5eace7d72ce627d075c45cb625b11e2d12687c0ff70acbf6a9"
+    },
+    {
+      "artifact_role": "canonical_schema",
+      "path": "schemas-v2/dependency-license-offline-manifest.schema.json",
+      "sha256": "a1d5ee2059b2955637ac9ecc3b2ad6ee8c630f8cc8f8edbbe365814f8177b202"
+    },
+    {
+      "artifact_role": "canonical_schema",
+      "path": "schemas-v2/test-summary.schema.json",
+      "sha256": "ce4e9d5473de36b9fc9d7f6eb1c86572363479319603247b3a66e4e61ca9ea20"
+    },
+    {
+      "artifact_role": "legacy_schema_inactive",
+      "path": "schemas/adapter-execution.schema.json",
+      "sha256": "d9f2f72aa8301a20337f85adce973830b4ed11b9c93fbeede319584e9bab86f0"
+    },
+    {
+      "artifact_role": "legacy_schema_inactive",
+      "path": "schemas/benchmark-result.schema.json",
+      "sha256": "40f3ea8b99ffacc235840cf60bbb7be0e14280d682d7673ace8225e380e395e7"
+    },
+    {
+      "artifact_role": "legacy_schema_inactive",
+      "path": "schemas/benchmark-summary.schema.json",
+      "sha256": "4bbbe17f1dede4e213be356ec51237f1fea534540cdcaa689ad6e119c89bc5eb"
+    },
+    {
+      "artifact_role": "legacy_schema_inactive",
+      "path": "schemas/dependency-license-offline-manifest.schema.json",
+      "sha256": "a66c0892d0c53381b66805365609b304366edd36bed57ef4a2a48f211bfe6a0f"
+    },
+    {
+      "artifact_role": "legacy_schema_inactive",
+      "path": "schemas/test-summary.schema.json",
+      "sha256": "9d1de14ef5d8306b7659616328d865a66475c8edef9d5a2fe7aea0d730f9d77f"
+    }
+  ],
+  "valid": true,
+  "limitations": [
+    "pre_output_schema_only_inventory_not_completion_candidate",
+    "deferred_active_json_count:152",
+    "deferred_active_json:corpus-manifest.json",
+    "deferred_active_json:executions/current_node_xml/S01/adapter-execution.json",
+    "deferred_active_json:executions/current_node_xml/S02/adapter-execution.json",
+    "deferred_active_json:executions/current_node_xml/S03/adapter-execution.json",
+    "deferred_active_json:executions/current_node_xml/S04/adapter-execution.json",
+    "deferred_active_json:executions/current_node_xml/S05/adapter-execution.json",
+    "deferred_active_json:executions/current_node_xml/S06/adapter-execution.json",
+    "deferred_active_json:executions/current_node_xml/S07/adapter-execution.json",
+    "deferred_active_json:executions/current_node_xml/S08/adapter-execution.json",
+    "deferred_active_json:executions/current_node_xml/S09/adapter-execution.json",
+    "deferred_active_json:executions/current_node_xml/S10/adapter-execution.json",
+    "deferred_active_json:executions/current_node_xml/S11/adapter-execution.json",
+    "deferred_active_json:executions/current_node_xml/S12/adapter-execution.json",
+    "deferred_active_json:executions/current_node_xml/S13/adapter-execution.json",
+    "deferred_active_json:executions/current_node_xml/S14/adapter-execution.json",
+    "deferred_active_json:executions/hancom_com/S01/adapter-execution.json",
+    "deferred_active_json:executions/hancom_com/S02/adapter-execution.json",
+    "deferred_active_json:executions/hancom_com/S03/adapter-execution.json",
+    "deferred_active_json:executions/hancom_com/S04/adapter-execution.json",
+    "deferred_active_json:executions/hancom_com/S05/adapter-execution.json"
+  ]
+}

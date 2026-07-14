@@ -1,0 +1,599 @@
+{
+  "schema_version": "2.1.0",
+  "document_type": "benchmark_results",
+  "task_id": "hwpx-core-benchmark-003-evidence-integrity",
+  "generated_at": "2026-07-03T22:51:15.754Z",
+  "candidates": [
+    {
+      "candidate_id": "current_node_xml",
+      "role": "editor",
+      "runtime": "node xml mutation engine",
+      "role_matrix_reference": "role-matrix:v6-canonical-output-alignment"
+    },
+    {
+      "candidate_id": "python_hwpx",
+      "role": "editor",
+      "runtime": "python hwpx mutation probe",
+      "role_matrix_reference": "role-matrix:v6-canonical-output-alignment"
+    },
+    {
+      "candidate_id": "hwpxlib",
+      "role": "validator",
+      "runtime": "hwpxlib validation adapter",
+      "role_matrix_reference": "role-matrix:v6-canonical-output-alignment"
+    },
+    {
+      "candidate_id": "hwpforge",
+      "role": "validator",
+      "runtime": "hwpforge validation adapter",
+      "role_matrix_reference": "role-matrix:v6-canonical-output-alignment"
+    },
+    {
+      "candidate_id": "hancom_com",
+      "role": "layout_authority",
+      "runtime": "Hancom Office COM automation authority",
+      "role_matrix_reference": "role-matrix:v6-canonical-output-alignment"
+    }
+  ],
+  "results": [
+    {
+      "candidate_id": "current_node_xml",
+      "scenario_id": "S01",
+      "status": "blocked",
+      "result_path": "results/current_node_xml/S01/result.json",
+      "result_sha256": "8e97416a1cff159ac029ea5684a18feaf15cbe818644566881f38899250fa009"
+    },
+    {
+      "candidate_id": "current_node_xml",
+      "scenario_id": "S02",
+      "status": "blocked",
+      "result_path": "results/current_node_xml/S02/result.json",
+      "result_sha256": "ab547dc34839e56d4067923173b0c583ea1a6769b38b4af7b465477b9f397e95"
+    },
+    {
+      "candidate_id": "current_node_xml",
+      "scenario_id": "S03",
+      "status": "blocked",
+      "result_path": "results/current_node_xml/S03/result.json",
+      "result_sha256": "5c885cbaa55c03e87431b4be424d896f593f15f89da57163de7ad3eb88874a66"
+    },
+    {
+      "candidate_id": "current_node_xml",
+      "scenario_id": "S04",
+      "status": "blocked",
+      "result_path": "results/current_node_xml/S04/result.json",
+      "result_sha256": "9672b075bc87e59082fd7d8ecee648bd2fa508a08ce9470dbfea9bed5ac3da80"
+    },
+    {
+      "candidate_id": "current_node_xml",
+      "scenario_id": "S05",
+      "status": "blocked",
+      "result_path": "results/current_node_xml/S05/result.json",
+      "result_sha256": "94a18bff1bf768a77ce8b64c3bd5cca7b355e9fd46fbcbfe88042477acac8524"
+    },
+    {
+      "candidate_id": "current_node_xml",
+      "scenario_id": "S06",
+      "status": "blocked",
+      "result_path": "results/current_node_xml/S06/result.json",
+      "result_sha256": "4959ac85e60f9564f44c47177a47a8942f8659c968a1802292dccd4920c43c1c"
+    },
+    {
+      "candidate_id": "current_node_xml",
+      "scenario_id": "S07",
+      "status": "blocked",
+      "result_path": "results/current_node_xml/S07/result.json",
+      "result_sha256": "5ce9ce37a2d4b48fd65cc2487b9eb9ba0039d8973773ab399a9e6755db62792e"
+    },
+    {
+      "candidate_id": "current_node_xml",
+      "scenario_id": "S08",
+      "status": "blocked",
+      "result_path": "results/current_node_xml/S08/result.json",
+      "result_sha256": "7bcac64c5b79f00fb592e3d2856ff5439f61b21437bacfd3520dadadca3ea990"
+    },
+    {
+      "candidate_id": "current_node_xml",
+      "scenario_id": "S09",
+      "status": "not_applicable",
+      "result_path": "results/current_node_xml/S09/result.json",
+      "result_sha256": "383fa78e3a978a8ddce563cae5170bccbc3a749ddbc6c8386df6a3cbfdf6bd3e"
+    },
+    {
+      "candidate_id": "current_node_xml",
+      "scenario_id": "S10",
+      "status": "not_applicable",
+      "result_path": "results/current_node_xml/S10/result.json",
+      "result_sha256": "0ed5dffe088a857068fb27818848df4075a3dab60bfe08a92ded7d688590fee2"
+    },
+    {
+      "candidate_id": "current_node_xml",
+      "scenario_id": "S11",
+      "status": "not_applicable",
+      "result_path": "results/current_node_xml/S11/result.json",
+      "result_sha256": "79db9ab0fcf7dab4e2f59a5d831007b4e6673570b0fa85edb2ece595c8a30f78"
+    },
+    {
+      "candidate_id": "current_node_xml",
+      "scenario_id": "S12",
+      "status": "blocked",
+      "result_path": "results/current_node_xml/S12/result.json",
+      "result_sha256": "5ee3c4d66ec854ab76a6e3880f27cc8b3ae556d7b186150e407b1c376fbda8d6"
+    },
+    {
+      "candidate_id": "current_node_xml",
+      "scenario_id": "S13",
+      "status": "blocked",
+      "result_path": "results/current_node_xml/S13/result.json",
+      "result_sha256": "faec56a7a1e905cc437258b2ad16f7a2768d68f4c721ff281fa63bafcef4f002"
+    },
+    {
+      "candidate_id": "current_node_xml",
+      "scenario_id": "S14",
+      "status": "blocked",
+      "result_path": "results/current_node_xml/S14/result.json",
+      "result_sha256": "04c345d55b9c2ce8ae540f24932ea1fe705ddf2d6e4b16ce6ee934ed89baf918"
+    },
+    {
+      "candidate_id": "python_hwpx",
+      "scenario_id": "S01",
+      "status": "blocked",
+      "result_path": "results/python_hwpx/S01/result.json",
+      "result_sha256": "f54707adb4a587468e50413438e53531a2046c0bc2eba0ddace64fb2ccb668dc"
+    },
+    {
+      "candidate_id": "python_hwpx",
+      "scenario_id": "S02",
+      "status": "blocked",
+      "result_path": "results/python_hwpx/S02/result.json",
+      "result_sha256": "8654d64165270e53d11aa038776a90786afcc80455dd23875612b331ccb03949"
+    },
+    {
+      "candidate_id": "python_hwpx",
+      "scenario_id": "S03",
+      "status": "blocked",
+      "result_path": "results/python_hwpx/S03/result.json",
+      "result_sha256": "f6ee9abcb214ee3c8fe9219d71a48278e85c0857a931b2defeca6219de978f72"
+    },
+    {
+      "candidate_id": "python_hwpx",
+      "scenario_id": "S04",
+      "status": "blocked",
+      "result_path": "results/python_hwpx/S04/result.json",
+      "result_sha256": "0999d4cf3c04726c31533bd8cc99ee9603b7942034df1466c5b925ce2902020f"
+    },
+    {
+      "candidate_id": "python_hwpx",
+      "scenario_id": "S05",
+      "status": "blocked",
+      "result_path": "results/python_hwpx/S05/result.json",
+      "result_sha256": "490095d4bfdb66c4de4fb7259f40e32fff7ce2109485329f2b4628f52c1c8dc2"
+    },
+    {
+      "candidate_id": "python_hwpx",
+      "scenario_id": "S06",
+      "status": "blocked",
+      "result_path": "results/python_hwpx/S06/result.json",
+      "result_sha256": "2c26a45a05890d83da8cc5c403536e797cbeac43dadc535c0c5c48c3ede75312"
+    },
+    {
+      "candidate_id": "python_hwpx",
+      "scenario_id": "S07",
+      "status": "blocked",
+      "result_path": "results/python_hwpx/S07/result.json",
+      "result_sha256": "5474092fbdb72a652c27a43987898f0a0e7c80b5409f86b339ed01b6e4c94b20"
+    },
+    {
+      "candidate_id": "python_hwpx",
+      "scenario_id": "S08",
+      "status": "blocked",
+      "result_path": "results/python_hwpx/S08/result.json",
+      "result_sha256": "c97a93c42303b7d6f7d9797a9b6674f95f567d49d43e71d3d517d5840170c9f2"
+    },
+    {
+      "candidate_id": "python_hwpx",
+      "scenario_id": "S09",
+      "status": "not_applicable",
+      "result_path": "results/python_hwpx/S09/result.json",
+      "result_sha256": "7640f7dab2121002bb4625fea4bcbe02afe128d49bab3e099232b95a65fee85b"
+    },
+    {
+      "candidate_id": "python_hwpx",
+      "scenario_id": "S10",
+      "status": "not_applicable",
+      "result_path": "results/python_hwpx/S10/result.json",
+      "result_sha256": "0118db6dbea07eb46d75f347551920fa32b3c97f165754ce11e80dde9e0af7cb"
+    },
+    {
+      "candidate_id": "python_hwpx",
+      "scenario_id": "S11",
+      "status": "not_applicable",
+      "result_path": "results/python_hwpx/S11/result.json",
+      "result_sha256": "d214e3205c4a8447ead5510f8807428fa2ce31373c62973120ee17b542012d8b"
+    },
+    {
+      "candidate_id": "python_hwpx",
+      "scenario_id": "S12",
+      "status": "blocked",
+      "result_path": "results/python_hwpx/S12/result.json",
+      "result_sha256": "a107d47c00feac295162f0d2ffe67329d4538fa93efbd82f08c026b336581861"
+    },
+    {
+      "candidate_id": "python_hwpx",
+      "scenario_id": "S13",
+      "status": "blocked",
+      "result_path": "results/python_hwpx/S13/result.json",
+      "result_sha256": "0ed6d4980ab856810e57afc27ef2b580db4250f6fcd69d3e8fca658a499060ba"
+    },
+    {
+      "candidate_id": "python_hwpx",
+      "scenario_id": "S14",
+      "status": "blocked",
+      "result_path": "results/python_hwpx/S14/result.json",
+      "result_sha256": "69651fa39798c4077e2f992b29fa534ddb48443ebb8106e768506920911faf39"
+    },
+    {
+      "candidate_id": "hwpxlib",
+      "scenario_id": "S01",
+      "status": "not_applicable",
+      "result_path": "results/hwpxlib/S01/result.json",
+      "result_sha256": "3caf72d398d74fded533523c2bb7ea43285715427b272329ceede8abf824def2"
+    },
+    {
+      "candidate_id": "hwpxlib",
+      "scenario_id": "S02",
+      "status": "not_applicable",
+      "result_path": "results/hwpxlib/S02/result.json",
+      "result_sha256": "e84b047e6fa77b09dca30c4d5d25b6b72e775ef0ffcf292d8d3504aa96f8f3c7"
+    },
+    {
+      "candidate_id": "hwpxlib",
+      "scenario_id": "S03",
+      "status": "blocked",
+      "result_path": "results/hwpxlib/S03/result.json",
+      "result_sha256": "8a140c30059566844caa8d0d6cabe7126ff441b21ec6e9ba6f7dbb9aaa9f8cc2"
+    },
+    {
+      "candidate_id": "hwpxlib",
+      "scenario_id": "S04",
+      "status": "blocked",
+      "result_path": "results/hwpxlib/S04/result.json",
+      "result_sha256": "88859a8d9797b4eb58354ec3a87640a47e176ac1907ecaddfcecd3d719971a82"
+    },
+    {
+      "candidate_id": "hwpxlib",
+      "scenario_id": "S05",
+      "status": "not_applicable",
+      "result_path": "results/hwpxlib/S05/result.json",
+      "result_sha256": "ce9cc1d637f7f2fe7fd6711065da7c2a98458d5a50b8377b98b6714824b10627"
+    },
+    {
+      "candidate_id": "hwpxlib",
+      "scenario_id": "S06",
+      "status": "blocked",
+      "result_path": "results/hwpxlib/S06/result.json",
+      "result_sha256": "79ac79de98cdb7bbde8d80edfb2b9d4fd80c4b542f701f7b67b74ec468752edf"
+    },
+    {
+      "candidate_id": "hwpxlib",
+      "scenario_id": "S07",
+      "status": "blocked",
+      "result_path": "results/hwpxlib/S07/result.json",
+      "result_sha256": "007c8f821b052c6564db36354cf8a6261dcb897a13f199e8d54c0b37add92e89"
+    },
+    {
+      "candidate_id": "hwpxlib",
+      "scenario_id": "S08",
+      "status": "blocked",
+      "result_path": "results/hwpxlib/S08/result.json",
+      "result_sha256": "64cadca431b44d5128ced430904de18b5f65046ba14cdc63ae35bca5727f9f95"
+    },
+    {
+      "candidate_id": "hwpxlib",
+      "scenario_id": "S09",
+      "status": "not_applicable",
+      "result_path": "results/hwpxlib/S09/result.json",
+      "result_sha256": "bd83aa8f5ae3d96d0bd7d2170953b9d00ffcbd22c744191c6425ed3fcbc9c4f7"
+    },
+    {
+      "candidate_id": "hwpxlib",
+      "scenario_id": "S10",
+      "status": "not_applicable",
+      "result_path": "results/hwpxlib/S10/result.json",
+      "result_sha256": "89938f41333852fc3e3b62f574432d6ec26ddc84207b2136d409128e276af9c2"
+    },
+    {
+      "candidate_id": "hwpxlib",
+      "scenario_id": "S11",
+      "status": "not_applicable",
+      "result_path": "results/hwpxlib/S11/result.json",
+      "result_sha256": "d5ac6d0825db0e9c3f4161f952d7f357ce84d3d02d4f2803701322aa100aabf6"
+    },
+    {
+      "candidate_id": "hwpxlib",
+      "scenario_id": "S12",
+      "status": "blocked",
+      "result_path": "results/hwpxlib/S12/result.json",
+      "result_sha256": "662873325be35b9b18a0643a94624a11cef55ce539b02ac410a07727436633dd"
+    },
+    {
+      "candidate_id": "hwpxlib",
+      "scenario_id": "S13",
+      "status": "blocked",
+      "result_path": "results/hwpxlib/S13/result.json",
+      "result_sha256": "12944a80a122a978dbadb6c08c0ca0d5e4a48e6107ae18a35d3f7eeca24752fb"
+    },
+    {
+      "candidate_id": "hwpxlib",
+      "scenario_id": "S14",
+      "status": "blocked",
+      "result_path": "results/hwpxlib/S14/result.json",
+      "result_sha256": "ccab935218cba0a8c9d9f7ba92b2d23d04b0bce42a77bc5345956e9e77ad244c"
+    },
+    {
+      "candidate_id": "hwpforge",
+      "scenario_id": "S01",
+      "status": "not_applicable",
+      "result_path": "results/hwpforge/S01/result.json",
+      "result_sha256": "992ffbfc5c1a2672df25526d8e23ef13e83150a7e249e370ed43ea7d7e7cf6f2"
+    },
+    {
+      "candidate_id": "hwpforge",
+      "scenario_id": "S02",
+      "status": "not_applicable",
+      "result_path": "results/hwpforge/S02/result.json",
+      "result_sha256": "87f6c9372175600d902ba318cde77d461db0838ae58204125ab45b8cdb7a9722"
+    },
+    {
+      "candidate_id": "hwpforge",
+      "scenario_id": "S03",
+      "status": "blocked",
+      "result_path": "results/hwpforge/S03/result.json",
+      "result_sha256": "da7d3bf4d72f21ec7a82948d0f288e3e6bfd87a68edf69a8b4458d787df7301b"
+    },
+    {
+      "candidate_id": "hwpforge",
+      "scenario_id": "S04",
+      "status": "blocked",
+      "result_path": "results/hwpforge/S04/result.json",
+      "result_sha256": "194b72a032bb9f7ba1368f1d3890b64d17e69acd4965f3af9ecde8b527b18830"
+    },
+    {
+      "candidate_id": "hwpforge",
+      "scenario_id": "S05",
+      "status": "not_applicable",
+      "result_path": "results/hwpforge/S05/result.json",
+      "result_sha256": "9086c691193ac7f8573aed1ce5e62319308d1558ff6795afe07e6a360b679e85"
+    },
+    {
+      "candidate_id": "hwpforge",
+      "scenario_id": "S06",
+      "status": "blocked",
+      "result_path": "results/hwpforge/S06/result.json",
+      "result_sha256": "061808a6ae520b4e4afa29956f94d4d316ac93836da0b75e5522ebf7acdc9636"
+    },
+    {
+      "candidate_id": "hwpforge",
+      "scenario_id": "S07",
+      "status": "blocked",
+      "result_path": "results/hwpforge/S07/result.json",
+      "result_sha256": "91c85e6d715742fdf17a13e55247becdafceda562f09632b112585e698d24a2b"
+    },
+    {
+      "candidate_id": "hwpforge",
+      "scenario_id": "S08",
+      "status": "blocked",
+      "result_path": "results/hwpforge/S08/result.json",
+      "result_sha256": "098c4dd6899ae21654ef9bce8ec238a2f8aa4cc97f4e3a382ae2bf2b82366f45"
+    },
+    {
+      "candidate_id": "hwpforge",
+      "scenario_id": "S09",
+      "status": "not_applicable",
+      "result_path": "results/hwpforge/S09/result.json",
+      "result_sha256": "d8aa5f1b699d5fc0f9976e04ff43e6de0a7251ce22c56abdd919e6dd49d1a5f7"
+    },
+    {
+      "candidate_id": "hwpforge",
+      "scenario_id": "S10",
+      "status": "not_applicable",
+      "result_path": "results/hwpforge/S10/result.json",
+      "result_sha256": "7be9107ab92a0bbb06d5504d16c358e54708671736947f2412da21e4d2abd246"
+    },
+    {
+      "candidate_id": "hwpforge",
+      "scenario_id": "S11",
+      "status": "not_applicable",
+      "result_path": "results/hwpforge/S11/result.json",
+      "result_sha256": "1af773c79ff11f16ef7fbb560f37a8e97b97e069e7e7f0bb3dd5d39cb7bd762e"
+    },
+    {
+      "candidate_id": "hwpforge",
+      "scenario_id": "S12",
+      "status": "blocked",
+      "result_path": "results/hwpforge/S12/result.json",
+      "result_sha256": "a2e84a0ba0d7d0b7d09495e335abbefb4362b54da261d945b65f18314ce43155"
+    },
+    {
+      "candidate_id": "hwpforge",
+      "scenario_id": "S13",
+      "status": "blocked",
+      "result_path": "results/hwpforge/S13/result.json",
+      "result_sha256": "55e0acbf38a4b454ada17893823b721ea4a1d518a222c421ccbfe15b2faff1d7"
+    },
+    {
+      "candidate_id": "hwpforge",
+      "scenario_id": "S14",
+      "status": "blocked",
+      "result_path": "results/hwpforge/S14/result.json",
+      "result_sha256": "ae0671a79575c374a1cc0493016efd396a3194e0dc5457941aa333860ec42614"
+    },
+    {
+      "candidate_id": "hancom_com",
+      "scenario_id": "S01",
+      "status": "not_applicable",
+      "result_path": "results/hancom_com/S01/result.json",
+      "result_sha256": "3046c58e1161e50871609525fa0b6dadd0cfba9ecfec0a74fd766de4c03134a3"
+    },
+    {
+      "candidate_id": "hancom_com",
+      "scenario_id": "S02",
+      "status": "not_applicable",
+      "result_path": "results/hancom_com/S02/result.json",
+      "result_sha256": "233f855946be89cef63bb6857204a94f5fae2723fb3c138608717ddc6351a138"
+    },
+    {
+      "candidate_id": "hancom_com",
+      "scenario_id": "S03",
+      "status": "not_applicable",
+      "result_path": "results/hancom_com/S03/result.json",
+      "result_sha256": "967502ab399d4266d2067d97a6c7b600da6d4e977a8f2203ea69a6b863b56c6d"
+    },
+    {
+      "candidate_id": "hancom_com",
+      "scenario_id": "S04",
+      "status": "not_applicable",
+      "result_path": "results/hancom_com/S04/result.json",
+      "result_sha256": "e54543ba96734c6777a025a56f540f300f95de62d6cd2782a02592b1656e95f0"
+    },
+    {
+      "candidate_id": "hancom_com",
+      "scenario_id": "S05",
+      "status": "not_applicable",
+      "result_path": "results/hancom_com/S05/result.json",
+      "result_sha256": "fca0d2500f7229b991ed3589c234f3071f9c7358ab2b807ba8db69390e5e95b0"
+    },
+    {
+      "candidate_id": "hancom_com",
+      "scenario_id": "S06",
+      "status": "not_applicable",
+      "result_path": "results/hancom_com/S06/result.json",
+      "result_sha256": "f3bf734eb27a2e6950038f93381e5caa2052422d7081f1da254008e787a9ffb4"
+    },
+    {
+      "candidate_id": "hancom_com",
+      "scenario_id": "S07",
+      "status": "not_applicable",
+      "result_path": "results/hancom_com/S07/result.json",
+      "result_sha256": "6212f99e3644dfc89f499e325352d83397169ce16e3c100d3886076ae8a6c480"
+    },
+    {
+      "candidate_id": "hancom_com",
+      "scenario_id": "S08",
+      "status": "not_applicable",
+      "result_path": "results/hancom_com/S08/result.json",
+      "result_sha256": "2e00457ae5eae9b390024bf3eb6fbd2b3785935a8f3eca606b4bf9d9627d3d62"
+    },
+    {
+      "candidate_id": "hancom_com",
+      "scenario_id": "S09",
+      "status": "blocked",
+      "result_path": "results/hancom_com/S09/result.json",
+      "result_sha256": "a4150cde34b0fabf8e62030e91909c45400e8c8c83688b8c6f5ba47f0c9594bb"
+    },
+    {
+      "candidate_id": "hancom_com",
+      "scenario_id": "S10",
+      "status": "blocked",
+      "result_path": "results/hancom_com/S10/result.json",
+      "result_sha256": "201d335fd26e45851f587780af5fef82dcac15581e2b49ffd83635a878f12ef7"
+    },
+    {
+      "candidate_id": "hancom_com",
+      "scenario_id": "S11",
+      "status": "blocked",
+      "result_path": "results/hancom_com/S11/result.json",
+      "result_sha256": "c47b83d8f86b880d29f1a8698f4c176dd68fa945dd4cdc7bd291c43cefb36284"
+    },
+    {
+      "candidate_id": "hancom_com",
+      "scenario_id": "S12",
+      "status": "not_applicable",
+      "result_path": "results/hancom_com/S12/result.json",
+      "result_sha256": "d49ff17a6ef63760304ee769fd3dbfdd78980ffd6bd7acaf39623b4beafdb05f"
+    },
+    {
+      "candidate_id": "hancom_com",
+      "scenario_id": "S13",
+      "status": "not_applicable",
+      "result_path": "results/hancom_com/S13/result.json",
+      "result_sha256": "418c08d147ec0b05c8f553c8ac265e36711ae85dba5100f1b3a96185d427dbc6"
+    },
+    {
+      "candidate_id": "hancom_com",
+      "scenario_id": "S14",
+      "status": "not_applicable",
+      "result_path": "results/hancom_com/S14/result.json",
+      "result_sha256": "e1cb060ea71010de281aaf8752e58716c550d220f9f12492a24d8efb72f79699"
+    }
+  ],
+  "score_rubric": [
+    {
+      "rubric_id": "schema_parse_meta_compile",
+      "points": 1,
+      "awarded": 1,
+      "state": "awarded",
+      "validator_id": "ajv-8.20.0",
+      "validator_result": {
+        "valid": true
+      },
+      "failure_reasons": [],
+      "evidence_paths": [
+        "summary/ajv-meta-schema-validation-v6.json"
+      ]
+    },
+    {
+      "rubric_id": "scenario_native_execution",
+      "points": 1,
+      "awarded": 0,
+      "state": "pending",
+      "validator_id": "task003-local-rerun-v6",
+      "validator_result": null,
+      "failure_reasons": [
+        "native scenario execution not yet reached"
+      ],
+      "evidence_paths": []
+    }
+  ],
+  "invalid_pass_count": 0,
+  "completion_gate": {
+    "passed": true,
+    "required_run_failures": 0,
+    "invalid_pass_count": 0,
+    "schema_validation_failures": 0
+  },
+  "evidence_linkage": [
+    {
+      "artifact_role": "task003-v6-evidence",
+      "path": "role-matrix.json",
+      "sha256": "7ead56370804820b5c4c2532f6808604b1485306be3e7bd2f7d0201c9ffdf242"
+    },
+    {
+      "artifact_role": "task003-v6-evidence",
+      "path": "tests/gate-a-task003-six-node-v6.result.txt",
+      "sha256": "0b677f74c7945297edf3f65d0ac7de30237c8cd3f00b36ab955c1958b3a752b1"
+    },
+    {
+      "artifact_role": "task003-v6-evidence",
+      "path": "tests/gate-b-current-full-hancom-v6.result.txt",
+      "sha256": "1af0aed57c1d03a984e2830dbc5210b6b373110985646383b0159c0e75f89272"
+    },
+    {
+      "artifact_role": "task003-v6-evidence",
+      "path": "summary/ajv-meta-schema-validation-v6.json",
+      "sha256": "1967d271b2ac26091d836c0a56c16f7369713de447e40cce492309f7d9770417"
+    },
+    {
+      "artifact_role": "task003-v6-evidence",
+      "path": "tests/pre-output-schema-inventory-v6.json",
+      "sha256": "fab85408bc1f7b868c63d0906aa4852b5ccf406a7c3ea33bb2607739af8a9f0c"
+    },
+    {
+      "artifact_role": "native_hwpx_gate",
+      "path": "tests/post-d2-scenario-gates-v6.result.txt",
+      "sha256": "7d3cdc2fd0f781fd19cbc7027d0ac35f92dfee5a68d5fa4c19b340cc7bfe27d1"
+    }
+  ],
+  "core_selection": "prohibited",
+  "stage_transition": "prohibited"
+}

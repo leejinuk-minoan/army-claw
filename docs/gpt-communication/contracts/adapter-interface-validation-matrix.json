@@ -1,0 +1,91 @@
+{
+  "schema_version": "army-claw-adapter-interface-validation-matrix-024.v1",
+  "contract_id": "adapter-interface-validation-matrix",
+  "task_id": "task024-adapter-interface-validator-contract-proof",
+  "positive_samples": [
+    {
+      "sample": "docs/gpt-communication/contracts/samples/common-office-adapter-interface/local_workspace-request.sample.json",
+      "sample_type": "request",
+      "expected_validation_status": "valid",
+      "proof_mode_sample": true
+    },
+    {
+      "sample": "docs/gpt-communication/contracts/samples/common-office-adapter-interface/local_workspace-response.sample.json",
+      "sample_type": "response",
+      "expected_validation_status": "valid",
+      "proof_mode_sample": true,
+      "expected_actual_adapter_invoked": false,
+      "expected_execution_allowed": false
+    },
+    {
+      "sample": "docs/gpt-communication/contracts/samples/common-office-adapter-interface/hwp_hwpx-request.sample.json",
+      "sample_type": "request",
+      "expected_validation_status": "valid",
+      "proof_mode_sample": true
+    },
+    {
+      "sample": "docs/gpt-communication/contracts/samples/common-office-adapter-interface/hwp_hwpx-response.sample.json",
+      "sample_type": "response",
+      "expected_validation_status": "valid",
+      "proof_mode_sample": true,
+      "expected_actual_adapter_invoked": false,
+      "expected_execution_allowed": false
+    },
+    {
+      "sample": "docs/gpt-communication/contracts/samples/common-office-adapter-interface/hancell-request.sample.json",
+      "sample_type": "request",
+      "expected_validation_status": "valid",
+      "proof_mode_sample": true
+    },
+    {
+      "sample": "docs/gpt-communication/contracts/samples/common-office-adapter-interface/hancell-response.sample.json",
+      "sample_type": "response",
+      "expected_validation_status": "valid",
+      "proof_mode_sample": true,
+      "expected_actual_adapter_invoked": false,
+      "expected_execution_allowed": false
+    },
+    {
+      "sample": "docs/gpt-communication/contracts/samples/common-office-adapter-interface/hanshow-request.sample.json",
+      "sample_type": "request",
+      "expected_validation_status": "valid",
+      "proof_mode_sample": true
+    },
+    {
+      "sample": "docs/gpt-communication/contracts/samples/common-office-adapter-interface/hanshow-response.sample.json",
+      "sample_type": "response",
+      "expected_validation_status": "valid",
+      "proof_mode_sample": true,
+      "expected_actual_adapter_invoked": false,
+      "expected_execution_allowed": false
+    }
+  ],
+  "negative_samples": [
+    {
+      "sample": "docs/gpt-communication/contracts/samples/common-office-adapter-interface/negative-llm-direct-file-edit-request.sample.json",
+      "expected_status": "blocked",
+      "expected_error_category": "llm_direct_file_edit_blocked"
+    },
+    {
+      "sample": "docs/gpt-communication/contracts/samples/common-office-adapter-interface/negative-source-overwrite-request.sample.json",
+      "expected_status": "blocked",
+      "expected_error_category": "source_overwrite_blocked"
+    },
+    {
+      "sample": "docs/gpt-communication/contracts/samples/common-office-adapter-interface/negative-public-internet-required.sample.json",
+      "expected_status": "blocked",
+      "expected_error_category": "public_internet_dependency_blocked"
+    },
+    {
+      "sample": "docs/gpt-communication/contracts/samples/common-office-adapter-interface/negative-target-plan-mismatch.sample.json",
+      "expected_status": "blocked",
+      "expected_error_category": "target_plan_mismatch"
+    }
+  ],
+  "matrix_rules": {
+    "positive_samples_claim_actual_adapter_invocation": false,
+    "positive_samples_claim_real_document_generation": false,
+    "negative_samples_must_include_expected_error_category": true,
+    "actual_validator_implementation_included": false
+  }
+}

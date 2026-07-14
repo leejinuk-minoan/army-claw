@@ -1,0 +1,11 @@
+{
+  "route_request_id": "route-fixture-run_job",
+  "route_id": "run_job",
+  "mock_method": "POST",
+  "mock_path": "/mock/jobs/job-route-manifest/run",
+  "service_operation": "runJob",
+  "params": {
+    "job_id": "job-route-manifest"
+  },
+  "body": {}
+}

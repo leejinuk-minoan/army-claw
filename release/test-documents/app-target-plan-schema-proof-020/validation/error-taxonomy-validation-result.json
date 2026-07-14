@@ -1,0 +1,21 @@
+{
+  "task_id": "app-target-plan-schema-proof-020",
+  "valid": true,
+  "error_codes": [
+    "missing_required_field",
+    "invalid_plan_type",
+    "invalid_target_id",
+    "target_plan_mismatch",
+    "invalid_template_artifact_type",
+    "missing_template_reference",
+    "missing_fill_operations",
+    "invalid_fill_operation_type",
+    "invalid_target_locator",
+    "source_template_overwrite_risk",
+    "public_internet_dependency_disallowed",
+    "llm_direct_file_edit_disallowed",
+    "llm_direct_native_app_state_modification_disallowed",
+    "adapter_execution_not_allowed_in_this_task",
+    "contract_violation"
+  ]
+}

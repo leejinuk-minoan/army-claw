@@ -1,0 +1,30 @@
+﻿[
+    {
+        "ProcessId":  36424,
+        "Name":  "Hwp.exe",
+        "ExecutablePath":  "C:\\Program Files (x86)\\HNC\\Office 2024\\HOffice130\\Bin\\Hwp.exe",
+        "CommandLine":  "\"C:\\Program Files (x86)\\HNC\\Office 2024\\HOffice130\\Bin\\Hwp.exe\" -Automation -Embedding",
+        "CreationDate":  "\/Date(1782871516320)\/"
+    },
+    {
+        "ProcessId":  26000,
+        "Name":  "Hwp.exe",
+        "ExecutablePath":  "C:\\Program Files (x86)\\HNC\\Office 2024\\HOffice130\\Bin\\Hwp.exe",
+        "CommandLine":  "\"C:\\Program Files (x86)\\HNC\\Office 2024\\HOffice130\\Bin\\Hwp.exe\" -Automation -Embedding",
+        "CreationDate":  "\/Date(1782888634752)\/"
+    },
+    {
+        "ProcessId":  12380,
+        "Name":  "Hwp.exe",
+        "ExecutablePath":  "C:\\Program Files (x86)\\HNC\\Office 2024\\HOffice130\\Bin\\Hwp.exe",
+        "CommandLine":  "\"C:\\Program Files (x86)\\HNC\\Office 2024\\HOffice130\\Bin\\Hwp.exe\" -Automation -Embedding",
+        "CreationDate":  "\/Date(1782908098315)\/"
+    },
+    {
+        "ProcessId":  2792,
+        "Name":  "Hwp.exe",
+        "ExecutablePath":  "C:\\Program Files (x86)\\HNC\\Office 2024\\HOffice130\\Bin\\Hwp.exe",
+        "CommandLine":  "\"C:\\Program Files (x86)\\HNC\\Office 2024\\HOffice130\\Bin\\Hwp.exe\" -Automation -Embedding",
+        "CreationDate":  "\/Date(1783120072967)\/"
+    }
+]

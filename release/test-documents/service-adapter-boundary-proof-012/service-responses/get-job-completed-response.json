@@ -1,0 +1,30 @@
+{
+  "service_request_id": "svc-getJob-job-api-create-document-1783205231846",
+  "service_operation": "getJob",
+  "ok": true,
+  "status": "completed",
+  "job_id": "job-api-create-document",
+  "job_status": "completed",
+  "data": {
+    "job_id": "job-api-create-document",
+    "status": "completed",
+    "request_path": "C:/Users/USER/Desktop/로컬 open claw 만들기/.tmp/t12/release/test-documents/service-adapter-boundary-proof-012/requests/job-api-create-document-request.json",
+    "response_path": "C:/Users/USER/Desktop/로컬 open claw 만들기/.tmp/t12/release/test-documents/service-adapter-boundary-proof-012/responses/job-api-create-document-response.json",
+    "plan_path": "C:/Users/USER/Desktop/로컬 open claw 만들기/.tmp/t12/release/test-documents/service-adapter-boundary-proof-012/plans/job-api-create-document-plan.json",
+    "report_path": "C:/Users/USER/Desktop/로컬 open claw 만들기/.tmp/t12/release/test-documents/service-adapter-boundary-proof-012/reports/job-api-create-document-agent-report.json",
+    "output_path": "C:/Users/USER/Desktop/로컬 open claw 만들기/.tmp/t12/release/test-documents/service-adapter-boundary-proof-012/outputs/job-api-create-document-output.hwpx",
+    "evidence_paths": [
+      "C:/Users/USER/Desktop/로컬 open claw 만들기/.tmp/t12/release/test-documents/service-adapter-boundary-proof-012/evidence/job-api-create-document-evidence-1.json"
+    ],
+    "failure": null,
+    "attempts": 1,
+    "updated_at": "2026-07-04T22:47:11.820Z"
+  },
+  "error": null,
+  "artifacts": {
+    "job_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\t12\\release\\test-documents\\service-adapter-boundary-proof-012\\jobs\\job-api-create-document\\job.json"
+  },
+  "real_com_executed": false,
+  "final_core_selection_declared": false,
+  "stage_2_transition_declared": false
+}

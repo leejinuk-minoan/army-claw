@@ -1,0 +1,127 @@
+{
+  "schema_version": "army-claw-research-note-index-001.v1",
+  "updated_at": "2026-07-14",
+  "purpose": "Index task-level research notes for later paper writing without accumulating all notes in one large file.",
+  "index_rule": {
+    "task_note_directory": "docs/research-notes/task-notes/",
+    "human_index": "docs/research-notes/research-note-index.md",
+    "machine_index": "docs/research-notes/research-note-index.json",
+    "one_file_per_task": true,
+    "long_form_notes_in_index_allowed": false
+  },
+  "notes": {
+    "RN-018": {
+      "task": "Task 018",
+      "title": "Multi-App Capability Architecture Proof",
+      "file": "docs/research-notes/task-notes/RN-018-task018-multi-app-capability-architecture.md",
+      "research_axis": "Multi-app capability architecture",
+      "status": "verified"
+    },
+    "RN-019": {
+      "task": "Task 019",
+      "title": "App Target Routing Proof",
+      "file": "docs/research-notes/task-notes/RN-019-task019-app-target-routing.md",
+      "research_axis": "Plan type to target adapter routing contract",
+      "status": "verified"
+    },
+    "RN-020": {
+      "task": "Task 020",
+      "title": "App Target Plan Schema Proof",
+      "file": "docs/research-notes/task-notes/RN-020-task020-app-target-plan-schema.md",
+      "research_axis": "Plan schema and adapter slot input contract",
+      "status": "verified"
+    },
+    "RN-021": {
+      "task": "Task 021",
+      "title": "Solo AI Worker Operating Rules + Multi-Agent Governance",
+      "file": "docs/research-notes/task-notes/RN-021-task021-solo-ai-worker-governance.md",
+      "research_axis": "Solo AI worker governance and handoff rules",
+      "status": "verified"
+    },
+    "RN-022": {
+      "task": "Task 022",
+      "title": "AI Worker Handoff Contract Proof",
+      "file": "docs/research-notes/task-notes/RN-022-task022-ai-worker-handoff-contract.md",
+      "research_axis": "AI worker handoff contract and receiver validation",
+      "status": "verified"
+    },
+    "RN-023": {
+      "task": "Task 023",
+      "title": "Common Office Adapter Interface Contract Proof",
+      "file": "docs/research-notes/task-notes/RN-023-task023-common-office-adapter-interface-contract.md",
+      "research_axis": "Common office adapter interface and evidence envelope",
+      "status": "verified"
+    },
+    "RN-024": {
+      "task": "Task 024",
+      "title": "Adapter Interface Validator Contract Proof",
+      "file": "docs/research-notes/task-notes/RN-024-task024-adapter-interface-validator-contract.md",
+      "research_axis": "Adapter interface validator contract and validation matrix",
+      "status": "verified"
+    },
+    "RN-025A": {
+      "task": "Task 025-A",
+      "title": "Adapter Interface Validator Cloud Implementation Package",
+      "file": "docs/research-notes/task-notes/RN-025A-task025a-adapter-interface-validator-cloud-implementation.md",
+      "research_axis": "Cloud-first validator implementation package and local verification handoff",
+      "status": "draft"
+    },
+    "RN-025B": {
+      "task": "Task 025-B",
+      "title": "Adapter Interface Validator Local Verification",
+      "file": "docs/research-notes/task-notes/RN-025B-task025b-adapter-interface-validator-local-verification.md",
+      "research_axis": "Local validator execution evidence and cloud-first local-verify result",
+      "status": "verified"
+    },
+    "RN-026": {
+      "task": "Task 026",
+      "title": "Adapter Validator Integration Contract Proof",
+      "file": "docs/research-notes/task-notes/RN-026-task026-adapter-validator-integration-contract.md",
+      "research_axis": "Adapter validator integration gate, evidence, and completion contract",
+      "status": "verified"
+    },
+    "RN-027": {
+      "task": "Task 027",
+      "title": "Local Workspace Adapter Contract Proof",
+      "file": "docs/research-notes/task-notes/RN-027-task027-local-workspace-adapter-contract.md",
+      "research_axis": "Local workspace adapter contract and safe file-workspace execution boundary",
+      "status": "verified"
+    },
+    "RN-028": {
+      "task": "Task 028",
+      "title": "Local Workspace Adapter Proof-Mode Skeleton",
+      "file": "docs/research-notes/task-notes/RN-028-task028-local-workspace-adapter-proof-mode-skeleton.md",
+      "research_axis": "Local workspace proof-mode adapter skeleton and local verification gate",
+      "status": "verified"
+    },
+    "RN-029": {
+      "task": "Task 029",
+      "title": "Local Workspace Adapter Controlled Dry-Run Boundary",
+      "file": "docs/research-notes/task-notes/RN-029-task029-local-workspace-adapter-controlled-dry-run-boundary.md",
+      "research_axis": "Local workspace controlled dry-run boundary and deterministic receipts",
+      "status": "verified"
+    },
+    "RN-030": {
+      "task": "Task 030",
+      "title": "Local Workspace Read-Only Manifest Boundary",
+      "file": "docs/research-notes/task-notes/RN-030-task030-local-workspace-read-only-manifest-boundary.md",
+      "research_axis": "Local workspace read-only manifest boundary and metadata-only descriptors",
+      "status": "verified"
+    },
+    "RN-031": {
+      "task": "Task 031",
+      "title": "Local Workspace Staged Output Boundary",
+      "file": "docs/research-notes/task-notes/RN-031-task031-local-workspace-staged-output-boundary.md",
+      "research_axis": "Local workspace staged output boundary and temporary sandbox receipts",
+      "status": "verified"
+    },
+    "RN-033": {
+      "task": "Task 033",
+      "task_id": "task033-local-workspace-staged-output-evidence-manifest-boundary",
+      "title": "Local Workspace Staged Output Evidence Manifest Boundary",
+      "file": "docs/research-notes/task-notes/RN-033-task033-local-workspace-staged-output-evidence-manifest-boundary.md",
+      "research_axis": "Deterministic staged output evidence manifest boundary",
+      "status": "final_verified"
+    }
+  }
+}

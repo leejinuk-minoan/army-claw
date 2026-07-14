@@ -1,0 +1,5 @@
+?? docs/gpt-communication/evidence/task032-repository-baseline-governance-state-reconciliation/git-fetch-exit-code.txt
+?? docs/gpt-communication/evidence/task032-repository-baseline-governance-state-reconciliation/git-fetch-stderr.txt
+?? docs/gpt-communication/evidence/task032-repository-baseline-governance-state-reconciliation/git-fetch-stdout.txt
+?? docs/gpt-communication/evidence/task032-repository-baseline-governance-state-reconciliation/git-status-before-stderr.txt
+?? docs/gpt-communication/evidence/task032-repository-baseline-governance-state-reconciliation/git-status-before-stdout.txt

@@ -1,0 +1,51 @@
+{
+  "task_id": "app-target-plan-schema-proof-020",
+  "valid": true,
+  "status": "valid",
+  "error_code": null,
+  "error_category": null,
+  "user_visible_state": "valid",
+  "validation_errors": [],
+  "subplan_validation_results": [
+    {
+      "subplan_index": 0,
+      "plan_type": "local_workspace_action_plan",
+      "valid": true,
+      "status": "valid",
+      "error_code": null,
+      "error_category": null,
+      "user_visible_state": "valid",
+      "validation_errors": []
+    },
+    {
+      "subplan_index": 1,
+      "plan_type": "hwp_hwpx_fill_plan",
+      "valid": true,
+      "status": "valid",
+      "error_code": null,
+      "error_category": null,
+      "user_visible_state": "valid",
+      "validation_errors": []
+    },
+    {
+      "subplan_index": 2,
+      "plan_type": "hancell_fill_plan",
+      "valid": true,
+      "status": "valid",
+      "error_code": null,
+      "error_category": null,
+      "user_visible_state": "valid",
+      "validation_errors": []
+    },
+    {
+      "subplan_index": 3,
+      "plan_type": "hanshow_fill_plan",
+      "valid": true,
+      "status": "valid",
+      "error_code": null,
+      "error_category": null,
+      "user_visible_state": "valid",
+      "validation_errors": []
+    }
+  ]
+}

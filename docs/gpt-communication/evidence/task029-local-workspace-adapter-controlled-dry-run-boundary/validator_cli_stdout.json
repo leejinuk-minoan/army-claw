@@ -1,0 +1,1705 @@
+{
+  "validator_id": "army-claw-adapter-interface-validator",
+  "validator_version": "task025a-cloud-draft",
+  "repo_root": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary",
+  "generated_at": "2026-07-10T03:22:43.401557+00:00",
+  "summary": {
+    "status": "valid",
+    "total_checks": 200,
+    "passed_checks": 200,
+    "failed_checks": 0,
+    "blocked_checks": 0,
+    "not_evaluated_checks": 0
+  },
+  "results": [
+    {
+      "check_id": "matrix.positive_samples.sample_exists",
+      "status": "valid",
+      "message": "sample file exists",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "matrix.positive_samples.sample_exists",
+      "status": "valid",
+      "message": "sample file exists",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "matrix.positive_samples.sample_exists",
+      "status": "valid",
+      "message": "sample file exists",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "matrix.positive_samples.sample_exists",
+      "status": "valid",
+      "message": "sample file exists",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "matrix.positive_samples.sample_exists",
+      "status": "valid",
+      "message": "sample file exists",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "matrix.positive_samples.sample_exists",
+      "status": "valid",
+      "message": "sample file exists",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "matrix.positive_samples.sample_exists",
+      "status": "valid",
+      "message": "sample file exists",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "matrix.positive_samples.sample_exists",
+      "status": "valid",
+      "message": "sample file exists",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "matrix.negative_samples.sample_exists",
+      "status": "valid",
+      "message": "sample file exists",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\negative-llm-direct-file-edit-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "matrix.negative_samples.sample_exists",
+      "status": "valid",
+      "message": "sample file exists",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\negative-source-overwrite-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "matrix.negative_samples.sample_exists",
+      "status": "valid",
+      "message": "sample file exists",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\negative-public-internet-required.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "matrix.negative_samples.sample_exists",
+      "status": "valid",
+      "message": "sample file exists",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\negative-target-plan-mismatch.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "positive_sample_expected_status",
+      "status": "valid",
+      "message": "positive sample met expected status",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-request.sample.json",
+      "expected": "valid",
+      "actual": "valid"
+    },
+    {
+      "check_id": "request.required.request_id",
+      "status": "valid",
+      "message": "required field present: request_id",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.contract_version",
+      "status": "valid",
+      "message": "required field present: contract_version",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.target_id",
+      "status": "valid",
+      "message": "required field present: target_id",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.adapter_slot_id",
+      "status": "valid",
+      "message": "required field present: adapter_slot_id",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.plan_type",
+      "status": "valid",
+      "message": "required field present: plan_type",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.validated_plan",
+      "status": "valid",
+      "message": "required field present: validated_plan",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.source_plan_schema_version",
+      "status": "valid",
+      "message": "required field present: source_plan_schema_version",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.execution_context",
+      "status": "valid",
+      "message": "required field present: execution_context",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.template_reference",
+      "status": "valid",
+      "message": "required field present: template_reference",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.constraints",
+      "status": "valid",
+      "message": "required field present: constraints",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.evidence_request",
+      "status": "valid",
+      "message": "required field present: evidence_request",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.dry_run",
+      "status": "valid",
+      "message": "required field present: dry_run",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.created_at",
+      "status": "valid",
+      "message": "required field present: created_at",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "target_id_supported",
+      "status": "valid",
+      "message": "target_id is supported",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-request.sample.json",
+      "expected": [
+        "local_workspace",
+        "hwp_hwpx",
+        "hancell",
+        "hanshow"
+      ],
+      "actual": "local_workspace"
+    },
+    {
+      "check_id": "adapter_slot_matches_target",
+      "status": "valid",
+      "message": "adapter_slot_id matches target_id",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-request.sample.json",
+      "expected": "local_workspace_adapter_slot",
+      "actual": "local_workspace_adapter_slot"
+    },
+    {
+      "check_id": "plan_type_matches_target",
+      "status": "valid",
+      "message": "plan_type matches target_id",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-request.sample.json",
+      "expected": "local_workspace",
+      "actual": "local_workspace"
+    },
+    {
+      "check_id": "prevent_source_overwrite_true",
+      "status": "valid",
+      "message": "source overwrite is blocked",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-request.sample.json",
+      "expected": {
+        "prevent_source_overwrite": true,
+        "overwrite_source": false
+      },
+      "actual": {
+        "prevent_source_overwrite": true,
+        "overwrite_source": false
+      }
+    },
+    {
+      "check_id": "allow_public_internet_false",
+      "status": "valid",
+      "message": "public internet dependency is blocked",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-request.sample.json",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "check_id": "llm_direct_file_edit_absent",
+      "status": "valid",
+      "message": "LLM direct file edit request is absent",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-request.sample.json",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "check_id": "llm_direct_native_app_state_modification_absent",
+      "status": "valid",
+      "message": "LLM direct native app state modification request is absent",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-request.sample.json",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "check_id": "proof_or_dry_run_context_explicit",
+      "status": "valid",
+      "message": "proof or dry-run context is explicit",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "positive_sample_expected_status",
+      "status": "valid",
+      "message": "positive sample met expected status",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-response.sample.json",
+      "expected": "valid",
+      "actual": "valid"
+    },
+    {
+      "check_id": "response.required.request_id",
+      "status": "valid",
+      "message": "required field present: request_id",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.response_id",
+      "status": "valid",
+      "message": "required field present: response_id",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.contract_version",
+      "status": "valid",
+      "message": "required field present: contract_version",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.target_id",
+      "status": "valid",
+      "message": "required field present: target_id",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.adapter_slot_id",
+      "status": "valid",
+      "message": "required field present: adapter_slot_id",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.status",
+      "status": "valid",
+      "message": "required field present: status",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.execution_allowed",
+      "status": "valid",
+      "message": "required field present: execution_allowed",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.actual_adapter_invoked",
+      "status": "valid",
+      "message": "required field present: actual_adapter_invoked",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.output_artifacts",
+      "status": "valid",
+      "message": "required field present: output_artifacts",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.validation_result",
+      "status": "valid",
+      "message": "required field present: validation_result",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.evidence",
+      "status": "valid",
+      "message": "required field present: evidence",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.warnings",
+      "status": "valid",
+      "message": "required field present: warnings",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.created_at",
+      "status": "valid",
+      "message": "required field present: created_at",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "target_id_supported",
+      "status": "valid",
+      "message": "target_id is supported",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-response.sample.json",
+      "expected": [
+        "local_workspace",
+        "hwp_hwpx",
+        "hancell",
+        "hanshow"
+      ],
+      "actual": "local_workspace"
+    },
+    {
+      "check_id": "adapter_slot_matches_target",
+      "status": "valid",
+      "message": "adapter_slot_id matches target_id",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-response.sample.json",
+      "expected": "local_workspace_adapter_slot",
+      "actual": "local_workspace_adapter_slot"
+    },
+    {
+      "check_id": "plan_type_matches_target",
+      "status": "valid",
+      "message": "plan_type matches target_id",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-response.sample.json",
+      "expected": "local_workspace",
+      "actual": "local_workspace"
+    },
+    {
+      "check_id": "response_status_enum_valid",
+      "status": "valid",
+      "message": "response status is valid",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-response.sample.json",
+      "expected": [
+        "accepted_for_execution",
+        "blocked_in_proof",
+        "validation_failed",
+        "unsupported"
+      ],
+      "actual": "blocked_in_proof"
+    },
+    {
+      "check_id": "actual_adapter_invoked_false",
+      "status": "valid",
+      "message": "actual_adapter_invoked is false",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-response.sample.json",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "check_id": "execution_allowed_false",
+      "status": "valid",
+      "message": "execution_allowed is false in proof mode",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-response.sample.json",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "check_id": "no_real_output_artifact_claim",
+      "status": "valid",
+      "message": "proof response does not claim generated artifacts",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-response.sample.json",
+      "expected": [],
+      "actual": []
+    },
+    {
+      "check_id": "proof_mode_true",
+      "status": "valid",
+      "message": "proof_mode evidence is true",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-response.sample.json",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "check_id": "positive_sample_expected_status",
+      "status": "valid",
+      "message": "positive sample met expected status",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-request.sample.json",
+      "expected": "valid",
+      "actual": "valid"
+    },
+    {
+      "check_id": "request.required.request_id",
+      "status": "valid",
+      "message": "required field present: request_id",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.contract_version",
+      "status": "valid",
+      "message": "required field present: contract_version",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.target_id",
+      "status": "valid",
+      "message": "required field present: target_id",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.adapter_slot_id",
+      "status": "valid",
+      "message": "required field present: adapter_slot_id",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.plan_type",
+      "status": "valid",
+      "message": "required field present: plan_type",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.validated_plan",
+      "status": "valid",
+      "message": "required field present: validated_plan",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.source_plan_schema_version",
+      "status": "valid",
+      "message": "required field present: source_plan_schema_version",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.execution_context",
+      "status": "valid",
+      "message": "required field present: execution_context",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.template_reference",
+      "status": "valid",
+      "message": "required field present: template_reference",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.constraints",
+      "status": "valid",
+      "message": "required field present: constraints",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.evidence_request",
+      "status": "valid",
+      "message": "required field present: evidence_request",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.dry_run",
+      "status": "valid",
+      "message": "required field present: dry_run",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.created_at",
+      "status": "valid",
+      "message": "required field present: created_at",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "target_id_supported",
+      "status": "valid",
+      "message": "target_id is supported",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-request.sample.json",
+      "expected": [
+        "local_workspace",
+        "hwp_hwpx",
+        "hancell",
+        "hanshow"
+      ],
+      "actual": "hwp_hwpx"
+    },
+    {
+      "check_id": "adapter_slot_matches_target",
+      "status": "valid",
+      "message": "adapter_slot_id matches target_id",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-request.sample.json",
+      "expected": "hwp_hwpx_adapter_slot",
+      "actual": "hwp_hwpx_adapter_slot"
+    },
+    {
+      "check_id": "plan_type_matches_target",
+      "status": "valid",
+      "message": "plan_type matches target_id",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-request.sample.json",
+      "expected": "hwp_hwpx",
+      "actual": "hwp_hwpx"
+    },
+    {
+      "check_id": "prevent_source_overwrite_true",
+      "status": "valid",
+      "message": "source overwrite is blocked",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-request.sample.json",
+      "expected": {
+        "prevent_source_overwrite": true,
+        "overwrite_source": false
+      },
+      "actual": {
+        "prevent_source_overwrite": true,
+        "overwrite_source": false
+      }
+    },
+    {
+      "check_id": "allow_public_internet_false",
+      "status": "valid",
+      "message": "public internet dependency is blocked",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-request.sample.json",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "check_id": "llm_direct_file_edit_absent",
+      "status": "valid",
+      "message": "LLM direct file edit request is absent",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-request.sample.json",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "check_id": "llm_direct_native_app_state_modification_absent",
+      "status": "valid",
+      "message": "LLM direct native app state modification request is absent",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-request.sample.json",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "check_id": "proof_or_dry_run_context_explicit",
+      "status": "valid",
+      "message": "proof or dry-run context is explicit",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "positive_sample_expected_status",
+      "status": "valid",
+      "message": "positive sample met expected status",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-response.sample.json",
+      "expected": "valid",
+      "actual": "valid"
+    },
+    {
+      "check_id": "response.required.request_id",
+      "status": "valid",
+      "message": "required field present: request_id",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.response_id",
+      "status": "valid",
+      "message": "required field present: response_id",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.contract_version",
+      "status": "valid",
+      "message": "required field present: contract_version",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.target_id",
+      "status": "valid",
+      "message": "required field present: target_id",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.adapter_slot_id",
+      "status": "valid",
+      "message": "required field present: adapter_slot_id",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.status",
+      "status": "valid",
+      "message": "required field present: status",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.execution_allowed",
+      "status": "valid",
+      "message": "required field present: execution_allowed",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.actual_adapter_invoked",
+      "status": "valid",
+      "message": "required field present: actual_adapter_invoked",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.output_artifacts",
+      "status": "valid",
+      "message": "required field present: output_artifacts",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.validation_result",
+      "status": "valid",
+      "message": "required field present: validation_result",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.evidence",
+      "status": "valid",
+      "message": "required field present: evidence",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.warnings",
+      "status": "valid",
+      "message": "required field present: warnings",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.created_at",
+      "status": "valid",
+      "message": "required field present: created_at",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "target_id_supported",
+      "status": "valid",
+      "message": "target_id is supported",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-response.sample.json",
+      "expected": [
+        "local_workspace",
+        "hwp_hwpx",
+        "hancell",
+        "hanshow"
+      ],
+      "actual": "hwp_hwpx"
+    },
+    {
+      "check_id": "adapter_slot_matches_target",
+      "status": "valid",
+      "message": "adapter_slot_id matches target_id",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-response.sample.json",
+      "expected": "hwp_hwpx_adapter_slot",
+      "actual": "hwp_hwpx_adapter_slot"
+    },
+    {
+      "check_id": "plan_type_matches_target",
+      "status": "valid",
+      "message": "plan_type matches target_id",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-response.sample.json",
+      "expected": "hwp_hwpx",
+      "actual": "hwp_hwpx"
+    },
+    {
+      "check_id": "response_status_enum_valid",
+      "status": "valid",
+      "message": "response status is valid",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-response.sample.json",
+      "expected": [
+        "accepted_for_execution",
+        "blocked_in_proof",
+        "validation_failed",
+        "unsupported"
+      ],
+      "actual": "blocked_in_proof"
+    },
+    {
+      "check_id": "actual_adapter_invoked_false",
+      "status": "valid",
+      "message": "actual_adapter_invoked is false",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-response.sample.json",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "check_id": "execution_allowed_false",
+      "status": "valid",
+      "message": "execution_allowed is false in proof mode",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-response.sample.json",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "check_id": "no_real_output_artifact_claim",
+      "status": "valid",
+      "message": "proof response does not claim generated artifacts",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-response.sample.json",
+      "expected": [],
+      "actual": []
+    },
+    {
+      "check_id": "proof_mode_true",
+      "status": "valid",
+      "message": "proof_mode evidence is true",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-response.sample.json",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "check_id": "positive_sample_expected_status",
+      "status": "valid",
+      "message": "positive sample met expected status",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-request.sample.json",
+      "expected": "valid",
+      "actual": "valid"
+    },
+    {
+      "check_id": "request.required.request_id",
+      "status": "valid",
+      "message": "required field present: request_id",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.contract_version",
+      "status": "valid",
+      "message": "required field present: contract_version",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.target_id",
+      "status": "valid",
+      "message": "required field present: target_id",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.adapter_slot_id",
+      "status": "valid",
+      "message": "required field present: adapter_slot_id",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.plan_type",
+      "status": "valid",
+      "message": "required field present: plan_type",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.validated_plan",
+      "status": "valid",
+      "message": "required field present: validated_plan",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.source_plan_schema_version",
+      "status": "valid",
+      "message": "required field present: source_plan_schema_version",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.execution_context",
+      "status": "valid",
+      "message": "required field present: execution_context",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.template_reference",
+      "status": "valid",
+      "message": "required field present: template_reference",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.constraints",
+      "status": "valid",
+      "message": "required field present: constraints",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.evidence_request",
+      "status": "valid",
+      "message": "required field present: evidence_request",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.dry_run",
+      "status": "valid",
+      "message": "required field present: dry_run",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.created_at",
+      "status": "valid",
+      "message": "required field present: created_at",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "target_id_supported",
+      "status": "valid",
+      "message": "target_id is supported",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-request.sample.json",
+      "expected": [
+        "local_workspace",
+        "hwp_hwpx",
+        "hancell",
+        "hanshow"
+      ],
+      "actual": "hancell"
+    },
+    {
+      "check_id": "adapter_slot_matches_target",
+      "status": "valid",
+      "message": "adapter_slot_id matches target_id",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-request.sample.json",
+      "expected": "hancell_adapter_slot",
+      "actual": "hancell_adapter_slot"
+    },
+    {
+      "check_id": "plan_type_matches_target",
+      "status": "valid",
+      "message": "plan_type matches target_id",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-request.sample.json",
+      "expected": "hancell",
+      "actual": "hancell"
+    },
+    {
+      "check_id": "prevent_source_overwrite_true",
+      "status": "valid",
+      "message": "source overwrite is blocked",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-request.sample.json",
+      "expected": {
+        "prevent_source_overwrite": true,
+        "overwrite_source": false
+      },
+      "actual": {
+        "prevent_source_overwrite": true,
+        "overwrite_source": false
+      }
+    },
+    {
+      "check_id": "allow_public_internet_false",
+      "status": "valid",
+      "message": "public internet dependency is blocked",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-request.sample.json",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "check_id": "llm_direct_file_edit_absent",
+      "status": "valid",
+      "message": "LLM direct file edit request is absent",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-request.sample.json",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "check_id": "llm_direct_native_app_state_modification_absent",
+      "status": "valid",
+      "message": "LLM direct native app state modification request is absent",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-request.sample.json",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "check_id": "proof_or_dry_run_context_explicit",
+      "status": "valid",
+      "message": "proof or dry-run context is explicit",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "positive_sample_expected_status",
+      "status": "valid",
+      "message": "positive sample met expected status",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-response.sample.json",
+      "expected": "valid",
+      "actual": "valid"
+    },
+    {
+      "check_id": "response.required.request_id",
+      "status": "valid",
+      "message": "required field present: request_id",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.response_id",
+      "status": "valid",
+      "message": "required field present: response_id",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.contract_version",
+      "status": "valid",
+      "message": "required field present: contract_version",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.target_id",
+      "status": "valid",
+      "message": "required field present: target_id",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.adapter_slot_id",
+      "status": "valid",
+      "message": "required field present: adapter_slot_id",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.status",
+      "status": "valid",
+      "message": "required field present: status",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.execution_allowed",
+      "status": "valid",
+      "message": "required field present: execution_allowed",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.actual_adapter_invoked",
+      "status": "valid",
+      "message": "required field present: actual_adapter_invoked",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.output_artifacts",
+      "status": "valid",
+      "message": "required field present: output_artifacts",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.validation_result",
+      "status": "valid",
+      "message": "required field present: validation_result",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.evidence",
+      "status": "valid",
+      "message": "required field present: evidence",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.warnings",
+      "status": "valid",
+      "message": "required field present: warnings",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.created_at",
+      "status": "valid",
+      "message": "required field present: created_at",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "target_id_supported",
+      "status": "valid",
+      "message": "target_id is supported",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-response.sample.json",
+      "expected": [
+        "local_workspace",
+        "hwp_hwpx",
+        "hancell",
+        "hanshow"
+      ],
+      "actual": "hancell"
+    },
+    {
+      "check_id": "adapter_slot_matches_target",
+      "status": "valid",
+      "message": "adapter_slot_id matches target_id",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-response.sample.json",
+      "expected": "hancell_adapter_slot",
+      "actual": "hancell_adapter_slot"
+    },
+    {
+      "check_id": "plan_type_matches_target",
+      "status": "valid",
+      "message": "plan_type matches target_id",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-response.sample.json",
+      "expected": "hancell",
+      "actual": "hancell"
+    },
+    {
+      "check_id": "response_status_enum_valid",
+      "status": "valid",
+      "message": "response status is valid",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-response.sample.json",
+      "expected": [
+        "accepted_for_execution",
+        "blocked_in_proof",
+        "validation_failed",
+        "unsupported"
+      ],
+      "actual": "blocked_in_proof"
+    },
+    {
+      "check_id": "actual_adapter_invoked_false",
+      "status": "valid",
+      "message": "actual_adapter_invoked is false",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-response.sample.json",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "check_id": "execution_allowed_false",
+      "status": "valid",
+      "message": "execution_allowed is false in proof mode",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-response.sample.json",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "check_id": "no_real_output_artifact_claim",
+      "status": "valid",
+      "message": "proof response does not claim generated artifacts",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-response.sample.json",
+      "expected": [],
+      "actual": []
+    },
+    {
+      "check_id": "proof_mode_true",
+      "status": "valid",
+      "message": "proof_mode evidence is true",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-response.sample.json",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "check_id": "positive_sample_expected_status",
+      "status": "valid",
+      "message": "positive sample met expected status",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-request.sample.json",
+      "expected": "valid",
+      "actual": "valid"
+    },
+    {
+      "check_id": "request.required.request_id",
+      "status": "valid",
+      "message": "required field present: request_id",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.contract_version",
+      "status": "valid",
+      "message": "required field present: contract_version",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.target_id",
+      "status": "valid",
+      "message": "required field present: target_id",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.adapter_slot_id",
+      "status": "valid",
+      "message": "required field present: adapter_slot_id",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.plan_type",
+      "status": "valid",
+      "message": "required field present: plan_type",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.validated_plan",
+      "status": "valid",
+      "message": "required field present: validated_plan",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.source_plan_schema_version",
+      "status": "valid",
+      "message": "required field present: source_plan_schema_version",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.execution_context",
+      "status": "valid",
+      "message": "required field present: execution_context",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.template_reference",
+      "status": "valid",
+      "message": "required field present: template_reference",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.constraints",
+      "status": "valid",
+      "message": "required field present: constraints",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.evidence_request",
+      "status": "valid",
+      "message": "required field present: evidence_request",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.dry_run",
+      "status": "valid",
+      "message": "required field present: dry_run",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.created_at",
+      "status": "valid",
+      "message": "required field present: created_at",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "target_id_supported",
+      "status": "valid",
+      "message": "target_id is supported",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-request.sample.json",
+      "expected": [
+        "local_workspace",
+        "hwp_hwpx",
+        "hancell",
+        "hanshow"
+      ],
+      "actual": "hanshow"
+    },
+    {
+      "check_id": "adapter_slot_matches_target",
+      "status": "valid",
+      "message": "adapter_slot_id matches target_id",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-request.sample.json",
+      "expected": "hanshow_adapter_slot",
+      "actual": "hanshow_adapter_slot"
+    },
+    {
+      "check_id": "plan_type_matches_target",
+      "status": "valid",
+      "message": "plan_type matches target_id",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-request.sample.json",
+      "expected": "hanshow",
+      "actual": "hanshow"
+    },
+    {
+      "check_id": "prevent_source_overwrite_true",
+      "status": "valid",
+      "message": "source overwrite is blocked",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-request.sample.json",
+      "expected": {
+        "prevent_source_overwrite": true,
+        "overwrite_source": false
+      },
+      "actual": {
+        "prevent_source_overwrite": true,
+        "overwrite_source": false
+      }
+    },
+    {
+      "check_id": "allow_public_internet_false",
+      "status": "valid",
+      "message": "public internet dependency is blocked",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-request.sample.json",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "check_id": "llm_direct_file_edit_absent",
+      "status": "valid",
+      "message": "LLM direct file edit request is absent",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-request.sample.json",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "check_id": "llm_direct_native_app_state_modification_absent",
+      "status": "valid",
+      "message": "LLM direct native app state modification request is absent",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-request.sample.json",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "check_id": "proof_or_dry_run_context_explicit",
+      "status": "valid",
+      "message": "proof or dry-run context is explicit",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "positive_sample_expected_status",
+      "status": "valid",
+      "message": "positive sample met expected status",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-response.sample.json",
+      "expected": "valid",
+      "actual": "valid"
+    },
+    {
+      "check_id": "response.required.request_id",
+      "status": "valid",
+      "message": "required field present: request_id",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.response_id",
+      "status": "valid",
+      "message": "required field present: response_id",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.contract_version",
+      "status": "valid",
+      "message": "required field present: contract_version",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.target_id",
+      "status": "valid",
+      "message": "required field present: target_id",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.adapter_slot_id",
+      "status": "valid",
+      "message": "required field present: adapter_slot_id",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.status",
+      "status": "valid",
+      "message": "required field present: status",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.execution_allowed",
+      "status": "valid",
+      "message": "required field present: execution_allowed",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.actual_adapter_invoked",
+      "status": "valid",
+      "message": "required field present: actual_adapter_invoked",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.output_artifacts",
+      "status": "valid",
+      "message": "required field present: output_artifacts",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.validation_result",
+      "status": "valid",
+      "message": "required field present: validation_result",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.evidence",
+      "status": "valid",
+      "message": "required field present: evidence",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.warnings",
+      "status": "valid",
+      "message": "required field present: warnings",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.created_at",
+      "status": "valid",
+      "message": "required field present: created_at",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "target_id_supported",
+      "status": "valid",
+      "message": "target_id is supported",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-response.sample.json",
+      "expected": [
+        "local_workspace",
+        "hwp_hwpx",
+        "hancell",
+        "hanshow"
+      ],
+      "actual": "hanshow"
+    },
+    {
+      "check_id": "adapter_slot_matches_target",
+      "status": "valid",
+      "message": "adapter_slot_id matches target_id",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-response.sample.json",
+      "expected": "hanshow_adapter_slot",
+      "actual": "hanshow_adapter_slot"
+    },
+    {
+      "check_id": "plan_type_matches_target",
+      "status": "valid",
+      "message": "plan_type matches target_id",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-response.sample.json",
+      "expected": "hanshow",
+      "actual": "hanshow"
+    },
+    {
+      "check_id": "response_status_enum_valid",
+      "status": "valid",
+      "message": "response status is valid",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-response.sample.json",
+      "expected": [
+        "accepted_for_execution",
+        "blocked_in_proof",
+        "validation_failed",
+        "unsupported"
+      ],
+      "actual": "blocked_in_proof"
+    },
+    {
+      "check_id": "actual_adapter_invoked_false",
+      "status": "valid",
+      "message": "actual_adapter_invoked is false",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-response.sample.json",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "check_id": "execution_allowed_false",
+      "status": "valid",
+      "message": "execution_allowed is false in proof mode",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-response.sample.json",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "check_id": "no_real_output_artifact_claim",
+      "status": "valid",
+      "message": "proof response does not claim generated artifacts",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-response.sample.json",
+      "expected": [],
+      "actual": []
+    },
+    {
+      "check_id": "proof_mode_true",
+      "status": "valid",
+      "message": "proof_mode evidence is true",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-response.sample.json",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "check_id": "negative_sample_expected_status",
+      "status": "valid",
+      "message": "negative sample met expected blocked status",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\negative-llm-direct-file-edit-request.sample.json",
+      "expected": "blocked",
+      "actual": "blocked"
+    },
+    {
+      "check_id": "negative_expected_status_blocked",
+      "status": "valid",
+      "message": "negative sample expected status is blocked",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\negative-llm-direct-file-edit-request.sample.json",
+      "expected": "blocked",
+      "actual": "blocked"
+    },
+    {
+      "check_id": "negative_expected_error_category",
+      "status": "valid",
+      "message": "negative sample is correctly expected to be blocked by category",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\negative-llm-direct-file-edit-request.sample.json",
+      "expected": "llm_direct_file_edit_blocked",
+      "actual": "llm_direct_file_edit_blocked"
+    },
+    {
+      "check_id": "negative_sample_expected_status",
+      "status": "valid",
+      "message": "negative sample met expected blocked status",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\negative-source-overwrite-request.sample.json",
+      "expected": "blocked",
+      "actual": "blocked"
+    },
+    {
+      "check_id": "negative_expected_status_blocked",
+      "status": "valid",
+      "message": "negative sample expected status is blocked",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\negative-source-overwrite-request.sample.json",
+      "expected": "blocked",
+      "actual": "blocked"
+    },
+    {
+      "check_id": "negative_expected_error_category",
+      "status": "valid",
+      "message": "negative sample is correctly expected to be blocked by category",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\negative-source-overwrite-request.sample.json",
+      "expected": "source_overwrite_blocked",
+      "actual": "source_overwrite_blocked"
+    },
+    {
+      "check_id": "negative_sample_expected_status",
+      "status": "valid",
+      "message": "negative sample met expected blocked status",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\negative-public-internet-required.sample.json",
+      "expected": "blocked",
+      "actual": "blocked"
+    },
+    {
+      "check_id": "negative_expected_status_blocked",
+      "status": "valid",
+      "message": "negative sample expected status is blocked",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\negative-public-internet-required.sample.json",
+      "expected": "blocked",
+      "actual": "blocked"
+    },
+    {
+      "check_id": "negative_expected_error_category",
+      "status": "valid",
+      "message": "negative sample is correctly expected to be blocked by category",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\negative-public-internet-required.sample.json",
+      "expected": "public_internet_dependency_blocked",
+      "actual": "public_internet_dependency_blocked"
+    },
+    {
+      "check_id": "negative_sample_expected_status",
+      "status": "valid",
+      "message": "negative sample met expected blocked status",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\negative-target-plan-mismatch.sample.json",
+      "expected": "blocked",
+      "actual": "blocked"
+    },
+    {
+      "check_id": "negative_expected_status_blocked",
+      "status": "valid",
+      "message": "negative sample expected status is blocked",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\negative-target-plan-mismatch.sample.json",
+      "expected": "blocked",
+      "actual": "blocked"
+    },
+    {
+      "check_id": "negative_expected_error_category",
+      "status": "valid",
+      "message": "negative sample is correctly expected to be blocked by category",
+      "path": "C:\\Users\\USER\\Desktop\\���� open claw �����\\.tmp\\task029-local-workspace-adapter-controlled-dry-run-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\negative-target-plan-mismatch.sample.json",
+      "expected": "target_plan_mismatch",
+      "actual": "target_plan_mismatch"
+    }
+  ],
+  "limitations": [
+    "This validator reads JSON contracts and samples only.",
+    "It does not invoke adapters, Hancom COM, GUI, internet, or document generation.",
+    "Task 025-A cloud authoring did not execute this validator; local execution is Task 025-B."
+  ]
+}

@@ -1,0 +1,125 @@
+{
+  "task_id": "app-target-routing-proof-019",
+  "routing_contract_version": "army-claw-app-target-routing-019.v1",
+  "generated_at": "2026-07-05T14:48:11.316Z",
+  "valid": true,
+  "proof_case_count": 28,
+  "proof_cases_passed": 28,
+  "template_preservation_preserved_from_task018": true,
+  "no_real_adapter_execution_occurs": true,
+  "no_model_gateway_implementation_occurs": true,
+  "proof_cases": [
+    {
+      "case_name": "official system name is Army Claw",
+      "passed": true
+    },
+    {
+      "case_name": "hwp_only=false",
+      "passed": true
+    },
+    {
+      "case_name": "local_workspace target exists",
+      "passed": true
+    },
+    {
+      "case_name": "hwp_hwpx target exists",
+      "passed": true
+    },
+    {
+      "case_name": "hancell target exists",
+      "passed": true
+    },
+    {
+      "case_name": "hanshow target exists",
+      "passed": true
+    },
+    {
+      "case_name": "local_workspace_action_plan routes to local_workspace_adapter_slot",
+      "passed": true
+    },
+    {
+      "case_name": "hwp_hwpx_fill_plan routes to hwp_hwpx_adapter_slot",
+      "passed": true
+    },
+    {
+      "case_name": "hancell_fill_plan routes to hancell_adapter_slot",
+      "passed": true
+    },
+    {
+      "case_name": "hanshow_fill_plan routes to hanshow_adapter_slot",
+      "passed": true
+    },
+    {
+      "case_name": "multi_app_execution_plan decomposes into subplan routes",
+      "passed": true
+    },
+    {
+      "case_name": "multi_app_execution_plan rejects missing subplans",
+      "passed": true
+    },
+    {
+      "case_name": "unsupported plan type returns controlled validation_error",
+      "passed": true
+    },
+    {
+      "case_name": "unsupported target_hint returns controlled validation_error",
+      "passed": true
+    },
+    {
+      "case_name": "target_hint mismatch returns controlled validation_error",
+      "passed": true
+    },
+    {
+      "case_name": "invalid subplan type returns controlled validation_error",
+      "passed": true
+    },
+    {
+      "case_name": "LLM direct file edit request is rejected",
+      "passed": true
+    },
+    {
+      "case_name": "public internet dependency request is rejected",
+      "passed": true
+    },
+    {
+      "case_name": "all adapter slots mark actual_adapter_implemented_in_task019=false",
+      "passed": true
+    },
+    {
+      "case_name": "deterministic execution required for all adapter slots",
+      "passed": true
+    },
+    {
+      "case_name": "HWP/HWPX, HanCell, HanShow template preservation requirement is preserved from Task 018",
+      "passed": true
+    },
+    {
+      "case_name": "final_core_selection_declared=false",
+      "passed": true
+    },
+    {
+      "case_name": "stage_2_transition_declared=false",
+      "passed": true
+    },
+    {
+      "case_name": "Task 018 summary remains read-only",
+      "passed": true
+    },
+    {
+      "case_name": "Task 018 capability architecture proof still passes",
+      "passed": true
+    },
+    {
+      "case_name": "Task 017 transport-agnostic proof still passes",
+      "passed": true
+    },
+    {
+      "case_name": "no real adapter execution occurs",
+      "passed": true
+    },
+    {
+      "case_name": "no Model Gateway implementation occurs",
+      "passed": true
+    }
+  ]
+}

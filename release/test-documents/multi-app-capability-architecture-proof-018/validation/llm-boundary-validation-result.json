@@ -1,0 +1,26 @@
+{
+  "task_id": "multi-app-capability-architecture-proof-018",
+  "valid": true,
+  "llm_boundary": {
+    "llm_may_directly_edit_document_packages": false,
+    "llm_may_directly_modify_native_app_state": false,
+    "llm_must_output_structured_plan_only": true,
+    "allowed_plan_types": [
+      "local_workspace_action_plan",
+      "hwp_hwpx_fill_plan",
+      "hancell_fill_plan",
+      "hanshow_fill_plan",
+      "multi_app_execution_plan"
+    ],
+    "plan_validation_required_before_execution": true
+  },
+  "adapter_execution_boundary": {
+    "deterministic_execution_required": true,
+    "adapters_validate_plan_before_execution": true,
+    "native_app_state_changes_only_through_target_adapter": true,
+    "document_package_changes_only_through_target_adapter": true,
+    "actual_hancell_adapter_implemented_in_task018": false,
+    "actual_hanshow_adapter_implemented_in_task018": false,
+    "actual_pc_automation_implemented_in_task018": false
+  }
+}

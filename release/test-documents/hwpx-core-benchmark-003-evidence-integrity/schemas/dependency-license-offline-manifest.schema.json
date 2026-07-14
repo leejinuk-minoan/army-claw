@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Legacy inactive Task 003 manifest schema",
+  "$comment": "Inactive compatibility artifact. Canonical schema is in schemas-v2.",
+  "x-task003-schema-status": "legacy_inactive",
+  "type": "object",
+  "additionalProperties": true
+}

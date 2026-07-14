@@ -1,0 +1,126 @@
+{
+  "task_id": "multi-app-capability-architecture-proof-018",
+  "architecture_version": "army-claw-multi-app-capability-architecture-018.v1",
+  "generated_at": "2026-07-05T14:32:56.370Z",
+  "valid": true,
+  "proof_case_count": 28,
+  "proof_cases_passed": 28,
+  "app_targets_present": true,
+  "no_hancell_hanshow_actual_adapter_implemented_in_task018": true,
+  "no_model_gateway_actual_adapter_implemented_in_task018": true,
+  "no_pc_automation_actual_implementation_in_task018": true,
+  "proof_cases": [
+    {
+      "case_name": "official system name is Army Claw",
+      "passed": true
+    },
+    {
+      "case_name": "architecture declares hwp_only=false",
+      "passed": true
+    },
+    {
+      "case_name": "local_workspace is first-class target",
+      "passed": true
+    },
+    {
+      "case_name": "hwp_hwpx is first-class target",
+      "passed": true
+    },
+    {
+      "case_name": "hancell is first-class target",
+      "passed": true
+    },
+    {
+      "case_name": "hanshow is first-class target",
+      "passed": true
+    },
+    {
+      "case_name": "HWP/HWPX template preservation is required",
+      "passed": true
+    },
+    {
+      "case_name": "HanCell template preservation is required",
+      "passed": true
+    },
+    {
+      "case_name": "HanShow template preservation is required",
+      "passed": true
+    },
+    {
+      "case_name": "HWP/HWPX preservation fields are present",
+      "passed": true
+    },
+    {
+      "case_name": "HanCell preservation fields are present",
+      "passed": true
+    },
+    {
+      "case_name": "HanShow preservation fields are present",
+      "passed": true
+    },
+    {
+      "case_name": "LLM direct document package edit is disallowed",
+      "passed": true
+    },
+    {
+      "case_name": "LLM direct native app state modification is disallowed",
+      "passed": true
+    },
+    {
+      "case_name": "LLM structured-plan-only boundary is required",
+      "passed": true
+    },
+    {
+      "case_name": "adapter deterministic execution boundary is required",
+      "passed": true
+    },
+    {
+      "case_name": "MockModelAdapter is declared",
+      "passed": true
+    },
+    {
+      "case_name": "LocalLlmAdapter is declared",
+      "passed": true
+    },
+    {
+      "case_name": "ClosedOpenAICompatibleAdapter is declared",
+      "passed": true
+    },
+    {
+      "case_name": "public internet required is false",
+      "passed": true
+    },
+    {
+      "case_name": "local workspace policy exists",
+      "passed": true
+    },
+    {
+      "case_name": "final_core_selection_declared=false",
+      "passed": true
+    },
+    {
+      "case_name": "stage_2_transition_declared=false",
+      "passed": true
+    },
+    {
+      "case_name": "Task 017 summary remains read-only",
+      "passed": true
+    },
+    {
+      "case_name": "Task 017 transport-agnostic proof still passes",
+      "passed": true
+    },
+    {
+      "case_name": "no HanCell/HanShow actual adapter is implemented in Task 018",
+      "passed": true
+    },
+    {
+      "case_name": "no Model Gateway actual adapter is implemented in Task 018",
+      "passed": true
+    },
+    {
+      "case_name": "master plan roadmap aligns Task 018 and Task 019",
+      "passed": true
+    }
+  ]
+}

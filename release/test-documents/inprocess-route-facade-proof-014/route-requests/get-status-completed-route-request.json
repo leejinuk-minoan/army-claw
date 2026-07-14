@@ -1,0 +1,10 @@
+{
+  "route_request_id": "route-get-status-completed",
+  "mock_method": "GET",
+  "mock_path": "/mock/jobs/job-api-route-create-document/status",
+  "service_operation": "getStatus",
+  "params": {
+    "job_id": "job-api-route-create-document"
+  },
+  "body": {}
+}

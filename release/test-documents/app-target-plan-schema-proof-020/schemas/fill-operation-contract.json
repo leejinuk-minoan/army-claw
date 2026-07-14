@@ -1,0 +1,68 @@
+{
+  "required_fields": [
+    "operation_id",
+    "operation_type",
+    "target_locator",
+    "value",
+    "preserve_style",
+    "validation_rules"
+  ],
+  "common_allowed_operation_types": [
+    "replace_text",
+    "insert_paragraph",
+    "append_table_rows",
+    "set_metadata",
+    "copy_template_block",
+    "no_op_validation_only"
+  ],
+  "target_allowed_operation_types": {
+    "hwp_hwpx": [
+      "replace_text",
+      "insert_paragraph",
+      "append_table_rows",
+      "set_metadata",
+      "copy_template_block",
+      "no_op_validation_only",
+      "replace_placeholder",
+      "insert_section_paragraph",
+      "append_hwp_table_rows"
+    ],
+    "hancell": [
+      "replace_text",
+      "insert_paragraph",
+      "append_table_rows",
+      "set_metadata",
+      "copy_template_block",
+      "no_op_validation_only",
+      "set_cell_value",
+      "fill_range",
+      "append_sheet_rows",
+      "preserve_formula_cells"
+    ],
+    "hanshow": [
+      "replace_text",
+      "insert_paragraph",
+      "append_table_rows",
+      "set_metadata",
+      "copy_template_block",
+      "no_op_validation_only",
+      "replace_slide_placeholder",
+      "set_textbox_text",
+      "duplicate_slide_from_layout",
+      "replace_image_placeholder"
+    ],
+    "local_workspace": [
+      "replace_text",
+      "insert_paragraph",
+      "append_table_rows",
+      "set_metadata",
+      "copy_template_block",
+      "no_op_validation_only",
+      "inspect_path",
+      "prepare_output_folder",
+      "copy_template_to_output",
+      "validate_output_path"
+    ]
+  },
+  "actual_operation_execution_performed": false
+}

@@ -1,0 +1,8 @@
+{
+  "transport_profile": "cli_like",
+  "metadata_only": true,
+  "real_http_server_started": false,
+  "cli_runtime_started": false,
+  "ui_runtime_started": false,
+  "description": "Proof metadata only; no transport runtime is started."
+}

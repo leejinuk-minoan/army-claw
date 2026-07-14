@@ -1,0 +1,34 @@
+{
+  "route_request_id": "route-validation-failure",
+  "mock_method": "GET",
+  "mock_path": "/mock/jobs/job-validation-failure/result",
+  "service_operation": "getResult",
+  "http_like_status": 500,
+  "ok": false,
+  "status": "failed",
+  "job_id": "job-validation-failure",
+  "job_status": "failed",
+  "data": {
+    "route_id": "get_result",
+    "job_id": "job-validation-failure",
+    "status": "failed"
+  },
+  "error": {
+    "code": "validation_error",
+    "type": "validation_error",
+    "message": "validation_error fixture",
+    "category": "validation",
+    "retryable": false,
+    "user_visible": true,
+    "expected_status": "validation_error"
+  },
+  "artifacts": {
+    "output_path": null,
+    "report_path": null,
+    "evidence_paths": []
+  },
+  "contract_version": "service-contract-schema-error-taxonomy-013.v1",
+  "real_com_executed": false,
+  "final_core_selection_declared": false,
+  "stage_2_transition_declared": false
+}

@@ -1,0 +1,52 @@
+{
+  "task_id": "node-xml-thin-interim-adapter-integration-008",
+  "generated_at": "2026-07-04T13:37:46.632Z",
+  "completion_candidate": true,
+  "backend_id": "NodeXmlThinInterimEditorAdapter",
+  "backend_role": "editor",
+  "supported_intents": [
+    "create_document",
+    "edit_paragraph",
+    "edit_table",
+    "apply_style"
+  ],
+  "outputs": [
+    {
+      "path": "C:/Users/USER/Desktop/로컬 open claw 만들기/.tmp/t8/release/test-documents/node-xml-thin-interim-adapter-integration-008/outputs/create-document-output.hwpx",
+      "exists": true,
+      "size": 1842617,
+      "sha256": "7d60e8e55bdd9baf11f62731a8dc359d138d64accb4f2daf27de5a9ad2d87831"
+    },
+    {
+      "path": "C:/Users/USER/Desktop/로컬 open claw 만들기/.tmp/t8/release/test-documents/node-xml-thin-interim-adapter-integration-008/outputs/edit-paragraph-output.hwpx",
+      "exists": true,
+      "size": 1842601,
+      "sha256": "794271d7afb0b2e180d8d1923a53a4b984adfc93fd67e9766f04db1f75c05aa0"
+    },
+    {
+      "path": "C:/Users/USER/Desktop/로컬 open claw 만들기/.tmp/t8/release/test-documents/node-xml-thin-interim-adapter-integration-008/outputs/edit-table-output.hwpx",
+      "exists": true,
+      "size": 1842668,
+      "sha256": "5e199496700e3c3b86a9af3c48e3423d525b81f0b5ba83daf35c0db9bed56e9b"
+    },
+    {
+      "path": "C:/Users/USER/Desktop/로컬 open claw 만들기/.tmp/t8/release/test-documents/node-xml-thin-interim-adapter-integration-008/outputs/apply-style-output.hwpx",
+      "exists": true,
+      "size": 1842608,
+      "sha256": "afc59b0e6d5a19159716078d05e8082faa654df9f67604261624c7354b12c723"
+    }
+  ],
+  "validation_failure": {
+    "promoted": false,
+    "failure_type": "validation_error"
+  },
+  "real_com_executed": false,
+  "final_core_selection_declared": false,
+  "stage_2_transition_declared": false,
+  "completed_artifacts_modified": false,
+  "read_only_reference_roots": [
+    "release/test-documents/hwpx-core-benchmark-003-evidence-integrity",
+    "release/test-documents/hwpcoreadapter-backend-proof-006",
+    "release/test-documents/editor-backend-candidate-comparison-007"
+  ]
+}

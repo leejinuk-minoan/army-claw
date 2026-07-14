@@ -1,0 +1,13 @@
+{
+  "llm_may_directly_edit_document_packages": false,
+  "llm_may_directly_modify_native_app_state": false,
+  "llm_must_output_structured_plan_only": true,
+  "allowed_plan_types": [
+    "local_workspace_action_plan",
+    "hwp_hwpx_fill_plan",
+    "hancell_fill_plan",
+    "hanshow_fill_plan",
+    "multi_app_execution_plan"
+  ],
+  "plan_validation_required_before_execution": true
+}

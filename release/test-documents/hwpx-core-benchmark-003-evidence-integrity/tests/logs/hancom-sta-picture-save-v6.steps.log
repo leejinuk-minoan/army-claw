@@ -1,0 +1,14 @@
+﻿
+2026-07-04T08:21:00.3105131+09:00	process_start	ok	image=C:\Users\USER\Desktop\로컬 open claw 만들기\.tmp\task003-local-rerun-v6-20260704073958\release\test-documents\hwpx-core-benchmark-003-evidence-integrity\external-artifacts\task003-v6\native-hwpx\task003-image.png;output=C:\Users\USER\Desktop\로컬 open claw 만들기\.tmp\task003-local-rerun-v6-20260704073958\release\test-documents\hwpx-core-benchmark-003-evidence-integrity\external-artifacts\task003-v6\native-hwpx\hancom-picture-output.hwpx;apartment=STA
+2026-07-04T08:21:01.4850962+09:00	com_create_success	ok	
+2026-07-04T08:21:01.5562810+09:00	register_module_FilePathCheckerModule	ok	result=False
+2026-07-04T08:21:01.5572812+09:00	register_module_SecurityModule	ok	result=False
+2026-07-04T08:21:01.5818196+09:00	window_visible_set	ok	
+2026-07-04T08:21:01.9980213+09:00	run_filenew_success	ok	
+2026-07-04T08:21:02.1420633+09:00	insert_text_success	ok	
+2026-07-04T08:21:07.2105099+09:00	insert_picture_8args	ok	result=System.__ComObject
+2026-07-04T08:21:07.3660359+09:00	save_as_result	ok	result=True;exists=True;length=14325;sha256=7829289d2dc9af5d2ea80c8889054ee695ca1317b51d729efc3d81ed947671e3
+2026-07-04T08:21:07.4662584+09:00	clear_success	ok	
+2026-07-04T08:21:07.4737665+09:00	quit_success	ok	
+2026-07-04T08:21:07.5539255+09:00	release_com_success	ok	
+2026-07-04T08:21:09.5592280+09:00	final	passed	output_exists=True;output_size=14325;output_sha256=7829289d2dc9af5d2ea80c8889054ee695ca1317b51d729efc3d81ed947671e3;last=release_com_success

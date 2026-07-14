@@ -1,0 +1,186 @@
+{
+  "scoring_weights": {
+    "functional_fit": 30,
+    "visual_fidelity": 25,
+    "api_extensibility": 15,
+    "offline_distribution": 10,
+    "performance": 10,
+    "license_maintenance": 10
+  },
+  "editing_core_scorecard": {
+    "current_node_xml": {
+      "categories": {
+        "functional_fit": {
+          "weight": 30,
+          "measured_points": 12,
+          "pending_points": 0,
+          "score_formula": "실제 adapter 실행과 scenario assertion 기반 부분 점수",
+          "evidence_paths": [
+            "release/test-documents/hwpx-core-benchmark-002/summary/benchmark-results.json"
+          ],
+          "blocking_conditions": []
+        },
+        "visual_fidelity": {
+          "weight": 25,
+          "measured_points": 0,
+          "pending_points": 25,
+          "score_formula": "사용자 한글 2024 시각 검증 전 pending",
+          "evidence_paths": [],
+          "blocking_conditions": [
+            "user_visual_review_not_requested"
+          ]
+        },
+        "api_extensibility": {
+          "weight": 15,
+          "measured_points": 5,
+          "pending_points": 0,
+          "score_formula": "공통 adapter method override 존재 여부",
+          "evidence_paths": [
+            "tools/hancom/adapters/current-node-xml-adapter.mjs"
+          ],
+          "blocking_conditions": []
+        },
+        "offline_distribution": {
+          "weight": 10,
+          "measured_points": 6,
+          "pending_points": 0,
+          "score_formula": "repo-local Node runtime evidence",
+          "evidence_paths": [],
+          "blocking_conditions": [
+            "repository_license_unknown"
+          ]
+        },
+        "performance": {
+          "weight": 10,
+          "measured_points": 0,
+          "pending_points": 10,
+          "score_formula": "S12 raw samples가 있는 항목만 반영",
+          "evidence_paths": [],
+          "blocking_conditions": []
+        },
+        "license_maintenance": {
+          "weight": 10,
+          "measured_points": 0,
+          "pending_points": 10,
+          "score_formula": "실제 LICENSE evidence 확보 전 pending",
+          "evidence_paths": [],
+          "blocking_conditions": [
+            "repository_license_unknown"
+          ]
+        }
+      }
+    },
+    "python_hwpx": {
+      "categories": {
+        "functional_fit": {
+          "weight": 30,
+          "measured_points": 0,
+          "pending_points": 0,
+          "score_formula": "blocked 후보는 기능 점수 부여 금지",
+          "evidence_paths": [],
+          "blocking_conditions": [
+            "missing_pinned_artifact"
+          ]
+        },
+        "visual_fidelity": {
+          "weight": 25,
+          "measured_points": 0,
+          "pending_points": 25,
+          "score_formula": "실제 output 없음",
+          "evidence_paths": [],
+          "blocking_conditions": []
+        },
+        "api_extensibility": {
+          "weight": 15,
+          "measured_points": 0,
+          "pending_points": 0,
+          "score_formula": "process adapter 실행 전 점수 없음",
+          "evidence_paths": [],
+          "blocking_conditions": [
+            "missing_python_hwpx_runtime"
+          ]
+        },
+        "offline_distribution": {
+          "weight": 10,
+          "measured_points": 0,
+          "pending_points": 0,
+          "score_formula": "offline artifact inventory 없음",
+          "evidence_paths": [],
+          "blocking_conditions": [
+            "missing_offline_package"
+          ]
+        },
+        "performance": {
+          "weight": 10,
+          "measured_points": 0,
+          "pending_points": 0,
+          "score_formula": "raw sample 없음",
+          "evidence_paths": [],
+          "blocking_conditions": [
+            "not_executed"
+          ]
+        },
+        "license_maintenance": {
+          "weight": 10,
+          "measured_points": 0,
+          "pending_points": 0,
+          "score_formula": "LICENSE evidence 없음",
+          "evidence_paths": [],
+          "blocking_conditions": [
+            "missing_license"
+          ]
+        }
+      }
+    }
+  },
+  "validator_scorecard": {
+    "hwpxlib": {
+      "categories": {
+        "functional_fit": {
+          "weight": 30,
+          "measured_points": 0,
+          "pending_points": 0,
+          "score_formula": "blocked validator는 점수 없음",
+          "evidence_paths": [],
+          "blocking_conditions": [
+            "missing_jar"
+          ]
+        },
+        "license_maintenance": {
+          "weight": 10,
+          "measured_points": 0,
+          "pending_points": 0,
+          "score_formula": "LICENSE evidence 없음",
+          "evidence_paths": [],
+          "blocking_conditions": [
+            "missing_license"
+          ]
+        }
+      }
+    },
+    "hwpforge": {
+      "categories": {
+        "functional_fit": {
+          "weight": 30,
+          "measured_points": 0,
+          "pending_points": 0,
+          "score_formula": "identity blocked 후보는 점수 없음",
+          "evidence_paths": [],
+          "blocking_conditions": [
+            "identity_not_established"
+          ]
+        },
+        "license_maintenance": {
+          "weight": 10,
+          "measured_points": 0,
+          "pending_points": 0,
+          "score_formula": "LICENSE evidence 없음",
+          "evidence_paths": [],
+          "blocking_conditions": [
+            "missing_license"
+          ]
+        }
+      }
+    }
+  }
+}

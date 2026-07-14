@@ -1,0 +1,318 @@
+{
+  "schema_version": "2.1.0",
+  "document_type": "role_matrix",
+  "task_id": "hwpx-core-benchmark-003-evidence-integrity",
+  "generated_at": "2026-07-03T22:51:15.754Z",
+  "candidates": {
+    "current_node_xml": {
+      "role": "editor",
+      "runtime": "node xml mutation engine",
+      "scenarios": {
+        "S01": {
+          "applicable": true,
+          "rationale": "S01 assigned to editor"
+        },
+        "S02": {
+          "applicable": true,
+          "rationale": "S02 assigned to editor"
+        },
+        "S03": {
+          "applicable": true,
+          "rationale": "S03 assigned to editor"
+        },
+        "S04": {
+          "applicable": true,
+          "rationale": "S04 assigned to editor"
+        },
+        "S05": {
+          "applicable": true,
+          "rationale": "S05 assigned to editor"
+        },
+        "S06": {
+          "applicable": true,
+          "rationale": "S06 assigned to editor"
+        },
+        "S07": {
+          "applicable": true,
+          "rationale": "S07 assigned to editor"
+        },
+        "S08": {
+          "applicable": true,
+          "rationale": "S08 assigned to editor"
+        },
+        "S09": {
+          "applicable": false,
+          "rationale": "S09 outside editor responsibility"
+        },
+        "S10": {
+          "applicable": false,
+          "rationale": "S10 outside editor responsibility"
+        },
+        "S11": {
+          "applicable": false,
+          "rationale": "S11 outside editor responsibility"
+        },
+        "S12": {
+          "applicable": true,
+          "rationale": "S12 assigned to editor"
+        },
+        "S13": {
+          "applicable": true,
+          "rationale": "S13 assigned to editor"
+        },
+        "S14": {
+          "applicable": true,
+          "rationale": "S14 assigned to editor"
+        }
+      }
+    },
+    "python_hwpx": {
+      "role": "editor",
+      "runtime": "python hwpx mutation probe",
+      "scenarios": {
+        "S01": {
+          "applicable": true,
+          "rationale": "S01 assigned to editor"
+        },
+        "S02": {
+          "applicable": true,
+          "rationale": "S02 assigned to editor"
+        },
+        "S03": {
+          "applicable": true,
+          "rationale": "S03 assigned to editor"
+        },
+        "S04": {
+          "applicable": true,
+          "rationale": "S04 assigned to editor"
+        },
+        "S05": {
+          "applicable": true,
+          "rationale": "S05 assigned to editor"
+        },
+        "S06": {
+          "applicable": true,
+          "rationale": "S06 assigned to editor"
+        },
+        "S07": {
+          "applicable": true,
+          "rationale": "S07 assigned to editor"
+        },
+        "S08": {
+          "applicable": true,
+          "rationale": "S08 assigned to editor"
+        },
+        "S09": {
+          "applicable": false,
+          "rationale": "S09 outside editor responsibility"
+        },
+        "S10": {
+          "applicable": false,
+          "rationale": "S10 outside editor responsibility"
+        },
+        "S11": {
+          "applicable": false,
+          "rationale": "S11 outside editor responsibility"
+        },
+        "S12": {
+          "applicable": true,
+          "rationale": "S12 assigned to editor"
+        },
+        "S13": {
+          "applicable": true,
+          "rationale": "S13 assigned to editor"
+        },
+        "S14": {
+          "applicable": true,
+          "rationale": "S14 assigned to editor"
+        }
+      }
+    },
+    "hwpxlib": {
+      "role": "validator",
+      "runtime": "hwpxlib validation adapter",
+      "scenarios": {
+        "S01": {
+          "applicable": false,
+          "rationale": "S01 outside validator responsibility"
+        },
+        "S02": {
+          "applicable": false,
+          "rationale": "S02 outside validator responsibility"
+        },
+        "S03": {
+          "applicable": true,
+          "rationale": "S03 assigned to validator"
+        },
+        "S04": {
+          "applicable": true,
+          "rationale": "S04 assigned to validator"
+        },
+        "S05": {
+          "applicable": false,
+          "rationale": "S05 outside validator responsibility"
+        },
+        "S06": {
+          "applicable": true,
+          "rationale": "S06 assigned to validator"
+        },
+        "S07": {
+          "applicable": true,
+          "rationale": "S07 assigned to validator"
+        },
+        "S08": {
+          "applicable": true,
+          "rationale": "S08 assigned to validator"
+        },
+        "S09": {
+          "applicable": false,
+          "rationale": "S09 outside validator responsibility"
+        },
+        "S10": {
+          "applicable": false,
+          "rationale": "S10 outside validator responsibility"
+        },
+        "S11": {
+          "applicable": false,
+          "rationale": "S11 outside validator responsibility"
+        },
+        "S12": {
+          "applicable": true,
+          "rationale": "S12 assigned to validator"
+        },
+        "S13": {
+          "applicable": true,
+          "rationale": "S13 assigned to validator"
+        },
+        "S14": {
+          "applicable": true,
+          "rationale": "S14 assigned to validator"
+        }
+      }
+    },
+    "hwpforge": {
+      "role": "validator",
+      "runtime": "hwpforge validation adapter",
+      "scenarios": {
+        "S01": {
+          "applicable": false,
+          "rationale": "S01 outside validator responsibility"
+        },
+        "S02": {
+          "applicable": false,
+          "rationale": "S02 outside validator responsibility"
+        },
+        "S03": {
+          "applicable": true,
+          "rationale": "S03 assigned to validator"
+        },
+        "S04": {
+          "applicable": true,
+          "rationale": "S04 assigned to validator"
+        },
+        "S05": {
+          "applicable": false,
+          "rationale": "S05 outside validator responsibility"
+        },
+        "S06": {
+          "applicable": true,
+          "rationale": "S06 assigned to validator"
+        },
+        "S07": {
+          "applicable": true,
+          "rationale": "S07 assigned to validator"
+        },
+        "S08": {
+          "applicable": true,
+          "rationale": "S08 assigned to validator"
+        },
+        "S09": {
+          "applicable": false,
+          "rationale": "S09 outside validator responsibility"
+        },
+        "S10": {
+          "applicable": false,
+          "rationale": "S10 outside validator responsibility"
+        },
+        "S11": {
+          "applicable": false,
+          "rationale": "S11 outside validator responsibility"
+        },
+        "S12": {
+          "applicable": true,
+          "rationale": "S12 assigned to validator"
+        },
+        "S13": {
+          "applicable": true,
+          "rationale": "S13 assigned to validator"
+        },
+        "S14": {
+          "applicable": true,
+          "rationale": "S14 assigned to validator"
+        }
+      }
+    },
+    "hancom_com": {
+      "role": "layout_authority",
+      "runtime": "Hancom Office COM automation authority",
+      "scenarios": {
+        "S01": {
+          "applicable": false,
+          "rationale": "S01 outside layout_authority responsibility"
+        },
+        "S02": {
+          "applicable": false,
+          "rationale": "S02 outside layout_authority responsibility"
+        },
+        "S03": {
+          "applicable": false,
+          "rationale": "S03 outside layout_authority responsibility"
+        },
+        "S04": {
+          "applicable": false,
+          "rationale": "S04 outside layout_authority responsibility"
+        },
+        "S05": {
+          "applicable": false,
+          "rationale": "S05 outside layout_authority responsibility"
+        },
+        "S06": {
+          "applicable": false,
+          "rationale": "S06 outside layout_authority responsibility"
+        },
+        "S07": {
+          "applicable": false,
+          "rationale": "S07 outside layout_authority responsibility"
+        },
+        "S08": {
+          "applicable": false,
+          "rationale": "S08 outside layout_authority responsibility"
+        },
+        "S09": {
+          "applicable": true,
+          "rationale": "S09 assigned to layout_authority"
+        },
+        "S10": {
+          "applicable": true,
+          "rationale": "S10 assigned to layout_authority"
+        },
+        "S11": {
+          "applicable": true,
+          "rationale": "S11 assigned to layout_authority"
+        },
+        "S12": {
+          "applicable": false,
+          "rationale": "S12 outside layout_authority responsibility"
+        },
+        "S13": {
+          "applicable": false,
+          "rationale": "S13 outside layout_authority responsibility"
+        },
+        "S14": {
+          "applicable": false,
+          "rationale": "S14 outside layout_authority responsibility"
+        }
+      }
+    }
+  }
+}

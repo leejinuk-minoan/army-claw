@@ -1,0 +1,11 @@
+{
+  "route_request_id": "route-fixture-get_status",
+  "route_id": "get_status",
+  "mock_method": "GET",
+  "mock_path": "/mock/jobs/job-route-manifest/status",
+  "service_operation": "getStatus",
+  "params": {
+    "job_id": "job-route-manifest"
+  },
+  "body": {}
+}

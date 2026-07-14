@@ -1,0 +1,13 @@
+{
+  "job_id": "job-create",
+  "status": "completed",
+  "request_path": "release/test-documents/service-contract-schema-error-taxonomy-013/fixtures/valid/submit-request.json",
+  "response_path": "release/test-documents/service-contract-schema-error-taxonomy-013/fixtures/valid/completed-response.json",
+  "plan_path": "release/test-documents/service-contract-schema-error-taxonomy-013/fixtures/valid/plan.json",
+  "report_path": "release/test-documents/service-contract-schema-error-taxonomy-013/fixtures/valid/report.json",
+  "output_path": "release/test-documents/service-contract-schema-error-taxonomy-013/fixtures/valid/output.hwpx",
+  "evidence_paths": [
+    "release/test-documents/service-contract-schema-error-taxonomy-013/fixtures/valid/evidence.json"
+  ],
+  "failure": null
+}

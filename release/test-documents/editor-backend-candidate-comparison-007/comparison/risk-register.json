@@ -1,0 +1,77 @@
+{
+  "task_id": "editor-backend-candidate-comparison-007",
+  "generated_at": "2026-07-04T12:14:51.818Z",
+  "risks": [
+    {
+      "id": "R1",
+      "area": "python-hwpx",
+      "risk": "dependency or module name may not be available in current offline environment",
+      "severity": "high"
+    },
+    {
+      "id": "R2",
+      "area": "python-hwpx",
+      "risk": "license not verified in current repo unless explicit record exists",
+      "severity": "medium"
+    },
+    {
+      "id": "R3",
+      "area": "node_xml_thin",
+      "risk": "thin XML backend is not a production semantic editor",
+      "severity": "medium"
+    },
+    {
+      "id": "R4",
+      "area": "layout",
+      "risk": "native layout quality still needs Hancom authority opt-in validation",
+      "severity": "medium"
+    }
+  ],
+  "read_only_checks": {
+    "task003_evidence_modified": false,
+    "task003_probe": {
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task007-editor-backend-candidate-comparison-20260704145500\\release\\test-documents\\hwpx-core-benchmark-003-evidence-integrity\\tests\\post-d2-scenario-gates-v6.result.txt",
+      "exists": true,
+      "size": 273,
+      "sha256": "8d2666229fbb0faaa2f1d1f171c83aad9494deeda55fe5faf2d06a3c2567cbac",
+      "hash_algorithm": "sha256"
+    },
+    "task004_docs": [
+      {
+        "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task007-editor-backend-candidate-comparison-20260704145500\\docs\\architecture\\hwpx-core-selection-review-004.md",
+        "exists": true,
+        "size": 9668,
+        "sha256": "48e824ec1fca16b1e5a656207072cf893b470153a119b44708f5e4977c7d789a",
+        "hash_algorithm": "sha256"
+      },
+      {
+        "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task007-editor-backend-candidate-comparison-20260704145500\\docs\\architecture\\hwpx-core-adapter-boundary-004.md",
+        "exists": true,
+        "size": 8919,
+        "sha256": "241eb356d4943a5d49c9110673a8b44165ff0e696c30582a2df77fa9c8cf0517",
+        "hash_algorithm": "sha256"
+      }
+    ],
+    "task005_report": {
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task007-editor-backend-candidate-comparison-20260704145500\\docs\\gpt-communication\\reports\\2026-07-04-hwpcoreadapter-boundary-validation-005.md",
+      "exists": true,
+      "size": 7842,
+      "sha256": "2e73c19f5c07eeee8cebff7cd55f541b4344a92cdbec797697b299d578ce29d4",
+      "hash_algorithm": "sha256"
+    },
+    "task006_report": {
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task007-editor-backend-candidate-comparison-20260704145500\\docs\\gpt-communication\\reports\\2026-07-04-hwpcoreadapter-backend-proof-006.md",
+      "exists": true,
+      "size": 9450,
+      "sha256": "62a44f653af1c76d90433a3c7f4f0cf33cd47b046bf6b95db63be9516584791c",
+      "hash_algorithm": "sha256"
+    },
+    "task006_summary": {
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task007-editor-backend-candidate-comparison-20260704145500\\release\\test-documents\\hwpcoreadapter-backend-proof-006\\tests\\backend-proof-summary.json",
+      "exists": true,
+      "size": 2885,
+      "sha256": "0864809a5557b08ed96c219f369f9db446a9d175429c0532358d45b0388e4b18",
+      "hash_algorithm": "sha256"
+    }
+  }
+}

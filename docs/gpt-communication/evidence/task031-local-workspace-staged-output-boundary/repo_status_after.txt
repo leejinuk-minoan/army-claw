@@ -1,0 +1,18 @@
+ M docs/gpt-communication/CURRENT.md
+ M docs/gpt-communication/PROJECT_STATE.json
+ M docs/research-notes/task-notes/RN-031-task031-local-workspace-staged-output-boundary.md
+?? docs/gpt-communication/delegation/task031-local-workspace-staged-output-boundary/LOCAL_EXECUTION_RESULT.json
+?? docs/gpt-communication/evidence/task031-local-workspace-staged-output-boundary/adapter_validator_unittest_exit_code.txt
+?? docs/gpt-communication/evidence/task031-local-workspace-staged-output-boundary/adapter_validator_unittest_stderr.txt
+?? docs/gpt-communication/evidence/task031-local-workspace-staged-output-boundary/adapter_validator_unittest_stdout.txt
+?? docs/gpt-communication/evidence/task031-local-workspace-staged-output-boundary/local_workspace_adapter_unittest_exit_code.txt
+?? docs/gpt-communication/evidence/task031-local-workspace-staged-output-boundary/local_workspace_adapter_unittest_stderr.txt
+?? docs/gpt-communication/evidence/task031-local-workspace-staged-output-boundary/local_workspace_adapter_unittest_stdout.txt
+?? docs/gpt-communication/evidence/task031-local-workspace-staged-output-boundary/python_version.txt
+?? docs/gpt-communication/evidence/task031-local-workspace-staged-output-boundary/python_version_stderr.txt
+?? docs/gpt-communication/evidence/task031-local-workspace-staged-output-boundary/repo_status_after.txt
+?? docs/gpt-communication/evidence/task031-local-workspace-staged-output-boundary/repo_status_after_stderr.txt
+?? docs/gpt-communication/evidence/task031-local-workspace-staged-output-boundary/validator_cli_exit_code.txt
+?? docs/gpt-communication/evidence/task031-local-workspace-staged-output-boundary/validator_cli_stderr.txt
+?? docs/gpt-communication/evidence/task031-local-workspace-staged-output-boundary/validator_cli_stdout.json
+?? docs/gpt-communication/reports/2026-07-10-task031b-local-workspace-staged-output-boundary-local-verification.md

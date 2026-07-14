@@ -1,0 +1,29 @@
+{
+  "task_id": "task025-adapter-interface-validator-implementation",
+  "phase": "task025a-cloud-implementation-package",
+  "routing_class": "cloud_first_local_verify",
+  "cloud_phase_complete": true,
+  "local_agent_required_now": false,
+  "local_execution_allowed": false,
+  "local_execution_base_sha": null,
+  "requires_master_read_only_verification": true,
+  "recommended_local_phase": "Task 025-B",
+  "allowed_local_agents": ["codex_a", "codex_b", "claude_code"],
+  "local_execution_scope": [
+    "pull verified cloud branch",
+    "run python validator CLI",
+    "run unittest suite",
+    "record stdout/stderr/exit code",
+    "create local execution report"
+  ],
+  "forbidden_local_actions": [
+    "Hancom COM execution",
+    "actual adapter invocation",
+    "HWP/HWPX/HanCell/HanShow document generation",
+    "dependency installation unless separately approved",
+    "main direct push",
+    "force push"
+  ],
+  "completion_gate_passed": false,
+  "requires_local_verification": true
+}

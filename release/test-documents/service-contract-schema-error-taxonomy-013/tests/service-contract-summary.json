@@ -1,0 +1,68 @@
+{
+  "task_id": "service-contract-schema-error-taxonomy-013",
+  "generated_at": "2026-07-05T02:50:29.305Z",
+  "contract_version": "service-contract-schema-error-taxonomy-013.v1",
+  "service_operations": [
+    "submit",
+    "runJob",
+    "getJob",
+    "getStatus",
+    "getResult",
+    "listEvents"
+  ],
+  "document_intents": [
+    "create_document",
+    "edit_paragraph",
+    "edit_table",
+    "apply_style"
+  ],
+  "job_statuses": [
+    "pending",
+    "running",
+    "completed",
+    "failed",
+    "rejected"
+  ],
+  "response_statuses": [
+    "accepted",
+    "pending",
+    "running",
+    "completed",
+    "failed",
+    "rejected",
+    "not_found",
+    "not_ready",
+    "validation_error",
+    "policy_error"
+  ],
+  "error_codes": [
+    "invalid_request",
+    "unsupported_intent",
+    "not_found",
+    "not_ready",
+    "policy_error",
+    "validation_error",
+    "execution_error",
+    "artifact_missing",
+    "contract_violation"
+  ],
+  "proof_case_count": 14,
+  "proof_cases_passed": 14,
+  "previous_task_012_read_only": true,
+  "real_com_executed": false,
+  "python_hwpx_dependency_introduced": false,
+  "install_or_vendor_action": false,
+  "final_core_selection_declared": false,
+  "stage_2_transition_declared": false,
+  "completion_candidate": true,
+  "read_only_reference_roots": [
+    "release/test-documents/hwpx-core-benchmark-003-evidence-integrity",
+    "release/test-documents/hwpcoreadapter-backend-proof-006",
+    "release/test-documents/editor-backend-candidate-comparison-007",
+    "release/test-documents/node-xml-thin-interim-adapter-integration-008",
+    "release/test-documents/agent-operation-plan-e2e-proof-009",
+    "release/test-documents/agent-api-boundary-proof-010",
+    "release/test-documents/local-job-boundary-proof-011",
+    "release/test-documents/service-adapter-boundary-proof-012"
+  ]
+}

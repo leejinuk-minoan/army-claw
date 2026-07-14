@@ -1,0 +1,9 @@
+{
+  "event_id": "event-001",
+  "job_id": "job-create",
+  "from_status": "running",
+  "to_status": "completed",
+  "timestamp": "2026-07-05T00:00:00.000Z",
+  "reason": "api_response_completed",
+  "artifact_path": "release/test-documents/service-contract-schema-error-taxonomy-013/fixtures/valid/completed-response.json"
+}

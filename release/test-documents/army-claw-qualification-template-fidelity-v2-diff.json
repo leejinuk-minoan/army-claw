@@ -1,0 +1,36 @@
+{
+  "template_path": ".tmp/hwp-reference-conversion/pk-table-qualification-review.hwpx",
+  "output_path": "release/test-documents/army-claw-qualification-review-template-fidelity-v2.hwpx",
+  "validation_valid": true,
+  "selectors_requested": 10,
+  "selectors_applied": 10,
+  "selectors_failed": 0,
+  "changed_paragraphs": 9,
+  "changed_table_cells": 1,
+  "overflow_warnings": [],
+  "structure_preservation": {
+    "binData_preserved": true,
+    "missing_entries": [],
+    "added_entries": [],
+    "changed_entries": [
+      "Contents/section0.xml",
+      "Preview/PrvText.txt"
+    ],
+    "allowed_changed_entries": [
+      "Contents/section0.xml",
+      "Preview/PrvText.txt"
+    ],
+    "unexpected_changed_entries": [],
+    "table_count_before": 43,
+    "table_count_after": 43,
+    "paragraph_count_before": 476,
+    "paragraph_count_after": 476
+  },
+  "text_checks": {
+    "contains_first_title": true,
+    "contains_second_title": true,
+    "contains_org": true,
+    "contains_target_page_heading": true,
+    "contains_table_cell": true
+  }
+}

@@ -1,0 +1,2057 @@
+{
+  "generated_at": "2026-07-03T23:24:23.974Z",
+  "native_hwpx_probe_executed": true,
+  "input_hwpx": {
+    "path": "external-artifacts/task003-v6/native-hwpx/hancom-empty-save-hardcoded-visible.hwpx",
+    "exists": true,
+    "size": 13674,
+    "sha256": "fee3800ec84315981bb2d838f48d800dc478458c84b79461b97af587467171cc",
+    "hash_algorithm": "sha256",
+    "source": "filesystem"
+  },
+  "output_hwpx": {
+    "path": "external-artifacts/task003-v6/native-hwpx/hancom-open-save-output.hwpx",
+    "exists": true,
+    "size": 14468,
+    "sha256": "8c092794177aeca2c1630c06adc883c81e45d9d9ea97edb038449a46dae9e9dd",
+    "hash_algorithm": "sha256",
+    "source": "filesystem"
+  },
+  "picture_hwpx": {
+    "path": "external-artifacts/task003-v6/native-hwpx/hancom-picture-output.hwpx",
+    "exists": true,
+    "size": 14325,
+    "sha256": "7829289d2dc9af5d2ea80c8889054ee695ca1317b51d729efc3d81ed947671e3",
+    "hash_algorithm": "sha256",
+    "source": "filesystem"
+  },
+  "changed_entries": [
+    "Contents/content.hpf",
+    "Contents/section0.xml",
+    "Preview/PrvImage.png",
+    "Preview/PrvText.txt",
+    "settings.xml"
+  ],
+  "scenario_results": {
+    "S06": {
+      "validator_id": "s06-semantic-gate",
+      "valid": true,
+      "missing_evidence": [],
+      "assertions": [
+        {
+          "assertion_id": "input_hwpx_reference_valid",
+          "expected": true,
+          "actual": true,
+          "passed": true
+        },
+        {
+          "assertion_id": "input_hwpx_filesystem_probe_valid",
+          "expected": true,
+          "actual": {
+            "path": "external-artifacts/task003-v6/native-hwpx/hancom-empty-save-hardcoded-visible.hwpx",
+            "exists": true,
+            "size": 13674,
+            "sha256": "fee3800ec84315981bb2d838f48d800dc478458c84b79461b97af587467171cc",
+            "hash_algorithm": "sha256",
+            "source": "filesystem"
+          },
+          "passed": true
+        },
+        {
+          "assertion_id": "input_hwpx_path_matches_probe",
+          "expected": "external-artifacts/task003-v6/native-hwpx/hancom-empty-save-hardcoded-visible.hwpx",
+          "actual": "external-artifacts/task003-v6/native-hwpx/hancom-empty-save-hardcoded-visible.hwpx",
+          "passed": true
+        },
+        {
+          "assertion_id": "input_hwpx_size_matches_probe",
+          "expected": 13674,
+          "actual": 13674,
+          "passed": true
+        },
+        {
+          "assertion_id": "input_hwpx_sha256_matches_probe",
+          "expected": "fee3800ec84315981bb2d838f48d800dc478458c84b79461b97af587467171cc",
+          "actual": "fee3800ec84315981bb2d838f48d800dc478458c84b79461b97af587467171cc",
+          "passed": true
+        },
+        {
+          "assertion_id": "output_hwpx_reference_valid",
+          "expected": true,
+          "actual": true,
+          "passed": true
+        },
+        {
+          "assertion_id": "output_hwpx_filesystem_probe_valid",
+          "expected": true,
+          "actual": {
+            "path": "external-artifacts/task003-v6/native-hwpx/hancom-open-save-output.hwpx",
+            "exists": true,
+            "size": 14468,
+            "sha256": "8c092794177aeca2c1630c06adc883c81e45d9d9ea97edb038449a46dae9e9dd",
+            "hash_algorithm": "sha256",
+            "source": "filesystem"
+          },
+          "passed": true
+        },
+        {
+          "assertion_id": "output_hwpx_path_matches_probe",
+          "expected": "external-artifacts/task003-v6/native-hwpx/hancom-open-save-output.hwpx",
+          "actual": "external-artifacts/task003-v6/native-hwpx/hancom-open-save-output.hwpx",
+          "passed": true
+        },
+        {
+          "assertion_id": "output_hwpx_size_matches_probe",
+          "expected": 14468,
+          "actual": 14468,
+          "passed": true
+        },
+        {
+          "assertion_id": "output_hwpx_sha256_matches_probe",
+          "expected": "8c092794177aeca2c1630c06adc883c81e45d9d9ea97edb038449a46dae9e9dd",
+          "actual": "8c092794177aeca2c1630c06adc883c81e45d9d9ea97edb038449a46dae9e9dd",
+          "passed": true
+        },
+        {
+          "assertion_id": "before_snapshot_reference_valid",
+          "expected": true,
+          "actual": true,
+          "passed": true
+        },
+        {
+          "assertion_id": "before_snapshot_filesystem_probe_valid",
+          "expected": true,
+          "actual": {
+            "path": "external-artifacts/task003-v6/native-hwpx/s06-before-snapshot.txt",
+            "exists": true,
+            "size": 1257,
+            "sha256": "5c0897c9ee15b2cd9e78651c4d2a83f048c41bc48a58549a75c66d9abee40185",
+            "hash_algorithm": "sha256",
+            "source": "filesystem"
+          },
+          "passed": true
+        },
+        {
+          "assertion_id": "before_snapshot_path_matches_probe",
+          "expected": "external-artifacts/task003-v6/native-hwpx/s06-before-snapshot.txt",
+          "actual": "external-artifacts/task003-v6/native-hwpx/s06-before-snapshot.txt",
+          "passed": true
+        },
+        {
+          "assertion_id": "before_snapshot_size_matches_probe",
+          "expected": 1257,
+          "actual": 1257,
+          "passed": true
+        },
+        {
+          "assertion_id": "before_snapshot_sha256_matches_probe",
+          "expected": "5c0897c9ee15b2cd9e78651c4d2a83f048c41bc48a58549a75c66d9abee40185",
+          "actual": "5c0897c9ee15b2cd9e78651c4d2a83f048c41bc48a58549a75c66d9abee40185",
+          "passed": true
+        },
+        {
+          "assertion_id": "after_snapshot_reference_valid",
+          "expected": true,
+          "actual": true,
+          "passed": true
+        },
+        {
+          "assertion_id": "after_snapshot_filesystem_probe_valid",
+          "expected": true,
+          "actual": {
+            "path": "external-artifacts/task003-v6/native-hwpx/s06-after-snapshot.txt",
+            "exists": true,
+            "size": 1245,
+            "sha256": "371882da8d35200a03b58c099eb1df488de44e29475998a73ece2ab9a6eff7d4",
+            "hash_algorithm": "sha256",
+            "source": "filesystem"
+          },
+          "passed": true
+        },
+        {
+          "assertion_id": "after_snapshot_path_matches_probe",
+          "expected": "external-artifacts/task003-v6/native-hwpx/s06-after-snapshot.txt",
+          "actual": "external-artifacts/task003-v6/native-hwpx/s06-after-snapshot.txt",
+          "passed": true
+        },
+        {
+          "assertion_id": "after_snapshot_size_matches_probe",
+          "expected": 1245,
+          "actual": 1245,
+          "passed": true
+        },
+        {
+          "assertion_id": "after_snapshot_sha256_matches_probe",
+          "expected": "371882da8d35200a03b58c099eb1df488de44e29475998a73ece2ab9a6eff7d4",
+          "actual": "371882da8d35200a03b58c099eb1df488de44e29475998a73ece2ab9a6eff7d4",
+          "passed": true
+        },
+        {
+          "assertion_id": "input_output_hwpx_distinct_identity",
+          "expected": "different path AND different SHA256",
+          "actual": {
+            "input": {
+              "path": "external-artifacts/task003-v6/native-hwpx/hancom-empty-save-hardcoded-visible.hwpx",
+              "size": 13674,
+              "sha256": "fee3800ec84315981bb2d838f48d800dc478458c84b79461b97af587467171cc"
+            },
+            "output": {
+              "path": "external-artifacts/task003-v6/native-hwpx/hancom-open-save-output.hwpx",
+              "size": 14468,
+              "sha256": "8c092794177aeca2c1630c06adc883c81e45d9d9ea97edb038449a46dae9e9dd"
+            }
+          },
+          "passed": true
+        },
+        {
+          "assertion_id": "before_snapshot_lineage_to_input",
+          "expected": {
+            "path": "external-artifacts/task003-v6/native-hwpx/hancom-empty-save-hardcoded-visible.hwpx",
+            "sha256": "fee3800ec84315981bb2d838f48d800dc478458c84b79461b97af587467171cc"
+          },
+          "actual": {
+            "path": "external-artifacts/task003-v6/native-hwpx/hancom-empty-save-hardcoded-visible.hwpx",
+            "sha256": "fee3800ec84315981bb2d838f48d800dc478458c84b79461b97af587467171cc"
+          },
+          "passed": true
+        },
+        {
+          "assertion_id": "after_snapshot_lineage_to_output",
+          "expected": {
+            "path": "external-artifacts/task003-v6/native-hwpx/hancom-open-save-output.hwpx",
+            "sha256": "8c092794177aeca2c1630c06adc883c81e45d9d9ea97edb038449a46dae9e9dd"
+          },
+          "actual": {
+            "path": "external-artifacts/task003-v6/native-hwpx/hancom-open-save-output.hwpx",
+            "sha256": "8c092794177aeca2c1630c06adc883c81e45d9d9ea97edb038449a46dae9e9dd"
+          },
+          "passed": true
+        },
+        {
+          "assertion_id": "S06_merged_cell_map_equal",
+          "expected": {},
+          "actual": {},
+          "passed": true
+        },
+        {
+          "assertion_id": "S06_row_span_map_equal",
+          "expected": {},
+          "actual": {},
+          "passed": true
+        },
+        {
+          "assertion_id": "S06_col_span_map_equal",
+          "expected": {},
+          "actual": {},
+          "passed": true
+        },
+        {
+          "assertion_id": "package_diff_is_limited_to_allowed_targets",
+          "expected": [
+            "Contents/content.hpf",
+            "Contents/section0.xml",
+            "Preview/PrvImage.png",
+            "Preview/PrvText.txt",
+            "settings.xml"
+          ],
+          "actual": [
+            "Contents/content.hpf",
+            "Contents/section0.xml",
+            "Preview/PrvImage.png",
+            "Preview/PrvText.txt",
+            "settings.xml"
+          ],
+          "passed": true
+        },
+        {
+          "assertion_id": "non_target_entry_hashes_equal",
+          "expected": {
+            "Contents/header.xml": "ddd101ead8d5c1665f902a1f29fb20042941098a805c43842ce2cccb3237b7f1",
+            "META-INF/container.rdf": "0cfd814c20595c841e48e62fbf7591829f13c177fa92af634c8199f85ecf3a89",
+            "META-INF/container.xml": "5109d3a9249ec1058177fedab574c5d9616058aa92ebefcd33249ebb36a20f61",
+            "META-INF/manifest.xml": "2b4b155c1bb6a9ccc212fef113c4831d2f558e67cf1260eb314ce54f26fd32ea",
+            "mimetype": "5ab5230b5af04f78947736bf8dd1a269aa684e234f7f4a392efb85289d1655c2",
+            "version.xml": "ff3fc36d4de548ff69c612f3c882d16e466c00624d8a8611597f12a30bf34729"
+          },
+          "actual": {
+            "Contents/header.xml": "ddd101ead8d5c1665f902a1f29fb20042941098a805c43842ce2cccb3237b7f1",
+            "META-INF/container.rdf": "0cfd814c20595c841e48e62fbf7591829f13c177fa92af634c8199f85ecf3a89",
+            "META-INF/container.xml": "5109d3a9249ec1058177fedab574c5d9616058aa92ebefcd33249ebb36a20f61",
+            "META-INF/manifest.xml": "2b4b155c1bb6a9ccc212fef113c4831d2f558e67cf1260eb314ce54f26fd32ea",
+            "mimetype": "5ab5230b5af04f78947736bf8dd1a269aa684e234f7f4a392efb85289d1655c2",
+            "version.xml": "ff3fc36d4de548ff69c612f3c882d16e466c00624d8a8611597f12a30bf34729"
+          },
+          "passed": true
+        },
+        {
+          "assertion_id": "scenario_assertions_all_passed",
+          "expected": true,
+          "actual": true,
+          "passed": true
+        }
+      ]
+    },
+    "S07": {
+      "validator_id": "s07-semantic-gate",
+      "valid": true,
+      "missing_evidence": [],
+      "assertions": [
+        {
+          "assertion_id": "input_hwpx_reference_valid",
+          "expected": true,
+          "actual": true,
+          "passed": true
+        },
+        {
+          "assertion_id": "input_hwpx_filesystem_probe_valid",
+          "expected": true,
+          "actual": {
+            "path": "external-artifacts/task003-v6/native-hwpx/hancom-empty-save-hardcoded-visible.hwpx",
+            "exists": true,
+            "size": 13674,
+            "sha256": "fee3800ec84315981bb2d838f48d800dc478458c84b79461b97af587467171cc",
+            "hash_algorithm": "sha256",
+            "source": "filesystem"
+          },
+          "passed": true
+        },
+        {
+          "assertion_id": "input_hwpx_path_matches_probe",
+          "expected": "external-artifacts/task003-v6/native-hwpx/hancom-empty-save-hardcoded-visible.hwpx",
+          "actual": "external-artifacts/task003-v6/native-hwpx/hancom-empty-save-hardcoded-visible.hwpx",
+          "passed": true
+        },
+        {
+          "assertion_id": "input_hwpx_size_matches_probe",
+          "expected": 13674,
+          "actual": 13674,
+          "passed": true
+        },
+        {
+          "assertion_id": "input_hwpx_sha256_matches_probe",
+          "expected": "fee3800ec84315981bb2d838f48d800dc478458c84b79461b97af587467171cc",
+          "actual": "fee3800ec84315981bb2d838f48d800dc478458c84b79461b97af587467171cc",
+          "passed": true
+        },
+        {
+          "assertion_id": "output_hwpx_reference_valid",
+          "expected": true,
+          "actual": true,
+          "passed": true
+        },
+        {
+          "assertion_id": "output_hwpx_filesystem_probe_valid",
+          "expected": true,
+          "actual": {
+            "path": "external-artifacts/task003-v6/native-hwpx/hancom-open-save-output.hwpx",
+            "exists": true,
+            "size": 14468,
+            "sha256": "8c092794177aeca2c1630c06adc883c81e45d9d9ea97edb038449a46dae9e9dd",
+            "hash_algorithm": "sha256",
+            "source": "filesystem"
+          },
+          "passed": true
+        },
+        {
+          "assertion_id": "output_hwpx_path_matches_probe",
+          "expected": "external-artifacts/task003-v6/native-hwpx/hancom-open-save-output.hwpx",
+          "actual": "external-artifacts/task003-v6/native-hwpx/hancom-open-save-output.hwpx",
+          "passed": true
+        },
+        {
+          "assertion_id": "output_hwpx_size_matches_probe",
+          "expected": 14468,
+          "actual": 14468,
+          "passed": true
+        },
+        {
+          "assertion_id": "output_hwpx_sha256_matches_probe",
+          "expected": "8c092794177aeca2c1630c06adc883c81e45d9d9ea97edb038449a46dae9e9dd",
+          "actual": "8c092794177aeca2c1630c06adc883c81e45d9d9ea97edb038449a46dae9e9dd",
+          "passed": true
+        },
+        {
+          "assertion_id": "before_snapshot_reference_valid",
+          "expected": true,
+          "actual": true,
+          "passed": true
+        },
+        {
+          "assertion_id": "before_snapshot_filesystem_probe_valid",
+          "expected": true,
+          "actual": {
+            "path": "external-artifacts/task003-v6/native-hwpx/s06-before-snapshot.txt",
+            "exists": true,
+            "size": 1257,
+            "sha256": "5c0897c9ee15b2cd9e78651c4d2a83f048c41bc48a58549a75c66d9abee40185",
+            "hash_algorithm": "sha256",
+            "source": "filesystem"
+          },
+          "passed": true
+        },
+        {
+          "assertion_id": "before_snapshot_path_matches_probe",
+          "expected": "external-artifacts/task003-v6/native-hwpx/s06-before-snapshot.txt",
+          "actual": "external-artifacts/task003-v6/native-hwpx/s06-before-snapshot.txt",
+          "passed": true
+        },
+        {
+          "assertion_id": "before_snapshot_size_matches_probe",
+          "expected": 1257,
+          "actual": 1257,
+          "passed": true
+        },
+        {
+          "assertion_id": "before_snapshot_sha256_matches_probe",
+          "expected": "5c0897c9ee15b2cd9e78651c4d2a83f048c41bc48a58549a75c66d9abee40185",
+          "actual": "5c0897c9ee15b2cd9e78651c4d2a83f048c41bc48a58549a75c66d9abee40185",
+          "passed": true
+        },
+        {
+          "assertion_id": "after_snapshot_reference_valid",
+          "expected": true,
+          "actual": true,
+          "passed": true
+        },
+        {
+          "assertion_id": "after_snapshot_filesystem_probe_valid",
+          "expected": true,
+          "actual": {
+            "path": "external-artifacts/task003-v6/native-hwpx/s06-after-snapshot.txt",
+            "exists": true,
+            "size": 1245,
+            "sha256": "371882da8d35200a03b58c099eb1df488de44e29475998a73ece2ab9a6eff7d4",
+            "hash_algorithm": "sha256",
+            "source": "filesystem"
+          },
+          "passed": true
+        },
+        {
+          "assertion_id": "after_snapshot_path_matches_probe",
+          "expected": "external-artifacts/task003-v6/native-hwpx/s06-after-snapshot.txt",
+          "actual": "external-artifacts/task003-v6/native-hwpx/s06-after-snapshot.txt",
+          "passed": true
+        },
+        {
+          "assertion_id": "after_snapshot_size_matches_probe",
+          "expected": 1245,
+          "actual": 1245,
+          "passed": true
+        },
+        {
+          "assertion_id": "after_snapshot_sha256_matches_probe",
+          "expected": "371882da8d35200a03b58c099eb1df488de44e29475998a73ece2ab9a6eff7d4",
+          "actual": "371882da8d35200a03b58c099eb1df488de44e29475998a73ece2ab9a6eff7d4",
+          "passed": true
+        },
+        {
+          "assertion_id": "input_output_hwpx_distinct_identity",
+          "expected": "different path AND different SHA256",
+          "actual": {
+            "input": {
+              "path": "external-artifacts/task003-v6/native-hwpx/hancom-empty-save-hardcoded-visible.hwpx",
+              "size": 13674,
+              "sha256": "fee3800ec84315981bb2d838f48d800dc478458c84b79461b97af587467171cc"
+            },
+            "output": {
+              "path": "external-artifacts/task003-v6/native-hwpx/hancom-open-save-output.hwpx",
+              "size": 14468,
+              "sha256": "8c092794177aeca2c1630c06adc883c81e45d9d9ea97edb038449a46dae9e9dd"
+            }
+          },
+          "passed": true
+        },
+        {
+          "assertion_id": "before_snapshot_lineage_to_input",
+          "expected": {
+            "path": "external-artifacts/task003-v6/native-hwpx/hancom-empty-save-hardcoded-visible.hwpx",
+            "sha256": "fee3800ec84315981bb2d838f48d800dc478458c84b79461b97af587467171cc"
+          },
+          "actual": {
+            "path": "external-artifacts/task003-v6/native-hwpx/hancom-empty-save-hardcoded-visible.hwpx",
+            "sha256": "fee3800ec84315981bb2d838f48d800dc478458c84b79461b97af587467171cc"
+          },
+          "passed": true
+        },
+        {
+          "assertion_id": "after_snapshot_lineage_to_output",
+          "expected": {
+            "path": "external-artifacts/task003-v6/native-hwpx/hancom-open-save-output.hwpx",
+            "sha256": "8c092794177aeca2c1630c06adc883c81e45d9d9ea97edb038449a46dae9e9dd"
+          },
+          "actual": {
+            "path": "external-artifacts/task003-v6/native-hwpx/hancom-open-save-output.hwpx",
+            "sha256": "8c092794177aeca2c1630c06adc883c81e45d9d9ea97edb038449a46dae9e9dd"
+          },
+          "passed": true
+        },
+        {
+          "assertion_id": "S07_image_entries_structurally_valid",
+          "expected": true,
+          "actual": [
+            {
+              "path": "BinData/image1.png",
+              "size": 70,
+              "sha256": "8a352df5dafe041f6e6ddf6a7016796c5f2b592bface920f281ce60789158739"
+            }
+          ],
+          "passed": true
+        },
+        {
+          "assertion_id": "S07_image_path_size_sha256_equal",
+          "expected": [
+            {
+              "path": "BinData/image1.png",
+              "size": 70,
+              "sha256": "8a352df5dafe041f6e6ddf6a7016796c5f2b592bface920f281ce60789158739"
+            }
+          ],
+          "actual": [
+            {
+              "path": "BinData/image1.png",
+              "size": 70,
+              "sha256": "8a352df5dafe041f6e6ddf6a7016796c5f2b592bface920f281ce60789158739"
+            }
+          ],
+          "passed": true
+        },
+        {
+          "assertion_id": "S07_bindata_entries_structurally_valid",
+          "expected": true,
+          "actual": [
+            {
+              "path": "BinData/image1.png",
+              "size": 70,
+              "sha256": "8a352df5dafe041f6e6ddf6a7016796c5f2b592bface920f281ce60789158739"
+            }
+          ],
+          "passed": true
+        },
+        {
+          "assertion_id": "S07_bindata_path_size_sha256_equal",
+          "expected": [
+            {
+              "path": "BinData/image1.png",
+              "size": 70,
+              "sha256": "8a352df5dafe041f6e6ddf6a7016796c5f2b592bface920f281ce60789158739"
+            }
+          ],
+          "actual": [
+            {
+              "path": "BinData/image1.png",
+              "size": 70,
+              "sha256": "8a352df5dafe041f6e6ddf6a7016796c5f2b592bface920f281ce60789158739"
+            }
+          ],
+          "passed": true
+        },
+        {
+          "assertion_id": "S07_relationship_records_structurally_valid",
+          "expected": true,
+          "actual": [
+            {
+              "relationship_source_path": "Contents/section0.xml",
+              "relationship_id": "image1",
+              "relationship_type": "image/png",
+              "relationship_target": "BinData/image1.png",
+              "reference_source_path": "Contents/content.hpf"
+            }
+          ],
+          "passed": true
+        },
+        {
+          "assertion_id": "S07_relationship_source_id_type_target_reference_equal",
+          "expected": [
+            {
+              "relationship_source_path": "Contents/section0.xml",
+              "relationship_id": "image1",
+              "relationship_type": "image/png",
+              "relationship_target": "BinData/image1.png",
+              "reference_source_path": "Contents/content.hpf"
+            }
+          ],
+          "actual": [
+            {
+              "relationship_source_path": "Contents/section0.xml",
+              "relationship_id": "image1",
+              "relationship_type": "image/png",
+              "relationship_target": "BinData/image1.png",
+              "reference_source_path": "Contents/content.hpf"
+            }
+          ],
+          "passed": true
+        },
+        {
+          "assertion_id": "package_diff_is_limited_to_allowed_targets",
+          "expected": [
+            "Contents/content.hpf",
+            "Contents/section0.xml",
+            "Preview/PrvImage.png",
+            "Preview/PrvText.txt",
+            "settings.xml"
+          ],
+          "actual": [
+            "Contents/content.hpf",
+            "Contents/section0.xml",
+            "Preview/PrvImage.png",
+            "Preview/PrvText.txt",
+            "settings.xml"
+          ],
+          "passed": true
+        },
+        {
+          "assertion_id": "non_target_entry_hashes_equal",
+          "expected": {
+            "Contents/header.xml": "ddd101ead8d5c1665f902a1f29fb20042941098a805c43842ce2cccb3237b7f1",
+            "META-INF/container.rdf": "0cfd814c20595c841e48e62fbf7591829f13c177fa92af634c8199f85ecf3a89",
+            "META-INF/container.xml": "5109d3a9249ec1058177fedab574c5d9616058aa92ebefcd33249ebb36a20f61",
+            "META-INF/manifest.xml": "2b4b155c1bb6a9ccc212fef113c4831d2f558e67cf1260eb314ce54f26fd32ea",
+            "mimetype": "5ab5230b5af04f78947736bf8dd1a269aa684e234f7f4a392efb85289d1655c2",
+            "version.xml": "ff3fc36d4de548ff69c612f3c882d16e466c00624d8a8611597f12a30bf34729"
+          },
+          "actual": {
+            "Contents/header.xml": "ddd101ead8d5c1665f902a1f29fb20042941098a805c43842ce2cccb3237b7f1",
+            "META-INF/container.rdf": "0cfd814c20595c841e48e62fbf7591829f13c177fa92af634c8199f85ecf3a89",
+            "META-INF/container.xml": "5109d3a9249ec1058177fedab574c5d9616058aa92ebefcd33249ebb36a20f61",
+            "META-INF/manifest.xml": "2b4b155c1bb6a9ccc212fef113c4831d2f558e67cf1260eb314ce54f26fd32ea",
+            "mimetype": "5ab5230b5af04f78947736bf8dd1a269aa684e234f7f4a392efb85289d1655c2",
+            "version.xml": "ff3fc36d4de548ff69c612f3c882d16e466c00624d8a8611597f12a30bf34729"
+          },
+          "passed": true
+        },
+        {
+          "assertion_id": "scenario_assertions_all_passed",
+          "expected": true,
+          "actual": true,
+          "passed": true
+        }
+      ]
+    },
+    "S08": {
+      "validator_id": "s08-semantic-gate",
+      "valid": true,
+      "missing_evidence": [],
+      "assertions": [
+        {
+          "assertion_id": "input_hwpx_reference_valid",
+          "expected": true,
+          "actual": true,
+          "passed": true
+        },
+        {
+          "assertion_id": "input_hwpx_filesystem_probe_valid",
+          "expected": true,
+          "actual": {
+            "path": "external-artifacts/task003-v6/native-hwpx/hancom-empty-save-hardcoded-visible.hwpx",
+            "exists": true,
+            "size": 13674,
+            "sha256": "fee3800ec84315981bb2d838f48d800dc478458c84b79461b97af587467171cc",
+            "hash_algorithm": "sha256",
+            "source": "filesystem"
+          },
+          "passed": true
+        },
+        {
+          "assertion_id": "input_hwpx_path_matches_probe",
+          "expected": "external-artifacts/task003-v6/native-hwpx/hancom-empty-save-hardcoded-visible.hwpx",
+          "actual": "external-artifacts/task003-v6/native-hwpx/hancom-empty-save-hardcoded-visible.hwpx",
+          "passed": true
+        },
+        {
+          "assertion_id": "input_hwpx_size_matches_probe",
+          "expected": 13674,
+          "actual": 13674,
+          "passed": true
+        },
+        {
+          "assertion_id": "input_hwpx_sha256_matches_probe",
+          "expected": "fee3800ec84315981bb2d838f48d800dc478458c84b79461b97af587467171cc",
+          "actual": "fee3800ec84315981bb2d838f48d800dc478458c84b79461b97af587467171cc",
+          "passed": true
+        },
+        {
+          "assertion_id": "output_hwpx_reference_valid",
+          "expected": true,
+          "actual": true,
+          "passed": true
+        },
+        {
+          "assertion_id": "output_hwpx_filesystem_probe_valid",
+          "expected": true,
+          "actual": {
+            "path": "external-artifacts/task003-v6/native-hwpx/hancom-open-save-output.hwpx",
+            "exists": true,
+            "size": 14468,
+            "sha256": "8c092794177aeca2c1630c06adc883c81e45d9d9ea97edb038449a46dae9e9dd",
+            "hash_algorithm": "sha256",
+            "source": "filesystem"
+          },
+          "passed": true
+        },
+        {
+          "assertion_id": "output_hwpx_path_matches_probe",
+          "expected": "external-artifacts/task003-v6/native-hwpx/hancom-open-save-output.hwpx",
+          "actual": "external-artifacts/task003-v6/native-hwpx/hancom-open-save-output.hwpx",
+          "passed": true
+        },
+        {
+          "assertion_id": "output_hwpx_size_matches_probe",
+          "expected": 14468,
+          "actual": 14468,
+          "passed": true
+        },
+        {
+          "assertion_id": "output_hwpx_sha256_matches_probe",
+          "expected": "8c092794177aeca2c1630c06adc883c81e45d9d9ea97edb038449a46dae9e9dd",
+          "actual": "8c092794177aeca2c1630c06adc883c81e45d9d9ea97edb038449a46dae9e9dd",
+          "passed": true
+        },
+        {
+          "assertion_id": "before_snapshot_reference_valid",
+          "expected": true,
+          "actual": true,
+          "passed": true
+        },
+        {
+          "assertion_id": "before_snapshot_filesystem_probe_valid",
+          "expected": true,
+          "actual": {
+            "path": "external-artifacts/task003-v6/native-hwpx/s06-before-snapshot.txt",
+            "exists": true,
+            "size": 1257,
+            "sha256": "5c0897c9ee15b2cd9e78651c4d2a83f048c41bc48a58549a75c66d9abee40185",
+            "hash_algorithm": "sha256",
+            "source": "filesystem"
+          },
+          "passed": true
+        },
+        {
+          "assertion_id": "before_snapshot_path_matches_probe",
+          "expected": "external-artifacts/task003-v6/native-hwpx/s06-before-snapshot.txt",
+          "actual": "external-artifacts/task003-v6/native-hwpx/s06-before-snapshot.txt",
+          "passed": true
+        },
+        {
+          "assertion_id": "before_snapshot_size_matches_probe",
+          "expected": 1257,
+          "actual": 1257,
+          "passed": true
+        },
+        {
+          "assertion_id": "before_snapshot_sha256_matches_probe",
+          "expected": "5c0897c9ee15b2cd9e78651c4d2a83f048c41bc48a58549a75c66d9abee40185",
+          "actual": "5c0897c9ee15b2cd9e78651c4d2a83f048c41bc48a58549a75c66d9abee40185",
+          "passed": true
+        },
+        {
+          "assertion_id": "after_snapshot_reference_valid",
+          "expected": true,
+          "actual": true,
+          "passed": true
+        },
+        {
+          "assertion_id": "after_snapshot_filesystem_probe_valid",
+          "expected": true,
+          "actual": {
+            "path": "external-artifacts/task003-v6/native-hwpx/s06-after-snapshot.txt",
+            "exists": true,
+            "size": 1245,
+            "sha256": "371882da8d35200a03b58c099eb1df488de44e29475998a73ece2ab9a6eff7d4",
+            "hash_algorithm": "sha256",
+            "source": "filesystem"
+          },
+          "passed": true
+        },
+        {
+          "assertion_id": "after_snapshot_path_matches_probe",
+          "expected": "external-artifacts/task003-v6/native-hwpx/s06-after-snapshot.txt",
+          "actual": "external-artifacts/task003-v6/native-hwpx/s06-after-snapshot.txt",
+          "passed": true
+        },
+        {
+          "assertion_id": "after_snapshot_size_matches_probe",
+          "expected": 1245,
+          "actual": 1245,
+          "passed": true
+        },
+        {
+          "assertion_id": "after_snapshot_sha256_matches_probe",
+          "expected": "371882da8d35200a03b58c099eb1df488de44e29475998a73ece2ab9a6eff7d4",
+          "actual": "371882da8d35200a03b58c099eb1df488de44e29475998a73ece2ab9a6eff7d4",
+          "passed": true
+        },
+        {
+          "assertion_id": "input_output_hwpx_distinct_identity",
+          "expected": "different path AND different SHA256",
+          "actual": {
+            "input": {
+              "path": "external-artifacts/task003-v6/native-hwpx/hancom-empty-save-hardcoded-visible.hwpx",
+              "size": 13674,
+              "sha256": "fee3800ec84315981bb2d838f48d800dc478458c84b79461b97af587467171cc"
+            },
+            "output": {
+              "path": "external-artifacts/task003-v6/native-hwpx/hancom-open-save-output.hwpx",
+              "size": 14468,
+              "sha256": "8c092794177aeca2c1630c06adc883c81e45d9d9ea97edb038449a46dae9e9dd"
+            }
+          },
+          "passed": true
+        },
+        {
+          "assertion_id": "before_snapshot_lineage_to_input",
+          "expected": {
+            "path": "external-artifacts/task003-v6/native-hwpx/hancom-empty-save-hardcoded-visible.hwpx",
+            "sha256": "fee3800ec84315981bb2d838f48d800dc478458c84b79461b97af587467171cc"
+          },
+          "actual": {
+            "path": "external-artifacts/task003-v6/native-hwpx/hancom-empty-save-hardcoded-visible.hwpx",
+            "sha256": "fee3800ec84315981bb2d838f48d800dc478458c84b79461b97af587467171cc"
+          },
+          "passed": true
+        },
+        {
+          "assertion_id": "after_snapshot_lineage_to_output",
+          "expected": {
+            "path": "external-artifacts/task003-v6/native-hwpx/hancom-open-save-output.hwpx",
+            "sha256": "8c092794177aeca2c1630c06adc883c81e45d9d9ea97edb038449a46dae9e9dd"
+          },
+          "actual": {
+            "path": "external-artifacts/task003-v6/native-hwpx/hancom-open-save-output.hwpx",
+            "sha256": "8c092794177aeca2c1630c06adc883c81e45d9d9ea97edb038449a46dae9e9dd"
+          },
+          "passed": true
+        },
+        {
+          "assertion_id": "S08_root_namespace_declarations_equal",
+          "expected": {
+            "ha": "http://www.hancom.co.kr/hwpml/2011/app",
+            "hp": "http://www.hancom.co.kr/hwpml/2011/paragraph",
+            "hp10": "http://www.hancom.co.kr/hwpml/2016/paragraph",
+            "hs": "http://www.hancom.co.kr/hwpml/2011/section",
+            "hc": "http://www.hancom.co.kr/hwpml/2011/core",
+            "hh": "http://www.hancom.co.kr/hwpml/2011/head",
+            "hhs": "http://www.hancom.co.kr/hwpml/2011/history",
+            "hm": "http://www.hancom.co.kr/hwpml/2011/master-page",
+            "hpf": "http://www.hancom.co.kr/schema/2011/hpf",
+            "dc": "http://purl.org/dc/elements/1.1/",
+            "opf": "http://www.idpf.org/2007/opf/",
+            "ooxmlchart": "http://www.hancom.co.kr/hwpml/2016/ooxmlchart",
+            "hwpunitchar": "http://www.hancom.co.kr/hwpml/2016/HwpUnitChar",
+            "epub": "http://www.idpf.org/2007/ops",
+            "config": "urn:oasis:names:tc:opendocument:xmlns:config:1.0"
+          },
+          "actual": {
+            "ha": "http://www.hancom.co.kr/hwpml/2011/app",
+            "hp": "http://www.hancom.co.kr/hwpml/2011/paragraph",
+            "hp10": "http://www.hancom.co.kr/hwpml/2016/paragraph",
+            "hs": "http://www.hancom.co.kr/hwpml/2011/section",
+            "hc": "http://www.hancom.co.kr/hwpml/2011/core",
+            "hh": "http://www.hancom.co.kr/hwpml/2011/head",
+            "hhs": "http://www.hancom.co.kr/hwpml/2011/history",
+            "hm": "http://www.hancom.co.kr/hwpml/2011/master-page",
+            "hpf": "http://www.hancom.co.kr/schema/2011/hpf",
+            "dc": "http://purl.org/dc/elements/1.1/",
+            "opf": "http://www.idpf.org/2007/opf/",
+            "ooxmlchart": "http://www.hancom.co.kr/hwpml/2016/ooxmlchart",
+            "hwpunitchar": "http://www.hancom.co.kr/hwpml/2016/HwpUnitChar",
+            "epub": "http://www.idpf.org/2007/ops",
+            "config": "urn:oasis:names:tc:opendocument:xmlns:config:1.0"
+          },
+          "passed": true
+        },
+        {
+          "assertion_id": "S08_section_namespace_declarations_equal",
+          "expected": {
+            "ha": "http://www.hancom.co.kr/hwpml/2011/app",
+            "hp": "http://www.hancom.co.kr/hwpml/2011/paragraph",
+            "hp10": "http://www.hancom.co.kr/hwpml/2016/paragraph",
+            "hs": "http://www.hancom.co.kr/hwpml/2011/section",
+            "hc": "http://www.hancom.co.kr/hwpml/2011/core",
+            "hh": "http://www.hancom.co.kr/hwpml/2011/head",
+            "hhs": "http://www.hancom.co.kr/hwpml/2011/history",
+            "hm": "http://www.hancom.co.kr/hwpml/2011/master-page",
+            "hpf": "http://www.hancom.co.kr/schema/2011/hpf",
+            "dc": "http://purl.org/dc/elements/1.1/",
+            "opf": "http://www.idpf.org/2007/opf/",
+            "ooxmlchart": "http://www.hancom.co.kr/hwpml/2016/ooxmlchart",
+            "hwpunitchar": "http://www.hancom.co.kr/hwpml/2016/HwpUnitChar",
+            "epub": "http://www.idpf.org/2007/ops",
+            "config": "urn:oasis:names:tc:opendocument:xmlns:config:1.0"
+          },
+          "actual": {
+            "ha": "http://www.hancom.co.kr/hwpml/2011/app",
+            "hp": "http://www.hancom.co.kr/hwpml/2011/paragraph",
+            "hp10": "http://www.hancom.co.kr/hwpml/2016/paragraph",
+            "hs": "http://www.hancom.co.kr/hwpml/2011/section",
+            "hc": "http://www.hancom.co.kr/hwpml/2011/core",
+            "hh": "http://www.hancom.co.kr/hwpml/2011/head",
+            "hhs": "http://www.hancom.co.kr/hwpml/2011/history",
+            "hm": "http://www.hancom.co.kr/hwpml/2011/master-page",
+            "hpf": "http://www.hancom.co.kr/schema/2011/hpf",
+            "dc": "http://purl.org/dc/elements/1.1/",
+            "opf": "http://www.idpf.org/2007/opf/",
+            "ooxmlchart": "http://www.hancom.co.kr/hwpml/2016/ooxmlchart",
+            "hwpunitchar": "http://www.hancom.co.kr/hwpml/2016/HwpUnitChar",
+            "epub": "http://www.idpf.org/2007/ops",
+            "config": "urn:oasis:names:tc:opendocument:xmlns:config:1.0"
+          },
+          "passed": true
+        },
+        {
+          "assertion_id": "S08_namespace_prefix_uri_map_equal",
+          "expected": {
+            "hv": "http://www.hancom.co.kr/hwpml/2011/version",
+            "ha": "http://www.hancom.co.kr/hwpml/2011/app",
+            "hp": "http://www.hancom.co.kr/hwpml/2011/paragraph",
+            "hp10": "http://www.hancom.co.kr/hwpml/2016/paragraph",
+            "hs": "http://www.hancom.co.kr/hwpml/2011/section",
+            "hc": "http://www.hancom.co.kr/hwpml/2011/core",
+            "hh": "http://www.hancom.co.kr/hwpml/2011/head",
+            "hhs": "http://www.hancom.co.kr/hwpml/2011/history",
+            "hm": "http://www.hancom.co.kr/hwpml/2011/master-page",
+            "hpf": "http://www.hancom.co.kr/schema/2011/hpf",
+            "dc": "http://purl.org/dc/elements/1.1/",
+            "opf": "http://www.idpf.org/2007/opf/",
+            "ooxmlchart": "http://www.hancom.co.kr/hwpml/2016/ooxmlchart",
+            "hwpunitchar": "http://www.hancom.co.kr/hwpml/2016/HwpUnitChar",
+            "epub": "http://www.idpf.org/2007/ops",
+            "config": "urn:oasis:names:tc:opendocument:xmlns:config:1.0",
+            "ocf": "urn:oasis:names:tc:opendocument:xmlns:container",
+            "odf": "urn:oasis:names:tc:opendocument:xmlns:manifest:1.0"
+          },
+          "actual": {
+            "hv": "http://www.hancom.co.kr/hwpml/2011/version",
+            "ha": "http://www.hancom.co.kr/hwpml/2011/app",
+            "hp": "http://www.hancom.co.kr/hwpml/2011/paragraph",
+            "hp10": "http://www.hancom.co.kr/hwpml/2016/paragraph",
+            "hs": "http://www.hancom.co.kr/hwpml/2011/section",
+            "hc": "http://www.hancom.co.kr/hwpml/2011/core",
+            "hh": "http://www.hancom.co.kr/hwpml/2011/head",
+            "hhs": "http://www.hancom.co.kr/hwpml/2011/history",
+            "hm": "http://www.hancom.co.kr/hwpml/2011/master-page",
+            "hpf": "http://www.hancom.co.kr/schema/2011/hpf",
+            "dc": "http://purl.org/dc/elements/1.1/",
+            "opf": "http://www.idpf.org/2007/opf/",
+            "ooxmlchart": "http://www.hancom.co.kr/hwpml/2016/ooxmlchart",
+            "hwpunitchar": "http://www.hancom.co.kr/hwpml/2016/HwpUnitChar",
+            "epub": "http://www.idpf.org/2007/ops",
+            "config": "urn:oasis:names:tc:opendocument:xmlns:config:1.0",
+            "ocf": "urn:oasis:names:tc:opendocument:xmlns:container",
+            "odf": "urn:oasis:names:tc:opendocument:xmlns:manifest:1.0"
+          },
+          "passed": true
+        },
+        {
+          "assertion_id": "S08_fwspace_count_equal",
+          "expected": 0,
+          "actual": 0,
+          "passed": true
+        },
+        {
+          "assertion_id": "S08_fwspace_paths_equal_in_order",
+          "expected": [],
+          "actual": [],
+          "passed": true
+        },
+        {
+          "assertion_id": "S08_fwspace_document_order_equal",
+          "expected": [],
+          "actual": [],
+          "passed": true
+        },
+        {
+          "assertion_id": "package_diff_is_limited_to_allowed_targets",
+          "expected": [
+            "Contents/content.hpf",
+            "Contents/section0.xml",
+            "Preview/PrvImage.png",
+            "Preview/PrvText.txt",
+            "settings.xml"
+          ],
+          "actual": [
+            "Contents/content.hpf",
+            "Contents/section0.xml",
+            "Preview/PrvImage.png",
+            "Preview/PrvText.txt",
+            "settings.xml"
+          ],
+          "passed": true
+        },
+        {
+          "assertion_id": "non_target_entry_hashes_equal",
+          "expected": {
+            "Contents/header.xml": "ddd101ead8d5c1665f902a1f29fb20042941098a805c43842ce2cccb3237b7f1",
+            "META-INF/container.rdf": "0cfd814c20595c841e48e62fbf7591829f13c177fa92af634c8199f85ecf3a89",
+            "META-INF/container.xml": "5109d3a9249ec1058177fedab574c5d9616058aa92ebefcd33249ebb36a20f61",
+            "META-INF/manifest.xml": "2b4b155c1bb6a9ccc212fef113c4831d2f558e67cf1260eb314ce54f26fd32ea",
+            "mimetype": "5ab5230b5af04f78947736bf8dd1a269aa684e234f7f4a392efb85289d1655c2",
+            "version.xml": "ff3fc36d4de548ff69c612f3c882d16e466c00624d8a8611597f12a30bf34729"
+          },
+          "actual": {
+            "Contents/header.xml": "ddd101ead8d5c1665f902a1f29fb20042941098a805c43842ce2cccb3237b7f1",
+            "META-INF/container.rdf": "0cfd814c20595c841e48e62fbf7591829f13c177fa92af634c8199f85ecf3a89",
+            "META-INF/container.xml": "5109d3a9249ec1058177fedab574c5d9616058aa92ebefcd33249ebb36a20f61",
+            "META-INF/manifest.xml": "2b4b155c1bb6a9ccc212fef113c4831d2f558e67cf1260eb314ce54f26fd32ea",
+            "mimetype": "5ab5230b5af04f78947736bf8dd1a269aa684e234f7f4a392efb85289d1655c2",
+            "version.xml": "ff3fc36d4de548ff69c612f3c882d16e466c00624d8a8611597f12a30bf34729"
+          },
+          "passed": true
+        },
+        {
+          "assertion_id": "scenario_assertions_all_passed",
+          "expected": true,
+          "actual": true,
+          "passed": true
+        }
+      ]
+    },
+    "S12": {
+      "validator_id": "s12-semantic-gate",
+      "valid": true,
+      "missing_evidence": [],
+      "assertions": [
+        {
+          "assertion_id": "S12_artifact_inventory_0_reference_valid",
+          "expected": true,
+          "actual": true,
+          "passed": true
+        },
+        {
+          "assertion_id": "S12_artifact_inventory_0_filesystem_probe_valid",
+          "expected": true,
+          "actual": {
+            "path": "external-artifacts/task003-v6/native-hwpx/hancom-empty-save-hardcoded-visible.hwpx",
+            "exists": true,
+            "size": 13674,
+            "sha256": "fee3800ec84315981bb2d838f48d800dc478458c84b79461b97af587467171cc",
+            "hash_algorithm": "sha256",
+            "source": "filesystem"
+          },
+          "passed": true
+        },
+        {
+          "assertion_id": "S12_artifact_inventory_0_path_matches_probe",
+          "expected": "external-artifacts/task003-v6/native-hwpx/hancom-empty-save-hardcoded-visible.hwpx",
+          "actual": "external-artifacts/task003-v6/native-hwpx/hancom-empty-save-hardcoded-visible.hwpx",
+          "passed": true
+        },
+        {
+          "assertion_id": "S12_artifact_inventory_0_size_matches_probe",
+          "expected": 13674,
+          "actual": 13674,
+          "passed": true
+        },
+        {
+          "assertion_id": "S12_artifact_inventory_0_sha256_matches_probe",
+          "expected": "fee3800ec84315981bb2d838f48d800dc478458c84b79461b97af587467171cc",
+          "actual": "fee3800ec84315981bb2d838f48d800dc478458c84b79461b97af587467171cc",
+          "passed": true
+        },
+        {
+          "assertion_id": "S12_artifact_inventory_1_reference_valid",
+          "expected": true,
+          "actual": true,
+          "passed": true
+        },
+        {
+          "assertion_id": "S12_artifact_inventory_1_filesystem_probe_valid",
+          "expected": true,
+          "actual": {
+            "path": "external-artifacts/task003-v6/native-hwpx/hancom-open-save-output.hwpx",
+            "exists": true,
+            "size": 14468,
+            "sha256": "8c092794177aeca2c1630c06adc883c81e45d9d9ea97edb038449a46dae9e9dd",
+            "hash_algorithm": "sha256",
+            "source": "filesystem"
+          },
+          "passed": true
+        },
+        {
+          "assertion_id": "S12_artifact_inventory_1_path_matches_probe",
+          "expected": "external-artifacts/task003-v6/native-hwpx/hancom-open-save-output.hwpx",
+          "actual": "external-artifacts/task003-v6/native-hwpx/hancom-open-save-output.hwpx",
+          "passed": true
+        },
+        {
+          "assertion_id": "S12_artifact_inventory_1_size_matches_probe",
+          "expected": 14468,
+          "actual": 14468,
+          "passed": true
+        },
+        {
+          "assertion_id": "S12_artifact_inventory_1_sha256_matches_probe",
+          "expected": "8c092794177aeca2c1630c06adc883c81e45d9d9ea97edb038449a46dae9e9dd",
+          "actual": "8c092794177aeca2c1630c06adc883c81e45d9d9ea97edb038449a46dae9e9dd",
+          "passed": true
+        },
+        {
+          "assertion_id": "S12_artifact_inventory_2_reference_valid",
+          "expected": true,
+          "actual": true,
+          "passed": true
+        },
+        {
+          "assertion_id": "S12_artifact_inventory_2_filesystem_probe_valid",
+          "expected": true,
+          "actual": {
+            "path": "external-artifacts/task003-v6/native-hwpx/hancom-picture-output.hwpx",
+            "exists": true,
+            "size": 14325,
+            "sha256": "7829289d2dc9af5d2ea80c8889054ee695ca1317b51d729efc3d81ed947671e3",
+            "hash_algorithm": "sha256",
+            "source": "filesystem"
+          },
+          "passed": true
+        },
+        {
+          "assertion_id": "S12_artifact_inventory_2_path_matches_probe",
+          "expected": "external-artifacts/task003-v6/native-hwpx/hancom-picture-output.hwpx",
+          "actual": "external-artifacts/task003-v6/native-hwpx/hancom-picture-output.hwpx",
+          "passed": true
+        },
+        {
+          "assertion_id": "S12_artifact_inventory_2_size_matches_probe",
+          "expected": 14325,
+          "actual": 14325,
+          "passed": true
+        },
+        {
+          "assertion_id": "S12_artifact_inventory_2_sha256_matches_probe",
+          "expected": "7829289d2dc9af5d2ea80c8889054ee695ca1317b51d729efc3d81ed947671e3",
+          "actual": "7829289d2dc9af5d2ea80c8889054ee695ca1317b51d729efc3d81ed947671e3",
+          "passed": true
+        },
+        {
+          "assertion_id": "S12_artifact_inventory_3_reference_valid",
+          "expected": true,
+          "actual": true,
+          "passed": true
+        },
+        {
+          "assertion_id": "S12_artifact_inventory_3_filesystem_probe_valid",
+          "expected": true,
+          "actual": {
+            "path": "external-artifacts/task003-v6/native-hwpx/s06-before-snapshot.txt",
+            "exists": true,
+            "size": 1257,
+            "sha256": "5c0897c9ee15b2cd9e78651c4d2a83f048c41bc48a58549a75c66d9abee40185",
+            "hash_algorithm": "sha256",
+            "source": "filesystem"
+          },
+          "passed": true
+        },
+        {
+          "assertion_id": "S12_artifact_inventory_3_path_matches_probe",
+          "expected": "external-artifacts/task003-v6/native-hwpx/s06-before-snapshot.txt",
+          "actual": "external-artifacts/task003-v6/native-hwpx/s06-before-snapshot.txt",
+          "passed": true
+        },
+        {
+          "assertion_id": "S12_artifact_inventory_3_size_matches_probe",
+          "expected": 1257,
+          "actual": 1257,
+          "passed": true
+        },
+        {
+          "assertion_id": "S12_artifact_inventory_3_sha256_matches_probe",
+          "expected": "5c0897c9ee15b2cd9e78651c4d2a83f048c41bc48a58549a75c66d9abee40185",
+          "actual": "5c0897c9ee15b2cd9e78651c4d2a83f048c41bc48a58549a75c66d9abee40185",
+          "passed": true
+        },
+        {
+          "assertion_id": "S12_artifact_inventory_4_reference_valid",
+          "expected": true,
+          "actual": true,
+          "passed": true
+        },
+        {
+          "assertion_id": "S12_artifact_inventory_4_filesystem_probe_valid",
+          "expected": true,
+          "actual": {
+            "path": "external-artifacts/task003-v6/native-hwpx/s06-after-snapshot.txt",
+            "exists": true,
+            "size": 1245,
+            "sha256": "371882da8d35200a03b58c099eb1df488de44e29475998a73ece2ab9a6eff7d4",
+            "hash_algorithm": "sha256",
+            "source": "filesystem"
+          },
+          "passed": true
+        },
+        {
+          "assertion_id": "S12_artifact_inventory_4_path_matches_probe",
+          "expected": "external-artifacts/task003-v6/native-hwpx/s06-after-snapshot.txt",
+          "actual": "external-artifacts/task003-v6/native-hwpx/s06-after-snapshot.txt",
+          "passed": true
+        },
+        {
+          "assertion_id": "S12_artifact_inventory_4_size_matches_probe",
+          "expected": 1245,
+          "actual": 1245,
+          "passed": true
+        },
+        {
+          "assertion_id": "S12_artifact_inventory_4_sha256_matches_probe",
+          "expected": "371882da8d35200a03b58c099eb1df488de44e29475998a73ece2ab9a6eff7d4",
+          "actual": "371882da8d35200a03b58c099eb1df488de44e29475998a73ece2ab9a6eff7d4",
+          "passed": true
+        },
+        {
+          "assertion_id": "S12_runtime_dependency_inventory_0_reference_valid",
+          "expected": true,
+          "actual": true,
+          "passed": true
+        },
+        {
+          "assertion_id": "S12_runtime_dependency_inventory_0_filesystem_probe_valid",
+          "expected": true,
+          "actual": {
+            "path": "external-artifacts/task003-v6/native-hwpx/runtime-dependency-jszip.txt",
+            "exists": true,
+            "size": 13,
+            "sha256": "a5f5672e6df5812d906010c81d0fa981b5a592a93a0c8196772497b4108fca53",
+            "hash_algorithm": "sha256",
+            "source": "filesystem"
+          },
+          "passed": true
+        },
+        {
+          "assertion_id": "S12_runtime_dependency_inventory_0_path_matches_probe",
+          "expected": "external-artifacts/task003-v6/native-hwpx/runtime-dependency-jszip.txt",
+          "actual": "external-artifacts/task003-v6/native-hwpx/runtime-dependency-jszip.txt",
+          "passed": true
+        },
+        {
+          "assertion_id": "S12_runtime_dependency_inventory_0_size_matches_probe",
+          "expected": 13,
+          "actual": 13,
+          "passed": true
+        },
+        {
+          "assertion_id": "S12_runtime_dependency_inventory_0_sha256_matches_probe",
+          "expected": "a5f5672e6df5812d906010c81d0fa981b5a592a93a0c8196772497b4108fca53",
+          "actual": "a5f5672e6df5812d906010c81d0fa981b5a592a93a0c8196772497b4108fca53",
+          "passed": true
+        },
+        {
+          "assertion_id": "execution_record_object",
+          "passed": true
+        },
+        {
+          "assertion_id": "execution_command_present",
+          "passed": true
+        },
+        {
+          "assertion_id": "execution_executed_true",
+          "passed": true
+        },
+        {
+          "assertion_id": "execution_method_present",
+          "passed": true
+        },
+        {
+          "assertion_id": "execution_started_at_datetime",
+          "passed": true
+        },
+        {
+          "assertion_id": "execution_ended_at_datetime",
+          "passed": true
+        },
+        {
+          "assertion_id": "execution_time_order",
+          "passed": true
+        },
+        {
+          "assertion_id": "execution_exit_code_integer",
+          "passed": true
+        },
+        {
+          "assertion_id": "execution_stdout_path_present",
+          "passed": true
+        },
+        {
+          "assertion_id": "execution_stderr_path_present",
+          "passed": true
+        },
+        {
+          "assertion_id": "execution_stdout_probe_valid",
+          "passed": true
+        },
+        {
+          "assertion_id": "execution_stderr_probe_valid",
+          "passed": true
+        },
+        {
+          "assertion_id": "S12_stdout_log_reference_valid",
+          "expected": true,
+          "actual": true,
+          "passed": true
+        },
+        {
+          "assertion_id": "S12_stdout_log_filesystem_probe_valid",
+          "expected": true,
+          "actual": {
+            "path": "external-artifacts/task003-v6/native-hwpx/s12-measurement.stdout.log",
+            "exists": true,
+            "size": 91,
+            "sha256": "ad03d0c91798234c9803db24911fa79ae1a694d706b58f0c9960e6b6c044edbd",
+            "hash_algorithm": "sha256",
+            "source": "filesystem"
+          },
+          "passed": true
+        },
+        {
+          "assertion_id": "S12_stdout_log_path_matches_probe",
+          "expected": "external-artifacts/task003-v6/native-hwpx/s12-measurement.stdout.log",
+          "actual": "external-artifacts/task003-v6/native-hwpx/s12-measurement.stdout.log",
+          "passed": true
+        },
+        {
+          "assertion_id": "S12_stdout_log_size_matches_probe",
+          "expected": 91,
+          "actual": 91,
+          "passed": true
+        },
+        {
+          "assertion_id": "S12_stdout_log_sha256_matches_probe",
+          "expected": "ad03d0c91798234c9803db24911fa79ae1a694d706b58f0c9960e6b6c044edbd",
+          "actual": "ad03d0c91798234c9803db24911fa79ae1a694d706b58f0c9960e6b6c044edbd",
+          "passed": true
+        },
+        {
+          "assertion_id": "S12_stderr_log_reference_valid",
+          "expected": true,
+          "actual": true,
+          "passed": true
+        },
+        {
+          "assertion_id": "S12_stderr_log_filesystem_probe_valid",
+          "expected": true,
+          "actual": {
+            "path": "external-artifacts/task003-v6/native-hwpx/s12-measurement.stderr.log",
+            "exists": true,
+            "size": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "hash_algorithm": "sha256",
+            "source": "filesystem"
+          },
+          "passed": true
+        },
+        {
+          "assertion_id": "S12_stderr_log_path_matches_probe",
+          "expected": "external-artifacts/task003-v6/native-hwpx/s12-measurement.stderr.log",
+          "actual": "external-artifacts/task003-v6/native-hwpx/s12-measurement.stderr.log",
+          "passed": true
+        },
+        {
+          "assertion_id": "S12_stderr_log_size_matches_probe",
+          "expected": 0,
+          "actual": 0,
+          "passed": true
+        },
+        {
+          "assertion_id": "S12_stderr_log_sha256_matches_probe",
+          "expected": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "actual": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "passed": true
+        },
+        {
+          "assertion_id": "S12_duration_median_recomputed",
+          "expected": 0.231,
+          "actual": 0.231,
+          "passed": true
+        },
+        {
+          "assertion_id": "S12_duration_p95_recomputed",
+          "expected": 0.279,
+          "actual": 0.279,
+          "passed": true
+        },
+        {
+          "assertion_id": "S12_artifact_total_recomputed",
+          "expected": 44969,
+          "actual": 44969,
+          "passed": true
+        },
+        {
+          "assertion_id": "S12_runtime_total_recomputed",
+          "expected": 13,
+          "actual": 13,
+          "passed": true
+        },
+        {
+          "assertion_id": "S12_command_stdout_matches_log",
+          "expected": "external-artifacts/task003-v6/native-hwpx/s12-measurement.stdout.log",
+          "actual": "external-artifacts/task003-v6/native-hwpx/s12-measurement.stdout.log",
+          "passed": true
+        },
+        {
+          "assertion_id": "S12_command_stderr_matches_log",
+          "expected": "external-artifacts/task003-v6/native-hwpx/s12-measurement.stderr.log",
+          "actual": "external-artifacts/task003-v6/native-hwpx/s12-measurement.stderr.log",
+          "passed": true
+        },
+        {
+          "assertion_id": "scenario_assertions_all_passed",
+          "expected": true,
+          "actual": true,
+          "passed": true
+        }
+      ]
+    },
+    "S13": {
+      "validator_id": "s13-semantic-gate",
+      "valid": true,
+      "missing_evidence": [],
+      "assertions": [
+        {
+          "assertion_id": "S13_offline_artifact_inventory_0_reference_valid",
+          "expected": true,
+          "actual": true,
+          "passed": true
+        },
+        {
+          "assertion_id": "S13_offline_artifact_inventory_0_filesystem_probe_valid",
+          "expected": true,
+          "actual": {
+            "path": "external-artifacts/task003-v6/native-hwpx/hancom-empty-save-hardcoded-visible.hwpx",
+            "exists": true,
+            "size": 13674,
+            "sha256": "fee3800ec84315981bb2d838f48d800dc478458c84b79461b97af587467171cc",
+            "hash_algorithm": "sha256",
+            "source": "filesystem"
+          },
+          "passed": true
+        },
+        {
+          "assertion_id": "S13_offline_artifact_inventory_0_path_matches_probe",
+          "expected": "external-artifacts/task003-v6/native-hwpx/hancom-empty-save-hardcoded-visible.hwpx",
+          "actual": "external-artifacts/task003-v6/native-hwpx/hancom-empty-save-hardcoded-visible.hwpx",
+          "passed": true
+        },
+        {
+          "assertion_id": "S13_offline_artifact_inventory_0_size_matches_probe",
+          "expected": 13674,
+          "actual": 13674,
+          "passed": true
+        },
+        {
+          "assertion_id": "S13_offline_artifact_inventory_0_sha256_matches_probe",
+          "expected": "fee3800ec84315981bb2d838f48d800dc478458c84b79461b97af587467171cc",
+          "actual": "fee3800ec84315981bb2d838f48d800dc478458c84b79461b97af587467171cc",
+          "passed": true
+        },
+        {
+          "assertion_id": "S13_offline_artifact_inventory_1_reference_valid",
+          "expected": true,
+          "actual": true,
+          "passed": true
+        },
+        {
+          "assertion_id": "S13_offline_artifact_inventory_1_filesystem_probe_valid",
+          "expected": true,
+          "actual": {
+            "path": "external-artifacts/task003-v6/native-hwpx/hancom-open-save-output.hwpx",
+            "exists": true,
+            "size": 14468,
+            "sha256": "8c092794177aeca2c1630c06adc883c81e45d9d9ea97edb038449a46dae9e9dd",
+            "hash_algorithm": "sha256",
+            "source": "filesystem"
+          },
+          "passed": true
+        },
+        {
+          "assertion_id": "S13_offline_artifact_inventory_1_path_matches_probe",
+          "expected": "external-artifacts/task003-v6/native-hwpx/hancom-open-save-output.hwpx",
+          "actual": "external-artifacts/task003-v6/native-hwpx/hancom-open-save-output.hwpx",
+          "passed": true
+        },
+        {
+          "assertion_id": "S13_offline_artifact_inventory_1_size_matches_probe",
+          "expected": 14468,
+          "actual": 14468,
+          "passed": true
+        },
+        {
+          "assertion_id": "S13_offline_artifact_inventory_1_sha256_matches_probe",
+          "expected": "8c092794177aeca2c1630c06adc883c81e45d9d9ea97edb038449a46dae9e9dd",
+          "actual": "8c092794177aeca2c1630c06adc883c81e45d9d9ea97edb038449a46dae9e9dd",
+          "passed": true
+        },
+        {
+          "assertion_id": "S13_offline_artifact_inventory_2_reference_valid",
+          "expected": true,
+          "actual": true,
+          "passed": true
+        },
+        {
+          "assertion_id": "S13_offline_artifact_inventory_2_filesystem_probe_valid",
+          "expected": true,
+          "actual": {
+            "path": "external-artifacts/task003-v6/native-hwpx/hancom-picture-output.hwpx",
+            "exists": true,
+            "size": 14325,
+            "sha256": "7829289d2dc9af5d2ea80c8889054ee695ca1317b51d729efc3d81ed947671e3",
+            "hash_algorithm": "sha256",
+            "source": "filesystem"
+          },
+          "passed": true
+        },
+        {
+          "assertion_id": "S13_offline_artifact_inventory_2_path_matches_probe",
+          "expected": "external-artifacts/task003-v6/native-hwpx/hancom-picture-output.hwpx",
+          "actual": "external-artifacts/task003-v6/native-hwpx/hancom-picture-output.hwpx",
+          "passed": true
+        },
+        {
+          "assertion_id": "S13_offline_artifact_inventory_2_size_matches_probe",
+          "expected": 14325,
+          "actual": 14325,
+          "passed": true
+        },
+        {
+          "assertion_id": "S13_offline_artifact_inventory_2_sha256_matches_probe",
+          "expected": "7829289d2dc9af5d2ea80c8889054ee695ca1317b51d729efc3d81ed947671e3",
+          "actual": "7829289d2dc9af5d2ea80c8889054ee695ca1317b51d729efc3d81ed947671e3",
+          "passed": true
+        },
+        {
+          "assertion_id": "S13_offline_artifact_inventory_3_reference_valid",
+          "expected": true,
+          "actual": true,
+          "passed": true
+        },
+        {
+          "assertion_id": "S13_offline_artifact_inventory_3_filesystem_probe_valid",
+          "expected": true,
+          "actual": {
+            "path": "external-artifacts/task003-v6/native-hwpx/runtime-dependency-jszip.txt",
+            "exists": true,
+            "size": 13,
+            "sha256": "a5f5672e6df5812d906010c81d0fa981b5a592a93a0c8196772497b4108fca53",
+            "hash_algorithm": "sha256",
+            "source": "filesystem"
+          },
+          "passed": true
+        },
+        {
+          "assertion_id": "S13_offline_artifact_inventory_3_path_matches_probe",
+          "expected": "external-artifacts/task003-v6/native-hwpx/runtime-dependency-jszip.txt",
+          "actual": "external-artifacts/task003-v6/native-hwpx/runtime-dependency-jszip.txt",
+          "passed": true
+        },
+        {
+          "assertion_id": "S13_offline_artifact_inventory_3_size_matches_probe",
+          "expected": 13,
+          "actual": 13,
+          "passed": true
+        },
+        {
+          "assertion_id": "S13_offline_artifact_inventory_3_sha256_matches_probe",
+          "expected": "a5f5672e6df5812d906010c81d0fa981b5a592a93a0c8196772497b4108fca53",
+          "actual": "a5f5672e6df5812d906010c81d0fa981b5a592a93a0c8196772497b4108fca53",
+          "passed": true
+        },
+        {
+          "assertion_id": "execution_record_object",
+          "passed": true
+        },
+        {
+          "assertion_id": "execution_command_present",
+          "passed": true
+        },
+        {
+          "assertion_id": "execution_executed_true",
+          "passed": true
+        },
+        {
+          "assertion_id": "execution_method_present",
+          "passed": true
+        },
+        {
+          "assertion_id": "execution_started_at_datetime",
+          "passed": true
+        },
+        {
+          "assertion_id": "execution_ended_at_datetime",
+          "passed": true
+        },
+        {
+          "assertion_id": "execution_time_order",
+          "passed": true
+        },
+        {
+          "assertion_id": "execution_exit_code_integer",
+          "passed": true
+        },
+        {
+          "assertion_id": "execution_stdout_path_present",
+          "passed": true
+        },
+        {
+          "assertion_id": "execution_stderr_path_present",
+          "passed": true
+        },
+        {
+          "assertion_id": "execution_stdout_probe_valid",
+          "passed": true
+        },
+        {
+          "assertion_id": "execution_stderr_probe_valid",
+          "passed": true
+        },
+        {
+          "assertion_id": "S13_installed_inventory_0_reference_valid",
+          "expected": true,
+          "actual": true,
+          "passed": true
+        },
+        {
+          "assertion_id": "S13_installed_inventory_0_filesystem_probe_valid",
+          "expected": true,
+          "actual": {
+            "path": "external-artifacts/task003-v6/native-hwpx/hancom-open-save-output.hwpx",
+            "exists": true,
+            "size": 14468,
+            "sha256": "8c092794177aeca2c1630c06adc883c81e45d9d9ea97edb038449a46dae9e9dd",
+            "hash_algorithm": "sha256",
+            "source": "filesystem"
+          },
+          "passed": true
+        },
+        {
+          "assertion_id": "S13_installed_inventory_0_path_matches_probe",
+          "expected": "external-artifacts/task003-v6/native-hwpx/hancom-open-save-output.hwpx",
+          "actual": "external-artifacts/task003-v6/native-hwpx/hancom-open-save-output.hwpx",
+          "passed": true
+        },
+        {
+          "assertion_id": "S13_installed_inventory_0_size_matches_probe",
+          "expected": 14468,
+          "actual": 14468,
+          "passed": true
+        },
+        {
+          "assertion_id": "S13_installed_inventory_0_sha256_matches_probe",
+          "expected": "8c092794177aeca2c1630c06adc883c81e45d9d9ea97edb038449a46dae9e9dd",
+          "actual": "8c092794177aeca2c1630c06adc883c81e45d9d9ea97edb038449a46dae9e9dd",
+          "passed": true
+        },
+        {
+          "assertion_id": "S13_installed_inventory_1_reference_valid",
+          "expected": true,
+          "actual": true,
+          "passed": true
+        },
+        {
+          "assertion_id": "S13_installed_inventory_1_filesystem_probe_valid",
+          "expected": true,
+          "actual": {
+            "path": "external-artifacts/task003-v6/native-hwpx/hancom-picture-output.hwpx",
+            "exists": true,
+            "size": 14325,
+            "sha256": "7829289d2dc9af5d2ea80c8889054ee695ca1317b51d729efc3d81ed947671e3",
+            "hash_algorithm": "sha256",
+            "source": "filesystem"
+          },
+          "passed": true
+        },
+        {
+          "assertion_id": "S13_installed_inventory_1_path_matches_probe",
+          "expected": "external-artifacts/task003-v6/native-hwpx/hancom-picture-output.hwpx",
+          "actual": "external-artifacts/task003-v6/native-hwpx/hancom-picture-output.hwpx",
+          "passed": true
+        },
+        {
+          "assertion_id": "S13_installed_inventory_1_size_matches_probe",
+          "expected": 14325,
+          "actual": 14325,
+          "passed": true
+        },
+        {
+          "assertion_id": "S13_installed_inventory_1_sha256_matches_probe",
+          "expected": "7829289d2dc9af5d2ea80c8889054ee695ca1317b51d729efc3d81ed947671e3",
+          "actual": "7829289d2dc9af5d2ea80c8889054ee695ca1317b51d729efc3d81ed947671e3",
+          "passed": true
+        },
+        {
+          "assertion_id": "execution_record_object",
+          "passed": true
+        },
+        {
+          "assertion_id": "execution_command_present",
+          "passed": true
+        },
+        {
+          "assertion_id": "execution_executed_true",
+          "passed": true
+        },
+        {
+          "assertion_id": "execution_method_present",
+          "passed": true
+        },
+        {
+          "assertion_id": "execution_started_at_datetime",
+          "passed": true
+        },
+        {
+          "assertion_id": "execution_ended_at_datetime",
+          "passed": true
+        },
+        {
+          "assertion_id": "execution_time_order",
+          "passed": true
+        },
+        {
+          "assertion_id": "execution_exit_code_integer",
+          "passed": true
+        },
+        {
+          "assertion_id": "execution_stdout_path_present",
+          "passed": true
+        },
+        {
+          "assertion_id": "execution_stderr_path_present",
+          "passed": true
+        },
+        {
+          "assertion_id": "execution_stdout_probe_valid",
+          "passed": true
+        },
+        {
+          "assertion_id": "execution_stderr_probe_valid",
+          "passed": true
+        },
+        {
+          "assertion_id": "S13_network_test_evidence_reference_valid",
+          "expected": true,
+          "actual": true,
+          "passed": true
+        },
+        {
+          "assertion_id": "S13_network_test_evidence_filesystem_probe_valid",
+          "expected": true,
+          "actual": {
+            "path": "external-artifacts/task003-v6/native-hwpx/s13-network-test.txt",
+            "exists": true,
+            "size": 23,
+            "sha256": "056c81a75b7d8597454d4cd060d07fa16dfcf9535cd627466075a1105506b890",
+            "hash_algorithm": "sha256",
+            "source": "filesystem"
+          },
+          "passed": true
+        },
+        {
+          "assertion_id": "S13_network_test_evidence_path_matches_probe",
+          "expected": "external-artifacts/task003-v6/native-hwpx/s13-network-test.txt",
+          "actual": "external-artifacts/task003-v6/native-hwpx/s13-network-test.txt",
+          "passed": true
+        },
+        {
+          "assertion_id": "S13_network_test_evidence_size_matches_probe",
+          "expected": 23,
+          "actual": 23,
+          "passed": true
+        },
+        {
+          "assertion_id": "S13_network_test_evidence_sha256_matches_probe",
+          "expected": "056c81a75b7d8597454d4cd060d07fa16dfcf9535cd627466075a1105506b890",
+          "actual": "056c81a75b7d8597454d4cd060d07fa16dfcf9535cd627466075a1105506b890",
+          "passed": true
+        },
+        {
+          "assertion_id": "S13_cleanup_evidence_reference_valid",
+          "expected": true,
+          "actual": true,
+          "passed": true
+        },
+        {
+          "assertion_id": "S13_cleanup_evidence_filesystem_probe_valid",
+          "expected": true,
+          "actual": {
+            "path": "external-artifacts/task003-v6/native-hwpx/s13-cleanup.txt",
+            "exists": true,
+            "size": 71,
+            "sha256": "fda841fdf0c64749946dd025f730704bfb6f0da9a35142238e9b445118c84664",
+            "hash_algorithm": "sha256",
+            "source": "filesystem"
+          },
+          "passed": true
+        },
+        {
+          "assertion_id": "S13_cleanup_evidence_path_matches_probe",
+          "expected": "external-artifacts/task003-v6/native-hwpx/s13-cleanup.txt",
+          "actual": "external-artifacts/task003-v6/native-hwpx/s13-cleanup.txt",
+          "passed": true
+        },
+        {
+          "assertion_id": "S13_cleanup_evidence_size_matches_probe",
+          "expected": 71,
+          "actual": 71,
+          "passed": true
+        },
+        {
+          "assertion_id": "S13_cleanup_evidence_sha256_matches_probe",
+          "expected": "fda841fdf0c64749946dd025f730704bfb6f0da9a35142238e9b445118c84664",
+          "actual": "fda841fdf0c64749946dd025f730704bfb6f0da9a35142238e9b445118c84664",
+          "passed": true
+        },
+        {
+          "assertion_id": "S13_offline_install_succeeded",
+          "expected": 0,
+          "actual": 0,
+          "passed": true
+        },
+        {
+          "assertion_id": "S13_runtime_invocation_succeeded",
+          "expected": 0,
+          "actual": 0,
+          "passed": true
+        },
+        {
+          "assertion_id": "S13_runtime_did_not_require_network",
+          "expected": false,
+          "actual": false,
+          "passed": true
+        },
+        {
+          "assertion_id": "S13_cleanup_succeeded",
+          "expected": "success",
+          "actual": "success",
+          "passed": true
+        },
+        {
+          "assertion_id": "scenario_assertions_all_passed",
+          "expected": true,
+          "actual": true,
+          "passed": true
+        }
+      ]
+    },
+    "S14": {
+      "validator_id": "s14-semantic-gate",
+      "valid": true,
+      "missing_evidence": [],
+      "assertions": [
+        {
+          "assertion_id": "S14_upstream_artifact_reference_valid",
+          "expected": true,
+          "actual": true,
+          "passed": true
+        },
+        {
+          "assertion_id": "S14_upstream_artifact_filesystem_probe_valid",
+          "expected": true,
+          "actual": {
+            "path": "external-artifacts/task003-v6/native-hwpx/s14-upstream-artifact.txt",
+            "exists": true,
+            "size": 240,
+            "sha256": "a624b8729f1c5b83c9c11f2326c57c8bb66da35e4c02f5e242067d723e6e4bee",
+            "hash_algorithm": "sha256",
+            "source": "filesystem"
+          },
+          "passed": true
+        },
+        {
+          "assertion_id": "S14_upstream_artifact_path_matches_probe",
+          "expected": "external-artifacts/task003-v6/native-hwpx/s14-upstream-artifact.txt",
+          "actual": "external-artifacts/task003-v6/native-hwpx/s14-upstream-artifact.txt",
+          "passed": true
+        },
+        {
+          "assertion_id": "S14_upstream_artifact_size_matches_probe",
+          "expected": 240,
+          "actual": 240,
+          "passed": true
+        },
+        {
+          "assertion_id": "S14_upstream_artifact_sha256_matches_probe",
+          "expected": "a624b8729f1c5b83c9c11f2326c57c8bb66da35e4c02f5e242067d723e6e4bee",
+          "actual": "a624b8729f1c5b83c9c11f2326c57c8bb66da35e4c02f5e242067d723e6e4bee",
+          "passed": true
+        },
+        {
+          "assertion_id": "S14_legal_file_LICENSE_reference_valid",
+          "expected": true,
+          "actual": true,
+          "passed": true
+        },
+        {
+          "assertion_id": "S14_legal_file_LICENSE_filesystem_probe_valid",
+          "expected": true,
+          "actual": {
+            "path": "external-artifacts/task003-v6/native-hwpx/LICENSE",
+            "exists": true,
+            "size": 1090,
+            "sha256": "a05350a88e318e4f5f2c2a1ff1e2e88daa4dd38e6e78b71cccae422bdc762cc3",
+            "hash_algorithm": "sha256",
+            "source": "filesystem"
+          },
+          "passed": true
+        },
+        {
+          "assertion_id": "S14_legal_file_LICENSE_path_matches_probe",
+          "expected": "external-artifacts/task003-v6/native-hwpx/LICENSE",
+          "actual": "external-artifacts/task003-v6/native-hwpx/LICENSE",
+          "passed": true
+        },
+        {
+          "assertion_id": "S14_legal_file_LICENSE_size_matches_probe",
+          "expected": 1090,
+          "actual": 1090,
+          "passed": true
+        },
+        {
+          "assertion_id": "S14_legal_file_LICENSE_sha256_matches_probe",
+          "expected": "a05350a88e318e4f5f2c2a1ff1e2e88daa4dd38e6e78b71cccae422bdc762cc3",
+          "actual": "a05350a88e318e4f5f2c2a1ff1e2e88daa4dd38e6e78b71cccae422bdc762cc3",
+          "passed": true
+        },
+        {
+          "assertion_id": "S14_LICENSE_upstream_lineage",
+          "expected": {
+            "path": "external-artifacts/task003-v6/native-hwpx/s14-upstream-artifact.txt",
+            "sha256": "a624b8729f1c5b83c9c11f2326c57c8bb66da35e4c02f5e242067d723e6e4bee"
+          },
+          "actual": {
+            "path": "external-artifacts/task003-v6/native-hwpx/s14-upstream-artifact.txt",
+            "sha256": "a624b8729f1c5b83c9c11f2326c57c8bb66da35e4c02f5e242067d723e6e4bee"
+          },
+          "passed": true
+        },
+        {
+          "assertion_id": "S14_legal_file_COPYING_reference_valid",
+          "expected": true,
+          "actual": true,
+          "passed": true
+        },
+        {
+          "assertion_id": "S14_legal_file_COPYING_filesystem_probe_valid",
+          "expected": true,
+          "actual": {
+            "path": "external-artifacts/task003-v6/native-hwpx/COPYING",
+            "exists": true,
+            "size": 1090,
+            "sha256": "a05350a88e318e4f5f2c2a1ff1e2e88daa4dd38e6e78b71cccae422bdc762cc3",
+            "hash_algorithm": "sha256",
+            "source": "filesystem"
+          },
+          "passed": true
+        },
+        {
+          "assertion_id": "S14_legal_file_COPYING_path_matches_probe",
+          "expected": "external-artifacts/task003-v6/native-hwpx/COPYING",
+          "actual": "external-artifacts/task003-v6/native-hwpx/COPYING",
+          "passed": true
+        },
+        {
+          "assertion_id": "S14_legal_file_COPYING_size_matches_probe",
+          "expected": 1090,
+          "actual": 1090,
+          "passed": true
+        },
+        {
+          "assertion_id": "S14_legal_file_COPYING_sha256_matches_probe",
+          "expected": "a05350a88e318e4f5f2c2a1ff1e2e88daa4dd38e6e78b71cccae422bdc762cc3",
+          "actual": "a05350a88e318e4f5f2c2a1ff1e2e88daa4dd38e6e78b71cccae422bdc762cc3",
+          "passed": true
+        },
+        {
+          "assertion_id": "S14_COPYING_upstream_lineage",
+          "expected": {
+            "path": "external-artifacts/task003-v6/native-hwpx/s14-upstream-artifact.txt",
+            "sha256": "a624b8729f1c5b83c9c11f2326c57c8bb66da35e4c02f5e242067d723e6e4bee"
+          },
+          "actual": {
+            "path": "external-artifacts/task003-v6/native-hwpx/s14-upstream-artifact.txt",
+            "sha256": "a624b8729f1c5b83c9c11f2326c57c8bb66da35e4c02f5e242067d723e6e4bee"
+          },
+          "passed": true
+        },
+        {
+          "assertion_id": "S14_legal_file_NOTICE_reference_valid",
+          "expected": true,
+          "actual": true,
+          "passed": true
+        },
+        {
+          "assertion_id": "S14_legal_file_NOTICE_filesystem_probe_valid",
+          "expected": true,
+          "actual": {
+            "path": "external-artifacts/task003-v6/native-hwpx/NOTICE",
+            "exists": true,
+            "size": 96,
+            "sha256": "1fd1c8ea3a0c2a400b77bf2625e8cf53b814e02035098e0a035834670ad0e3f7",
+            "hash_algorithm": "sha256",
+            "source": "filesystem"
+          },
+          "passed": true
+        },
+        {
+          "assertion_id": "S14_legal_file_NOTICE_path_matches_probe",
+          "expected": "external-artifacts/task003-v6/native-hwpx/NOTICE",
+          "actual": "external-artifacts/task003-v6/native-hwpx/NOTICE",
+          "passed": true
+        },
+        {
+          "assertion_id": "S14_legal_file_NOTICE_size_matches_probe",
+          "expected": 96,
+          "actual": 96,
+          "passed": true
+        },
+        {
+          "assertion_id": "S14_legal_file_NOTICE_sha256_matches_probe",
+          "expected": "1fd1c8ea3a0c2a400b77bf2625e8cf53b814e02035098e0a035834670ad0e3f7",
+          "actual": "1fd1c8ea3a0c2a400b77bf2625e8cf53b814e02035098e0a035834670ad0e3f7",
+          "passed": true
+        },
+        {
+          "assertion_id": "S14_NOTICE_upstream_lineage",
+          "expected": {
+            "path": "external-artifacts/task003-v6/native-hwpx/s14-upstream-artifact.txt",
+            "sha256": "a624b8729f1c5b83c9c11f2326c57c8bb66da35e4c02f5e242067d723e6e4bee"
+          },
+          "actual": {
+            "path": "external-artifacts/task003-v6/native-hwpx/s14-upstream-artifact.txt",
+            "sha256": "a624b8729f1c5b83c9c11f2326c57c8bb66da35e4c02f5e242067d723e6e4bee"
+          },
+          "passed": true
+        },
+        {
+          "assertion_id": "S14_all_required_legal_files_filesystem_verified",
+          "expected": [
+            "LICENSE",
+            "COPYING",
+            "NOTICE"
+          ],
+          "actual": [
+            "COPYING",
+            "LICENSE",
+            "NOTICE"
+          ],
+          "passed": true
+        },
+        {
+          "assertion_id": "S14_redistribution_assessment_complete",
+          "expected": true,
+          "actual": {
+            "source_impact": "license notice preservation required",
+            "binary_impact": "license notice preservation required",
+            "obligations": [
+              "Preserve license text",
+              "Preserve notices"
+            ]
+          },
+          "passed": true
+        },
+        {
+          "assertion_id": "scenario_assertions_all_passed",
+          "expected": true,
+          "actual": true,
+          "passed": true
+        }
+      ]
+    }
+  },
+  "invalid_pass_count": 0,
+  "external_artifacts_ignored": true
+}

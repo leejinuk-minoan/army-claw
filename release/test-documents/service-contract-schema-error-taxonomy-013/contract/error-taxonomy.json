@@ -1,0 +1,74 @@
+{
+  "invalid_request": {
+    "code": "invalid_request",
+    "category": "request",
+    "retryable": false,
+    "user_visible": true,
+    "description": "The request shape is missing required service fields or contains invalid field types.",
+    "expected_status": "validation_error"
+  },
+  "unsupported_intent": {
+    "code": "unsupported_intent",
+    "category": "request",
+    "retryable": false,
+    "user_visible": true,
+    "description": "The document intent is outside the currently supported Army Claw operation set.",
+    "expected_status": "policy_error"
+  },
+  "not_found": {
+    "code": "not_found",
+    "category": "lookup",
+    "retryable": false,
+    "user_visible": true,
+    "description": "The requested job, response, or artifact was not found in the local service store.",
+    "expected_status": "not_found"
+  },
+  "not_ready": {
+    "code": "not_ready",
+    "category": "state",
+    "retryable": true,
+    "user_visible": true,
+    "description": "The requested result exists but the job has not reached a terminal state.",
+    "expected_status": "not_ready"
+  },
+  "policy_error": {
+    "code": "policy_error",
+    "category": "policy",
+    "retryable": false,
+    "user_visible": true,
+    "description": "The request violates an offline, path, backend, or safety policy.",
+    "expected_status": "policy_error"
+  },
+  "validation_error": {
+    "code": "validation_error",
+    "category": "validation",
+    "retryable": false,
+    "user_visible": true,
+    "description": "The request, job, artifact, or generated output failed contract validation.",
+    "expected_status": "validation_error"
+  },
+  "execution_error": {
+    "code": "execution_error",
+    "category": "execution",
+    "retryable": true,
+    "user_visible": true,
+    "description": "The local execution boundary failed after accepting the request.",
+    "expected_status": "failed"
+  },
+  "artifact_missing": {
+    "code": "artifact_missing",
+    "category": "artifact",
+    "retryable": false,
+    "user_visible": false,
+    "description": "A required service artifact path was null, outside the task root, or unavailable.",
+    "expected_status": "failed"
+  },
+  "contract_violation": {
+    "code": "contract_violation",
+    "category": "contract",
+    "retryable": false,
+    "user_visible": false,
+    "description": "The producer returned a shape that does not match the Task 013 service contract.",
+    "expected_status": "failed"
+  }
+}

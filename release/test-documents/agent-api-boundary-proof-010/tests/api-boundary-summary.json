@@ -1,0 +1,60 @@
+{
+  "task_id": "agent-api-boundary-proof-010",
+  "generated_at": "2026-07-04T22:00:30.872Z",
+  "completion_candidate": true,
+  "request_count": 6,
+  "completed_count": 4,
+  "rejected_count": 1,
+  "failed_count": 1,
+  "completed_response_paths": [
+    "release/test-documents/agent-api-boundary-proof-010/responses/create-document-response.json",
+    "release/test-documents/agent-api-boundary-proof-010/responses/edit-paragraph-response.json",
+    "release/test-documents/agent-api-boundary-proof-010/responses/edit-table-response.json",
+    "release/test-documents/agent-api-boundary-proof-010/responses/apply-style-response.json"
+  ],
+  "rejected_response_path": "release/test-documents/agent-api-boundary-proof-010/responses/invalid-response.json",
+  "failed_response_path": "release/test-documents/agent-api-boundary-proof-010/responses/validation-failure-response.json",
+  "outputs": [
+    {
+      "path": "C:/Users/USER/Desktop/로컬 open claw 만들기/.tmp/t10/release/test-documents/agent-api-boundary-proof-010/outputs/create-document-output.hwpx",
+      "exists": true,
+      "size": 1842612,
+      "sha256": "b73ed790a245399c06d832931d0e14a6fa7cb5db28aaeaea1094197b09b4511e"
+    },
+    {
+      "path": "C:/Users/USER/Desktop/로컬 open claw 만들기/.tmp/t10/release/test-documents/agent-api-boundary-proof-010/outputs/edit-paragraph-output.hwpx",
+      "exists": true,
+      "size": 1842609,
+      "sha256": "09cbded6a42c5440370cbb8b01f1238abeb55f20dcdf0dd0d908368bee7b58fa"
+    },
+    {
+      "path": "C:/Users/USER/Desktop/로컬 open claw 만들기/.tmp/t10/release/test-documents/agent-api-boundary-proof-010/outputs/edit-table-output.hwpx",
+      "exists": true,
+      "size": 1842648,
+      "sha256": "f189b7d0f9a37771f82f307d88c0c328666a8663f4ae98f9123c77e6520361fe"
+    },
+    {
+      "path": "C:/Users/USER/Desktop/로컬 open claw 만들기/.tmp/t10/release/test-documents/agent-api-boundary-proof-010/outputs/apply-style-output.hwpx",
+      "exists": true,
+      "size": 1842611,
+      "sha256": "e598359519506678f1be00907e8b8a0a0f88970b1996ce8b082b9c33be5e8ca4"
+    }
+  ],
+  "evidence_paths": [
+    "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\t10\\release\\test-documents\\agent-api-boundary-proof-010\\evidence\\create-document-editor.json",
+    "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\t10\\release\\test-documents\\agent-api-boundary-proof-010\\evidence\\edit-paragraph-editor.json",
+    "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\t10\\release\\test-documents\\agent-api-boundary-proof-010\\evidence\\edit-table-editor.json",
+    "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\t10\\release\\test-documents\\agent-api-boundary-proof-010\\evidence\\apply-style-editor.json"
+  ],
+  "real_com_executed": false,
+  "final_core_selection_declared": false,
+  "stage_2_transition_declared": false,
+  "completed_artifacts_modified": false,
+  "read_only_reference_roots": [
+    "release/test-documents/hwpx-core-benchmark-003-evidence-integrity",
+    "release/test-documents/hwpcoreadapter-backend-proof-006",
+    "release/test-documents/editor-backend-candidate-comparison-007",
+    "release/test-documents/node-xml-thin-interim-adapter-integration-008",
+    "release/test-documents/agent-operation-plan-e2e-proof-009"
+  ]
+}

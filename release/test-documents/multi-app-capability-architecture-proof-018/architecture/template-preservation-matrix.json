@@ -1,0 +1,50 @@
+{
+  "hwp_hwpx": {
+    "target_id": "hwp_hwpx",
+    "template_preservation_required": true,
+    "required_fields": [
+      "paragraph_styles",
+      "character_styles",
+      "page_settings",
+      "margins",
+      "headers_footers",
+      "tables",
+      "numbering",
+      "section_structure",
+      "placeholders",
+      "approval_or_signature_blocks"
+    ]
+  },
+  "hancell": {
+    "target_id": "hancell",
+    "template_preservation_required": true,
+    "required_fields": [
+      "sheets",
+      "cell_styles",
+      "merged_cells",
+      "row_column_sizes",
+      "formulas",
+      "named_ranges",
+      "tables",
+      "charts",
+      "print_settings",
+      "placeholder_cells_or_ranges"
+    ]
+  },
+  "hanshow": {
+    "target_id": "hanshow",
+    "template_preservation_required": true,
+    "required_fields": [
+      "slide_size",
+      "slide_layouts",
+      "theme_styles",
+      "placeholders",
+      "text_boxes",
+      "shapes",
+      "tables",
+      "image_frames",
+      "chart_placeholders",
+      "briefing_structure"
+    ]
+  }
+}

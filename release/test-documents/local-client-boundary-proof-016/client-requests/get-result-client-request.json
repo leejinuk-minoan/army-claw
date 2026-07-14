@@ -1,0 +1,15 @@
+{
+  "route_request_id": "client-get-result-job-client-016",
+  "route_id": "get_result",
+  "mock_method": "GET",
+  "mock_path": "/mock/jobs/job-client-016/result",
+  "service_operation": "getResult",
+  "params": {
+    "job_id": "job-client-016"
+  },
+  "body": {},
+  "manifest_version": "local-route-manifest-proof-015.v1",
+  "real_http_server_started": false,
+  "final_core_selection_declared": false,
+  "stage_2_transition_declared": false
+}

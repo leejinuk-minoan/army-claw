@@ -1,0 +1,9 @@
+{
+  "sample_id": "negative-staged-output-source-overwrite",
+  "expected_error_code": "source_overwrite_blocked",
+  "expected_user_visible_state": "blocked",
+  "request_patch": {
+    "validated_plan.operation_batch[0].relative_staging_path": "source/analysis-plan.md"
+  },
+  "reason": "Staged output must not overwrite or collide with source workspace paths."
+}

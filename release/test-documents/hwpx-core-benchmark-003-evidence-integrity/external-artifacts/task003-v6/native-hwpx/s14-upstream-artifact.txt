@@ -1,0 +1,2 @@
+ajv_package=C:\Users\USER\Desktop\로컬 open claw 만들기\.tmp\openclaw-prod-install\node_modules\ajv\package.json
+jszip_package=C:\Users\USER\Desktop\로컬 open claw 만들기\.tmp\openclaw-prod-install\node_modules\jszip\package.json

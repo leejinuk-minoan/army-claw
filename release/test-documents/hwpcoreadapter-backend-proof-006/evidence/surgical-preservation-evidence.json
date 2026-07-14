@@ -1,0 +1,102 @@
+{
+  "task_id": "hwpcoreadapter-backend-proof-006",
+  "operation_id": "surgical",
+  "backend_role": "surgical_patcher",
+  "backend_id": "SurgicalPatchBackendProof",
+  "promoted": true,
+  "input": {
+    "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task006-hwpcoreadapter-backend-proof-20260704141000\\release\\test-documents\\hwpcoreadapter-backend-proof-006\\fixtures\\source.hwpx",
+    "exists": true,
+    "size": 1842578,
+    "sha256": "33f5ec297ce6b6ab60c342a368800ff42ab0dc86a7ba79ec100ff2c7896bbe41",
+    "hash_algorithm": "sha256"
+  },
+  "output": {
+    "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task006-hwpcoreadapter-backend-proof-20260704141000\\release\\test-documents\\hwpcoreadapter-backend-proof-006\\outputs\\surgical-patch-output.hwpx",
+    "exists": true,
+    "size": 1842620,
+    "sha256": "4368492d572ef39f0b59840cd9d24ec93e49e0a3fbc914a08032c207ff87e4b8",
+    "hash_algorithm": "sha256"
+  },
+  "validation": {
+    "valid": true,
+    "validator": "Task006SurgicalPreservationValidator",
+    "failure_count": 0,
+    "failures": []
+  },
+  "failure": null,
+  "changed_target_entry": "Contents/section0.xml",
+  "changed_entries": [
+    "Contents/section0.xml"
+  ],
+  "non_target_preserved": true,
+  "non_target_hash_map": {
+    "before": {
+      "BinData/image1.JPG": "9cdeff8873d5471ddc2fc32a939853c3d2c9233da47a1959441217e1794129c5",
+      "BinData/image10.JPG": "e2ca093262e55d03df5655de11a7f7262844ee83f7be045fc9a25099d4875cda",
+      "BinData/image11.EMF": "d464e6388014f1de09638b9d684e9a915dd81d1529e79cd9c50628e1f8e021b9",
+      "BinData/image12.PNG": "1a05c4f0d13b49253bd2782ed4058fa198ff15e0e1df2c580c07949301f578de",
+      "BinData/image13.PNG": "6245c03bdd8e400936cd12832e85be0beb84854ccaef6bade1420ec5498add5a",
+      "BinData/image2.JPG": "f020bec4f4a55dc73e323440477a5fdca889382e04b97ed13222e23ea873e3d1",
+      "BinData/image3.JPG": "dab20d3600c5ae0c5eed69cda93cd5b6883fd8d40d22772855c6b6abf029360e",
+      "BinData/image4.JPG": "8dbb895bb1bf501f203a5696b5e200dbc40a1d5fb79ac3f48d26ff33b4b7934a",
+      "BinData/image5.JPG": "c555fd8334b303347e17fb6c9dfcb8b16ba77706e8b06104e8978f3323978a05",
+      "BinData/image6.JPG": "ec0a10def842d4f41e5c7c4d87c499d071d5b3190abc45113c6d015501eb438b",
+      "BinData/image7.JPG": "5ae90c0b3acc31fa4184ddc3e850c95a3608df5fc0a1f77e6da966da3c69a4cb",
+      "BinData/image8.JPG": "da3f48fee1285c90b5e37227d2eaa55bc481c8b6965b8f49461d6f28d055715b",
+      "BinData/image9.JPG": "85114b2d6b2e3507df9a33e506f6819ef51fdde5f09ce11d61150b5891d0490c",
+      "Contents/content.hpf": "cca34ff3fb9844e13a86c826842c8d8d078d6fe80dfe762b2766d97669381cb7",
+      "Contents/header.xml": "4d93c3aace0a3afbac73dcb821c741abb12197b294cd4c3436a50638c1273732",
+      "META-INF/container.rdf": "0cfd814c20595c841e48e62fbf7591829f13c177fa92af634c8199f85ecf3a89",
+      "META-INF/container.xml": "5109d3a9249ec1058177fedab574c5d9616058aa92ebefcd33249ebb36a20f61",
+      "META-INF/manifest.xml": "2b4b155c1bb6a9ccc212fef113c4831d2f558e67cf1260eb314ce54f26fd32ea",
+      "Preview/PrvImage.png": "064602c7c218f6569b441f29b34a0872e8e7cd5934389da1b0834498726da2de",
+      "Preview/PrvText.txt": "759e1f92b40351ef47c0695ff62f12dfb705dec94eba425ae9885d3aba766e75",
+      "mimetype": "5ab5230b5af04f78947736bf8dd1a269aa684e234f7f4a392efb85289d1655c2",
+      "settings.xml": "04651c559a378e634e18eec9052110a19b7cf8b56e7762b0969d5cb225fa68f6",
+      "version.xml": "ff3fc36d4de548ff69c612f3c882d16e466c00624d8a8611597f12a30bf34729"
+    },
+    "after": {
+      "BinData/image1.JPG": "9cdeff8873d5471ddc2fc32a939853c3d2c9233da47a1959441217e1794129c5",
+      "BinData/image10.JPG": "e2ca093262e55d03df5655de11a7f7262844ee83f7be045fc9a25099d4875cda",
+      "BinData/image11.EMF": "d464e6388014f1de09638b9d684e9a915dd81d1529e79cd9c50628e1f8e021b9",
+      "BinData/image12.PNG": "1a05c4f0d13b49253bd2782ed4058fa198ff15e0e1df2c580c07949301f578de",
+      "BinData/image13.PNG": "6245c03bdd8e400936cd12832e85be0beb84854ccaef6bade1420ec5498add5a",
+      "BinData/image2.JPG": "f020bec4f4a55dc73e323440477a5fdca889382e04b97ed13222e23ea873e3d1",
+      "BinData/image3.JPG": "dab20d3600c5ae0c5eed69cda93cd5b6883fd8d40d22772855c6b6abf029360e",
+      "BinData/image4.JPG": "8dbb895bb1bf501f203a5696b5e200dbc40a1d5fb79ac3f48d26ff33b4b7934a",
+      "BinData/image5.JPG": "c555fd8334b303347e17fb6c9dfcb8b16ba77706e8b06104e8978f3323978a05",
+      "BinData/image6.JPG": "ec0a10def842d4f41e5c7c4d87c499d071d5b3190abc45113c6d015501eb438b",
+      "BinData/image7.JPG": "5ae90c0b3acc31fa4184ddc3e850c95a3608df5fc0a1f77e6da966da3c69a4cb",
+      "BinData/image8.JPG": "da3f48fee1285c90b5e37227d2eaa55bc481c8b6965b8f49461d6f28d055715b",
+      "BinData/image9.JPG": "85114b2d6b2e3507df9a33e506f6819ef51fdde5f09ce11d61150b5891d0490c",
+      "Contents/content.hpf": "cca34ff3fb9844e13a86c826842c8d8d078d6fe80dfe762b2766d97669381cb7",
+      "Contents/header.xml": "4d93c3aace0a3afbac73dcb821c741abb12197b294cd4c3436a50638c1273732",
+      "META-INF/container.rdf": "0cfd814c20595c841e48e62fbf7591829f13c177fa92af634c8199f85ecf3a89",
+      "META-INF/container.xml": "5109d3a9249ec1058177fedab574c5d9616058aa92ebefcd33249ebb36a20f61",
+      "META-INF/manifest.xml": "2b4b155c1bb6a9ccc212fef113c4831d2f558e67cf1260eb314ce54f26fd32ea",
+      "Preview/PrvImage.png": "064602c7c218f6569b441f29b34a0872e8e7cd5934389da1b0834498726da2de",
+      "Preview/PrvText.txt": "759e1f92b40351ef47c0695ff62f12dfb705dec94eba425ae9885d3aba766e75",
+      "mimetype": "5ab5230b5af04f78947736bf8dd1a269aa684e234f7f4a392efb85289d1655c2",
+      "settings.xml": "04651c559a378e634e18eec9052110a19b7cf8b56e7762b0969d5cb225fa68f6",
+      "version.xml": "ff3fc36d4de548ff69c612f3c882d16e466c00624d8a8611597f12a30bf34729"
+    }
+  },
+  "relationship_bindata_preservation": {
+    "checked_entries": [
+      "BinData/image1.JPG",
+      "BinData/image10.JPG",
+      "BinData/image11.EMF",
+      "BinData/image12.PNG",
+      "BinData/image13.PNG",
+      "BinData/image2.JPG",
+      "BinData/image3.JPG",
+      "BinData/image4.JPG",
+      "BinData/image5.JPG",
+      "BinData/image6.JPG",
+      "BinData/image7.JPG",
+      "BinData/image8.JPG",
+      "BinData/image9.JPG"
+    ]
+  }
+}

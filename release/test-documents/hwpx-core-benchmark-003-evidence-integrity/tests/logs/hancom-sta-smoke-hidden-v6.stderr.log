@@ -1,0 +1,7 @@
+인수 형식이 일치하지 않습니다.
+위치 C:\Users\USER\AppData\Local\Temp\task003-hancom-sta-smoke-v6-fixed.ps1:38 문자:1
++ [ordered]@{status=$status;prog_id='HWPFrame.HwpObject';visible=[bool] ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+ 

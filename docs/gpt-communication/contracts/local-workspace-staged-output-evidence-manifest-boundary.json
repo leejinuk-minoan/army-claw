@@ -1,0 +1,132 @@
+{
+  "schema_version": "army-claw-local-workspace-staged-output-evidence-manifest-boundary-033.v1",
+  "contract_id": "local-workspace-staged-output-evidence-manifest-boundary",
+  "task_id": "task033-local-workspace-staged-output-evidence-manifest-boundary",
+  "depends_on": [
+    "docs/gpt-communication/contracts/local-workspace-staged-output-boundary.json",
+    "docs/gpt-communication/contracts/common-office-adapter-interface-contract.json",
+    "docs/gpt-communication/contracts/common-office-adapter-error-taxonomy.json",
+    "docs/gpt-communication/contracts/adapter-validator-gate-policy.json"
+  ],
+  "manifest_version": "1.0",
+  "execution_mode": "staged_output_evidence_manifest",
+  "deterministic_content": {
+    "wall_clock_timestamp_included": false,
+    "recorded_at_location": "operational_envelope",
+    "recorded_at_in_manifest_digest": false,
+    "canonical_json": {
+      "encoding": "UTF-8",
+      "bom": false,
+      "sort_object_keys": true,
+      "compact_separators": true,
+      "allow_nan": false,
+      "artifact_sort_key": ["artifact_id"],
+      "receipt_sort_key": ["receipt_id"],
+      "relationship_sort_key": ["relationship_type", "source_id", "target_id"]
+    },
+    "manifest_id": {
+      "algorithm": "sha256",
+      "prefix": "sha256:",
+      "hex_case": "lowercase",
+      "input": "canonical deterministic manifest content with manifest_id omitted"
+    }
+  },
+  "required_manifest_fields": [
+    "manifest_version",
+    "manifest_id",
+    "task_id",
+    "execution_mode",
+    "sandbox_scope",
+    "artifact_count",
+    "artifacts",
+    "receipts",
+    "relationships",
+    "summary",
+    "safety_assertions",
+    "validation"
+  ],
+  "required_artifact_fields": [
+    "artifact_id",
+    "artifact_kind",
+    "normalized_relative_path",
+    "content_source",
+    "byte_size",
+    "digest_algorithm",
+    "digest_value",
+    "receipt_id",
+    "sandbox_only",
+    "promotion_status"
+  ],
+  "digest_policy": {
+    "allowlist": ["sha256"],
+    "input": "exact request-provided generated-content bytes",
+    "hex_case": "lowercase",
+    "hex_length": 64,
+    "empty_content_allowed": true,
+    "path_or_metadata_only_digest_may_be_called_content_digest": false,
+    "mismatch_error": "digest_mismatch"
+  },
+  "path_policy": {
+    "absolute_path_allowed": false,
+    "path_traversal_allowed": false,
+    "empty_path_allowed": false,
+    "nul_allowed": false,
+    "control_characters_allowed": false,
+    "canonical_separator": "/",
+    "duplicate_normalized_path_allowed": false,
+    "case_insensitive_collision_allowed": false,
+    "case_collision_method": "Unicode casefold",
+    "source_overwrite_allowed": false,
+    "production_path_allowed": false
+  },
+  "relationship_integrity": {
+    "unique_artifact_id": true,
+    "unique_receipt_id": true,
+    "artifact_requires_existing_receipt": true,
+    "missing_reference_blocked": true,
+    "orphan_artifact_blocked": true,
+    "orphan_receipt_policy": "blocked unless receipt.summary_only is true",
+    "summary_counts_must_match_arrays": true
+  },
+  "required_safety_assertions": {
+    "staged_output_evidence_manifest_evaluated": true,
+    "staged_output_sandbox_write_performed": false,
+    "actual_adapter_invoked": false,
+    "actual_file_system_mutation_performed": false,
+    "user_workspace_file_system_mutation_performed": false,
+    "file_content_read_performed": false,
+    "local_hancom_com_executed": false,
+    "real_hwp_hwpx_hancell_hanshow_artifact_generated": false,
+    "production_promotion_performed": false,
+    "public_internet_access_performed": false,
+    "dependency_install_performed": false
+  },
+  "specific_error_codes": [
+    "invalid_manifest_version",
+    "invalid_digest_algorithm",
+    "digest_mismatch",
+    "duplicate_artifact_id",
+    "duplicate_receipt_id",
+    "duplicate_normalized_path",
+    "case_collision",
+    "missing_artifact_reference",
+    "missing_receipt_reference",
+    "orphan_artifact",
+    "orphan_receipt",
+    "artifact_count_mismatch",
+    "receipt_count_mismatch",
+    "path_traversal",
+    "absolute_path_not_allowed",
+    "source_overwrite_attempt",
+    "production_path_not_allowed",
+    "nondeterministic_manifest_content",
+    "invalid_canonical_serialization"
+  ],
+  "cloud_phase": {
+    "cloud_package_only": true,
+    "adapter_validator_gate_required": true,
+    "adapter_validator_gate_status": "required_not_run",
+    "requires_local_verification": true,
+    "task033_final_completion": false
+  }
+}

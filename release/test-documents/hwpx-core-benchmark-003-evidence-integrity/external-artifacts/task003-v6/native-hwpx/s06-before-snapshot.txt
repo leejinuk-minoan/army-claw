@@ -1,0 +1,17 @@
+{
+  "source_hwpx_path": "external-artifacts/task003-v6/native-hwpx/hancom-empty-save-hardcoded-visible.hwpx",
+  "source_hwpx_sha256": "fee3800ec84315981bb2d838f48d800dc478458c84b79461b97af587467171cc",
+  "entry_hashes": {
+    "mimetype": "5ab5230b5af04f78947736bf8dd1a269aa684e234f7f4a392efb85289d1655c2",
+    "version.xml": "ff3fc36d4de548ff69c612f3c882d16e466c00624d8a8611597f12a30bf34729",
+    "Contents/header.xml": "ddd101ead8d5c1665f902a1f29fb20042941098a805c43842ce2cccb3237b7f1",
+    "Contents/section0.xml": "f0e135fe4b199d89f8563eefe27dd75e38d9f3b95fe137343d98443c50514a93",
+    "Preview/PrvText.txt": "4037df22c889da3be8ec9bcf16cd6421eea2710b11221975c8c46801d3afe052",
+    "settings.xml": "8ce764726e3da6f807e34927d67465785e6eb53397480cea2fc016b674adc68f",
+    "Preview/PrvImage.png": "64aefbd1d125fde2441d93324c34cbae4e0ed88a1a873fd463e8aef78cb17dbe",
+    "META-INF/container.rdf": "0cfd814c20595c841e48e62fbf7591829f13c177fa92af634c8199f85ecf3a89",
+    "Contents/content.hpf": "8748784999e6b05304cdde3a9dd7bbcf4ea2b25cc8c1d44f5db57e8bd10f9a2b",
+    "META-INF/container.xml": "5109d3a9249ec1058177fedab574c5d9616058aa92ebefcd33249ebb36a20f61",
+    "META-INF/manifest.xml": "2b4b155c1bb6a9ccc212fef113c4831d2f558e67cf1260eb314ce54f26fd32ea"
+  }
+}

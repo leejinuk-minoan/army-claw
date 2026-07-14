@@ -1,0 +1,10 @@
+Post D-2 native scenario gates executed at 2026-07-03T23:24:23.980Z
+native_hwpx_probe_executed=true
+S06_valid=true
+S07_valid=true
+S08_valid=true
+S12_valid=true
+S13_valid=true
+S14_valid=true
+invalid_pass_count=0
+details=tests/post-d2-scenario-gates-v6.details.txt

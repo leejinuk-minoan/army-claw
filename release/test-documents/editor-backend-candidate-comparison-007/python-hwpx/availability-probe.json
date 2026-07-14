@@ -1,0 +1,622 @@
+{
+  "task_id": "editor-backend-candidate-comparison-007",
+  "candidate_id": "python_hwpx",
+  "generated_at": "2026-07-04T12:14:51.806Z",
+  "repository_search": {
+    "performed": true,
+    "match_count": 80,
+    "matches": [
+      {
+        "path": "backend/openclaw/agent_execution_queue.py",
+        "matched_patterns": [
+          "/hwpx/iu"
+        ]
+      },
+      {
+        "path": "backend/openclaw/agent_planner.py",
+        "matched_patterns": [
+          "/hwpx/iu"
+        ]
+      },
+      {
+        "path": "backend/openclaw/hwpx_tools.py",
+        "matched_patterns": [
+          "/hwpx/iu"
+        ]
+      },
+      {
+        "path": "backend/openclaw/main.py",
+        "matched_patterns": [
+          "/hwpx/iu"
+        ]
+      },
+      {
+        "path": "backend/pyproject.toml",
+        "matched_patterns": [
+          "/pyproject/iu"
+        ]
+      },
+      {
+        "path": "backend/tests/test_agent_execution_queue.py",
+        "matched_patterns": [
+          "/hwpx/iu"
+        ]
+      },
+      {
+        "path": "backend/tests/test_agent_execution_queue_api.py",
+        "matched_patterns": [
+          "/hwpx/iu"
+        ]
+      },
+      {
+        "path": "backend/tests/test_agent_planner.py",
+        "matched_patterns": [
+          "/hwpx/iu"
+        ]
+      },
+      {
+        "path": "backend/tests/test_agent_plan_api.py",
+        "matched_patterns": [
+          "/hwpx/iu"
+        ]
+      },
+      {
+        "path": "backend/tests/test_hwpx_tools.py",
+        "matched_patterns": [
+          "/hwpx/iu"
+        ]
+      },
+      {
+        "path": "docs/agent-skill-context.md",
+        "matched_patterns": [
+          "/hwpx/iu"
+        ]
+      },
+      {
+        "path": "docs/architecture/hwpx-core-adapter-boundary-004.md",
+        "matched_patterns": [
+          "/python-hwpx/iu",
+          "/hwpx/iu"
+        ]
+      },
+      {
+        "path": "docs/architecture/hwpx-core-selection-review-004.md",
+        "matched_patterns": [
+          "/python-hwpx/iu",
+          "/hwpx/iu"
+        ]
+      },
+      {
+        "path": "docs/gpt-communication/AGENT_OPERATING_MODEL.md",
+        "matched_patterns": [
+          "/hwpx/iu"
+        ]
+      },
+      {
+        "path": "docs/gpt-communication/CLOUD_LOCAL_EXECUTION_ROUTING.md",
+        "matched_patterns": [
+          "/hwpx/iu"
+        ]
+      },
+      {
+        "path": "docs/gpt-communication/CODEX_DELEGATION_AGENT_BOOTSTRAP.md",
+        "matched_patterns": [
+          "/hwpx/iu"
+        ]
+      },
+      {
+        "path": "docs/gpt-communication/CODEX_PROMPT_AGENT_BOOTSTRAP.md",
+        "matched_patterns": [
+          "/hwpx/iu"
+        ]
+      },
+      {
+        "path": "docs/gpt-communication/CURRENT.md",
+        "matched_patterns": [
+          "/hwpx/iu"
+        ]
+      },
+      {
+        "path": "docs/gpt-communication/delegation/DELEGATION_PACKAGE_TEMPLATE.md",
+        "matched_patterns": [
+          "/requirements/iu"
+        ]
+      },
+      {
+        "path": "docs/gpt-communication/delegation/hwpx-core-benchmark-003-evidence-integrity/CODEX_EXECUTION_BRIEF.md",
+        "matched_patterns": [
+          "/hwpx/iu"
+        ]
+      },
+      {
+        "path": "docs/gpt-communication/delegation/hwpx-core-benchmark-003-evidence-integrity/DELEGATION_PLAN.md",
+        "matched_patterns": [
+          "/hwpx/iu"
+        ]
+      },
+      {
+        "path": "docs/gpt-communication/delegation/hwpx-core-benchmark-003-evidence-integrity/DELEGATION_RESULT.md",
+        "matched_patterns": [
+          "/hwpx/iu"
+        ]
+      },
+      {
+        "path": "docs/gpt-communication/delegation/hwpx-core-benchmark-003-evidence-integrity/FILE_CHANGE_PLAN.json",
+        "matched_patterns": [
+          "/hwpx/iu"
+        ]
+      },
+      {
+        "path": "docs/gpt-communication/delegation/hwpx-core-benchmark-003-evidence-integrity/ROUTING_DECISION.json",
+        "matched_patterns": [
+          "/hwpx/iu"
+        ]
+      },
+      {
+        "path": "docs/gpt-communication/delegation/hwpx-core-benchmark-003-evidence-integrity/TEST_PLAN.json",
+        "matched_patterns": [
+          "/hwpx/iu"
+        ]
+      },
+      {
+        "path": "docs/gpt-communication/handoffs/CODEX_LATEST.json",
+        "matched_patterns": [
+          "/hwpx/iu",
+          "/requirements/iu"
+        ]
+      },
+      {
+        "path": "docs/gpt-communication/MASTER_MONITORING_POLICY.md",
+        "matched_patterns": [
+          "/hwpx/iu"
+        ]
+      },
+      {
+        "path": "docs/gpt-communication/opinions/2026-06-30-hwpx-document-rendering-engine-review.md",
+        "matched_patterns": [
+          "/hwpx/iu"
+        ]
+      },
+      {
+        "path": "docs/gpt-communication/opinions/2026-07-01-hwp-engine-not-llm-improvement-plan.md",
+        "matched_patterns": [
+          "/hwpx/iu"
+        ]
+      },
+      {
+        "path": "docs/gpt-communication/opinions/2026-07-01-hwp-reference-templates-and-document-style-goal.md",
+        "matched_patterns": [
+          "/hwpx/iu"
+        ]
+      },
+      {
+        "path": "docs/gpt-communication/opinions/2026-07-01-hwpx-v2-native-reference-review.md",
+        "matched_patterns": [
+          "/hwpx/iu"
+        ]
+      },
+      {
+        "path": "docs/gpt-communication/opinions/2026-07-01-hwpx-v3-minimal-table-next-step.md",
+        "matched_patterns": [
+          "/hwpx/iu"
+        ]
+      },
+      {
+        "path": "docs/gpt-communication/opinions/2026-07-02-army-claw-master-roadmap.md",
+        "matched_patterns": [
+          "/python-hwpx/iu",
+          "/hwpx/iu"
+        ]
+      },
+      {
+        "path": "docs/gpt-communication/opinions/2026-07-02-hwpx-core-architecture-decision.md",
+        "matched_patterns": [
+          "/python-hwpx/iu",
+          "/hwpx/iu"
+        ]
+      },
+      {
+        "path": "docs/gpt-communication/opinions/2026-07-02-hwpx-core-benchmark-001-master-review.md",
+        "matched_patterns": [
+          "/python-hwpx/iu",
+          "/hwpx/iu"
+        ]
+      },
+      {
+        "path": "docs/gpt-communication/opinions/2026-07-02-hwpx-semantic-block-selectors-next-step.md",
+        "matched_patterns": [
+          "/hwpx/iu"
+        ]
+      },
+      {
+        "path": "docs/gpt-communication/opinions/2026-07-02-hwpx-v3-visual-review-and-reflow.md",
+        "matched_patterns": [
+          "/hwpx/iu"
+        ]
+      },
+      {
+        "path": "docs/gpt-communication/opinions/2026-07-02-hwpx-v4-native-reflow-plan.md",
+        "matched_patterns": [
+          "/hwpx/iu"
+        ]
+      },
+      {
+        "path": "docs/gpt-communication/opinions/2026-07-02-hwpx-v5-adaptive-board-fit.md",
+        "matched_patterns": [
+          "/hwpx/iu"
+        ]
+      },
+      {
+        "path": "docs/gpt-communication/opinions/2026-07-03-hwpx-core-benchmark-002-master-review.md",
+        "matched_patterns": [
+          "/python-hwpx/iu",
+          "/hwpx/iu"
+        ]
+      },
+      {
+        "path": "docs/gpt-communication/opinions/2026-07-03-hwpx-core-benchmark-003-master-review.md",
+        "matched_patterns": [
+          "/hwpx/iu"
+        ]
+      },
+      {
+        "path": "docs/gpt-communication/opinions/2026-07-03-hwpx-core-benchmark-003-prompt-agent-review.md",
+        "matched_patterns": [
+          "/python-hwpx/iu",
+          "/hwpx/iu"
+        ]
+      },
+      {
+        "path": "docs/gpt-communication/opinions/2026-07-03-hybrid-hwpx-benchmark-responsibility-opinion.md",
+        "matched_patterns": [
+          "/python-hwpx/iu",
+          "/hwpx/iu",
+          "/pip/iu"
+        ]
+      },
+      {
+        "path": "docs/gpt-communication/PROJECT_STATE.json",
+        "matched_patterns": [
+          "/python-hwpx/iu",
+          "/hwpx/iu"
+        ]
+      },
+      {
+        "path": "docs/gpt-communication/README.md",
+        "matched_patterns": [
+          "/hwpx/iu"
+        ]
+      },
+      {
+        "path": "docs/gpt-communication/reports/2026-06-30-hwpx-document-rendering-engine.md",
+        "matched_patterns": [
+          "/hwpx/iu"
+        ]
+      },
+      {
+        "path": "docs/gpt-communication/reports/2026-06-30-hwpx-template-auto-generation.md",
+        "matched_patterns": [
+          "/hwpx/iu"
+        ]
+      },
+      {
+        "path": "docs/gpt-communication/reports/2026-07-01-hwp-engine-template-fidelity.md",
+        "matched_patterns": [
+          "/hwpx/iu"
+        ]
+      },
+      {
+        "path": "docs/gpt-communication/reports/2026-07-01-hwp-reference-style-profiles.md",
+        "matched_patterns": [
+          "/hwpx/iu"
+        ]
+      },
+      {
+        "path": "docs/gpt-communication/reports/2026-07-01-hwpx-minimal-native-table.md",
+        "matched_patterns": [
+          "/hwpx/iu"
+        ]
+      },
+      {
+        "path": "docs/gpt-communication/reports/2026-07-01-hwpx-native-reference-v3.md",
+        "matched_patterns": [
+          "/hwpx/iu"
+        ]
+      },
+      {
+        "path": "docs/gpt-communication/reports/2026-07-02-hwpx-adaptive-board-fit-v5.md",
+        "matched_patterns": [
+          "/hwpx/iu"
+        ]
+      },
+      {
+        "path": "docs/gpt-communication/reports/2026-07-02-hwpx-core-benchmark-001.md",
+        "matched_patterns": [
+          "/python-hwpx/iu",
+          "/python_hwpx/iu",
+          "/hwpx/iu"
+        ]
+      },
+      {
+        "path": "docs/gpt-communication/reports/2026-07-02-hwpx-core-benchmark-002.md",
+        "matched_patterns": [
+          "/python-hwpx/iu",
+          "/python_hwpx/iu",
+          "/hwpx/iu"
+        ]
+      },
+      {
+        "path": "docs/gpt-communication/reports/2026-07-02-hwpx-native-layout-reflow-v4.md",
+        "matched_patterns": [
+          "/hwpx/iu"
+        ]
+      },
+      {
+        "path": "docs/gpt-communication/reports/2026-07-02-hwpx-template-fidelity-selectors.md",
+        "matched_patterns": [
+          "/hwpx/iu"
+        ]
+      },
+      {
+        "path": "docs/gpt-communication/reports/2026-07-02-hwpx-template-fidelity-semantic-blocks.md",
+        "matched_patterns": [
+          "/hwpx/iu"
+        ]
+      },
+      {
+        "path": "docs/gpt-communication/reports/2026-07-03-hwpx-core-benchmark-003-evidence-integrity.md",
+        "matched_patterns": [
+          "/python-hwpx/iu",
+          "/hwpx/iu"
+        ]
+      },
+      {
+        "path": "docs/gpt-communication/reports/2026-07-03-hwpx-core-benchmark-003-local-rerun-v6-native-continuation.md",
+        "matched_patterns": [
+          "/python_hwpx/iu",
+          "/hwpx/iu"
+        ]
+      },
+      {
+        "path": "docs/gpt-communication/reports/2026-07-03-hwpx-core-benchmark-003-local-rerun-v6.md",
+        "matched_patterns": [
+          "/hwpx/iu"
+        ]
+      },
+      {
+        "path": "docs/gpt-communication/reports/2026-07-04-editor-backend-candidate-comparison-007.md",
+        "matched_patterns": [
+          "/python-hwpx/iu",
+          "/python_hwpx/iu",
+          "/pyhwpx/iu",
+          "/hwpx/iu",
+          "/pip/iu"
+        ]
+      },
+      {
+        "path": "docs/gpt-communication/reports/2026-07-04-hwpcoreadapter-backend-proof-006.md",
+        "matched_patterns": [
+          "/python-hwpx/iu",
+          "/hwpx/iu"
+        ]
+      },
+      {
+        "path": "docs/gpt-communication/reports/2026-07-04-hwpcoreadapter-boundary-validation-005.md",
+        "matched_patterns": [
+          "/python-hwpx/iu",
+          "/hwpx/iu"
+        ]
+      },
+      {
+        "path": "docs/gpt-communication/reports/2026-07-04-hwpx-core-benchmark-003-v6-native-completion.md",
+        "matched_patterns": [
+          "/python_hwpx/iu",
+          "/hwpx/iu"
+        ]
+      },
+      {
+        "path": "docs/gpt-communication/reports/2026-07-04-hwpx-core-selection-review-004.md",
+        "matched_patterns": [
+          "/python-hwpx/iu",
+          "/hwpx/iu"
+        ]
+      },
+      {
+        "path": "docs/gpt-communication/tasks/hwpx-core-benchmark-001/TASK_CONTRACT.md",
+        "matched_patterns": [
+          "/python-hwpx/iu",
+          "/python_hwpx/iu",
+          "/hwpx/iu",
+          "/requirements/iu"
+        ]
+      },
+      {
+        "path": "docs/gpt-communication/tasks/hwpx-core-benchmark-002/TASK_CONTRACT.md",
+        "matched_patterns": [
+          "/python-hwpx/iu",
+          "/hwpx/iu",
+          "/requirements/iu"
+        ]
+      },
+      {
+        "path": "docs/gpt-communication/tasks/hwpx-core-benchmark-003-evidence-integrity/TASK_CONTRACT.md",
+        "matched_patterns": [
+          "/python-hwpx/iu",
+          "/hwpx/iu",
+          "/requirements/iu"
+        ]
+      },
+      {
+        "path": "docs/gpt-communication/tasks/hwpx-core-benchmark-003-evidence-integrity/TASK_CONTRACT_CORRECTIVE_CONTINUATION.md",
+        "matched_patterns": [
+          "/python-hwpx/iu",
+          "/hwpx/iu",
+          "/pip/iu",
+          "/requirements/iu"
+        ]
+      },
+      {
+        "path": "docs/gpt-communication/tasks/hwpx-core-benchmark-003-evidence-integrity/TASK_CONTRACT_ROUTING_ADDENDUM.md",
+        "matched_patterns": [
+          "/hwpx/iu"
+        ]
+      },
+      {
+        "path": "docs/gpt-communication/tasks/TASK_CONTRACT_TEMPLATE.md",
+        "matched_patterns": [
+          "/hwpx/iu",
+          "/requirements/iu"
+        ]
+      },
+      {
+        "path": "docs/hancom-viewer-validation.md",
+        "matched_patterns": [
+          "/hwpx/iu"
+        ]
+      },
+      {
+        "path": "docs/handoff-next-steps.md",
+        "matched_patterns": [
+          "/hwpx/iu"
+        ]
+      },
+      {
+        "path": "docs/hwp-reference-profiles/manifests/official-action-plan.json",
+        "matched_patterns": [
+          "/hwpx/iu"
+        ]
+      },
+      {
+        "path": "docs/hwp-reference-profiles/manifests/qualification-review-booklet.json",
+        "matched_patterns": [
+          "/hwpx/iu"
+        ]
+      },
+      {
+        "path": "docs/hwp-reference-profiles/official-action-plan.md",
+        "matched_patterns": [
+          "/hwpx/iu"
+        ]
+      },
+      {
+        "path": "docs/hwp-reference-profiles/qualification-review-booklet.md",
+        "matched_patterns": [
+          "/hwpx/iu"
+        ]
+      },
+      {
+        "path": "docs/hwpx-template-authoring-guide.md",
+        "matched_patterns": [
+          "/hwpx/iu"
+        ]
+      },
+      {
+        "path": "docs/offline-build-env.md",
+        "matched_patterns": [
+          "/requirements/iu"
+        ]
+      },
+      {
+        "path": "docs/openclaw-full-replacement-plan.md",
+        "matched_patterns": [
+          "/hwpx/iu"
+        ]
+      }
+    ]
+  },
+  "python_runtime": {
+    "command_checked": [
+      "python --version"
+    ],
+    "checks": [
+      {
+        "command": "python --version",
+        "started_at": "2026-07-04T12:14:51.720Z",
+        "ended_at": "2026-07-04T12:14:51.734Z",
+        "exit_code": 0,
+        "stdout": "Python 3.12.8\r\n",
+        "stderr": "",
+        "timed_out": false,
+        "available": true
+      }
+    ],
+    "available": true,
+    "selected_command": "python",
+    "version_text": "Python 3.12.8"
+  },
+  "import_probe": {
+    "available": false,
+    "selected_module": null,
+    "attempts": [
+      {
+        "module": "hwpx",
+        "command": "python -c import hwpx; print(getattr(hwpx, '__version__', 'version_unknown'))",
+        "started_at": "2026-07-04T12:14:51.734Z",
+        "ended_at": "2026-07-04T12:14:51.758Z",
+        "exit_code": 1,
+        "stdout": "",
+        "stderr": "Traceback (most recent call last):\r\n  File \"<string>\", line 1, in <module>\r\nModuleNotFoundError: No module named 'hwpx'\r\n",
+        "timed_out": false,
+        "available": false
+      },
+      {
+        "module": "python_hwpx",
+        "command": "python -c import python_hwpx; print(getattr(python_hwpx, '__version__', 'version_unknown'))",
+        "started_at": "2026-07-04T12:14:51.758Z",
+        "ended_at": "2026-07-04T12:14:51.782Z",
+        "exit_code": 1,
+        "stdout": "",
+        "stderr": "Traceback (most recent call last):\r\n  File \"<string>\", line 1, in <module>\r\nModuleNotFoundError: No module named 'python_hwpx'\r\n",
+        "timed_out": false,
+        "available": false
+      },
+      {
+        "module": "pyhwpx",
+        "command": "python -c import pyhwpx; print(getattr(pyhwpx, '__version__', 'version_unknown'))",
+        "started_at": "2026-07-04T12:14:51.782Z",
+        "ended_at": "2026-07-04T12:14:51.806Z",
+        "exit_code": 1,
+        "stdout": "",
+        "stderr": "Traceback (most recent call last):\r\n  File \"<string>\", line 1, in <module>\r\nModuleNotFoundError: No module named 'pyhwpx'\r\n",
+        "timed_out": false,
+        "available": false
+      }
+    ],
+    "reason": "candidate_modules_not_importable"
+  },
+  "offline_cache_probe": {
+    "performed": true,
+    "offline_artifact_count": 0,
+    "artifacts": []
+  },
+  "license_probe": {
+    "checked_repo_records": true,
+    "license_verified": false,
+    "status": "license not verified in current repo",
+    "license_like_records": [
+      {
+        "path": "backend/pyproject.toml",
+        "matched_patterns": [
+          "/pyproject/iu"
+        ]
+      },
+      {
+        "path": "docs/hwp-reference-profiles/manifests/official-action-plan.json",
+        "matched_patterns": [
+          "/hwpx/iu"
+        ]
+      },
+      {
+        "path": "docs/hwp-reference-profiles/manifests/qualification-review-booklet.json",
+        "matched_patterns": [
+          "/hwpx/iu"
+        ]
+      }
+    ],
+    "python_hwpx_specific_records": []
+  },
+  "output_unavailable": true,
+  "no_online_install_attempted": true,
+  "no_pip_install_attempted": true,
+  "no_dependency_vendoring_attempted": true
+}

@@ -1,0 +1,28 @@
+{
+  "service_request_id": "svc-route-submit-create-document",
+  "service_operation": "submit",
+  "api_request_id": "api-route-create-document",
+  "request_id": "req-route-create-document",
+  "task_id": "inprocess-route-facade-proof-014",
+  "document_intent": "create_document",
+  "content": {
+    "text": "Task 014 route proof",
+    "table": [
+      [
+        "A",
+        "B"
+      ],
+      [
+        "1",
+        "2"
+      ]
+    ],
+    "style": "emphasis"
+  },
+  "constraints": {
+    "backend_role": "editor",
+    "backend_id": "NodeXmlThinInterimEditorAdapter",
+    "no_real_com": true,
+    "no_final_core_selection": true
+  }
+}

@@ -1,0 +1,115 @@
+{
+  "request_id": "req-local-workspace-task029-controlled-dry-run-001",
+  "response_id": "res-req-local-workspace-task029-controlled-dry-run-001",
+  "contract_version": "army-claw-common-office-adapter-interface-023.v1",
+  "target_id": "local_workspace",
+  "adapter_slot_id": "local_workspace_adapter_slot",
+  "status": "controlled_dry_run_completed",
+  "execution_allowed": false,
+  "actual_adapter_invoked": false,
+  "dry_run_adapter_boundary_evaluated": true,
+  "actual_file_system_mutation_performed": false,
+  "output_artifacts": [],
+  "planned_output_artifacts": [
+    {
+      "operation_id": "op-002",
+      "artifact_type": "folder",
+      "relative_output_path": "outputs/task029",
+      "status": "planned_only",
+      "actual_file_system_mutation_performed": false
+    },
+    {
+      "operation_id": "op-003",
+      "artifact_type": "md",
+      "relative_output_path": "outputs/task029/report.md",
+      "status": "planned_only",
+      "actual_file_system_mutation_performed": false
+    },
+    {
+      "operation_id": "op-004",
+      "artifact_type": "json",
+      "relative_output_path": "outputs/task029/evidence/dry-run-manifest.json",
+      "status": "planned_only",
+      "actual_file_system_mutation_performed": false
+    }
+  ],
+  "dry_run_operation_receipts": [
+    {
+      "operation_id": "op-001",
+      "operation_class": "validate_relative_path",
+      "status": "dry_run_validated",
+      "canonical_relative_input_path": "inputs/source.md",
+      "canonical_relative_output_path": null,
+      "expected_artifact_type": "md",
+      "would_mutate_filesystem_in_real_execution": false,
+      "actual_file_system_mutation_performed": false,
+      "actual_adapter_invoked": false,
+      "requires_public_internet": false,
+      "overwrite_existing": false
+    },
+    {
+      "operation_id": "op-002",
+      "operation_class": "create_output_directory",
+      "status": "dry_run_validated",
+      "canonical_relative_input_path": null,
+      "canonical_relative_output_path": "outputs/task029",
+      "expected_artifact_type": "folder",
+      "would_mutate_filesystem_in_real_execution": true,
+      "actual_file_system_mutation_performed": false,
+      "actual_adapter_invoked": false,
+      "requires_public_internet": false,
+      "overwrite_existing": false
+    },
+    {
+      "operation_id": "op-003",
+      "operation_class": "write_generated_text_artifact",
+      "status": "dry_run_validated",
+      "canonical_relative_input_path": null,
+      "canonical_relative_output_path": "outputs/task029/report.md",
+      "expected_artifact_type": "md",
+      "would_mutate_filesystem_in_real_execution": true,
+      "actual_file_system_mutation_performed": false,
+      "actual_adapter_invoked": false,
+      "requires_public_internet": false,
+      "overwrite_existing": false
+    },
+    {
+      "operation_id": "op-004",
+      "operation_class": "record_evidence_manifest",
+      "status": "dry_run_validated",
+      "canonical_relative_input_path": null,
+      "canonical_relative_output_path": "outputs/task029/evidence/dry-run-manifest.json",
+      "expected_artifact_type": "json",
+      "would_mutate_filesystem_in_real_execution": true,
+      "actual_file_system_mutation_performed": false,
+      "actual_adapter_invoked": false,
+      "requires_public_internet": false,
+      "overwrite_existing": false
+    }
+  ],
+  "validation_result": {
+    "valid": true,
+    "controlled_dry_run": true,
+    "operation_count": 4,
+    "planned_output_artifact_count": 3,
+    "reason": "Controlled dry-run evaluated the adapter boundary in memory only."
+  },
+  "evidence": {
+    "proof_mode": false,
+    "controlled_dry_run": true,
+    "dry_run_adapter_boundary_evaluated": true,
+    "actual_execution_evidence": false,
+    "actual_adapter_invoked": false,
+    "actual_file_system_mutation_performed": false,
+    "local_hancom_com_executed": false,
+    "real_hwp_hwpx_hancell_hanshow_artifact_generated": false,
+    "adapter_contract_path": "docs/gpt-communication/contracts/local-workspace-adapter-contract.json",
+    "controlled_dry_run_contract_path": "docs/gpt-communication/contracts/local-workspace-controlled-dry-run-boundary.json",
+    "adapter_module": "tools/adapters/local_workspace_adapter.py"
+  },
+  "warnings": [
+    "controlled dry-run only; no local workspace files were inspected or mutated",
+    "planned_output_artifacts are descriptors only, not real files"
+  ],
+  "created_at": "2026-07-10T00:00:00Z"
+}

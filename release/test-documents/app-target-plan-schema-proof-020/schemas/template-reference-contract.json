@@ -1,0 +1,35 @@
+{
+  "required_fields": [
+    "template_id",
+    "template_artifact_type",
+    "template_path",
+    "template_fingerprint",
+    "template_origin",
+    "preserve_template_required",
+    "protect_source_template_from_overwrite"
+  ],
+  "allowed_template_artifact_types": [
+    "hwp",
+    "hwpx",
+    "cell",
+    "show",
+    "folder",
+    "unknown_for_validation_failure"
+  ],
+  "target_allowed_artifact_types": {
+    "hwp_hwpx": [
+      "hwp",
+      "hwpx"
+    ],
+    "hancell": [
+      "cell"
+    ],
+    "hanshow": [
+      "show"
+    ],
+    "local_workspace": [
+      "folder"
+    ]
+  },
+  "protect_source_template_from_overwrite_default": true
+}

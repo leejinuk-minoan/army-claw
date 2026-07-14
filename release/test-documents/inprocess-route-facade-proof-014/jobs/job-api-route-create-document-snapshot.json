@@ -1,0 +1,19 @@
+{
+  "snapshot_id": "job-api-route-create-document-completed",
+  "job_id": "job-api-route-create-document",
+  "status": "completed",
+  "timestamp": "2026-07-05T03:05:05.555Z",
+  "request_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task014-inprocess-route-facade-proof-20260705\\release\\test-documents\\inprocess-route-facade-proof-014\\internal-execution-workspace\\release\\test-documents\\service-adapter-boundary-proof-012\\execution-workspaces\\svc-submit-create-1783220705321\\release\\test-documents\\local-job-boundary-proof-011\\requests\\create-document-request.json",
+  "response_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task014-inprocess-route-facade-proof-20260705\\release\\test-documents\\inprocess-route-facade-proof-014\\internal-execution-workspace\\release\\test-documents\\service-adapter-boundary-proof-012\\execution-workspaces\\svc-submit-create-1783220705321\\release\\test-documents\\local-job-boundary-proof-011\\responses\\job-api-route-create-document-response.json",
+  "plan_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task014-inprocess-route-facade-proof-20260705\\release\\test-documents\\inprocess-route-facade-proof-014\\internal-execution-workspace\\release\\test-documents\\service-adapter-boundary-proof-012\\execution-workspaces\\svc-submit-create-1783220705321\\release\\test-documents\\local-job-boundary-proof-011\\plans\\job-api-route-create-document-plan.json",
+  "report_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task014-inprocess-route-facade-proof-20260705\\release\\test-documents\\inprocess-route-facade-proof-014\\internal-execution-workspace\\release\\test-documents\\service-adapter-boundary-proof-012\\execution-workspaces\\svc-submit-create-1783220705321\\release\\test-documents\\local-job-boundary-proof-011\\reports\\job-api-route-create-document-agent-report.json",
+  "output_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task014-inprocess-route-facade-proof-20260705\\release\\test-documents\\inprocess-route-facade-proof-014\\internal-execution-workspace\\release\\test-documents\\service-adapter-boundary-proof-012\\execution-workspaces\\svc-submit-create-1783220705321\\release\\test-documents\\local-job-boundary-proof-011\\outputs\\job-api-route-create-document-output.hwpx",
+  "evidence_paths": [
+    "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task014-inprocess-route-facade-proof-20260705\\release\\test-documents\\inprocess-route-facade-proof-014\\internal-execution-workspace\\release\\test-documents\\service-adapter-boundary-proof-012\\execution-workspaces\\svc-submit-create-1783220705321\\release\\test-documents\\local-job-boundary-proof-011\\evidence\\job-api-route-create-document-evidence-1.json"
+  ],
+  "failure": null,
+  "attempts": 1,
+  "real_com_executed": false,
+  "final_core_selection_declared": false,
+  "stage_2_transition_declared": false
+}

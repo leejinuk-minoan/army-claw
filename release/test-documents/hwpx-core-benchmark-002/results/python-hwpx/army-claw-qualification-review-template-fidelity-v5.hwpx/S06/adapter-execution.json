@@ -1,0 +1,59 @@
+{
+  "candidate_id": "python_hwpx",
+  "method": "extractSemanticSnapshot",
+  "status": "blocked",
+  "started_at": "2026-07-02T21:04:42.477Z",
+  "ended_at": "2026-07-02T21:04:42.477Z",
+  "duration_ms": 0,
+  "input": {},
+  "output": {
+    "reason": "python-hwpx pinned wheel/source artifact, actual LICENSE, and offline install evidence are not available in this workspace",
+    "attempted_commands": [
+      "python --version",
+      "python -c import hwpx",
+      "pip install --no-index <pinned-python-hwpx-wheel>"
+    ],
+    "checked_paths": [
+      "vendor/python-wheels/",
+      "vendor/python-wheels.sha256",
+      "release/test-documents/hwpx-core-benchmark-002/external/python-hwpx/"
+    ],
+    "runtime_check": "python runtime command must be recorded by benchmark execution",
+    "artifact_check": "missing pinned python-hwpx wheel/source artifact",
+    "license_check": "missing actual LICENSE/COPYING/NOTICE file",
+    "missing_prerequisite": "pinned python-hwpx artifact and license evidence",
+    "required_boundary": "separate Python JSON process",
+    "evidence_log_path": "candidate result adapter-execution.json"
+  },
+  "assertions": [
+    {
+      "id": "extractSemanticSnapshot-blocked-prerequisite",
+      "expected": "runtime/artifact/license available",
+      "actual": "python-hwpx pinned wheel/source artifact, actual LICENSE, and offline install evidence are not available in this workspace",
+      "passed": false
+    }
+  ],
+  "artifacts": [],
+  "stdout_path": null,
+  "stderr_path": null,
+  "trace": [
+    {
+      "type": "blocked_prerequisite",
+      "method": "extractSemanticSnapshot",
+      "reason": "python-hwpx pinned wheel/source artifact, actual LICENSE, and offline install evidence are not available in this workspace",
+      "attempted_commands": [
+        "python --version",
+        "python -c import hwpx",
+        "pip install --no-index <pinned-python-hwpx-wheel>"
+      ],
+      "checked_paths": [
+        "vendor/python-wheels/",
+        "vendor/python-wheels.sha256",
+        "release/test-documents/hwpx-core-benchmark-002/external/python-hwpx/"
+      ]
+    }
+  ],
+  "errors": [
+    "python-hwpx pinned wheel/source artifact, actual LICENSE, and offline install evidence are not available in this workspace"
+  ]
+}

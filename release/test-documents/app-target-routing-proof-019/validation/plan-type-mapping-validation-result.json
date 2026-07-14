@@ -1,0 +1,11 @@
+{
+  "task_id": "app-target-routing-proof-019",
+  "valid": true,
+  "plan_type_target_mapping": {
+    "local_workspace_action_plan": "local_workspace",
+    "hwp_hwpx_fill_plan": "hwp_hwpx",
+    "hancell_fill_plan": "hancell",
+    "hanshow_fill_plan": "hanshow",
+    "multi_app_execution_plan": "multi_target"
+  }
+}

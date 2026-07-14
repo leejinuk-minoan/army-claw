@@ -1,0 +1,119 @@
+{
+  "schema_version": "1.0.0",
+  "task_id": "hwpx-core-benchmark-002",
+  "run_id": "hwpx-core-benchmark-2026-07-02T21-04-41-065Z",
+  "generated_at": "2026-07-02T21:04:41.360Z",
+  "environment": {
+    "os": "Windows_NT 10.0.26200 x64",
+    "cpu": "AMD Ryzen 7 7800X3D 8-Core Processor           ",
+    "memory_bytes": 33397133312,
+    "node_version": "v24.14.0",
+    "python_version": "Python 3.12.8",
+    "java_version": null,
+    "rust_version": null,
+    "hancom_version": null,
+    "offline_mode": true
+  },
+  "candidate": {
+    "id": "current_node_xml",
+    "role": "editor",
+    "version": "repo-local",
+    "source": "tools/hancom/army-claw-hancom-tools.mjs",
+    "immutable_ref": "repository working tree",
+    "runtime": "node"
+  },
+  "fixture": {
+    "fixture_id": "army-claw-qualification-review-template-fidelity-v5.hwpx",
+    "source_path": "release/test-documents/army-claw-qualification-review-template-fidelity-v5.hwpx",
+    "source_sha256": "33f5ec297ce6b6ab60c342a368800ff42ab0dc86a7ba79ec100ff2c7896bbe41",
+    "working_copy_sha256_before": "33f5ec297ce6b6ab60c342a368800ff42ab0dc86a7ba79ec100ff2c7896bbe41"
+  },
+  "scenario": {
+    "reason": "scenario not applicable or requires Hancom COM/user visual evidence",
+    "scenario_id": "S02",
+    "name": "scoped main 11-2 paragraph replacement",
+    "status": "failed"
+  },
+  "execution": {
+    "started_at": "2026-07-02T21:04:41.255Z",
+    "ended_at": "2026-07-02T21:04:41.360Z",
+    "duration_ms": 105,
+    "peak_rss_bytes": 84803584,
+    "exit_code": 1,
+    "stdout_path": null,
+    "stderr_path": null
+  },
+  "preservation": {
+    "package_valid": true,
+    "non_target_hashes_preserved": null,
+    "merged_tables_preserved": null,
+    "images_preserved": null,
+    "bindata_preserved": null,
+    "fwspace_preserved": null,
+    "namespaces_preserved": null,
+    "details_path": "release/test-documents/hwpx-core-benchmark-002/results/current-node-xml/army-claw-qualification-review-template-fidelity-v5.hwpx/S02/adapter-execution.json"
+  },
+  "layout": {
+    "com_open_success": null,
+    "com_save_success": null,
+    "page_count": null,
+    "main_11_2_page": null,
+    "support_11_2_page": null,
+    "main_11_3_page": null,
+    "user_visual_status": "not_required"
+  },
+  "deployment": {
+    "install_size_bytes": 0,
+    "network_required_at_runtime": false,
+    "offline_install_tested": true,
+    "offline_package_manifest_path": "release/test-documents/hwpx-core-benchmark-002/summary/dependency-license-offline-manifest.json"
+  },
+  "license": {
+    "license_file_path": null,
+    "license_sha256": null,
+    "spdx_expression": null,
+    "redistribution_assessment": "unknown",
+    "evidence_path": "release/test-documents/hwpx-core-benchmark-001/summary/dependency-license-offline-manifest.json"
+  },
+  "artifacts": [],
+  "errors": [
+    "Error: template fidelity selector plan failed: selector_0_unknown_scope main-11-2; selector_0_unsupported_type undefined; selector_0_occurrence_out_of_range 1\n    at applyHwpxTemplateFidelityFill (file:///C:/Users/USER/Desktop/%EB%A1%9C%EC%BB%AC%20open%20claw%20%EB%A7%8C%EB%93%A4%EA%B8%B0/tools/hancom/army-claw-hancom-tools.mjs:1319:30)\n    at async file:///C:/Users/USER/Desktop/%EB%A1%9C%EC%BB%AC%20open%20claw%20%EB%A7%8C%EB%93%A4%EA%B8%B0/tools/hancom/adapters/current-node-xml-adapter.mjs:143:22\n    at async executeCurrentNodeXml (file:///C:/Users/USER/Desktop/%EB%A1%9C%EC%BB%AC%20open%20claw%20%EB%A7%8C%EB%93%A4%EA%B8%B0/tools/hancom/adapters/current-node-xml-adapter.mjs:225:20)\n    at async runBenchmark (file:///C:/Users/USER/Desktop/%EB%A1%9C%EC%BB%AC%20open%20claw%20%EB%A7%8C%EB%93%A4%EA%B8%B0/tools/hancom/benchmark/hwpx-core-benchmark.mjs:449:15)\n    at async main (file:///C:/Users/USER/Desktop/%EB%A1%9C%EC%BB%AC%20open%20claw%20%EB%A7%8C%EB%93%A4%EA%B8%B0/tools/hancom/benchmark/hwpx-core-benchmark.mjs:734:18)",
+    "scenario not applicable or requires Hancom COM/user visual evidence"
+  ],
+  "adapter_execution": {
+    "candidate_id": "current_node_xml",
+    "method": "replaceText",
+    "status": "failed",
+    "started_at": "2026-07-02T21:04:41.255Z",
+    "ended_at": "2026-07-02T21:04:41.360Z",
+    "duration_ms": 105,
+    "input": {
+      "path": "release/test-documents/army-claw-qualification-review-template-fidelity-v5.hwpx",
+      "sha256": "33f5ec297ce6b6ab60c342a368800ff42ab0dc86a7ba79ec100ff2c7896bbe41"
+    },
+    "output": {},
+    "assertions": [
+      {
+        "id": "replaceText-throws",
+        "expected": "no exception",
+        "actual": "template fidelity selector plan failed: selector_0_unknown_scope main-11-2; selector_0_unsupported_type undefined; selector_0_occurrence_out_of_range 1",
+        "passed": false
+      }
+    ],
+    "artifacts": [],
+    "stdout_path": null,
+    "stderr_path": null,
+    "trace": [
+      {
+        "type": "in_process_call",
+        "module": "tools/hancom/army-claw-hancom-tools.mjs",
+        "method": "replaceText"
+      }
+    ],
+    "errors": [
+      "Error: template fidelity selector plan failed: selector_0_unknown_scope main-11-2; selector_0_unsupported_type undefined; selector_0_occurrence_out_of_range 1\n    at applyHwpxTemplateFidelityFill (file:///C:/Users/USER/Desktop/%EB%A1%9C%EC%BB%AC%20open%20claw%20%EB%A7%8C%EB%93%A4%EA%B8%B0/tools/hancom/army-claw-hancom-tools.mjs:1319:30)\n    at async file:///C:/Users/USER/Desktop/%EB%A1%9C%EC%BB%AC%20open%20claw%20%EB%A7%8C%EB%93%A4%EA%B8%B0/tools/hancom/adapters/current-node-xml-adapter.mjs:143:22\n    at async executeCurrentNodeXml (file:///C:/Users/USER/Desktop/%EB%A1%9C%EC%BB%AC%20open%20claw%20%EB%A7%8C%EB%93%A4%EA%B8%B0/tools/hancom/adapters/current-node-xml-adapter.mjs:225:20)\n    at async runBenchmark (file:///C:/Users/USER/Desktop/%EB%A1%9C%EC%BB%AC%20open%20claw%20%EB%A7%8C%EB%93%A4%EA%B8%B0/tools/hancom/benchmark/hwpx-core-benchmark.mjs:449:15)\n    at async main (file:///C:/Users/USER/Desktop/%EB%A1%9C%EC%BB%AC%20open%20claw%20%EB%A7%8C%EB%93%A4%EA%B8%B0/tools/hancom/benchmark/hwpx-core-benchmark.mjs:734:18)"
+    ]
+  },
+  "artifact_hashes": [],
+  "evidence": {}
+}

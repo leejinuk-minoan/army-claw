@@ -1,0 +1,29 @@
+{
+  "route_request_id": "route-unknown-job",
+  "mock_method": "GET",
+  "mock_path": "/mock/jobs/job-missing",
+  "service_operation": "getJob",
+  "http_like_status": 404,
+  "ok": false,
+  "status": "not_found",
+  "job_id": null,
+  "job_status": null,
+  "data": null,
+  "error": {
+    "code": "not_found",
+    "type": "not_found",
+    "message": "job_not_found:job-missing",
+    "category": "lookup",
+    "retryable": false,
+    "user_visible": true,
+    "expected_status": "not_found"
+  },
+  "artifacts": {
+    "service_response_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task014-inprocess-route-facade-proof-20260705\\release\\test-documents\\inprocess-route-facade-proof-014\\internal-execution-workspace\\release\\test-documents\\service-adapter-boundary-proof-012\\service-responses\\unknown-job-response.json",
+    "output_path": null
+  },
+  "contract_version": "service-contract-schema-error-taxonomy-013.v1",
+  "real_com_executed": false,
+  "final_core_selection_declared": false,
+  "stage_2_transition_declared": false
+}

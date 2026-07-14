@@ -1,0 +1,19 @@
+﻿
+2026-07-04T08:19:03.9040683+09:00	process_start	ok	visible=True;apartment=STA;output=C:\Users\USER\Desktop\로컬 open claw 만들기\.tmp\task003-local-rerun-v6-20260704073958\release\test-documents\hwpx-core-benchmark-003-evidence-integrity\external-artifacts\task003-v6\native-hwpx\hancom-empty-save-hardcoded-visible.hwpx
+2026-07-04T08:19:04.0022644+09:00	before_process_snapshot	ok	
+2026-07-04T08:19:04.0032656+09:00	com_create_start	ok	
+2026-07-04T08:19:05.1585833+09:00	com_create_success	ok	prog_id=HWPFrame.HwpObject
+2026-07-04T08:19:05.2356245+09:00	after_create_process_snapshot	ok	pid=15304;name=Hwp.exe;path=C:\Program Files (x86)\HNC\Office 2024\HOffice130\Bin\Hwp.exe
+2026-07-04T08:19:05.3075477+09:00	register_module_FilePathCheckerModule	ok	result=False
+2026-07-04T08:19:05.3085501+09:00	register_module_SecurityModule	ok	result=False
+2026-07-04T08:19:05.4369471+09:00	window_visible_set	ok	visible=True
+2026-07-04T08:19:05.4594907+09:00	xhwpdocuments_add_failed	warning	"Add" 및 인수 개수 "0"에 대한 오버로드를 찾을 수 없습니다.
+2026-07-04T08:19:05.8064860+09:00	run_filenew_success	ok	
+2026-07-04T08:19:05.9540178+09:00	insert_text_success	ok	
+2026-07-04T08:19:05.9540178+09:00	save_as_start	ok	format=HWPX;path=C:\Users\USER\Desktop\로컬 open claw 만들기\.tmp\task003-local-rerun-v6-20260704073958\release\test-documents\hwpx-core-benchmark-003-evidence-integrity\external-artifacts\task003-v6\native-hwpx\hancom-empty-save-hardcoded-visible.hwpx
+2026-07-04T08:19:09.0055459+09:00	save_as_result	ok	result=True;exists=True;length=13674;sha256=fee3800ec84315981bb2d838f48d800dc478458c84b79461b97af587467171cc
+2026-07-04T08:19:09.1054555+09:00	clear_success	ok	
+2026-07-04T08:19:09.1129646+09:00	quit_success	ok	
+2026-07-04T08:19:09.2118516+09:00	release_com_success	ok	
+2026-07-04T08:19:11.2738939+09:00	after_quit_process_snapshot	ok	
+2026-07-04T08:19:11.2764004+09:00	final	passed	output_exists=True;output_size=13674;output_sha256=fee3800ec84315981bb2d838f48d800dc478458c84b79461b97af587467171cc;last=after_quit_process_snapshot

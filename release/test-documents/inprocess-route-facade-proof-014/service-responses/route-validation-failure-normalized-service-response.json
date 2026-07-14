@@ -1,0 +1,24 @@
+{
+  "route_request_id": "route-validation-failure",
+  "service_operation": "getResult",
+  "status": "failed",
+  "error": {
+    "code": "validation_error",
+    "type": "validation_error",
+    "message": "route facade mapped failed service response:validation_error",
+    "category": "validation",
+    "retryable": false,
+    "user_visible": true,
+    "expected_status": "validation_error"
+  },
+  "artifacts": {
+    "response_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task014-inprocess-route-facade-proof-20260705\\release\\test-documents\\inprocess-route-facade-proof-014\\responses\\job-api-route-validation-failure-response.json",
+    "report_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task014-inprocess-route-facade-proof-20260705\\release\\test-documents\\inprocess-route-facade-proof-014\\reports\\job-api-route-validation-failure-agent-report.json",
+    "output_path": null,
+    "evidence_paths": [
+      "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task014-inprocess-route-facade-proof-20260705\\release\\test-documents\\inprocess-route-facade-proof-014\\evidence\\job-api-route-validation-failure-evidence-1.json"
+    ],
+    "service_response_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task014-inprocess-route-facade-proof-20260705\\release\\test-documents\\inprocess-route-facade-proof-014\\internal-execution-workspace\\release\\test-documents\\service-adapter-boundary-proof-012\\service-responses\\validation-failure-failed-response.json"
+  },
+  "contract_version": "service-contract-schema-error-taxonomy-013.v1"
+}

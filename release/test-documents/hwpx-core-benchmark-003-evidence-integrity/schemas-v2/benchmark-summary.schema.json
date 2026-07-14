@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Task 003 canonical benchmark summary",
+  "type": "object",
+  "required": ["schema_version", "document_type", "task_id"],
+  "properties": {
+    "schema_version": {"const": "2.1.0"},
+    "document_type": {"enum": ["benchmark_results", "corpus_manifest", "role_matrix", "scorecard", "layout_gate", "capability_evidence_matrix", "task_manifest", "immutability_comparison", "schema_validation_summary"]},
+    "task_id": {"const": "hwpx-core-benchmark-003-evidence-integrity"},
+    "generated_at": {"type": "string", "format": "date-time"},
+    "canonical_schema_root": {"const": "release/test-documents/hwpx-core-benchmark-003-evidence-integrity/schemas-v2"},
+    "root": {"type": "string", "minLength": 1},
+    "phase": {"type": "string", "minLength": 1},
+    "commit_sha": {"type": "string", "pattern": "^[a-f0-9]{40}$"},
+    "candidates": {"oneOf": [{"type": "array", "items": {"$ref": "#/$defs/candidate"}, "uniqueItems": true}, {"$ref": "#/$defs/candidateMap"}]},
+    "results": {"type": "array", "items": {"$ref": "#/$defs/resultLink"}},
+    "records": {"type": "array", "items": {"oneOf": [{"$ref": "#/$defs/inventoryRecord"}, {"$ref": "#/$defs/manifestRecord"}]}},
+    "score_rubric": {"type": "array", "items": {"$ref": "#/$defs/rubricItem"}},
+    "invalid_pass_count": {"type": "integer", "minimum": 0},
+    "completion_gate": {"$ref": "#/$defs/completionGate"},
+    "evidence_linkage": {"type": "array", "items": {"$ref": "#/$defs/evidenceLink"}},
+    "editor_gate": {"type": "object"},
+    "validator_gate": {"type": "object"},
+    "layout_gate": {"type": "object"},
+    "core_selection": {"const": "prohibited"},
+    "stage_transition": {"const": "prohibited"},
+    "diffs": {"type": "array", "items": {"$ref": "#/$defs/diff"}},
+    "unexpected_diffs": {"type": "array", "items": {"$ref": "#/$defs/diff"}},
+    "missing_json": {"type": "array", "items": {"type": "string"}},
+    "duplicate_json": {"type": "array", "items": {"type": "string"}},
+    "unclassified_json": {"type": "array", "items": {"type": "string"}},
+    "schema_mapping_errors": {"type": "array", "items": {"type": "string"}},
+    "canonical_schema_set_complete": {"type": "boolean"},
+    "validation_order_valid": {"type": "boolean"},
+    "validation_failures": {"type": "integer", "minimum": 0},
+    "valid": {"type": "boolean"},
+    "limitations": {"type": "array", "items": {"type": "string", "minLength": 1}}
+  },
+  "oneOf": [
+    {"properties": {"document_type": {"const": "benchmark_results"}}, "required": ["generated_at", "candidates", "results", "score_rubric", "invalid_pass_count", "completion_gate", "evidence_linkage", "core_selection", "stage_transition"]},
+    {"properties": {"document_type": {"const": "scorecard"}}, "required": ["generated_at", "score_rubric", "invalid_pass_count", "evidence_linkage", "editor_gate", "validator_gate", "layout_gate", "core_selection", "stage_transition"]},
+    {"properties": {"document_type": {"const": "role_matrix"}}, "required": ["generated_at", "candidates"]},
+    {"properties": {"document_type": {"const": "task_manifest"}}, "required": ["generated_at", "phase", "commit_sha", "records"]},
+    {"properties": {"document_type": {"const": "immutability_comparison"}}, "required": ["generated_at", "diffs", "unexpected_diffs", "valid"]},
+    {"properties": {"document_type": {"const": "schema_validation_summary"}}, "required": ["generated_at", "canonical_schema_root", "root", "records", "missing_json", "duplicate_json", "unclassified_json", "schema_mapping_errors", "canonical_schema_set_complete", "validation_order_valid", "validation_failures", "evidence_linkage", "valid"]},
+    {"properties": {"document_type": {"enum": ["corpus_manifest", "layout_gate", "capability_evidence_matrix"]}}, "required": ["generated_at", "records"]}
+  ],
+  "allOf": [
+    {"if": {"required": ["completion_gate"], "properties": {"completion_gate": {"properties": {"passed": {"const": true}}}}}, "then": {"properties": {"invalid_pass_count": {"const": 0}, "validation_failures": {"const": 0}}}}
+  ],
+  "$defs": {
+    "candidate": {"type": "object", "required": ["candidate_id", "role", "runtime"], "properties": {"candidate_id": {"type": "string", "minLength": 1}, "role": {"enum": ["editor", "validator", "layout_authority"]}, "runtime": {"type": "string", "minLength": 1}, "role_matrix_reference": {"type": "string", "minLength": 1}}, "additionalProperties": false},
+    "candidateMap": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "required": ["role", "runtime", "scenarios"],
+        "properties": {
+          "role": {"enum": ["editor", "validator", "layout_authority"]},
+          "runtime": {"type": "string", "minLength": 1},
+          "scenarios": {
+            "type": "object",
+            "patternProperties": {
+              "^S(0[1-9]|1[0-4])$": {
+                "type": "object",
+                "required": ["applicable", "rationale"],
+                "properties": {
+                  "applicable": {"type": "boolean"},
+                  "rationale": {"type": "string", "minLength": 1}
+                },
+                "additionalProperties": false
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "resultLink": {"type": "object", "required": ["candidate_id", "scenario_id", "status", "result_path", "result_sha256"], "properties": {"candidate_id": {"type": "string", "minLength": 1}, "scenario_id": {"type": "string", "pattern": "^S(0[1-9]|1[0-4])$"}, "status": {"enum": ["passed", "failed", "unsupported", "blocked", "not_applicable"]}, "result_path": {"type": "string", "minLength": 1}, "result_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}}, "additionalProperties": false},
+    "inventoryRecord": {"type": "object", "required": ["path", "classification", "schema_path", "document_type", "sha256", "size"], "properties": {"path": {"type": "string", "minLength": 1}, "classification": {"type": "string", "minLength": 1}, "schema_path": {"type": ["string", "null"]}, "document_type": {"type": ["string", "null"]}, "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}, "size": {"type": "integer", "minimum": 0}}, "additionalProperties": false},
+    "manifestRecord": {"type": "object", "required": ["path", "exists", "sha256", "size"], "properties": {"path": {"type": "string", "minLength": 1}, "exists": {"type": "boolean"}, "sha256": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"}, "size": {"type": ["integer", "null"], "minimum": 0}}, "additionalProperties": false},
+    "rubricItem": {"type": "object", "required": ["rubric_id", "points", "awarded", "state", "validator_id", "validator_result", "failure_reasons", "evidence_paths"], "properties": {"rubric_id": {"type": "string", "minLength": 1}, "points": {"type": "number", "minimum": 0}, "awarded": {"type": "number", "minimum": 0}, "state": {"enum": ["awarded", "pending", "rejected"]}, "validator_id": {"type": "string", "minLength": 1}, "validator_result": {"type": ["object", "null"]}, "failure_reasons": {"type": "array", "items": {"type": "string", "minLength": 1}}, "evidence_paths": {"type": "array", "items": {"type": "string"}}}, "additionalProperties": false},
+    "completionGate": {"type": "object", "required": ["passed", "required_run_failures", "invalid_pass_count", "schema_validation_failures"], "properties": {"passed": {"type": "boolean"}, "required_run_failures": {"type": "integer", "minimum": 0}, "invalid_pass_count": {"type": "integer", "minimum": 0}, "schema_validation_failures": {"type": "integer", "minimum": 0}}, "additionalProperties": false},
+    "evidenceLink": {"type": "object", "required": ["artifact_role", "path", "sha256"], "properties": {"artifact_role": {"type": "string", "minLength": 1}, "path": {"type": "string", "minLength": 1}, "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}}, "additionalProperties": false},
+    "diff": {"type": "object", "required": ["path", "allowed"], "properties": {"path": {"type": "string", "minLength": 1}, "allowed": {"type": "boolean"}, "before": {}, "after": {}, "before_sha256": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"}, "after_sha256": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"}}, "additionalProperties": false}
+  },
+  "additionalProperties": false
+}

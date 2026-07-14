@@ -1,0 +1,16 @@
+{
+  "scenario_id": "S14",
+  "method": "validatePackage",
+  "output": {
+    "package_valid": true,
+    "entry_count": 25
+  },
+  "assertions": [
+    {
+      "id": "hwpx-package-valid",
+      "expected": true,
+      "actual": true,
+      "passed": true
+    }
+  ]
+}

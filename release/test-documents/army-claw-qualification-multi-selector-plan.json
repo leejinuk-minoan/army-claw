@@ -1,0 +1,314 @@
+{
+  "template_path": ".tmp/hwp-reference-conversion/pk-table-qualification-review.hwpx",
+  "output_path": "release/test-documents/army-claw-qualification-review-template-fidelity-v2.hwpx",
+  "section_entries": [
+    "Contents/section0.xml"
+  ],
+  "selectors": [
+    {
+      "selector_index": 0,
+      "selector": {
+        "type": "paragraph_text",
+        "source_text": "PK-Table 기반 타격자산-탄종-신관",
+        "expected_matches": 1
+      },
+      "replacement_text": "Army Claw 템플릿 충실도 검증 문서",
+      "match_count": 1,
+      "selected_matches": [
+        {
+          "type": "paragraph",
+          "section": 0,
+          "paragraph_id": "2147483648",
+          "paragraph_index": 4,
+          "logical_text": "PK-Table 기반 타격자산-탄종-신관",
+          "char_pr_ids": [
+            "40"
+          ]
+        }
+      ],
+      "overflow": {
+        "source_character_count": 22,
+        "replacement_character_count": 23,
+        "length_ratio": 1.05,
+        "overflow_risk": "low",
+        "overflow_policy": "warn"
+      }
+    },
+    {
+      "selector_index": 1,
+      "selector": {
+        "type": "paragraph_text",
+        "source_text": "결정 보조 알고리즘 제작",
+        "expected_matches": 1
+      },
+      "replacement_text": "표준문서 자동화 엔진 개발",
+      "match_count": 1,
+      "selected_matches": [
+        {
+          "type": "paragraph",
+          "section": 0,
+          "paragraph_id": "0",
+          "paragraph_index": 5,
+          "logical_text": "결정 보조 알고리즘 제작",
+          "char_pr_ids": [
+            "27"
+          ]
+        }
+      ],
+      "overflow": {
+        "source_character_count": 13,
+        "replacement_character_count": 14,
+        "length_ratio": 1.08,
+        "overflow_risk": "low",
+        "overflow_policy": "warn"
+      }
+    },
+    {
+      "selector_index": 2,
+      "selector": {
+        "type": "paragraph_text",
+        "source_text": "대항군처 대대관찰통제7과",
+        "expected_matches": 1
+      },
+      "replacement_text": "Army Claw 개발팀",
+      "match_count": 1,
+      "selected_matches": [
+        {
+          "type": "paragraph",
+          "section": 0,
+          "paragraph_id": "2147483648",
+          "paragraph_index": 13,
+          "logical_text": "대항군처 대대관찰통제7과",
+          "char_pr_ids": [
+            "19"
+          ]
+        }
+      ],
+      "overflow": {
+        "source_character_count": 13,
+        "replacement_character_count": 13,
+        "length_ratio": 1,
+        "overflow_risk": "low",
+        "overflow_policy": "warn"
+      }
+    },
+    {
+      "selector_index": 3,
+      "selector": {
+        "type": "paragraph_text",
+        "source_text": "󰊱 개요",
+        "occurrence": 2,
+        "expected_matches": 11
+      },
+      "replacement_text": "󰊱 개요",
+      "match_count": 11,
+      "selected_matches": [
+        {
+          "type": "paragraph",
+          "section": 0,
+          "paragraph_id": "2147483648",
+          "paragraph_index": 42,
+          "logical_text": "󰊱 개요",
+          "char_pr_ids": [
+            "14"
+          ]
+        }
+      ],
+      "overflow": {
+        "source_character_count": 5,
+        "replacement_character_count": 5,
+        "length_ratio": 1,
+        "overflow_risk": "low",
+        "overflow_policy": "warn"
+      }
+    },
+    {
+      "selector_index": 4,
+      "selector": {
+        "type": "paragraph_contains",
+        "contains_text": "현 실태 및 문제점 분석",
+        "occurrence": 1,
+        "expected_matches": 1
+      },
+      "replacement_text": "HWPX 템플릿 기반 자동화 구조 분석",
+      "match_count": 1,
+      "selected_matches": [
+        {
+          "type": "paragraph",
+          "section": 0,
+          "paragraph_id": "2147483648",
+          "paragraph_index": 55,
+          "logical_text": "                  현 실태 및 문제점 분석",
+          "char_pr_ids": [
+            "15",
+            "11"
+          ]
+        }
+      ],
+      "overflow": {
+        "source_character_count": 31,
+        "replacement_character_count": 21,
+        "length_ratio": 0.68,
+        "overflow_risk": "low",
+        "overflow_policy": "warn"
+      }
+    },
+    {
+      "selector_index": 5,
+      "selector": {
+        "type": "paragraph_contains",
+        "contains_text": "KCTC 체계의 PK-Table",
+        "occurrence": 2,
+        "expected_matches": 11
+      },
+      "replacement_text": "한글 2024가 변환한 네이티브 HWPX를 템플릿으로 사용하여 기존 양식과 문서 구조를 유지한 채 선택 문단만 자동으로 교체",
+      "match_count": 11,
+      "selected_matches": [
+        {
+          "type": "paragraph",
+          "section": 0,
+          "paragraph_id": "2147483648",
+          "paragraph_index": 43,
+          "logical_text": "    KCTC 체계의 PK-Table을 기반으로 표적의 좌표와 성질에 따라 최적의 타격자산-탄종-신관 조합을 추천하는 결심보조 알고리즘을 제작하여 전시 곡사화기의 효율을 극대화",
+          "char_pr_ids": [
+            "25"
+          ]
+        }
+      ],
+      "overflow": {
+        "source_character_count": 99,
+        "replacement_character_count": 69,
+        "length_ratio": 0.7,
+        "overflow_risk": "low",
+        "overflow_policy": "warn"
+      }
+    },
+    {
+      "selector_index": 6,
+      "selector": {
+        "type": "paragraph_contains",
+        "contains_text": "현 실태 / 문제점",
+        "occurrence": 2,
+        "expected_matches": 11
+      },
+      "replacement_text": "󰊲 현 실태 / 문제점 : 직접 조립한 HWPX는 병합 표와 고정 레이아웃의 표현성이 낮아 업무 양식 적용에 제한",
+      "match_count": 11,
+      "selected_matches": [
+        {
+          "type": "paragraph",
+          "section": 0,
+          "paragraph_id": "2147483648",
+          "paragraph_index": 45,
+          "logical_text": "󰊲 현 실태 / 문제점 : 타격자산-탄종-신관 결심을 위한 정량적 판단기준이 부재하여",
+          "char_pr_ids": [
+            "14"
+          ]
+        }
+      ],
+      "overflow": {
+        "source_character_count": 48,
+        "replacement_character_count": 64,
+        "length_ratio": 1.33,
+        "overflow_risk": "medium",
+        "overflow_policy": "warn"
+      }
+    },
+    {
+      "selector_index": 7,
+      "selector": {
+        "type": "paragraph_contains",
+        "contains_text": "개선내용",
+        "occurrence": 2,
+        "expected_matches": 11
+      },
+      "replacement_text": "󰊳 개선내용 : 네이티브 템플릿의 문단·표·이미지 구조를 유지하고 선택된 문단과 표 셀만 결정적으로 교체",
+      "match_count": 11,
+      "selected_matches": [
+        {
+          "type": "paragraph",
+          "section": 0,
+          "paragraph_id": "2147483648",
+          "paragraph_index": 48,
+          "logical_text": "󰊳 개선내용 : KCTC PK-Table을 기반으로 표적의 좌표와 성질 별 최적의 타격자산-탄종-신관 조합을 추천하는 결심보조 알고리즘 개발",
+          "char_pr_ids": [
+            "14"
+          ]
+        }
+      ],
+      "overflow": {
+        "source_character_count": 79,
+        "replacement_character_count": 59,
+        "length_ratio": 0.75,
+        "overflow_risk": "low",
+        "overflow_policy": "warn"
+      }
+    },
+    {
+      "selector_index": 8,
+      "selector": {
+        "type": "paragraph_contains",
+        "contains_text": "곡사화기 사격 시",
+        "occurrence": 2,
+        "expected_matches": 11
+      },
+      "replacement_text": "   ㉮ 기존 문단·표·이미지와 페이지 구조 보존",
+      "match_count": 11,
+      "selected_matches": [
+        {
+          "type": "paragraph",
+          "section": 0,
+          "paragraph_id": "2147483648",
+          "paragraph_index": 51,
+          "logical_text": "   ㉮ 곡사화기 사격 시 살상율 17.4% 향상 기대(105mm SP, 81mm MOT 적용 시)",
+          "char_pr_ids": [
+            "7"
+          ]
+        }
+      ],
+      "overflow": {
+        "source_character_count": 55,
+        "replacement_character_count": 27,
+        "length_ratio": 0.49,
+        "overflow_risk": "low",
+        "overflow_policy": "warn"
+      }
+    },
+    {
+      "selector_index": 9,
+      "selector": {
+        "type": "table_cell",
+        "table_path": "section[0]/table[16]",
+        "row": 0,
+        "col": 0,
+        "expected_text": "구  분"
+      },
+      "replacement_text": "분  류",
+      "match_count": 1,
+      "selected_matches": [
+        {
+          "type": "table_cell",
+          "section": 0,
+          "table_path": "section[0]/table[16]",
+          "cell": {
+            "row": 0,
+            "col": 0
+          },
+          "logical_text": "구  분",
+          "char_pr_ids": [
+            "30"
+          ]
+        }
+      ],
+      "overflow": {
+        "source_character_count": 4,
+        "replacement_character_count": 4,
+        "length_ratio": 1,
+        "overflow_risk": "low",
+        "overflow_policy": "warn"
+      }
+    }
+  ],
+  "can_apply": true,
+  "errors": [],
+  "warnings": []
+}

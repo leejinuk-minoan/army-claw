@@ -1,0 +1,70 @@
+{
+  "source_path": "release/test-documents/local-route-manifest-proof-015/route-responses/submit-document-job-response.json",
+  "route_response": {
+    "route_request_id": "route-fixture-submit_document_job",
+    "mock_method": "POST",
+    "mock_path": "/mock/jobs",
+    "service_operation": "submit",
+    "http_like_status": 202,
+    "ok": true,
+    "status": "accepted",
+    "job_id": "job-route-manifest",
+    "job_status": null,
+    "data": {
+      "route_id": "submit_document_job",
+      "job_id": "job-route-manifest",
+      "status": "accepted"
+    },
+    "error": null,
+    "artifacts": {
+      "output_path": null,
+      "report_path": null,
+      "evidence_paths": []
+    },
+    "contract_version": "service-contract-schema-error-taxonomy-013.v1",
+    "real_com_executed": false,
+    "final_core_selection_declared": false,
+    "stage_2_transition_declared": false,
+    "raw_route_response_path": "release/test-documents/local-route-manifest-proof-015/route-responses/submit-document-job-response.json"
+  },
+  "client_result": {
+    "client_result_id": "client-result-route-fixture-submit_document_job",
+    "route_request_id": "route-fixture-submit_document_job",
+    "route_id": "submit_document_job",
+    "service_operation": "submit",
+    "ok": true,
+    "status": "accepted",
+    "http_like_status": 202,
+    "job_id": "job-route-manifest",
+    "job_status": null,
+    "user_visible_state": "in_progress",
+    "user_message_key": "client.in_progress.accepted",
+    "retryable": true,
+    "should_poll": true,
+    "terminal": false,
+    "can_open_output": false,
+    "can_download_output": false,
+    "artifact_availability": {
+      "output_path": null,
+      "output_path_available": false,
+      "report_path_available": false,
+      "evidence_paths_available": false
+    },
+    "error_code": null,
+    "error_category": null,
+    "error_user_visible": false,
+    "raw_route_response_path": "release/test-documents/local-route-manifest-proof-015/route-responses/submit-document-job-response.json",
+    "interpreted_at": "2026-07-05T07:48:53.501Z",
+    "client_action": "poll",
+    "real_http_server_started": false,
+    "final_core_selection_declared": false,
+    "stage_2_transition_declared": false,
+    "workspace_root": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task016-local-client-boundary-proof-20260705"
+  },
+  "route_validation": {
+    "valid": true,
+    "errors": [],
+    "warnings": [],
+    "contract_version": "service-contract-schema-error-taxonomy-013.v1"
+  }
+}

@@ -1,0 +1,175 @@
+{
+  "task_id": "app-target-plan-schema-proof-020",
+  "generated_at": "2026-07-06T10:51:30.160Z",
+  "plan_schema_contract_version": "army-claw-app-target-plan-schema-020.v1",
+  "supported_plan_types": [
+    "local_workspace_action_plan",
+    "hwp_hwpx_fill_plan",
+    "hancell_fill_plan",
+    "hanshow_fill_plan",
+    "multi_app_execution_plan"
+  ],
+  "target_plan_schema_count": 5,
+  "proof_case_count": 36,
+  "proof_cases_passed": 36,
+  "previous_task_read_only": true,
+  "adapter_execution_allowed_in_task020": false,
+  "actual_adapter_invoked": false,
+  "template_preservation_preserved_from_task018": true,
+  "no_actual_adapter_execution_occurs": true,
+  "no_model_gateway_implementation_occurs": true,
+  "actual_hancell_adapter_implemented": false,
+  "actual_hanshow_adapter_implemented": false,
+  "actual_pc_automation_implemented": false,
+  "llm_planner_connected": false,
+  "public_internet_dependency_introduced": false,
+  "final_core_selection_declared": false,
+  "stage_2_transition_declared": false,
+  "completion_candidate": true,
+  "proof_cases": [
+    {
+      "case_name": "official system name is Army Claw",
+      "passed": true
+    },
+    {
+      "case_name": "hwp_only=false",
+      "passed": true
+    },
+    {
+      "case_name": "all five supported plan types exist",
+      "passed": true
+    },
+    {
+      "case_name": "local_workspace_action_plan schema exists",
+      "passed": true
+    },
+    {
+      "case_name": "hwp_hwpx_fill_plan schema exists",
+      "passed": true
+    },
+    {
+      "case_name": "hancell_fill_plan schema exists",
+      "passed": true
+    },
+    {
+      "case_name": "hanshow_fill_plan schema exists",
+      "passed": true
+    },
+    {
+      "case_name": "multi_app_execution_plan schema exists",
+      "passed": true
+    },
+    {
+      "case_name": "hwp_hwpx allows hwp/hwpx template artifact types only",
+      "passed": true
+    },
+    {
+      "case_name": "hancell allows cell template artifact type only",
+      "passed": true
+    },
+    {
+      "case_name": "hanshow allows show template artifact type only",
+      "passed": true
+    },
+    {
+      "case_name": "local_workspace allows folder artifact type",
+      "passed": true
+    },
+    {
+      "case_name": "valid hwp_hwpx fill plan passes validation",
+      "passed": true
+    },
+    {
+      "case_name": "valid hancell fill plan passes validation",
+      "passed": true
+    },
+    {
+      "case_name": "valid hanshow fill plan passes validation",
+      "passed": true
+    },
+    {
+      "case_name": "valid local_workspace action plan passes validation",
+      "passed": true
+    },
+    {
+      "case_name": "valid multi_app_execution_plan passes validation",
+      "passed": true
+    },
+    {
+      "case_name": "missing template_reference returns controlled validation_error",
+      "passed": true
+    },
+    {
+      "case_name": "invalid template artifact type returns controlled validation_error",
+      "passed": true
+    },
+    {
+      "case_name": "missing fill_operations returns controlled validation_error for document targets",
+      "passed": true
+    },
+    {
+      "case_name": "invalid fill operation type returns controlled validation_error",
+      "passed": true
+    },
+    {
+      "case_name": "source template overwrite risk returns controlled validation_error",
+      "passed": true
+    },
+    {
+      "case_name": "LLM direct file edit request is rejected",
+      "passed": true
+    },
+    {
+      "case_name": "LLM direct native app state modification request is rejected",
+      "passed": true
+    },
+    {
+      "case_name": "public internet dependency request is rejected",
+      "passed": true
+    },
+    {
+      "case_name": "adapter slot input contract exists for all four slots",
+      "passed": true
+    },
+    {
+      "case_name": "all adapter slot inputs have execution_allowed=false",
+      "passed": true
+    },
+    {
+      "case_name": "all adapter slot inputs have actual_adapter_invoked=false",
+      "passed": true
+    },
+    {
+      "case_name": "HWP/HWPX, HanCell, HanShow template preservation requirements remain preserved",
+      "passed": true
+    },
+    {
+      "case_name": "final_core_selection_declared=false",
+      "passed": true
+    },
+    {
+      "case_name": "stage_2_transition_declared=false",
+      "passed": true
+    },
+    {
+      "case_name": "Task 019 summary remains read-only",
+      "passed": true
+    },
+    {
+      "case_name": "Task 019 routing proof still passes",
+      "passed": true
+    },
+    {
+      "case_name": "Task 018 capability architecture proof still passes",
+      "passed": true
+    },
+    {
+      "case_name": "no actual adapter execution occurs",
+      "passed": true
+    },
+    {
+      "case_name": "no Model Gateway implementation occurs",
+      "passed": true
+    }
+  ]
+}

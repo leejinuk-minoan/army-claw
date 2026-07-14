@@ -1,0 +1,20 @@
+{
+  "service_request_id": "svc-not_ready-001",
+  "service_operation": "getResult",
+  "ok": false,
+  "status": "not_ready",
+  "job_id": "job-not_ready",
+  "job_status": null,
+  "data": null,
+  "error": {
+    "code": "not_ready",
+    "message": "not_ready proof"
+  },
+  "artifacts": {
+    "output_path": null,
+    "evidence_paths": []
+  },
+  "real_com_executed": false,
+  "final_core_selection_declared": false,
+  "stage_2_transition_declared": false
+}

@@ -1,0 +1,72 @@
+{
+  "schema_version": "army-claw-adapter-validator-evidence-schema-026.v1",
+  "evidence_id": "adapter-validator-evidence-schema",
+  "required_fields": [
+    "schema_version",
+    "evidence_id",
+    "task_id",
+    "phase",
+    "execution_type",
+    "execution_branch",
+    "execution_commit_sha",
+    "local_execution_base_sha",
+    "validator_cli",
+    "unittest",
+    "safety",
+    "completion"
+  ],
+  "field_contract": {
+    "schema_version": "string",
+    "evidence_id": "string",
+    "task_id": "string",
+    "phase": "string",
+    "execution_type": "cloud_proof | local_verification | local_adapter_execution | ci_future",
+    "execution_branch": "string",
+    "execution_commit_sha": "string",
+    "local_execution_base_sha": "string | null",
+    "validator_cli": {
+      "executed": "boolean",
+      "command": "string",
+      "exit_code": "integer | null",
+      "stdout_path": "string | null",
+      "stderr_path": "string | null",
+      "result_status": "valid | invalid | blocked | not_evaluated | not_applicable | null",
+      "total_checks": "integer | null",
+      "passed_checks": "integer | null",
+      "failed_checks": "integer | null"
+    },
+    "unittest": {
+      "executed": "boolean",
+      "command": "string",
+      "exit_code": "integer | null",
+      "stdout_path": "string | null",
+      "stderr_path": "string | null",
+      "tests_run": "integer | null",
+      "result_status": "OK | FAILED | ERROR | not_run | null"
+    },
+    "safety": {
+      "actual_adapter_invoked": "boolean",
+      "local_hancom_com_executed": "boolean",
+      "dependency_install": "boolean",
+      "release_test_documents_modified": "boolean",
+      "stage_2_declared": "boolean",
+      "final_hwp_hwpx_core_selected": "boolean"
+    },
+    "completion": {
+      "gate_status": "not_required | required_not_run | passed | failed | blocked | requires_followup",
+      "completion_gate_passed": "boolean",
+      "blocked": "boolean",
+      "requires_followup": "boolean"
+    }
+  },
+  "completion_rules": [
+    "completion_gate_passed may be true only when gate_status is passed or not_required",
+    "gate_status passed requires validator_cli.executed true and validator_cli.exit_code 0",
+    "gate_status passed requires unittest.executed true and unittest.exit_code 0",
+    "gate_status required_not_run requires completion_gate_passed false",
+    "gate_status failed or blocked requires completion_gate_passed false"
+  ],
+  "actual_ci_integration_included": false,
+  "github_actions_created": false,
+  "actual_adapter_invocation_allowed_in_task026": false
+}

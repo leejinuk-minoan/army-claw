@@ -1,0 +1,26 @@
+{
+  "api_request_id": "api-apply_style",
+  "request_id": "req-apply_style",
+  "task_id": "local-job-boundary-proof-011",
+  "document_intent": "apply_style",
+  "content": {
+    "text": "Task 011 apply_style content",
+    "table": [
+      [
+        "A",
+        "B"
+      ],
+      [
+        "1",
+        "2"
+      ]
+    ],
+    "style": "emphasis"
+  },
+  "constraints": {
+    "backend_role": "editor",
+    "backend_id": "NodeXmlThinInterimEditorAdapter",
+    "no_real_com": true,
+    "no_final_core_selection": true
+  }
+}

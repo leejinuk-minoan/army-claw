@@ -1,0 +1,18 @@
+ M docs/gpt-communication/CURRENT.md
+ M docs/gpt-communication/PROJECT_STATE.json
+ M docs/research-notes/task-notes/RN-030-task030-local-workspace-read-only-manifest-boundary.md
+?? docs/gpt-communication/delegation/task030-local-workspace-read-only-manifest-boundary/LOCAL_EXECUTION_RESULT.json
+?? docs/gpt-communication/evidence/task030-local-workspace-read-only-manifest-boundary/adapter_validator_unittest_exit_code.txt
+?? docs/gpt-communication/evidence/task030-local-workspace-read-only-manifest-boundary/adapter_validator_unittest_stderr.txt
+?? docs/gpt-communication/evidence/task030-local-workspace-read-only-manifest-boundary/adapter_validator_unittest_stdout.txt
+?? docs/gpt-communication/evidence/task030-local-workspace-read-only-manifest-boundary/local_workspace_adapter_unittest_exit_code.txt
+?? docs/gpt-communication/evidence/task030-local-workspace-read-only-manifest-boundary/local_workspace_adapter_unittest_stderr.txt
+?? docs/gpt-communication/evidence/task030-local-workspace-read-only-manifest-boundary/local_workspace_adapter_unittest_stdout.txt
+?? docs/gpt-communication/evidence/task030-local-workspace-read-only-manifest-boundary/python_version.txt
+?? docs/gpt-communication/evidence/task030-local-workspace-read-only-manifest-boundary/python_version_stderr.txt
+?? docs/gpt-communication/evidence/task030-local-workspace-read-only-manifest-boundary/repo_status_after.txt
+?? docs/gpt-communication/evidence/task030-local-workspace-read-only-manifest-boundary/repo_status_after_stderr.txt
+?? docs/gpt-communication/evidence/task030-local-workspace-read-only-manifest-boundary/validator_cli_exit_code.txt
+?? docs/gpt-communication/evidence/task030-local-workspace-read-only-manifest-boundary/validator_cli_stderr.txt
+?? docs/gpt-communication/evidence/task030-local-workspace-read-only-manifest-boundary/validator_cli_stdout.json
+?? docs/gpt-communication/reports/2026-07-10-task030b-local-workspace-read-only-manifest-boundary-local-verification.md

@@ -1,0 +1,42 @@
+{
+  "task_id": "hwpx-core-benchmark-003-evidence-integrity",
+  "candidate_id": "hancom_com",
+  "candidate_role": "layout_authority",
+  "scenario_id": "S11",
+  "planned_commands": [
+    "Task 003 hancom_com S11 local evidence execution"
+  ],
+  "attempted_commands": [],
+  "validator_results": [],
+  "missing_evidence": [
+    "runtime_execution_evidence"
+  ],
+  "evidence_completeness": "partial",
+  "status": "blocked",
+  "status_reason": "Concrete native execution evidence has not been generated in the D-1 output-alignment gate",
+  "prerequisite_probe": {
+    "performed": true,
+    "available": false,
+    "method": "filesystem evidence probe before final scenario execution",
+    "probe_evidence_path": "external-artifacts/task003-v6/prerequisite-probe.txt",
+    "probe_evidence_sha256": "5b8753d9f8a6a1110756b573c06eb21697653df7d087f734c8ad4d00ec68a76f",
+    "checked_path_results": [
+      {
+        "path": "external-artifacts/task003-v6/hancom_com-S11-native-output.hwpx",
+        "exists": false,
+        "size": null,
+        "sha256": null,
+        "hash_algorithm": null,
+        "source": null
+      }
+    ],
+    "blocked_reason_code": "runtime_evidence_not_generated_yet",
+    "missing_prerequisites": [
+      "hancom_com_S11_runtime_execution_evidence"
+    ]
+  },
+  "blocked_reason_code": "runtime_evidence_not_generated_yet",
+  "missing_prerequisites": [
+    "hancom_com_S11_runtime_execution_evidence"
+  ]
+}

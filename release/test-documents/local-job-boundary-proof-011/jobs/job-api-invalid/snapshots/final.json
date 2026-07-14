@@ -1,0 +1,22 @@
+{
+  "snapshot_id": "job-api-invalid-final",
+  "job_id": "job-api-invalid",
+  "status": "rejected",
+  "timestamp": "2026-07-04T22:15:54.342Z",
+  "request_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\t11\\release\\test-documents\\local-job-boundary-proof-011\\requests\\invalid-request.json",
+  "response_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\t11\\release\\test-documents\\local-job-boundary-proof-011\\responses\\job-api-invalid-response.json",
+  "plan_path": null,
+  "report_path": null,
+  "output_path": null,
+  "evidence_paths": [],
+  "failure": {
+    "type": "policy_error",
+    "message": "document_intent_required",
+    "last_successful_step": "validate_api_request",
+    "quarantine_path": null
+  },
+  "attempts": 1,
+  "real_com_executed": false,
+  "final_core_selection_declared": false,
+  "stage_2_transition_declared": false
+}

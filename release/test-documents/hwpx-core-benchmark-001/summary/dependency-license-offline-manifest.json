@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0.0",
+  "task_id": "hwpx-core-benchmark-001",
+  "generated_at": "2026-07-02T12:30:40.913Z",
+  "dependencies": [
+    {
+      "name": "Current Army Claw Node/XML core",
+      "exact_version_or_commit": "repository working tree",
+      "download_source": "local repository",
+      "downloaded_filename": null,
+      "sha256": null,
+      "license_file_location": null,
+      "license_sha256": null,
+      "spdx_expression": null,
+      "runtime_requirements": [
+        "Node.js"
+      ],
+      "offline_install_command": "Use bundled Army Claw runtime and node_modules payload.",
+      "offline_package_contents": [
+        "tools/hancom/army-claw-hancom-tools.mjs"
+      ],
+      "network_required_at_runtime": false,
+      "redistribution_notes": "Repository-level LICENSE file was not present in this checkout; redistribution assessment remains unknown."
+    },
+    {
+      "name": "python-hwpx",
+      "exact_version_or_commit": "unknown",
+      "download_source": "not available in offline workspace",
+      "downloaded_filename": null,
+      "sha256": null,
+      "license_file_location": null,
+      "license_sha256": null,
+      "spdx_expression": null,
+      "runtime_requirements": [
+        "Python 3"
+      ],
+      "offline_install_command": "blocked: no pinned wheel/source artifact available",
+      "offline_package_contents": [],
+      "network_required_at_runtime": false,
+      "redistribution_notes": "Adoption blocked until exact artifact and real LICENSE/COPYING/NOTICE evidence are imported."
+    },
+    {
+      "name": "hwpxlib",
+      "exact_version_or_commit": "unknown",
+      "download_source": "not available in offline workspace",
+      "downloaded_filename": null,
+      "sha256": null,
+      "license_file_location": null,
+      "license_sha256": null,
+      "spdx_expression": null,
+      "runtime_requirements": [
+        "Java runtime"
+      ],
+      "offline_install_command": "blocked: no pinned jar/source artifact available",
+      "offline_package_contents": [],
+      "network_required_at_runtime": false,
+      "redistribution_notes": "Validator adoption blocked until exact jar/source and LICENSE evidence are imported."
+    },
+    {
+      "name": "HwpForge",
+      "exact_version_or_commit": "unknown",
+      "download_source": "not available in offline workspace",
+      "downloaded_filename": null,
+      "sha256": null,
+      "license_file_location": null,
+      "license_sha256": null,
+      "spdx_expression": null,
+      "runtime_requirements": [
+        "unknown"
+      ],
+      "offline_install_command": "blocked: no exact source/release artifact available",
+      "offline_package_contents": [],
+      "network_required_at_runtime": false,
+      "redistribution_notes": "Benchmark candidate remains blocked until project identity, immutable ref, runtime, and LICENSE evidence are verified."
+    }
+  ]
+}

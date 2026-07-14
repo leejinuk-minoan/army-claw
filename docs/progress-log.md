@@ -1,3 +1,99 @@
+﻿# 진행 기록
+
+## 2026-06-30 - HWPX 양식 기반 및 자동 디자인 생성 1차 구현
+
+### 구현 내용
+- 한컴 2024 호환 HWPX 생성 수정사항을 `fix/hwpx-hancom-2024-compat` 브랜치에 보존하고 GitHub에 push했다.
+- Node Hancom Worker에 `hwpx-validate`, `hwpx-analyze-template`, `hwpx-template-fill`, `hwpx-auto-generate` 명령을 추가했다.
+- 사용자 HWPX 양식의 명시적 `{{FIELD_NAME}}` 플레이스홀더를 분석하고, 필드 매핑으로 치환해 새 HWPX 파일을 생성할 수 있게 했다.
+- 원본 양식은 직접 수정하지 않고, 출력 파일을 분리 저장하도록 했다.
+- 자동 생성 모드는 구조화된 DocumentPlan을 검증한 뒤 한컴 2024 템플릿 기반 HWPX로 생성하도록 했다.
+- 생산 경로에서 검증된 템플릿 없이 최소 ZIP/XML만 조립하는 HWPX 생성 fallback을 금지했다.
+- 긴 JSON 인자 전달을 위해 `--field-mapping-file`, `--document-plan-file` 입력을 추가했다.
+
+### 검증 결과
+- Node Hancom Worker 테스트 12개 통과.
+- `release/test-documents/template-based-sample.hwpx` 생성 및 구조 검증 통과.
+- `release/test-documents/auto-designed-sample.hwpx` 생성 및 구조 검증 통과.
+- 자동 디자인 샘플은 제목, 부제, 작성 정보, 정적 목차, 5개 섹션, 글머리표, 번호 목록, 표 텍스트, 강조 영역, 꼬리말 문단을 포함한다.
+
+### 현재 제한 사항
+- 실제 HWPX 표 객체 생성은 아직 제한적이며, 현재 자동 생성 표는 텍스트형 표 표현이다.
+- 책갈피/필드/라벨 기반 입력 후보 탐지는 다음 구현 범위다.
+- 기존 backend 실행 큐와 OpenClaw Tool Plugin 등록은 문서 계약과 Worker 기반을 먼저 만든 상태이며, adapter 연결은 다음 체크포인트다.
+- 한글 2024에서 두 샘플 파일을 직접 여는 네이티브 검증은 사용자의 확인이 필요하다.
+
+## 2026-06-30 - 프롬프트 기반 HWPX 생성 검증 및 보강
+
+### 구현 내용
+- `ArmyClawHancomPrompt.cmd` 런처를 추가해 사용자가 프롬프트를 입력하면 `prompt-create` 명령으로 HWPX 문서를 생성하도록 했다.
+- 긴 한국어 프롬프트가 `.cmd` 인자에서 깨지는 문제를 피하기 위해 `--prompt-file` 입력을 추가했다.
+- Ollama/gemma3:12b가 JSON 형식을 지키지 않는 경우에도 모델 응답 본문을 문단으로 복구해 HWPX를 생성하도록 보강했다.
+
+### 검증 결과
+- 한컴 도구 테스트 7개 통과.
+- 실제 로컬 Ollama `gemma3:12b` 호출로 프롬프트 기반 HWPX 생성 성공.
+- 최종 패키지 원본 `release/army-claw-openclaw-beta/bin/ArmyClawHancomPrompt.cmd`로 HWPX 생성 성공.
+- 최종 패키지 원본 `ArmyClawHancomTools.cmd hwpx-summary`로 생성 문서 요약 성공.
+- 테스트 산출 문서: `release/test-documents/army-claw-openclaw-build-architecture.hwpx`.
+- 최종 설치 파일 재생성 완료: `release/ArmyClawOpenClawBetaSetup-0.2.0-beta.1.exe`.
+
+### 확인된 한계
+- 현재는 CLI 기반 프롬프트 생성 흐름이며, OpenClaw planner가 자동 tool-call로 라우팅하는 UI/agent 통합은 다음 단계이다.
+- 모델이 작성한 문서의 사실성은 입력 프롬프트 품질에 의존하므로, UI 단계에서 근거 컨텍스트 주입과 검토 화면이 필요하다.
+## 2026-06-30 - OpenClaw 베타 한컴오피스/HWPX 도구 포함 빌드
+
+### 산출물
+- `release/ArmyClawOpenClawBetaSetup-0.2.0-beta.1.exe`를 한컴오피스/HWPX 도구 포함 상태로 재생성했다.
+- 설치 페이로드에 `app/army-claw-tools/hancom/army-claw-hancom-tools.mjs`를 포함했다.
+- 설치 후 `bin/ArmyClawHancomTools.cmd`로 한컴 도구를 실행할 수 있게 했다.
+- 시작 메뉴에 `Army Claw Hancom Tools` 바로가기를 추가했다.
+
+### 포함 기능
+- 한글/한셀/한쇼 실행 파일 감지: `status --json`.
+- HWPX 문서 생성: `hwpx-create --workspace ... --path ... --title ... --paragraph ...`.
+- HWPX 문서 요약: `hwpx-summary --workspace ... --path ...`.
+- HWPX 문단 추가: `hwpx-add-paragraph --workspace ... --path ... --paragraph ...`.
+- 감지된 `Hwp.exe`로 HWPX 파일 열기: `open-hwp --workspace ... --path ...`.
+
+### 검증 결과
+- 도구 단위 테스트 통과: Node test 4개 통과.
+- 패키징 중 한컴 도구 smoke test 통과.
+- 실제 설치 검증 경로: `C:\Users\USER\AppData\Local\ArmyClawBetaHancomTest`.
+- 설치 로그 기준 설치 성공 및 payload 해제 종료 코드 0 확인.
+- 설치 후 `ArmyClawHancomTools.cmd status --json` 종료 코드 0.
+- 설치 후 `hwpx-create`로 `.tmp/hancom-tool-workspace/docs/beta.hwpx` 생성 성공.
+- 설치 후 `hwpx-summary`에서 문단 2개 읽기 성공.
+- 현재 PC에서 한글/한셀/한쇼가 모두 감지되어 `native_available` 상태를 확인했다.
+
+### 남은 제한 사항
+- 이번 단계는 OpenClaw 베타 설치물 안에 한컴/HWPX 도구 CLI를 포함한 것이다.
+- OpenClaw planner가 자연어 작업을 자동으로 이 CLI tool-call로 라우팅하는 완전 통합은 다음 단계에서 진행한다.
+- 한컴 COM 기반의 고급 서식 편집, 한셀 차트/피벗, 한쇼 복잡한 디자인 자동화는 별도 확장 단계로 남아 있다.
+
+## 2026-06-30 - OpenClaw 전면교체 베타 설치 파일 산출
+
+### 산출물
+- `release/ArmyClawOpenClawBetaSetup-0.2.0-beta.1.exe` 생성 완료.
+- OpenClaw reference는 `reference/openclaw-upstream`에 분리 보관하고, 배포물에는 OpenClaw MIT 라이선스와 NOTICE를 포함했다.
+- 설치 페이로드에는 OpenClaw CLI/runtime/control-ui, Windows용 Node.js runtime, Army Claw 실행/상태/Gateway 런처를 포함했다.
+
+### 구현 내용
+- `scripts/package-openclaw-beta.ps1`를 추가해 OpenClaw production payload를 베타 설치 패키지로 구성하도록 했다.
+- OpenClaw production 의존성은 ZIP 설치 후 symlink가 깨지지 않도록 `node-linker=hoisted` 구조로 정리했다.
+- Inno Setup 스크립트 `installer/army-claw-openclaw-beta.iss`를 추가해 ZIP payload 기반 설치 EXE를 생성하도록 했다.
+- OpenClaw upstream commit은 `843ad143`, CLI smoke 결과는 `OpenClaw 2026.6.10`이다.
+
+### 검증 결과
+- 패키징 중 런처 smoke test 통과: `ArmyClawOpenClawBeta.cmd --version` -> `OpenClaw 2026.6.10`.
+- 실제 설치 검증 경로: `C:\Users\USER\AppData\Local\ArmyClawBetaTest`.
+- 설치 로그 기준 설치 성공 및 payload 해제 종료 코드 0 확인.
+- 설치 후 검증 통과: `openclaw.mjs --version` 종료 코드 0, `openclaw.mjs status --json` 종료 코드 0.
+- 설치 후 라이선스 파일, NOTICE, 한글 README 포함 확인.
+
+### 남은 제한 사항
+- 이번 베타는 OpenClaw 기반 전면교체 설치 산출물이며, 한컴오피스 조작 도구의 OpenClaw plugin/tool 계층 이식은 아직 포함하지 않았다.
+- 설치 후 payload 해제 시간이 길다. 다음 단계에서 설치 속도를 줄이기 위해 payload 분할, 7z/bsdtar 해제, 또는 Inno 직접 파일 배치 방식을 재검토한다.
 # Army Claw 진행 로그
 
 ## 2026-06-30 - OpenClaw 전면 교체 방향 확정

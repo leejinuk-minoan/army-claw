@@ -1,0 +1,15 @@
+✔ Task 003 constants isolate output from benchmark-002 (0.7016ms)
+✔ role matrix marks role-inapplicable scenarios as not_applicable instead of blocked (0.7839ms)
+✔ S06-S08 cannot pass without before/after snapshots and mutation output (0.9379ms)
+✔ S12-S14 gates reject partial timing, package-open install, and unknown license evidence (0.1518ms)
+✔ planned commands are separated from actually attempted commands (0.504ms)
+✔ rubric scoring ignores invalid passed and status-count formulas (0.5627ms)
+✔ schema validation reports negative fixture failure (0.3292ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 66.8

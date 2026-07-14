@@ -1,0 +1,28 @@
+{
+  "route_request_id": "client-get-status-job-api-submit-document-job",
+  "mock_method": "GET",
+  "mock_path": "/mock/jobs/job-api-submit-document-job/status",
+  "service_operation": "getStatus",
+  "http_like_status": 202,
+  "ok": true,
+  "status": "pending",
+  "job_id": "job-api-submit-document-job",
+  "job_status": "pending",
+  "data": {
+    "job_id": "job-api-submit-document-job",
+    "status": "pending",
+    "terminal": false,
+    "snapshot_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task017-transport-agnostic-invocation-facade-proof-20260705\\release\\test-documents\\inprocess-route-facade-proof-014\\jobs\\job-api-submit-document-job-snapshot.json",
+    "updated_at": "2026-07-05T08:04:33.974Z"
+  },
+  "error": null,
+  "artifacts": {
+    "snapshot_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task017-transport-agnostic-invocation-facade-proof-20260705\\release\\test-documents\\inprocess-route-facade-proof-014\\jobs\\job-api-submit-document-job-snapshot.json",
+    "service_response_path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task017-transport-agnostic-invocation-facade-proof-20260705\\release\\test-documents\\inprocess-route-facade-proof-014\\internal-execution-workspace\\release\\test-documents\\service-adapter-boundary-proof-012\\service-responses\\get-status-pending-response.json",
+    "output_path": null
+  },
+  "contract_version": "service-contract-schema-error-taxonomy-013.v1",
+  "real_com_executed": false,
+  "final_core_selection_declared": false,
+  "stage_2_transition_declared": false
+}

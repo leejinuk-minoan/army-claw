@@ -1,0 +1,26 @@
+{
+  "route_request_id": "route-fixture-submit_document_job",
+  "mock_method": "POST",
+  "mock_path": "/mock/jobs",
+  "service_operation": "submit",
+  "http_like_status": 202,
+  "ok": true,
+  "status": "accepted",
+  "job_id": "job-route-manifest",
+  "job_status": null,
+  "data": {
+    "route_id": "submit_document_job",
+    "job_id": "job-route-manifest",
+    "status": "accepted"
+  },
+  "error": null,
+  "artifacts": {
+    "output_path": null,
+    "report_path": null,
+    "evidence_paths": []
+  },
+  "contract_version": "service-contract-schema-error-taxonomy-013.v1",
+  "real_com_executed": false,
+  "final_core_selection_declared": false,
+  "stage_2_transition_declared": false
+}

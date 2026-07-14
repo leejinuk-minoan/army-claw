@@ -1,0 +1,6 @@
+cross_artifact_consistency_valid=true
+completion_contract_valid=true
+completion_gate_passed=true
+native_hwpx_probe_executed=true
+invalid_pass_count=0
+final_mapped_validation_failure_count=0

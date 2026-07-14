@@ -1,0 +1,19 @@
+{
+  "invocation_id": "inv-ui-like",
+  "invocation_source": "task017_proof",
+  "transport_profile": "ui_like",
+  "route_id": "get_status",
+  "input": {
+    "job_id": "job-api-submit-document-job"
+  },
+  "request_context": {
+    "caller": "task017_proof",
+    "offline_only": true,
+    "transport_profile_metadata_only": true
+  },
+  "idempotency_key": "idem-get-status-ui-like",
+  "created_at": "2026-07-05T08:04:34.227Z",
+  "real_http_server_started": false,
+  "final_core_selection_declared": false,
+  "stage_2_transition_declared": false
+}

@@ -1,0 +1,16 @@
+{
+  "service_request_id": "svc-submit-create-001",
+  "service_operation": "submit",
+  "api_request_id": "api-create",
+  "request_id": "req-create",
+  "task_id": "service-contract-schema-error-taxonomy-013",
+  "document_intent": "create_document",
+  "content": {
+    "text": "Task 013 service contract proof"
+  },
+  "constraints": {
+    "backend_role": "editor",
+    "backend_id": "NodeXmlThinInterimEditorAdapter",
+    "no_real_com": true
+  }
+}

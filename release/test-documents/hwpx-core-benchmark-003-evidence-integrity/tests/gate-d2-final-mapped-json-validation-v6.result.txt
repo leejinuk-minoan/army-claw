@@ -1,0 +1,13 @@
+Gate D-2 final mapped JSON validation PASSED
+started_at=2026-07-04T03:47:51.450Z
+ended_at=2026-07-04T03:47:51.450Z
+validator=ajv@8.20.0
+inventory_valid=true
+validation_valid=true
+active_output_count=null
+missing_json=0
+duplicate_json=0
+unclassified_json=0
+schema_mapping_errors=0
+failure_count=0
+details=tests/gate-d2-final-mapped-json-validation-v6.details.txt

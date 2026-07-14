@@ -1,0 +1,18 @@
+﻿
+2026-07-04T08:20:00.8997338+09:00	process_start	ok	source=C:\Users\USER\Desktop\로컬 open claw 만들기\.tmp\task003-local-rerun-v6-20260704073958\release\test-documents\hwpx-core-benchmark-003-evidence-integrity\external-artifacts\task003-v6\native-hwpx\hancom-empty-save-hardcoded-visible.hwpx;output=C:\Users\USER\Desktop\로컬 open claw 만들기\.tmp\task003-local-rerun-v6-20260704073958\release\test-documents\hwpx-core-benchmark-003-evidence-integrity\external-artifacts\task003-v6\native-hwpx\hancom-open-save-output.hwpx;apartment=STA
+2026-07-04T08:20:00.9944409+09:00	before_process_snapshot	ok	
+2026-07-04T08:20:02.1578422+09:00	com_create_success	ok	prog_id=HWPFrame.HwpObject
+2026-07-04T08:20:02.2299429+09:00	after_create_process_snapshot	ok	pid=23536;name=Hwp.exe;path=C:\Program Files (x86)\HNC\Office 2024\HOffice130\Bin\Hwp.exe
+2026-07-04T08:20:02.3013247+09:00	register_module_FilePathCheckerModule	ok	result=False
+2026-07-04T08:20:02.3023278+09:00	register_module_SecurityModule	ok	result=False
+2026-07-04T08:20:02.3258632+09:00	window_visible_set	ok	visible=false
+2026-07-04T08:20:02.3258632+09:00	open_start	ok	format=HWPX;forceopen=true
+2026-07-04T08:20:05.5747859+09:00	open_result	ok	result=True
+2026-07-04T08:20:05.7212731+09:00	insert_text_success	ok	
+2026-07-04T08:20:05.7222794+09:00	save_as_start	ok	format=HWPX
+2026-07-04T08:20:05.8711086+09:00	save_as_result	ok	result=True;exists=True;length=14468;sha256=8c092794177aeca2c1630c06adc883c81e45d9d9ea97edb038449a46dae9e9dd
+2026-07-04T08:20:05.8821350+09:00	clear_success	ok	
+2026-07-04T08:20:05.8866495+09:00	quit_success	ok	
+2026-07-04T08:20:07.4785692+09:00	release_com_success	ok	
+2026-07-04T08:20:09.5388963+09:00	after_quit_process_snapshot	ok	
+2026-07-04T08:20:09.5413986+09:00	final	passed	output_exists=True;output_size=14468;output_sha256=8c092794177aeca2c1630c06adc883c81e45d9d9ea97edb038449a46dae9e9dd;last=after_quit_process_snapshot

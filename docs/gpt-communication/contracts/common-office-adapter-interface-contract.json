@@ -1,0 +1,149 @@
+{
+  "schema_version": "army-claw-common-office-adapter-interface-023.v1",
+  "contract_id": "common-office-adapter-interface-contract",
+  "task_id": "task023-common-office-adapter-interface-contract-proof",
+  "supported_targets": [
+    "local_workspace",
+    "hwp_hwpx",
+    "hancell",
+    "hanshow"
+  ],
+  "supported_plan_types": [
+    "local_workspace_action_plan",
+    "hwp_hwpx_fill_plan",
+    "hancell_fill_plan",
+    "hanshow_fill_plan",
+    "multi_app_execution_plan"
+  ],
+  "adapter_slots": {
+    "local_workspace": "local_workspace_adapter_slot",
+    "hwp_hwpx": "hwp_hwpx_adapter_slot",
+    "hancell": "hancell_adapter_slot",
+    "hanshow": "hanshow_adapter_slot"
+  },
+  "plan_type_to_target": {
+    "local_workspace_action_plan": "local_workspace",
+    "hwp_hwpx_fill_plan": "hwp_hwpx",
+    "hancell_fill_plan": "hancell",
+    "hanshow_fill_plan": "hanshow",
+    "multi_app_execution_plan": "multi_target"
+  },
+  "request_envelope": {
+    "required_fields": [
+      "request_id",
+      "contract_version",
+      "target_id",
+      "adapter_slot_id",
+      "plan_type",
+      "validated_plan",
+      "source_plan_schema_version",
+      "execution_context",
+      "template_reference",
+      "constraints",
+      "evidence_request",
+      "dry_run",
+      "created_at"
+    ]
+  },
+  "response_envelope": {
+    "required_fields": [
+      "request_id",
+      "response_id",
+      "contract_version",
+      "target_id",
+      "adapter_slot_id",
+      "status",
+      "execution_allowed",
+      "actual_adapter_invoked",
+      "output_artifacts",
+      "validation_result",
+      "evidence",
+      "warnings",
+      "created_at"
+    ],
+    "status_enum": [
+      "accepted_for_execution",
+      "blocked_in_proof",
+      "validation_failed",
+      "unsupported"
+    ]
+  },
+  "error_envelope": {
+    "required_fields": [
+      "request_id",
+      "error_id",
+      "target_id",
+      "adapter_slot_id",
+      "error_code",
+      "error_category",
+      "user_visible_state",
+      "recoverable",
+      "message",
+      "blocked_reason",
+      "evidence",
+      "created_at"
+    ]
+  },
+  "target_artifact_constraints": {
+    "hwp_hwpx": {
+      "template_artifact_types": ["hwp", "hwpx"],
+      "template_preservation_required": true,
+      "prevent_source_overwrite_required": true
+    },
+    "hancell": {
+      "template_artifact_types": ["cell"],
+      "formula_preservation_required": true,
+      "chart_preservation_required": true,
+      "prevent_source_overwrite_required": true
+    },
+    "hanshow": {
+      "template_artifact_types": ["show"],
+      "slide_layout_preservation_required": true,
+      "prevent_source_overwrite_required": true
+    },
+    "local_workspace": {
+      "template_artifact_types": ["folder"],
+      "approved_workspace_required": true,
+      "prevent_source_overwrite_required": true
+    }
+  },
+  "validation_gates": [
+    "target_id_supported",
+    "adapter_slot_id_supported",
+    "plan_type_supported",
+    "target_adapter_slot_plan_type_mapping_valid",
+    "template_reference_valid",
+    "template_artifact_type_supported",
+    "prevent_source_overwrite_true",
+    "allow_public_internet_false",
+    "llm_direct_file_edit_absent",
+    "llm_direct_native_app_state_modification_absent",
+    "constraints_valid",
+    "evidence_request_compatible_with_execution_context"
+  ],
+  "forbidden_actions": [
+    "source_template_overwrite",
+    "public_internet_dependency",
+    "llm_direct_file_edit",
+    "llm_direct_native_app_state_modification",
+    "actual_adapter_invocation_in_task023",
+    "hwp_hwpx_adapter_implementation_in_task023",
+    "hancell_adapter_implementation_in_task023",
+    "hanshow_adapter_implementation_in_task023",
+    "local_workspace_automation_implementation_in_task023",
+    "model_gateway_implementation",
+    "llm_planner_implementation",
+    "http_ui_implementation",
+    "stage_2_transition",
+    "final_hwp_hwpx_core_selection"
+  ],
+  "proof_mode": true,
+  "actual_adapter_invocation_allowed_in_task023": false,
+  "stage_2_transition_declared": false,
+  "final_hwp_hwpx_core_selected": false,
+  "evidence_policy": {
+    "cloud_proof_may_claim_real_adapter_execution": false,
+    "local_execution_evidence_required_for_actual_adapter_invocation": true,
+    "task_report_replaces_research_note": false
+  }
+}

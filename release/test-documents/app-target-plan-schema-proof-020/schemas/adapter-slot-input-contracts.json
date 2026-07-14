@@ -1,0 +1,94 @@
+[
+  {
+    "adapter_slot_id": "local_workspace_adapter_slot",
+    "target_id": "local_workspace",
+    "plan_type": "local_workspace_action_plan",
+    "required_fields": [
+      "adapter_slot_input_id",
+      "adapter_slot_id",
+      "target_id",
+      "plan_type",
+      "validated_plan",
+      "validation_result",
+      "execution_allowed",
+      "actual_adapter_invoked",
+      "deterministic_execution_required",
+      "final_core_selection_declared",
+      "stage_2_transition_declared"
+    ],
+    "execution_allowed": false,
+    "actual_adapter_invoked": false,
+    "deterministic_execution_required": true,
+    "final_core_selection_declared": false,
+    "stage_2_transition_declared": false
+  },
+  {
+    "adapter_slot_id": "hwp_hwpx_adapter_slot",
+    "target_id": "hwp_hwpx",
+    "plan_type": "hwp_hwpx_fill_plan",
+    "required_fields": [
+      "adapter_slot_input_id",
+      "adapter_slot_id",
+      "target_id",
+      "plan_type",
+      "validated_plan",
+      "validation_result",
+      "execution_allowed",
+      "actual_adapter_invoked",
+      "deterministic_execution_required",
+      "final_core_selection_declared",
+      "stage_2_transition_declared"
+    ],
+    "execution_allowed": false,
+    "actual_adapter_invoked": false,
+    "deterministic_execution_required": true,
+    "final_core_selection_declared": false,
+    "stage_2_transition_declared": false
+  },
+  {
+    "adapter_slot_id": "hancell_adapter_slot",
+    "target_id": "hancell",
+    "plan_type": "hancell_fill_plan",
+    "required_fields": [
+      "adapter_slot_input_id",
+      "adapter_slot_id",
+      "target_id",
+      "plan_type",
+      "validated_plan",
+      "validation_result",
+      "execution_allowed",
+      "actual_adapter_invoked",
+      "deterministic_execution_required",
+      "final_core_selection_declared",
+      "stage_2_transition_declared"
+    ],
+    "execution_allowed": false,
+    "actual_adapter_invoked": false,
+    "deterministic_execution_required": true,
+    "final_core_selection_declared": false,
+    "stage_2_transition_declared": false
+  },
+  {
+    "adapter_slot_id": "hanshow_adapter_slot",
+    "target_id": "hanshow",
+    "plan_type": "hanshow_fill_plan",
+    "required_fields": [
+      "adapter_slot_input_id",
+      "adapter_slot_id",
+      "target_id",
+      "plan_type",
+      "validated_plan",
+      "validation_result",
+      "execution_allowed",
+      "actual_adapter_invoked",
+      "deterministic_execution_required",
+      "final_core_selection_declared",
+      "stage_2_transition_declared"
+    ],
+    "execution_allowed": false,
+    "actual_adapter_invoked": false,
+    "deterministic_execution_required": true,
+    "final_core_selection_declared": false,
+    "stage_2_transition_declared": false
+  }
+]

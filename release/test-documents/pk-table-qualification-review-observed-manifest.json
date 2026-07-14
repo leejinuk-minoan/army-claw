@@ -1,0 +1,813 @@
+{
+  "profile_id": "qualification_review_booklet",
+  "source_file": "reference/hwp-style-samples/pk-table-qualification-review.hwp",
+  "converted_hwpx": ".tmp/hwp-reference-conversion/pk-table-qualification-review.hwpx",
+  "conversion_valid": true,
+  "validation": {
+    "native_structure_validation": "failed",
+    "native_table_wrapper_validation": "failed",
+    "errors": [],
+    "warnings": []
+  },
+  "page": {
+    "page_break_count": 0,
+    "section_count": 1
+  },
+  "repeated_regions": [
+    {
+      "text": "󰊱 개요",
+      "count": 11
+    },
+    {
+      "text": "KCTC 체계의 PK-Table을 기반으로 표적의 좌표와 성질에 따라 최적의 타격자산-탄종-신관 조합을 추천하는 결심보조 알고리즘을 제작하여 전시 곡사화기의 효율을 극대화",
+      "count": 11
+    },
+    {
+      "text": "곡사화기가 비 효율적으로 운용됨",
+      "count": 11
+    },
+    {
+      "text": "󰊳 개선내용 : KCTC PK-Table을 기반으로 표적의 좌표와 성질 별 최적의 타격자산-탄종-신관 조합을 추천하는 결심보조 알고리즘 개발",
+      "count": 11
+    },
+    {
+      "text": "󰊴 기대효과",
+      "count": 11
+    },
+    {
+      "text": "㉮ 곡사화기 사격 시 살상율 17.4% 향상 기대(105mm SP, 81mm MOT 적용 시)",
+      "count": 11
+    },
+    {
+      "text": "* 정량적 효과측정은 제한되나 자동화로 인한 곡사화기 사격 소요시간의 감소가 추가로 예상됨",
+      "count": 11
+    },
+    {
+      "text": "㉯ 전투발전 제언을 통한 전 부대에 보급을 추진, 육군 전투력 발전에 기여",
+      "count": 11
+    },
+    {
+      "text": "㉰ KCTC 생산 DATA를 활용한 알고리즘 개발을 통해 육군 내 KCTC의 위상 향상",
+      "count": 11
+    },
+    {
+      "text": "󰊲 현 실태 / 문제점 : 타격자산-탄종-신관 결심을 위한 정량적 판단기준이 부재하여",
+      "count": 10
+    },
+    {
+      "text": "데이터 전처리(지형정보)",
+      "count": 2
+    },
+    {
+      "text": "구 분",
+      "count": 5
+    },
+    {
+      "text": "알고리즘 적용 효과 검증(105mm SP, 81mm MOT)",
+      "count": 2
+    },
+    {
+      "text": "증가",
+      "count": 2
+    },
+    {
+      "text": "알고리즘 적용 전",
+      "count": 2
+    },
+    {
+      "text": "105mm SP",
+      "count": 4
+    },
+    {
+      "text": "HE",
+      "count": 8
+    },
+    {
+      "text": "WP",
+      "count": 8
+    },
+    {
+      "text": "충격",
+      "count": 16
+    },
+    {
+      "text": "접근",
+      "count": 16
+    }
+  ],
+  "table_patterns": [
+    {
+      "role": "table_1",
+      "title": "",
+      "rows": 1,
+      "cols": 1,
+      "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
+      "border_style": "unknown",
+      "merged_cells": []
+    },
+    {
+      "role": "table_2",
+      "title": "",
+      "rows": 1,
+      "cols": 1,
+      "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
+      "border_style": "unknown",
+      "merged_cells": []
+    },
+    {
+      "role": "table_3",
+      "title": "",
+      "rows": 1,
+      "cols": 1,
+      "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
+      "border_style": "unknown",
+      "merged_cells": []
+    },
+    {
+      "role": "table_4",
+      "title": "",
+      "rows": 1,
+      "cols": 2,
+      "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
+      "border_style": "unknown",
+      "merged_cells": []
+    },
+    {
+      "role": "table_5",
+      "title": "",
+      "rows": 1,
+      "cols": 2,
+      "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
+      "border_style": "unknown",
+      "merged_cells": []
+    },
+    {
+      "role": "table_6",
+      "title": "",
+      "rows": 4,
+      "cols": 3,
+      "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
+      "border_style": "unknown",
+      "merged_cells": [
+        {
+          "row": 0,
+          "col": 0,
+          "row_span": 4,
+          "col_span": 1,
+          "text": ""
+        },
+        {
+          "row": 0,
+          "col": 2,
+          "row_span": 4,
+          "col_span": 1,
+          "text": ""
+        }
+      ]
+    },
+    {
+      "role": "table_7",
+      "title": "",
+      "rows": 1,
+      "cols": 2,
+      "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
+      "border_style": "unknown",
+      "merged_cells": []
+    },
+    {
+      "role": "table_8",
+      "title": "",
+      "rows": 1,
+      "cols": 2,
+      "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
+      "border_style": "unknown",
+      "merged_cells": []
+    },
+    {
+      "role": "table_9",
+      "title": "",
+      "rows": 6,
+      "cols": 2,
+      "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
+      "border_style": "unknown",
+      "merged_cells": []
+    },
+    {
+      "role": "table_10",
+      "title": "",
+      "rows": 5,
+      "cols": 3,
+      "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
+      "border_style": "unknown",
+      "merged_cells": []
+    },
+    {
+      "role": "table_11",
+      "title": "",
+      "rows": 1,
+      "cols": 2,
+      "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
+      "border_style": "unknown",
+      "merged_cells": []
+    },
+    {
+      "role": "table_12",
+      "title": "",
+      "rows": 1,
+      "cols": 2,
+      "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
+      "border_style": "unknown",
+      "merged_cells": []
+    },
+    {
+      "role": "table_13",
+      "title": "",
+      "rows": 1,
+      "cols": 2,
+      "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
+      "border_style": "unknown",
+      "merged_cells": []
+    },
+    {
+      "role": "table_14",
+      "title": "",
+      "rows": 1,
+      "cols": 1,
+      "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
+      "border_style": "unknown",
+      "merged_cells": []
+    },
+    {
+      "role": "table_15",
+      "title": "",
+      "rows": 1,
+      "cols": 2,
+      "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
+      "border_style": "unknown",
+      "merged_cells": []
+    },
+    {
+      "role": "table_16",
+      "title": "",
+      "rows": 1,
+      "cols": 2,
+      "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
+      "border_style": "unknown",
+      "merged_cells": []
+    },
+    {
+      "role": "table_17",
+      "title": "",
+      "rows": 1,
+      "cols": 1,
+      "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
+      "border_style": "unknown",
+      "merged_cells": []
+    },
+    {
+      "role": "table_18",
+      "title": "",
+      "rows": 1,
+      "cols": 2,
+      "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
+      "border_style": "unknown",
+      "merged_cells": []
+    },
+    {
+      "role": "table_19",
+      "title": "",
+      "rows": 1,
+      "cols": 2,
+      "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
+      "border_style": "unknown",
+      "merged_cells": []
+    },
+    {
+      "role": "table_20",
+      "title": "",
+      "rows": 1,
+      "cols": 1,
+      "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
+      "border_style": "unknown",
+      "merged_cells": []
+    },
+    {
+      "role": "table_21",
+      "title": "",
+      "rows": 1,
+      "cols": 2,
+      "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
+      "border_style": "unknown",
+      "merged_cells": []
+    },
+    {
+      "role": "table_22",
+      "title": "",
+      "rows": 1,
+      "cols": 2,
+      "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
+      "border_style": "unknown",
+      "merged_cells": []
+    },
+    {
+      "role": "table_23",
+      "title": "",
+      "rows": 1,
+      "cols": 1,
+      "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
+      "border_style": "unknown",
+      "merged_cells": []
+    },
+    {
+      "role": "table_24",
+      "title": "",
+      "rows": 1,
+      "cols": 1,
+      "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
+      "border_style": "unknown",
+      "merged_cells": []
+    },
+    {
+      "role": "table_25",
+      "title": "",
+      "rows": 3,
+      "cols": 1,
+      "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
+      "border_style": "unknown",
+      "merged_cells": []
+    },
+    {
+      "role": "table_26",
+      "title": "",
+      "rows": 1,
+      "cols": 2,
+      "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
+      "border_style": "unknown",
+      "merged_cells": []
+    },
+    {
+      "role": "table_27",
+      "title": "",
+      "rows": 1,
+      "cols": 2,
+      "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
+      "border_style": "unknown",
+      "merged_cells": []
+    },
+    {
+      "role": "table_28",
+      "title": "",
+      "rows": 4,
+      "cols": 1,
+      "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
+      "border_style": "unknown",
+      "merged_cells": []
+    },
+    {
+      "role": "table_29",
+      "title": "",
+      "rows": 1,
+      "cols": 2,
+      "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
+      "border_style": "unknown",
+      "merged_cells": []
+    },
+    {
+      "role": "table_30",
+      "title": "",
+      "rows": 1,
+      "cols": 2,
+      "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
+      "border_style": "unknown",
+      "merged_cells": []
+    },
+    {
+      "role": "table_31",
+      "title": "",
+      "rows": 4,
+      "cols": 1,
+      "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
+      "border_style": "unknown",
+      "merged_cells": []
+    },
+    {
+      "role": "table_32",
+      "title": "",
+      "rows": 1,
+      "cols": 2,
+      "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
+      "border_style": "unknown",
+      "merged_cells": []
+    },
+    {
+      "role": "table_33",
+      "title": "",
+      "rows": 1,
+      "cols": 2,
+      "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
+      "border_style": "unknown",
+      "merged_cells": []
+    },
+    {
+      "role": "table_34",
+      "title": "",
+      "rows": 1,
+      "cols": 1,
+      "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
+      "border_style": "unknown",
+      "merged_cells": []
+    },
+    {
+      "role": "table_35",
+      "title": "",
+      "rows": 1,
+      "cols": 1,
+      "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
+      "border_style": "unknown",
+      "merged_cells": []
+    },
+    {
+      "role": "table_36",
+      "title": "",
+      "rows": 1,
+      "cols": 2,
+      "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
+      "border_style": "unknown",
+      "merged_cells": []
+    },
+    {
+      "role": "table_37",
+      "title": "",
+      "rows": 1,
+      "cols": 2,
+      "wrapper_path": "hs:sec>hp:p>hp:run>hp:tbl",
+      "border_style": "unknown",
+      "merged_cells": []
+    },
+    {
+      "role": "table_38",
+      "title": "",
+      "rows": 8,
+      "cols": 6,
+      "wrapper_path": "hp:subList>hp:p>hp:run>hp:tbl",
+      "border_style": "unknown",
+      "merged_cells": [
+        {
+          "row": 0,
+          "col": 0,
+          "row_span": 3,
+          "col_span": 1,
+          "text": "구 분"
+        },
+        {
+          "row": 0,
+          "col": 1,
+          "row_span": 1,
+          "col_span": 5,
+          "text": "105mm SP"
+        },
+        {
+          "row": 1,
+          "col": 1,
+          "row_span": 1,
+          "col_span": 3,
+          "text": "HE"
+        },
+        {
+          "row": 1,
+          "col": 4,
+          "row_span": 1,
+          "col_span": 2,
+          "text": "WP"
+        },
+        {
+          "row": 7,
+          "col": 1,
+          "row_span": 1,
+          "col_span": 5,
+          "text": "4,721,742.5"
+        }
+      ]
+    },
+    {
+      "role": "table_39",
+      "title": "",
+      "rows": 8,
+      "cols": 5,
+      "wrapper_path": "hp:subList>hp:p>hp:run>hp:tbl",
+      "border_style": "unknown",
+      "merged_cells": [
+        {
+          "row": 0,
+          "col": 0,
+          "row_span": 1,
+          "col_span": 5,
+          "text": "81mm MOT"
+        },
+        {
+          "row": 1,
+          "col": 0,
+          "row_span": 1,
+          "col_span": 3,
+          "text": "HE"
+        },
+        {
+          "row": 1,
+          "col": 3,
+          "row_span": 1,
+          "col_span": 2,
+          "text": "WP"
+        },
+        {
+          "row": 7,
+          "col": 0,
+          "row_span": 1,
+          "col_span": 5,
+          "text": "2,400,075"
+        }
+      ]
+    },
+    {
+      "role": "table_40",
+      "title": "",
+      "rows": 8,
+      "cols": 6,
+      "wrapper_path": "hp:subList>hp:p>hp:run>hp:tbl",
+      "border_style": "unknown",
+      "merged_cells": [
+        {
+          "row": 0,
+          "col": 0,
+          "row_span": 3,
+          "col_span": 1,
+          "text": "구 분"
+        },
+        {
+          "row": 0,
+          "col": 1,
+          "row_span": 1,
+          "col_span": 5,
+          "text": "105mm SP"
+        },
+        {
+          "row": 1,
+          "col": 1,
+          "row_span": 1,
+          "col_span": 3,
+          "text": "HE"
+        },
+        {
+          "row": 1,
+          "col": 4,
+          "row_span": 1,
+          "col_span": 2,
+          "text": "WP"
+        },
+        {
+          "row": 7,
+          "col": 1,
+          "row_span": 1,
+          "col_span": 5,
+          "text": "5,326,392.5 (+604,650(12.81%))"
+        }
+      ]
+    },
+    {
+      "role": "table_41",
+      "title": "",
+      "rows": 8,
+      "cols": 5,
+      "wrapper_path": "hp:subList>hp:p>hp:run>hp:tbl",
+      "border_style": "unknown",
+      "merged_cells": [
+        {
+          "row": 0,
+          "col": 0,
+          "row_span": 1,
+          "col_span": 5,
+          "text": "81mm MOT"
+        },
+        {
+          "row": 1,
+          "col": 0,
+          "row_span": 1,
+          "col_span": 3,
+          "text": "HE"
+        },
+        {
+          "row": 1,
+          "col": 3,
+          "row_span": 1,
+          "col_span": 2,
+          "text": "WP"
+        },
+        {
+          "row": 7,
+          "col": 0,
+          "row_span": 1,
+          "col_span": 5,
+          "text": "2,693,461.5 (+293,385.5(12.22%))"
+        }
+      ]
+    },
+    {
+      "role": "table_42",
+      "title": "",
+      "rows": 8,
+      "cols": 11,
+      "wrapper_path": "hp:subList>hp:p>hp:run>hp:tbl",
+      "border_style": "unknown",
+      "merged_cells": [
+        {
+          "row": 0,
+          "col": 0,
+          "row_span": 3,
+          "col_span": 1,
+          "text": "구 분"
+        },
+        {
+          "row": 0,
+          "col": 1,
+          "row_span": 1,
+          "col_span": 5,
+          "text": "105mm SP"
+        },
+        {
+          "row": 0,
+          "col": 6,
+          "row_span": 1,
+          "col_span": 5,
+          "text": "81mm MOT"
+        },
+        {
+          "row": 1,
+          "col": 1,
+          "row_span": 1,
+          "col_span": 3,
+          "text": "HE"
+        },
+        {
+          "row": 1,
+          "col": 4,
+          "row_span": 1,
+          "col_span": 2,
+          "text": "WP"
+        },
+        {
+          "row": 1,
+          "col": 6,
+          "row_span": 1,
+          "col_span": 3,
+          "text": "HE"
+        },
+        {
+          "row": 1,
+          "col": 9,
+          "row_span": 1,
+          "col_span": 2,
+          "text": "WP"
+        },
+        {
+          "row": 7,
+          "col": 1,
+          "row_span": 1,
+          "col_span": 5,
+          "text": "4,721,742.5"
+        },
+        {
+          "row": 7,
+          "col": 6,
+          "row_span": 1,
+          "col_span": 5,
+          "text": "2,400,075"
+        }
+      ]
+    },
+    {
+      "role": "table_43",
+      "title": "",
+      "rows": 8,
+      "cols": 11,
+      "wrapper_path": "hp:subList>hp:p>hp:run>hp:tbl",
+      "border_style": "unknown",
+      "merged_cells": [
+        {
+          "row": 0,
+          "col": 0,
+          "row_span": 3,
+          "col_span": 1,
+          "text": "구 분"
+        },
+        {
+          "row": 0,
+          "col": 1,
+          "row_span": 1,
+          "col_span": 5,
+          "text": "105mm SP"
+        },
+        {
+          "row": 0,
+          "col": 6,
+          "row_span": 1,
+          "col_span": 5,
+          "text": "81mm MOT"
+        },
+        {
+          "row": 1,
+          "col": 1,
+          "row_span": 1,
+          "col_span": 3,
+          "text": "HE"
+        },
+        {
+          "row": 1,
+          "col": 4,
+          "row_span": 1,
+          "col_span": 2,
+          "text": "WP"
+        },
+        {
+          "row": 1,
+          "col": 6,
+          "row_span": 1,
+          "col_span": 3,
+          "text": "HE"
+        },
+        {
+          "row": 1,
+          "col": 9,
+          "row_span": 1,
+          "col_span": 2,
+          "text": "WP"
+        },
+        {
+          "row": 7,
+          "col": 1,
+          "row_span": 1,
+          "col_span": 5,
+          "text": "6,013,777.5 (+1,292,035(21.5%))"
+        },
+        {
+          "row": 7,
+          "col": 6,
+          "row_span": 1,
+          "col_span": 5,
+          "text": "2,351,467 (-48,608(3%))"
+        }
+      ]
+    }
+  ],
+  "paragraph_roles": {},
+  "header_footer": {
+    "has_header": false,
+    "has_footer": false,
+    "footer_text": "",
+    "page_number_field": false
+  },
+  "images": [
+    "BinData/image1.jpg",
+    "BinData/image2.jpg",
+    "BinData/image3.jpg",
+    "BinData/image4.jpg",
+    "BinData/image5.jpg",
+    "BinData/image6.jpg",
+    "BinData/image7.jpg",
+    "BinData/image8.jpg",
+    "BinData/image9.jpg",
+    "BinData/image10.jpg",
+    "BinData/image12.png",
+    "BinData/image13.png"
+  ],
+  "text_sample": [
+    "PK-Table 기반 타격자산-탄종-신관",
+    "결정 보조 알고리즘 제작",
+    "대항군처 대대관찰통제7과",
+    "타격자산-탄종-신관 결심보조 알고리즘 (1/11)",
+    "주 11 - 1",
+    "󰊱 개요",
+    "KCTC 체계의 PK-Table을 기반으로 표적의 좌표와 성질에 따라 최적의 타격자산-탄종-신관 조합을 추천하는 결심보조 알고리즘을 제작하여 전시 곡사화기의 효율을 극대화",
+    "󰊲 현 실태 / 문제점 : 타격자산-탄종-신관 결심을 위한 정량적 근거가 부재하여",
+    "곡사화기가 비 효율적으로 운용됨",
+    "󰊳 개선내용 : KCTC PK-Table을 기반으로 표적의 좌표와 성질 별 최적의 타격자산-탄종-신관 조합을 추천하는 결심보조 알고리즘 개발",
+    "󰊴 기대효과",
+    "㉮ 곡사화기 사격 시 살상율 17.4% 향상 기대(105mm SP, 81mm MOT 적용 시)",
+    "* 정량적 효과측정은 제한되나 자동화로 인한 곡사화기 사격 소요시간의 감소가 추가로 예상됨",
+    "㉯ 전투발전 제언을 통한 전 부대에 보급을 추진, 육군 전투력 발전에 기여",
+    "㉰ KCTC 생산 DATA를 활용한 알고리즘 개발을 통해 육군 내 KCTC의 위상 향상",
+    "보조 11 - 1",
+    "타격자산-탄종-신관 결심보조 알고리즘 (2/11)",
+    "주 11 - 2",
+    "󰊱 개요",
+    "KCTC 체계의 PK-Table을 기반으로 표적의 좌표와 성질에 따라 최적의 타격자산-탄종-신관 조합을 추천하는 결심보조 알고리즘을 제작하여 전시 곡사화기의 효율을 극대화",
+    "󰊲 현 실태 / 문제점 : 타격자산-탄종-신관 결심을 위한 정량적 판단기준이 부재하여",
+    "곡사화기가 비 효율적으로 운용됨",
+    "󰊳 개선내용 : KCTC PK-Table을 기반으로 표적의 좌표와 성질 별 최적의 타격자산-탄종-신관 조합을 추천하는 결심보조 알고리즘 개발",
+    "󰊴 기대효과",
+    "㉮ 곡사화기 사격 시 살상율 17.4% 향상 기대(105mm SP, 81mm MOT 적용 시)",
+    "* 정량적 효과측정은 제한되나 자동화로 인한 곡사화기 사격 소요시간의 감소가 추가로 예상됨",
+    "㉯ 전투발전 제언을 통한 전 부대에 보급을 추진, 육군 전투력 발전에 기여",
+    "㉰ KCTC 생산 DATA를 활용한 알고리즘 개발을 통해 육군 내 KCTC의 위상 향상",
+    "현 실태 및 문제점 분석",
+    "보조 11 - 2"
+  ]
+}

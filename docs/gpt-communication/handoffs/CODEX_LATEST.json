@@ -1,0 +1,195 @@
+{
+  "updated_at": "2026-07-03",
+  "status": "task003_reviewed_partial_corrective_required",
+  "task_id": "hwpx-core-benchmark-003-evidence-integrity",
+  "stage": "1-3",
+  "branch": "feature/hwpx-core-benchmark",
+  "task_contract_commit_sha": "0064049f03d4167b322e7b407518a0e42e685d83",
+  "task_start_commit_sha": "0064049f03d4167b322e7b407518a0e42e685d83",
+  "tested_implementation_commit_sha": "5d4c60fe0911b430e648874ae45b06069270ab9e",
+  "codex_report_commit_sha": "534df85b74c7c3cb6fc749e24ae1633927d72a3e",
+  "codex_final_pushed_head_sha": "534df85b74c7c3cb6fc749e24ae1633927d72a3e",
+  "prompt_agent_opinion_commit_sha": "14d151f6898e64eb0ba0b397b566209b49956d82",
+  "prompt_agent_opinion_path": "docs/gpt-communication/opinions/2026-07-03-hwpx-core-benchmark-003-prompt-agent-review.md",
+  "prompt_agent_assessment": "meaningful_invalid_pass_downgrade_and_role_separation_but_evidence_integrity_completion_rejected",
+  "codex_execution_status": "partial",
+  "completion_gate_passed": false,
+  "task_003_completion": "rejected",
+  "proceed_to_task_004": false,
+  "remote_verification": {
+    "reported_commits_exist": true,
+    "commits_ahead_of_task_contract": 2,
+    "implementation_and_artifacts_pushed": true,
+    "report_pushed": true,
+    "github_ci_statuses_present": false,
+    "changed_scope_is_task003_only": true,
+    "benchmark_001_002_changed_by_codex_commits": false
+  },
+  "positive_findings": [
+    "Benchmark-002 invalid passed results S06-S08 and S12-S14 were downgraded to blocked",
+    "Role-inapplicable scenarios are represented as not_applicable rather than blanket blocked",
+    "Editor, Validator and Layout Authority gates are separated",
+    "planned_commands and attempted_commands are separated and unexecuted placeholder commands are not recorded as attempted",
+    "v1 is represented by an explicit missing fixture record",
+    "Five required schema files were created",
+    "Task 003 outputs are isolated from benchmark-001 and benchmark-002 paths",
+    "Codex honestly reported partial status, failed completion gate, missing standard schema validator and failed full regression",
+    "No core selection, stage transition, main merge or user visual review was performed"
+  ],
+  "critical_findings": [
+    {
+      "id": "static_status_reclassification_remains",
+      "severity": "critical",
+      "finding": "correctedStatusForScenario hard-codes Current Node/XML S01-S05 statuses, all external applicable candidates as blocked and Hancom COM as blocked. Statuses are not derived solely from actual execution, imported evidence and prerequisite probes.",
+      "required_correction": "Remove candidate/scenario fixed status returns and derive status from role applicability, actual execution records, source/API inspection evidence and prerequisite probe results."
+    },
+    {
+      "id": "evidence_validators_check_presence_not_preservation",
+      "severity": "critical",
+      "finding": "S06-S08 gates check that before/after fields exist but do not compare maps, counts, entry hashes, relationships, fwSpace paths or namespace mappings. Corrupt before/after values could still satisfy the gate.",
+      "required_correction": "Add artifact existence and SHA checks, semantic before/after equality checks, allowed-target-diff checks and non-target hash assertions."
+    },
+    {
+      "id": "s12_s14_gates_incomplete",
+      "severity": "critical",
+      "finding": "S12 does not enforce warmup, median/p95 consistency, process boundary, measurement commands or real inventory. S13 gate.valid does not require attempted command records and omits logs, installed inventory, runtime exit and cleanup. S14 omits several required license and distribution implications.",
+      "required_correction": "Make gate.valid equivalent to no missing evidence plus all semantic assertions passing."
+    },
+    {
+      "id": "schema_contract_not_met",
+      "severity": "critical",
+      "finding": "The five schemas exist but remain permissive and shallow: additionalProperties true, no passed/blocked/not_applicable conditionals, no blocked prerequisite structure, and incomplete nested summary/manifest/test schemas.",
+      "required_correction": "Implement detailed Draft 2020-12 schemas with conditional requirements, nested item schemas, strict field policy and scenario-specific evidence definitions."
+    },
+    {
+      "id": "nonstandard_schema_validator",
+      "severity": "critical",
+      "finding": "Validation uses an internal partial keyword interpreter, not a standards-compliant Draft 2020-12 engine. Validator license and offline replay evidence are absent.",
+      "required_correction": "Pin a standards-compliant validator with exact version, actual LICENSE, hashes and offline replay instructions."
+    },
+    {
+      "id": "not_all_generated_json_validated",
+      "severity": "critical",
+      "finding": "Schema validation inventory omits corpus manifest, role matrix, editor and validator scorecards, layout gate, capability matrix, source immutability and schema validation summary. Runner code also contains incorrect pseudo-validation entries for schema files.",
+      "required_correction": "Build a filesystem-derived JSON inventory and validate every committed Task 003 JSON with the correct schema after all final test and summary writes."
+    },
+    {
+      "id": "full_regression_failed",
+      "severity": "critical",
+      "finding": "Task 003 tests passed 7/0, but the complete tools/hancom suite exited 1 with 7 passed and 18 failed because jszip was unavailable.",
+      "required_correction": "Restore the repository's pinned jszip dependency environment and rerun the entire suite with zero failures before Task 003 completion."
+    },
+    {
+      "id": "red_test_coverage_incomplete",
+      "severity": "high",
+      "finding": "Only seven Task 003 tests were added. There are no mismatch/corruption tests for semantic preservation, invalid artifact hashes, S13 missing attempted execution, all-JSON inventory, invalid-pass injection or report/test consistency.",
+      "required_correction": "Implement the full Task Contract RED matrix and positive evidence fixtures."
+    },
+    {
+      "id": "invalid_pass_count_hardcoded",
+      "severity": "high",
+      "finding": "Summary sets invalid_pass_count to constant zero instead of calculating it from passed results and validator failures.",
+      "required_correction": "Compute invalid_pass_count and add an injection test proving it increases for an invalid passed result."
+    },
+    {
+      "id": "api_score_awarded_without_validator",
+      "severity": "high",
+      "finding": "Current Node/XML receives five API extensibility points while validator_results is empty, contradicting the score formula that only validated rubric items are awarded.",
+      "required_correction": "Add an API rubric validator or return those points to pending."
+    },
+    {
+      "id": "benchmark002_partial_evidence_lineage_lost",
+      "severity": "medium",
+      "finding": "Task 003 reads previous statuses but passes empty evidence for every scenario. Existing benchmark-002 S12 duration and RSS samples are therefore reported as missing rather than retained as partial evidence.",
+      "required_correction": "Import verified prior evidence with source paths and hashes while keeping the final S12 status blocked until complete evidence exists."
+    },
+    {
+      "id": "immutability_artifact_not_pre_post_comparison",
+      "severity": "medium",
+      "finding": "source-immutability.json records a single current digest and assigns identical before/after hashes in one run. Git diff independently confirms no benchmark-001/002 changes, but the artifact itself is not a pre/post proof.",
+      "required_correction": "Capture a task-start baseline manifest and compare it with a post-run manifest."
+    }
+  ],
+  "tests": {
+    "task003_unit": {
+      "command": "node --test tools/hancom/hwpx-core-benchmark-evidence-integrity.test.mjs",
+      "exit_code": 0,
+      "passed": 7,
+      "failed": 0,
+      "skipped": 0
+    },
+    "full_hancom_regression": {
+      "exit_code": 1,
+      "passed": 7,
+      "failed": 18,
+      "skipped": 0,
+      "failure_class": "environment_dependency_missing_jszip"
+    },
+    "committed_logs_present": true,
+    "independent_ci_verification": "unavailable"
+  },
+  "corrected_current_node_xml_statuses": {
+    "S01": "unsupported",
+    "S02": "failed",
+    "S03": "unsupported",
+    "S04": "unsupported",
+    "S05": "unsupported",
+    "S06": "blocked",
+    "S07": "blocked",
+    "S08": "blocked",
+    "S09": "not_applicable",
+    "S10": "not_applicable",
+    "S11": "not_applicable",
+    "S12": "blocked",
+    "S13": "blocked",
+    "S14": "blocked"
+  },
+  "completion_gate": {
+    "passed": false,
+    "met_items": [
+      "Task 003 commit and report are pushed",
+      "invalid benchmark-002 passed statuses are no longer retained",
+      "role matrix and not_applicable classification exist",
+      "planned and attempted commands are separated",
+      "v1 explicit missing record exists",
+      "five schema files exist",
+      "benchmark-001 and benchmark-002 are unchanged in the Codex commit diff",
+      "no core selection, stage transition or visual review occurred"
+    ],
+    "unmet_items": [
+      "status derived only from actual evidence rather than fixed candidate/scenario branches",
+      "semantic before/after S06-S08 validation",
+      "complete S12-S14 evidence gates",
+      "detailed conditional Draft 2020-12 schemas",
+      "standards-compliant schema engine with license and offline replay",
+      "validation of every generated Task 003 JSON",
+      "full Task Contract RED and positive test coverage",
+      "zero-failure full tools/hancom regression",
+      "calculated invalid_pass_count",
+      "fully validator-backed rubric scoring",
+      "benchmark-002 partial evidence lineage",
+      "true task-start versus task-end immutability proof",
+      "report, artifacts and final validation regenerated after all corrections"
+    ]
+  },
+  "user_visual_status": "not_requested_task_003_no_valid_com_resaved_outputs",
+  "core_selection": "prohibited",
+  "stage_transition": "prohibited",
+  "hwp_adapter_completion": "not_declared",
+  "master_review_required": true,
+  "master_review_reasons": [
+    "Task 003 completion gate remains failed despite meaningful invalid-pass cleanup",
+    "The evidence gate can accept semantically mismatched before/after data because it checks field presence only",
+    "The current schema validator is not standards compliant and does not validate all generated JSON",
+    "The full Hancom regression suite failed 18 files because the jszip dependency environment was unavailable",
+    "Task 004 should not begin until a Task 003 corrective continuation passes"
+  ],
+  "master_decision_requested": [
+    "Approve Task 003 corrective continuation on the same branch",
+    "Keep standards-compliant schema validator acquisition inside Task 003 scope",
+    "Require restoration of the pinned jszip environment and zero-failure full regression before Task 004",
+    "Prohibit Task 004 transition until the corrected Task 003 gate passes"
+  ],
+  "next_prompt_intent": "Preserve commits 5d4c60f and 534df85 as partial progress evidence. Continue Task 003 on feature/hwpx-core-benchmark. First restore the pinned jszip test environment and reproduce the full suite. Then replace fixed status branches with evidence-derived decisions, implement semantic S06-S08 comparisons and complete S12-S14 gates, pin a standards-compliant Draft 2020-12 validator with actual license/offline evidence, validate every generated JSON from a filesystem inventory, calculate invalid_pass_count, validate every score rubric item, import verified benchmark-002 partial evidence lineage, implement task-start/task-end immutability manifests, rerun all tests and regenerate artifacts/report. Do not start Task 004, select a core, transition stage or request visual review.",
+  "notes": "The Codex report was appropriately conservative, but its own listed schema limitation is not the only blocker. Static status generation, presence-only evidence gates and the failed full regression independently prevent Task 003 completion."
+}

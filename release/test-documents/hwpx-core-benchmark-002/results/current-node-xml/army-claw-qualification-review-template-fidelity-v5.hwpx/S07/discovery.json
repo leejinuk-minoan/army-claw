@@ -1,0 +1,18 @@
+{
+  "scenario_id": "S07",
+  "method": "extractSemanticSnapshot",
+  "output": {
+    "package_valid": true,
+    "text_sha256_source": "analysis.text",
+    "text_length": 8975,
+    "has_bindata_candidate": true
+  },
+  "assertions": [
+    {
+      "id": "snapshot-package-valid",
+      "expected": true,
+      "actual": true,
+      "passed": true
+    }
+  ]
+}

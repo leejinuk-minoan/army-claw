@@ -1,0 +1,22 @@
+{
+  "service_request_id": "svc-failed-001",
+  "service_operation": "getResult",
+  "ok": true,
+  "status": "failed",
+  "job_id": "job-failed",
+  "job_status": "failed",
+  "data": {
+    "status": "failed"
+  },
+  "error": {
+    "code": "validation_error",
+    "message": "validation_error proof"
+  },
+  "artifacts": {
+    "output_path": null,
+    "evidence_paths": []
+  },
+  "real_com_executed": false,
+  "final_core_selection_declared": false,
+  "stage_2_transition_declared": false
+}

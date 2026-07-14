@@ -1,0 +1,33 @@
+{
+  "task_id": "editor-backend-candidate-comparison-007",
+  "candidate_id": "python_hwpx",
+  "availability_path": "release/test-documents/editor-backend-candidate-comparison-007/python-hwpx/availability-probe.json",
+  "dependency_probe_path": "release/test-documents/editor-backend-candidate-comparison-007/python-hwpx/dependency-probe.txt",
+  "license_probe_path": "release/test-documents/editor-backend-candidate-comparison-007/python-hwpx/license-probe.txt",
+  "output_result": "unavailable",
+  "output_unavailable": true,
+  "no_online_install_attempted": true,
+  "probe_files": {
+    "availability": {
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task007-editor-backend-candidate-comparison-20260704145500\\release\\test-documents\\editor-backend-candidate-comparison-007\\python-hwpx\\availability-probe.json",
+      "exists": true,
+      "size": 17491,
+      "sha256": "c6d3e07b4dd582e5bc876138760e3cc5f96ebc05f3da423da557896e2aeaeedf",
+      "hash_algorithm": "sha256"
+    },
+    "dependency": {
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task007-editor-backend-candidate-comparison-20260704145500\\release\\test-documents\\editor-backend-candidate-comparison-007\\python-hwpx\\dependency-probe.txt",
+      "exists": true,
+      "size": 307,
+      "sha256": "341e0d4bc2ad6fc5b1a720781d5dd1c9a7b3e7e3da8c4c7abac83aec88294286",
+      "hash_algorithm": "sha256"
+    },
+    "license": {
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task007-editor-backend-candidate-comparison-20260704145500\\release\\test-documents\\editor-backend-candidate-comparison-007\\python-hwpx\\license-probe.txt",
+      "exists": true,
+      "size": 771,
+      "sha256": "e1ee249304e30ed9788db9719930f1f0e03dba98184248ff259f70db1fcbf4af",
+      "hash_algorithm": "sha256"
+    }
+  }
+}

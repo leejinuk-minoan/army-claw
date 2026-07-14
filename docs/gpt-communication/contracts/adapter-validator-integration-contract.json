@@ -1,0 +1,103 @@
+{
+  "schema_version": "army-claw-adapter-validator-integration-contract-026.v1",
+  "contract_id": "adapter-validator-integration-contract",
+  "task_id": "task026-adapter-validator-integration-contract-proof",
+  "depends_on": [
+    "docs/gpt-communication/contracts/common-office-adapter-interface-contract.json",
+    "docs/gpt-communication/contracts/adapter-interface-validator-contract.json",
+    "docs/gpt-communication/contracts/adapter-interface-validation-matrix.json",
+    "docs/gpt-communication/reports/2026-07-09-task025b-adapter-interface-validator-local-verification.md",
+    "docs/gpt-communication/delegation/task025-adapter-interface-validator-implementation/LOCAL_EXECUTION_RESULT.json"
+  ],
+  "gate_status_enum": [
+    "not_required",
+    "required_not_run",
+    "passed",
+    "failed",
+    "blocked",
+    "requires_followup"
+  ],
+  "gate_required_when": [
+    "common_interface_contract_changed",
+    "adapter_interface_sample_changed",
+    "adapter_error_taxonomy_changed",
+    "target_slot_plan_mapping_changed",
+    "adapter_implementation_code_changed_or_planned",
+    "adapter_request_response_error_envelope_changed",
+    "proof_mode_sample_changed",
+    "negative_sample_changed",
+    "immediately_before_local_adapter_execution_task"
+  ],
+  "gate_not_required_when": [
+    "pure_explanatory_documentation_unrelated_to_adapter_interface",
+    "research_note_typo_or_format_only",
+    "report_format_only",
+    "governance_documentation_unrelated_to_adapter_interface_or_execution"
+  ],
+  "evidence_required_fields": [
+    "validator_cli_stdout_path",
+    "validator_cli_stderr_path",
+    "validator_cli_exit_code_path",
+    "unittest_stdout_path",
+    "unittest_stderr_path",
+    "unittest_exit_code_path",
+    "execution_branch",
+    "execution_commit_sha",
+    "local_execution_base_sha",
+    "repo_status_before",
+    "repo_status_after",
+    "python_version",
+    "actual_adapter_invoked",
+    "local_hancom_com_executed"
+  ],
+  "task_contract_fields": [
+    "adapter_validator_gate_required",
+    "adapter_validator_gate_policy_path",
+    "adapter_validator_integration_contract_path",
+    "adapter_validator_evidence_schema_path",
+    "adapter_validator_gate_status",
+    "adapter_validator_evidence_path",
+    "validator_cli_exit_code",
+    "unittest_exit_code",
+    "validator_completion_gate_required",
+    "validator_completion_gate_passed"
+  ],
+  "handoff_fields": [
+    "adapter_validator_gate_required",
+    "adapter_validator_gate_status",
+    "adapter_validator_evidence_path",
+    "validator_cli_exit_code",
+    "unittest_exit_code",
+    "gate_blocked_reason"
+  ],
+  "completion_gate_rules": [
+    "if_adapter_validator_gate_required_true_evidence_must_exist",
+    "if_adapter_validator_gate_required_true_validator_cli_exit_code_must_be_zero",
+    "if_adapter_validator_gate_required_true_unittest_exit_code_must_be_zero",
+    "if_evidence_missing_completion_gate_passed_must_be_false",
+    "if_gate_failed_or_blocked_completion_gate_passed_must_be_false",
+    "report_must_distinguish_not_required_from_required_not_run"
+  ],
+  "blocked_conditions": [
+    "gate_status_missing_when_required",
+    "required_not_run_at_completion",
+    "validator_cli_exit_code_nonzero",
+    "unittest_exit_code_nonzero",
+    "execution_evidence_missing",
+    "claiming_passed_without_execution_evidence",
+    "actual_adapter_invocation_unapproved",
+    "local_hancom_com_execution_unapproved"
+  ],
+  "forbidden_completion_claims": [
+    "completion_gate_passed_true_with_required_not_run",
+    "completion_gate_passed_true_with_failed_gate",
+    "completion_gate_passed_true_with_blocked_gate",
+    "validator_passed_claim_without_stdout_stderr_exit_code",
+    "adapter_execution_claim_without_adapter_task_authorization"
+  ],
+  "actual_ci_integration_included": false,
+  "github_actions_created": false,
+  "actual_adapter_invocation_allowed_in_task026": false,
+  "stage_2_transition_declared": false,
+  "final_hwp_hwpx_core_selected": false
+}

@@ -1,0 +1,25 @@
+{
+  "routing_result_id": "result-routing-multi-app-execution-plan-no-hint",
+  "routing_request_id": "routing-multi-app-execution-plan-no-hint",
+  "ok": false,
+  "status": "validation_error",
+  "plan_type": "multi_app_execution_plan",
+  "resolved_target_id": null,
+  "adapter_slot_id": null,
+  "route_action": "reject_controlled_validation_error",
+  "subplan_routes": [],
+  "validation_errors": [
+    {
+      "error_code": "missing_subplans",
+      "error_index": null
+    }
+  ],
+  "user_visible_state": "request_fix_required",
+  "error_code": "missing_subplans",
+  "error_category": "routing_validation",
+  "final_core_selection_declared": false,
+  "stage_2_transition_declared": false,
+  "real_adapter_execution_performed": false,
+  "model_gateway_implemented": false,
+  "llm_planner_connected": false
+}
