@@ -9,7 +9,7 @@
 현재 단계: HwpAdapter 및 HWP/HWPX 엔진 안정화
 현재 세부 단계: 1-3 선행 HWPX 엔진 비교·코어 선정
 현재 active task: Task 035 Local Workspace Staged Output Controlled Promotion Boundary
-다음 Task: Task 035-B Formal Local Verification
+다음 Task: Task 035-C Final Master Review and State Sync
 ```
 
 ## Canonical 기준선
@@ -83,13 +83,14 @@ Task ID: task035-local-workspace-staged-output-controlled-promotion-boundary
 routing_class: cloud_first_local_verify
 first phase: Task 035-A cloud package
 adapter_validator_gate_required: true
-status: implementation_corrected_pending_formal_local_verification
-subphase: task035a2lc2_root_cleanup_corrective_complete
-adapter_validator_gate_status: required_not_run
-completion_gate_passed: false
+status: local_verification_complete_pending_master_review
+subphase: task035b_local_verification_complete
+adapter_validator_gate_status: passed
+completion_gate_passed: true
+completion_gate_scope: task035b_local_gate_only
 ```
 
-Task 035는 staged sandbox artifact를 승인된 대상 경계로 승격하는 controlled promotion 계약과 검증 경계를 정의한다. Task 035-A2L-C에서는 Task 033 canonical manifest compatibility, failure evidence truthfulness, source immutability, lexical component safety, sibling casefold collision, validator sample profile을 보정했다. Task 035-A2L-C2에서는 raw injected root 검사, root symlink/reparse 차단, root inspection failure fail-closed, post-commit temp/final cleanup 독립 시도, pre-existing destination 보존, structured filesystem OSError response를 추가로 보정했다. formal local verification인 Task 035-B는 아직 수행하지 않았다.
+Task 035는 staged sandbox artifact를 승인된 대상 경계로 승격하는 controlled promotion 계약과 검증 경계를 정의한다. Task 035-B formal local verification은 verified implementation SHA `e7c91119771ad9e75262ee946ad648b674157472` 기준으로 통과했다. Validator는 `valid / 383 checks`, adapter validator unittest는 `22 tests OK`, local workspace adapter unittest는 `97 tests OK (skipped=2)`, formal scenarios는 `15/15 passed`다. Task 035 final completion은 아직 master review 대기 상태이며 `master_review_complete=false`, `final_task035_completion_gate_passed=false`를 유지한다.
 
 ## 유지되는 금지사항
 

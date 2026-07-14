@@ -21,10 +21,13 @@ Cleanup now records temp and final paths independently. A failure after final cr
 Expected filesystem errors for directory listing, source read/hash/stat, temp creation/write/hash/stat, final hash/stat, commit, and unlink operations are converted to structured blocking responses in the covered unit tests.
 
 ## Claimable scope
-The package supports an implementation-readiness claim for controlled promotion policy, validator integration, and temporary-root unit-test behavior. Formal Task 035-B evidence is still required before final Task 035 completion.
+The package now supports a Task 035-B local verification gate claim for controlled promotion policy, validator integration, temporary-root unit-test behavior, Task 033 whole/inner manifest promotion, raw root safety, cleanup state-machine behavior, and structured filesystem error handling.
 
 ## Non-claimable scope
-No production promotion, real user workspace mutation, native office application execution, semantic office-document validation, Hancom COM integration, Stage 2 readiness, or final HWPX core selection is established.
+No production promotion, real user workspace mutation, native office application execution, semantic office-document validation, Hancom COM integration, Stage 2 readiness, final HWPX core selection, or final Task 035 completion is established. Final Task 035 completion remains pending master review.
+
+## Task 035-B formal local verification
+Formal local verification was recorded for implementation SHA `e7c91119771ad9e75262ee946ad648b674157472`. The official validator reported `valid` with 383 total checks, 383 passed, 0 failed, and 0 blocked. Adapter validator unittest ran 22 tests OK. Local workspace adapter unittest ran 97 tests OK with two Windows symlink privilege-dependent skips. Formal controlled-promotion scenarios passed 15 of 15.
 
 ## Status
-`implementation_corrected_pending_formal_local_verification`.
+`local_verification_complete_pending_master_review`.

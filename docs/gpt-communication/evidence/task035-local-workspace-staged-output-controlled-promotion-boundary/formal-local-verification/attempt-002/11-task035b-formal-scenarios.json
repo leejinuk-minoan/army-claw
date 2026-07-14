@@ -1,0 +1,1394 @@
+{
+  "verified_implementation_commit_sha": "e7c91119771ad9e75262ee946ad648b674157472",
+  "all_passed": true,
+  "scenarios": [
+    {
+      "scenario_id": "task033_whole_response_positive",
+      "status": "passed",
+      "expected": {},
+      "observed": {
+        "status": "promoted",
+        "digest": "6cc03375a40e5c9eb2b317686103112c3f2f1d265589f2018e23cb83ddddfd69",
+        "size": 45
+      },
+      "assertions": [
+        {
+          "name": "status_promoted",
+          "passed": true,
+          "observed": "promoted"
+        },
+        {
+          "name": "source_exists",
+          "passed": true,
+          "observed": "C:\\Users\\USER\\AppData\\Local\\Temp\\tmp15vi3at0\\staged\\outputs\\task033\\report.txt"
+        },
+        {
+          "name": "source_unchanged",
+          "passed": true,
+          "observed": null
+        },
+        {
+          "name": "destination_exists",
+          "passed": true,
+          "observed": "C:\\Users\\USER\\AppData\\Local\\Temp\\tmp15vi3at0\\approved\\reports\\report.txt"
+        },
+        {
+          "name": "destination_bytes",
+          "passed": true,
+          "observed": null
+        },
+        {
+          "name": "destination_size",
+          "passed": true,
+          "observed": 45
+        },
+        {
+          "name": "destination_digest",
+          "passed": true,
+          "observed": null
+        },
+        {
+          "name": "receipt_binding",
+          "passed": true,
+          "observed": null
+        },
+        {
+          "name": "safety_mirror",
+          "passed": true,
+          "observed": null
+        },
+        {
+          "name": "controlled_promotion_boundary_invoked",
+          "passed": true,
+          "observed": true
+        },
+        {
+          "name": "controlled_test_promotion_performed",
+          "passed": true,
+          "observed": true
+        },
+        {
+          "name": "actual_file_system_mutation_performed",
+          "passed": true,
+          "observed": true
+        },
+        {
+          "name": "file_content_read_performed",
+          "passed": true,
+          "observed": true
+        },
+        {
+          "name": "user_workspace_file_system_mutation_performed",
+          "passed": true,
+          "observed": false
+        },
+        {
+          "name": "production_promotion_performed",
+          "passed": true,
+          "observed": false
+        },
+        {
+          "name": "actual_adapter_invoked",
+          "passed": true,
+          "observed": false
+        },
+        {
+          "name": "local_hancom_com_executed",
+          "passed": true,
+          "observed": false
+        },
+        {
+          "name": "real_hwp_hwpx_hancell_hanshow_artifact_generated",
+          "passed": true,
+          "observed": false
+        },
+        {
+          "name": "public_internet_access_performed",
+          "passed": true,
+          "observed": false
+        },
+        {
+          "name": "dependency_install_performed",
+          "passed": true,
+          "observed": false
+        }
+      ]
+    },
+    {
+      "scenario_id": "task033_inner_manifest_positive",
+      "status": "passed",
+      "expected": {},
+      "observed": {
+        "status": "promoted",
+        "digest": "6cc03375a40e5c9eb2b317686103112c3f2f1d265589f2018e23cb83ddddfd69",
+        "size": 45
+      },
+      "assertions": [
+        {
+          "name": "status_promoted",
+          "passed": true,
+          "observed": "promoted"
+        },
+        {
+          "name": "source_exists",
+          "passed": true,
+          "observed": "C:\\Users\\USER\\AppData\\Local\\Temp\\tmptodk8o81\\staged\\outputs\\task033\\report.txt"
+        },
+        {
+          "name": "source_unchanged",
+          "passed": true,
+          "observed": null
+        },
+        {
+          "name": "destination_exists",
+          "passed": true,
+          "observed": "C:\\Users\\USER\\AppData\\Local\\Temp\\tmptodk8o81\\approved\\reports\\report.txt"
+        },
+        {
+          "name": "destination_bytes",
+          "passed": true,
+          "observed": null
+        },
+        {
+          "name": "destination_size",
+          "passed": true,
+          "observed": 45
+        },
+        {
+          "name": "destination_digest",
+          "passed": true,
+          "observed": null
+        },
+        {
+          "name": "receipt_binding",
+          "passed": true,
+          "observed": null
+        },
+        {
+          "name": "safety_mirror",
+          "passed": true,
+          "observed": null
+        },
+        {
+          "name": "controlled_promotion_boundary_invoked",
+          "passed": true,
+          "observed": true
+        },
+        {
+          "name": "controlled_test_promotion_performed",
+          "passed": true,
+          "observed": true
+        },
+        {
+          "name": "actual_file_system_mutation_performed",
+          "passed": true,
+          "observed": true
+        },
+        {
+          "name": "file_content_read_performed",
+          "passed": true,
+          "observed": true
+        },
+        {
+          "name": "user_workspace_file_system_mutation_performed",
+          "passed": true,
+          "observed": false
+        },
+        {
+          "name": "production_promotion_performed",
+          "passed": true,
+          "observed": false
+        },
+        {
+          "name": "actual_adapter_invoked",
+          "passed": true,
+          "observed": false
+        },
+        {
+          "name": "local_hancom_com_executed",
+          "passed": true,
+          "observed": false
+        },
+        {
+          "name": "real_hwp_hwpx_hancell_hanshow_artifact_generated",
+          "passed": true,
+          "observed": false
+        },
+        {
+          "name": "public_internet_access_performed",
+          "passed": true,
+          "observed": false
+        },
+        {
+          "name": "dependency_install_performed",
+          "passed": true,
+          "observed": false
+        }
+      ]
+    },
+    {
+      "scenario_id": "trusted_receipt_idempotency",
+      "status": "passed",
+      "expected": {},
+      "observed": {
+        "status": "already_promoted"
+      },
+      "assertions": [
+        {
+          "name": "already_promoted",
+          "passed": true,
+          "observed": "already_promoted"
+        },
+        {
+          "name": "bytes_unchanged",
+          "passed": true,
+          "observed": null
+        },
+        {
+          "name": "source_unchanged",
+          "passed": true,
+          "observed": null
+        }
+      ]
+    },
+    {
+      "scenario_id": "conflicting_trusted_receipt",
+      "status": "passed",
+      "expected": {},
+      "observed": {
+        "error_code": "destination_exists"
+      },
+      "assertions": [
+        {
+          "name": "destination_exists",
+          "passed": true,
+          "observed": {
+            "status": "blocked",
+            "error_code": "destination_exists",
+            "error_category": "destination_exists",
+            "blocking": true,
+            "message": "destination already exists",
+            "safety_assertions": {
+              "controlled_promotion_boundary_evaluated": true,
+              "controlled_promotion_boundary_invoked": true,
+              "controlled_test_promotion_performed": false,
+              "production_promotion_performed": false,
+              "actual_adapter_invoked": false,
+              "actual_file_system_mutation_performed": false,
+              "user_workspace_file_system_mutation_performed": false,
+              "file_content_read_performed": true,
+              "source_retained": true,
+              "source_mutated": false,
+              "temporary_path_cleaned": true,
+              "final_path_cleaned": true,
+              "cleanup_attempted": false,
+              "cleanup_complete": true,
+              "cleanup_error_codes": [],
+              "original_error_code": "destination_exists",
+              "local_hancom_com_executed": false,
+              "real_hwp_hwpx_hancell_hanshow_artifact_generated": false,
+              "public_internet_access_performed": false,
+              "dependency_install_performed": false
+            }
+          }
+        },
+        {
+          "name": "destination_unchanged",
+          "passed": true,
+          "observed": null
+        }
+      ]
+    },
+    {
+      "scenario_id": "pre_existing_destination_preservation",
+      "status": "passed",
+      "expected": {},
+      "observed": {
+        "error_code": "destination_exists"
+      },
+      "assertions": [
+        {
+          "name": "destination_exists",
+          "passed": true,
+          "observed": {
+            "status": "blocked",
+            "error_code": "destination_exists",
+            "error_category": "destination_exists",
+            "blocking": true,
+            "message": "destination already exists",
+            "safety_assertions": {
+              "controlled_promotion_boundary_evaluated": true,
+              "controlled_promotion_boundary_invoked": true,
+              "controlled_test_promotion_performed": false,
+              "production_promotion_performed": false,
+              "actual_adapter_invoked": false,
+              "actual_file_system_mutation_performed": false,
+              "user_workspace_file_system_mutation_performed": false,
+              "file_content_read_performed": true,
+              "source_retained": true,
+              "source_mutated": false,
+              "temporary_path_cleaned": true,
+              "final_path_cleaned": true,
+              "cleanup_attempted": false,
+              "cleanup_complete": true,
+              "cleanup_error_codes": [],
+              "original_error_code": "destination_exists",
+              "local_hancom_com_executed": false,
+              "real_hwp_hwpx_hancell_hanshow_artifact_generated": false,
+              "public_internet_access_performed": false,
+              "dependency_install_performed": false
+            }
+          }
+        },
+        {
+          "name": "sentinel_unchanged",
+          "passed": true,
+          "observed": null
+        },
+        {
+          "name": "cleanup_not_attempted",
+          "passed": true,
+          "observed": null
+        }
+      ]
+    },
+    {
+      "scenario_id": "authorization_mismatch_before_io",
+      "status": "passed",
+      "expected": {},
+      "observed": {
+        "error_code": "authorization_binding_mismatch"
+      },
+      "assertions": [
+        {
+          "name": "authorization_binding_mismatch",
+          "passed": true,
+          "observed": {
+            "status": "blocked",
+            "error_code": "authorization_binding_mismatch",
+            "error_category": "authorization_binding_mismatch",
+            "blocking": true,
+            "message": "authorization binding does not match source and destination",
+            "safety_assertions": {
+              "controlled_promotion_boundary_evaluated": true,
+              "controlled_promotion_boundary_invoked": true,
+              "controlled_test_promotion_performed": false,
+              "production_promotion_performed": false,
+              "actual_adapter_invoked": false,
+              "actual_file_system_mutation_performed": false,
+              "user_workspace_file_system_mutation_performed": false,
+              "file_content_read_performed": false,
+              "source_retained": true,
+              "source_mutated": false,
+              "temporary_path_cleaned": true,
+              "final_path_cleaned": true,
+              "cleanup_attempted": false,
+              "cleanup_complete": true,
+              "cleanup_error_codes": [],
+              "original_error_code": "authorization_binding_mismatch",
+              "local_hancom_com_executed": false,
+              "real_hwp_hwpx_hancell_hanshow_artifact_generated": false,
+              "public_internet_access_performed": false,
+              "dependency_install_performed": false
+            }
+          }
+        },
+        {
+          "name": "no_read",
+          "passed": true,
+          "observed": null
+        },
+        {
+          "name": "no_mutation",
+          "passed": true,
+          "observed": null
+        }
+      ]
+    },
+    {
+      "scenario_id": "actual_source_digest_mismatch",
+      "status": "passed",
+      "expected": {},
+      "observed": {
+        "error_code": "source_digest_mismatch"
+      },
+      "assertions": [
+        {
+          "name": "source_digest_mismatch",
+          "passed": true,
+          "observed": {
+            "status": "blocked",
+            "error_code": "source_digest_mismatch",
+            "error_category": "source_digest_mismatch",
+            "blocking": true,
+            "message": "source digest does not match request and manifest",
+            "safety_assertions": {
+              "controlled_promotion_boundary_evaluated": true,
+              "controlled_promotion_boundary_invoked": true,
+              "controlled_test_promotion_performed": false,
+              "production_promotion_performed": false,
+              "actual_adapter_invoked": false,
+              "actual_file_system_mutation_performed": false,
+              "user_workspace_file_system_mutation_performed": false,
+              "file_content_read_performed": true,
+              "source_retained": true,
+              "source_mutated": false,
+              "temporary_path_cleaned": true,
+              "final_path_cleaned": true,
+              "cleanup_attempted": false,
+              "cleanup_complete": true,
+              "cleanup_error_codes": [],
+              "original_error_code": "source_digest_mismatch",
+              "local_hancom_com_executed": false,
+              "real_hwp_hwpx_hancell_hanshow_artifact_generated": false,
+              "public_internet_access_performed": false,
+              "dependency_install_performed": false
+            }
+          }
+        },
+        {
+          "name": "read_true",
+          "passed": true,
+          "observed": null
+        },
+        {
+          "name": "mutation_false",
+          "passed": true,
+          "observed": null
+        },
+        {
+          "name": "source_unchanged",
+          "passed": true,
+          "observed": null
+        }
+      ]
+    },
+    {
+      "scenario_id": "raw_root_safety",
+      "status": "passed",
+      "expected": {},
+      "observed": [
+        {
+          "staged_symlink": "symlink_not_allowed"
+        },
+        {
+          "approved_symlink": "symlink_not_allowed"
+        },
+        {
+          "staged_reparse": "reparse_point_not_allowed"
+        },
+        {
+          "approved_reparse": "reparse_point_not_allowed"
+        },
+        {
+          "root_inspection_failure": "unsupported_safety_check"
+        }
+      ],
+      "assertions": [
+        {
+          "name": "staged_symlink",
+          "passed": true,
+          "observed": {
+            "status": "blocked",
+            "error_code": "symlink_not_allowed",
+            "error_category": "symlink_not_allowed",
+            "blocking": true,
+            "message": "staged root symlink not allowed: C:\\Users\\USER\\AppData\\Local\\Temp\\tmpphzbcsi0\\raw-staged",
+            "safety_assertions": {
+              "controlled_promotion_boundary_evaluated": true,
+              "controlled_promotion_boundary_invoked": true,
+              "controlled_test_promotion_performed": false,
+              "production_promotion_performed": false,
+              "actual_adapter_invoked": false,
+              "actual_file_system_mutation_performed": false,
+              "user_workspace_file_system_mutation_performed": false,
+              "file_content_read_performed": false,
+              "source_retained": true,
+              "source_mutated": false,
+              "temporary_path_cleaned": true,
+              "final_path_cleaned": true,
+              "cleanup_attempted": false,
+              "cleanup_complete": true,
+              "cleanup_error_codes": [],
+              "original_error_code": "symlink_not_allowed",
+              "local_hancom_com_executed": false,
+              "real_hwp_hwpx_hancell_hanshow_artifact_generated": false,
+              "public_internet_access_performed": false,
+              "dependency_install_performed": false
+            }
+          }
+        },
+        {
+          "name": "staged_symlink_no_read",
+          "passed": true,
+          "observed": null
+        },
+        {
+          "name": "approved_symlink",
+          "passed": true,
+          "observed": {
+            "status": "blocked",
+            "error_code": "symlink_not_allowed",
+            "error_category": "symlink_not_allowed",
+            "blocking": true,
+            "message": "approved root symlink not allowed: C:\\Users\\USER\\AppData\\Local\\Temp\\tmp953_s2jt\\raw-approved",
+            "safety_assertions": {
+              "controlled_promotion_boundary_evaluated": true,
+              "controlled_promotion_boundary_invoked": true,
+              "controlled_test_promotion_performed": false,
+              "production_promotion_performed": false,
+              "actual_adapter_invoked": false,
+              "actual_file_system_mutation_performed": false,
+              "user_workspace_file_system_mutation_performed": false,
+              "file_content_read_performed": false,
+              "source_retained": true,
+              "source_mutated": false,
+              "temporary_path_cleaned": true,
+              "final_path_cleaned": true,
+              "cleanup_attempted": false,
+              "cleanup_complete": true,
+              "cleanup_error_codes": [],
+              "original_error_code": "symlink_not_allowed",
+              "local_hancom_com_executed": false,
+              "real_hwp_hwpx_hancell_hanshow_artifact_generated": false,
+              "public_internet_access_performed": false,
+              "dependency_install_performed": false
+            }
+          }
+        },
+        {
+          "name": "approved_symlink_no_read",
+          "passed": true,
+          "observed": null
+        },
+        {
+          "name": "staged_reparse",
+          "passed": true,
+          "observed": {
+            "status": "blocked",
+            "error_code": "reparse_point_not_allowed",
+            "error_category": "reparse_point_not_allowed",
+            "blocking": true,
+            "message": "staged root reparse point not allowed: C:\\Users\\USER\\AppData\\Local\\Temp\\tmps3pt36je\\raw-staged",
+            "safety_assertions": {
+              "controlled_promotion_boundary_evaluated": true,
+              "controlled_promotion_boundary_invoked": true,
+              "controlled_test_promotion_performed": false,
+              "production_promotion_performed": false,
+              "actual_adapter_invoked": false,
+              "actual_file_system_mutation_performed": false,
+              "user_workspace_file_system_mutation_performed": false,
+              "file_content_read_performed": false,
+              "source_retained": true,
+              "source_mutated": false,
+              "temporary_path_cleaned": true,
+              "final_path_cleaned": true,
+              "cleanup_attempted": false,
+              "cleanup_complete": true,
+              "cleanup_error_codes": [],
+              "original_error_code": "reparse_point_not_allowed",
+              "local_hancom_com_executed": false,
+              "real_hwp_hwpx_hancell_hanshow_artifact_generated": false,
+              "public_internet_access_performed": false,
+              "dependency_install_performed": false
+            }
+          }
+        },
+        {
+          "name": "staged_reparse_no_read",
+          "passed": true,
+          "observed": null
+        },
+        {
+          "name": "approved_reparse",
+          "passed": true,
+          "observed": {
+            "status": "blocked",
+            "error_code": "reparse_point_not_allowed",
+            "error_category": "reparse_point_not_allowed",
+            "blocking": true,
+            "message": "approved root reparse point not allowed: C:\\Users\\USER\\AppData\\Local\\Temp\\tmpszteq832\\raw-approved",
+            "safety_assertions": {
+              "controlled_promotion_boundary_evaluated": true,
+              "controlled_promotion_boundary_invoked": true,
+              "controlled_test_promotion_performed": false,
+              "production_promotion_performed": false,
+              "actual_adapter_invoked": false,
+              "actual_file_system_mutation_performed": false,
+              "user_workspace_file_system_mutation_performed": false,
+              "file_content_read_performed": false,
+              "source_retained": true,
+              "source_mutated": false,
+              "temporary_path_cleaned": true,
+              "final_path_cleaned": true,
+              "cleanup_attempted": false,
+              "cleanup_complete": true,
+              "cleanup_error_codes": [],
+              "original_error_code": "reparse_point_not_allowed",
+              "local_hancom_com_executed": false,
+              "real_hwp_hwpx_hancell_hanshow_artifact_generated": false,
+              "public_internet_access_performed": false,
+              "dependency_install_performed": false
+            }
+          }
+        },
+        {
+          "name": "approved_reparse_no_read",
+          "passed": true,
+          "observed": null
+        },
+        {
+          "name": "root_inspection_failure",
+          "passed": true,
+          "observed": {
+            "status": "blocked",
+            "error_code": "unsupported_safety_check",
+            "error_category": "unsupported_safety_check",
+            "blocking": true,
+            "message": "cannot inspect reparse point status for C:\\Users\\USER\\AppData\\Local\\Temp\\tmp_26d6_ix\\staged",
+            "safety_assertions": {
+              "controlled_promotion_boundary_evaluated": true,
+              "controlled_promotion_boundary_invoked": true,
+              "controlled_test_promotion_performed": false,
+              "production_promotion_performed": false,
+              "actual_adapter_invoked": false,
+              "actual_file_system_mutation_performed": false,
+              "user_workspace_file_system_mutation_performed": false,
+              "file_content_read_performed": false,
+              "source_retained": true,
+              "source_mutated": false,
+              "temporary_path_cleaned": true,
+              "final_path_cleaned": true,
+              "cleanup_attempted": false,
+              "cleanup_complete": true,
+              "cleanup_error_codes": [],
+              "original_error_code": "unsupported_safety_check",
+              "local_hancom_com_executed": false,
+              "real_hwp_hwpx_hancell_hanshow_artifact_generated": false,
+              "public_internet_access_performed": false,
+              "dependency_install_performed": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "lexical_component_safety",
+      "status": "passed",
+      "expected": {},
+      "observed": [
+        {
+          "source_component_symlink": "symlink_not_allowed"
+        },
+        {
+          "destination_parent_symlink": "symlink_not_allowed"
+        },
+        {
+          "reparse_inspection_failure": "unsupported_safety_check"
+        }
+      ],
+      "assertions": [
+        {
+          "name": "source_component_symlink",
+          "passed": true,
+          "observed": {
+            "status": "blocked",
+            "error_code": "symlink_not_allowed",
+            "error_category": "symlink_not_allowed",
+            "blocking": true,
+            "message": "symlink not allowed: C:\\Users\\USER\\AppData\\Local\\Temp\\tmpomnc5zia\\staged\\outputs",
+            "safety_assertions": {
+              "controlled_promotion_boundary_evaluated": true,
+              "controlled_promotion_boundary_invoked": true,
+              "controlled_test_promotion_performed": false,
+              "production_promotion_performed": false,
+              "actual_adapter_invoked": false,
+              "actual_file_system_mutation_performed": false,
+              "user_workspace_file_system_mutation_performed": false,
+              "file_content_read_performed": false,
+              "source_retained": true,
+              "source_mutated": false,
+              "temporary_path_cleaned": true,
+              "final_path_cleaned": true,
+              "cleanup_attempted": false,
+              "cleanup_complete": true,
+              "cleanup_error_codes": [],
+              "original_error_code": "symlink_not_allowed",
+              "local_hancom_com_executed": false,
+              "real_hwp_hwpx_hancell_hanshow_artifact_generated": false,
+              "public_internet_access_performed": false,
+              "dependency_install_performed": false
+            }
+          }
+        },
+        {
+          "name": "destination_parent_symlink",
+          "passed": true,
+          "observed": {
+            "status": "blocked",
+            "error_code": "symlink_not_allowed",
+            "error_category": "symlink_not_allowed",
+            "blocking": true,
+            "message": "symlink not allowed: C:\\Users\\USER\\AppData\\Local\\Temp\\tmp8lk_l42u\\approved\\reports",
+            "safety_assertions": {
+              "controlled_promotion_boundary_evaluated": true,
+              "controlled_promotion_boundary_invoked": true,
+              "controlled_test_promotion_performed": false,
+              "production_promotion_performed": false,
+              "actual_adapter_invoked": false,
+              "actual_file_system_mutation_performed": false,
+              "user_workspace_file_system_mutation_performed": false,
+              "file_content_read_performed": true,
+              "source_retained": true,
+              "source_mutated": false,
+              "temporary_path_cleaned": true,
+              "final_path_cleaned": true,
+              "cleanup_attempted": false,
+              "cleanup_complete": true,
+              "cleanup_error_codes": [],
+              "original_error_code": "symlink_not_allowed",
+              "local_hancom_com_executed": false,
+              "real_hwp_hwpx_hancell_hanshow_artifact_generated": false,
+              "public_internet_access_performed": false,
+              "dependency_install_performed": false
+            }
+          }
+        },
+        {
+          "name": "reparse_inspection_failure",
+          "passed": true,
+          "observed": {
+            "status": "blocked",
+            "error_code": "unsupported_safety_check",
+            "error_category": "unsupported_safety_check",
+            "blocking": true,
+            "message": "cannot inspect reparse point status for C:\\Users\\USER\\AppData\\Local\\Temp\\tmpl237p8j9\\staged",
+            "safety_assertions": {
+              "controlled_promotion_boundary_evaluated": true,
+              "controlled_promotion_boundary_invoked": true,
+              "controlled_test_promotion_performed": false,
+              "production_promotion_performed": false,
+              "actual_adapter_invoked": false,
+              "actual_file_system_mutation_performed": false,
+              "user_workspace_file_system_mutation_performed": false,
+              "file_content_read_performed": false,
+              "source_retained": true,
+              "source_mutated": false,
+              "temporary_path_cleaned": true,
+              "final_path_cleaned": true,
+              "cleanup_attempted": false,
+              "cleanup_complete": true,
+              "cleanup_error_codes": [],
+              "original_error_code": "unsupported_safety_check",
+              "local_hancom_com_executed": false,
+              "real_hwp_hwpx_hancell_hanshow_artifact_generated": false,
+              "public_internet_access_performed": false,
+              "dependency_install_performed": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "sibling_casefold_collision",
+      "status": "passed",
+      "expected": {},
+      "observed": {
+        "case_collision": "destination_case_collision",
+        "repeated_segment": "promoted"
+      },
+      "assertions": [
+        {
+          "name": "case_collision",
+          "passed": true,
+          "observed": {
+            "status": "blocked",
+            "error_code": "destination_case_collision",
+            "error_category": "destination_case_collision",
+            "blocking": true,
+            "message": "destination sibling case collision: report.md",
+            "safety_assertions": {
+              "controlled_promotion_boundary_evaluated": true,
+              "controlled_promotion_boundary_invoked": true,
+              "controlled_test_promotion_performed": false,
+              "production_promotion_performed": false,
+              "actual_adapter_invoked": false,
+              "actual_file_system_mutation_performed": false,
+              "user_workspace_file_system_mutation_performed": false,
+              "file_content_read_performed": true,
+              "source_retained": true,
+              "source_mutated": false,
+              "temporary_path_cleaned": true,
+              "final_path_cleaned": true,
+              "cleanup_attempted": false,
+              "cleanup_complete": true,
+              "cleanup_error_codes": [],
+              "original_error_code": "destination_case_collision",
+              "local_hancom_com_executed": false,
+              "real_hwp_hwpx_hancell_hanshow_artifact_generated": false,
+              "public_internet_access_performed": false,
+              "dependency_install_performed": false
+            }
+          }
+        },
+        {
+          "name": "existing_unchanged",
+          "passed": true,
+          "observed": null
+        },
+        {
+          "name": "repeated_segment_promoted",
+          "passed": true,
+          "observed": {
+            "request_id": "req-035-001",
+            "status": "promoted",
+            "execution_allowed": false,
+            "receipt": {
+              "request_id": "req-035-001",
+              "operation": "promote_staged_output",
+              "execution_mode": "controlled_promotion",
+              "contract_version": "army-claw-local-workspace-controlled-promotion-035.v1",
+              "status": "promoted",
+              "authorization": {
+                "authorization_id": "auth-req-035-001",
+                "artifact_id": "artifact-001",
+                "manifest_id": "sha256:example-recomputed-from-canonical-content",
+                "destination_root_id": "approved-output-root",
+                "destination_relative_path": "AA/aa/report.txt",
+                "request_id": "req-035-001",
+                "single_use": true
+              },
+              "source": {
+                "artifact_id": "artifact-001",
+                "manifest_id": "sha256:example-recomputed-from-canonical-content",
+                "normalized_relative_path": "outputs/task033/report.txt",
+                "byte_size": 45,
+                "digest_algorithm": "sha256",
+                "digest": "6cc03375a40e5c9eb2b317686103112c3f2f1d265589f2018e23cb83ddddfd69"
+              },
+              "destination": {
+                "approved_root_id": "approved-output-root",
+                "normalized_relative_path": "AA/aa/report.txt",
+                "overwrite_allowed": false
+              },
+              "verification": {
+                "source_sha256": "6cc03375a40e5c9eb2b317686103112c3f2f1d265589f2018e23cb83ddddfd69",
+                "source_size": 45,
+                "destination_sha256": "6cc03375a40e5c9eb2b317686103112c3f2f1d265589f2018e23cb83ddddfd69",
+                "destination_size": 45,
+                "source_retained": true,
+                "destination_inside_approved_root": true
+              },
+              "safety_assertions": {
+                "controlled_promotion_boundary_evaluated": true,
+                "controlled_promotion_boundary_invoked": true,
+                "promotion_authorization_verified": true,
+                "approved_root_verified": true,
+                "manifest_link_verified": true,
+                "source_digest_verified": true,
+                "destination_digest_verified": true,
+                "exclusive_create_verified": true,
+                "source_retained": true,
+                "staged_output_sandbox_write_performed": false,
+                "controlled_test_promotion_performed": true,
+                "production_promotion_performed": false,
+                "actual_adapter_invoked": false,
+                "actual_file_system_mutation_performed": true,
+                "user_workspace_file_system_mutation_performed": false,
+                "file_content_read_performed": true,
+                "local_hancom_com_executed": false,
+                "real_hwp_hwpx_hancell_hanshow_artifact_generated": false,
+                "public_internet_access_performed": false,
+                "dependency_install_performed": false,
+                "source_mutated": false,
+                "temporary_path_cleaned": true
+              }
+            },
+            "safety_assertions": {
+              "controlled_promotion_boundary_evaluated": true,
+              "controlled_promotion_boundary_invoked": true,
+              "promotion_authorization_verified": true,
+              "approved_root_verified": true,
+              "manifest_link_verified": true,
+              "source_digest_verified": true,
+              "destination_digest_verified": true,
+              "exclusive_create_verified": true,
+              "source_retained": true,
+              "staged_output_sandbox_write_performed": false,
+              "controlled_test_promotion_performed": true,
+              "production_promotion_performed": false,
+              "actual_adapter_invoked": false,
+              "actual_file_system_mutation_performed": true,
+              "user_workspace_file_system_mutation_performed": false,
+              "file_content_read_performed": true,
+              "local_hancom_com_executed": false,
+              "real_hwp_hwpx_hancell_hanshow_artifact_generated": false,
+              "public_internet_access_performed": false,
+              "dependency_install_performed": false,
+              "source_mutated": false,
+              "temporary_path_cleaned": true
+            },
+            "verification": {
+              "source_sha256": "6cc03375a40e5c9eb2b317686103112c3f2f1d265589f2018e23cb83ddddfd69",
+              "source_size": 45,
+              "destination_sha256": "6cc03375a40e5c9eb2b317686103112c3f2f1d265589f2018e23cb83ddddfd69",
+              "destination_size": 45,
+              "source_retained": true,
+              "destination_inside_approved_root": true
+            },
+            "output_artifacts": []
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "cross_volume_fail_closed",
+      "status": "passed",
+      "expected": {},
+      "observed": {
+        "error_code": "cross_volume_promotion_not_allowed"
+      },
+      "assertions": [
+        {
+          "name": "cross_volume",
+          "passed": true,
+          "observed": {
+            "status": "blocked",
+            "error_code": "cross_volume_promotion_not_allowed",
+            "error_category": "cross_volume_promotion_not_allowed",
+            "blocking": true,
+            "message": "cross-volume controlled promotion is not allowed",
+            "safety_assertions": {
+              "controlled_promotion_boundary_evaluated": true,
+              "controlled_promotion_boundary_invoked": true,
+              "controlled_test_promotion_performed": false,
+              "production_promotion_performed": false,
+              "actual_adapter_invoked": false,
+              "actual_file_system_mutation_performed": false,
+              "user_workspace_file_system_mutation_performed": false,
+              "file_content_read_performed": true,
+              "source_retained": true,
+              "source_mutated": false,
+              "temporary_path_cleaned": true,
+              "final_path_cleaned": true,
+              "cleanup_attempted": false,
+              "cleanup_complete": true,
+              "cleanup_error_codes": [],
+              "original_error_code": "cross_volume_promotion_not_allowed",
+              "local_hancom_com_executed": false,
+              "real_hwp_hwpx_hancell_hanshow_artifact_generated": false,
+              "public_internet_access_performed": false,
+              "dependency_install_performed": false
+            }
+          }
+        },
+        {
+          "name": "no_final",
+          "passed": true,
+          "observed": null
+        },
+        {
+          "name": "source_unchanged",
+          "passed": true,
+          "observed": null
+        }
+      ]
+    },
+    {
+      "scenario_id": "post_link_temp_cleanup_failure",
+      "status": "passed",
+      "expected": {},
+      "observed": {
+        "error_code": "temporary_cleanup_failed",
+        "safety": {
+          "controlled_promotion_boundary_evaluated": true,
+          "controlled_promotion_boundary_invoked": true,
+          "controlled_test_promotion_performed": false,
+          "production_promotion_performed": false,
+          "actual_adapter_invoked": false,
+          "actual_file_system_mutation_performed": true,
+          "user_workspace_file_system_mutation_performed": false,
+          "file_content_read_performed": true,
+          "source_retained": true,
+          "source_mutated": false,
+          "temporary_path_cleaned": false,
+          "final_path_cleaned": true,
+          "cleanup_attempted": true,
+          "cleanup_complete": false,
+          "cleanup_error_codes": [
+            "temp_cleanup_failed"
+          ],
+          "original_error_code": "temporary_cleanup_failed",
+          "local_hancom_com_executed": false,
+          "real_hwp_hwpx_hancell_hanshow_artifact_generated": false,
+          "public_internet_access_performed": false,
+          "dependency_install_performed": false
+        }
+      },
+      "assertions": [
+        {
+          "name": "temp_temporary_cleanup_failed",
+          "passed": true,
+          "observed": {
+            "status": "blocked",
+            "error_code": "temporary_cleanup_failed",
+            "error_category": "temporary_cleanup_failed",
+            "blocking": true,
+            "message": "cleanup failed after temporary_cleanup_failed",
+            "safety_assertions": {
+              "controlled_promotion_boundary_evaluated": true,
+              "controlled_promotion_boundary_invoked": true,
+              "controlled_test_promotion_performed": false,
+              "production_promotion_performed": false,
+              "actual_adapter_invoked": false,
+              "actual_file_system_mutation_performed": true,
+              "user_workspace_file_system_mutation_performed": false,
+              "file_content_read_performed": true,
+              "source_retained": true,
+              "source_mutated": false,
+              "temporary_path_cleaned": false,
+              "final_path_cleaned": true,
+              "cleanup_attempted": true,
+              "cleanup_complete": false,
+              "cleanup_error_codes": [
+                "temp_cleanup_failed"
+              ],
+              "original_error_code": "temporary_cleanup_failed",
+              "local_hancom_com_executed": false,
+              "real_hwp_hwpx_hancell_hanshow_artifact_generated": false,
+              "public_internet_access_performed": false,
+              "dependency_install_performed": false
+            }
+          }
+        },
+        {
+          "name": "temp_source_unchanged",
+          "passed": true,
+          "observed": null
+        },
+        {
+          "name": "final_removed",
+          "passed": true,
+          "observed": null
+        },
+        {
+          "name": "final_cleaned_true",
+          "passed": true,
+          "observed": null
+        },
+        {
+          "name": "temp_cleaned_false",
+          "passed": true,
+          "observed": null
+        },
+        {
+          "name": "cleanup_complete_false",
+          "passed": true,
+          "observed": null
+        }
+      ]
+    },
+    {
+      "scenario_id": "final_cleanup_failure_with_temp_cleanup",
+      "status": "passed",
+      "expected": {},
+      "observed": {
+        "error_code": "temporary_cleanup_failed",
+        "safety": {
+          "controlled_promotion_boundary_evaluated": true,
+          "controlled_promotion_boundary_invoked": true,
+          "controlled_test_promotion_performed": false,
+          "production_promotion_performed": false,
+          "actual_adapter_invoked": false,
+          "actual_file_system_mutation_performed": true,
+          "user_workspace_file_system_mutation_performed": false,
+          "file_content_read_performed": true,
+          "source_retained": true,
+          "source_mutated": false,
+          "temporary_path_cleaned": true,
+          "final_path_cleaned": false,
+          "cleanup_attempted": true,
+          "cleanup_complete": false,
+          "cleanup_error_codes": [
+            "final_cleanup_failed"
+          ],
+          "original_error_code": "source_changed_after_validation",
+          "local_hancom_com_executed": false,
+          "real_hwp_hwpx_hancell_hanshow_artifact_generated": false,
+          "public_internet_access_performed": false,
+          "dependency_install_performed": false
+        }
+      },
+      "assertions": [
+        {
+          "name": "final_temporary_cleanup_failed",
+          "passed": true,
+          "observed": {
+            "status": "blocked",
+            "error_code": "temporary_cleanup_failed",
+            "error_category": "temporary_cleanup_failed",
+            "blocking": true,
+            "message": "cleanup failed after source_changed_after_validation",
+            "safety_assertions": {
+              "controlled_promotion_boundary_evaluated": true,
+              "controlled_promotion_boundary_invoked": true,
+              "controlled_test_promotion_performed": false,
+              "production_promotion_performed": false,
+              "actual_adapter_invoked": false,
+              "actual_file_system_mutation_performed": true,
+              "user_workspace_file_system_mutation_performed": false,
+              "file_content_read_performed": true,
+              "source_retained": true,
+              "source_mutated": false,
+              "temporary_path_cleaned": true,
+              "final_path_cleaned": false,
+              "cleanup_attempted": true,
+              "cleanup_complete": false,
+              "cleanup_error_codes": [
+                "final_cleanup_failed"
+              ],
+              "original_error_code": "source_changed_after_validation",
+              "local_hancom_com_executed": false,
+              "real_hwp_hwpx_hancell_hanshow_artifact_generated": false,
+              "public_internet_access_performed": false,
+              "dependency_install_performed": false
+            }
+          }
+        },
+        {
+          "name": "final_source_unchanged",
+          "passed": true,
+          "observed": null
+        },
+        {
+          "name": "final_cleanup_failed",
+          "passed": true,
+          "observed": null
+        },
+        {
+          "name": "temp_cleaned_true",
+          "passed": true,
+          "observed": null
+        },
+        {
+          "name": "final_error_code",
+          "passed": true,
+          "observed": null
+        },
+        {
+          "name": "cleanup_complete_false",
+          "passed": true,
+          "observed": null
+        }
+      ]
+    },
+    {
+      "scenario_id": "dual_cleanup_failure",
+      "status": "passed",
+      "expected": {},
+      "observed": {
+        "error_code": "temporary_cleanup_failed",
+        "safety": {
+          "controlled_promotion_boundary_evaluated": true,
+          "controlled_promotion_boundary_invoked": true,
+          "controlled_test_promotion_performed": false,
+          "production_promotion_performed": false,
+          "actual_adapter_invoked": false,
+          "actual_file_system_mutation_performed": true,
+          "user_workspace_file_system_mutation_performed": false,
+          "file_content_read_performed": true,
+          "source_retained": true,
+          "source_mutated": false,
+          "temporary_path_cleaned": false,
+          "final_path_cleaned": false,
+          "cleanup_attempted": true,
+          "cleanup_complete": false,
+          "cleanup_error_codes": [
+            "final_cleanup_failed",
+            "temp_cleanup_failed"
+          ],
+          "original_error_code": "temporary_cleanup_failed",
+          "local_hancom_com_executed": false,
+          "real_hwp_hwpx_hancell_hanshow_artifact_generated": false,
+          "public_internet_access_performed": false,
+          "dependency_install_performed": false
+        }
+      },
+      "assertions": [
+        {
+          "name": "dual_temporary_cleanup_failed",
+          "passed": true,
+          "observed": {
+            "status": "blocked",
+            "error_code": "temporary_cleanup_failed",
+            "error_category": "temporary_cleanup_failed",
+            "blocking": true,
+            "message": "cleanup failed after temporary_cleanup_failed",
+            "safety_assertions": {
+              "controlled_promotion_boundary_evaluated": true,
+              "controlled_promotion_boundary_invoked": true,
+              "controlled_test_promotion_performed": false,
+              "production_promotion_performed": false,
+              "actual_adapter_invoked": false,
+              "actual_file_system_mutation_performed": true,
+              "user_workspace_file_system_mutation_performed": false,
+              "file_content_read_performed": true,
+              "source_retained": true,
+              "source_mutated": false,
+              "temporary_path_cleaned": false,
+              "final_path_cleaned": false,
+              "cleanup_attempted": true,
+              "cleanup_complete": false,
+              "cleanup_error_codes": [
+                "final_cleanup_failed",
+                "temp_cleanup_failed"
+              ],
+              "original_error_code": "temporary_cleanup_failed",
+              "local_hancom_com_executed": false,
+              "real_hwp_hwpx_hancell_hanshow_artifact_generated": false,
+              "public_internet_access_performed": false,
+              "dependency_install_performed": false
+            }
+          }
+        },
+        {
+          "name": "dual_source_unchanged",
+          "passed": true,
+          "observed": null
+        },
+        {
+          "name": "temp_error_code",
+          "passed": true,
+          "observed": null
+        },
+        {
+          "name": "final_error_code",
+          "passed": true,
+          "observed": null
+        },
+        {
+          "name": "cleanup_complete_false",
+          "passed": true,
+          "observed": null
+        }
+      ]
+    },
+    {
+      "scenario_id": "structured_filesystem_failures",
+      "status": "passed",
+      "expected": {},
+      "observed": [
+        {
+          "directory_listing": "unsupported_safety_check"
+        },
+        {
+          "source_read": "final_verification_failed"
+        },
+        {
+          "temp_creation": "exclusive_create_failed"
+        }
+      ],
+      "assertions": [
+        {
+          "name": "directory_listing",
+          "passed": true,
+          "observed": {
+            "status": "blocked",
+            "error_code": "unsupported_safety_check",
+            "error_category": "unsupported_safety_check",
+            "blocking": true,
+            "message": "cannot list directory entries for C:\\Users\\USER\\AppData\\Local\\Temp\\tmp26hfkazj\\approved",
+            "safety_assertions": {
+              "controlled_promotion_boundary_evaluated": true,
+              "controlled_promotion_boundary_invoked": true,
+              "controlled_test_promotion_performed": false,
+              "production_promotion_performed": false,
+              "actual_adapter_invoked": false,
+              "actual_file_system_mutation_performed": false,
+              "user_workspace_file_system_mutation_performed": false,
+              "file_content_read_performed": true,
+              "source_retained": true,
+              "source_mutated": false,
+              "temporary_path_cleaned": true,
+              "final_path_cleaned": true,
+              "cleanup_attempted": false,
+              "cleanup_complete": true,
+              "cleanup_error_codes": [],
+              "original_error_code": "unsupported_safety_check",
+              "local_hancom_com_executed": false,
+              "real_hwp_hwpx_hancell_hanshow_artifact_generated": false,
+              "public_internet_access_performed": false,
+              "dependency_install_performed": false
+            }
+          }
+        },
+        {
+          "name": "source_read",
+          "passed": true,
+          "observed": {
+            "status": "blocked",
+            "error_code": "final_verification_failed",
+            "error_category": "final_verification_failed",
+            "blocking": true,
+            "message": "cannot read file: C:\\Users\\USER\\AppData\\Local\\Temp\\tmpoccupcxy\\staged\\outputs\\task033\\report.txt",
+            "safety_assertions": {
+              "controlled_promotion_boundary_evaluated": true,
+              "controlled_promotion_boundary_invoked": true,
+              "controlled_test_promotion_performed": false,
+              "production_promotion_performed": false,
+              "actual_adapter_invoked": false,
+              "actual_file_system_mutation_performed": false,
+              "user_workspace_file_system_mutation_performed": false,
+              "file_content_read_performed": false,
+              "source_retained": true,
+              "source_mutated": false,
+              "temporary_path_cleaned": true,
+              "final_path_cleaned": true,
+              "cleanup_attempted": false,
+              "cleanup_complete": true,
+              "cleanup_error_codes": [],
+              "original_error_code": "final_verification_failed",
+              "local_hancom_com_executed": false,
+              "real_hwp_hwpx_hancell_hanshow_artifact_generated": false,
+              "public_internet_access_performed": false,
+              "dependency_install_performed": false
+            }
+          }
+        },
+        {
+          "name": "temp_creation",
+          "passed": true,
+          "observed": {
+            "status": "blocked",
+            "error_code": "exclusive_create_failed",
+            "error_category": "exclusive_create_failed",
+            "blocking": true,
+            "message": "failed to create temporary promotion file in C:\\Users\\USER\\AppData\\Local\\Temp\\tmpcpizf6mk\\approved\\reports",
+            "safety_assertions": {
+              "controlled_promotion_boundary_evaluated": true,
+              "controlled_promotion_boundary_invoked": true,
+              "controlled_test_promotion_performed": false,
+              "production_promotion_performed": false,
+              "actual_adapter_invoked": false,
+              "actual_file_system_mutation_performed": false,
+              "user_workspace_file_system_mutation_performed": false,
+              "file_content_read_performed": true,
+              "source_retained": true,
+              "source_mutated": false,
+              "temporary_path_cleaned": true,
+              "final_path_cleaned": true,
+              "cleanup_attempted": false,
+              "cleanup_complete": true,
+              "cleanup_error_codes": [],
+              "original_error_code": "exclusive_create_failed",
+              "local_hancom_com_executed": false,
+              "real_hwp_hwpx_hancell_hanshow_artifact_generated": false,
+              "public_internet_access_performed": false,
+              "dependency_install_performed": false
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

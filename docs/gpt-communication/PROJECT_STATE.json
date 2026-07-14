@@ -18,9 +18,9 @@
   "active_task": {
     "task_id": "task035-local-workspace-staged-output-controlled-promotion-boundary",
     "name": "Task 035 Local Workspace Staged Output Controlled Promotion Boundary",
-    "phase": "task035a_cloud_package",
-    "subphase": "task035a2lc2_root_cleanup_corrective_complete",
-    "status": "implementation_corrected_pending_formal_local_verification",
+    "phase": "task035b_local_formal_verification",
+    "subphase": "task035b_local_verification_complete",
+    "status": "local_verification_complete_pending_master_review",
     "cloud_package_complete": true,
     "adapter_implementation_package_complete": true,
     "official_validator_integration_complete": true,
@@ -32,18 +32,30 @@
     "structured_filesystem_error_boundary_verified_in_unit_tests": true,
     "state_index_synchronization_complete": true,
     "local_verification_required": true,
-    "local_verification_complete": false,
+    "local_verification_complete": true,
     "master_review_complete": false,
-    "completion_gate_passed": false,
+    "completion_gate_passed": true,
     "adapter_validator_gate_required": true,
-    "adapter_validator_gate_status": "required_not_run"
+    "adapter_validator_gate_status": "passed",
+    "local_verification_gate_passed": true,
+    "verified_implementation_commit_sha": "e7c91119771ad9e75262ee946ad648b674157472",
+    "validator_summary_status": "valid",
+    "validator_total_checks": 383,
+    "validator_passed_checks": 383,
+    "validator_failed_checks": 0,
+    "validator_blocked_checks": 0,
+    "task033_manifest_compatibility_verified": true,
+    "raw_root_boundary_verified": true,
+    "post_commit_cleanup_verified": true,
+    "structured_filesystem_error_boundary_verified": true,
+    "completion_gate_scope": "task035b_local_gate_only",
+    "final_task035_completion_gate_passed": false
   },
   "next_planned_task": {
-    "task_id": "task035b-local-formal-verification",
-    "name": "Task 035-B Formal Local Verification",
-    "routing_class": "local_codex_required",
-    "status": "ready_for_formal_local_verification_prompt",
-    "adapter_validator_gate_required": true
+    "task_id": "task035c-final-master-review-state-sync",
+    "name": "Task 035-C Final Master Review and State Sync",
+    "routing_class": "master_review",
+    "status": "awaiting_master_review"
   },
   "canonical_development_branch": "main",
   "canonical_development_baseline": {
@@ -197,8 +209,8 @@
     "adapter_validator_integration": {
       "enabled": true,
       "validator_cli_last_status": "valid",
-            "validator_total_checks": 383,
-            "validator_passed_checks": 383,
+      "validator_total_checks": 383,
+      "validator_passed_checks": 383,
       "validator_failed_checks": 0,
       "validator_blocked_checks": 0,
       "adapter_validator_unittest_exit_code": 0,
@@ -213,7 +225,7 @@
       "task030_read_only_manifest": "final_verified",
       "task031_staged_output": "final_verified",
       "task033_staged_output_evidence_manifest": "final_verified",
-      "task035_controlled_promotion": "implementation_corrected_pending_formal_local_verification"
+      "task035_controlled_promotion": "local_verification_complete_pending_master_review"
     }
   },
   "current_branch": "main",
@@ -269,12 +281,12 @@
     "final_hwp_hwpx_core_selection_allowed": false
   },
   "next_work": {
-    "task_id": "task035b-local-formal-verification",
-    "routing_class": "local_codex_required",
-    "phase": "ready_for_formal_local_verification_prompt",
-    "title": "Task 035-B Formal Local Verification",
-    "status": "ready_for_formal_local_verification_prompt",
-    "adapter_validator_gate_required": true
+    "task_id": "task035c-final-master-review-state-sync",
+    "routing_class": "master_review",
+    "phase": "awaiting_master_review",
+    "title": "Task 035-C Final Master Review and State Sync",
+    "status": "awaiting_master_review",
+    "adapter_validator_gate_required": false
   },
   "restrictions": [
     "main 직접 push 금지",
@@ -294,9 +306,9 @@
   "task035_status": {
     "task_id": "task035-local-workspace-staged-output-controlled-promotion-boundary",
     "name": "Task 035 Local Workspace Staged Output Controlled Promotion Boundary",
-    "phase": "task035a_cloud_package",
-    "subphase": "task035a2lc2_root_cleanup_corrective_complete",
-    "status": "implementation_corrected_pending_formal_local_verification",
+    "phase": "task035b_local_formal_verification",
+    "subphase": "task035b_local_verification_complete",
+    "status": "local_verification_complete_pending_master_review",
     "cloud_package_complete": true,
     "adapter_implementation_package_complete": true,
     "official_validator_integration_complete": true,
@@ -308,13 +320,26 @@
     "structured_filesystem_error_boundary_verified_in_unit_tests": true,
     "state_index_synchronization_complete": true,
     "local_verification_required": true,
-    "local_verification_complete": false,
+    "local_verification_complete": true,
     "master_review_complete": false,
-    "completion_gate_passed": false,
+    "completion_gate_passed": true,
     "adapter_validator_gate_required": true,
-    "adapter_validator_gate_status": "required_not_run",
+    "adapter_validator_gate_status": "passed",
     "validator_total_checks_before_minimum": 378,
     "validator_total_checks_after": "to_be_recorded_by_task035b",
-    "validator_check_count_non_decreasing": "to_be_verified_by_task035b"
+    "validator_check_count_non_decreasing": "to_be_verified_by_task035b",
+    "local_verification_gate_passed": true,
+    "verified_implementation_commit_sha": "e7c91119771ad9e75262ee946ad648b674157472",
+    "validator_summary_status": "valid",
+    "validator_total_checks": 383,
+    "validator_passed_checks": 383,
+    "validator_failed_checks": 0,
+    "validator_blocked_checks": 0,
+    "task033_manifest_compatibility_verified": true,
+    "raw_root_boundary_verified": true,
+    "post_commit_cleanup_verified": true,
+    "structured_filesystem_error_boundary_verified": true,
+    "completion_gate_scope": "task035b_local_gate_only",
+    "final_task035_completion_gate_passed": false
   }
 }

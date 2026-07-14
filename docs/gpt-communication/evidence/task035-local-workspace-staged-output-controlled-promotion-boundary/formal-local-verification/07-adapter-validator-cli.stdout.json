@@ -1,0 +1,3209 @@
+{
+  "validator_id": "army-claw-adapter-interface-validator",
+  "validator_version": "task025a-cloud-draft",
+  "repo_root": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary",
+  "generated_at": "2026-07-14T03:30:32.701260+00:00",
+  "summary": {
+    "status": "valid",
+    "total_checks": 383,
+    "passed_checks": 383,
+    "failed_checks": 0,
+    "blocked_checks": 0,
+    "not_evaluated_checks": 0
+  },
+  "results": [
+    {
+      "check_id": "controlled_promotion_contract.root_lexical_safety_policy",
+      "status": "valid",
+      "message": "raw injected roots are checked before resolve and root symlink/reparse is prohibited",
+      "path": "",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "controlled_promotion_contract.post_commit_failure_cleanup_policy",
+      "status": "valid",
+      "message": "post-commit failure cleanup is independent and best effort",
+      "path": "",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "controlled_promotion_contract.cleanup_evidence_fields",
+      "status": "valid",
+      "message": "temp/final cleanup evidence fields are present",
+      "path": "",
+      "expected": [
+        "cleanup_attempted",
+        "cleanup_complete",
+        "cleanup_error_codes",
+        "final_path_cleaned",
+        "original_error_code",
+        "temporary_path_cleaned"
+      ],
+      "actual": [
+        "cleanup_attempted",
+        "cleanup_complete",
+        "cleanup_error_codes",
+        "final_path_cleaned",
+        "original_error_code",
+        "temporary_path_cleaned"
+      ]
+    },
+    {
+      "check_id": "controlled_promotion_contract.pre_existing_destination_preservation",
+      "status": "valid",
+      "message": "pre-existing destination is preserved and never cleanup target",
+      "path": "",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "controlled_promotion_contract.structured_filesystem_errors",
+      "status": "valid",
+      "message": "expected filesystem OSError paths return structured blocking responses",
+      "path": "",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "matrix.positive_samples.sample_exists",
+      "status": "valid",
+      "message": "sample file exists",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "matrix.positive_samples.sample_exists",
+      "status": "valid",
+      "message": "sample file exists",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "matrix.positive_samples.sample_exists",
+      "status": "valid",
+      "message": "sample file exists",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "matrix.positive_samples.sample_exists",
+      "status": "valid",
+      "message": "sample file exists",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "matrix.positive_samples.sample_exists",
+      "status": "valid",
+      "message": "sample file exists",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "matrix.positive_samples.sample_exists",
+      "status": "valid",
+      "message": "sample file exists",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "matrix.positive_samples.sample_exists",
+      "status": "valid",
+      "message": "sample file exists",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "matrix.positive_samples.sample_exists",
+      "status": "valid",
+      "message": "sample file exists",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "matrix.positive_samples.sample_exists",
+      "status": "valid",
+      "message": "sample file exists",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "matrix.positive_samples.sample_exists",
+      "status": "valid",
+      "message": "sample file exists",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "matrix.negative_samples.sample_exists",
+      "status": "valid",
+      "message": "sample file exists",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\negative-llm-direct-file-edit-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "matrix.negative_samples.sample_exists",
+      "status": "valid",
+      "message": "sample file exists",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\negative-source-overwrite-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "matrix.negative_samples.sample_exists",
+      "status": "valid",
+      "message": "sample file exists",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\negative-public-internet-required.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "matrix.negative_samples.sample_exists",
+      "status": "valid",
+      "message": "sample file exists",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\negative-target-plan-mismatch.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "matrix.negative_samples.sample_exists",
+      "status": "valid",
+      "message": "sample file exists",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-authorization-mismatch.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "matrix.negative_samples.sample_exists",
+      "status": "valid",
+      "message": "sample file exists",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-destination-exists.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "matrix.negative_samples.sample_exists",
+      "status": "valid",
+      "message": "sample file exists",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-path-traversal.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "matrix.negative_samples.sample_exists",
+      "status": "valid",
+      "message": "sample file exists",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-source-digest-mismatch.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "matrix.negative_samples.sample_exists",
+      "status": "valid",
+      "message": "sample file exists",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-symlink.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "matrix.negative_samples.sample_exists",
+      "status": "valid",
+      "message": "sample file exists",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-cross-volume.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "matrix.negative_samples.sample_exists",
+      "status": "valid",
+      "message": "sample file exists",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-hardlink.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "matrix.negative_samples.sample_exists",
+      "status": "valid",
+      "message": "sample file exists",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-reparse-unsupported.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "matrix.negative_samples.sample_exists",
+      "status": "valid",
+      "message": "sample file exists",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-manifest-reference.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "matrix.negative_samples.sample_exists",
+      "status": "valid",
+      "message": "sample file exists",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-case-collision.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "positive_sample_expected_status",
+      "status": "valid",
+      "message": "positive sample met expected status",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-request.sample.json",
+      "expected": "valid",
+      "actual": "valid"
+    },
+    {
+      "check_id": "request.required.request_id",
+      "status": "valid",
+      "message": "required field present: request_id",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.contract_version",
+      "status": "valid",
+      "message": "required field present: contract_version",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.target_id",
+      "status": "valid",
+      "message": "required field present: target_id",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.adapter_slot_id",
+      "status": "valid",
+      "message": "required field present: adapter_slot_id",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.plan_type",
+      "status": "valid",
+      "message": "required field present: plan_type",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.validated_plan",
+      "status": "valid",
+      "message": "required field present: validated_plan",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.source_plan_schema_version",
+      "status": "valid",
+      "message": "required field present: source_plan_schema_version",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.execution_context",
+      "status": "valid",
+      "message": "required field present: execution_context",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.template_reference",
+      "status": "valid",
+      "message": "required field present: template_reference",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.constraints",
+      "status": "valid",
+      "message": "required field present: constraints",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.evidence_request",
+      "status": "valid",
+      "message": "required field present: evidence_request",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.dry_run",
+      "status": "valid",
+      "message": "required field present: dry_run",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.created_at",
+      "status": "valid",
+      "message": "required field present: created_at",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "target_id_supported",
+      "status": "valid",
+      "message": "target_id is supported",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-request.sample.json",
+      "expected": [
+        "local_workspace",
+        "hwp_hwpx",
+        "hancell",
+        "hanshow"
+      ],
+      "actual": "local_workspace"
+    },
+    {
+      "check_id": "adapter_slot_matches_target",
+      "status": "valid",
+      "message": "adapter_slot_id matches target_id",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-request.sample.json",
+      "expected": "local_workspace_adapter_slot",
+      "actual": "local_workspace_adapter_slot"
+    },
+    {
+      "check_id": "plan_type_matches_target",
+      "status": "valid",
+      "message": "plan_type matches target_id",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-request.sample.json",
+      "expected": "local_workspace",
+      "actual": "local_workspace"
+    },
+    {
+      "check_id": "prevent_source_overwrite_true",
+      "status": "valid",
+      "message": "source overwrite is blocked",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-request.sample.json",
+      "expected": {
+        "prevent_source_overwrite": true,
+        "overwrite_source": false
+      },
+      "actual": {
+        "prevent_source_overwrite": true,
+        "overwrite_source": false
+      }
+    },
+    {
+      "check_id": "allow_public_internet_false",
+      "status": "valid",
+      "message": "public internet dependency is blocked",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-request.sample.json",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "check_id": "llm_direct_file_edit_absent",
+      "status": "valid",
+      "message": "LLM direct file edit request is absent",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-request.sample.json",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "check_id": "llm_direct_native_app_state_modification_absent",
+      "status": "valid",
+      "message": "LLM direct native app state modification request is absent",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-request.sample.json",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "check_id": "proof_or_dry_run_context_explicit",
+      "status": "valid",
+      "message": "proof or dry-run context is explicit",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "positive_sample_expected_status",
+      "status": "valid",
+      "message": "positive sample met expected status",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-response.sample.json",
+      "expected": "valid",
+      "actual": "valid"
+    },
+    {
+      "check_id": "response.required.request_id",
+      "status": "valid",
+      "message": "required field present: request_id",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.response_id",
+      "status": "valid",
+      "message": "required field present: response_id",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.contract_version",
+      "status": "valid",
+      "message": "required field present: contract_version",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.target_id",
+      "status": "valid",
+      "message": "required field present: target_id",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.adapter_slot_id",
+      "status": "valid",
+      "message": "required field present: adapter_slot_id",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.status",
+      "status": "valid",
+      "message": "required field present: status",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.execution_allowed",
+      "status": "valid",
+      "message": "required field present: execution_allowed",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.actual_adapter_invoked",
+      "status": "valid",
+      "message": "required field present: actual_adapter_invoked",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.output_artifacts",
+      "status": "valid",
+      "message": "required field present: output_artifacts",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.validation_result",
+      "status": "valid",
+      "message": "required field present: validation_result",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.evidence",
+      "status": "valid",
+      "message": "required field present: evidence",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.warnings",
+      "status": "valid",
+      "message": "required field present: warnings",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.created_at",
+      "status": "valid",
+      "message": "required field present: created_at",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "target_id_supported",
+      "status": "valid",
+      "message": "target_id is supported",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-response.sample.json",
+      "expected": [
+        "local_workspace",
+        "hwp_hwpx",
+        "hancell",
+        "hanshow"
+      ],
+      "actual": "local_workspace"
+    },
+    {
+      "check_id": "adapter_slot_matches_target",
+      "status": "valid",
+      "message": "adapter_slot_id matches target_id",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-response.sample.json",
+      "expected": "local_workspace_adapter_slot",
+      "actual": "local_workspace_adapter_slot"
+    },
+    {
+      "check_id": "plan_type_matches_target",
+      "status": "valid",
+      "message": "plan_type matches target_id",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-response.sample.json",
+      "expected": "local_workspace",
+      "actual": "local_workspace"
+    },
+    {
+      "check_id": "response_status_enum_valid",
+      "status": "valid",
+      "message": "response status is valid",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-response.sample.json",
+      "expected": [
+        "accepted_for_execution",
+        "blocked_in_proof",
+        "validation_failed",
+        "unsupported"
+      ],
+      "actual": "blocked_in_proof"
+    },
+    {
+      "check_id": "actual_adapter_invoked_false",
+      "status": "valid",
+      "message": "actual_adapter_invoked is false",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-response.sample.json",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "check_id": "execution_allowed_false",
+      "status": "valid",
+      "message": "execution_allowed is false in proof mode",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-response.sample.json",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "check_id": "no_real_output_artifact_claim",
+      "status": "valid",
+      "message": "proof response does not claim generated artifacts",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-response.sample.json",
+      "expected": [],
+      "actual": []
+    },
+    {
+      "check_id": "proof_mode_true",
+      "status": "valid",
+      "message": "proof_mode evidence is true",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\local_workspace-response.sample.json",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "check_id": "positive_sample_expected_status",
+      "status": "valid",
+      "message": "positive sample met expected status",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-request.sample.json",
+      "expected": "valid",
+      "actual": "valid"
+    },
+    {
+      "check_id": "request.required.request_id",
+      "status": "valid",
+      "message": "required field present: request_id",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.contract_version",
+      "status": "valid",
+      "message": "required field present: contract_version",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.target_id",
+      "status": "valid",
+      "message": "required field present: target_id",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.adapter_slot_id",
+      "status": "valid",
+      "message": "required field present: adapter_slot_id",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.plan_type",
+      "status": "valid",
+      "message": "required field present: plan_type",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.validated_plan",
+      "status": "valid",
+      "message": "required field present: validated_plan",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.source_plan_schema_version",
+      "status": "valid",
+      "message": "required field present: source_plan_schema_version",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.execution_context",
+      "status": "valid",
+      "message": "required field present: execution_context",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.template_reference",
+      "status": "valid",
+      "message": "required field present: template_reference",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.constraints",
+      "status": "valid",
+      "message": "required field present: constraints",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.evidence_request",
+      "status": "valid",
+      "message": "required field present: evidence_request",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.dry_run",
+      "status": "valid",
+      "message": "required field present: dry_run",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.created_at",
+      "status": "valid",
+      "message": "required field present: created_at",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "target_id_supported",
+      "status": "valid",
+      "message": "target_id is supported",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-request.sample.json",
+      "expected": [
+        "local_workspace",
+        "hwp_hwpx",
+        "hancell",
+        "hanshow"
+      ],
+      "actual": "hwp_hwpx"
+    },
+    {
+      "check_id": "adapter_slot_matches_target",
+      "status": "valid",
+      "message": "adapter_slot_id matches target_id",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-request.sample.json",
+      "expected": "hwp_hwpx_adapter_slot",
+      "actual": "hwp_hwpx_adapter_slot"
+    },
+    {
+      "check_id": "plan_type_matches_target",
+      "status": "valid",
+      "message": "plan_type matches target_id",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-request.sample.json",
+      "expected": "hwp_hwpx",
+      "actual": "hwp_hwpx"
+    },
+    {
+      "check_id": "prevent_source_overwrite_true",
+      "status": "valid",
+      "message": "source overwrite is blocked",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-request.sample.json",
+      "expected": {
+        "prevent_source_overwrite": true,
+        "overwrite_source": false
+      },
+      "actual": {
+        "prevent_source_overwrite": true,
+        "overwrite_source": false
+      }
+    },
+    {
+      "check_id": "allow_public_internet_false",
+      "status": "valid",
+      "message": "public internet dependency is blocked",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-request.sample.json",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "check_id": "llm_direct_file_edit_absent",
+      "status": "valid",
+      "message": "LLM direct file edit request is absent",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-request.sample.json",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "check_id": "llm_direct_native_app_state_modification_absent",
+      "status": "valid",
+      "message": "LLM direct native app state modification request is absent",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-request.sample.json",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "check_id": "proof_or_dry_run_context_explicit",
+      "status": "valid",
+      "message": "proof or dry-run context is explicit",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "positive_sample_expected_status",
+      "status": "valid",
+      "message": "positive sample met expected status",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-response.sample.json",
+      "expected": "valid",
+      "actual": "valid"
+    },
+    {
+      "check_id": "response.required.request_id",
+      "status": "valid",
+      "message": "required field present: request_id",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.response_id",
+      "status": "valid",
+      "message": "required field present: response_id",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.contract_version",
+      "status": "valid",
+      "message": "required field present: contract_version",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.target_id",
+      "status": "valid",
+      "message": "required field present: target_id",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.adapter_slot_id",
+      "status": "valid",
+      "message": "required field present: adapter_slot_id",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.status",
+      "status": "valid",
+      "message": "required field present: status",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.execution_allowed",
+      "status": "valid",
+      "message": "required field present: execution_allowed",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.actual_adapter_invoked",
+      "status": "valid",
+      "message": "required field present: actual_adapter_invoked",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.output_artifacts",
+      "status": "valid",
+      "message": "required field present: output_artifacts",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.validation_result",
+      "status": "valid",
+      "message": "required field present: validation_result",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.evidence",
+      "status": "valid",
+      "message": "required field present: evidence",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.warnings",
+      "status": "valid",
+      "message": "required field present: warnings",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.created_at",
+      "status": "valid",
+      "message": "required field present: created_at",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "target_id_supported",
+      "status": "valid",
+      "message": "target_id is supported",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-response.sample.json",
+      "expected": [
+        "local_workspace",
+        "hwp_hwpx",
+        "hancell",
+        "hanshow"
+      ],
+      "actual": "hwp_hwpx"
+    },
+    {
+      "check_id": "adapter_slot_matches_target",
+      "status": "valid",
+      "message": "adapter_slot_id matches target_id",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-response.sample.json",
+      "expected": "hwp_hwpx_adapter_slot",
+      "actual": "hwp_hwpx_adapter_slot"
+    },
+    {
+      "check_id": "plan_type_matches_target",
+      "status": "valid",
+      "message": "plan_type matches target_id",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-response.sample.json",
+      "expected": "hwp_hwpx",
+      "actual": "hwp_hwpx"
+    },
+    {
+      "check_id": "response_status_enum_valid",
+      "status": "valid",
+      "message": "response status is valid",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-response.sample.json",
+      "expected": [
+        "accepted_for_execution",
+        "blocked_in_proof",
+        "validation_failed",
+        "unsupported"
+      ],
+      "actual": "blocked_in_proof"
+    },
+    {
+      "check_id": "actual_adapter_invoked_false",
+      "status": "valid",
+      "message": "actual_adapter_invoked is false",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-response.sample.json",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "check_id": "execution_allowed_false",
+      "status": "valid",
+      "message": "execution_allowed is false in proof mode",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-response.sample.json",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "check_id": "no_real_output_artifact_claim",
+      "status": "valid",
+      "message": "proof response does not claim generated artifacts",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-response.sample.json",
+      "expected": [],
+      "actual": []
+    },
+    {
+      "check_id": "proof_mode_true",
+      "status": "valid",
+      "message": "proof_mode evidence is true",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hwp_hwpx-response.sample.json",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "check_id": "positive_sample_expected_status",
+      "status": "valid",
+      "message": "positive sample met expected status",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-request.sample.json",
+      "expected": "valid",
+      "actual": "valid"
+    },
+    {
+      "check_id": "request.required.request_id",
+      "status": "valid",
+      "message": "required field present: request_id",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.contract_version",
+      "status": "valid",
+      "message": "required field present: contract_version",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.target_id",
+      "status": "valid",
+      "message": "required field present: target_id",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.adapter_slot_id",
+      "status": "valid",
+      "message": "required field present: adapter_slot_id",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.plan_type",
+      "status": "valid",
+      "message": "required field present: plan_type",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.validated_plan",
+      "status": "valid",
+      "message": "required field present: validated_plan",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.source_plan_schema_version",
+      "status": "valid",
+      "message": "required field present: source_plan_schema_version",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.execution_context",
+      "status": "valid",
+      "message": "required field present: execution_context",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.template_reference",
+      "status": "valid",
+      "message": "required field present: template_reference",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.constraints",
+      "status": "valid",
+      "message": "required field present: constraints",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.evidence_request",
+      "status": "valid",
+      "message": "required field present: evidence_request",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.dry_run",
+      "status": "valid",
+      "message": "required field present: dry_run",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.created_at",
+      "status": "valid",
+      "message": "required field present: created_at",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "target_id_supported",
+      "status": "valid",
+      "message": "target_id is supported",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-request.sample.json",
+      "expected": [
+        "local_workspace",
+        "hwp_hwpx",
+        "hancell",
+        "hanshow"
+      ],
+      "actual": "hancell"
+    },
+    {
+      "check_id": "adapter_slot_matches_target",
+      "status": "valid",
+      "message": "adapter_slot_id matches target_id",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-request.sample.json",
+      "expected": "hancell_adapter_slot",
+      "actual": "hancell_adapter_slot"
+    },
+    {
+      "check_id": "plan_type_matches_target",
+      "status": "valid",
+      "message": "plan_type matches target_id",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-request.sample.json",
+      "expected": "hancell",
+      "actual": "hancell"
+    },
+    {
+      "check_id": "prevent_source_overwrite_true",
+      "status": "valid",
+      "message": "source overwrite is blocked",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-request.sample.json",
+      "expected": {
+        "prevent_source_overwrite": true,
+        "overwrite_source": false
+      },
+      "actual": {
+        "prevent_source_overwrite": true,
+        "overwrite_source": false
+      }
+    },
+    {
+      "check_id": "allow_public_internet_false",
+      "status": "valid",
+      "message": "public internet dependency is blocked",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-request.sample.json",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "check_id": "llm_direct_file_edit_absent",
+      "status": "valid",
+      "message": "LLM direct file edit request is absent",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-request.sample.json",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "check_id": "llm_direct_native_app_state_modification_absent",
+      "status": "valid",
+      "message": "LLM direct native app state modification request is absent",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-request.sample.json",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "check_id": "proof_or_dry_run_context_explicit",
+      "status": "valid",
+      "message": "proof or dry-run context is explicit",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "positive_sample_expected_status",
+      "status": "valid",
+      "message": "positive sample met expected status",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-response.sample.json",
+      "expected": "valid",
+      "actual": "valid"
+    },
+    {
+      "check_id": "response.required.request_id",
+      "status": "valid",
+      "message": "required field present: request_id",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.response_id",
+      "status": "valid",
+      "message": "required field present: response_id",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.contract_version",
+      "status": "valid",
+      "message": "required field present: contract_version",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.target_id",
+      "status": "valid",
+      "message": "required field present: target_id",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.adapter_slot_id",
+      "status": "valid",
+      "message": "required field present: adapter_slot_id",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.status",
+      "status": "valid",
+      "message": "required field present: status",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.execution_allowed",
+      "status": "valid",
+      "message": "required field present: execution_allowed",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.actual_adapter_invoked",
+      "status": "valid",
+      "message": "required field present: actual_adapter_invoked",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.output_artifacts",
+      "status": "valid",
+      "message": "required field present: output_artifacts",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.validation_result",
+      "status": "valid",
+      "message": "required field present: validation_result",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.evidence",
+      "status": "valid",
+      "message": "required field present: evidence",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.warnings",
+      "status": "valid",
+      "message": "required field present: warnings",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.created_at",
+      "status": "valid",
+      "message": "required field present: created_at",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "target_id_supported",
+      "status": "valid",
+      "message": "target_id is supported",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-response.sample.json",
+      "expected": [
+        "local_workspace",
+        "hwp_hwpx",
+        "hancell",
+        "hanshow"
+      ],
+      "actual": "hancell"
+    },
+    {
+      "check_id": "adapter_slot_matches_target",
+      "status": "valid",
+      "message": "adapter_slot_id matches target_id",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-response.sample.json",
+      "expected": "hancell_adapter_slot",
+      "actual": "hancell_adapter_slot"
+    },
+    {
+      "check_id": "plan_type_matches_target",
+      "status": "valid",
+      "message": "plan_type matches target_id",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-response.sample.json",
+      "expected": "hancell",
+      "actual": "hancell"
+    },
+    {
+      "check_id": "response_status_enum_valid",
+      "status": "valid",
+      "message": "response status is valid",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-response.sample.json",
+      "expected": [
+        "accepted_for_execution",
+        "blocked_in_proof",
+        "validation_failed",
+        "unsupported"
+      ],
+      "actual": "blocked_in_proof"
+    },
+    {
+      "check_id": "actual_adapter_invoked_false",
+      "status": "valid",
+      "message": "actual_adapter_invoked is false",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-response.sample.json",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "check_id": "execution_allowed_false",
+      "status": "valid",
+      "message": "execution_allowed is false in proof mode",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-response.sample.json",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "check_id": "no_real_output_artifact_claim",
+      "status": "valid",
+      "message": "proof response does not claim generated artifacts",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-response.sample.json",
+      "expected": [],
+      "actual": []
+    },
+    {
+      "check_id": "proof_mode_true",
+      "status": "valid",
+      "message": "proof_mode evidence is true",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hancell-response.sample.json",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "check_id": "positive_sample_expected_status",
+      "status": "valid",
+      "message": "positive sample met expected status",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-request.sample.json",
+      "expected": "valid",
+      "actual": "valid"
+    },
+    {
+      "check_id": "request.required.request_id",
+      "status": "valid",
+      "message": "required field present: request_id",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.contract_version",
+      "status": "valid",
+      "message": "required field present: contract_version",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.target_id",
+      "status": "valid",
+      "message": "required field present: target_id",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.adapter_slot_id",
+      "status": "valid",
+      "message": "required field present: adapter_slot_id",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.plan_type",
+      "status": "valid",
+      "message": "required field present: plan_type",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.validated_plan",
+      "status": "valid",
+      "message": "required field present: validated_plan",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.source_plan_schema_version",
+      "status": "valid",
+      "message": "required field present: source_plan_schema_version",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.execution_context",
+      "status": "valid",
+      "message": "required field present: execution_context",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.template_reference",
+      "status": "valid",
+      "message": "required field present: template_reference",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.constraints",
+      "status": "valid",
+      "message": "required field present: constraints",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.evidence_request",
+      "status": "valid",
+      "message": "required field present: evidence_request",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.dry_run",
+      "status": "valid",
+      "message": "required field present: dry_run",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "request.required.created_at",
+      "status": "valid",
+      "message": "required field present: created_at",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "target_id_supported",
+      "status": "valid",
+      "message": "target_id is supported",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-request.sample.json",
+      "expected": [
+        "local_workspace",
+        "hwp_hwpx",
+        "hancell",
+        "hanshow"
+      ],
+      "actual": "hanshow"
+    },
+    {
+      "check_id": "adapter_slot_matches_target",
+      "status": "valid",
+      "message": "adapter_slot_id matches target_id",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-request.sample.json",
+      "expected": "hanshow_adapter_slot",
+      "actual": "hanshow_adapter_slot"
+    },
+    {
+      "check_id": "plan_type_matches_target",
+      "status": "valid",
+      "message": "plan_type matches target_id",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-request.sample.json",
+      "expected": "hanshow",
+      "actual": "hanshow"
+    },
+    {
+      "check_id": "prevent_source_overwrite_true",
+      "status": "valid",
+      "message": "source overwrite is blocked",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-request.sample.json",
+      "expected": {
+        "prevent_source_overwrite": true,
+        "overwrite_source": false
+      },
+      "actual": {
+        "prevent_source_overwrite": true,
+        "overwrite_source": false
+      }
+    },
+    {
+      "check_id": "allow_public_internet_false",
+      "status": "valid",
+      "message": "public internet dependency is blocked",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-request.sample.json",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "check_id": "llm_direct_file_edit_absent",
+      "status": "valid",
+      "message": "LLM direct file edit request is absent",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-request.sample.json",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "check_id": "llm_direct_native_app_state_modification_absent",
+      "status": "valid",
+      "message": "LLM direct native app state modification request is absent",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-request.sample.json",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "check_id": "proof_or_dry_run_context_explicit",
+      "status": "valid",
+      "message": "proof or dry-run context is explicit",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "positive_sample_expected_status",
+      "status": "valid",
+      "message": "positive sample met expected status",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-response.sample.json",
+      "expected": "valid",
+      "actual": "valid"
+    },
+    {
+      "check_id": "response.required.request_id",
+      "status": "valid",
+      "message": "required field present: request_id",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.response_id",
+      "status": "valid",
+      "message": "required field present: response_id",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.contract_version",
+      "status": "valid",
+      "message": "required field present: contract_version",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.target_id",
+      "status": "valid",
+      "message": "required field present: target_id",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.adapter_slot_id",
+      "status": "valid",
+      "message": "required field present: adapter_slot_id",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.status",
+      "status": "valid",
+      "message": "required field present: status",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.execution_allowed",
+      "status": "valid",
+      "message": "required field present: execution_allowed",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.actual_adapter_invoked",
+      "status": "valid",
+      "message": "required field present: actual_adapter_invoked",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.output_artifacts",
+      "status": "valid",
+      "message": "required field present: output_artifacts",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.validation_result",
+      "status": "valid",
+      "message": "required field present: validation_result",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.evidence",
+      "status": "valid",
+      "message": "required field present: evidence",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.warnings",
+      "status": "valid",
+      "message": "required field present: warnings",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "response.required.created_at",
+      "status": "valid",
+      "message": "required field present: created_at",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "target_id_supported",
+      "status": "valid",
+      "message": "target_id is supported",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-response.sample.json",
+      "expected": [
+        "local_workspace",
+        "hwp_hwpx",
+        "hancell",
+        "hanshow"
+      ],
+      "actual": "hanshow"
+    },
+    {
+      "check_id": "adapter_slot_matches_target",
+      "status": "valid",
+      "message": "adapter_slot_id matches target_id",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-response.sample.json",
+      "expected": "hanshow_adapter_slot",
+      "actual": "hanshow_adapter_slot"
+    },
+    {
+      "check_id": "plan_type_matches_target",
+      "status": "valid",
+      "message": "plan_type matches target_id",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-response.sample.json",
+      "expected": "hanshow",
+      "actual": "hanshow"
+    },
+    {
+      "check_id": "response_status_enum_valid",
+      "status": "valid",
+      "message": "response status is valid",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-response.sample.json",
+      "expected": [
+        "accepted_for_execution",
+        "blocked_in_proof",
+        "validation_failed",
+        "unsupported"
+      ],
+      "actual": "blocked_in_proof"
+    },
+    {
+      "check_id": "actual_adapter_invoked_false",
+      "status": "valid",
+      "message": "actual_adapter_invoked is false",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-response.sample.json",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "check_id": "execution_allowed_false",
+      "status": "valid",
+      "message": "execution_allowed is false in proof mode",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-response.sample.json",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "check_id": "no_real_output_artifact_claim",
+      "status": "valid",
+      "message": "proof response does not claim generated artifacts",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-response.sample.json",
+      "expected": [],
+      "actual": []
+    },
+    {
+      "check_id": "proof_mode_true",
+      "status": "valid",
+      "message": "proof_mode evidence is true",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\hanshow-response.sample.json",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "check_id": "positive_sample_expected_status",
+      "status": "valid",
+      "message": "positive sample met expected status",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-request.sample.json",
+      "expected": "valid",
+      "actual": "valid"
+    },
+    {
+      "check_id": "controlled_promotion_request.required.request_id",
+      "status": "valid",
+      "message": "required field present: request_id",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "controlled_promotion_request.required.operation",
+      "status": "valid",
+      "message": "required field present: operation",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "controlled_promotion_request.required.execution_mode",
+      "status": "valid",
+      "message": "required field present: execution_mode",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "controlled_promotion_request.required.source",
+      "status": "valid",
+      "message": "required field present: source",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "controlled_promotion_request.required.destination",
+      "status": "valid",
+      "message": "required field present: destination",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "controlled_promotion_request.required.authorization",
+      "status": "valid",
+      "message": "required field present: authorization",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "controlled_promotion_request.required.constraints",
+      "status": "valid",
+      "message": "required field present: constraints",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "controlled_promotion.operation",
+      "status": "valid",
+      "message": "operation is promote_staged_output",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-request.sample.json",
+      "expected": "promote_staged_output",
+      "actual": "promote_staged_output"
+    },
+    {
+      "check_id": "controlled_promotion.execution_mode",
+      "status": "valid",
+      "message": "execution mode is controlled_promotion",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-request.sample.json",
+      "expected": "controlled_promotion",
+      "actual": "controlled_promotion"
+    },
+    {
+      "check_id": "controlled_promotion.source.artifact_id",
+      "status": "valid",
+      "message": "source.artifact_id is valid",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "controlled_promotion.source.manifest_id",
+      "status": "valid",
+      "message": "source.manifest_id is valid",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "controlled_promotion.source.normalized_relative_path",
+      "status": "valid",
+      "message": "source.normalized_relative_path is valid",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "controlled_promotion.source.byte_size",
+      "status": "valid",
+      "message": "source.byte_size is valid",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "controlled_promotion.source.digest_algorithm_sha256",
+      "status": "valid",
+      "message": "source.digest_algorithm_sha256 is valid",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "controlled_promotion.source.digest_hex",
+      "status": "valid",
+      "message": "source.digest_hex is valid",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "controlled_promotion.destination.approved_root_id",
+      "status": "valid",
+      "message": "destination.approved_root_id is valid",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "controlled_promotion.destination.normalized_relative_path",
+      "status": "valid",
+      "message": "destination.normalized_relative_path is valid",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "controlled_promotion.destination.overwrite_allowed_false",
+      "status": "valid",
+      "message": "destination.overwrite_allowed_false is valid",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "controlled_promotion.authorization.single_binding",
+      "status": "valid",
+      "message": "authorization.single_binding is valid",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "controlled_promotion.authorization.single_use_true",
+      "status": "valid",
+      "message": "authorization.single_use_true is valid",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "controlled_promotion.authorization.request_binding",
+      "status": "valid",
+      "message": "authorization.request_binding is valid",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "controlled_promotion.authorization.artifact_binding",
+      "status": "valid",
+      "message": "authorization.artifact_binding is valid",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "controlled_promotion.authorization.manifest_binding",
+      "status": "valid",
+      "message": "authorization.manifest_binding is valid",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "controlled_promotion.authorization.destination_root_binding",
+      "status": "valid",
+      "message": "authorization.destination_root_binding is valid",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "controlled_promotion.authorization.destination_path_binding",
+      "status": "valid",
+      "message": "authorization.destination_path_binding is valid",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "controlled_promotion.task033_manifest_profile",
+      "status": "valid",
+      "message": "Task 035 request references Task 033 canonical manifest profile",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "controlled_promotion.task033_artifact_field_names",
+      "status": "valid",
+      "message": "Task 033 canonical artifact field names are listed",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-request.sample.json",
+      "expected": [
+        "artifact_id",
+        "byte_size",
+        "digest_algorithm",
+        "digest_value",
+        "normalized_relative_path",
+        "promotion_status",
+        "receipt_id",
+        "sandbox_only"
+      ],
+      "actual": [
+        "artifact_id",
+        "byte_size",
+        "digest_algorithm",
+        "digest_value",
+        "normalized_relative_path",
+        "promotion_status",
+        "receipt_id",
+        "sandbox_only"
+      ]
+    },
+    {
+      "check_id": "controlled_promotion.task033_relationship_field_names",
+      "status": "valid",
+      "message": "Task 033 canonical relationship field names are listed",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-request.sample.json",
+      "expected": [
+        "relationship_type",
+        "source_id",
+        "target_id"
+      ],
+      "actual": [
+        "relationship_type",
+        "source_id",
+        "target_id"
+      ]
+    },
+    {
+      "check_id": "controlled_promotion.task033_whole_and_inner_manifest_inputs",
+      "status": "valid",
+      "message": "Task 033 whole response and inner manifest input forms are declared",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-request.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "controlled_promotion.constraint.retain_staged_source",
+      "status": "valid",
+      "message": "constraint retain_staged_source has canonical value",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-request.sample.json",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "check_id": "controlled_promotion.constraint.require_digest_match",
+      "status": "valid",
+      "message": "constraint require_digest_match has canonical value",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-request.sample.json",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "check_id": "controlled_promotion.constraint.require_exclusive_create",
+      "status": "valid",
+      "message": "constraint require_exclusive_create has canonical value",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-request.sample.json",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "check_id": "controlled_promotion.constraint.allow_cross_volume_copy",
+      "status": "valid",
+      "message": "constraint allow_cross_volume_copy has canonical value",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-request.sample.json",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "check_id": "controlled_promotion.constraint.allow_symlink",
+      "status": "valid",
+      "message": "constraint allow_symlink has canonical value",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-request.sample.json",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "check_id": "controlled_promotion.constraint.allow_hardlink",
+      "status": "valid",
+      "message": "constraint allow_hardlink has canonical value",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-request.sample.json",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "check_id": "controlled_promotion.constraint.allow_reparse_point",
+      "status": "valid",
+      "message": "constraint allow_reparse_point has canonical value",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-request.sample.json",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "check_id": "controlled_promotion.constraint.allow_public_internet",
+      "status": "valid",
+      "message": "constraint allow_public_internet has canonical value",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-request.sample.json",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "check_id": "error_code_exists_in_taxonomy",
+      "status": "valid",
+      "message": "error_code exists in taxonomy",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-request.sample.json",
+      "expected": null,
+      "actual": "promotion_authorization_missing"
+    },
+    {
+      "check_id": "error_code_exists_in_taxonomy",
+      "status": "valid",
+      "message": "error_code exists in taxonomy",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-request.sample.json",
+      "expected": null,
+      "actual": "authorization_binding_mismatch"
+    },
+    {
+      "check_id": "error_code_exists_in_taxonomy",
+      "status": "valid",
+      "message": "error_code exists in taxonomy",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-request.sample.json",
+      "expected": null,
+      "actual": "destination_exists"
+    },
+    {
+      "check_id": "error_code_exists_in_taxonomy",
+      "status": "valid",
+      "message": "error_code exists in taxonomy",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-request.sample.json",
+      "expected": null,
+      "actual": "exclusive_create_failed"
+    },
+    {
+      "check_id": "error_code_exists_in_taxonomy",
+      "status": "valid",
+      "message": "error_code exists in taxonomy",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-request.sample.json",
+      "expected": null,
+      "actual": "unsupported_safety_check"
+    },
+    {
+      "check_id": "error_code_exists_in_taxonomy",
+      "status": "valid",
+      "message": "error_code exists in taxonomy",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-request.sample.json",
+      "expected": null,
+      "actual": "cross_volume_promotion_not_allowed"
+    },
+    {
+      "check_id": "positive_sample_expected_status",
+      "status": "valid",
+      "message": "positive sample met expected status",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-response.sample.json",
+      "expected": "valid",
+      "actual": "valid"
+    },
+    {
+      "check_id": "controlled_promotion_response.required.request_id",
+      "status": "valid",
+      "message": "required field present: request_id",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "controlled_promotion_response.required.status",
+      "status": "valid",
+      "message": "required field present: status",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "controlled_promotion_response.required.receipt",
+      "status": "valid",
+      "message": "required field present: receipt",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "controlled_promotion_response.required.safety_assertions",
+      "status": "valid",
+      "message": "required field present: safety_assertions",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "controlled_promotion.response.status_promoted",
+      "status": "valid",
+      "message": "response status is promoted",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-response.sample.json",
+      "expected": "promoted",
+      "actual": "promoted"
+    },
+    {
+      "check_id": "controlled_promotion.response.safety_mirror_matches_receipt",
+      "status": "valid",
+      "message": "top-level safety_assertions mirror receipt safety_assertions exactly",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "controlled_promotion.safety.controlled_promotion_boundary_evaluated",
+      "status": "valid",
+      "message": "safety assertion controlled_promotion_boundary_evaluated has canonical value",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-response.sample.json",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "check_id": "controlled_promotion.safety.controlled_promotion_boundary_invoked",
+      "status": "valid",
+      "message": "safety assertion controlled_promotion_boundary_invoked has canonical value",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-response.sample.json",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "check_id": "controlled_promotion.safety.promotion_authorization_verified",
+      "status": "valid",
+      "message": "safety assertion promotion_authorization_verified has canonical value",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-response.sample.json",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "check_id": "controlled_promotion.safety.approved_root_verified",
+      "status": "valid",
+      "message": "safety assertion approved_root_verified has canonical value",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-response.sample.json",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "check_id": "controlled_promotion.safety.manifest_link_verified",
+      "status": "valid",
+      "message": "safety assertion manifest_link_verified has canonical value",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-response.sample.json",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "check_id": "controlled_promotion.safety.source_digest_verified",
+      "status": "valid",
+      "message": "safety assertion source_digest_verified has canonical value",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-response.sample.json",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "check_id": "controlled_promotion.safety.destination_digest_verified",
+      "status": "valid",
+      "message": "safety assertion destination_digest_verified has canonical value",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-response.sample.json",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "check_id": "controlled_promotion.safety.exclusive_create_verified",
+      "status": "valid",
+      "message": "safety assertion exclusive_create_verified has canonical value",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-response.sample.json",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "check_id": "controlled_promotion.safety.source_retained",
+      "status": "valid",
+      "message": "safety assertion source_retained has canonical value",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-response.sample.json",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "check_id": "controlled_promotion.safety.staged_output_sandbox_write_performed",
+      "status": "valid",
+      "message": "safety assertion staged_output_sandbox_write_performed has canonical value",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-response.sample.json",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "check_id": "controlled_promotion.safety.controlled_test_promotion_performed",
+      "status": "valid",
+      "message": "safety assertion controlled_test_promotion_performed has canonical value",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-response.sample.json",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "check_id": "controlled_promotion.safety.production_promotion_performed",
+      "status": "valid",
+      "message": "safety assertion production_promotion_performed has canonical value",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-response.sample.json",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "check_id": "controlled_promotion.safety.actual_adapter_invoked",
+      "status": "valid",
+      "message": "safety assertion actual_adapter_invoked has canonical value",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-response.sample.json",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "check_id": "controlled_promotion.safety.actual_file_system_mutation_performed",
+      "status": "valid",
+      "message": "safety assertion actual_file_system_mutation_performed has canonical value",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-response.sample.json",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "check_id": "controlled_promotion.safety.user_workspace_file_system_mutation_performed",
+      "status": "valid",
+      "message": "safety assertion user_workspace_file_system_mutation_performed has canonical value",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-response.sample.json",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "check_id": "controlled_promotion.safety.file_content_read_performed",
+      "status": "valid",
+      "message": "safety assertion file_content_read_performed has canonical value",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-response.sample.json",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "check_id": "controlled_promotion.safety.local_hancom_com_executed",
+      "status": "valid",
+      "message": "safety assertion local_hancom_com_executed has canonical value",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-response.sample.json",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "check_id": "controlled_promotion.safety.real_hwp_hwpx_hancell_hanshow_artifact_generated",
+      "status": "valid",
+      "message": "safety assertion real_hwp_hwpx_hancell_hanshow_artifact_generated has canonical value",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-response.sample.json",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "check_id": "controlled_promotion.safety.public_internet_access_performed",
+      "status": "valid",
+      "message": "safety assertion public_internet_access_performed has canonical value",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-response.sample.json",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "check_id": "controlled_promotion.safety.dependency_install_performed",
+      "status": "valid",
+      "message": "safety assertion dependency_install_performed has canonical value",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-response.sample.json",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "check_id": "controlled_promotion.response.source_destination_digest_match",
+      "status": "valid",
+      "message": "source and destination digest match",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "controlled_promotion.response.source_retained",
+      "status": "valid",
+      "message": "source retained is true",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "controlled_promotion.response.destination_path_present",
+      "status": "valid",
+      "message": "destination path is present",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "controlled_promotion.response.source_path_present",
+      "status": "valid",
+      "message": "source path is present",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-response.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "error_code_exists_in_taxonomy",
+      "status": "valid",
+      "message": "error_code exists in taxonomy",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\staged-output-controlled-promotion-response.sample.json",
+      "expected": null,
+      "actual": "destination_digest_mismatch"
+    },
+    {
+      "check_id": "negative_sample_expected_status",
+      "status": "valid",
+      "message": "negative sample met expected blocked status",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\negative-llm-direct-file-edit-request.sample.json",
+      "expected": "blocked",
+      "actual": "blocked"
+    },
+    {
+      "check_id": "negative_expected_status_blocked",
+      "status": "valid",
+      "message": "negative sample expected status is blocked",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\negative-llm-direct-file-edit-request.sample.json",
+      "expected": "blocked",
+      "actual": "blocked"
+    },
+    {
+      "check_id": "negative_expected_error_category",
+      "status": "valid",
+      "message": "negative sample is correctly expected to be blocked by category",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\negative-llm-direct-file-edit-request.sample.json",
+      "expected": "llm_direct_file_edit_blocked",
+      "actual": "llm_direct_file_edit_blocked"
+    },
+    {
+      "check_id": "negative_sample_expected_status",
+      "status": "valid",
+      "message": "negative sample met expected blocked status",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\negative-source-overwrite-request.sample.json",
+      "expected": "blocked",
+      "actual": "blocked"
+    },
+    {
+      "check_id": "negative_expected_status_blocked",
+      "status": "valid",
+      "message": "negative sample expected status is blocked",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\negative-source-overwrite-request.sample.json",
+      "expected": "blocked",
+      "actual": "blocked"
+    },
+    {
+      "check_id": "negative_expected_error_category",
+      "status": "valid",
+      "message": "negative sample is correctly expected to be blocked by category",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\negative-source-overwrite-request.sample.json",
+      "expected": "source_overwrite_blocked",
+      "actual": "source_overwrite_blocked"
+    },
+    {
+      "check_id": "negative_sample_expected_status",
+      "status": "valid",
+      "message": "negative sample met expected blocked status",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\negative-public-internet-required.sample.json",
+      "expected": "blocked",
+      "actual": "blocked"
+    },
+    {
+      "check_id": "negative_expected_status_blocked",
+      "status": "valid",
+      "message": "negative sample expected status is blocked",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\negative-public-internet-required.sample.json",
+      "expected": "blocked",
+      "actual": "blocked"
+    },
+    {
+      "check_id": "negative_expected_error_category",
+      "status": "valid",
+      "message": "negative sample is correctly expected to be blocked by category",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\negative-public-internet-required.sample.json",
+      "expected": "public_internet_dependency_blocked",
+      "actual": "public_internet_dependency_blocked"
+    },
+    {
+      "check_id": "negative_sample_expected_status",
+      "status": "valid",
+      "message": "negative sample met expected blocked status",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\negative-target-plan-mismatch.sample.json",
+      "expected": "blocked",
+      "actual": "blocked"
+    },
+    {
+      "check_id": "negative_expected_status_blocked",
+      "status": "valid",
+      "message": "negative sample expected status is blocked",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\negative-target-plan-mismatch.sample.json",
+      "expected": "blocked",
+      "actual": "blocked"
+    },
+    {
+      "check_id": "negative_expected_error_category",
+      "status": "valid",
+      "message": "negative sample is correctly expected to be blocked by category",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\common-office-adapter-interface\\negative-target-plan-mismatch.sample.json",
+      "expected": "target_plan_mismatch",
+      "actual": "target_plan_mismatch"
+    },
+    {
+      "check_id": "negative_sample_expected_status",
+      "status": "valid",
+      "message": "negative sample met expected blocked status",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-authorization-mismatch.sample.json",
+      "expected": "blocked",
+      "actual": "blocked"
+    },
+    {
+      "check_id": "controlled_promotion_negative.request_object",
+      "status": "valid",
+      "message": "negative sample contains request object",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-authorization-mismatch.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "controlled_promotion_negative.expected_blocked",
+      "status": "valid",
+      "message": "negative expected status is blocked",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-authorization-mismatch.sample.json",
+      "expected": "blocked",
+      "actual": "blocked"
+    },
+    {
+      "check_id": "controlled_promotion_negative.expected_blocking_true",
+      "status": "valid",
+      "message": "negative expected blocking is true",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-authorization-mismatch.sample.json",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "check_id": "controlled_promotion_negative.matrix_error_code_match",
+      "status": "valid",
+      "message": "matrix expected error code matches sample expected error code",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-authorization-mismatch.sample.json",
+      "expected": "authorization_binding_mismatch",
+      "actual": "authorization_binding_mismatch"
+    },
+    {
+      "check_id": "error_code_exists_in_taxonomy",
+      "status": "valid",
+      "message": "error_code exists in taxonomy",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-authorization-mismatch.sample.json",
+      "expected": null,
+      "actual": "authorization_binding_mismatch"
+    },
+    {
+      "check_id": "controlled_promotion_negative.expected_failure_evidence_flags",
+      "status": "valid",
+      "message": "negative sample declares truthful failure read/mutation flags",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-authorization-mismatch.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "controlled_promotion_negative.operation_present",
+      "status": "valid",
+      "message": "negative request keeps controlled operation",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-authorization-mismatch.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "controlled_promotion_negative.execution_mode_present",
+      "status": "valid",
+      "message": "negative request keeps controlled execution mode",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-authorization-mismatch.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "negative_sample_expected_status",
+      "status": "valid",
+      "message": "negative sample met expected blocked status",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-destination-exists.sample.json",
+      "expected": "blocked",
+      "actual": "blocked"
+    },
+    {
+      "check_id": "controlled_promotion_negative.request_object",
+      "status": "valid",
+      "message": "negative sample contains request object",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-destination-exists.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "controlled_promotion_negative.expected_blocked",
+      "status": "valid",
+      "message": "negative expected status is blocked",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-destination-exists.sample.json",
+      "expected": "blocked",
+      "actual": "blocked"
+    },
+    {
+      "check_id": "controlled_promotion_negative.expected_blocking_true",
+      "status": "valid",
+      "message": "negative expected blocking is true",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-destination-exists.sample.json",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "check_id": "controlled_promotion_negative.matrix_error_code_match",
+      "status": "valid",
+      "message": "matrix expected error code matches sample expected error code",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-destination-exists.sample.json",
+      "expected": "destination_exists",
+      "actual": "destination_exists"
+    },
+    {
+      "check_id": "error_code_exists_in_taxonomy",
+      "status": "valid",
+      "message": "error_code exists in taxonomy",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-destination-exists.sample.json",
+      "expected": null,
+      "actual": "destination_exists"
+    },
+    {
+      "check_id": "controlled_promotion_negative.expected_failure_evidence_flags",
+      "status": "valid",
+      "message": "negative sample declares truthful failure read/mutation flags",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-destination-exists.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "controlled_promotion_negative.operation_present",
+      "status": "valid",
+      "message": "negative request keeps controlled operation",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-destination-exists.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "controlled_promotion_negative.execution_mode_present",
+      "status": "valid",
+      "message": "negative request keeps controlled execution mode",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-destination-exists.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "negative_sample_expected_status",
+      "status": "valid",
+      "message": "negative sample met expected blocked status",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-path-traversal.sample.json",
+      "expected": "blocked",
+      "actual": "blocked"
+    },
+    {
+      "check_id": "controlled_promotion_negative.request_object",
+      "status": "valid",
+      "message": "negative sample contains request object",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-path-traversal.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "controlled_promotion_negative.expected_blocked",
+      "status": "valid",
+      "message": "negative expected status is blocked",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-path-traversal.sample.json",
+      "expected": "blocked",
+      "actual": "blocked"
+    },
+    {
+      "check_id": "controlled_promotion_negative.expected_blocking_true",
+      "status": "valid",
+      "message": "negative expected blocking is true",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-path-traversal.sample.json",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "check_id": "controlled_promotion_negative.matrix_error_code_match",
+      "status": "valid",
+      "message": "matrix expected error code matches sample expected error code",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-path-traversal.sample.json",
+      "expected": "destination_path_traversal",
+      "actual": "destination_path_traversal"
+    },
+    {
+      "check_id": "error_code_exists_in_taxonomy",
+      "status": "valid",
+      "message": "error_code exists in taxonomy",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-path-traversal.sample.json",
+      "expected": null,
+      "actual": "destination_path_traversal"
+    },
+    {
+      "check_id": "controlled_promotion_negative.expected_failure_evidence_flags",
+      "status": "valid",
+      "message": "negative sample declares truthful failure read/mutation flags",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-path-traversal.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "controlled_promotion_negative.operation_present",
+      "status": "valid",
+      "message": "negative request keeps controlled operation",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-path-traversal.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "controlled_promotion_negative.execution_mode_present",
+      "status": "valid",
+      "message": "negative request keeps controlled execution mode",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-path-traversal.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "negative_sample_expected_status",
+      "status": "valid",
+      "message": "negative sample met expected blocked status",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-source-digest-mismatch.sample.json",
+      "expected": "blocked",
+      "actual": "blocked"
+    },
+    {
+      "check_id": "controlled_promotion_negative.request_object",
+      "status": "valid",
+      "message": "negative sample contains request object",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-source-digest-mismatch.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "controlled_promotion_negative.expected_blocked",
+      "status": "valid",
+      "message": "negative expected status is blocked",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-source-digest-mismatch.sample.json",
+      "expected": "blocked",
+      "actual": "blocked"
+    },
+    {
+      "check_id": "controlled_promotion_negative.expected_blocking_true",
+      "status": "valid",
+      "message": "negative expected blocking is true",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-source-digest-mismatch.sample.json",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "check_id": "controlled_promotion_negative.matrix_error_code_match",
+      "status": "valid",
+      "message": "matrix expected error code matches sample expected error code",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-source-digest-mismatch.sample.json",
+      "expected": "source_digest_mismatch",
+      "actual": "source_digest_mismatch"
+    },
+    {
+      "check_id": "error_code_exists_in_taxonomy",
+      "status": "valid",
+      "message": "error_code exists in taxonomy",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-source-digest-mismatch.sample.json",
+      "expected": null,
+      "actual": "source_digest_mismatch"
+    },
+    {
+      "check_id": "controlled_promotion_negative.expected_failure_evidence_flags",
+      "status": "valid",
+      "message": "negative sample declares truthful failure read/mutation flags",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-source-digest-mismatch.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "controlled_promotion_negative.operation_present",
+      "status": "valid",
+      "message": "negative request keeps controlled operation",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-source-digest-mismatch.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "controlled_promotion_negative.execution_mode_present",
+      "status": "valid",
+      "message": "negative request keeps controlled execution mode",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-source-digest-mismatch.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "negative_sample_expected_status",
+      "status": "valid",
+      "message": "negative sample met expected blocked status",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-symlink.sample.json",
+      "expected": "blocked",
+      "actual": "blocked"
+    },
+    {
+      "check_id": "controlled_promotion_negative.request_object",
+      "status": "valid",
+      "message": "negative sample contains request object",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-symlink.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "controlled_promotion_negative.expected_blocked",
+      "status": "valid",
+      "message": "negative expected status is blocked",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-symlink.sample.json",
+      "expected": "blocked",
+      "actual": "blocked"
+    },
+    {
+      "check_id": "controlled_promotion_negative.expected_blocking_true",
+      "status": "valid",
+      "message": "negative expected blocking is true",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-symlink.sample.json",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "check_id": "controlled_promotion_negative.matrix_error_code_match",
+      "status": "valid",
+      "message": "matrix expected error code matches sample expected error code",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-symlink.sample.json",
+      "expected": "symlink_not_allowed",
+      "actual": "symlink_not_allowed"
+    },
+    {
+      "check_id": "error_code_exists_in_taxonomy",
+      "status": "valid",
+      "message": "error_code exists in taxonomy",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-symlink.sample.json",
+      "expected": null,
+      "actual": "symlink_not_allowed"
+    },
+    {
+      "check_id": "controlled_promotion_negative.expected_failure_evidence_flags",
+      "status": "valid",
+      "message": "negative sample declares truthful failure read/mutation flags",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-symlink.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "controlled_promotion_negative.operation_present",
+      "status": "valid",
+      "message": "negative request keeps controlled operation",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-symlink.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "controlled_promotion_negative.execution_mode_present",
+      "status": "valid",
+      "message": "negative request keeps controlled execution mode",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-symlink.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "negative_sample_expected_status",
+      "status": "valid",
+      "message": "negative sample met expected blocked status",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-cross-volume.sample.json",
+      "expected": "blocked",
+      "actual": "blocked"
+    },
+    {
+      "check_id": "controlled_promotion_negative.request_object",
+      "status": "valid",
+      "message": "negative sample contains request object",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-cross-volume.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "controlled_promotion_negative.expected_blocked",
+      "status": "valid",
+      "message": "negative expected status is blocked",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-cross-volume.sample.json",
+      "expected": "blocked",
+      "actual": "blocked"
+    },
+    {
+      "check_id": "controlled_promotion_negative.expected_blocking_true",
+      "status": "valid",
+      "message": "negative expected blocking is true",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-cross-volume.sample.json",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "check_id": "controlled_promotion_negative.matrix_error_code_match",
+      "status": "valid",
+      "message": "matrix expected error code matches sample expected error code",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-cross-volume.sample.json",
+      "expected": "cross_volume_promotion_not_allowed",
+      "actual": "cross_volume_promotion_not_allowed"
+    },
+    {
+      "check_id": "error_code_exists_in_taxonomy",
+      "status": "valid",
+      "message": "error_code exists in taxonomy",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-cross-volume.sample.json",
+      "expected": null,
+      "actual": "cross_volume_promotion_not_allowed"
+    },
+    {
+      "check_id": "controlled_promotion_negative.expected_failure_evidence_flags",
+      "status": "valid",
+      "message": "negative sample declares truthful failure read/mutation flags",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-cross-volume.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "controlled_promotion_negative.operation_present",
+      "status": "valid",
+      "message": "negative request keeps controlled operation",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-cross-volume.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "controlled_promotion_negative.execution_mode_present",
+      "status": "valid",
+      "message": "negative request keeps controlled execution mode",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-cross-volume.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "negative_sample_expected_status",
+      "status": "valid",
+      "message": "negative sample met expected blocked status",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-hardlink.sample.json",
+      "expected": "blocked",
+      "actual": "blocked"
+    },
+    {
+      "check_id": "controlled_promotion_negative.request_object",
+      "status": "valid",
+      "message": "negative sample contains request object",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-hardlink.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "controlled_promotion_negative.expected_blocked",
+      "status": "valid",
+      "message": "negative expected status is blocked",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-hardlink.sample.json",
+      "expected": "blocked",
+      "actual": "blocked"
+    },
+    {
+      "check_id": "controlled_promotion_negative.expected_blocking_true",
+      "status": "valid",
+      "message": "negative expected blocking is true",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-hardlink.sample.json",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "check_id": "controlled_promotion_negative.matrix_error_code_match",
+      "status": "valid",
+      "message": "matrix expected error code matches sample expected error code",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-hardlink.sample.json",
+      "expected": "hardlink_not_allowed",
+      "actual": "hardlink_not_allowed"
+    },
+    {
+      "check_id": "error_code_exists_in_taxonomy",
+      "status": "valid",
+      "message": "error_code exists in taxonomy",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-hardlink.sample.json",
+      "expected": null,
+      "actual": "hardlink_not_allowed"
+    },
+    {
+      "check_id": "controlled_promotion_negative.expected_failure_evidence_flags",
+      "status": "valid",
+      "message": "negative sample declares truthful failure read/mutation flags",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-hardlink.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "controlled_promotion_negative.operation_present",
+      "status": "valid",
+      "message": "negative request keeps controlled operation",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-hardlink.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "controlled_promotion_negative.execution_mode_present",
+      "status": "valid",
+      "message": "negative request keeps controlled execution mode",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-hardlink.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "negative_sample_expected_status",
+      "status": "valid",
+      "message": "negative sample met expected blocked status",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-reparse-unsupported.sample.json",
+      "expected": "blocked",
+      "actual": "blocked"
+    },
+    {
+      "check_id": "controlled_promotion_negative.request_object",
+      "status": "valid",
+      "message": "negative sample contains request object",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-reparse-unsupported.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "controlled_promotion_negative.expected_blocked",
+      "status": "valid",
+      "message": "negative expected status is blocked",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-reparse-unsupported.sample.json",
+      "expected": "blocked",
+      "actual": "blocked"
+    },
+    {
+      "check_id": "controlled_promotion_negative.expected_blocking_true",
+      "status": "valid",
+      "message": "negative expected blocking is true",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-reparse-unsupported.sample.json",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "check_id": "controlled_promotion_negative.matrix_error_code_match",
+      "status": "valid",
+      "message": "matrix expected error code matches sample expected error code",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-reparse-unsupported.sample.json",
+      "expected": "unsupported_safety_check",
+      "actual": "unsupported_safety_check"
+    },
+    {
+      "check_id": "error_code_exists_in_taxonomy",
+      "status": "valid",
+      "message": "error_code exists in taxonomy",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-reparse-unsupported.sample.json",
+      "expected": null,
+      "actual": "unsupported_safety_check"
+    },
+    {
+      "check_id": "controlled_promotion_negative.expected_failure_evidence_flags",
+      "status": "valid",
+      "message": "negative sample declares truthful failure read/mutation flags",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-reparse-unsupported.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "controlled_promotion_negative.operation_present",
+      "status": "valid",
+      "message": "negative request keeps controlled operation",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-reparse-unsupported.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "controlled_promotion_negative.execution_mode_present",
+      "status": "valid",
+      "message": "negative request keeps controlled execution mode",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-reparse-unsupported.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "negative_sample_expected_status",
+      "status": "valid",
+      "message": "negative sample met expected blocked status",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-manifest-reference.sample.json",
+      "expected": "blocked",
+      "actual": "blocked"
+    },
+    {
+      "check_id": "controlled_promotion_negative.request_object",
+      "status": "valid",
+      "message": "negative sample contains request object",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-manifest-reference.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "controlled_promotion_negative.expected_blocked",
+      "status": "valid",
+      "message": "negative expected status is blocked",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-manifest-reference.sample.json",
+      "expected": "blocked",
+      "actual": "blocked"
+    },
+    {
+      "check_id": "controlled_promotion_negative.expected_blocking_true",
+      "status": "valid",
+      "message": "negative expected blocking is true",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-manifest-reference.sample.json",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "check_id": "controlled_promotion_negative.matrix_error_code_match",
+      "status": "valid",
+      "message": "matrix expected error code matches sample expected error code",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-manifest-reference.sample.json",
+      "expected": "manifest_reference_mismatch",
+      "actual": "manifest_reference_mismatch"
+    },
+    {
+      "check_id": "error_code_exists_in_taxonomy",
+      "status": "valid",
+      "message": "error_code exists in taxonomy",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-manifest-reference.sample.json",
+      "expected": null,
+      "actual": "manifest_reference_mismatch"
+    },
+    {
+      "check_id": "controlled_promotion_negative.expected_failure_evidence_flags",
+      "status": "valid",
+      "message": "negative sample declares truthful failure read/mutation flags",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-manifest-reference.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "controlled_promotion_negative.operation_present",
+      "status": "valid",
+      "message": "negative request keeps controlled operation",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-manifest-reference.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "controlled_promotion_negative.execution_mode_present",
+      "status": "valid",
+      "message": "negative request keeps controlled execution mode",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-manifest-reference.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "negative_sample_expected_status",
+      "status": "valid",
+      "message": "negative sample met expected blocked status",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-case-collision.sample.json",
+      "expected": "blocked",
+      "actual": "blocked"
+    },
+    {
+      "check_id": "controlled_promotion_negative.request_object",
+      "status": "valid",
+      "message": "negative sample contains request object",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-case-collision.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "controlled_promotion_negative.expected_blocked",
+      "status": "valid",
+      "message": "negative expected status is blocked",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-case-collision.sample.json",
+      "expected": "blocked",
+      "actual": "blocked"
+    },
+    {
+      "check_id": "controlled_promotion_negative.expected_blocking_true",
+      "status": "valid",
+      "message": "negative expected blocking is true",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-case-collision.sample.json",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "check_id": "controlled_promotion_negative.matrix_error_code_match",
+      "status": "valid",
+      "message": "matrix expected error code matches sample expected error code",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-case-collision.sample.json",
+      "expected": "destination_case_collision",
+      "actual": "destination_case_collision"
+    },
+    {
+      "check_id": "error_code_exists_in_taxonomy",
+      "status": "valid",
+      "message": "error_code exists in taxonomy",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-case-collision.sample.json",
+      "expected": null,
+      "actual": "destination_case_collision"
+    },
+    {
+      "check_id": "controlled_promotion_negative.expected_failure_evidence_flags",
+      "status": "valid",
+      "message": "negative sample declares truthful failure read/mutation flags",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-case-collision.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "controlled_promotion_negative.operation_present",
+      "status": "valid",
+      "message": "negative request keeps controlled operation",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-case-collision.sample.json",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "check_id": "controlled_promotion_negative.execution_mode_present",
+      "status": "valid",
+      "message": "negative request keeps controlled execution mode",
+      "path": "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task035-local-workspace-staged-output-controlled-promotion-boundary\\docs\\gpt-communication\\contracts\\samples\\local-workspace-adapter\\negative-controlled-promotion-case-collision.sample.json",
+      "expected": null,
+      "actual": null
+    }
+  ],
+  "limitations": [
+    "This validator reads JSON contracts and samples only.",
+    "It does not invoke adapters, Hancom COM, GUI, internet, or document generation.",
+    "Task 025-A cloud authoring did not execute this validator; local execution is Task 025-B."
+  ]
+}

@@ -1,0 +1,575 @@
+{
+  "verified_implementation_commit_sha": "e7c91119771ad9e75262ee946ad648b674157472",
+  "all_passed": false,
+  "scenarios": [
+    {
+      "scenario_id": "task033_whole_response_positive",
+      "status": "failed",
+      "expected": {},
+      "observed": {
+        "error": "AssertionError: status_promoted: 'blocked'"
+      },
+      "assertions": [
+        {
+          "name": "status_promoted",
+          "passed": false,
+          "observed": "blocked"
+        }
+      ]
+    },
+    {
+      "scenario_id": "task033_inner_manifest_positive",
+      "status": "failed",
+      "expected": {},
+      "observed": {
+        "error": "AssertionError: status_promoted: 'blocked'"
+      },
+      "assertions": [
+        {
+          "name": "status_promoted",
+          "passed": false,
+          "observed": "blocked"
+        }
+      ]
+    },
+    {
+      "scenario_id": "trusted_receipt_idempotency",
+      "status": "failed",
+      "expected": {},
+      "observed": {
+        "error": "KeyError: 'receipt'"
+      },
+      "assertions": []
+    },
+    {
+      "scenario_id": "conflicting_trusted_receipt",
+      "status": "failed",
+      "expected": {},
+      "observed": {
+        "error": "KeyError: 'receipt'"
+      },
+      "assertions": []
+    },
+    {
+      "scenario_id": "pre_existing_destination_preservation",
+      "status": "failed",
+      "expected": {},
+      "observed": {
+        "error": "AssertionError: destination_exists: {'status': 'blocked', 'error_code': 'approved_root_not_allowed', 'error_category': 'approved_root_not_allowed', 'blocking': True, 'message': 'destination approved root is not allowed', 'safety_assertions': {'controlled_promotion_boundary_evaluated': True, 'controlled_promotion_boundary_invoked': True, 'controlled_test_promotion_performed': False, 'production_promotion_performed': False, 'actual_adapter_invoked': False, 'actual_file_system_mutation_performed': False, 'user_workspace_file_system_mutation_performed': False, 'file_content_read_performed': False, 'source_retained': True, 'source_mutated': False, 'temporary_path_cleaned': True, 'final_path_cleaned': True, 'cleanup_attempted': False, 'cleanup_complete': True, 'cleanup_error_codes': [], 'original_error_code': 'approved_root_not_allowed', 'local_hancom_com_executed': False, 'real_hwp_hwpx_hancell_hanshow_artifact_generated': False, 'public_internet_access_performed': False, 'dependency_install_performed': False}}"
+      },
+      "assertions": [
+        {
+          "name": "destination_exists",
+          "passed": false,
+          "observed": {
+            "status": "blocked",
+            "error_code": "approved_root_not_allowed",
+            "error_category": "approved_root_not_allowed",
+            "blocking": true,
+            "message": "destination approved root is not allowed",
+            "safety_assertions": {
+              "controlled_promotion_boundary_evaluated": true,
+              "controlled_promotion_boundary_invoked": true,
+              "controlled_test_promotion_performed": false,
+              "production_promotion_performed": false,
+              "actual_adapter_invoked": false,
+              "actual_file_system_mutation_performed": false,
+              "user_workspace_file_system_mutation_performed": false,
+              "file_content_read_performed": false,
+              "source_retained": true,
+              "source_mutated": false,
+              "temporary_path_cleaned": true,
+              "final_path_cleaned": true,
+              "cleanup_attempted": false,
+              "cleanup_complete": true,
+              "cleanup_error_codes": [],
+              "original_error_code": "approved_root_not_allowed",
+              "local_hancom_com_executed": false,
+              "real_hwp_hwpx_hancell_hanshow_artifact_generated": false,
+              "public_internet_access_performed": false,
+              "dependency_install_performed": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "authorization_mismatch_before_io",
+      "status": "passed",
+      "expected": {},
+      "observed": {
+        "error_code": "authorization_binding_mismatch"
+      },
+      "assertions": [
+        {
+          "name": "authorization_binding_mismatch",
+          "passed": true,
+          "observed": {
+            "status": "blocked",
+            "error_code": "authorization_binding_mismatch",
+            "error_category": "authorization_binding_mismatch",
+            "blocking": true,
+            "message": "authorization binding does not match source and destination",
+            "safety_assertions": {
+              "controlled_promotion_boundary_evaluated": true,
+              "controlled_promotion_boundary_invoked": true,
+              "controlled_test_promotion_performed": false,
+              "production_promotion_performed": false,
+              "actual_adapter_invoked": false,
+              "actual_file_system_mutation_performed": false,
+              "user_workspace_file_system_mutation_performed": false,
+              "file_content_read_performed": false,
+              "source_retained": true,
+              "source_mutated": false,
+              "temporary_path_cleaned": true,
+              "final_path_cleaned": true,
+              "cleanup_attempted": false,
+              "cleanup_complete": true,
+              "cleanup_error_codes": [],
+              "original_error_code": "authorization_binding_mismatch",
+              "local_hancom_com_executed": false,
+              "real_hwp_hwpx_hancell_hanshow_artifact_generated": false,
+              "public_internet_access_performed": false,
+              "dependency_install_performed": false
+            }
+          }
+        },
+        {
+          "name": "no_read",
+          "passed": true,
+          "observed": null
+        },
+        {
+          "name": "no_mutation",
+          "passed": true,
+          "observed": null
+        }
+      ]
+    },
+    {
+      "scenario_id": "actual_source_digest_mismatch",
+      "status": "failed",
+      "expected": {},
+      "observed": {
+        "error": "AssertionError: source_digest_mismatch: {'status': 'blocked', 'error_code': 'approved_root_not_allowed', 'error_category': 'approved_root_not_allowed', 'blocking': True, 'message': 'destination approved root is not allowed', 'safety_assertions': {'controlled_promotion_boundary_evaluated': True, 'controlled_promotion_boundary_invoked': True, 'controlled_test_promotion_performed': False, 'production_promotion_performed': False, 'actual_adapter_invoked': False, 'actual_file_system_mutation_performed': False, 'user_workspace_file_system_mutation_performed': False, 'file_content_read_performed': False, 'source_retained': True, 'source_mutated': False, 'temporary_path_cleaned': True, 'final_path_cleaned': True, 'cleanup_attempted': False, 'cleanup_complete': True, 'cleanup_error_codes': [], 'original_error_code': 'approved_root_not_allowed', 'local_hancom_com_executed': False, 'real_hwp_hwpx_hancell_hanshow_artifact_generated': False, 'public_internet_access_performed': False, 'dependency_install_performed': False}}"
+      },
+      "assertions": [
+        {
+          "name": "source_digest_mismatch",
+          "passed": false,
+          "observed": {
+            "status": "blocked",
+            "error_code": "approved_root_not_allowed",
+            "error_category": "approved_root_not_allowed",
+            "blocking": true,
+            "message": "destination approved root is not allowed",
+            "safety_assertions": {
+              "controlled_promotion_boundary_evaluated": true,
+              "controlled_promotion_boundary_invoked": true,
+              "controlled_test_promotion_performed": false,
+              "production_promotion_performed": false,
+              "actual_adapter_invoked": false,
+              "actual_file_system_mutation_performed": false,
+              "user_workspace_file_system_mutation_performed": false,
+              "file_content_read_performed": false,
+              "source_retained": true,
+              "source_mutated": false,
+              "temporary_path_cleaned": true,
+              "final_path_cleaned": true,
+              "cleanup_attempted": false,
+              "cleanup_complete": true,
+              "cleanup_error_codes": [],
+              "original_error_code": "approved_root_not_allowed",
+              "local_hancom_com_executed": false,
+              "real_hwp_hwpx_hancell_hanshow_artifact_generated": false,
+              "public_internet_access_performed": false,
+              "dependency_install_performed": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "raw_root_safety",
+      "status": "failed",
+      "expected": {},
+      "observed": {
+        "error": "AssertionError: approved_symlink: {'status': 'blocked', 'error_code': 'approved_root_not_allowed', 'error_category': 'approved_root_not_allowed', 'blocking': True, 'message': 'destination approved root is not allowed', 'safety_assertions': {'controlled_promotion_boundary_evaluated': True, 'controlled_promotion_boundary_invoked': True, 'controlled_test_promotion_performed': False, 'production_promotion_performed': False, 'actual_adapter_invoked': False, 'actual_file_system_mutation_performed': False, 'user_workspace_file_system_mutation_performed': False, 'file_content_read_performed': False, 'source_retained': True, 'source_mutated': False, 'temporary_path_cleaned': True, 'final_path_cleaned': True, 'cleanup_attempted': False, 'cleanup_complete': True, 'cleanup_error_codes': [], 'original_error_code': 'approved_root_not_allowed', 'local_hancom_com_executed': False, 'real_hwp_hwpx_hancell_hanshow_artifact_generated': False, 'public_internet_access_performed': False, 'dependency_install_performed': False}}"
+      },
+      "assertions": [
+        {
+          "name": "staged_symlink",
+          "passed": true,
+          "observed": {
+            "status": "blocked",
+            "error_code": "symlink_not_allowed",
+            "error_category": "symlink_not_allowed",
+            "blocking": true,
+            "message": "staged root symlink not allowed: C:\\Users\\USER\\AppData\\Local\\Temp\\tmptm1taqn2\\raw-staged",
+            "safety_assertions": {
+              "controlled_promotion_boundary_evaluated": true,
+              "controlled_promotion_boundary_invoked": true,
+              "controlled_test_promotion_performed": false,
+              "production_promotion_performed": false,
+              "actual_adapter_invoked": false,
+              "actual_file_system_mutation_performed": false,
+              "user_workspace_file_system_mutation_performed": false,
+              "file_content_read_performed": false,
+              "source_retained": true,
+              "source_mutated": false,
+              "temporary_path_cleaned": true,
+              "final_path_cleaned": true,
+              "cleanup_attempted": false,
+              "cleanup_complete": true,
+              "cleanup_error_codes": [],
+              "original_error_code": "symlink_not_allowed",
+              "local_hancom_com_executed": false,
+              "real_hwp_hwpx_hancell_hanshow_artifact_generated": false,
+              "public_internet_access_performed": false,
+              "dependency_install_performed": false
+            }
+          }
+        },
+        {
+          "name": "staged_symlink_no_read",
+          "passed": true,
+          "observed": null
+        },
+        {
+          "name": "approved_symlink",
+          "passed": false,
+          "observed": {
+            "status": "blocked",
+            "error_code": "approved_root_not_allowed",
+            "error_category": "approved_root_not_allowed",
+            "blocking": true,
+            "message": "destination approved root is not allowed",
+            "safety_assertions": {
+              "controlled_promotion_boundary_evaluated": true,
+              "controlled_promotion_boundary_invoked": true,
+              "controlled_test_promotion_performed": false,
+              "production_promotion_performed": false,
+              "actual_adapter_invoked": false,
+              "actual_file_system_mutation_performed": false,
+              "user_workspace_file_system_mutation_performed": false,
+              "file_content_read_performed": false,
+              "source_retained": true,
+              "source_mutated": false,
+              "temporary_path_cleaned": true,
+              "final_path_cleaned": true,
+              "cleanup_attempted": false,
+              "cleanup_complete": true,
+              "cleanup_error_codes": [],
+              "original_error_code": "approved_root_not_allowed",
+              "local_hancom_com_executed": false,
+              "real_hwp_hwpx_hancell_hanshow_artifact_generated": false,
+              "public_internet_access_performed": false,
+              "dependency_install_performed": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "lexical_component_safety",
+      "status": "failed",
+      "expected": {},
+      "observed": {
+        "error": "AssertionError: source_component_symlink: {'status': 'blocked', 'error_code': 'approved_root_not_allowed', 'error_category': 'approved_root_not_allowed', 'blocking': True, 'message': 'destination approved root is not allowed', 'safety_assertions': {'controlled_promotion_boundary_evaluated': True, 'controlled_promotion_boundary_invoked': True, 'controlled_test_promotion_performed': False, 'production_promotion_performed': False, 'actual_adapter_invoked': False, 'actual_file_system_mutation_performed': False, 'user_workspace_file_system_mutation_performed': False, 'file_content_read_performed': False, 'source_retained': True, 'source_mutated': False, 'temporary_path_cleaned': True, 'final_path_cleaned': True, 'cleanup_attempted': False, 'cleanup_complete': True, 'cleanup_error_codes': [], 'original_error_code': 'approved_root_not_allowed', 'local_hancom_com_executed': False, 'real_hwp_hwpx_hancell_hanshow_artifact_generated': False, 'public_internet_access_performed': False, 'dependency_install_performed': False}}"
+      },
+      "assertions": [
+        {
+          "name": "source_component_symlink",
+          "passed": false,
+          "observed": {
+            "status": "blocked",
+            "error_code": "approved_root_not_allowed",
+            "error_category": "approved_root_not_allowed",
+            "blocking": true,
+            "message": "destination approved root is not allowed",
+            "safety_assertions": {
+              "controlled_promotion_boundary_evaluated": true,
+              "controlled_promotion_boundary_invoked": true,
+              "controlled_test_promotion_performed": false,
+              "production_promotion_performed": false,
+              "actual_adapter_invoked": false,
+              "actual_file_system_mutation_performed": false,
+              "user_workspace_file_system_mutation_performed": false,
+              "file_content_read_performed": false,
+              "source_retained": true,
+              "source_mutated": false,
+              "temporary_path_cleaned": true,
+              "final_path_cleaned": true,
+              "cleanup_attempted": false,
+              "cleanup_complete": true,
+              "cleanup_error_codes": [],
+              "original_error_code": "approved_root_not_allowed",
+              "local_hancom_com_executed": false,
+              "real_hwp_hwpx_hancell_hanshow_artifact_generated": false,
+              "public_internet_access_performed": false,
+              "dependency_install_performed": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "sibling_casefold_collision",
+      "status": "failed",
+      "expected": {},
+      "observed": {
+        "error": "AssertionError: case_collision: {'status': 'blocked', 'error_code': 'approved_root_not_allowed', 'error_category': 'approved_root_not_allowed', 'blocking': True, 'message': 'destination approved root is not allowed', 'safety_assertions': {'controlled_promotion_boundary_evaluated': True, 'controlled_promotion_boundary_invoked': True, 'controlled_test_promotion_performed': False, 'production_promotion_performed': False, 'actual_adapter_invoked': False, 'actual_file_system_mutation_performed': False, 'user_workspace_file_system_mutation_performed': False, 'file_content_read_performed': False, 'source_retained': True, 'source_mutated': False, 'temporary_path_cleaned': True, 'final_path_cleaned': True, 'cleanup_attempted': False, 'cleanup_complete': True, 'cleanup_error_codes': [], 'original_error_code': 'approved_root_not_allowed', 'local_hancom_com_executed': False, 'real_hwp_hwpx_hancell_hanshow_artifact_generated': False, 'public_internet_access_performed': False, 'dependency_install_performed': False}}"
+      },
+      "assertions": [
+        {
+          "name": "case_collision",
+          "passed": false,
+          "observed": {
+            "status": "blocked",
+            "error_code": "approved_root_not_allowed",
+            "error_category": "approved_root_not_allowed",
+            "blocking": true,
+            "message": "destination approved root is not allowed",
+            "safety_assertions": {
+              "controlled_promotion_boundary_evaluated": true,
+              "controlled_promotion_boundary_invoked": true,
+              "controlled_test_promotion_performed": false,
+              "production_promotion_performed": false,
+              "actual_adapter_invoked": false,
+              "actual_file_system_mutation_performed": false,
+              "user_workspace_file_system_mutation_performed": false,
+              "file_content_read_performed": false,
+              "source_retained": true,
+              "source_mutated": false,
+              "temporary_path_cleaned": true,
+              "final_path_cleaned": true,
+              "cleanup_attempted": false,
+              "cleanup_complete": true,
+              "cleanup_error_codes": [],
+              "original_error_code": "approved_root_not_allowed",
+              "local_hancom_com_executed": false,
+              "real_hwp_hwpx_hancell_hanshow_artifact_generated": false,
+              "public_internet_access_performed": false,
+              "dependency_install_performed": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "cross_volume_fail_closed",
+      "status": "failed",
+      "expected": {},
+      "observed": {
+        "error": "AssertionError: cross_volume: {'status': 'blocked', 'error_code': 'approved_root_not_allowed', 'error_category': 'approved_root_not_allowed', 'blocking': True, 'message': 'destination approved root is not allowed', 'safety_assertions': {'controlled_promotion_boundary_evaluated': True, 'controlled_promotion_boundary_invoked': True, 'controlled_test_promotion_performed': False, 'production_promotion_performed': False, 'actual_adapter_invoked': False, 'actual_file_system_mutation_performed': False, 'user_workspace_file_system_mutation_performed': False, 'file_content_read_performed': False, 'source_retained': True, 'source_mutated': False, 'temporary_path_cleaned': True, 'final_path_cleaned': True, 'cleanup_attempted': False, 'cleanup_complete': True, 'cleanup_error_codes': [], 'original_error_code': 'approved_root_not_allowed', 'local_hancom_com_executed': False, 'real_hwp_hwpx_hancell_hanshow_artifact_generated': False, 'public_internet_access_performed': False, 'dependency_install_performed': False}}"
+      },
+      "assertions": [
+        {
+          "name": "cross_volume",
+          "passed": false,
+          "observed": {
+            "status": "blocked",
+            "error_code": "approved_root_not_allowed",
+            "error_category": "approved_root_not_allowed",
+            "blocking": true,
+            "message": "destination approved root is not allowed",
+            "safety_assertions": {
+              "controlled_promotion_boundary_evaluated": true,
+              "controlled_promotion_boundary_invoked": true,
+              "controlled_test_promotion_performed": false,
+              "production_promotion_performed": false,
+              "actual_adapter_invoked": false,
+              "actual_file_system_mutation_performed": false,
+              "user_workspace_file_system_mutation_performed": false,
+              "file_content_read_performed": false,
+              "source_retained": true,
+              "source_mutated": false,
+              "temporary_path_cleaned": true,
+              "final_path_cleaned": true,
+              "cleanup_attempted": false,
+              "cleanup_complete": true,
+              "cleanup_error_codes": [],
+              "original_error_code": "approved_root_not_allowed",
+              "local_hancom_com_executed": false,
+              "real_hwp_hwpx_hancell_hanshow_artifact_generated": false,
+              "public_internet_access_performed": false,
+              "dependency_install_performed": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "post_link_temp_cleanup_failure",
+      "status": "failed",
+      "expected": {},
+      "observed": {
+        "error": "AssertionError: temp_temporary_cleanup_failed: {'status': 'blocked', 'error_code': 'approved_root_not_allowed', 'error_category': 'approved_root_not_allowed', 'blocking': True, 'message': 'destination approved root is not allowed', 'safety_assertions': {'controlled_promotion_boundary_evaluated': True, 'controlled_promotion_boundary_invoked': True, 'controlled_test_promotion_performed': False, 'production_promotion_performed': False, 'actual_adapter_invoked': False, 'actual_file_system_mutation_performed': False, 'user_workspace_file_system_mutation_performed': False, 'file_content_read_performed': False, 'source_retained': True, 'source_mutated': False, 'temporary_path_cleaned': True, 'final_path_cleaned': True, 'cleanup_attempted': False, 'cleanup_complete': True, 'cleanup_error_codes': [], 'original_error_code': 'approved_root_not_allowed', 'local_hancom_com_executed': False, 'real_hwp_hwpx_hancell_hanshow_artifact_generated': False, 'public_internet_access_performed': False, 'dependency_install_performed': False}}"
+      },
+      "assertions": [
+        {
+          "name": "temp_temporary_cleanup_failed",
+          "passed": false,
+          "observed": {
+            "status": "blocked",
+            "error_code": "approved_root_not_allowed",
+            "error_category": "approved_root_not_allowed",
+            "blocking": true,
+            "message": "destination approved root is not allowed",
+            "safety_assertions": {
+              "controlled_promotion_boundary_evaluated": true,
+              "controlled_promotion_boundary_invoked": true,
+              "controlled_test_promotion_performed": false,
+              "production_promotion_performed": false,
+              "actual_adapter_invoked": false,
+              "actual_file_system_mutation_performed": false,
+              "user_workspace_file_system_mutation_performed": false,
+              "file_content_read_performed": false,
+              "source_retained": true,
+              "source_mutated": false,
+              "temporary_path_cleaned": true,
+              "final_path_cleaned": true,
+              "cleanup_attempted": false,
+              "cleanup_complete": true,
+              "cleanup_error_codes": [],
+              "original_error_code": "approved_root_not_allowed",
+              "local_hancom_com_executed": false,
+              "real_hwp_hwpx_hancell_hanshow_artifact_generated": false,
+              "public_internet_access_performed": false,
+              "dependency_install_performed": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "final_cleanup_failure_with_temp_cleanup",
+      "status": "failed",
+      "expected": {},
+      "observed": {
+        "error": "AssertionError: final_temporary_cleanup_failed: {'status': 'blocked', 'error_code': 'approved_root_not_allowed', 'error_category': 'approved_root_not_allowed', 'blocking': True, 'message': 'destination approved root is not allowed', 'safety_assertions': {'controlled_promotion_boundary_evaluated': True, 'controlled_promotion_boundary_invoked': True, 'controlled_test_promotion_performed': False, 'production_promotion_performed': False, 'actual_adapter_invoked': False, 'actual_file_system_mutation_performed': False, 'user_workspace_file_system_mutation_performed': False, 'file_content_read_performed': False, 'source_retained': True, 'source_mutated': False, 'temporary_path_cleaned': True, 'final_path_cleaned': True, 'cleanup_attempted': False, 'cleanup_complete': True, 'cleanup_error_codes': [], 'original_error_code': 'approved_root_not_allowed', 'local_hancom_com_executed': False, 'real_hwp_hwpx_hancell_hanshow_artifact_generated': False, 'public_internet_access_performed': False, 'dependency_install_performed': False}}"
+      },
+      "assertions": [
+        {
+          "name": "final_temporary_cleanup_failed",
+          "passed": false,
+          "observed": {
+            "status": "blocked",
+            "error_code": "approved_root_not_allowed",
+            "error_category": "approved_root_not_allowed",
+            "blocking": true,
+            "message": "destination approved root is not allowed",
+            "safety_assertions": {
+              "controlled_promotion_boundary_evaluated": true,
+              "controlled_promotion_boundary_invoked": true,
+              "controlled_test_promotion_performed": false,
+              "production_promotion_performed": false,
+              "actual_adapter_invoked": false,
+              "actual_file_system_mutation_performed": false,
+              "user_workspace_file_system_mutation_performed": false,
+              "file_content_read_performed": false,
+              "source_retained": true,
+              "source_mutated": false,
+              "temporary_path_cleaned": true,
+              "final_path_cleaned": true,
+              "cleanup_attempted": false,
+              "cleanup_complete": true,
+              "cleanup_error_codes": [],
+              "original_error_code": "approved_root_not_allowed",
+              "local_hancom_com_executed": false,
+              "real_hwp_hwpx_hancell_hanshow_artifact_generated": false,
+              "public_internet_access_performed": false,
+              "dependency_install_performed": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "dual_cleanup_failure",
+      "status": "failed",
+      "expected": {},
+      "observed": {
+        "error": "AssertionError: dual_temporary_cleanup_failed: {'status': 'blocked', 'error_code': 'approved_root_not_allowed', 'error_category': 'approved_root_not_allowed', 'blocking': True, 'message': 'destination approved root is not allowed', 'safety_assertions': {'controlled_promotion_boundary_evaluated': True, 'controlled_promotion_boundary_invoked': True, 'controlled_test_promotion_performed': False, 'production_promotion_performed': False, 'actual_adapter_invoked': False, 'actual_file_system_mutation_performed': False, 'user_workspace_file_system_mutation_performed': False, 'file_content_read_performed': False, 'source_retained': True, 'source_mutated': False, 'temporary_path_cleaned': True, 'final_path_cleaned': True, 'cleanup_attempted': False, 'cleanup_complete': True, 'cleanup_error_codes': [], 'original_error_code': 'approved_root_not_allowed', 'local_hancom_com_executed': False, 'real_hwp_hwpx_hancell_hanshow_artifact_generated': False, 'public_internet_access_performed': False, 'dependency_install_performed': False}}"
+      },
+      "assertions": [
+        {
+          "name": "dual_temporary_cleanup_failed",
+          "passed": false,
+          "observed": {
+            "status": "blocked",
+            "error_code": "approved_root_not_allowed",
+            "error_category": "approved_root_not_allowed",
+            "blocking": true,
+            "message": "destination approved root is not allowed",
+            "safety_assertions": {
+              "controlled_promotion_boundary_evaluated": true,
+              "controlled_promotion_boundary_invoked": true,
+              "controlled_test_promotion_performed": false,
+              "production_promotion_performed": false,
+              "actual_adapter_invoked": false,
+              "actual_file_system_mutation_performed": false,
+              "user_workspace_file_system_mutation_performed": false,
+              "file_content_read_performed": false,
+              "source_retained": true,
+              "source_mutated": false,
+              "temporary_path_cleaned": true,
+              "final_path_cleaned": true,
+              "cleanup_attempted": false,
+              "cleanup_complete": true,
+              "cleanup_error_codes": [],
+              "original_error_code": "approved_root_not_allowed",
+              "local_hancom_com_executed": false,
+              "real_hwp_hwpx_hancell_hanshow_artifact_generated": false,
+              "public_internet_access_performed": false,
+              "dependency_install_performed": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "structured_filesystem_failures",
+      "status": "failed",
+      "expected": {},
+      "observed": {
+        "error": "AssertionError: directory_listing: {'status': 'blocked', 'error_code': 'approved_root_not_allowed', 'error_category': 'approved_root_not_allowed', 'blocking': True, 'message': 'destination approved root is not allowed', 'safety_assertions': {'controlled_promotion_boundary_evaluated': True, 'controlled_promotion_boundary_invoked': True, 'controlled_test_promotion_performed': False, 'production_promotion_performed': False, 'actual_adapter_invoked': False, 'actual_file_system_mutation_performed': False, 'user_workspace_file_system_mutation_performed': False, 'file_content_read_performed': False, 'source_retained': True, 'source_mutated': False, 'temporary_path_cleaned': True, 'final_path_cleaned': True, 'cleanup_attempted': False, 'cleanup_complete': True, 'cleanup_error_codes': [], 'original_error_code': 'approved_root_not_allowed', 'local_hancom_com_executed': False, 'real_hwp_hwpx_hancell_hanshow_artifact_generated': False, 'public_internet_access_performed': False, 'dependency_install_performed': False}}"
+      },
+      "assertions": [
+        {
+          "name": "directory_listing",
+          "passed": false,
+          "observed": {
+            "status": "blocked",
+            "error_code": "approved_root_not_allowed",
+            "error_category": "approved_root_not_allowed",
+            "blocking": true,
+            "message": "destination approved root is not allowed",
+            "safety_assertions": {
+              "controlled_promotion_boundary_evaluated": true,
+              "controlled_promotion_boundary_invoked": true,
+              "controlled_test_promotion_performed": false,
+              "production_promotion_performed": false,
+              "actual_adapter_invoked": false,
+              "actual_file_system_mutation_performed": false,
+              "user_workspace_file_system_mutation_performed": false,
+              "file_content_read_performed": false,
+              "source_retained": true,
+              "source_mutated": false,
+              "temporary_path_cleaned": true,
+              "final_path_cleaned": true,
+              "cleanup_attempted": false,
+              "cleanup_complete": true,
+              "cleanup_error_codes": [],
+              "original_error_code": "approved_root_not_allowed",
+              "local_hancom_com_executed": false,
+              "real_hwp_hwpx_hancell_hanshow_artifact_generated": false,
+              "public_internet_access_performed": false,
+              "dependency_install_performed": false
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

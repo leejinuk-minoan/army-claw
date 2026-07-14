@@ -1,0 +1,13 @@
+{
+  "attempt": "attempt-002",
+  "initial_preflight_clean_confirmed_before_evidence": true,
+  "attempt_002_status_short": "?? docs/gpt-communication/evidence/task035-local-workspace-staged-output-controlled-promotion-boundary/formal-local-verification/\n",
+  "branch": "agent/task035-local-workspace-staged-output-controlled-promotion-boundary",
+  "head": "e7c91119771ad9e75262ee946ad648b674157472",
+  "remote_head": "e7c91119771ad9e75262ee946ad648b674157472",
+  "local_remote_ahead_behind": "0\t0",
+  "main_head_ahead_behind": "0\t551",
+  "log_1_oneline": "e7c9111 Correct Task 035 root safety and failure cleanup",
+  "required_head": "e7c91119771ad9e75262ee946ad648b674157472",
+  "exact_head_and_branch_passed": true
+}

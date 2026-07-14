@@ -1,0 +1,17 @@
+{
+  "results": [
+    {
+      "path": "tools/adapters/local_workspace_adapter.py",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "path": "tools/validators/adapter_interface_validator.py",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "all_passed": true
+}

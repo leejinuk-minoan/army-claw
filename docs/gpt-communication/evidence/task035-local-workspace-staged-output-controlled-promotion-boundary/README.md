@@ -27,3 +27,7 @@ Task 035-B evidence must distinguish:
 Expected evidence includes validator CLI stdout/stderr/exit code, adapter validator unittest stdout/stderr/exit code, local workspace adapter unittest stdout/stderr/exit code, Python version, final git status, isolated temporary-root promotion evidence, source/temporary/final digest results, authorization and manifest-link checks, exclusive-create result, cleanup result, and final safety assertions.
 
 Evidence must not include real user workspace content. Existing evidence must not be rewritten after final review.
+
+## Task 035-B formal local verification
+
+Formal local verification evidence is recorded under `formal-local-verification/attempt-002/`. The initial `formal-local-verification/` root files are preserved as a failed harness attempt; `attempt-002` is the passing local gate attempt referenced by `LOCAL_EXECUTION_RESULT.json`.
