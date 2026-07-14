@@ -1,66 +1,53 @@
 {
   "contract_format": "machine-readable-contract",
-  "contract_version": "army-claw-hwp-template-fidelity-plan-001.v1",
+  "contract_version": "army-claw-hwp-template-fidelity-plan-001.v2",
   "task_id": "task036-hwp-hwpx-template-fidelity-selector-execution-bridge",
-  "identity": {
-    "army_claw_scope": "offline_local_pc_office_document_agent",
-    "first_class_targets": ["hwp", "hwpx", "hancell", "hanshow", "local_workspace"],
-    "llm_role": "structured_plan_only",
-    "adapter_role": "deterministic_file_and_native_state_execution"
-  },
-  "plan_envelope": {
-    "required": ["contract_version", "plan_id", "target_id", "plan_type", "execution_mode", "template_reference", "output", "operations", "constraints", "evidence_policy"],
-    "target_id": ["hwp", "hwpx"],
-    "plan_type": "hwp_hwpx_template_fidelity_fill_plan",
-    "execution_mode": "deterministic_template_fidelity"
-  },
-  "template_reference": {
-    "required": ["artifact_id", "artifact_type", "source_role", "source_digest", "overwrite_source", "conversion_required"],
-    "artifact_type": ["hwp", "hwpx"],
-    "source_role": ["approved_hwp_template", "native_converted_template"],
-    "digest_algorithm": "sha256",
-    "overwrite_source": false,
-    "hwp_rule": "approved_local_hancom_conversion_to_native_hwpx_required",
-    "hwpx_rule": "direct_template_fidelity_input"
-  },
-  "selector_common": {
-    "selector_id_unique": true,
-    "expected_match_count_default": 1,
-    "occurrence_base": 1,
-    "unknown_fields": "block",
-    "resolve_before_mutation": true
-  },
+  "identity": {"army_claw_scope":"offline_local_pc_office_document_agent","first_class_targets":["hwp","hwpx","hancell","hanshow","local_workspace"],"llm_role":"structured_plan_only","adapter_role":"deterministic_file_and_native_state_execution"},
+  "plan_envelope": {"required":["contract_version","plan_id","target_id","plan_type","execution_mode","template_reference","output","operations","constraints","evidence_policy"],"target_id":["hwp","hwpx"],"plan_type":"hwp_hwpx_template_fidelity_fill_plan","execution_mode":"deterministic_template_fidelity"},
+  "template_reference": {"required":["artifact_id","artifact_type","source_role","source_digest","overwrite_source","conversion_required"],"artifact_type":["hwp","hwpx"],"source_role":["approved_hwp_template","native_converted_template"],"digest_algorithm":"sha256","overwrite_source":false,"hwp_rule":"approved_local_hancom_conversion_to_native_hwpx_required","hwpx_rule":"direct_template_fidelity_input"},
+  "selector_common": {"selector_id_unique":true,"expected_match_count_default":1,"occurrence_base":1,"unknown_fields":"block","resolve_before_mutation":true},
   "selectors": {
-    "paragraph_text": {"required": ["selector_id", "type", "source_text"], "match": "exact_joined_paragraph_runs", "case_sensitive": true, "whitespace_normalization_default": false},
-    "contains_text": {"required": ["selector_id", "type", "contains"], "match": "case_sensitive_substring", "empty_contains": "block"},
-    "nth_paragraph": {"required": ["selector_id", "type", "section_index", "paragraph_index"], "index_base": 0, "scope": "top_level_paragraphs", "table_internal_paragraphs_included": false},
-    "table_cell_text": {"required": ["selector_id", "type", "table_selector", "cell"], "index_base": 0, "merged_cell_policy": "anchor_only", "source_text_when_present": "must_match_joined_cell_text"}
+    "paragraph_text":{"required":["selector_id","type","source_text"],"match":"exact_joined_paragraph_runs","case_sensitive":true,"whitespace_normalization_default":false},
+    "contains_text":{"required":["selector_id","type","contains"],"match":"case_sensitive_substring","empty_contains":"block"},
+    "nth_paragraph":{"required":["selector_id","type","section_index","paragraph_index"],"index_base":0,"scope":"top_level_paragraphs","table_internal_paragraphs_included":false},
+    "table_cell_text":{"required":["selector_id","type","table_selector","cell"],"index_base":0,"merged_cell_policy":"anchor_only","source_text_when_present":"must_match_joined_cell_text"}
   },
-  "operation": {
-    "required": ["operation_id", "selector", "replacement", "preservation_policy"],
-    "replacement_types": ["text"],
-    "ordering": "plan_order_after_complete_pre_resolution",
-    "duplicate_operation_id": "block",
-    "target_conflict": "block"
-  },
-  "preservation_policy_required_true": ["preserve_first_run_style", "preserve_paragraph_properties", "preserve_cell_properties", "preserve_table_structure", "preserve_bindata", "update_preview_text"],
-  "determinism": {
-    "claim": "same_template_bytes_plus_canonical_plan_plus_engine_version_yields_same_target_set",
-    "whole_hwpx_byte_identity_claimed": false,
-    "required_evidence": ["canonical_plan_serialization", "selector_resolution_result", "matched_coordinates", "match_count", "before_text_digest", "after_text_digest", "changed_package_entries", "unchanged_package_entries", "unexpected_changed_entries"]
-  },
-  "preview_sync": {"required_when_entry_exists": true, "entry": "Preview/PrvText.txt", "failure_error": "hwp_preview_sync_failed", "structurally_absent_must_be_recorded": true},
+  "operation": {"required":["operation_id","selector","replacement","preservation_policy"],"replacement_types":["text"],"ordering":"plan_order_after_complete_pre_resolution","duplicate_operation_id":"block","target_conflict":"block"},
+  "preservation_policy_required_true": ["preserve_first_run_style","preserve_paragraph_properties","preserve_cell_properties","preserve_table_structure","preserve_bindata","update_preview_text"],
+  "determinism": {"claim":"same_template_bytes_plus_canonical_plan_plus_engine_version_yields_same_target_set","whole_hwpx_byte_identity_claimed":false,"required_evidence":["canonical_plan_serialization","selector_resolution_result","matched_coordinates","match_count","before_text_digest","after_text_digest","changed_package_entries","unchanged_package_entries","unexpected_changed_entries"]},
+  "preview_sync": {"entry":"Preview/PrvText.txt","when_entry_exists":"sync_required","mapping_impossible":"hwp_preview_sync_failed","when_structurally_absent":"execution_allowed_with_preview_status_structurally_absent","absence_must_not_be_reported_as_sync_success":true},
   "execution_bridge": {
-    "sequence": ["validated_plan", "hwp_adapter_slot", "hwpx_template_fidelity_fill", "task031_staged_output", "task033_evidence_manifest", "task035_controlled_promotion"],
-    "required_links": ["plan_id", "operation_id", "template_artifact_id", "template_digest", "staged_artifact_id", "staged_receipt_id", "evidence_manifest_id", "promotion_authorization_id"],
-    "llm_must_not_emit": ["xml_fragment", "cli_arguments", "native_app_command"]
+    "sequence":["validated_plan","hwp_adapter_slot","hwpx_template_fidelity_fill","task031_staged_output","task033_evidence_manifest","task035_controlled_promotion"],
+    "plan_level_required":["plan_id","template_artifact_id","template_digest","staged_artifact_id","staged_receipt_id","evidence_manifest_id","promotion_authorization_id"],
+    "operation_level_collection":{"field":"operations","required_per_item":["operation_id","selector_id","resolved_target","before_text_digest","after_text_digest"]},
+    "llm_must_not_emit":["xml_fragment","cli_arguments","native_app_command"]
   },
-  "errors": [
-    "hwp_template_plan_schema_invalid", "hwp_template_reference_invalid", "hwp_template_source_overwrite_blocked", "hwp_selector_type_unsupported", "hwp_selector_missing", "hwp_selector_no_match", "hwp_selector_ambiguous", "hwp_selector_occurrence_out_of_range", "hwp_selector_source_text_mismatch", "hwp_selector_duplicate_id", "hwp_operation_duplicate_id", "hwp_operation_target_conflict", "hwp_paragraph_index_out_of_range", "hwp_section_index_out_of_range", "hwp_table_index_out_of_range", "hwp_table_cell_out_of_range", "hwp_table_cell_non_anchor", "hwp_replacement_type_unsupported", "hwp_preservation_policy_violation", "hwp_preview_sync_failed", "hwp_unexpected_package_entry_change", "hwp_template_fidelity_execution_failed", "hwp_staging_output_collision"
-  ],
-  "sample_registry": {
-    "positive_profiles": ["paragraph_text", "contains_text", "nth_paragraph", "table_cell_text", "multi_selector", "execution_bridge_request", "execution_bridge_response"],
-    "negative_profiles": ["ambiguous_paragraph", "contains_no_match", "nth_out_of_range", "table_out_of_range", "table_non_anchor", "source_mismatch", "duplicate_selector", "duplicate_operation", "target_conflict", "source_overwrite", "output_collision", "unsupported_replacement", "preview_sync_impossible"]
+  "errors": ["hwp_template_plan_schema_invalid","hwp_template_reference_invalid","hwp_template_source_overwrite_blocked","hwp_selector_type_unsupported","hwp_selector_missing","hwp_selector_no_match","hwp_selector_ambiguous","hwp_selector_occurrence_out_of_range","hwp_selector_source_text_mismatch","hwp_selector_duplicate_id","hwp_operation_duplicate_id","hwp_operation_target_conflict","hwp_paragraph_index_out_of_range","hwp_section_index_out_of_range","hwp_table_index_out_of_range","hwp_table_cell_out_of_range","hwp_table_cell_non_anchor","hwp_replacement_type_unsupported","hwp_preservation_policy_violation","hwp_preview_sync_failed","hwp_unexpected_package_entry_change","hwp_template_fidelity_execution_failed","hwp_staging_output_collision"],
+  "error_definitions": {
+    "hwp_template_plan_schema_invalid":{"category":"schema","blocking":true,"recoverable":true,"default_message":"HWP template fidelity plan schema is invalid.","evidence_required":["plan_id","validation_path","validation_reason"]},
+    "hwp_template_reference_invalid":{"category":"template_reference","blocking":true,"recoverable":true,"default_message":"HWP or HWPX template reference is invalid.","evidence_required":["plan_id","template_artifact_id","template_digest","validation_reason"]},
+    "hwp_template_source_overwrite_blocked":{"category":"source_protection","blocking":true,"recoverable":true,"default_message":"Source template overwrite is prohibited.","evidence_required":["plan_id","template_artifact_id","output_relative_path"]},
+    "hwp_selector_type_unsupported":{"category":"selector_validation","blocking":true,"recoverable":true,"default_message":"Selector type is unsupported.","evidence_required":["plan_id","operation_id","selector_id","selector_type"]},
+    "hwp_selector_missing":{"category":"selector_validation","blocking":true,"recoverable":true,"default_message":"Selector is missing.","evidence_required":["plan_id","operation_id"]},
+    "hwp_selector_no_match":{"category":"selector_resolution","blocking":true,"recoverable":true,"default_message":"Selector matched no target.","evidence_required":["plan_id","operation_id","selector_id","selector_type","expected_match_count","actual_match_count"]},
+    "hwp_selector_ambiguous":{"category":"selector_resolution","blocking":true,"recoverable":true,"default_message":"Selector matched multiple targets without an unambiguous occurrence.","evidence_required":["plan_id","operation_id","selector_id","expected_match_count","actual_match_count","occurrence"]},
+    "hwp_selector_occurrence_out_of_range":{"category":"selector_resolution","blocking":true,"recoverable":true,"default_message":"Selector occurrence is outside the match range.","evidence_required":["plan_id","operation_id","selector_id","occurrence","actual_match_count"]},
+    "hwp_selector_source_text_mismatch":{"category":"selector_resolution","blocking":true,"recoverable":true,"default_message":"Resolved source text does not match the expected source text.","evidence_required":["plan_id","operation_id","selector_id","source_text_digest","actual_text_digest"]},
+    "hwp_selector_duplicate_id":{"category":"selector_validation","blocking":true,"recoverable":true,"default_message":"Selector ID is duplicated within the plan.","evidence_required":["plan_id","selector_id"]},
+    "hwp_operation_duplicate_id":{"category":"operation_validation","blocking":true,"recoverable":true,"default_message":"Operation ID is duplicated within the plan.","evidence_required":["plan_id","operation_id"]},
+    "hwp_operation_target_conflict":{"category":"target_conflict","blocking":true,"recoverable":true,"default_message":"Multiple operations resolve to the same or overlapping target.","evidence_required":["plan_id","operation_id","selector_id","validation_reason"]},
+    "hwp_paragraph_index_out_of_range":{"category":"selector_resolution","blocking":true,"recoverable":true,"default_message":"Paragraph index is outside the selected scope.","evidence_required":["plan_id","operation_id","selector_id","section_index","paragraph_index"]},
+    "hwp_section_index_out_of_range":{"category":"selector_resolution","blocking":true,"recoverable":true,"default_message":"Section index is outside the document.","evidence_required":["plan_id","operation_id","selector_id","section_index"]},
+    "hwp_table_index_out_of_range":{"category":"table_boundary","blocking":true,"recoverable":true,"default_message":"Table index is outside the document section.","evidence_required":["plan_id","operation_id","selector_id","section_index","table_index"]},
+    "hwp_table_cell_out_of_range":{"category":"table_boundary","blocking":true,"recoverable":true,"default_message":"Table cell coordinate is outside the selected table.","evidence_required":["plan_id","operation_id","selector_id","table_index","row","column"]},
+    "hwp_table_cell_non_anchor":{"category":"table_boundary","blocking":true,"recoverable":true,"default_message":"Merged-cell non-anchor coordinates cannot be selected.","evidence_required":["plan_id","operation_id","selector_id","table_index","row","column"]},
+    "hwp_replacement_type_unsupported":{"category":"replacement_policy","blocking":true,"recoverable":true,"default_message":"Replacement type is unsupported.","evidence_required":["plan_id","operation_id","selector_id","validation_reason"]},
+    "hwp_preservation_policy_violation":{"category":"preservation","blocking":true,"recoverable":false,"default_message":"Required template preservation policy was violated.","evidence_required":["plan_id","operation_id","changed_package_entries","unexpected_changed_entries","failure_stage"]},
+    "hwp_preview_sync_failed":{"category":"preview","blocking":true,"recoverable":true,"default_message":"Preview text synchronization could not be completed.","evidence_required":["plan_id","operation_id","selector_id","preview_status","failure_stage"]},
+    "hwp_unexpected_package_entry_change":{"category":"package_integrity","blocking":true,"recoverable":false,"default_message":"Unexpected HWPX package entries changed.","evidence_required":["plan_id","changed_package_entries","unexpected_changed_entries","failure_stage"]},
+    "hwp_template_fidelity_execution_failed":{"category":"execution","blocking":true,"recoverable":false,"default_message":"Template fidelity execution failed.","evidence_required":["plan_id","operation_id","failure_stage","validation_reason"]},
+    "hwp_staging_output_collision":{"category":"staging","blocking":true,"recoverable":true,"default_message":"Staged output path already exists.","evidence_required":["plan_id","output_relative_path","failure_stage"]}
   },
-  "cloud_phase": {"implementation_changed": false, "document_execution_performed": false, "adapter_validator_gate_status": "required_not_run"}
+  "sample_registry": {"positive_profiles":["paragraph_text","contains_text","nth_paragraph","table_cell_text","multi_selector","execution_bridge_request","execution_bridge_response"],"negative_profiles":["ambiguous_paragraph","contains_no_match","nth_out_of_range","table_out_of_range","table_non_anchor","source_mismatch","duplicate_selector","duplicate_operation","target_conflict","source_overwrite","output_collision","unsupported_replacement","preview_sync_impossible"]},
+  "cloud_phase": {"implementation_changed":false,"document_execution_performed":false,"adapter_validator_gate_status":"required_not_run"}
 }
