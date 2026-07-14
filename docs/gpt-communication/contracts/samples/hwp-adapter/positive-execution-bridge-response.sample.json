@@ -1,1 +1,33 @@
-{"case":"execution bridge response","sample_profile":"hwp_template_fidelity_bridge_response","response":{"bridge_version":"army-claw-hwp-template-fidelity-bridge-001.v1","plan_id":"plan-036-p5","status":"staged_output_ready","template_artifact_id":"template-001","template_digest":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","staged_artifact_id":"artifact-036-001","staged_receipt_id":"receipt-031-036-001","staging_path":"outputs/multi.hwpx","output_digest":"cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc","output_byte_size":2048,"selector_resolution":[{"operation_id":"replace-title","selector_id":"selector-title","target":{"section_index":0,"paragraph_index":0},"match_count":1,"before_text_digest":"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb","after_text_digest":"dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"}],"changed_package_entries":["Contents/section0.xml","Preview/PrvText.txt"],"unexpected_changed_entries":[],"preservation_validation":{"bindata_preserved":true,"table_count_preserved":true,"paragraph_count_preserved":true,"merged_cell_topology_preserved":true},"links":{"task031_staged_artifact_id":"artifact-036-001","task033_evidence_manifest_id":"manifest-036-001","task035_promotion_authorization_id":"auth-036-001"},"safety_assertions":{"actual_hancom_com_executed":false,"actual_hwp_conversion_performed":false,"temporary_test_workspace_mutation_performed":true,"user_workspace_mutation_performed":false,"source_template_overwrite_performed":false,"production_promotion_performed":false}},"expected":{"status":"valid","blocking":false}}
+{
+  "case": "execution bridge response",
+  "sample_profile": "hwp_template_fidelity_bridge_response",
+  "response": {
+    "bridge_version": "army-claw-hwp-template-fidelity-bridge-001.v2",
+    "plan_id": "plan-036-p5",
+    "status": "staged_output_ready",
+    "template_artifact_id": "template-001",
+    "template_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "staged_artifact_id": "artifact-036-001",
+    "staged_receipt_id": "receipt-031-036-001",
+    "evidence_manifest_id": "manifest-036-001",
+    "promotion_authorization_id": "auth-036-001",
+    "staging_path": "outputs/multi.hwpx",
+    "output_digest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+    "output_byte_size": 2048,
+    "operations": [
+      {
+        "operation_id": "replace-title",
+        "selector_id": "selector-title",
+        "resolved_target": {"section_index": 0, "paragraph_index": 0},
+        "before_text_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "after_text_digest": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+      }
+    ],
+    "changed_package_entries": ["Contents/section0.xml", "Preview/PrvText.txt"],
+    "unexpected_changed_entries": [],
+    "preview_status": "synchronized",
+    "preservation_validation": {"bindata_preserved":true,"table_count_preserved":true,"paragraph_count_preserved":true,"merged_cell_topology_preserved":true},
+    "safety_assertions": {"actual_hancom_com_executed":false,"actual_hwp_conversion_performed":false,"temporary_test_workspace_mutation_performed":true,"user_workspace_mutation_performed":false,"source_template_overwrite_performed":false,"production_promotion_performed":false}
+  },
+  "expected": {"status":"valid","blocking":false}
+}
