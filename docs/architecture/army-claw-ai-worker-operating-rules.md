@@ -67,7 +67,7 @@ Task Contract 승인
 - main 직접 push 금지
 - force push 금지
 - history rewrite 금지
-- 승인 없는 merge 금지
+- 검증 완료 후 마스터 에이전트는 PR을 통해 main merge 가능
 - 다른 worker의 branch 수정 금지
 
 다른 worker의 branch를 수정해야 하는 경우 사용자 또는 마스터 에이전트의 별도 승인이 필요하다.
