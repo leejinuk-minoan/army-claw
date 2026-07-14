@@ -21,14 +21,16 @@ merge_commit_sha: 650127595693eb101c1d21cd9bc758fc9490a0e7
 routing_class: local_codex_required
 local_agent_required: true
 Task 031 final completion gate: passed
-Task 032 active: true
-Task 032 status: local_completion_gate_passed_pending_master_review
-Task 032 completion gate: passed locally, master review pending
-Task 033 status: blocked_pending_task032_master_review
+Task 032 final master review: passed
+Task 032 active: false
+Task 032 status: final_verified
+Task 032 completion gate: passed
+Task 033 status: ready_for_master_task_definition
+Task 033 started: false
 canonical_branch: agent/task032-repository-baseline-governance-state-reconciliation
-canonical_content_baseline_sha: d631d5574a27952640f66988a9baebeca6e22050
+approved_baseline_sha: d4010e4f771f77965d025bb412ec88d1aa216a80
 corrective_state_content_commit_sha: d20862fe93fd7dc335169f45398d68a5d661b512
-corrective_state_sync_commit_sha: reported externally by Codex final report
+corrective_state_sync_commit_sha: d4010e4f771f77965d025bb412ec88d1aa216a80
 main_directly_modified: false
 main_only_commit_net_file_change: zero
 feature_development_performed: false
@@ -81,12 +83,13 @@ Task 003 initial review completion_gate_passed: false
 Task 003 initial review proceed_to_task_004: false
 Task 004 later record: review-only, final core selection 아님
 Task 005-031 later records: boundary/architecture/adapter contract work
-Task 032 status: local_completion_gate_passed_pending_master_review
-Task 033 status: blocked_pending_task032_master_review
+Task 032 status: final_verified
+Task 032 final master review: passed
+Task 033 status: ready_for_master_task_definition
+Task 033 started: false
 canonical branch: agent/task032-repository-baseline-governance-state-reconciliation
-canonical content baseline SHA: d631d5574a27952640f66988a9baebeca6e22050
+approved baseline SHA: d4010e4f771f77965d025bb412ec88d1aa216a80
 corrective state content commit SHA: d20862fe93fd7dc335169f45398d68a5d661b512
-final corrective commit SHA: Codex 최종 보고에서 제공
 Stage 2 transition: prohibited
 final HWPX core selection: prohibited
 ```
@@ -158,7 +161,8 @@ real_hwp_hwpx_hancell_hanshow_artifact_generated: false
 Task 033: Local Workspace Staged Output Evidence Manifest Boundary
 routing_class: cloud_first_local_verify
 adapter_validator_gate_required: true
-status: blocked_pending_task032_master_review
+status: ready_for_master_task_definition
+started: false
 ```
 
 ## 금지
