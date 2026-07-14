@@ -1,1 +1,136 @@
-{"updated_at":"2026-07-14","project":{"name":"Army Claw","repository":"leejinuk-minoan/army-claw","total_stages":8},"latest_completed_task":{"task_id":"task035-local-workspace-staged-output-controlled-promotion-boundary","name":"Task 035 Local Workspace Staged Output Controlled Promotion Boundary","status":"final_verified","completion_gate_passed":true,"master_review_complete":true,"approved_implementation_commit_sha":"e7c91119771ad9e75262ee946ad648b674157472","formal_evidence_recording_commit_sha":"1a743f88fb33fbd2caac42cb264efb511e205a5b","master_review_report_commit_sha":"df45b83d0b1fb2e9deafe8bfa3863ec7deba08bb","state_sync_commit_sha_embedded":false},"active_task":null,"next_planned_task":{"task_id":null,"name":null,"routing_class":"master_task_definition","status":"awaiting_master_task_definition"},"canonical_development_branch":"main","canonical_development_baseline":{"branch":"main","task033_integration_merge_sha":"a136cb2629a7fac660255da1318119ada4e56a1d","task034_governance_sync_commit_sha":"reported_externally_by_master_agent","task035_approved_implementation_commit_sha":"e7c91119771ad9e75262ee946ad648b674157472","task035_formal_evidence_commit_sha":"1a743f88fb33fbd2caac42cb264efb511e205a5b","task035_master_review_report_commit_sha":"df45b83d0b1fb2e9deafe8bfa3863ec7deba08bb","task035_main_merge_sha":"e5f782cdafbebd25697fc58a32c1fa0042857b12","state_sync_commit_sha_embedded":false,"task035_integration_pr":3,"task035_state_sync_commit_sha":"reported_externally_by_master_agent"},"main_status":{"current_main_sha_before_task034_merge":"a136cb2629a7fac660255da1318119ada4e56a1d","task033_source_branch":"agent/task033-local-workspace-staged-output-evidence-manifest-boundary","task033_source_head_sha":"3a626b6f610823c159aa8bcedf68342df1e1027c","task033_integration_pr":1,"task033_branch_merged":true,"post_merge_file_diff_count":0,"open_merge_prs_after_task033_merge":0,"master_reviewed_pr_merge_allowed":true,"main_direct_push_prohibited":true,"force_push_prohibited":true,"history_rewrite_prohibited":true,"task035_source_branch":"agent/task035-local-workspace-staged-output-controlled-promotion-boundary","task035_source_head_sha":"84f6c320f5369d846c50fe85b6ee060f2bc83c43","task035_integration_pr":3,"task035_integration_merge_sha":"e5f782cdafbebd25697fc58a32c1fa0042857b12","task035_branch_merged":true},"merge_policy":{"policy":"master_reviewed_pull_request","master_agent_may_merge_verified_pr":true,"required_conditions":["candidate_branch_is_reachable_and_reviewable","required_completion_gates_pass","required_validation_evidence_exists","no_unresolved_merge_conflict","no_forbidden_path_change","no_unsupported_completion_claim"],"worker_direct_push_to_main_allowed":false,"force_push_allowed":false,"history_rewrite_allowed":false},"task_routing_class":"cloud_delegable","phase_routing_class":{"task031_overall":"cloud_first_local_verify","task032":"local_codex_required","task033":"cloud_first_local_verify","task033a":"cloud_delegable","task033b":"local_codex_required","task034":"cloud_delegable","task035":"cloud_first_local_verify"},"historical_restriction_status":{"task003_initial_review_completion_gate_passed":false,"task003_initial_review_proceed_to_task004":false,"task003_v6_native_completion_evidence_later_recorded":true,"task004_was_review_only_not_final_core_selection":true,"tasks005_to035_are_boundary_architecture_adapter_and_governance_work":true,"stage_2_transition_remains_prohibited":true,"final_hwp_hwpx_core_selection_remains_prohibited":true,"old_task003_no_task004_restriction_status":"historical_superseded_for_review_and_boundary_work_only"},"governance":{"master_agent_chat":"current_chat","codex_prompt_author_chat":"separate_project_chat","codex_delegation_agent_chat":"separate_project_chat","local_codex_role":"local_execution_only","execution_routing":{"enabled":true,"classes":["cloud_delegable","local_codex_required","hybrid","cloud_first_local_verify"],"same_task_concurrent_writes":false},"handoff_contract":{"enabled":true,"architecture_path":"docs/architecture/army-claw-ai-worker-handoff-contract.md","template_path":"docs/gpt-communication/handoffs/AI_WORKER_HANDOFF_TEMPLATE.md","machine_contract_path":"docs/gpt-communication/handoffs/ai-worker-handoff-contract.json","handoff_packet_required_for_next_worker":true,"task_report_replaced_by_handoff":false,"research_note_replaced_by_handoff":false},"research_notes":{"enabled":true,"one_file_per_task":true,"root":"docs/research-notes/","human_index":"docs/research-notes/research-note-index.md","machine_index":"docs/research-notes/research-note-index.json","task_note_directory":"docs/research-notes/task-notes/","long_form_notes_in_index_allowed":false,"required_after_task_completion":true},"ai_workers":{"official_workers":["codex_a","codex_b","claude_code"],"gemini_antigravity_excluded":true,"human_collaboration_person_a_b_status":"canceled","same_task_concurrent_writes":false,"sequential_handoff_required":true,"branch_ownership_required":true},"source_of_truth":["docs/gpt-communication/PROJECT_STATE.json","docs/gpt-communication/CURRENT.md","docs/architecture/army-claw-master-plan.md","docs/gpt-communication/AGENT_OPERATING_MODEL.md","docs/architecture/army-claw-ai-worker-operating-rules.md","AGENTS.md","CLAUDE.md","docs/architecture/army-claw-solo-multi-agent-governance.md","docs/architecture/army-claw-branch-ownership-map.md","docs/architecture/army-claw-worker-setup-guide.md","docs/architecture/army-claw-ai-worker-handoff-contract.md","docs/architecture/army-claw-common-office-adapter-interface-contract.md","docs/architecture/army-claw-adapter-interface-validator-contract.md","docs/architecture/army-claw-adapter-validator-integration-contract.md","docs/architecture/army-claw-local-workspace-adapter-contract.md","docs/architecture/army-claw-local-workspace-controlled-dry-run-boundary.md","docs/architecture/army-claw-local-workspace-read-only-manifest-boundary.md","docs/architecture/army-claw-local-workspace-staged-output-boundary.md","docs/architecture/army-claw-local-workspace-staged-output-evidence-manifest-boundary.md","docs/architecture/army-claw-local-workspace-staged-output-controlled-promotion-boundary.md","docs/gpt-communication/contracts/local-workspace-staged-output-evidence-manifest-boundary.json","docs/gpt-communication/contracts/local-workspace-staged-output-controlled-promotion-boundary.json","tools/validators/adapter_interface_validator.py","tests/adapter_interface_validator/test_adapter_interface_validator.py","tools/adapters/local_workspace_adapter.py","tests/local_workspace_adapter/test_local_workspace_adapter.py","docs/gpt-communication/reports/2026-07-14-task033-final-master-review.md","docs/gpt-communication/reports/2026-07-14-task034-main-integration-governance-sync.md","docs/gpt-communication/reports/2026-07-14-task035-final-master-review.md","docs/gpt-communication/reports/2026-07-14-task035b-controlled-promotion-formal-local-verification.md","docs/gpt-communication/tasks/task034-main-integration-governance-sync/TASK_CONTRACT.md","docs/gpt-communication/tasks/task035-local-workspace-staged-output-controlled-promotion-boundary/TASK_CONTRACT.md","docs/research-notes/task-notes/RN-034-task034-main-integration-governance-sync.md","docs/research-notes/task-notes/RN-035-task035-local-workspace-staged-output-controlled-promotion-boundary.md","docs/research-notes/research-note-index.md","docs/research-notes/research-note-index.json"]},"current_stage":{"stage":1,"name":"HwpAdapter 및 HWP/HWPX 엔진 안정화","substage":"1-3","substage_name":"선행 HWPX 엔진 비교·코어 선정","status":"in_progress","current_task":null,"next_task":"awaiting_master_task_definition"},"architecture":{"orchestrator":"OpenClaw / Army Claw Node.js·TypeScript","decision_status":"accepted_for_benchmark_implementation_not_core_selection","adapter_validator_integration":{"enabled":true,"validator_cli_last_status":"valid","validator_total_checks":383,"validator_passed_checks":383,"validator_failed_checks":0,"validator_blocked_checks":0,"adapter_validator_unittest_exit_code":0,"local_workspace_adapter_unittest_exit_code":0,"actual_adapter_invoked":false,"stage_2_transition_declared":false,"final_hwp_hwpx_core_selected":false},"local_workspace_boundaries":{"task028_proof_mode":"final_verified","task029_controlled_dry_run":"final_verified","task030_read_only_manifest":"final_verified","task031_staged_output":"final_verified","task033_staged_output_evidence_manifest":"final_verified","task035_controlled_promotion":"final_verified"}},"current_branch":"main","task033_status":{"task033a_cloud_package_complete":true,"task033b_local_verification_complete":true,"adapter_validator_gate_required":true,"adapter_validator_gate_status":"passed","validator_cli_exit_code":0,"validator_summary_status":"valid","validator_total_checks":200,"validator_passed_checks":200,"validator_failed_checks":0,"validator_blocked_checks":0,"adapter_validator_unittest_exit_code":0,"local_workspace_adapter_unittest_exit_code":0,"task033_specific_validation_executed":true,"canonical_determinism_verified":true,"content_digest_verified":true,"negative_cases_verified":true,"actual_adapter_invoked":false,"staged_output_sandbox_write_performed":false,"actual_file_system_mutation_performed":false,"user_workspace_file_system_mutation_performed":false,"file_content_read_performed":false,"local_hancom_com_executed":false,"real_hwp_hwpx_hancell_hanshow_artifact_generated":false,"completion_gate_passed":true,"master_review_complete":true,"final_task033_completion_gate_passed":true,"merged_to_main":true,"main_merge_sha":"a136cb2629a7fac660255da1318119ada4e56a1d"},"task034_status":{"governance_sync_complete":true,"task033_integration_pr":1,"task033_integration_merge_sha":"a136cb2629a7fac660255da1318119ada4e56a1d","canonical_branch_set_to_main":true,"obsolete_user_approval_merge_restriction_removed":true,"master_reviewed_pr_merge_policy_enabled":true,"adapter_validator_gate_required":false,"adapter_validator_gate_status":"not_required","completion_gate_passed":true,"master_review_complete":true,"final_task034_completion_gate_passed":true},"benchmark_003":{"initial_completion_gate_passed":false,"initial_proceed_to_task_004":false,"scorecard_valid_for_final_core_selection":false,"restriction_scope_status":"historical_superseded_for_review_and_boundary_work_only","stage_2_transition_allowed":false,"final_hwp_hwpx_core_selection_allowed":false},"next_work":{"task_id":null,"routing_class":"master_task_definition","phase":"awaiting_master_task_definition","title":null,"status":"awaiting_master_task_definition","adapter_validator_gate_required":false},"restrictions":["main 직접 push 금지","force push 금지","history rewrite 금지","원본 HWP/HWPX 덮어쓰기 금지","아키텍처·단계 변경은 마스터 승인 필요","Task 003 초기 제한은 review-only 및 boundary/architecture 작업에 대해서는 historical superseded 상태이며, Stage 2 전환과 final HWPX core selection 금지는 계속 유효하다.","실제 실행 없는 passed/completed 금지","동일 Task에서 복수 worker 동시 수정 금지","기존 evidence 또는 LOCAL_EXECUTION_RESULT 원본 덮어쓰기 금지","Research Note는 Task report 대체물로 사용 금지","Research Note index에 장문 연구 내용 누적 금지","Stage 2 transition remains prohibited","final HWPX core selection remains prohibited"],"task035_status":{"task_id":"task035-local-workspace-staged-output-controlled-promotion-boundary","name":"Task 035 Local Workspace Staged Output Controlled Promotion Boundary","phase":"task035c_final_master_review","subphase":"task035c_master_review_complete","status":"final_verified","cloud_package_complete":true,"adapter_implementation_package_complete":true,"official_validator_integration_complete":true,"task033_manifest_compatibility_verified_in_unit_tests":true,"failure_evidence_truthfulness_verified_in_unit_tests":true,"source_immutability_verified_in_unit_tests":true,"root_boundary_safety_verified_in_unit_tests":true,"post_commit_cleanup_verified_in_unit_tests":true,"structured_filesystem_error_boundary_verified_in_unit_tests":true,"state_index_synchronization_complete":true,"local_verification_required":true,"local_verification_complete":true,"master_review_complete":true,"completion_gate_passed":true,"adapter_validator_gate_required":true,"adapter_validator_gate_status":"passed","validator_total_checks_before_minimum":383,"validator_total_checks_after":383,"validator_check_count_non_decreasing":true,"local_verification_gate_passed":true,"verified_implementation_commit_sha":"e7c91119771ad9e75262ee946ad648b674157472","formal_evidence_recording_commit_sha":"1a743f88fb33fbd2caac42cb264efb511e205a5b","master_review_report_commit_sha":"df45b83d0b1fb2e9deafe8bfa3863ec7deba08bb","validator_summary_status":"valid","validator_total_checks":383,"validator_passed_checks":383,"validator_failed_checks":0,"validator_blocked_checks":0,"task033_manifest_compatibility_verified":true,"raw_root_boundary_verified":true,"post_commit_cleanup_verified":true,"structured_filesystem_error_boundary_verified":true,"completion_gate_scope":"task035_final","final_task035_completion_gate_passed":true,"controlled_test_promotion_performed":true,"actual_file_system_mutation_performed":true,"file_content_read_performed":true,"user_workspace_file_system_mutation_performed":false,"production_promotion_performed":false,"actual_adapter_invoked":false,"local_hancom_com_executed":false,"real_hwp_hwpx_hancell_hanshow_artifact_generated":false,"public_internet_access_performed":false,"dependency_install_performed":false,"merged_to_main":true,"main_merge_sha":"e5f782cdafbebd25697fc58a32c1fa0042857b12"}}
+{
+  "updated_at": "2026-07-14",
+  "project": {"name": "Army Claw", "repository": "leejinuk-minoan/army-claw", "total_stages": 8},
+  "latest_completed_task": {
+    "task_id": "task035-local-workspace-staged-output-controlled-promotion-boundary",
+    "name": "Task 035 Local Workspace Staged Output Controlled Promotion Boundary",
+    "status": "final_verified",
+    "completion_gate_passed": true,
+    "master_review_complete": true,
+    "approved_implementation_commit_sha": "e7c91119771ad9e75262ee946ad648b674157472",
+    "formal_evidence_recording_commit_sha": "1a743f88fb33fbd2caac42cb264efb511e205a5b",
+    "master_review_report_commit_sha": "df45b83d0b1fb2e9deafe8bfa3863ec7deba08bb",
+    "main_merge_sha": "e5f782cdafbebd25697fc58a32c1fa0042857b12"
+  },
+  "active_task": {
+    "task_id": "task036-hwp-hwpx-template-fidelity-selector-execution-bridge",
+    "name": "Task 036 HWP/HWPX Template Fidelity Selector Plan and Execution Bridge Boundary",
+    "routing_class": "cloud_first_local_verify",
+    "phase": "task036a_cloud_contract_package",
+    "status": "cloud_contract_package_complete_pending_local_implementation",
+    "cloud_contract_package_complete": true,
+    "implementation_required": true,
+    "local_verification_required": true,
+    "local_verification_complete": false,
+    "master_review_complete": false,
+    "completion_gate_passed": false,
+    "adapter_validator_gate_required": true,
+    "adapter_validator_gate_status": "required_not_run"
+  },
+  "next_planned_task": {
+    "task_id": "task036b-hwp-hwpx-template-fidelity-selector-execution-bridge-local-implementation",
+    "name": "Task 036-B Local Implementation and Verification",
+    "routing_class": "local_codex_required",
+    "phase": "local_implementation_and_verification_required",
+    "status": "ready_for_local_implementation_prompt",
+    "adapter_validator_gate_required": true
+  },
+  "canonical_development_branch": "main",
+  "canonical_development_baseline": {
+    "branch": "main",
+    "main_sha_before_task036": "59fd64765a0fe50846ceb8cafa98d8c804a3088c",
+    "task035_integration_pr": 3,
+    "task035_main_merge_sha": "e5f782cdafbebd25697fc58a32c1fa0042857b12",
+    "task035_post_merge_state_sync_pr": 4,
+    "state_sync_commit_sha_embedded": false
+  },
+  "main_status": {
+    "worker_direct_push_allowed": false,
+    "force_push_allowed": false,
+    "history_rewrite_allowed": false,
+    "task036_main_modified": false
+  },
+  "merge_policy": {
+    "policy": "master_reviewed_pull_request",
+    "master_agent_may_merge_verified_pr": true,
+    "worker_direct_push_to_main_allowed": false,
+    "force_push_allowed": false,
+    "history_rewrite_allowed": false
+  },
+  "task_routing_class": "cloud_first_local_verify",
+  "phase_routing_class": {
+    "task035": "cloud_first_local_verify",
+    "task036": "cloud_first_local_verify",
+    "task036a": "cloud_delegable",
+    "task036b": "local_codex_required"
+  },
+  "current_stage": {
+    "stage": 1,
+    "name": "HwpAdapter 및 HWP/HWPX 엔진 안정화",
+    "substage": "1-3",
+    "substage_name": "선행 HWPX 엔진 비교·코어 선정",
+    "status": "in_progress",
+    "current_task": "Task 036 HWP/HWPX Template Fidelity Selector Plan and Execution Bridge Boundary",
+    "next_task": "Task 036-B Local Implementation and Verification"
+  },
+  "architecture": {
+    "orchestrator": "OpenClaw / Army Claw Node.js·TypeScript",
+    "identity": "offline_local_pc_office_document_agent",
+    "first_class_targets": ["hwp", "hwpx", "hancell", "hanshow", "local_workspace"],
+    "llm_role": "structured_plan_only",
+    "hwp_hwpx_template_fidelity_selector_bridge": {
+      "enabled": true,
+      "phase": "task036a_cloud_contract_package",
+      "architecture_path": "docs/architecture/army-claw-hwp-hwpx-template-fidelity-selector-execution-bridge.md",
+      "machine_contract_path": "docs/gpt-communication/contracts/hwp-hwpx-template-fidelity-selector-plan.json",
+      "selector_types": ["paragraph_text", "contains_text", "nth_paragraph", "table_cell_text"],
+      "implementation_complete": false,
+      "node_tests_executed": false,
+      "actual_hwp_hwpx_generated": false,
+      "hancom_com_executed": false
+    },
+    "local_workspace_boundaries": {
+      "task031_staged_output": "final_verified",
+      "task033_staged_output_evidence_manifest": "final_verified",
+      "task035_controlled_promotion": "final_verified"
+    }
+  },
+  "task035_status": {"status": "final_verified", "completion_gate_passed": true, "master_review_complete": true, "merged_to_main": true},
+  "task036_status": {
+    "phase": "task036a_cloud_contract_package",
+    "status": "cloud_contract_package_complete_pending_local_implementation",
+    "cloud_contract_package_complete": true,
+    "implementation_required": true,
+    "local_verification_required": true,
+    "local_verification_complete": false,
+    "master_review_complete": false,
+    "adapter_validator_gate_required": true,
+    "adapter_validator_gate_status": "required_not_run",
+    "completion_gate_passed": false,
+    "tools_hancom_source_modified": false,
+    "node_tests_executed": false,
+    "actual_hwp_hwpx_generated": false,
+    "actual_hancom_com_executed": false,
+    "user_workspace_mutation_performed": false,
+    "production_promotion_performed": false,
+    "public_internet_access_performed": false,
+    "dependency_install_performed": false
+  },
+  "next_work": {
+    "task_id": "task036b-hwp-hwpx-template-fidelity-selector-execution-bridge-local-implementation",
+    "routing_class": "local_codex_required",
+    "phase": "local_implementation_and_verification_required",
+    "title": "Task 036-B Local Implementation and Verification",
+    "status": "ready_for_local_implementation_prompt",
+    "adapter_validator_gate_required": true
+  },
+  "restrictions": [
+    "main 직접 push 금지",
+    "force push 및 history rewrite 금지",
+    "원본 HWP/HWPX 덮어쓰기 금지",
+    "실제 실행 없는 passed/completed 주장 금지",
+    "Task 036-A에서 tools/hancom 및 validator implementation 수정 금지",
+    "Stage 2 transition remains prohibited",
+    "final HWPX core selection remains prohibited"
+  ]
+}
