@@ -15,8 +15,9 @@
 - main 직접 push 금지
 - force push 금지
 - history rewrite 금지
-- 승인 없는 merge 금지
 - 다른 worker branch 무단 수정 금지
+
+검증과 마스터 리뷰가 완료된 branch는 마스터 에이전트가 PR을 통해 main에 merge할 수 있다. 충돌, 미검증 결과, 금지 경로 변경 또는 completion gate 실패가 있으면 merge하지 않는다.
 
 ## 3. Canceled / Not To Be Created
 
