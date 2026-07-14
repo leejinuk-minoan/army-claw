@@ -1,0 +1,1 @@
+{"case":"cross_volume_promotion_not_allowed","runtime_fixture":{"source_device":"device-a","destination_device":"device-b"},"constraints":{"allow_cross_volume_copy":false},"expected":{"valid":false,"error_code":"cross_volume_promotion_not_allowed"}}
