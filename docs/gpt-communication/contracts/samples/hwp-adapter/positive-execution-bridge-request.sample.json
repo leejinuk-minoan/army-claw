@@ -1,1 +1,30 @@
-{"case":"execution bridge request","sample_profile":"hwp_template_fidelity_bridge_request","request":{"bridge_version":"army-claw-hwp-template-fidelity-bridge-001.v1","plan_id":"plan-036-p5","target_id":"hwp","adapter_slot_id":"hwp_adapter_slot","engine_operation":"hwpx-template-fidelity-fill","template_artifact_id":"template-001","template_digest":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","selector_resolution":[{"operation_id":"replace-title","selector_id":"selector-title","target":{"section_index":0,"paragraph_index":0},"match_count":1,"before_text_digest":"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"}],"output":{"staging_root_reference":"task036-staging-root","relative_output_path":"outputs/multi.hwpx","overwrite_existing":false},"required_links":{"task031_staged_artifact_id":"artifact-036-001","task033_evidence_manifest_id":"manifest-pending","task035_promotion_authorization_id":"authorization-pending"}},"expected":{"status":"accepted_for_local_execution","blocking":false}}
+{
+  "case": "execution bridge request",
+  "sample_profile": "hwp_template_fidelity_bridge_request",
+  "request": {
+    "bridge_version": "army-claw-hwp-template-fidelity-bridge-001.v2",
+    "plan_id": "plan-036-p5",
+    "target_id": "hwp",
+    "adapter_slot_id": "hwp_adapter_slot",
+    "engine_operation": "hwpx-template-fidelity-fill",
+    "template_artifact_id": "template-001",
+    "template_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "operations": [
+      {
+        "operation_id": "replace-title",
+        "selector_id": "selector-title",
+        "resolved_target": {"section_index": 0, "paragraph_index": 0},
+        "before_text_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "after_text_digest": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+      }
+    ],
+    "output": {"staging_root_reference":"task036-staging-root","relative_output_path":"outputs/multi.hwpx","overwrite_existing":false},
+    "links": {
+      "staged_artifact_id": "artifact-036-001",
+      "staged_receipt_id": "receipt-031-036-001",
+      "evidence_manifest_id": "manifest-pending",
+      "promotion_authorization_id": "authorization-pending"
+    }
+  },
+  "expected": {"status":"accepted_for_local_execution","blocking":false}
+}
