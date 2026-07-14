@@ -1,0 +1,16 @@
+{
+  "case": "missing_receipt_reference",
+  "artifacts": [
+    {
+      "artifact_id": "artifact-001",
+      "normalized_relative_path": "outputs/task033/report.txt",
+      "receipt_id": "receipt-missing"
+    }
+  ],
+  "receipts": [],
+  "expected_error": {
+    "error_code": "missing_receipt_reference",
+    "category": "evidence_missing",
+    "blocking": true
+  }
+}
