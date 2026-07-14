@@ -122,6 +122,14 @@
       "file": "docs/research-notes/task-notes/RN-033-task033-local-workspace-staged-output-evidence-manifest-boundary.md",
       "research_axis": "Deterministic staged output evidence manifest boundary",
       "status": "final_verified"
+    },
+    "RN-034": {
+      "task": "Task 034",
+      "task_id": "task034-main-integration-governance-sync",
+      "title": "Main Integration and Governance Baseline Sync",
+      "file": "docs/research-notes/task-notes/RN-034-task034-main-integration-governance-sync.md",
+      "research_axis": "PR-based main integration and governance baseline synchronization",
+      "status": "final_verified"
     }
   }
 }
