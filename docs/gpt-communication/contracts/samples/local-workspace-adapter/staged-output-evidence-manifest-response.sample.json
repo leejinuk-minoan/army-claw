@@ -1,0 +1,69 @@
+{
+  "status": "staged_output_evidence_manifest_validated",
+  "execution_allowed": false,
+  "operational_envelope": {
+    "recorded_at": "2026-07-14T00:00:00Z",
+    "recorded_at_in_manifest_digest": false
+  },
+  "manifest": {
+    "manifest_version": "1.0",
+    "manifest_id": "sha256:example-recomputed-from-canonical-content",
+    "task_id": "task033-local-workspace-staged-output-evidence-manifest-boundary",
+    "execution_mode": "staged_output_evidence_manifest",
+    "sandbox_scope": true,
+    "artifact_count": 1,
+    "artifacts": [
+      {
+        "artifact_id": "artifact-001",
+        "artifact_kind": "txt",
+        "normalized_relative_path": "outputs/task033/report.txt",
+        "content_source": "request_provided_generated_content",
+        "byte_size": 45,
+        "digest_algorithm": "sha256",
+        "digest_value": "6cc03375a40e5c9eb2b317686103112c3f2f1d265589f2018e23cb83ddddfd69",
+        "receipt_id": "receipt-001",
+        "sandbox_only": true,
+        "promotion_status": "not_promoted"
+      }
+    ],
+    "receipts": [
+      {
+        "receipt_id": "receipt-001",
+        "receipt_kind": "staged_output_sandbox_receipt",
+        "summary_only": false
+      }
+    ],
+    "relationships": [
+      {
+        "relationship_type": "artifact_evidenced_by_receipt",
+        "source_id": "artifact-001",
+        "target_id": "receipt-001"
+      }
+    ],
+    "summary": {
+      "artifact_count": 1,
+      "receipt_count": 1,
+      "relationship_count": 1
+    },
+    "safety_assertions": {
+      "staged_output_evidence_manifest_evaluated": true,
+      "staged_output_sandbox_write_performed": false,
+      "actual_adapter_invoked": false,
+      "actual_file_system_mutation_performed": false,
+      "user_workspace_file_system_mutation_performed": false,
+      "file_content_read_performed": false,
+      "local_hancom_com_executed": false,
+      "real_hwp_hwpx_hancell_hanshow_artifact_generated": false,
+      "production_promotion_performed": false,
+      "public_internet_access_performed": false,
+      "dependency_install_performed": false
+    },
+    "validation": {
+      "valid": true,
+      "canonical_serialization_valid": true,
+      "digest_verification_valid": true,
+      "relationship_integrity_valid": true,
+      "path_policy_valid": true
+    }
+  }
+}
