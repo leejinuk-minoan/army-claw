@@ -18,10 +18,12 @@
 canonical branch: main
 Task 033 integration PR: #1
 Task 033 integration merge SHA: a136cb2629a7fac660255da1318119ada4e56a1d
+Task 035 integration PR: #3
 Task 035 approved implementation SHA: e7c91119771ad9e75262ee946ad648b674157472
 Task 035 formal evidence SHA: 1a743f88fb33fbd2caac42cb264efb511e205a5b
 Task 035 master review report commit: df45b83d0b1fb2e9deafe8bfa3863ec7deba08bb
-Task 035 main merge SHA: reported externally by Master Agent
+Task 035 source branch head: 84f6c320f5369d846c50fe85b6ee060f2bc83c43
+Task 035 main merge SHA: e5f782cdafbebd25697fc58a32c1fa0042857b12
 ```
 
 ## 최신 완료 Task
@@ -32,9 +34,10 @@ status: final_verified
 completion gate: passed
 master review: complete
 adapter validator gate: passed
+merged to main: true
 ```
 
-Task 035는 Task 033 evidence manifest에 연결된 staged artifact를 승인된 temporary destination root로 승격하는 controlled promotion 경계를 정의하고 검증했다.
+Task 035는 Task 033 evidence manifest에 연결된 staged artifact를 승인된 temporary destination root로 승격하는 controlled promotion 경계를 정의하고 검증했다. 검증된 브랜치는 PR #3을 통해 `main`에 병합됐다.
 
 ## Task 035 검증 기준
 
