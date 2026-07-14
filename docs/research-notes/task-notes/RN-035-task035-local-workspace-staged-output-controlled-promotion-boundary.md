@@ -16,18 +16,23 @@ The correction also adds truthful failure execution audit flags, removes source 
 ## Task 035-A2L-C2 correction
 The second corrective pass closes the raw root boundary and post-commit cleanup gaps. Injected staged and approved roots are checked before `resolve()`, root symlink/reparse points are blocked, and root inspection failure returns structured `unsupported_safety_check` evidence.
 
-Cleanup now records temp and final paths independently. A failure after final creation attempts operation-created final cleanup and temp cleanup without early return, never treats a pre-existing destination as a cleanup target, preserves the source bytes, and reports cleanup evidence through `temporary_path_cleaned`, `final_path_cleaned`, `cleanup_attempted`, `cleanup_complete`, `cleanup_error_codes`, and `original_error_code`.
+Cleanup records temp and final paths independently. A failure after final creation attempts operation-created final cleanup and temp cleanup without early return, never treats a pre-existing destination as a cleanup target, preserves source bytes, and reports cleanup evidence through `temporary_path_cleaned`, `final_path_cleaned`, `cleanup_attempted`, `cleanup_complete`, `cleanup_error_codes`, and `original_error_code`.
 
-Expected filesystem errors for directory listing, source read/hash/stat, temp creation/write/hash/stat, final hash/stat, commit, and unlink operations are converted to structured blocking responses in the covered unit tests.
-
-## Claimable scope
-The package now supports a Task 035-B local verification gate claim for controlled promotion policy, validator integration, temporary-root unit-test behavior, Task 033 whole/inner manifest promotion, raw root safety, cleanup state-machine behavior, and structured filesystem error handling.
-
-## Non-claimable scope
-No production promotion, real user workspace mutation, native office application execution, semantic office-document validation, Hancom COM integration, Stage 2 readiness, final HWPX core selection, or final Task 035 completion is established. Final Task 035 completion remains pending master review.
+Expected filesystem errors for directory listing, source read/hash/stat, temp creation/write/hash/stat, final hash/stat, commit, and unlink operations are converted to structured blocking responses in the covered tests.
 
 ## Task 035-B formal local verification
 Formal local verification was recorded for implementation SHA `e7c91119771ad9e75262ee946ad648b674157472`. The official validator reported `valid` with 383 total checks, 383 passed, 0 failed, and 0 blocked. Adapter validator unittest ran 22 tests OK. Local workspace adapter unittest ran 97 tests OK with two Windows symlink privilege-dependent skips. Formal controlled-promotion scenarios passed 15 of 15.
 
+The initial evidence harness attempt was preserved as failed because of a wrong approved-root identifier and preflight recording order. The implementation SHA did not change. The passing gate is the separately preserved `attempt-002` referenced by `LOCAL_EXECUTION_RESULT.json`.
+
+## Final master review
+The Master Agent accepted the cloud package, implementation, corrective passes, and formal local verification. The final master review report is `docs/gpt-communication/reports/2026-07-14-task035-final-master-review.md`.
+
+## Claimable scope
+Task 035 establishes a `final_verified` controlled-promotion boundary for Task 033-compatible manifest linkage, exact authorization binding, temporary-root content promotion, digest and size verification, source retention, no-overwrite placement, raw-root and lexical path safety, cross-volume blocking, cleanup state-machine behavior, structured filesystem failures, validator integration, and deterministic local evidence.
+
+## Non-claimable scope
+Task 035 does not establish production promotion, real user workspace mutation, native office application execution, semantic office-document validation, Hancom COM integration, Stage 2 readiness, or final HWPX core selection.
+
 ## Status
-`local_verification_complete_pending_master_review`.
+`final_verified`.
