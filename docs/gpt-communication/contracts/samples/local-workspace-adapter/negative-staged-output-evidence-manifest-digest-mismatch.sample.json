@@ -1,0 +1,15 @@
+{
+  "case": "digest_mismatch",
+  "artifact": {
+    "artifact_id": "artifact-001",
+    "normalized_relative_path": "outputs/task033/report.txt",
+    "generated_content_utf8": "actual bytes",
+    "digest_algorithm": "sha256",
+    "digest_value": "0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "expected_error": {
+    "error_code": "digest_mismatch",
+    "category": "evidence_missing",
+    "blocking": true
+  }
+}
