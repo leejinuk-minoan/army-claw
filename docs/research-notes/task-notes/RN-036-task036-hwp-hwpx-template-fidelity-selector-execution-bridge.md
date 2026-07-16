@@ -17,3 +17,9 @@ Task 036-A2 corrected error metadata, bridge cardinality, preview-absent evidenc
 
 ## Current status
 `cloud_contract_package_corrected_pending_local_implementation`. No implementation, Node execution, HWPX generation, Hancom COM invocation, filesystem mutation, or production promotion is claimed. Task 036-B1/B2 local implementation and formal verification are required.
+
+## Task 036-B0RL offline JSZip vendor creation
+
+Task 036-B0RL fixed the missing `jszip` runtime blocker by creating a repository-pinned offline vendor package for `jszip@3.10.1`. The selected local candidate came from the existing packaged app output and matched the required upstream bundle Git blob and SHA-256. No npm registry access, package-manager install, runtime network dependency, Hancom COM execution, or Task 036-B1/B2 implementation was performed.
+
+Current status: `offline_dependency_package_created_pending_runtime_validation`.

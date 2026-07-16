@@ -39,3 +39,9 @@ Use fixture HWPX and temporary test workspaces only. Do not overwrite source tem
 
 ## Deliverables
 Create immutable evidence, completed `LOCAL_EXECUTION_RESULT.json`, a Task 036-B report, and separate implementation/evidence commits without modifying Task 036-A/A2 cloud evidence.
+
+## Task 036-B0RL offline JSZip vendor addendum
+
+Task 036-B0RL created a repository-pinned `jszip@3.10.1` offline runtime vendor package at `vendor/node/jszip/3.10.1/` using an existing local packaging/cache candidate. The selected bundle matches Git blob `ff4cfd5e8fdc49176c2d1d409afa897f40be01f4` and SHA-256 `acc7e41455a80765b5fd9c7ee1b8078a6d160bbbca455aeae854de65c947d59e`.
+
+Task 036-B1/B2 must not start until Task 036-B0V validates runtime materialization and baseline Node tests using `tools/hancom/prepare-offline-jszip-runtime.ps1`.
