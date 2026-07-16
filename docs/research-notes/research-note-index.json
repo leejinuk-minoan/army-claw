@@ -145,7 +145,7 @@
                                  "title":  "HWP/HWPX Template Fidelity Selector Plan and Execution Bridge",
                                  "file":  "docs/research-notes/task-notes/RN-036-task036-hwp-hwpx-template-fidelity-selector-execution-bridge.md",
                                  "research_axis":  "Deterministic selector plans and execution bridging for template-preserving HWP/HWPX generation",
-                                 "status":  "offline_dependency_package_created_pending_runtime_validation"
+                                 "status":  "offline_runtime_validated_pending_local_implementation"
                              }
               }
 }

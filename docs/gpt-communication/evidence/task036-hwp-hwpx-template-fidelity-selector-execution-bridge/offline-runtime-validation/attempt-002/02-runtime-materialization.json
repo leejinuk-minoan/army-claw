@@ -1,0 +1,7 @@
+{
+    "attempt":  "attempt-002",
+    "status":  "failed_harness_attempt",
+    "failure_reason":  "PowerShell -Command wrapper emitted shell banner instead of runtime materialization JSON",
+    "runtime_materialization_passed":  false,
+    "gate_candidate":  false
+}

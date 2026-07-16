@@ -1,0 +1,14 @@
+{
+    "attempt":  "attempt-002",
+    "b0rl_commit":  "5a8a98c5c10bca2d81f6a783626e8410e910fe31",
+    "runtime_materialization_exit_code":  0,
+    "runtime_materialization_passed":  false,
+    "source_runtime_digest_equal":  false,
+    "jszip_smoke_exit_code":  0,
+    "node_check_exit_code":  0,
+    "template_fidelity_baseline_exit_code":  0,
+    "hancom_suite_exit_code":  0,
+    "hancom_suite_test_file_count":  25,
+    "offline_runtime_validation_gate_passed":  false,
+    "task036_b1_b2_started":  false
+}

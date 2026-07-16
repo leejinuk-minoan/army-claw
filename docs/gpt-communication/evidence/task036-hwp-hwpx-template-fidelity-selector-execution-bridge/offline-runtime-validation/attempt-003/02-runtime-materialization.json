@@ -1,0 +1,14 @@
+{
+    "RuntimeRoot":  "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task036-hwp-hwpx-template-fidelity-selector-execution-bridge\\.tmp\\task036-offline-node-runtime",
+    "NodeModulesRoot":  "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task036-hwp-hwpx-template-fidelity-selector-execution-bridge\\.tmp\\task036-offline-node-runtime",
+    "JsZipVersion":  "3.10.1",
+    "GitBlobSha":  "ff4cfd5e8fdc49176c2d1d409afa897f40be01f4",
+    "SourceSha256":  "acc7e41455a80765b5fd9c7ee1b8078a6d160bbbca455aeae854de65c947d59e",
+    "RuntimeSha256":  "acc7e41455a80765b5fd9c7ee1b8078a6d160bbbca455aeae854de65c947d59e",
+    "SourceByteSize":  97630,
+    "RuntimeByteSize":  97630,
+    "RuntimeBundle":  "C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task036-hwp-hwpx-template-fidelity-selector-execution-bridge\\.tmp\\task036-offline-node-runtime\\node_modules\\jszip\\index.cjs",
+    "PermanentEnvironmentModified":  false,
+    "NetworkUsed":  false,
+    "PackageManagerUsed":  false
+}

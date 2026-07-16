@@ -1,0 +1,6 @@
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Install the latest PowerShell for new features and improvements! https://aka.ms/PSWindows
+
+PS C:\Users\USER\Desktop\로컬 open claw 만들기\.tmp\task036-hwp-hwpx-template-fidelity-selector-execution-bridge>

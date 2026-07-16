@@ -20,8 +20,8 @@
                         "task_id":  "task036-hwp-hwpx-template-fidelity-selector-execution-bridge",
                         "name":  "Task 036 HWP/HWPX Template Fidelity Selector Plan and Execution Bridge Boundary",
                         "routing_class":  "cloud_first_local_verify",
-                        "phase":  "task036b0rl_local_offline_jszip_vendor_creation",
-                        "status":  "offline_dependency_package_created_pending_runtime_validation",
+                        "phase":  "task036b0v_offline_jszip_runtime_validation",
+                        "status":  "offline_runtime_validated_ready_for_local_implementation",
                         "cloud_contract_package_complete":  true,
                         "contract_correction_complete":  true,
                         "implementation_required":  true,
@@ -38,14 +38,19 @@
                         "offline_jszip_git_blob_sha":  "ff4cfd5e8fdc49176c2d1d409afa897f40be01f4",
                         "offline_jszip_sha256":  "acc7e41455a80765b5fd9c7ee1b8078a6d160bbbca455aeae854de65c947d59e",
                         "offline_runtime_validation_required":  true,
-                        "offline_runtime_validation_complete":  false
+                        "offline_runtime_validation_complete":  true,
+                        "offline_runtime_validation_gate_passed":  true,
+                        "node_runtime_version":  "v24.14.0",
+                        "jszip_runtime_version":  "3.10.1",
+                        "template_fidelity_baseline_passed":  true,
+                        "hancom_node_baseline_passed":  true
                     },
     "next_planned_task":  {
                               "task_id":  "task036b-hwp-hwpx-template-fidelity-selector-execution-bridge-local-implementation",
                               "name":  "Task 036-B1/B2 Local Implementation and Formal Verification",
                               "routing_class":  "local_codex_required",
                               "phase":  "local_implementation_and_formal_verification_required",
-                              "status":  "blocked_pending_b0v",
+                              "status":  "ready_for_local_implementation",
                               "adapter_validator_gate_required":  true,
                               "official_validator_integration_required":  true,
                               "validator_tests_required":  true,
@@ -81,8 +86,8 @@
                            "merged_to_main":  true
                        },
     "task036_status":  {
-                           "phase":  "task036b0rl_local_offline_jszip_vendor_creation",
-                           "status":  "offline_dependency_package_created_pending_runtime_validation",
+                           "phase":  "task036b0v_offline_jszip_runtime_validation",
+                           "status":  "offline_runtime_validated_ready_for_local_implementation",
                            "cloud_contract_package_complete":  true,
                            "contract_correction_complete":  true,
                            "error_code_count":  23,
@@ -115,9 +120,14 @@
                            "offline_jszip_git_blob_sha":  "ff4cfd5e8fdc49176c2d1d409afa897f40be01f4",
                            "offline_jszip_sha256":  "acc7e41455a80765b5fd9c7ee1b8078a6d160bbbca455aeae854de65c947d59e",
                            "offline_runtime_validation_required":  true,
-                           "offline_runtime_validation_complete":  false,
+                           "offline_runtime_validation_complete":  true,
                            "build_time_public_internet_acquisition_performed":  false,
-                           "runtime_public_internet_dependency":  false
+                           "runtime_public_internet_dependency":  false,
+                           "offline_runtime_validation_gate_passed":  true,
+                           "node_runtime_version":  "v24.14.0",
+                           "jszip_runtime_version":  "3.10.1",
+                           "template_fidelity_baseline_passed":  true,
+                           "hancom_node_baseline_passed":  true
                        },
     "next_work":  {
                       "task_id":  "task036b-hwp-hwpx-template-fidelity-selector-execution-bridge-local-implementation",

@@ -1,0 +1,16 @@
+{
+    "runtime_public_internet_dependency":  false,
+    "package_manager_used":  false,
+    "dependency_install_performed":  false,
+    "permanent_path_modified":  false,
+    "runtime_materialization_under_tmp":  true,
+    "engine_source_modified":  false,
+    "test_source_modified":  false,
+    "validator_source_modified":  false,
+    "actual_hwp_hwpx_generation_performed":  false,
+    "actual_hancom_com_executed":  false,
+    "native_office_application_executed":  false,
+    "user_workspace_mutation_performed":  false,
+    "production_promotion_performed":  false,
+    "task036_b1_b2_started":  false
+}

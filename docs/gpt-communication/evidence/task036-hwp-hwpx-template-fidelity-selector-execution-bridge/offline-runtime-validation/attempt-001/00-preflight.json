@@ -1,0 +1,10 @@
+{
+    "branch":  "agent/task036-hwp-hwpx-template-fidelity-selector-execution-bridge",
+    "head":  "5a8a98c5c10bca2d81f6a783626e8410e910fe31",
+    "remote_head":  "5a8a98c5c10bca2d81f6a783626e8410e910fe31",
+    "ahead_behind":  "0\t0",
+    "status":  "",
+    "node_executable":  "C:\\Users\\USER\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+    "node_version":  "v24.14.0",
+    "b0rl_commit":  "5a8a98c5c10bca2d81f6a783626e8410e910fe31"
+}

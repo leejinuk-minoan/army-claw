@@ -1,0 +1,7 @@
+{
+    "attempt":  "attempt-001",
+    "status":  "failed_harness_attempt",
+    "failure_reason":  "PowerShell execution policy blocked direct ps1 invocation; runtime materialization result was not produced",
+    "runtime_materialization_passed":  false,
+    "gate_candidate":  false
+}

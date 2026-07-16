@@ -23,3 +23,8 @@ Task 036-A2 corrected error metadata, bridge cardinality, preview-absent evidenc
 Task 036-B0RL fixed the missing `jszip` runtime blocker by creating a repository-pinned offline vendor package for `jszip@3.10.1`. The selected local candidate came from the existing packaged app output and matched the required upstream bundle Git blob and SHA-256. No npm registry access, package-manager install, runtime network dependency, Hancom COM execution, or Task 036-B1/B2 implementation was performed.
 
 Current status: `offline_dependency_package_created_pending_runtime_validation`.
+## Task 036-B0V offline runtime validation
+
+Task 036-B0V materialized the pinned JSZip bundle into an ignored `.tmp` runtime and verified `require("jszip")`, JSZip version `3.10.1`, ZIP round-trip behavior, Node syntax, the targeted template-fidelity baseline, and the existing Hancom Node suite. The passing evidence attempt is `offline-runtime-validation/attempt-003`; earlier attempts are preserved as harness failures.
+
+Current status: `offline_runtime_validated_pending_local_implementation`.

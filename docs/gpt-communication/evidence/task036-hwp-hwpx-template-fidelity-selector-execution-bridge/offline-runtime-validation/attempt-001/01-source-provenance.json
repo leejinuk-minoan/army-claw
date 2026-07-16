@@ -1,0 +1,44 @@
+{
+    "package_name":  "jszip",
+    "package_version":  "3.10.1",
+    "selected_license":  "MIT",
+    "runtime_form":  "standalone_umd_commonjs_bundle",
+    "upstream":  {
+                     "repository":  "Stuk/jszip",
+                     "ref":  "v3.10.1",
+                     "path":  "dist/jszip.min.js",
+                     "git_blob_sha":  "ff4cfd5e8fdc49176c2d1d409afa897f40be01f4"
+                 },
+    "upstream_package_metadata":  {
+                                      "path":  "package.json",
+                                      "git_blob_sha":  "3fa81de96b758c0ee9f783e2b6e696bf6b976860"
+                                  },
+    "upstream_license":  {
+                             "path":  "LICENSE.markdown",
+                             "git_blob_sha":  "f8250b37a61862ea61ea9a93d5d423cad395a364"
+                         },
+    "bundled_third_party_notices":  [
+                                        {
+                                            "package_name":  "pako",
+                                            "version":  "1.0.11",
+                                            "license":  "MIT",
+                                            "repository":  "nodeca/pako",
+                                            "ref":  "1.0.11",
+                                            "license_path":  "LICENSE",
+                                            "license_git_blob_sha":  "a934ef8db478453e38b2f29af67610916fa9fc99"
+                                        }
+                                    ],
+    "repository_path":  "vendor/node/jszip/3.10.1/jszip.min.cjs",
+    "content_modified":  false,
+    "filename_extension_changed":  true,
+    "git_blob_sha":  "ff4cfd5e8fdc49176c2d1d409afa897f40be01f4",
+    "sha256":  "acc7e41455a80765b5fd9c7ee1b8078a6d160bbbca455aeae854de65c947d59e",
+    "source_acquisition":  "existing_local_packaging_or_cache",
+    "build_time_public_internet_acquisition_performed":  false,
+    "runtime_public_internet_dependency":  false,
+    "local_runtime_validation_required":  true,
+    "local_candidate":  {
+                            "package_root":  "C:/Users/USER/Desktop/로컬 open claw 만들기/release/army-claw-openclaw-beta/app/node_modules/jszip",
+                            "pako_license":  "C:/Users/USER/Desktop/로컬 open claw 만들기/release/army-claw-openclaw-beta/app/node_modules/pako/LICENSE"
+                        }
+}

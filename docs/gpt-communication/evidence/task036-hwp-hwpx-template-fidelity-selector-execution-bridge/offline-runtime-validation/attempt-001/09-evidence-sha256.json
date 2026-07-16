@@ -1,0 +1,100 @@
+{
+    "hash_scope":  "all_attempt_files_except_this_sha_manifest",
+    "files":  [
+                  {
+                      "path":  "docs\\gpt-communication\\evidence\\task036-hwp-hwpx-template-fidelity-selector-execution-bridge\\offline-runtime-validation\\attempt-001\\00-preflight.json",
+                      "size":  488,
+                      "sha256":  "a768c0e4b6991deaa1b8907de1293deaf05259aa5abdc6ffd0d9d42b2729d4e3"
+                  },
+                  {
+                      "path":  "docs\\gpt-communication\\evidence\\task036-hwp-hwpx-template-fidelity-selector-execution-bridge\\offline-runtime-validation\\attempt-001\\01-source-provenance.json",
+                      "size":  2449,
+                      "sha256":  "28cfea6fd14f400e029824647b1ba308217923e965eec9dd0e5a9cad835c3e3d"
+                  },
+                  {
+                      "path":  "docs\\gpt-communication\\evidence\\task036-hwp-hwpx-template-fidelity-selector-execution-bridge\\offline-runtime-validation\\attempt-001\\02-runtime-materialization.json",
+                      "size":  290,
+                      "sha256":  "f31f8488dd30e0bb2f5fe4aef6b9dc6cfd7e73a28b2b48d72a8e5622c426c4d5"
+                  },
+                  {
+                      "path":  "docs\\gpt-communication\\evidence\\task036-hwp-hwpx-template-fidelity-selector-execution-bridge\\offline-runtime-validation\\attempt-001\\03-node-version.txt",
+                      "size":  9,
+                      "sha256":  "66067cd148ad9719b8fd48e9e233a4dcfa29b9a5e449f9463f9f6b0fb2c58ada"
+                  },
+                  {
+                      "path":  "docs\\gpt-communication\\evidence\\task036-hwp-hwpx-template-fidelity-selector-execution-bridge\\offline-runtime-validation\\attempt-001\\04-jszip-smoke.cjs",
+                      "size":  988,
+                      "sha256":  "79e11c54229002866b4be32eb59a222d3be4fae0e35b58ab26d60134ffe96313"
+                  },
+                  {
+                      "path":  "docs\\gpt-communication\\evidence\\task036-hwp-hwpx-template-fidelity-selector-execution-bridge\\offline-runtime-validation\\attempt-001\\04-jszip-smoke.exit-code.txt",
+                      "size":  2,
+                      "sha256":  "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+                  },
+                  {
+                      "path":  "docs\\gpt-communication\\evidence\\task036-hwp-hwpx-template-fidelity-selector-execution-bridge\\offline-runtime-validation\\attempt-001\\04-jszip-smoke.stderr.txt",
+                      "size":  0,
+                      "sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                  },
+                  {
+                      "path":  "docs\\gpt-communication\\evidence\\task036-hwp-hwpx-template-fidelity-selector-execution-bridge\\offline-runtime-validation\\attempt-001\\04-jszip-smoke.stdout.txt",
+                      "size":  0,
+                      "sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                  },
+                  {
+                      "path":  "docs\\gpt-communication\\evidence\\task036-hwp-hwpx-template-fidelity-selector-execution-bridge\\offline-runtime-validation\\attempt-001\\05-node-check.exit-code.txt",
+                      "size":  2,
+                      "sha256":  "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+                  },
+                  {
+                      "path":  "docs\\gpt-communication\\evidence\\task036-hwp-hwpx-template-fidelity-selector-execution-bridge\\offline-runtime-validation\\attempt-001\\05-node-check.stderr.txt",
+                      "size":  0,
+                      "sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                  },
+                  {
+                      "path":  "docs\\gpt-communication\\evidence\\task036-hwp-hwpx-template-fidelity-selector-execution-bridge\\offline-runtime-validation\\attempt-001\\05-node-check.stdout.txt",
+                      "size":  0,
+                      "sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                  },
+                  {
+                      "path":  "docs\\gpt-communication\\evidence\\task036-hwp-hwpx-template-fidelity-selector-execution-bridge\\offline-runtime-validation\\attempt-001\\06-template-fidelity-baseline.exit-code.txt",
+                      "size":  2,
+                      "sha256":  "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+                  },
+                  {
+                      "path":  "docs\\gpt-communication\\evidence\\task036-hwp-hwpx-template-fidelity-selector-execution-bridge\\offline-runtime-validation\\attempt-001\\06-template-fidelity-baseline.stderr.txt",
+                      "size":  0,
+                      "sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                  },
+                  {
+                      "path":  "docs\\gpt-communication\\evidence\\task036-hwp-hwpx-template-fidelity-selector-execution-bridge\\offline-runtime-validation\\attempt-001\\06-template-fidelity-baseline.stdout.txt",
+                      "size":  0,
+                      "sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                  },
+                  {
+                      "path":  "docs\\gpt-communication\\evidence\\task036-hwp-hwpx-template-fidelity-selector-execution-bridge\\offline-runtime-validation\\attempt-001\\07-hancom-suite.exit-code.txt",
+                      "size":  2,
+                      "sha256":  "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+                  },
+                  {
+                      "path":  "docs\\gpt-communication\\evidence\\task036-hwp-hwpx-template-fidelity-selector-execution-bridge\\offline-runtime-validation\\attempt-001\\07-hancom-suite.stderr.txt",
+                      "size":  0,
+                      "sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                  },
+                  {
+                      "path":  "docs\\gpt-communication\\evidence\\task036-hwp-hwpx-template-fidelity-selector-execution-bridge\\offline-runtime-validation\\attempt-001\\07-hancom-suite.stdout.txt",
+                      "size":  0,
+                      "sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                  },
+                  {
+                      "path":  "docs\\gpt-communication\\evidence\\task036-hwp-hwpx-template-fidelity-selector-execution-bridge\\offline-runtime-validation\\attempt-001\\08-runtime-safety-summary.json",
+                      "size":  626,
+                      "sha256":  "2730281fd757250e34e72844967f1ae85ff5f50d002f9a3c0f494b79f4c9d687"
+                  },
+                  {
+                      "path":  "docs\\gpt-communication\\evidence\\task036-hwp-hwpx-template-fidelity-selector-execution-bridge\\offline-runtime-validation\\attempt-001\\10-verification-summary.json",
+                      "size":  444,
+                      "sha256":  "defeb42f76c1c7d9a76bbedaa4c71e489130a369ecd8aa9db520d5a43122e736"
+                  }
+              ]
+}

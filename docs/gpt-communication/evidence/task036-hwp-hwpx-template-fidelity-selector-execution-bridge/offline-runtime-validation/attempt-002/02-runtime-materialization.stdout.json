@@ -1,0 +1,6 @@
+{
+    "attempt":  "attempt-002",
+    "status":  "failed_harness_stdout",
+    "raw_stdout":  "Windows PowerShell\r\nCopyright (C) Microsoft Corporation. All rights reserved.\r\n\r\nInstall the latest PowerShell for new features and improvements! https://aka.ms/PSWindows\r\n\r\nPS C:\\Users\\USER\\Desktop\\로컬 open claw 만들기\\.tmp\\task036-hwp-hwpx-template-fidelity-selector-execution-bridge\u003e ",
+    "note":  "Original stdout was a PowerShell banner/prompt rather than materialization JSON."
+}
